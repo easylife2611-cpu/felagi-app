@@ -122,3 +122,44 @@ NO chat history reconstruction needed.
 | Product Owner | (UNKNOWN — to be filled) |
 | Design Owner | (UNKNOWN — to be filled) |
 | Release Owner | (UNKNOWN — to be filled) |
+
+---
+## B18 — Bundle Refresh (2026-09-29)
+
+### New Bundle Artifacts (B17_DONE)
+
+All 4 artifacts in ~/:
+
+| Artifact | Size |
+|----------|------|
+| Felagi_App_v1.4.2_20260929-1514_B17_DONE.bundle | 974K |
+| Felagi_Design_v1.4.2_20260929-1514_B17_DONE.bundle | 3.5M |
+| Felagi_v1.4.2_20260929-1514_B17_DONE_full.tar.gz | 45M |
+| Felagi_v1.4.2_20260929-1514_B17_DONE_FULL_with_vendor.tar.gz | 76M |
+
+### Verification Results
+
+| Check | Result |
+|-------|--------|
+| App bundle HEAD | 6ea8a97 (B17) |
+| App bundle commits | 51 |
+| App ledger files | 14 |
+| B17_ROLLBACK.md present | YES |
+| Design bundle HEAD | 27edd9d (B11) |
+| Design bundle commits | 15 |
+| Tarball entries | 317 |
+| Tarball B17_ROLLBACK | YES |
+
+### Bundle Status
+
+**SUPERSEDES:** Previous WP21 bundles in ~/archives/Felagi_bundles_archive/
+**State:** Both repos clean, no uncommitted changes
+
+### Continuity
+
+A developer cloning either bundle gets:
+- Full commit history
+- All 14 ledger files
+- B17_ROLLBACK.md
+- Complete handoff state
+
