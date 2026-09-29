@@ -559,3 +559,23 @@ Net impact: Additive schema changes only. No data affected. No service interrupt
 
 ### Resolved
 - GAP-42 (auth_attempts table missing)
+
+## 2026-09-29 — WP-05b Telegram Foundation (DONE)
+
+### Delivered
+- 3 Models: TelegramDestination, TelegramPublication, TelegramPublicationEvent
+- 1 Controller: AdminTelegramController (4 read-only methods)
+- 4 GET routes registered
+- 1 Test file (12 tests)
+
+### Scope
+- Read-only endpoints only
+- Write endpoints (create/validate/activate/pause/retry) → WP-27 (bot token required)
+
+### Verification
+- 12 tests PASS
+- Routes registered
+
+### Design Compliance
+- Design_Integration_Contract.md endpoints
+- DFM §275 admin routes

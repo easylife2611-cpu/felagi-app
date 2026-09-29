@@ -420,3 +420,34 @@ WP-05 COMPLETE.
 - Patched: 1 (AuthController)
 - Tests: 14 PASS (34 assertions)
 - Total Admin tests: 50 PASS
+
+## WP-05b Additions (2026-09-29)
+
+### Models (3)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L188 | TelegramDestination | DONE | 18 cols, scopeActive, canPublish |
+| L189 | TelegramPublication | DONE | 9 states, scopePending |
+| L190 | TelegramPublicationEvent | DONE | append-only, no timestamps |
+
+### Controller (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L191 | AdminTelegramController | DONE | 4 read methods |
+
+### Routes (4)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L192 | GET destinations (list + show) | DONE | 2 endpoints |
+| L193 | GET publications (list + show) | DONE | 2 endpoints |
+
+### Tests (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L194 | TelegramFoundationTest | DONE | 12 tests |
+
+### Summary
+- New files: 4 (3 models + 1 controller)
+- Routes: 4 (all GET)
+- Tests: 12 PASS
+- Deferred: write endpoints → WP-27

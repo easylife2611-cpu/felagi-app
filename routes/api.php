@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\RatingController;
 use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
+use App\Http\Controllers\Api\V1\Admin\AdminTelegramController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -125,6 +126,14 @@ Route::prefix('v1')->group(function () {
             ->middleware(['reauth', 'idempotent']);
         Route::post('settings/{key}/rollback',      [AdminChangeController::class, 'rollback'])
             ->middleware('reauth');
+
+        // WP-05b: Telegram read-only endpoints
+        Route::prefix('telegram')->group(function () {
+            Route::get('destinations',                 [AdminTelegramController::class, 'destinations']);
+            Route::get('destinations/{id}',            [AdminTelegramController::class, 'showDestination']);
+            Route::get('publications',                 [AdminTelegramController::class, 'publications']);
+            Route::get('publications/{id}',            [AdminTelegramController::class, 'showPublication']);
+        });
     });
 
 });

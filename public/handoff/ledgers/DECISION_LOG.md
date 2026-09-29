@@ -236,3 +236,11 @@ Constitution compliance: RULE #1 (Audit Before Action) violation documented; not
 **D-080:** Full OIDC exchange requires Telegram client_id/secret + JWKS endpoint. Deferred to WP-27.
 
 **D-081:** Carbon 3.x in Laravel 11 changed `diffInMinutes()` to return signed values. Test assertions must use `abs()`.
+
+## WP-05b Decision (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-082 | WP-05b read-only foundation only | Write endpoints need bot token (WP-27) | LOCKED |
+| D-083 | Append-only TelegramPublicationEvent (no timestamps) | Audit trail for publication events | ACCEPTED |
+| D-084 | 9 publication states as constants | DFM telegram_publications migration | ACCEPTED |
