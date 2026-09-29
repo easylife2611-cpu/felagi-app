@@ -244,3 +244,63 @@ Constitution compliance: RULE #1 (Audit Before Action) violation documented; not
 | D-082 | WP-05b read-only foundation only | Write endpoints need bot token (WP-27) | LOCKED |
 | D-083 | Append-only TelegramPublicationEvent (no timestamps) | Audit trail for publication events | ACCEPTED |
 | D-084 | 9 publication states as constants | DFM telegram_publications migration | ACCEPTED |
+
+## WP-05b Process Failure (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-085 | Test scripts MUST abort on test FAIL before commit | Incident RCA | LOCKED |
+
+### Incident
+
+During WP-05b script 4/4, test command was piped:
+
+    APP_ENV=testing php artisan test ... 2>&1 | tail -20
+
+Then unconditionally:
+
+    git commit -m "feat: WP-05b ..."
+
+Root cause: The "| tail" pipe swallowed PHPUnit exit code. "set -e" does not catch pipe failures by default (needs pipefail). Commit was created despite 5 FAILED tests.
+
+### Impact
+
+- Commit e0cea05 made with 5 failing tests
+- Ledgers claimed DONE before verification
+- Constitution RULE #1 (Audit Before Action) violated
+- IMPLEMENTED != VERIFIED violated
+
+### Detection
+
+User ran ledger audit. 5 test failures surfaced. Root cause identified:
+1. TYPE constants wrong ("CHANNEL" vs "OWNED_CHANNEL")
+2. telegram_chat_id passed as string, schema requires bigint
+3. permission_evidence NOT NULL, was not provided
+
+### Resolution
+
+- Amended commit e0cea05 -> da31d49 with corrected model + test
+- 12/12 tests PASS after fix
+- Full suite: 62 PASS (127 assertions)
+- D-085 LOCKED prevents recurrence
+
+### Prevention (LOCKED)
+
+Before (failed):
+    php artisan test ... | tail -20
+    git commit ...
+
+After (required):
+    php artisan test ... || { echo "TESTS FAILED — ABORT"; exit 1; }
+    git commit ...
+
+Or:
+    set -o pipefail
+    php artisan test ... | tail -20
+
+### Rules
+
+1. Test output MUST NOT be piped through tail/head before commit without pipefail
+2. OR explicit "|| { echo FAILED; exit 1; }" after each test command
+3. Ledgers MUST claim DONE only after verified PASS
+4. Constitution compliance: violation documented; rule LOCKED
