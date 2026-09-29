@@ -28,4 +28,5 @@ error_log
 .env.testing.*
 
 # Build artifacts (WP-21 bundles/tarballs — not source)
-/public/downloads/
+/public/downloads/*
+!/public/downloads/index.html

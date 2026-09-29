@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Felagi v1.4.2 — Downloads</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            background: #F4F6F8;
+            color: #192431;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header {
+            background: #003366;
+            color: white;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        header h1 { font-size: 28px; margin-bottom: 8px; }
+        header .meta { opacity: 0.9; font-size: 14px; }
+        header .status {
+            display: inline-block;
+            background: #FF9933;
+            color: #003366;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: #003366;
+            border-bottom: 2px solid #F4F6F8;
+            padding-bottom: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th {
+            text-align: left;
+            padding: 10px 12px;
+            background: #F4F6F8;
+            color: #003366;
+            font-weight: 600;
+            border-bottom: 2px solid #E1E7ED;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #F4F6F8;
+            vertical-align: top;
+        }
+        td.filename { font-family: "SF Mono", Menlo, monospace; font-size: 12px; word-break: break-all; }
+        td.size { white-space: nowrap; color: #586675; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-bundle { background: #E8F0FE; color: #1A73E8; }
+        .badge-tar { background: #FEF3E8; color: #E8710A; }
+        .badge-zip { background: #E8F5E9; color: #2E7D32; }
+        .note {
+            background: #FFF9E6;
+            border-left: 4px solid #FF9933;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-top: 16px;
+        }
+        a { color: #1A73E8; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { list-style: none; }
+        ul li { padding: 6px 0; }
+        ul li::before { content: "→ "; color: #FF9933; font-weight: 700; }
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #586675;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Felagi v1.4.2 — Downloads</h1>
+            <div class="meta">Restore-ready bundles and archives</div>
+            <div class="status">B12_DONE · 20260929-1343</div>
+        </header>
+
+        <div class="card">
+            <h2>📦 Active Bundles</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Content</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="filename"><a href="Felagi_App_v1.4.2_20260929-1343_B12_DONE.bundle">Felagi_App_v1.4.2_20260929-1343_B12_DONE.bundle</a></td>
+                        <td>felagi_app git history (38 commits)</td>
+                        <td class="size">246 KB · <span class="badge badge-bundle">BUNDLE</span></td>
+                    </tr>
+                    <tr>
+                        <td class="filename"><a href="Felagi_Design_v1.4.2_20260929-1343_B12_DONE.bundle">Felagi_Design_v1.4.2_20260929-1343_B12_DONE.bundle</a></td>
+                        <td>felagi_extracted git history (15 commits)</td>
+                        <td class="size">3.5 MB · <span class="badge badge-bundle">BUNDLE</span></td>
+                    </tr>
+                    <tr>
+                        <td class="filename"><a href="Felagi_v1.4.2_20260929-1343_B12_DONE_full.tar.gz">Felagi_v1.4.2_20260929-1343_B12_DONE_full.tar.gz</a></td>
+                        <td>Lean source (composer install required)</td>
+                        <td class="size">181 KB · <span class="badge badge-tar">TAR.GZ</span></td>
+                    </tr>
+                    <tr>
+                        <td class="filename"><a href="Felagi_v1.4.2_20260929-1343_B12_DONE_FULL_with_vendor.tar.gz">Felagi_v1.4.2_20260929-1343_B12_DONE_FULL_with_vendor.tar.gz</a></td>
+                        <td>Full source with vendor (runnable)</td>
+                        <td class="size">31 MB · <span class="badge badge-tar">TAR.GZ</span></td>
+                    </tr>
+                    <tr>
+                        <td class="filename"><a href="Felagi_Clean_Developer_Handoff_v1.4.2.zip">Felagi_Clean_Developer_Handoff_v1.4.2.zip</a></td>
+                        <td>Clean developer handoff archive</td>
+                        <td class="size">7.3 MB · <span class="badge badge-zip">ZIP</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="note">
+                <strong>Restore:</strong> <code>git clone Felagi_App_..._B12_DONE.bundle felagi_app</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔗 Related</h2>
+            <ul>
+                <li><a href="/handoff/">Developer Handoff</a> — canonical ledgers and project state</li>
+                <li><a href="https://zagcreativity.com">Production</a> — Felagi application root</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Felagi v1.4.2 — Downloads Index</p>
+            <p>Generated: <span id="gen-time"></span></p>
+            <script>
+                document.getElementById('gen-time').textContent = new Date().toISOString().split('T')[0];
+            </script>
+        </footer>
+    </div>
+</body>
+</html>
