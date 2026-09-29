@@ -521,3 +521,37 @@ No duplicate ownership | DONE = verified + documented + evidenced
 **Generated:** 2026-09-29
 **HEAD:** 1a17a7c
 **Status:** COMPREHENSIVE / TRACEABLE / ACTIONABLE
+
+---
+
+## B24 — S001 SignIn Fix (2026-09-29)
+
+### Chained GAPs Resolved (4)
+
+| GAP | Issue | Fix |
+|-----|-------|-----|
+| GAP-63 | JS response nesting | `data.data.auth_url` |
+| GAP-64 | bot_id parameter | `bot_id` added |
+| GAP-65 | CSRF token | meta + header |
+| GAP-66 | origin parameter | `origin` added |
+
+### Files Changed (3)
+
+- resources/views/welcome.blade.php (CSRF + fetch)
+- app/Http/Controllers/Api/V1/AuthController.php (origin + bot_id)
+- config/services.php (bot_id mapping)
+
+### BotFather Setup
+
+- Bot: FelagiMarketBot (8629327448)
+- Domain: zagcreativity.com
+
+### Live URLs (SOT)
+
+| URL | Purpose |
+|-----|---------|
+| https://zagcreativity.com/handoff/SOURCE_OF_TRUTH.md | Reading |
+| https://zagcreativity.com/handoff/FELAGI_STATUS_REPORT.md | Reading |
+| https://zagcreativity.com/downloads/SOURCE_OF_TRUTH.md | Download |
+| https://zagcreativity.com/downloads/FELAGI_STATUS_REPORT.md | Download |
+
