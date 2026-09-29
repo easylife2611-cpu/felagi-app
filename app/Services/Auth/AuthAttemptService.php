@@ -3,6 +3,7 @@
 namespace App\Services\Auth;
 
 use App\Models\AuthAttempt;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 /**
@@ -14,7 +15,9 @@ use Illuminate\Support\Str;
  *    issuer/audience/expiry/nonce... redirects only a single-use,
  *    short-lived handoff code."
  *
- * Timeouts (DFM §218): 15 minutes for auth attempt.
+ * WP-27b: handoff code carries HMAC-signed user_id so the app-token
+ * exchange is race-free (D-091 fix). No schema change — user_id is
+ * embedded in the signed payload, not stored on auth_attempts.
  */
 class AuthAttemptService
 {
@@ -27,11 +30,8 @@ class AuthAttemptService
     /** PKCE verifier length (RFC 7636: 43-128 chars). */
     public const PKCE_VERIFIER_LENGTH = 64;
 
-    /**
-     * Create a new auth attempt and return it with plaintext state/nonce/verifier.
-     *
-     * @return array{attempt: AuthAttempt, state: string, nonce: string, code_challenge: string, code_challenge_method: string}
-     */
+    // ─── Public API ───
+
     public function create(string $returnUriAllowlisted): array
     {
         $state     = Str::random(64);
@@ -59,10 +59,6 @@ class AuthAttemptService
         ];
     }
 
-    /**
-     * Find an active attempt by plaintext state.
-     * Returns null if not found, expired, or consumed.
-     */
     public function findByState(string $state): ?AuthAttempt
     {
         return AuthAttempt::query()
@@ -71,29 +67,46 @@ class AuthAttemptService
             ->first();
     }
 
-    /**
-     * Validate nonce matches the attempt's stored hash.
-     */
     public function validateNonce(AuthAttempt $attempt, string $nonce): bool
     {
         return hash_equals($attempt->nonce_hash, hash('sha256', $nonce));
     }
 
-    /**
-     * Get the plaintext PKCE verifier (decrypted by model cast).
-     */
     public function getPkceVerifier(AuthAttempt $attempt): string
     {
         return (string) $attempt->pkce_verifier_encrypted;
     }
 
     /**
-     * Generate a handoff code and store its hash on the attempt.
-     * Returns plaintext handoff code (return once to caller).
+     * Generate HMAC-signed handoff code.
+     *
+     * Payload structure (base64url JSON):
+     *   a = attempt_id
+     *   e = expires_at (unix timestamp)
+     *   u = user_id (UUID) — optional, added after successful OIDC login
+     *
+     * Signature: HMAC-SHA256 over base64url payload, hex-encoded.
+     * Final format: <base64url_payload>.<hex_signature>
+     *
+     * The handoff_hash stored in DB is SHA-256 of the FULL signed code,
+     * so single-use enforcement remains intact.
      */
-    public function generateHandoff(AuthAttempt $attempt): string
+    public function generateHandoff(AuthAttempt $attempt, ?User $user = null): string
     {
-        $handoff = Str::random(64);
+        $payload = [
+            'a' => $attempt->id,
+            'e' => time() + self::HANDOFF_TTL_SECONDS,
+        ];
+
+        if ($user) {
+            $payload['u'] = $user->id;
+        }
+
+        $json = json_encode($payload, JSON_UNESCAPED_SLASHES);
+        $b64  = rtrim(strtr(base64_encode($json), '+/', '-_'), '=');
+        $sig  = hash_hmac('sha256', $b64, $this->signingKey());
+
+        $handoff = $b64 . '.' . $sig;
 
         $attempt->handoff_hash = hash('sha256', $handoff);
         $attempt->save();
@@ -102,11 +115,45 @@ class AuthAttemptService
     }
 
     /**
-     * Consume an attempt by handoff code (single-use).
-     * Returns null if not found or already consumed.
+     * Verify + consume handoff code (single-use).
+     *
+     * Returns:
+     *   ['attempt' => AuthAttempt, 'user' => ?User]
+     * or null on failure (invalid signature / expired / already consumed).
      */
-    public function consumeByHandoff(string $handoff): ?AuthAttempt
+    public function consumeByHandoff(string $handoff): ?array
     {
+        // ── 1. Split + verify HMAC ──
+        $parts = explode('.', $handoff, 2);
+        if (count($parts) !== 2) {
+            return null;
+        }
+
+        [$b64, $sig] = $parts;
+
+        $expectedSig = hash_hmac('sha256', $b64, $this->signingKey());
+        if (!hash_equals($expectedSig, $sig)) {
+            return null;
+        }
+
+        // ── 2. Decode payload ──
+        $padded = str_pad($b64, (int) ceil(strlen($b64) / 4) * 4, '=', STR_PAD_RIGHT);
+        $json = base64_decode(strtr($padded, '-_', '+/'), true);
+        if ($json === false) {
+            return null;
+        }
+
+        $payload = json_decode($json, true);
+        if (!is_array($payload)) {
+            return null;
+        }
+
+        // ── 3. Check payload expiry ──
+        if (($payload['e'] ?? 0) < time()) {
+            return null;
+        }
+
+        // ── 4. Find unconsumed attempt (single-use) ──
         $attempt = AuthAttempt::query()
             ->where('handoff_hash', hash('sha256', $handoff))
             ->whereNull('consumed_at')
@@ -116,14 +163,17 @@ class AuthAttemptService
             return null;
         }
 
+        // ── 5. Resolve embedded user (if any) ──
+        $user = null;
+        if (!empty($payload['u'])) {
+            $user = User::find($payload['u']);
+        }
+
         $attempt->markConsumed();
 
-        return $attempt;
+        return ['attempt' => $attempt, 'user' => $user];
     }
 
-    /**
-     * Clean up expired attempts (called by scheduler).
-     */
     public function cleanupExpired(): int
     {
         return AuthAttempt::query()
@@ -132,11 +182,15 @@ class AuthAttemptService
             ->delete();
     }
 
-    // ─── PKCE helpers (RFC 7636) ───
+    // ─── Helpers ───
+
+    protected function signingKey(): string
+    {
+        return config('app.key');
+    }
 
     protected function generatePkceVerifier(): string
     {
-        // RFC 7636: unreserved chars [A-Z a-z 0-9 - . _ ~]
         $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
         $verifier = '';
         $max = strlen($alphabet) - 1;
@@ -150,9 +204,7 @@ class AuthAttemptService
 
     protected function generatePkceChallenge(string $verifier): string
     {
-        // S256: BASE64URL(SHA256(ASCII(verifier)))
         $hash = hash('sha256', $verifier, true);
-
         return rtrim(strtr(base64_encode($hash), '+/', '-_'), '=');
     }
 }

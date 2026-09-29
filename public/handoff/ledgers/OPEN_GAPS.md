@@ -141,3 +141,12 @@ Last Updated: 2026-09-29
 |----|-----|----------|-------|---------|
 | GAP-56 | Live OIDC end-to-end test with real Telegram user | MEDIUM | QA | manual test required |
 | GAP-57 | Sanctum UUID migration in production | ✅ DONE | — | applied |
+
+## WP-27b Updates (2026-09-29)
+
+### Resolved in WP-27b
+
+| ID | Description | Resolution |
+|----|-------------|------------|
+| D-091 | Race condition in telegramExchange | ✅ RESOLVED — HMAC-signed handoff |
+| GAP-56 | Live E2E test (still open) | — |

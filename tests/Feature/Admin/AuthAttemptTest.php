@@ -93,17 +93,20 @@ class AuthAttemptTest extends TestCase
         $r = $this->svc()->create('https://example.com/cb');
         $handoff = $this->svc()->generateHandoff($r['attempt']);
 
+        // WP-27b: HMAC-signed format = <base64url_payload>.<hex_signature>
         $this->assertNotNull($handoff);
-        $this->assertEquals(64, strlen($handoff));
+        $this->assertStringContainsString('.', $handoff);
 
-        // First consume succeeds
-        $consumed = $this->svc()->consumeByHandoff($handoff);
-        $this->assertNotNull($consumed);
-        $this->assertNotNull($consumed->consumed_at);
+        // First consume succeeds — returns array{attempt, user}
+        $result = $this->svc()->consumeByHandoff($handoff);
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('attempt', $result);
+        $this->assertArrayHasKey('user', $result);
+        $this->assertNotNull($result['attempt']->consumed_at);
 
         // Second consume fails (single-use)
-        $consumed2 = $this->svc()->consumeByHandoff($handoff);
-        $this->assertNull($consumed2);
+        $result2 = $this->svc()->consumeByHandoff($handoff);
+        $this->assertNull($result2);
     }
 
     /** T09: expires_at is 15 min in future */

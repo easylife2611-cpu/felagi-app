@@ -626,3 +626,26 @@ GAP-31, GAP-42, GAP-46, GAP-55
 ### New GAPs
 
 GAP-56 (live E2E test pending manual user test)
+
+## 2026-09-29 — WP-27b HMAC-Signed User Binding (D-091 fix) (DONE)
+
+### Delivered
+- AuthAttemptService: HMAC-signed handoff code with embedded user_id
+- Controller: telegramExchange uses handoff-embedded user (race-free)
+- Tests: 6 new HMAC tests (T21-T26)
+
+### Design Compliance
+- DFM §218 preserved — no schema change
+- Race condition D-091 RESOLVED
+- Handoff single-use preserved via handoff_hash + consumed_at
+
+### Handoff Format
+<base64url(JSON{a,e,u})>.<HMAC-SHA256-hex>
+- a = attempt_id (UUID)
+- e = expires_at (unix timestamp, 60s TTL)
+- u = user_id (UUID, optional)
+
+### Verification
+- 26 tests PASS (up from 20)
+- Full Admin suite: 88 PASS
+- Race-free: T25 (two users, correct one selected)

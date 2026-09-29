@@ -499,3 +499,27 @@ WP-05 COMPLETE.
 - Patched: 2 (AuthController, routes, config)
 - Tests: 20 PASS
 - Total Admin tests: 84 PASS
+
+## WP-27b Additions (2026-09-29)
+
+### Service Patch (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L207 | AuthAttemptService::generateHandoff($user) | DONE | HMAC-SHA256 signed payload |
+| L208 | AuthAttemptService::consumeByHandoff() → array | DONE | Returns {attempt, user} |
+
+### Controller Patch (2)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L209 | telegramCallback: pass user to handoff | DONE | Signed binding |
+| L210 | telegramExchange: use embedded user | DONE | No race condition |
+
+### Tests (6)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L211 | HMAC signature tests | DONE | T21-T26 (6 tests) |
+
+### Summary
+- Patched: 2 files (service + controller)
+- Tests: 6 new (total TelegramOidc: 26)
+- Race condition: D-091 RESOLVED

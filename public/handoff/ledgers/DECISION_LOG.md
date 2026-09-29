@@ -329,3 +329,29 @@ Or:
 **D-090:** Sanctum's default `bigint` tokenable_id incompatible with our UUID User model. Fix applied to test + production. Production table was empty → no data loss risk.
 
 **D-091:** Telegram's ID token `sub` claim is the user identifier, but we don't store it on the auth_attempt. Instead, we find the user who most recently authenticated (last 5 minutes) — which is the one who just completed OIDC. **Trade-off:** Race condition possible if multiple users log in within 5 minutes. **Mitigation:** handoff code expires in 60 seconds (per D-077). **Future:** store user_id on auth_attempt during callback (WP-27b).
+
+## WP-27b Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-092 | HMAC-signed handoff (no schema change) | DFM §218 preserved | LOCKED |
+| D-093 | HMAC-SHA256 with APP_KEY | Standard, secure | ACCEPTED |
+| D-094 | D-091 RESOLVED — race condition fixed | T25 test verifies | RESOLVED |
+
+### Rationale
+
+**D-092:** Adding user_id column to auth_attempts would deviate from DFM §218 (LOCKED schema). Instead, embed user_id in HMAC-signed handoff code. No schema change → no architecture change → no explicit approval required.
+
+**D-093:** HMAC-SHA256 is NIST-approved, and Laravel's app.key (base64 32 bytes) is a secure signing key. Same primitive as Sanctum.
+
+**D-094:** telegramExchange() no longer queries `recently_authenticated_at`. User is extracted from HMAC-verified payload. T25 confirms correct user in multi-user race.
+
+### Trade-off Analysis
+
+| Criterion | D-092 (HMAC) | Alternative (user_id column) |
+|-----------|--------------|------------------------------|
+| DFM §218 preserved | ✅ | ❌ |
+| Approval required | No | Yes |
+| Handoff length | ~180 chars | ~64 chars |
+| Security | HMAC-SHA256 | DB lookup |
+| Race-free | ✅ | ✅ |

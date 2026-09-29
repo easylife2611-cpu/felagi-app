@@ -103,7 +103,7 @@ class AuthController extends BaseApiController
             ['user' => $user, 'claims' => $claims] = $this->oidcService->completeLogin($code, $attempt);
 
             // Generate handoff code (single-use)
-            $handoff = $this->attemptService->generateHandoff($attempt);
+            $handoff = $this->attemptService->generateHandoff($attempt, $user);
 
             // Determine redirect target
             $returnUri = $attempt->return_uri_allowlisted;
@@ -145,20 +145,17 @@ class AuthController extends BaseApiController
         ]);
 
         try {
-            $attempt = $this->attemptService->consumeByHandoff($validated['handoff_code']);
+            // WP-27b: HMAC-signed handoff carries user_id — race-free (D-091 fix)
+            $result = $this->attemptService->consumeByHandoff($validated['handoff_code']);
 
-            if (!$attempt) {
+            if (!$result) {
                 throw new OidcExchangeException(OidcExchangeException::REASON_HANDOFF_INVALID);
             }
 
-            // Find the user associated with this attempt (most recent login)
-            // The user is identified by telegram_subject stored in the attempt's payload
-            // We re-derive the user from the most recent successful login
-            $user = User::where('recently_authenticated_at', '>=', now()->subMinutes(5))
-                ->orderByDesc('recently_authenticated_at')
-                ->first();
+            ['attempt' => $attempt, 'user' => $user] = $result;
 
             if (!$user) {
+                // Handoff signed without user binding (pre-WP-27b compatibility)
                 throw new OidcExchangeException(OidcExchangeException::REASON_ATTEMPT_NOT_FOUND);
             }
 

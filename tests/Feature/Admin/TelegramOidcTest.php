@@ -414,7 +414,7 @@ class TelegramOidcTest extends TestCase
         // Create an attempt + handoff
         $svc = app(AuthAttemptService::class);
         $created = $svc->create('https://zagcreativity.com/auth/callback');
-        $handoff = $svc->generateHandoff($created['attempt']);
+        $handoff = $svc->generateHandoff($created['attempt'], $user);
 
         $res = $this->postJson('/api/v1/auth/telegram/exchange', [
             'handoff_code' => $handoff,
@@ -432,5 +432,137 @@ class TelegramOidcTest extends TestCase
             'handoff_code' => $handoff,
         ]);
         $replay->assertStatus(401);
+    }
+
+    // ─── WP-27b: HMAC handoff tests (D-091 fix) ───
+
+    /** T21: generateHandoff with user embeds HMAC-signed user_id */
+    public function test_handoff_with_user_has_hmac_signature(): void
+    {
+        $user = User::create([
+            'telegram_subject' => 'hmac_test_subject',
+            'full_name'        => 'HMAC User',
+            'status'           => 'ACTIVE',
+            'version'          => 1,
+        ]);
+
+        $svc = app(AuthAttemptService::class);
+        $created = $svc->create('https://zagcreativity.com/auth/callback');
+
+        $handoff = $svc->generateHandoff($created['attempt'], $user);
+
+        // Format: <base64url_payload>.<hex_signature>
+        $this->assertStringContainsString('.', $handoff);
+
+        [$b64, $sig] = explode('.', $handoff, 2);
+        $this->assertEquals(64, strlen($sig), 'HMAC-SHA256 signature must be 64 hex chars');
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{64}$/', $sig);
+    }
+
+    /** T22: consumeByHandoff returns ['attempt', 'user'] tuple */
+    public function test_consume_returns_user_tuple(): void
+    {
+        $user = User::create([
+            'telegram_subject' => 'tuple_test',
+            'full_name'        => 'Tuple User',
+            'status'           => 'ACTIVE',
+            'version'          => 1,
+        ]);
+
+        $svc = app(AuthAttemptService::class);
+        $created = $svc->create('https://zagcreativity.com/auth/callback');
+        $handoff = $svc->generateHandoff($created['attempt'], $user);
+
+        $result = $svc->consumeByHandoff($handoff);
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('attempt', $result);
+        $this->assertArrayHasKey('user', $result);
+        $this->assertEquals($user->id, $result['user']->id);
+        $this->assertEquals($created['attempt']->id, $result['attempt']->id);
+    }
+
+    /** T23: Tampered HMAC signature rejected */
+    public function test_handoff_with_tampered_signature_rejected(): void
+    {
+        $user = User::create([
+            'telegram_subject' => 'tamper_test',
+            'full_name'        => 'Tamper User',
+            'status'           => 'ACTIVE',
+            'version'          => 1,
+        ]);
+
+        $svc = app(AuthAttemptService::class);
+        $created = $svc->create('https://zagcreativity.com/auth/callback');
+        $handoff = $svc->generateHandoff($created['attempt'], $user);
+
+        // Flip last char of signature
+        $tampered = substr($handoff, 0, -1) . (substr($handoff, -1) === 'a' ? 'b' : 'a');
+
+        $result = $svc->consumeByHandoff($tampered);
+        $this->assertNull($result, 'Tampered signature must be rejected');
+    }
+
+    /** T24: Handoff without user (backward compat) → user=null */
+    public function test_handoff_without_user_returns_null(): void
+    {
+        $svc = app(AuthAttemptService::class);
+        $created = $svc->create('https://zagcreativity.com/auth/callback');
+        $handoff = $svc->generateHandoff($created['attempt']);  // no user
+
+        $result = $svc->consumeByHandoff($handoff);
+
+        $this->assertIsArray($result);
+        $this->assertNull($result['user']);
+        $this->assertInstanceOf(\App\Models\AuthAttempt::class, $result['attempt']);
+    }
+
+    /** T25: Race-free — exchange uses handoff-embedded user (not recently_authenticated_at) */
+    public function test_exchange_uses_embedded_user_not_recent(): void
+    {
+        // Create TWO users with fresh reauth within 5-min window
+        $userA = User::create([
+            'telegram_subject'          => 'user_a',
+            'full_name'                 => 'User A',
+            'status'                    => 'ACTIVE',
+            'version'                   => 1,
+            'recently_authenticated_at' => now()->subMinutes(4),  // older
+        ]);
+        $userB = User::create([
+            'telegram_subject'          => 'user_b',
+            'full_name'                 => 'User B',
+            'status'                    => 'ACTIVE',
+            'version'                   => 1,
+            'recently_authenticated_at' => now()->subMinutes(1),  // newer — would win OLD behavior
+        ]);
+
+        // Sign handoff for userA (not userB)
+        $svc = app(AuthAttemptService::class);
+        $created = $svc->create('https://zagcreativity.com/auth/callback');
+        $handoff = $svc->generateHandoff($created['attempt'], $userA);
+
+        $res = $this->postJson('/api/v1/auth/telegram/exchange', [
+            'handoff_code' => $handoff,
+            'device_name'  => 'race_test',
+        ]);
+
+        $res->assertStatus(200);
+        // CRITICAL: must be userA, NOT userB
+        $this->assertEquals($userA->id, $res->json('data.user.id'));
+        $this->assertNotEquals($userB->id, $res->json('data.user.id'));
+    }
+
+    /** T26: Backward-compat — handoff with no user → 401 */
+    public function test_exchange_without_user_binding_fails(): void
+    {
+        $svc = app(AuthAttemptService::class);
+        $created = $svc->create('https://zagcreativity.com/auth/callback');
+        $handoff = $svc->generateHandoff($created['attempt']);  // no user
+
+        $res = $this->postJson('/api/v1/auth/telegram/exchange', [
+            'handoff_code' => $handoff,
+        ]);
+
+        $res->assertStatus(401);
     }
 }
