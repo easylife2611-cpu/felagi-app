@@ -20,3 +20,12 @@ error_log
 *.log
 *.backup
 *.bak
+
+.env.testing
+*.backup.*
+*.bak.*
+*.deleted.*
+.env.testing.*
+
+# Build artifacts (WP-21 bundles/tarballs — not source)
+/public/downloads/

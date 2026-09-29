@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\NeedController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\RatingController;
+use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,6 +88,28 @@ Route::prefix('v1')->group(function () {
         Route::post('needs/{needId}/comparisons', [ComparisonController::class, 'store']);
         Route::get('comparisons/{id}', [ComparisonController::class, 'show']);
 
+    });
+
+
+    // =========================================
+    // ADMIN — Change Lifecycle (WP-13)
+    // =========================================
+    Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
+
+        Route::prefix('changes')->group(function () {
+            Route::post('/',                    [AdminChangeController::class, 'store']);
+            Route::get('{id}',                  [AdminChangeController::class, 'show']);
+            Route::post('{id}/validate',        [AdminChangeController::class, 'validateDraft']);
+            Route::post('{id}/simulate',        [AdminChangeController::class, 'simulate']);
+            Route::post('{id}/preview',         [AdminChangeController::class, 'preview']);
+            Route::post('{id}/publish',         [AdminChangeController::class, 'publish']);
+            Route::get('{id}/audit',            [AdminChangeController::class, 'audit']);
+            Route::post('{id}/rollback',        [AdminChangeController::class, 'rollback']);
+        });
+
+        // Legacy aliases (Auth Contract §HTTP 1.4)
+        Route::post('settings/drafts/{id}/publish', [AdminChangeController::class, 'publish']);
+        Route::post('settings/{key}/rollback',      [AdminChangeController::class, 'rollback']);
     });
 
 });

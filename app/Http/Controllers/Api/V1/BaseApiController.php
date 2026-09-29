@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 abstract class BaseApiController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Success response envelope.
      */
@@ -19,11 +21,11 @@ abstract class BaseApiController extends Controller
         array $meta = []
     ): JsonResponse {
         return response()->json([
-            'success' => true,
-            'data' => $data,
-            'message' => $message,
+            'success'    => true,
+            'data'       => $data,
+            'message'    => $message,
             'request_id' => $this->requestId(),
-            'meta' => $meta,
+            'meta'       => $meta,
         ], $status);
     }
 
@@ -37,9 +39,9 @@ abstract class BaseApiController extends Controller
         ?array $details = null
     ): JsonResponse {
         $payload = [
-            'success' => false,
-            'error' => [
-                'code' => $code,
+            'success'    => false,
+            'error'      => [
+                'code'    => $code,
                 'message' => $message,
             ],
             'request_id' => $this->requestId(),

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Felagi v1.4.2 — Developer Handoff</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            background: #F4F6F8;
+            color: #192431;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header {
+            background: #003366;
+            color: white;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        header h1 { font-size: 28px; margin-bottom: 8px; }
+        header .meta { opacity: 0.9; font-size: 14px; }
+        header .status {
+            display: inline-block;
+            background: #FF9933;
+            color: #003366;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #D8E0E7;
+        }
+        .card h2 {
+            font-size: 20px;
+            color: #003366;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #F4F6F8;
+        }
+        .card h3 {
+            font-size: 16px;
+            color: #003366;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #F4F6F8;
+            font-size: 14px;
+        }
+        th {
+            background: #F4F6F8;
+            font-weight: 600;
+            color: #003366;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-done { background: #176B35; color: white; }
+        .badge-ready { background: #155EEF; color: white; }
+        .badge-blocked { background: #B42335; color: white; }
+        .badge-pending { background: #8A4B00; color: white; }
+        a {
+            color: #003366;
+            text-decoration: none;
+            border-bottom: 1px solid #FF9933;
+            padding-bottom: 1px;
+        }
+        a:hover { background: #FFF5E6; }
+        code {
+            background: #F4F6F8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 13px;
+        }
+        pre {
+            background: #192431;
+            color: #F4F6F8;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            margin: 12px 0;
+        }
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .warning {
+            background: #FFF4E5;
+            border-left: 4px solid #FF9933;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 12px 0;
+        }
+        .success {
+            background: #E6F4EA;
+            border-left: 4px solid #176B35;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 12px 0;
+        }
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .link-card {
+            border: 1px solid #D8E0E7;
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.15s;
+        }
+        .link-card:hover {
+            border-color: #003366;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.08);
+        }
+        .link-card h4 {
+            font-size: 15px;
+            color: #003366;
+            margin-bottom: 6px;
+        }
+        .link-card p {
+            font-size: 13px;
+            color: #586675;
+            margin-bottom: 8px;
+        }
+        .link-card a { font-size: 13px; }
+        ul { margin-left: 20px; margin-top: 8px; }
+        li { margin: 4px 0; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <h1>Felagi v1.4.2 — Developer Handoff</h1>
+    <div class="meta">Need-First Marketplace | Amharic + English | Laravel 11</div>
+    <div class="meta">Package Version: 1.4.2 | Design Contract: 1.4.1</div>
+    <span class="status">✅ Design PASS · Backend Deployed · Production PENDING</span>
+</header>
+
+<!-- ============================================ -->
+<div class="card">
+    <h2>📌 Quick Start (5 minutes)</h2>
+    <p>This is the <strong>complete developer handoff</strong> for Felagi v1.4.2. Everything you need is either on this server or linked here.</p>
+
+    <div class="warning">
+        <strong>🚨 Constitution Rule:</strong> Do NOT redesign, reinterpret, simplify, or replace the approved architecture. The design contract v1.4.1 is LOCKED.
+    </div>
+
+    <h3>Reading Order</h3>
+    <ol style="margin-left: 20px; margin-top: 8px;">
+        <li>This page (complete overview)</li>
+        <li><a href="#ledgers">Project Control Ledgers</a> (13 files)</li>
+        <li><a href="#code">Application Code</a> (Laravel on server)</li>
+        <li><a href="#design">Design Package</a> (51 deliverables)</li>
+        <li><a href="#next">Next Steps</a> (WP-13 or WP-10)</li>
+    </ol>
+</div>
+
+<!-- ============================================ -->
+<div class="card" id="state">
+    <h2>📊 Current State Summary</h2>
+    <table>
+        <tr><th>Item</th><th>Value</th></tr>
+        <tr><td>Design Contract Version</td><td><code>1.4.1</code> (LOCKED)</td></tr>
+        <tr><td>Handoff Release</td><td><code>1.4.2</code></td></tr>
+        <tr><td>Source Hash</td><td><code>e467f848...71f31c</code></td></tr>
+        <tr><td>Total Screens</td><td>46 (23 user + 23 admin)</td></tr>
+        <tr><td>Database Tables</td><td>38 (all migrated)</td></tr>
+        <tr><td>Eloquent Models</td><td>20</td></tr>
+        <tr><td>API Controllers</td><td>9</td></tr>
+        <tr><td>API Routes</td><td>~30</td></tr>
+        <tr><td>Locale Keys</td><td>669 × 2 (am + en)</td></tr>
+        <tr><td>HTTPS</td><td><a href="https://zagcreativity.com" target="_blank">zagcreativity.com</a> · HTTP 200 ✅</td></tr>
+    </table>
+
+    <h3>Work Package Status</h3>
+    <table>
+        <tr><th>WP</th><th>Scope</th><th>Status</th></tr>
+        <tr><td>WP-01</td><td>Foundation Registry</td><td><span class="badge badge-done">✅ DONE</span></td></tr>
+        <tr><td>WP-02</td><td>Static Verification (7,810+ PASS)</td><td><span class="badge badge-done">✅ VERIFIED</span></td></tr>
+        <tr><td>WP-05</td><td>Backend Services</td><td><span class="badge badge-done">✅ DONE</span></td></tr>
+        <tr><td>WP-21</td><td>Laravel Deployment</td><td><span class="badge badge-done">✅ DONE</span></td></tr>
+        <tr><td>WP-22</td><td>Queue + Cron</td><td><span class="badge badge-done">✅ DONE</span></td></tr>
+        <tr><td>WP-03</td><td>Browser/A11y</td><td><span class="badge badge-blocked">❌ BLOCKED</span></td></tr>
+        <tr><td>WP-04</td><td>Flutter Compile</td><td><span class="badge badge-blocked">❌ BLOCKED</span></td></tr>
+        <tr><td>WP-10</td><td>AI Integration</td><td><span class="badge badge-blocked">❌ BLOCKED</span></td></tr>
+        <tr><td>WP-11</td><td>Payment Live</td><td><span class="badge badge-blocked">❌ BLOCKED</span></td></tr>
+        <tr><td>WP-13</td><td>Admin Lifecycle</td><td><span class="badge badge-ready">🟢 READY</span></td></tr>
+        <tr><td>WP-27</td><td>Telegram OIDC</td><td><span class="badge badge-blocked">❌ BLOCKED</span></td></tr>
+    </table>
+</div>
+
+<!-- ============================================ -->
+<div class="card" id="ledgers">
+    <h2>📚 Project Control Ledgers (13 files)</h2>
+    <p>Read these in order. They contain everything: requirements, architecture, decisions, gaps.</p>
+
+    <div class="link-grid">
+        <div class="link-card">
+            <h4>MASTER_BASELINE.md</h4>
+            <p>Locked baseline + 40 invariants</p>
+            <a href="ledgers/MASTER_BASELINE.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>REQUIREMENT_REGISTRY.md</h4>
+            <p>~1,700 requirements indexed</p>
+            <a href="ledgers/REQUIREMENT_REGISTRY.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>ARCHITECTURE_MAP.md</h4>
+            <p>5-layer architecture</p>
+            <a href="ledgers/ARCHITECTURE_MAP.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>WORK_PACKAGES.md</h4>
+            <p>28 WPs with status</p>
+            <a href="ledgers/WORK_PACKAGES.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>IMPLEMENTATION_LEDGER.md</h4>
+            <p>L001–L141 evidence trail</p>
+            <a href="ledgers/IMPLEMENTATION_LEDGER.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>TEST_VERIFICATION.md</h4>
+            <p>7,810+ PASS evidence</p>
+            <a href="ledgers/TEST_VERIFICATION.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>OPEN_GAPS.md</h4>
+            <p>Known gaps + UNKNOWNs</p>
+            <a href="ledgers/OPEN_GAPS.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>CHANGE_LOG.md</h4>
+            <p>Chronological changes</p>
+            <a href="ledgers/CHANGE_LOG.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>DECISION_LOG.md</h4>
+            <p>D-001 to D-053 decisions</p>
+            <a href="ledgers/DECISION_LOG.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>RELEASE_STATUS.md</h4>
+            <p>Gates G01–G09 status</p>
+            <a href="ledgers/RELEASE_STATUS.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>HANDOFF_STATE.md</h4>
+            <p>Session + continuity</p>
+            <a href="ledgers/HANDOFF_STATE.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>ENVIRONMENT_CHECKLIST.md</h4>
+            <p>10/54 resources ready</p>
+            <a href="ledgers/ENVIRONMENT_CHECKLIST.md" target="_blank">Read →</a>
+        </div>
+        <div class="link-card">
+            <h4>PRIORITY_PLAN.md</h4>
+            <p>6-tier execution order</p>
+            <a href="ledgers/PRIORITY_PLAN.md" target="_blank">Read →</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<div class="card" id="code">
+    <h2>💻 Application Code (Server)</h2>
+    <p>Laravel 11 application is <strong>already deployed</strong> on this server at:</p>
+    <pre><code>/home/zagcreht/felagi_app/</code></pre>
+
+    <h3>Access Methods</h3>
+    <table>
+        <tr><th>Method</th><th>How</th></tr>
+        <tr><td>SSH/Terminal</td><td><code>ssh zagcreht@zagcreativity.com</code></td></tr>
+        <tr><td>cPanel File Manager</td><td>Navigate to <code>/home/zagcreht/felagi_app/</code></td></tr>
+        <tr><td>Git Clone</td><td><code>git clone https://zagcreativity.com/downloads/Felagi_App_v1.4.2_*_WP05_DONE.bundle</code></td></tr>
+    </table>
+
+    <h3>Structure</h3>
+    <pre><code>~/felagi_app/
+├── app/
+│   ├── Http/Controllers/Api/V1/  (9 controllers)
+│   ├── Http/Requests/             (4 form requests)
+│   └── Models/                    (20 models)
+├── database/migrations/           (38 migrations)
+├── routes/
+│   ├── api.php                    (~30 API routes)
+│   └── web.php
+├── .env                           (production config)
+└── storage/</code></pre>
+
+    <h3>Git History</h3>
+    <p>App repo has <strong>20 commits</strong> (WP-21 → WP-05). All work is committed.</p>
+
+    <h3>Database</h3>
+    <table>
+        <tr><th>Item</th><th>Value</th></tr>
+        <tr><td>Connection</td><td>MySQL (MariaDB 10.6.28)</td></tr>
+        <tr><td>Database Name</td><td><code>zagcreht_felagi</code></td></tr>
+        <tr><td>User</td><td><code>zagcreht_felagi_user</code></td></tr>
+        <tr><td>Tables</td><td>38</td></tr>
+        <tr><td>Credentials</td><td>See <code>~/felagi_app/.env</code> (owner-only)</td></tr>
+    </table>
+</div>
+
+<!-- ============================================ -->
+<div class="card" id="design">
+    <h2>🎨 Design Package (51 deliverables)</h2>
+    <p>The canonical design package is <strong>extracted</strong> on this server at:</p>
+    <pre><code>/home/zagcreht/felagi_extracted/Felagi_Design_Package/</code></pre>
+
+    <h3>Key Files</h3>
+    <table>
+        <tr><th>Category</th><th>Location</th></tr>
+        <tr><td>Start Here</td><td><code>Developer_Handoff/START_HERE.md</code></td></tr>
+        <tr><td>Master PDS</td><td><code>Product_Design/Final_Master_Product_Design_Specification.md</code></td></tr>
+        <tr><td>Business Spec (FDS)</td><td><code>System_Specification/DFM-FDS-1.4.md</code> (113KB)</td></tr>
+        <tr><td>AI Contract</td><td><code>System_Specification/AI_Evaluation_Contract.md</code></td></tr>
+        <tr><td>Payment Spec</td><td><code>System_Specification/Monetization_Payment_Specification.md</code></td></tr>
+        <tr><td>Admin Auth</td><td><code>System_Specification/Admin_Authorization_Contract.md</code></td></tr>
+        <tr><td>Sponsored Ads</td><td><code>System_Specification/Sponsored_Advertising_Contract.md</code></td></tr>
+        <tr><td>Screen Manifest</td><td><code>Design_Data/screen-manifest.json</code> (187KB)</td></tr>
+        <tr><td>Admin Manifest</td><td><code>Design_Data/admin-screen-manifest.json</code> (117KB)</td></tr>
+        <tr><td>Traceability</td><td><code>Design_Data/traceability.json</code> (263KB)</td></tr>
+        <tr><td>Token Registry</td><td><code>Design_System/tokens/token_registry.json</code></td></tr>
+        <tr><td>Localization</td><td><code>Localization/app_am.arb</code> + <code>app_en.arb</code></td></tr>
+        <tr><td>Project Control</td><td><code>PROJECT_CONTROL/</code> (13 ledgers)</td></tr>
+    </table>
+</div>
+
+<!-- ============================================ -->
+<div class="card">
+    <h2>🔗 Important Links</h2>
+    <table>
+        <tr><th>Resource</th><th>URL</th></tr>
+        <tr><td>Live Site</td><td><a href="https://zagcreativity.com" target="_blank">https://zagcreativity.com</a></td></tr>
+        <tr><td>Health Check</td><td><a href="https://zagcreativity.com/up" target="_blank">/up</a></td></tr>
+        <tr><td>API Base</td><td><code>https://zagcreativity.com/api/v1/</code></td></tr>
+        <tr><td>API Categories</td><td><a href="https://zagcreativity.com/api/v1/categories" target="_blank">/api/v1/categories</a></td></tr>
+        <tr><td>Original ZIP</td><td><a href="https://zagcreativity.com/downloads/Felagi_Clean_Developer_Handoff_v1.4.2.zip">Download</a></td></tr>
+        <tr><td>Full Snapshot</td><td><a href="https://zagcreativity.com/downloads/">Downloads folder</a></td></tr>
+    </table>
+</div>
+
+<!-- ============================================ -->
+<div class="card" id="next">
+    <h2>🚀 Next Steps (Recommended)</h2>
+
+    <h3>Option 1 — WP-13: Admin Change Lifecycle (Recommended)</h3>
+    <p><strong>Why:</strong> Backend exists. Highest product value. No external creds needed.</p>
+    <ul>
+        <li>Implement <code>AdminChangeController</code></li>
+        <li>Add routes for draft/validate/preview/publish/rollback</li>
+        <li>Connect to <code>setting_drafts</code> + <code>setting_versions</code> tables</li>
+        <li>Implement authorization via <code>Admin_Authorization_Contract.md</code></li>
+    </ul>
+
+    <h3>Option 2 — WP-10: AI Comparison Live</h3>
+    <p><strong>Why:</strong> Core differentiator. Requires AI provider key.</p>
+    <ul>
+        <li>Add AI provider configuration to <code>.env</code></li>
+        <li>Implement <code>ComparisonController@store</code> (currently stub)</li>
+        <li>Add queue job for async AI evaluation</li>
+        <li>Implement snapshot freeze + output validation</li>
+    </ul>
+
+    <h3>Option 3 — WP-27: Telegram OIDC</h3>
+    <p><strong>Why:</strong> Unlocks real user login. Requires Telegram app credentials.</p>
+    <ul>
+        <li>Register Telegram OIDC app at my.telegram.org</li>
+        <li>Add credentials to <code>.env</code></li>
+        <li>Complete <code>AuthController@telegramExchange</code></li>
+        <li>Test full OAuth flow</li>
+    </ul>
+
+    <div class="success">
+        <strong>✅ Current Deployment is STABLE.</strong> All 38 tables migrated, all tests pass, HTTPS live. Safe to continue.
+    </div>
+</div>
+
+<!-- ============================================ -->
+<div class="card">
+    <h2>🛑 Critical Rules (Constitution)</h2>
+    <ol style="margin-left: 20px;">
+        <li><strong>No redesign</strong> — v1.4.1 design contract is LOCKED</li>
+        <li><strong>No hidden work</strong> — every change goes in CHANGE_LOG.md</li>
+        <li><strong>No hidden assumptions</strong> — record UNKNOWN, don't guess</li>
+        <li><strong>No silent changes</strong> — every decision goes in DECISION_LOG.md</li>
+        <li><strong>UNKNOWN ≠ MISSING</strong> — mark unknowns explicitly</li>
+        <li><strong>IMPLEMENTED ≠ VERIFIED</strong> — testing is separate from coding</li>
+        <li><strong>PARTIAL ≠ COMPLETE</strong> — do not claim partial as done</li>
+        <li><strong>Destructive work requires approval</strong> — no DB drops without confirmation</li>
+        <li><strong>Production PASS</strong> — only when all critical requirements VERIFIED</li>
+        <li><strong>Takeover-ready</strong> — any developer can continue from ledgers alone</li>
+    </ol>
+</div>
+
+<!-- ============================================ -->
+<div class="card">
+    <h2>📞 Handoff Contacts</h2>
+    <table>
+        <tr><th>Role</th><th>Contact</th></tr>
+        <tr><td>Server Admin</td><td>zagcreht@zagcreativity.com (cPanel)</td></tr>
+        <tr><td>Database Admin</td><td>zagcreht_felagi_user (MySQL)</td></tr>
+        <tr><td>Design Owner</td><td>Product owner (via cPanel)</td></tr>
+    </table>
+</div>
+
+<footer style="text-align: center; padding: 24px; color: #586675; font-size: 13px;">
+    <p>Felagi v1.4.2 — Developer Handoff</p>
+    <p>Generated: <span id="gen-time"></span></p>
+    <p>This document is the canonical entry point for new developers.</p>
+    <script>
+        document.getElementById('gen-time').textContent = new Date().toISOString().split('T')[0];
+    </script>
+</footer>
+
+</div>
+</body>
+</html>

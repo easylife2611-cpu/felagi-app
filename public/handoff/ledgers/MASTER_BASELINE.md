@@ -1,0 +1,121 @@
+# FELAGI v1.4.2 — MASTER BASELINE
+Status: **LOCKED**
+Last Updated: 2026-09-29
+
+## Identity
+- Design contract version: **1.4.1**
+- Handoff release version: **1.4.2**
+- Source hash: `e467f84820518acd68ad6824a05fefa8590f004c3949cca278f862140a71f31c`
+- Token version: `FGM-TOKENS-1.4`
+- Package: `Felagi_Clean_Developer_Handoff_v1.4.2.zip`
+
+## Deliverables (51 total)
+| Item | Count |
+|------|-------|
+| User screens | 23 (S001-S023) |
+| Admin screens | 23 (A001-A023) |
+| Total screens | 46 |
+| Interaction overlays | 11 (O01-O11) |
+| Governed controls | 55 |
+| Component primitives | 31 |
+| Component compositions | 22 |
+| Database tables | 25 |
+| API routes | ~40 |
+| Settings | 22 |
+| Locales | 2 (am default + en launch) |
+| Locale keys | 669 |
+| Sponsored placements | 3 |
+| User journeys | 26 |
+| Verification checks | 7,810+ |
+| Contrast pairs | 66 |
+
+## Authority Hierarchy (6 levels)
+1. `System_Specification/DFM-FDS-1.4.md` — Business invariants
+2. `System_Specification/Design_Integration_Contract.md`
+3. `Final_Master_Product_Design_Specification.md` + matrices
+4. `Design_Data/screen-manifest.json`
+5. `Design_System/tokens/token_registry.json`
+6. `Localization/app_am.arb` + `app_en.arb`
+
+## Locked Invariants (40 rules)
+1. Need-first marketplace
+2. Amharic default + English launch
+3. Navy `#003366` + Orange `#FF9933`
+4. Requester decision authority
+5. AI advisory only
+6. No percentage commission
+7. 3 revenue domains (Boost, Unlock, Sponsored Ads)
+8. Ads never affect organic/AI
+9. `UNKNOWN ≠ ZERO`
+10. `PARTIAL ≠ COMPLETE`
+11. `IMPLEMENTED ≠ VERIFIED`
+12. `Designed ≠ Implemented ≠ Verified`
+13. `Preview ≠ Production proof`
+14. `Published ≠ Applied ≠ Verified`
+15. `CLIENT SUCCESS ≠ VERIFIED PAYMENT`
+16. `VERIFIED PAYMENT → NO SECOND CHARGE`
+17. Never white body text on orange
+18. State = text + icon + color (never color-only)
+19. Secrets = env references, never settings values
+20. Missing/corrupt security setting = fail closed
+21. Never pass ID token/secret in deep link
+22. Retry same snapshot; new comparison = new version
+23. One event ID for all recipients
+24. No AI network call inside transaction
+25. Client callbacks only trigger GET reconciliation
+26. No client-origin confirmation of payment
+27. Webhooks require signature + dedupe
+28. Files: MIME from bytes, quarantine
+29. Laravel OUTSIDE public web root
+30. cPanel doc root = `public/` or blocked
+31. RPO ≤ 24h, RTO ≤ 8h (proof by drill)
+32. Brand: no redraw/recolor/approximate
+33. Amharic Offer = `አቅርቦት` (not `ጥቆማ`)
+34. Unknown ≠ Failed; Pending ≠ Paid
+35. AI must NOT translate UNKNOWN into negative
+36. Optimism: filter/sort/disclosure/selection/draft only
+37. Never celebrate client payment success
+38. No podium/winner/confetti
+39. No hidden work, no hidden assumptions
+40. DONE = implemented + integrated + tested + verified + documented + evidenced
+
+## Felagi vs Legacy (BEHAQ)
+- **Felagi**: active project (v1.4.2)
+- **BEHAQ**: legacy project (archived, not active)
+- **NEVER MIX** the two projects
+
+## WP-13 — Admin Change Lifecycle (DONE)
+Date: 2026-09-29
+
+**Delivered:** 14 files
+- Models: Setting, SettingVersion, SettingDraft, OutboxEvent
+- Services: AuditWriter, OutboxWriter, AdminChangeService
+- Controller: AdminChangeController (8 endpoints)
+- Requests: CreateDraftRequest, PublishChangeRequest
+- Policy: SettingPolicy
+- Exception: SettingsVersionConflictException
+- Seeder: ControlRegistrySeeder (31 settings)
+- Test: ChangeLifecycleTest (8 PASS)
+
+**Endpoints (10 routes):**
+- POST   /api/v1/admin/changes
+- GET    /api/v1/admin/changes/{id}
+- POST   /api/v1/admin/changes/{id}/validate
+- POST   /api/v1/admin/changes/{id}/simulate
+- POST   /api/v1/admin/changes/{id}/preview
+- POST   /api/v1/admin/changes/{id}/publish
+- GET    /api/v1/admin/changes/{id}/audit
+- POST   /api/v1/admin/changes/{id}/rollback
+- POST   /api/v1/admin/settings/drafts/{id}/publish (legacy)
+- POST   /api/v1/admin/settings/{key}/rollback (legacy)
+
+**Verification:**
+- 8 feature tests PASS (15 assertions)
+- Duration: 3.00s
+- Test DB: MySQL isolated (zagcreht_felagi_test)
+- Production DB untouched
+
+**Integrity:**
+- audit_logs: SHA-256 hash chain active
+- outbox_events: aggregate_id = setting_versions.id
+- setting_versions: append-only (immutable)
