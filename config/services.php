@@ -40,6 +40,7 @@ return [
         'client_id'     => env('TELEGRAM_CLIENT_ID'),
         'client_secret' => env('TELEGRAM_CLIENT_SECRET'),
         'redirect_uri'  => env('TELEGRAM_REDIRECT_URI'),
+        'bot_id'        => env('TELEGRAM_BOT_ID', env('TELEGRAM_CLIENT_ID')),
 
         'oidc' => [
             'discovery_url'     => env('TELEGRAM_OIDC_DISCOVERY_URL', 'https://oauth.telegram.org/.well-known/openid-configuration'),

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ __('screenS001') }} — {{ __('brand') }}</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -81,12 +82,15 @@
             btn.disabled = true;
 
             try {
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
                 const res = await fetch('/api/v1/auth/telegram/start', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': csrfToken
                     },
                     body: JSON.stringify({ return_uri: window.location.origin + '/' })
                 });
@@ -97,19 +101,22 @@
 
                 const data = await res.json();
 
-                // Handle multiple possible response shapes (LOCKED design not yet
-                // prescribing exact field name — accept known variants)
+                // Backend returns: {success, data: {auth_url, attempt_id, ...}, message, ...}
+                // Accept nested (canonical) OR top-level (fallback) shapes.
+                const payload = data.data || data;
                 const url =
-                    data.url ||
+                    payload.auth_url ||
+                    payload.url ||
+                    payload.redirect_url ||
+                    payload.authorization_url ||
                     data.auth_url ||
-                    data.redirect_url ||
-                    data.telegram_url ||
-                    data.authorization_url;
+                    data.url;
 
                 if (url) {
                     window.location.href = url;
                 } else {
                     btn.disabled = false;
+                    console.error('SignIn: no auth_url in response', data);
                     alert(errorMsg);
                 }
             } catch (e) {

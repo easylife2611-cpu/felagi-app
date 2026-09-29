@@ -41,6 +41,8 @@ class AuthController extends BaseApiController
 
         $authUrl = config('services.telegram.oidc.authorization_url') . '?' . http_build_query([
             'client_id'             => config('services.telegram.client_id', ''),
+            'bot_id'                => config('services.telegram.bot_id', config('services.telegram.client_id', '')),
+            'origin'                => parse_url(config('app.url'), PHP_URL_HOST) ?: 'zagcreativity.com',
             'redirect_uri'          => config('services.telegram.redirect_uri', ''),
             'response_type'         => 'code',
             'scope'                 => $validated['scope'] ?? 'openid profile',

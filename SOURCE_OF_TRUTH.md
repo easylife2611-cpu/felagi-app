@@ -1,52 +1,22 @@
 # FELAGI v1.4.2 — MASTER SOURCE OF TRUTH
 **Consolidated:** 2026-09-29
-**HEAD:** 6bc49c8 (B22)
+**HEAD:** 48217b2 (B23)
 **Purpose:** Single-file consolidation of all source-of-truth documents
-
----
-
-## TABLE OF CONTENTS
-
-| Section | Source File | Lines | Content |
-|---------|-------------|-------|---------|
-| 1 | FELAGI_STATUS_REPORT.md | 523 | Complete project status (8 parts) |
-| 2 | HANDOFF_STATE.md | 252 | Current state + next work |
-| 3 | DECISION_LOG.md | 679 | D-001 → D-115 |
-| 4 | TEST_VERIFICATION.md | 396 | 162 tests, full trail |
-
-**Total:** ~1,850 lines
-
----
-
-## HOW TO USE THIS DOCUMENT
-
-1. **New developer:** Read Section 1 (Status Report) first
-2. **Next work planning:** Read Section 2 (Handoff State)
-3. **Understanding decisions:** Read Section 3 (Decision Log)
-4. **Test evidence:** Read Section 4 (Test Verification)
-
----
 
 ## QUICK FACTS
 
 | Item | Value |
 |------|-------|
-| HEAD | 6bc49c8 |
-| Total commits | 57 |
+| HEAD | 48217b2 |
 | Tests | 162 passed (320 assertions) |
-| B-Blocks DONE | 13 (B10-B22) |
+| B-Blocks DONE | 14 (B10-B23) |
 | WP DONE | 10 |
 | Ledgers | 14 canonical |
 | Bundles | 4 (B21_DONE) |
 | Production PASS | BLOCKED (3/9 gates MET) |
 
----
-
 ## SECTION 1 — COMPLETE PROJECT STATUS
-
-**Source:** FELAGI_STATUS_REPORT.md (523 lines)
-
----
+**Source:** FELAGI_STATUS_REPORT.md
 
 # FELAGI v1.4.2 — STATUS REPORT
 **Generated:** 2026-09-29
@@ -574,11 +544,42 @@ No duplicate ownership | DONE = verified + documented + evidenced
 
 ---
 
-## SECTION 2 — CURRENT STATE + NEXT WORK
+## B24 — S001 SignIn Fix (2026-09-29)
 
-**Source:** public/handoff/ledgers/HANDOFF_STATE.md (252 lines)
+### Chained GAPs Resolved (4)
+
+| GAP | Issue | Fix |
+|-----|-------|-----|
+| GAP-63 | JS response nesting | `data.data.auth_url` |
+| GAP-64 | bot_id parameter | `bot_id` added |
+| GAP-65 | CSRF token | meta + header |
+| GAP-66 | origin parameter | `origin` added |
+
+### Files Changed (3)
+
+- resources/views/welcome.blade.php (CSRF + fetch)
+- app/Http/Controllers/Api/V1/AuthController.php (origin + bot_id)
+- config/services.php (bot_id mapping)
+
+### BotFather Setup
+
+- Bot: FelagiMarketBot (8629327448)
+- Domain: zagcreativity.com
+
+### Live URLs (SOT)
+
+| URL | Purpose |
+|-----|---------|
+| https://zagcreativity.com/handoff/SOURCE_OF_TRUTH.md | Reading |
+| https://zagcreativity.com/handoff/FELAGI_STATUS_REPORT.md | Reading |
+| https://zagcreativity.com/downloads/SOURCE_OF_TRUTH.md | Download |
+| https://zagcreativity.com/downloads/FELAGI_STATUS_REPORT.md | Download |
+
 
 ---
+
+## SECTION 2 — CURRENT STATE
+**Source:** HANDOFF_STATE.md
 
 # HANDOFF STATE — Felagi v1.4.2
 Last Updated: 2026-09-29 (B17 — Ledger Integrity Sweep)
@@ -835,11 +836,8 @@ All 4 artifacts in ~/ (supersede B19 bundles):
 
 ---
 
-## SECTION 3 — DECISION LOG (D-001 → D-115)
-
-**Source:** public/handoff/ledgers/DECISION_LOG.md (679 lines)
-
----
+## SECTION 3 — DECISION LOG
+**Source:** DECISION_LOG.md
 
 # DECISION LOG — Felagi v1.4.2
 Last Updated: 2026-09-29
@@ -1523,11 +1521,8 @@ for stakeholder resolution. No implementation attempted without spec.
 
 ---
 
-## SECTION 4 — TEST VERIFICATION (162 tests)
-
-**Source:** public/handoff/ledgers/TEST_VERIFICATION.md (396 lines)
-
----
+## SECTION 4 — TEST VERIFICATION
+**Source:** TEST_VERIFICATION.md
 
 # TEST VERIFICATION — Felagi v1.4.2
 Last Updated: 2026-09-29
