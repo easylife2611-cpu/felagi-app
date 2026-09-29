@@ -634,3 +634,46 @@ This is consistent with D-100/D-101 (deferred design improvements) - do not sile
 - No silent changes -> no schema touched
 - D-054 AUDIT BEFORE ACTION -> audit preceded all code
 - IMPLEMENTED != VERIFIED -> tests run before commit
+
+---
+## B21 — Extended Model Tests + Spec Requests (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-113 | CreatesTestCategory trait for DRY test setup | Multiple tests need Category | ACCEPTED |
+| D-114 | Distinct providers per rating in scopeValid test | UNIQUE(need_id, from_user_id, to_user_id) constraint | ACCEPTED |
+| D-115 | Spec request docs for WP-05c and T01-T18 | Constitution: UNKNOWN != MISSING | ACCEPTED |
+
+### Rationale
+
+**D-113:** Multiple test files need a Category to create a valid Need
+(category_id NOT NULL). Rather than duplicate Category::create() in each
+test, a trait (CreatesTestCategory) provides makeCategory() helper. This
+follows DRY and matches the B19 pattern of inline helpers.
+
+**D-114:** ratings table has UNIQUE(need_id, from_user_id, to_user_id).
+The scopeValid test needs 5 ratings with scores 1-5 for the same need.
+Using distinct providers per rating satisfies the constraint while still
+testing the 1-5 score range.
+
+**D-115:** Two spec requests were documented:
+- WP-05c: admin read endpoints (undefined scope)
+- T01-T18: integration test definitions (undefined behaviors)
+
+Both are UNKNOWN (not MISSING). Docs provide the questions and constraints
+for stakeholder resolution. No implementation attempted without spec.
+
+### Test Results (verified)
+
+- Command: APP_ENV=testing php artisan test
+- Result: 162 passed (320 assertions)
+- Failures: 0
+- Duration: 8.52s
+
+### Constitution Compliance
+
+- No hidden work -> all decisions documented
+- No silent changes -> no schema touched
+- D-054 AUDIT BEFORE ACTION -> audit preceded code
+- IMPLEMENTED != VERIFIED -> 162 tests run before commit
+- UNKNOWN != MISSING -> spec requests registered

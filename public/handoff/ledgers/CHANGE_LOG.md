@@ -918,3 +918,72 @@ Both were made explicit in test payloads. No schema change made.
 ### Rollback
 
 git revert <B19-commit>
+
+## B21 — Extended Model Tests + Audit + Spec Requests (2026-09-29)
+
+### Summary
+Added 31 model tests + 2 docs (audit + spec requests). Single commit.
+Tests: 131 -> 162. All PASS.
+
+### New Test Files (3)
+
+| File | Tests | Focus |
+|------|-------|-------|
+| tests/Feature/Models/NotificationTest.php | 11 | Statuses, scopes, read lifecycle |
+| tests/Feature/Models/RatingTest.php | 9 | Relations, valid scope, uniqueness |
+| tests/Feature/Models/UserTest.php | 11 | SoftDeletes, scopes, encrypted casts |
+
+### New Test Trait (1)
+
+| File | Purpose |
+|------|---------|
+| tests/Feature/Models/Concerns/CreatesTestCategory.php | DRY category factory |
+
+### New Docs (3)
+
+| File | Purpose |
+|------|---------|
+| docs/audits/MIGRATION_INTEGRITY_B21.md | Read-only migration audit |
+| docs/spec-requests/WP-05c_admin_read_endpoints.md | Stakeholder spec request |
+| docs/spec-requests/T01-T18_integration_tests.md | Stakeholder spec request |
+
+### Test Results
+
+| Metric | Value |
+|--------|-------|
+| Tests run | 162 (was 131) |
+| Assertions | 320 (was 266) |
+| Failures | 0 |
+| Duration | 8.52s |
+
+### Schema Findings (via test failures)
+
+During B21 test development, 5 NOT NULL no-default columns and 1 unique
+constraint were discovered and documented:
+
+- setting_versions.reason
+- audit_logs.request_id
+- needs.category_id
+- offers.offered_price
+- offers.proposal_message
+- ratings UNIQUE(need_id, from_user_id, to_user_id)
+
+All handled in test payloads (no schema change). See D-112 and audit doc.
+
+### Not Changed
+
+- No production code modified
+- No migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+
+- D-054 AUDIT BEFORE ACTION - audit ran first
+- IMPLEMENTED != VERIFIED - tests proven before commit
+- UNKNOWN != MISSING - spec requests documented
+- No silent changes - all findings logged
+
+### Rollback
+
+git revert <B21-commit>

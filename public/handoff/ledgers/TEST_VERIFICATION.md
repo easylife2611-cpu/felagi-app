@@ -346,3 +346,51 @@ Two NOT NULL columns without defaults were discovered:
 - audit_logs.request_id (NOT NULL)
 
 Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED).
+
+---
+## B21 — Extended Model Tests + Audit + Spec Requests (2026-09-29)
+
+### New Test Files (3)
+
+| File | Tests | Focus |
+|------|-------|-------|
+| NotificationTest.php | 11 | Statuses, scopes, read lifecycle |
+| RatingTest.php | 9 | Relations, valid scope, uniqueness |
+| UserTest.php | 11 | SoftDeletes, scopes, encrypted casts |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B21 | 131 | 266 |
+| B21 | +31 | +54 |
+| **Post-B21** | **162** | **320** |
+
+### Coverage Expansion
+
+| Model | Before B21 | After B21 |
+|-------|------------|-----------|
+| Notification | 0 | 11 |
+| Rating | 0 | 9 |
+| User | 12 (feature) | 11 (unit) |
+
+### New Artifacts (docs/)
+
+| Path | Lines | Purpose |
+|------|-------|---------|
+| docs/audits/MIGRATION_INTEGRITY_B21.md | 69 | Migration audit (read-only) |
+| docs/spec-requests/WP-05c_admin_read_endpoints.md | 64 | Stakeholder spec request |
+| docs/spec-requests/T01-T18_integration_tests.md | 86 | Stakeholder spec request |
+
+### Schema Findings
+
+- needs.category_id NOT NULL (resolved via CreatesTestCategory trait)
+- offers.offered_price + proposal_message NOT NULL (explicit in tests)
+- ratings UNIQUE(need_id, from_user_id, to_user_id) (distinct providers)
+
+### Test Run
+
+- Command: APP_ENV=testing php artisan test
+- Result: 162 passed (320 assertions)
+- Failures: 0
+- Duration: 8.52s
