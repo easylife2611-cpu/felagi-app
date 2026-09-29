@@ -163,3 +163,44 @@ A developer cloning either bundle gets:
 - B17_ROLLBACK.md
 - Complete handoff state
 
+
+---
+## B20 — Bundle Refresh at B19_DONE (2026-09-29)
+
+### New Bundle Artifacts
+
+All 4 artifacts in ~/ (supersede B17 bundles):
+
+| Artifact | Size |
+|----------|------|
+| Felagi_App_v1.4.2_20260929-1530_B19_DONE.bundle | 980K |
+| Felagi_Design_v1.4.2_20260929-1530_B19_DONE.bundle | 3.5M |
+| Felagi_v1.4.2_20260929-1530_B19_DONE_full.tar.gz | 45M |
+| Felagi_v1.4.2_20260929-1530_B19_DONE_FULL_with_vendor.tar.gz | 76M |
+
+### Verification Results (clone-tested)
+
+| Check | Result |
+|-------|--------|
+| App bundle HEAD | b451224 (B19) |
+| App bundle commits | 53 |
+| App ledger files | 14 |
+| App model test files | 3 |
+| B19 commit present | YES |
+| Design bundle HEAD | 27edd9d (B11) |
+| Design bundle commits | 15 |
+| Tarball entries | 321 |
+| Tarball B19 test files | 3 |
+| Tarball B17_ROLLBACK.md | YES |
+
+### Supersedes
+
+- B18 bundle (B17_DONE) - archived
+- B17 bundles - archived
+
+### State
+
+- App HEAD: b451224 (B19 DONE)
+- Design HEAD: 27edd9d (B11 DONE)
+- Tests: 131 passed (266 assertions)
+- Both repos CLEAN
