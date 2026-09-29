@@ -664,3 +664,27 @@ git revert <B14-commit>
 
 ### Rollback
 git revert 2f1b603
+
+## L192 — B16 (non-admin test coverage + .bak cleanup) — 2026-09-29
+
+**Type:** Test coverage + housekeeping
+**Addresses:** Non-admin test gap (proven via Phase 2 audit)
+
+### Changes
+- NEW: tests/Feature/Need/NeedFlowTest.php (6 tests)
+- NEW: tests/Feature/Offer/OfferFlowTest.php (6 tests)
+- NEW: tests/Feature/Message/MessageFlowTest.php (4 tests)
+- MOVE: 8 .bak files → .archives/20260929-b16-bak-cleanup/
+
+### Test Results
+- B16 new: 16 tests (30 assertions)
+- Full suite: 90 → 106 tests (220 assertions total)
+
+### Not Changed
+- No production code modified
+- No DB migrations
+- No routes changed
+- No new design
+
+### Rollback
+git revert 44f9494

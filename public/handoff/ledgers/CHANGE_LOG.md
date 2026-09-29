@@ -782,3 +782,24 @@ Replaced Laravel default welcome with LOCKED S001 Welcome
 
 ### Closes
 - GAP-62
+
+## B16 — non-admin test coverage + .bak cleanup — 2026-09-29
+
+### Summary
+Addressed non-admin test coverage gap (Phase 2 audit: 47 API routes, 1 non-admin test).
+8 stale .bak files archived.
+
+### Changed
+| File | Change |
+|------|--------|
+| tests/Feature/Need/NeedFlowTest.php | NEW (6 tests) |
+| tests/Feature/Offer/OfferFlowTest.php | NEW (6 tests) |
+| tests/Feature/Message/MessageFlowTest.php | NEW (4 tests) |
+| .archives/20260929-b16-bak-cleanup/ | NEW (8 .bak moved) |
+
+### Verification
+- Filter run: 16 passed (30 assertions)
+- Full suite: 106 passed (220 assertions)
+
+### Not Changed
+- No production code, no migrations, no routes, no new design

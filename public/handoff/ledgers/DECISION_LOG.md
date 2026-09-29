@@ -493,3 +493,30 @@ Deploy S001 at `/` with 3 elements only.
 Sign-in target: existing `/api/v1/auth/telegram/start` (WP-27).
 
 **Closes:** GAP-62
+
+## D-100 — API Resources Layer Deferred (design improvement) — 2026-09-29
+
+**Context:** Audit found `app/Http/Resources/` does not exist.
+47 routes return raw model JSON via `$model->toArray()`.
+
+**Assessment:** Not a bug. Current responses work. Improvements would be:
+consistent field filtering, centralized PII protection, versioning.
+
+**Decision:** Defer until LOCKED design specifies the Resources contract.
+Constitution: "Do not guess missing requirements."
+
+**Recorded as design improvement (not critical bug).**
+
+## D-101 — Policy Expansion Deferred (best practice) — 2026-09-29
+
+**Context:** Only `SettingPolicy` exists. Non-admin authz is inline in
+controllers (14 FORBIDDEN returns).
+
+**Assessment:** Not a bug. SettingPolicy auto-discovery verified via tinker
+(`Gate resolves Setting → App\Policies\SettingPolicy`). Inline checks
+correctly return 403/404 — verified by B16 tests.
+
+**Decision:** Defer centralized Policy layer until LOCKED design specifies
+policy-per-model structure. Inline authz is sufficient and tested.
+
+**Recorded as best-practice improvement (not critical).**
