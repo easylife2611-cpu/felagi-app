@@ -481,3 +481,20 @@ GAP-54 (APP_DEBUG production — carried from WP-13)
 - HTTP / = 200
 - HTTP 404 = no stack trace
 - Rollback: .env.production.bak.20260929_112618
+
+## 2026-09-29 — WP-05d Cleanup (DONE)
+
+### Removed (6 files)
+
+Moved to `~/cleanup_trash/20260929/`:
+- app/Http/Controllers/Api/V1/Admin/AdminChangeController.php.bak.*
+- app/Services/Admin/AdminChangeService.php.bak.*
+- app/Models/User.php.bak.*
+- routes/console.php.bak.*
+- routes/api.php.bak.*
+- config/auth.php.backup
+
+### Verification
+- 0 .bak/.backup files remaining in app/config/routes/database
+- .gitignore covers *.bak.* and *.backup
+- Git working tree CLEAN
