@@ -144,3 +144,23 @@ isolated MySQL test DB over fixing migration (which would be architecture change
 | TOTP enrollment UI | Frontend (Flutter/Admin UI) — WP-13c |
 | Recovery codes display UI | Frontend — WP-13c |
 | Self-service disable 2FA | Frontend — WP-13c |
+
+## GAP-54 Decision (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-075 | APP_DEBUG=false in production + log rotation | Security best practice + DFM §449 (audit) | ACCEPTED |
+
+### Rationale
+
+Production stack traces expose internal paths, DB queries, library versions. Laravel default when APP_ENV=production is APP_DEBUG=false; but .env explicitly set true. Fix: change .env to false, rebuild config cache, archive existing log.
+
+Rollback: .env.production.bak.20260929_112618.
+
+### Verification
+
+- config('app.debug') = false
+- HTTP /up = 200
+- HTTP / = 200
+- HTTP 404 test = no stack trace
+- Laravel log = archived (944 lines)

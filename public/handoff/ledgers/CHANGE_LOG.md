@@ -456,3 +456,28 @@ GAP-45 (reauth), GAP-46 (2FA), GAP-47 (idempotency), GAP-48 (apply/verify)
 GAP-50 (TOTP enrollment UI), GAP-51 (recovery codes UI),
 GAP-52 (2FA disable UI), GAP-53 (lost-factor recovery flow),
 GAP-54 (APP_DEBUG production — carried from WP-13)
+
+## 2026-09-29 — GAP-54 Production Security Fix (DONE)
+
+### Issue
+- .env: APP_DEBUG=true in production environment
+- Laravel log: 944 lines of stack traces (evidence of debug mode)
+- 3 .env.* backup files in app root (hygiene)
+
+### Fix
+
+| Action | Before | After |
+|--------|--------|-------|
+| APP_DEBUG | true | false |
+| Laravel log | 944 lines | archived |
+| .env.* backups | 3 in root | moved to ~/env_backups/ |
+| Config cache | stale | rebuilt |
+| Route cache | stale | rebuilt |
+| View cache | stale | rebuilt |
+
+### Verification
+- config('app.debug') = false
+- HTTP /up = 200
+- HTTP / = 200
+- HTTP 404 = no stack trace
+- Rollback: .env.production.bak.20260929_112618

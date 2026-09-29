@@ -116,7 +116,7 @@ Last Updated: 2026-09-29
 | GAP-51 | Recovery codes display UI | MEDIUM | WP-13c | Frontend not implemented |
 | GAP-52 | Self-service 2FA disable | MEDIUM | WP-13c | Frontend + audit flow |
 | GAP-53 | Recovery flow (lost factor) | HIGH | WP-13c | Design: "controlled, audited process" |
-| GAP-54 | APP_DEBUG=true (from WP-13, still open) | CRITICAL | Ops | Separate WP |
+| GAP-54 | APP_DEBUG=true in production | ✅ RESOLVED 2026-09-29 | — | Config cached + verified |
 
 ### Notes
 
