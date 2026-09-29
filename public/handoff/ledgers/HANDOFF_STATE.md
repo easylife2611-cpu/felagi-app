@@ -204,3 +204,49 @@ All 4 artifacts in ~/ (supersede B17 bundles):
 - Design HEAD: 27edd9d (B11 DONE)
 - Tests: 131 passed (266 assertions)
 - Both repos CLEAN
+
+---
+## B22 — Bundle Refresh at B21_DONE (2026-09-29)
+
+### New Bundle Artifacts
+
+All 4 artifacts in ~/ (supersede B19 bundles):
+
+| Artifact | Size |
+|----------|------|
+| Felagi_App_v1.4.2_20260929-1551_B21_DONE.bundle | 999K |
+| Felagi_Design_v1.4.2_20260929-1551_B21_DONE.bundle | 3.5M |
+| Felagi_v1.4.2_20260929-1551_B21_DONE_full.tar.gz | 45M |
+| Felagi_v1.4.2_20260929-1551_B21_DONE_FULL_with_vendor.tar.gz | 76M |
+
+### Verification Results (clone-tested)
+
+| Check | Result |
+|-------|--------|
+| App bundle HEAD | c64fa28 (B21) |
+| App bundle commits | 55 |
+| App ledger files | 14 |
+| App model test files | 6 |
+| App audit docs | 1 |
+| App spec requests | 2 |
+| B21 commit present | YES |
+| B19 commit present | YES |
+| Design bundle HEAD | 27edd9d (B11) |
+| Design bundle commits | 15 |
+| Tarball entries | 332 |
+| Tarball B19 test files | 3 |
+| Tarball B21 test files | 3 |
+| Tarball B21 docs | 3 |
+
+### Supersedes
+
+- B20 bundle (B19_DONE) - archived
+- B18 bundle (B17_DONE) - archived
+
+### State
+
+- App HEAD: c64fa28 (B21 DONE)
+- Design HEAD: 27edd9d (B11 DONE)
+- Tests: 162 passed (320 assertions)
+- Model test files: 6 (B19: 3 + B21: 3)
+- Both repos CLEAN
