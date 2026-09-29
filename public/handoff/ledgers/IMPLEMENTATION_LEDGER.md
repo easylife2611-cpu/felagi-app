@@ -564,3 +564,32 @@ N/A — documentation-only. No code or schema changes.
 
 ### Rollback
 git revert <commit-hash>
+
+## L189 — B13 (downloads/ index) — 2026-09-29
+
+**Type:** Static asset + .gitignore fix
+**Closes:** GAP-61 (newly registered)
+
+### Root Cause
+- `public/.htaccess` contains `Options -Indexes`
+- Apache/LiteSpeed directory listing disabled → 403 Forbidden on `/downloads/`
+
+### Fix
+- New: `public/downloads/index.html` (6.5 KB)
+- Modified: `.gitignore` — exception for index.html
+
+### Verification
+- Live: HTTP/2 200 https://zagcreativity.com/downloads/
+- index.html: 6546 bytes, text/html
+- Bundle direct: HTTP/2 200, 251729 bytes
+
+### Correction Note
+B10 CHANGE_LOG mislabeled this as "GAP-56". Real GAP-56 = OIDC E2E test (open).
+This gap was never formally registered before B13 → assigned GAP-61.
+
+### Files Changed (2)
+- public/downloads/index.html (NEW)
+- .gitignore (MODIFIED)
+
+### Rollback
+git revert dc1159a

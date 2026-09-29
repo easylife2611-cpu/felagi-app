@@ -681,8 +681,33 @@ migrations, or routes changed.
 
 ### Remaining Open (post-B10)
 - GAP-55: handoff/index.html outdated (B11)
-- GAP-56: downloads/ listing 403/404 (B11)
+- Downloads listing 403/404 (never formally tracked in B10; registered as GAP-61, resolved B13)
 - GAP-57: production root = Laravel default (B11)
 
 ### Rollback
 git revert <B10-commit> ; or restore from *.bak.b10.p4
+
+## B13 — downloads/ index (GAP-61 closed) — 2026-09-29
+
+### Summary
+Root cause: `public/.htaccess` disables directory listing (`Options -Indexes`).
+URL `/downloads/` returned 403. Fix: static index.html with handoff-consistent style.
+
+### Changed
+| File | Change |
+|------|--------|
+| public/downloads/index.html | NEW — listing page (6.5 KB) |
+| .gitignore | /public/downloads/* + exception for index.html |
+
+### Verification
+- `git check-ignore -v` clean
+- HTTP/2 200 on https://zagcreativity.com/downloads/
+- HTTP/2 200 on /downloads/index.html (content-length 6546)
+- Bundle direct downloads unaffected (251729 bytes app bundle)
+
+### Correction
+B10 CHANGE_LOG mislabeled downloads gap as GAP-56. Real GAP-56 = OIDC E2E test
+(still open). Downloads listing never formally registered; now tracked as GAP-61.
+
+### Closes
+- GAP-61 (newly registered)

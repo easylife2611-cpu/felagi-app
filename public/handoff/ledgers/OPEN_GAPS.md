@@ -146,3 +146,12 @@ Last Updated: 2026-09-29
 | ID | Description | Resolution |
 |----|-------------|------------|
 | D-091 | Race condition in telegramExchange | ✅ RESOLVED — HMAC-signed handoff |
+
+## B13 Updates (2026-09-29)
+
+### Resolved in B13
+| ID | Gap | Status | Evidence |
+|----|-----|--------|----------|
+| GAP-61 | downloads/ directory listing 403 | ✅ RESOLVED — static index.html added | HTTP/2 200 verified 2026-09-29 |
+
+**Note:** Originally misidentified in B10 CHANGE_LOG as "GAP-56". Real GAP-56 is the separate OIDC E2E test gap (still open). Downloads listing was never formally registered until B13.
