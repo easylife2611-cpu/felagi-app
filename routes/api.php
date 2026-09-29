@@ -26,7 +26,14 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('telegram/start', [AuthController::class, 'telegramStart'])
             ->middleware('throttle:5,15');
-        Route::post('telegram/exchange', [AuthController::class, 'telegramExchange']);
+
+        // WP-27: Telegram redirects user here with ?code=&state=
+        Route::get('telegram/callback', [AuthController::class, 'telegramCallback'])
+            ->middleware('throttle:10,1');
+
+        // WP-27: Flutter exchanges single-use handoff code for app tokens
+        Route::post('telegram/exchange', [AuthController::class, 'telegramExchange'])
+            ->middleware('throttle:10,1');
         Route::post('refresh', [AuthController::class, 'refresh']);
 
         Route::middleware('auth:sanctum')->group(function () {

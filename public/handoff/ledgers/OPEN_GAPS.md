@@ -123,3 +123,21 @@ Last Updated: 2026-09-29
 **GAP-50, GAP-51, GAP-52** — 2FA infrastructure አለ (TOTP service + recovery codes). ሆኖም ተጠቃሚ UI የለም — Flutter/Admin frontend ያስፈልጋል. WP-13c ይሸፍናል።
 
 **GAP-53** — Auth Contract §449: "lost-factor recovery is a controlled, audited process, not a secret bypass." ሂደቱ ግን በ design አልተገለጸም።
+
+## WP-27 Updates (2026-09-29)
+
+### Resolved in WP-27
+
+| ID | Description | Resolution |
+|----|-------------|------------|
+| GAP-31 | Telegram OIDC credentials missing | ✅ RESOLVED — credentials configured |
+| GAP-42 | auth_attempts table missing | ✅ RESOLVED — WP-05a |
+| GAP-46 | Second factor not implemented | ✅ RESOLVED — WP-13b (TOTP) |
+| GAP-55 | Telegram OIDC full flow pending | ✅ RESOLVED — telegramExchange() implemented |
+
+### New GAPs (from WP-27)
+
+| ID | Gap | Severity | Owner | Blocker |
+|----|-----|----------|-------|---------|
+| GAP-56 | Live OIDC end-to-end test with real Telegram user | MEDIUM | QA | manual test required |
+| GAP-57 | Sanctum UUID migration in production | ✅ DONE | — | applied |

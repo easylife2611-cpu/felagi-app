@@ -451,3 +451,51 @@ WP-05 COMPLETE.
 - Routes: 4 (all GET)
 - Tests: 12 PASS
 - Deferred: write endpoints → WP-27
+
+## WP-27 Additions (2026-09-29)
+
+### Composer (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L195 | firebase/php-jwt | DONE | v7.2.1 |
+
+### Config (4)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L196 | config/services.php — telegram section | DONE | OIDC URLs + credentials |
+| L197 | .env — 8 Telegram keys | DONE | client_id, secret, redirect, JWKS |
+| L198 | .env.testing — placeholders | DONE | test credentials |
+| L199 | .env.example — placeholders | DONE | deployment guide |
+
+### Exceptions (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L200 | OidcExchangeException | DONE | 11 reason codes |
+
+### Services (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L201 | TelegramOidcService | DONE | exchangeCode + JWKS + 7-step validation |
+
+### Controller (3 methods)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L202 | telegramStart() | DONE | PKCE + real client_id |
+| L203 | telegramCallback() | DONE | NEW — code → id_token → user → handoff |
+| L204 | telegramExchange() | DONE | REAL — handoff → Sanctum token |
+
+### Migration (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L205 | Sanctum UUID fix | DONE | tokenable_id bigint → char(36) |
+
+### Tests (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L206 | TelegramOidcTest | DONE | 20 tests PASS (43 assertions) |
+
+### Summary
+- New files: 5 (exception + service + test + migration + config updates)
+- Patched: 2 (AuthController, routes, config)
+- Tests: 20 PASS
+- Total Admin tests: 84 PASS

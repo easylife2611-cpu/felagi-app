@@ -579,3 +579,50 @@ Net impact: Additive schema changes only. No data affected. No service interrupt
 ### Design Compliance
 - Design_Integration_Contract.md endpoints
 - DFM §275 admin routes
+
+## 2026-09-29 — WP-27 Telegram OIDC Full Flow (DONE)
+
+### Delivered
+
+- Composer: firebase/php-jwt v7.2.1
+- Config: services.telegram section (OIDC URLs + credentials)
+- Exception: OidcExchangeException (11 reasons)
+- Service: TelegramOidcService (exchange + JWKS + issuer/audience/nonce)
+- Controller: telegramCallback + real telegramExchange
+- Migration: fix personal_access_tokens UUID (bigint → char(36))
+- Tests: TelegramOidcTest (20 PASS, 43 assertions)
+
+### Flow (DFM §218 compliance)
+
+1. Client → POST /auth/telegram/start → auth_url + PKCE
+2. User → Telegram OAuth → redirect to callback
+3. GET /auth/telegram/callback:
+   - findByState() → attempt
+   - completeLogin():
+     - exchangeCode() → token_url POST
+     - validateIdToken() → JWKS + 7 checks
+     - upsertUser() → telegram_subject
+     - markReauth() → 5-min window
+   - generateHandoff() → single-use code
+   - redirect to return_uri?handoff_code=Z
+4. Client → POST /auth/telegram/exchange → Sanctum token
+
+### Verification
+
+- 20 tests PASS (43 assertions)
+- Full Admin suite: 84 PASS
+- Production migration applied (empty table)
+
+### Design Compliance
+
+- DFM §218: server-side exchange + JWKS + issuer/audience/expiry/nonce
+- Auth Contract §3: recently_authenticated_at updated on login
+- Auth Contract §449: separate bot permission (not via OIDC)
+
+### Resolved GAPs
+
+GAP-31, GAP-42, GAP-46, GAP-55
+
+### New GAPs
+
+GAP-56 (live E2E test pending manual user test)

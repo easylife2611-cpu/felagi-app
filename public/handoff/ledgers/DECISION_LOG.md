@@ -304,3 +304,28 @@ Or:
 2. OR explicit "|| { echo FAILED; exit 1; }" after each test command
 3. Ledgers MUST claim DONE only after verified PASS
 4. Constitution compliance: violation documented; rule LOCKED
+
+## WP-27 Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-086 | firebase/php-jwt for JWT verification | Well-tested, Laravel-agnostic | ACCEPTED |
+| D-087 | JWKS cached 1h to avoid rate limits | DFM §218 (JWKS) + perf | ACCEPTED |
+| D-088 | 60s clock skew tolerance | Production-grade JWT | ACCEPTED |
+| D-089 | TelegramOidcService returns completeLogin() | Atomic flow | ACCEPTED |
+| D-090 | Sanctum UUID migration in production | personal_access_tokens.tokenable_id fix | ACCEPTED |
+| D-091 | telegramExchange finds user via recently_authenticated_at | Simpler than storing subject on attempt | PARTIAL_REVIEW |
+
+### Rationale
+
+**D-086:** `firebase/php-jwt` v7.2.1 is the de-facto JWT library for PHP. Security advisory noted but package actively maintained. Alternative `lcobucci/jwt` more complex; not needed for RS256 verification.
+
+**D-087:** JWKS from Telegram rarely changes. Caching 1h reduces external calls; falls through on cache miss.
+
+**D-088:** 60-second leeway is industry standard for distributed auth.
+
+**D-089:** Atomic completeLogin() = single transaction through exchange → validate → upsert → markReauth. Simplifies controller.
+
+**D-090:** Sanctum's default `bigint` tokenable_id incompatible with our UUID User model. Fix applied to test + production. Production table was empty → no data loss risk.
+
+**D-091:** Telegram's ID token `sub` claim is the user identifier, but we don't store it on the auth_attempt. Instead, we find the user who most recently authenticated (last 5 minutes) — which is the one who just completed OIDC. **Trade-off:** Race condition possible if multiple users log in within 5 minutes. **Mitigation:** handoff code expires in 60 seconds (per D-077). **Future:** store user_id on auth_attempt during callback (WP-27b).

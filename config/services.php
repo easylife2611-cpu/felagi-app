@@ -35,4 +35,19 @@ return [
         ],
     ],
 
+
+    'telegram' => [
+        'client_id'     => env('TELEGRAM_CLIENT_ID'),
+        'client_secret' => env('TELEGRAM_CLIENT_SECRET'),
+        'redirect_uri'  => env('TELEGRAM_REDIRECT_URI'),
+
+        'oidc' => [
+            'discovery_url'     => env('TELEGRAM_OIDC_DISCOVERY_URL', 'https://oauth.telegram.org/.well-known/openid-configuration'),
+            'authorization_url' => env('TELEGRAM_OIDC_AUTHORIZATION_URL', 'https://oauth.telegram.org/auth'),
+            'token_url'         => env('TELEGRAM_OIDC_TOKEN_URL', 'https://oauth.telegram.org/token'),
+            'jwks_url'          => env('TELEGRAM_OIDC_JWKS_URL', 'https://oauth.telegram.org/.well-known/jwks.json'),
+            'issuer'            => env('TELEGRAM_OIDC_ISSUER', 'https://oauth.telegram.org'),
+        ],
+    ],
+
 ];
