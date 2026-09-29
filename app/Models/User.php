@@ -2,47 +2,87 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, HasUuids, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'telegram_subject',
+        'full_name',
+        'phone_number',
+        'profile_photo_url',
+        'status',
+        'rating_score',
+        'rating_count',
+        'version',
+        'last_login_at',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
-        'password',
         'remember_token',
+        'phone_number',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'rating_score' => 'decimal:2',
+        'rating_count' => 'integer',
+        'version' => 'integer',
+        'last_login_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    // Status constants
+    public const STATUS_ACTIVE = 'ACTIVE';
+    public const STATUS_SUSPENDED = 'SUSPENDED';
+    public const STATUS_BANNED = 'BANNED';
+
+    // Relationships
+    public function roles()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(UserRole::class);
+    }
+
+    public function needs()
+    {
+        return $this->hasMany(Need::class, 'requester_id');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'provider_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'recipient_user_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'payer_id');
+    }
+
+    // Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function scopeWithRole($query, string $role)
+    {
+        return $query->whereHas('roles', function ($q) use ($role) {
+            $q->where('role', $role)->whereNull('revoked_at');
+        });
     }
 }
