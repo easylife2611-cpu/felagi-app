@@ -682,7 +682,7 @@ migrations, or routes changed.
 ### Remaining Open (post-B10)
 - GAP-55: handoff/index.html outdated (B11)
 - Downloads listing 403/404 (never formally tracked in B10; registered as GAP-61, resolved B13)
-- GAP-57: production root = Laravel default (B11)
+- Production root (zagcreativity.com/ shows Laravel default) — never formally tracked; registered as GAP-62 (UNKNOWN, B14)
 
 ### Rollback
 git revert <B10-commit> ; or restore from *.bak.b10.p4
@@ -711,3 +711,44 @@ B10 CHANGE_LOG mislabeled downloads gap as GAP-56. Real GAP-56 = OIDC E2E test
 
 ### Closes
 - GAP-61 (newly registered)
+
+## B14 — Production root gap corrected (GAP-62) — 2026-09-29
+
+### Summary
+Documentation-only. No code/DB/routes changed.
+
+### Corrections
+1. B10 CHANGE_LOG mislabeled production root issue as "GAP-57"
+   - Real GAP-57 = Sanctum UUID migration (DONE)
+   - Downloads issue (also mislabeled in B10) had already been fixed as GAP-61 in B13
+   - Production root now correctly registered as GAP-62
+
+2. GAP-62 registered in OPEN_GAPS.md as UNKNOWN
+   - Reason: LOCKED design for production landing page does not exist in
+     ~/felagi_extracted/Felagi_Design_Package/
+   - Grep searches returned empty:
+     * Final_Information_Architecture.md
+     * Final_Navigation_Route_Map.md
+     * Route::get('/')  in design package
+   - Per Constitution: do not create new design. Awaiting design owner.
+
+### Current production state (verified)
+- URL / → HTTP 200 with Laravel default welcome page
+- routes/web.php → only Route::get('/', view('welcome'))
+- resources/views/ → only welcome.blade.php
+- Document root symlink → felagi_app/public (correct)
+
+### Changed
+| File | Change |
+|------|--------|
+| OPEN_GAPS.md | GAP-62 registered (UNKNOWN) |
+| CHANGE_LOG.md | B10 mislabel fixed + this entry |
+| IMPLEMENTATION_LEDGER.md | L190 appended |
+| DECISION_LOG.md | D-098 appended |
+
+### Not Changed
+- No code / DB / routes modified
+- Production root remains Laravel default until design owner provides LOCKED design
+
+### Blocked On
+- GAP-62 → design owner must provide LOCKED production landing page design

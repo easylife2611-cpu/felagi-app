@@ -448,3 +448,30 @@ WORK_PACKAGES.md prior to CCB.
 
 **Resolution:** Stakeholder defines (1) admin frontend stack, (2) design spec,
 (3) lost-factor recovery flow.
+
+## D-098 — Production Root LOCKED Design UNKNOWN — 2026-09-29
+
+**Context:** Production root `https://zagcreativity.com/` shows Laravel default
+welcome page. Previously referenced in B10 CHANGE_LOG as "GAP-57" (mislabel).
+Real GAP-57 = Sanctum UUID migration (DONE).
+
+**Evidence (B14 baseline audit):**
+- Live body: `<title>Laravel</title>` + Laravel starter template
+- routes/web.php: only `Route::get('/')` → view('welcome')
+- resources/views/: only welcome.blade.php (Laravel default)
+- Document root: `public_html` → `felagi_app/public` (correct)
+- LOCKED design search in `~/felagi_extracted/Felagi_Design_Package/`:
+  * Final_Information_Architecture.md — no root/landing route
+  * Final_Navigation_Route_Map.md — no root/landing route
+  * Product_Design/ + UI_Handoff/ — only 1 unrelated match (ui-preview/data.js)
+
+**Decision:** Register GAP-62 as UNKNOWN. Do not create new design.
+Do not implement without LOCKED source.
+
+**Constitution:** Do not redesign/reinterpret. UNKNOWN ≠ MISSING.
+
+**Resolution:** Design owner must either:
+  (a) provide LOCKED production landing page design, or
+  (b) explicitly approve keeping Laravel default root.
+
+**Mislabel correction:** B10 CHANGE_LOG L685 corrected in B14.

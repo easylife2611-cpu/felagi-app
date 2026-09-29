@@ -155,3 +155,12 @@ Last Updated: 2026-09-29
 | GAP-61 | downloads/ directory listing 403 | ✅ RESOLVED — static index.html added | HTTP/2 200 verified 2026-09-29 |
 
 **Note:** Originally misidentified in B10 CHANGE_LOG as "GAP-56". Real GAP-56 is the separate OIDC E2E test gap (still open). Downloads listing was never formally registered until B13.
+
+## B14 Updates (2026-09-29)
+
+### New UNKNOWN
+| ID | Gap | Severity | Owner | Notes |
+|----|-----|----------|-------|-------|
+| GAP-62 | Production root (zagcreativity.com/) shows Laravel default | UNKNOWN | design owner | LOCKED design for production landing page does not exist. Per Constitution: UNKNOWN ≠ MISSING. Awaiting design owner direction. |
+
+**Note:** This issue was mislabeled as "GAP-57" in B10 CHANGE_LOG. Real GAP-57 = Sanctum UUID migration (DONE). Never formally registered until B14.
