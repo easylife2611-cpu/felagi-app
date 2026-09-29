@@ -1,0 +1,1 @@
+[29-Sep-2026 12:32:32 Africa/Addis_Ababa] PHP Fatal error:  Declaration of App\Models\Attachment::isClean(): bool must be compatible with Illuminate\Database\Eloquent\Model::isClean($attributes = null) in /home/zagcreht/felagi_app/app/Models/Attachment.php on line 74
