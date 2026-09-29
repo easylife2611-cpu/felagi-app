@@ -18,3 +18,5 @@ yarn-error.log
 /.vscode
 error_log
 *.log
+*.backup
+*.bak
