@@ -475,3 +475,21 @@ Do not implement without LOCKED source.
   (b) explicitly approve keeping Laravel default root.
 
 **Mislabel correction:** B10 CHANGE_LOG L685 corrected in B14.
+
+## D-099 — S001 Selected for Production Root — 2026-09-29
+
+**Context:** GAP-62 (production root = Laravel default). No LOCKED design
+found in B14 audit.
+
+**New evidence (B15):** Comprehensive search found LOCKED S001 in:
+- UI_Handoff/ui-preview/app.js:144 (reference impl)
+- Localization/app_am.arb (screenS001, purpose, signIn)
+- DFM-FDS-1.4.md §443: "Welcome → login → Home"
+
+**Decision:** S001 Welcome is the LOCKED production entry screen.
+Deploy S001 at `/` with 3 elements only.
+
+**Constitution:** No new design. LOCKED content adapted for web.
+Sign-in target: existing `/api/v1/auth/telegram/start` (WP-27).
+
+**Closes:** GAP-62

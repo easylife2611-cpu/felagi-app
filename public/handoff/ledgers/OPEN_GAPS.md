@@ -164,3 +164,10 @@ Last Updated: 2026-09-29
 | GAP-62 | Production root (zagcreativity.com/) shows Laravel default | UNKNOWN | design owner | LOCKED design for production landing page does not exist. Per Constitution: UNKNOWN ≠ MISSING. Awaiting design owner direction. |
 
 **Note:** This issue was mislabeled as "GAP-57" in B10 CHANGE_LOG. Real GAP-57 = Sanctum UUID migration (DONE). Never formally registered until B14.
+
+## B15 Updates (2026-09-29)
+
+### Resolved in B15
+| ID | Gap | Status | Evidence |
+|----|-----|--------|----------|
+| GAP-62 | Production root (zagcreativity.com/) shows Laravel default | ✅ RESOLVED — S001 Welcome deployed | HTTP/2 200 · `<title>መግቢያ — ፈላጊ</title>` verified 2026-09-29 |

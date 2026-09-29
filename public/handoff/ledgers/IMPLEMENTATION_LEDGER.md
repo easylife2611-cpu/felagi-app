@@ -629,3 +629,38 @@ git revert dc1159a
 
 ### Rollback
 git revert <B14-commit>
+
+## L191 — B15 (S001 Welcome at production root) — 2026-09-29
+
+**Type:** Frontend view replacement (LOCKED design)
+**Closes:** GAP-62
+
+### LOCKED design source
+- UI_Handoff/ui-preview/app.js:144 (S001 reference impl)
+- Localization/app_am.arb + app_en.arb (strings)
+
+### S001 structure (3 elements per LOCKED design)
+1. brand-lockup image
+2. purpose paragraph
+3. signIn button → Telegram OIDC
+
+### Files Changed (5)
+- resources/views/welcome.blade.php (REPLACED)
+- lang/am.json (NEW)
+- lang/en.json (NEW)
+- public/assets/brand/felagi-lockup.svg (NEW)
+- public/assets/brand/felagi-lockup-on-dark.svg (NEW)
+
+### Not Changed
+- routes/web.php (existing 1 route: `/` → view('welcome'))
+- No DB / migrations / API / route changes
+- No new design content
+
+### Verification
+- Live: HTTP/2 200
+- Title: `መግቢያ — ፈላጊ` (Amharic default)
+- Brand asset: HTTP/2 200
+- Cache: all cleared
+
+### Rollback
+git revert 2f1b603

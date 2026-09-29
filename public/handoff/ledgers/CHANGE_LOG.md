@@ -752,3 +752,33 @@ Documentation-only. No code/DB/routes changed.
 
 ### Blocked On
 - GAP-62 → design owner must provide LOCKED production landing page design
+
+## B15 — S001 Welcome at production root (GAP-62 closed) — 2026-09-29
+
+### Summary
+Replaced Laravel default welcome with LOCKED S001 Welcome
+(source: Felagi_Design_Package/UI_Handoff/ui-preview/app.js:144).
+
+### Changed
+| File | Change |
+|------|--------|
+| resources/views/welcome.blade.php | REPLACED (Laravel → S001) |
+| lang/am.json | NEW (5 keys) |
+| lang/en.json | NEW (5 keys) |
+| public/assets/brand/felagi-lockup.svg | NEW |
+| public/assets/brand/felagi-lockup-on-dark.svg | NEW |
+
+### S001 content (LOCKED — 3 elements only)
+1. brand logo
+2. purpose text
+3. signIn button → Telegram OIDC
+
+### Verification
+- Live: HTTP/2 200
+- Title: `መግቢያ — ፈላጊ`
+- Purpose text (AM): rendered
+- Brand asset: HTTP/2 200
+- Cache: config/view/route/app cleared
+
+### Closes
+- GAP-62
