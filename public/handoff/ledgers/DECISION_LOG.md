@@ -355,3 +355,58 @@ Or:
 | Handoff length | ~180 chars | ~64 chars |
 | Security | HMAC-SHA256 | DB lookup |
 | Race-free | ✅ | ✅ |
+
+## D-095 — Test Pipe Process Failure (LOCKED)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-095 | Test scripts MUST redirect to file (not pipe) before exit check | 2nd RCA | LOCKED |
+
+### Incident (Second Occurrence)
+
+Same root cause as D-085, replicated in WP-27b script:
+
+    APP_ENV=testing php artisan test ... 2>&1 | tail -35 || { exit 1; }
+
+The pipe swallowed PHPUnit exit code. Despite the || guard, the pipe consumed the exit status; commit made with 2 FAILED tests.
+
+### Detection
+
+State-check after script interruption surfaced:
+- AuthAttemptTest: 1 failed
+- TelegramOidcTest: 1 failed
+
+Root cause: old tests (WP-05a T08, WP-27 T20) not updated for WP-27b interface changes:
+- consumeByHandoff now returns array{attempt, user} (was ?AuthAttempt)
+- generateHandoff needs optional ?User $user for HMAC binding
+
+### Resolution
+
+- Amended commit cebbaf2 -> eea83e8 with corrected tests
+- All 88 tests PASS (188 assertions)
+- D-095 LOCKED to prevent third occurrence
+
+### Prevention (LOCKED)
+
+FORBIDDEN:
+    php artisan test ... | tail -N || { exit 1; }
+    (pipe consumes exit code — D-085 rule was necessary but insufficient)
+
+REQUIRED:
+    php artisan test ... > /tmp/test_out.txt 2>&1
+    STATUS=$?
+    tail -N /tmp/test_out.txt
+    [ $STATUS -eq 0 ] || { echo "TESTS FAILED"; exit 1; }
+
+OR:
+    set -euo pipefail
+    php artisan test ... | tail -N
+
+### Rules (Stricter than D-085)
+
+1. D-085 (pipefail) — necessary but NOT sufficient
+2. D-095 — file redirect + $? capture is MANDATORY
+3. NEVER pipe test output before exit check without pipefail
+4. ALL test runs MUST verify exit code
+
+Constitution compliance: 2nd violation documented; LOCKED rule stricter.
