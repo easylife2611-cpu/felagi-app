@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\User;
+use App\Services\Auth\AuthAttemptService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,15 +13,19 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends BaseApiController
 {
+    public function __construct(
+        private readonly AuthAttemptService $attemptService,
+    ) {}
+
     /**
      * POST /api/v1/auth/telegram/start
-     * Initiate Telegram OIDC flow.
+     * Initiate Telegram OIDC flow with PKCE (DFM §218).
      */
     public function telegramStart(Request $request): JsonResponse
     {
         $validated = $request->validate([
             'return_uri' => ['required', 'url', 'max:500'],
-            'scope' => ['nullable', 'string', 'max:200'],
+            'scope'      => ['nullable', 'string', 'max:200'],
         ]);
 
         // Allowlist return_uri (deployment config)
@@ -30,40 +35,37 @@ class AuthController extends BaseApiController
             return $this->error('URI_NOT_ALLOWED', 'Return URI not allowed.', 422);
         }
 
-        $state = Str::random(64);
-        $nonce = Str::random(64);
+        // WP-05a: Create auth attempt with PKCE
+        $created = $this->attemptService->create($validated['return_uri']);
 
-        // Store auth attempt
-        $attemptId = DB::table('auth_attempts')->insertGetId([
-            'state_hash' => hash('sha256', $state),
-            'nonce_hash' => hash('sha256', $nonce),
-            'return_uri_allowlisted' => $validated['return_uri'],
-            'expires_at' => now()->addMinutes(15),
-            'created_at' => now(),
-        ]);
-
+        // Build OAuth URL with PKCE challenge
         $authUrl = 'https://oauth.telegram.org/auth?' . http_build_query([
-            'client_id' => config('services.telegram.client_id', ''),
-            'redirect_uri' => config('services.telegram.redirect_uri', ''),
-            'response_type' => 'code',
-            'scope' => $validated['scope'] ?? 'openid profile',
-            'state' => $state,
-            'nonce' => $nonce,
+            'client_id'             => config('services.telegram.client_id', ''),
+            'redirect_uri'          => config('services.telegram.redirect_uri', ''),
+            'response_type'         => 'code',
+            'scope'                 => $validated['scope'] ?? 'openid profile',
+            'state'                 => $created['state'],
+            'nonce'                 => $created['nonce'],
+            'code_challenge'        => $created['code_challenge'],
+            'code_challenge_method' => $created['code_challenge_method'],
         ]);
 
         return $this->success([
-            'auth_url' => $authUrl,
-            'attempt_id' => $attemptId,
+            'auth_url'   => $authUrl,
+            'attempt_id' => $created['attempt']->id,
+            'expires_at' => $created['attempt']->expires_at->toIso8601String(),
         ], 'Auth attempt created.');
     }
 
     /**
      * POST /api/v1/auth/telegram/exchange
      * Exchange handoff code for app tokens.
+     *
+     * Full OIDC exchange → WP-27 (requires Telegram credentials).
      */
     public function telegramExchange(Request $request): JsonResponse
     {
-        $validated = $request->validate([
+        $request->validate([
             'handoff_code' => ['required', 'string', 'max:200'],
         ]);
 
@@ -80,7 +82,7 @@ class AuthController extends BaseApiController
      */
     public function refresh(Request $request): JsonResponse
     {
-        $validated = $request->validate([
+        $request->validate([
             'refresh_token' => ['required', 'string', 'max:500'],
         ]);
 
@@ -108,14 +110,14 @@ class AuthController extends BaseApiController
         }
 
         return $this->success([
-            'id' => $user->id,
-            'full_name' => $user->full_name,
-            'telegram_subject' => $user->telegram_subject,
-            'profile_photo_url' => $user->profile_photo_url,
-            'status' => $user->status,
-            'rating_score' => $user->rating_score,
-            'rating_count' => $user->rating_count,
-            'roles' => $user->roles()->active()->pluck('role'),
+            'id'                 => $user->id,
+            'full_name'          => $user->full_name,
+            'telegram_subject'   => $user->telegram_subject,
+            'profile_photo_url'  => $user->profile_photo_url,
+            'status'             => $user->status,
+            'rating_score'       => $user->rating_score,
+            'rating_count'       => $user->rating_count,
+            'roles'              => $user->roles()->whereNull('revoked_at')->pluck('role'),
         ], 'Profile retrieved.');
     }
 
@@ -131,8 +133,8 @@ class AuthController extends BaseApiController
         }
 
         $validated = $request->validate([
-            'full_name' => ['sometimes', 'string', 'min:1', 'max:150'],
-            'phone_number' => ['sometimes', 'nullable', 'string', 'max:30'],
+            'full_name'         => ['sometimes', 'string', 'min:1', 'max:150'],
+            'phone_number'      => ['sometimes', 'nullable', 'string', 'max:30'],
             'profile_photo_url' => ['sometimes', 'nullable', 'url', 'max:1000'],
         ]);
 

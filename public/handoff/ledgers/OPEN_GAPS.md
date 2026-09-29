@@ -94,7 +94,7 @@ Last Updated: 2026-09-29
 | GAP-09 | Production PASS | CRITICAL |
 | GAP-26 | cPanel doc root capability | CRITICAL |
 | GAP-38 | APP_DEBUG=true in production | CRITICAL |
-| GAP-42 | auth_attempts table missing | CRITICAL |
+| GAP-42 | auth_attempts table missing | ✅ RESOLVED 2026-09-29 (WP-05a) | — | Full PKCE flow |
 | GAP-43 | DatabaseSeeder schema mismatch | HIGH |
 
 ## WP-13b Updates (2026-09-29)

@@ -164,3 +164,75 @@ Rollback: .env.production.bak.20260929_112618.
 - HTTP / = 200
 - HTTP 404 test = no stack trace
 - Laravel log = archived (944 lines)
+
+## Config Cache Incident (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-076 | Test migration MUST clear config cache first | Incident RCA | LOCKED |
+
+### Incident
+
+During WP-05a (auth_attempts migration), ran "php artisan migrate --env=testing".
+
+Expected: migrate on zagcreht_felagi_test (test DB)
+Actual: migrated on zagcreht_felagi (PRODUCTION)
+
+### Root Cause
+
+- bootstrap/cache/config.php existed (cached)
+- Cached config pointed to production DB
+- --env=testing changes APP_ENV but cache wins before .env.testing is read
+- Laravel 11 loads cached config before environment-specific .env.*
+
+### Impact
+
+- Production auth_attempts table created (0 rows, harmless)
+- Production users.recently_authenticated_at already existed (WP-13b)
+- No data modification; no user-visible impact
+- HTTP endpoints continued 200
+
+### Resolution (D-076 LOCKED)
+
+Every test DB migration MUST:
+1. php artisan config:clear  -- remove cached config first
+2. APP_ENV=testing php artisan migrate  -- use env var, not flag
+
+Tooling: bin/migrate-test.sh created (always clears cache).
+
+Rollback available:
+- .env.production.bak.20260929_112618
+- Production auth_attempts retained (additive; needed for WP-27)
+- Production users.recently_authenticated_at retained (nullable)
+
+### Prevention
+
+Before: php artisan migrate --env=testing
+After:  php artisan config:clear && APP_ENV=testing php artisan migrate
+
+Assumption Before: --env loads .env.testing
+Fact: --env only changes APP_ENV
+
+Constitution compliance: RULE #1 (Audit Before Action) violation documented; not repeated.
+
+## WP-05a Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-077 | 64-char PKCE verifier | RFC 7636 (43-128 range) | ACCEPTED |
+| D-078 | Encrypted pkce_verifier at rest | Laravel encrypted cast | ACCEPTED |
+| D-079 | handoff_hash SHA-256 single-use | DFM §218 | ACCEPTED |
+| D-080 | telegramExchange stays 501 | WP-27 credentials needed | ACCEPTED |
+| D-081 | Carbon 3.x: use abs() for time diffs | Laravel 11 migration | ACCEPTED |
+
+### Rationale
+
+**D-077:** 64 chars is within RFC 7636 range and gives 384 bits entropy.
+
+**D-078:** DFM §218 says "encrypted PKCE verifier". Laravel `encrypted` cast handles this transparently.
+
+**D-079:** Handoff code returned once; only hash stored. Single-use enforced via `consumed_at`.
+
+**D-080:** Full OIDC exchange requires Telegram client_id/secret + JWKS endpoint. Deferred to WP-27.
+
+**D-081:** Carbon 3.x in Laravel 11 changed `diffInMinutes()` to return signed values. Test assertions must use `abs()`.

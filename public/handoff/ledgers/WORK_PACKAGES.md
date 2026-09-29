@@ -1,5 +1,5 @@
 # WORK PACKAGES — Felagi v1.4.2
-Last Updated: 2026-09-29 (WP-13b DONE)
+Last Updated: 2026-09-29 (WP-05a DONE)
 
 ## Status Legend
 NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED / VERIFIED / DONE / DEFERRED / N/A
@@ -22,6 +22,7 @@ NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED 
 | WP-12 | Sponsored Ads Serving | **BLOCKED** | Ads infra |
 | WP-13 | Admin Change Lifecycle | **DONE** ✅ | — |
 | WP-13b | Reauth + TOTP 2FA + Idempotency | **DONE** ✅ | — |
+| WP-05a | Auth Attempts (auth_attempts + PKCE) | **DONE** ✅ | — |
 | WP-14 | Telegram Delivery | **BLOCKED** | Bot token |
 | WP-15 | Font Glyph Coverage | **BLOCKED** | Licensed font |
 | WP-16 | Amharic Linguistic QA | **BLOCKED** | Native reviewers |
@@ -39,7 +40,7 @@ NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED 
 | WP-28 | Safe Mode Drills | **BLOCKED** | Full stack |
 
 ## Statistics
-- DONE: 4 (WP-01, WP-21, WP-13, WP-13b)
+- DONE: 5 (WP-01, WP-21, WP-13, WP-13b, WP-05a)
 - VERIFIED: 1 (WP-02)
 - PARTIAL: 2 (WP-06, WP-22)
 - READY: 1 (WP-05)

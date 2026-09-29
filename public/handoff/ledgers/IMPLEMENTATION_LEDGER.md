@@ -387,3 +387,36 @@ WP-05 COMPLETE.
 - **Cron entries:** +1
 
 **Status:** DONE ✅
+
+## WP-05a Additions (2026-09-29)
+
+### Migration (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L183 | auth_attempts table | DONE | 9 columns per DFM §218 |
+
+### Model (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L184 | AuthAttempt | DONE | active scope + encrypted cast |
+
+### Service (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L185 | AuthAttemptService | DONE | PKCE RFC 7636 (S256) |
+
+### Controller Patch (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L186 | AuthController.telegramStart | DONE | PKCE parameters in URL |
+
+### Tests (1)
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L187 | AuthAttemptTest | DONE | 14 tests PASS |
+
+### Summary
+- New files: 3 (migration, model, service)
+- Patched: 1 (AuthController)
+- Tests: 14 PASS (34 assertions)
+- Total Admin tests: 50 PASS

@@ -498,3 +498,64 @@ Moved to `~/cleanup_trash/20260929/`:
 - 0 .bak/.backup files remaining in app/config/routes/database
 - .gitignore covers *.bak.* and *.backup
 - Git working tree CLEAN
+
+## 2026-09-29 — Config Cache Incident (Resolved)
+
+### What Happened
+
+While running WP-05a migration:
+- Command: php artisan migrate --env=testing
+- Cached config at bootstrap/cache/config.php overrode .env.testing
+- Migration ran on PRODUCTION DB (zagcreht_felagi) instead of test DB
+
+### Impact Assessment
+
+| Item | Before | After |
+|------|--------|-------|
+| Production auth_attempts | MISSING | EXISTS (0 rows) |
+| Production users.recently_authenticated_at | EXISTS | EXISTS |
+| Production users | 0 | 0 |
+| Production settings | 31 | 31 |
+| HTTP /up | 200 | 200 |
+| HTTP / | 200 | 200 |
+
+Net impact: Additive schema changes only. No data affected. No service interruption.
+
+### Resolution
+
+1. Cleared config cache: php artisan config:clear
+2. Verified .env.testing loads with APP_ENV=testing env var
+3. Created bin/migrate-test.sh — always clears cache first
+4. Retained additive schema (needed for WP-27 + WP-13b)
+5. Documented as D-076 (LOCKED)
+
+### Files Changed
+
+- bootstrap/cache/config.php — removed
+- bin/migrate-test.sh — created
+- PROJECT_CONTROL/DECISION_LOG.md — D-076 added
+- PROJECT_CONTROL/CHANGE_LOG.md — this entry
+
+## 2026-09-29 — WP-05a Auth Attempts + PKCE (DONE)
+
+### Delivered
+
+- Migration: auth_attempts (9 columns per DFM §218)
+- Model: AuthAttempt (encrypted PKCE verifier)
+- Service: AuthAttemptService (RFC 7636 S256)
+- Patch: AuthController.telegramStart (PKCE in OAuth URL)
+- Tests: AuthAttemptTest (14 PASS)
+
+### Verification
+- 14 AuthAttempt tests PASS (34 assertions)
+- 50 total Admin tests PASS
+- Production HTTP 200 (auth_url with code_challenge)
+- Production DB untouched
+
+### Design Compliance
+- DFM §218: state_hash, nonce_hash, pkce_verifier_encrypted, handoff_hash, expires_at, consumed_at
+- RFC 7636: PKCE verifier (64 chars), S256 challenge
+- RFC 6749: authorization-code flow
+
+### Resolved
+- GAP-42 (auth_attempts table missing)
