@@ -1,37 +1,37 @@
 # Felagi v1.4.2 — Bundle Index
 
-**Generated:** 20260929-1407
-**Tag:** B14_DONE
+**Generated:** 20260929-1419
+**Tag:** B15_DONE
 
 **Git state:**
-- felagi_app:       `86df0f5` (42 commits)
+- felagi_app:       `ad389a9` (46 commits)
 - felagi_extracted: `27edd9d` (15 commits)
 
 ## Active Bundles
 
 | File | Content |
 |------|---------|
-| `Felagi_App_v1.4.2_20260929-1407_B14_DONE.bundle` | felagi_app git |
-| `Felagi_Design_v1.4.2_20260929-1407_B14_DONE.bundle` | felagi_extracted git |
-| `Felagi_v1.4.2_20260929-1407_B14_DONE_full.tar.gz` | Lean source (composer install required) |
-| `Felagi_v1.4.2_20260929-1407_B14_DONE_FULL_with_vendor.tar.gz` | Full source with vendor (runnable) |
+| `Felagi_App_v1.4.2_20260929-1419_B15_DONE.bundle` | felagi_app git |
+| `Felagi_Design_v1.4.2_20260929-1419_B15_DONE.bundle` | felagi_extracted git |
+| `Felagi_v1.4.2_20260929-1419_B15_DONE_full.tar.gz` | Lean source (composer install required) |
+| `Felagi_v1.4.2_20260929-1419_B15_DONE_FULL_with_vendor.tar.gz` | Full source with vendor (runnable) |
 
 ## Restore
 
 ### App bundle
-    git clone Felagi_App_v1.4.2_20260929-1407_B14_DONE.bundle felagi_app
+    git clone Felagi_App_v1.4.2_20260929-1419_B15_DONE.bundle felagi_app
     cd felagi_app && composer install
     cp .env.example .env && php artisan key:generate
     php artisan migrate
 
 ### Design bundle
-    git clone Felagi_Design_v1.4.2_20260929-1407_B14_DONE.bundle felagi_extracted
+    git clone Felagi_Design_v1.4.2_20260929-1419_B15_DONE.bundle felagi_extracted
 
 ### Lean tarball
-    tar -xzf Felagi_v1.4.2_20260929-1407_B14_DONE_full.tar.gz && cd felagi_app && composer install
+    tar -xzf Felagi_v1.4.2_20260929-1419_B15_DONE_full.tar.gz && cd felagi_app && composer install
 
 ### Full tarball
-    tar -xzf Felagi_v1.4.2_20260929-1407_B14_DONE_FULL_with_vendor.tar.gz && cd felagi_app
+    tar -xzf Felagi_v1.4.2_20260929-1419_B15_DONE_FULL_with_vendor.tar.gz && cd felagi_app
 
 ## Completed WPs
 
