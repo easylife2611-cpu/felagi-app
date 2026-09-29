@@ -19,7 +19,7 @@ Last Updated: 2026-09-29
 | G03 | Brand source | **MET** |
 | G04 | Browser/responsive/AT | **BLOCKED** |
 | G05 | Flutter | **BLOCKED** |
-| G06 | Service/security | **PARTIAL** (Admin lifecycle VERIFIED) |
+| G06 | Service/security | **PARTIAL+** (Admin lifecycle + Reauth + 2FA VERIFIED) |
 | G07 | Monetization health | **REQUIRES_EVIDENCE** |
 | G08 | Localization/usability | **SOURCE MET / RUNTIME PENDING** |
 | G09 | Observability | **REQUIRES_EVIDENCE** |
@@ -93,3 +93,20 @@ Live services still require provider credentials.
 | Outbox events | Active |
 
 **Gate G06:** PARTIAL — Admin lifecycle verified; other services (payment, AI, Telegram) still blocked.
+
+## WP-13b Update (2026-09-29)
+
+**Reauth + TOTP 2FA + Idempotency: VERIFIED**
+
+| Metric | Value |
+|--------|-------|
+| Migration | 1 (users: 4 columns) |
+| Services | 3 (ReauthValidator, TotpService, IdempotencyRegistry) |
+| Middleware | 2 (RequireReauth, IdempotencyKey) |
+| Jobs | 3 (ProcessOutbox, Verify, Cleanup) |
+| Exceptions | 4 |
+| Tests | 36 PASS (63 assertions) |
+| Production DB | Untouched |
+| Design compliance | Auth Contract §3 + DFM §149/§461/§418 |
+
+**Gate G06:** PARTIAL+ — Admin lifecycle + reauth + 2FA verified; payment/AI/Telegram still blocked.

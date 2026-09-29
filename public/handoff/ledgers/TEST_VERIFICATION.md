@@ -107,3 +107,73 @@ All 18 tests REQUIRES_EVIDENCE — need live stack.
 - `Implemented ≠ Verified` — ✅ 8 tests pass
 - `Verified ≠ Deployed` — deploy is separate step
 - `Production PASS` — not claimed (WP-13 scope only)
+
+## WP-13b Runtime Tests (2026-09-29)
+
+### Summary
+
+**Tests: 36 passed (63 assertions)**
+**Duration: 4.98s**
+**DB: zagcreht_felagi_test (isolated)**
+
+### ChangeLifecycleTest — 8 PASS
+
+| Test | Status |
+|------|--------|
+| test_can_create_draft | ✅ PASS |
+| test_validate_rejects_type_mismatch | ✅ PASS |
+| test_publish_creates_new_version | ✅ PASS |
+| test_publish_with_stale_version_returns_409 | ✅ PASS |
+| test_dependency_blocks_boosts_on | ✅ PASS |
+| test_publish_writes_audit_log | ✅ PASS |
+| test_publish_writes_outbox_event | ✅ PASS |
+| test_unauthorized_returns_403 | ✅ PASS |
+
+### ReauthTest — 9 PASS
+
+| Test | Status |
+|------|--------|
+| is_fresh_false_when_never_authenticated | ✅ PASS |
+| is_fresh_true_when_within_window | ✅ PASS |
+| is_fresh_false_when_stale | ✅ PASS |
+| mark_updates_timestamp | ✅ PASS |
+| require_passes_for_low_risk | ✅ PASS |
+| require_throws_for_high_risk_stale | ✅ PASS |
+| publish_high_setting_without_fresh_auth_returns_401 | ✅ PASS |
+| publish_high_setting_with_fresh_auth_passes_middleware | ✅ PASS |
+| publish_low_setting_without_fresh_auth_passes | ✅ PASS |
+
+### TwoFactorTest — 11 PASS
+
+| Test | Status |
+|------|--------|
+| generate_secret_returns_base32 | ✅ PASS |
+| verify_accepts_current_code | ✅ PASS |
+| verify_rejects_invalid_code | ✅ PASS |
+| verify_rejects_malformed | ✅ PASS |
+| verify_detects_replay | ✅ PASS |
+| generate_recovery_codes | ✅ PASS |
+| consume_recovery_code | ✅ PASS |
+| consume_recovery_code_rejects_unknown | ✅ PASS |
+| require_for_passes_for_high | ✅ PASS |
+| require_for_throws_for_critical_without_2fa | ✅ PASS |
+| require_for_passes_for_critical_with_2fa | ✅ PASS |
+
+### IdempotencyTest — 8 PASS
+
+| Test | Status |
+|------|--------|
+| request_hash_is_order_independent | ✅ PASS |
+| request_hash_differs_on_body | ✅ PASS |
+| begin_without_header_returns_new | ✅ PASS |
+| begin_first_time_returns_new | ✅ PASS |
+| begin_replay_after_complete | ✅ PASS |
+| begin_conflicts_on_different_body | ✅ PASS |
+| begin_progress_for_in_flight | ✅ PASS |
+| cleanup_removes_expired | ✅ PASS |
+
+### Evidence Boundary
+
+- `Implemented ≠ Verified` — ✅ verified (36/36)
+- `Verified ≠ Deployed` — deploy separate
+- `Production PASS` — not claimed (WP-13b scope only)

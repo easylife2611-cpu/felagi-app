@@ -16,6 +16,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(prepend: [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
         ]);
+
+        $middleware->alias([
+            'reauth' => \App\Http\Middleware\RequireReauth::class,
+            'idempotent' => \App\Http\Middleware\IdempotencyKey::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

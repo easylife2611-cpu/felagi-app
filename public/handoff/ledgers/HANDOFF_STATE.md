@@ -1,5 +1,5 @@
 # HANDOFF STATE — Felagi v1.4.2
-Last Updated: 2026-09-29 (WP-13 DONE)
+Last Updated: 2026-09-29 (WP-13b DONE)
 
 ## Session Summary
 - Audit: **COMPLETE** (51/51 deliverables)
@@ -36,6 +36,15 @@ Last Updated: 2026-09-29 (WP-13 DONE)
 - ✅ Outbox events emitted (aggregate_id = setting_versions.id)
 - ✅ 31 settings seeded (ControlRegistrySeeder)
 - ✅ Production DB untouched (isolated test DB)
+
+- ✅ **WP-13b Reauth + TOTP 2FA + Idempotency DONE**
+- ✅ 15 new files + 4 patched (migration, 3 services, 2 middleware, 3 jobs, 4 exceptions)
+- ✅ 5-min reauth window (Auth Contract §3)
+- ✅ TOTP 2FA for CRITICAL (RFC 6238)
+- ✅ Idempotency-Key with 409 conflict
+- ✅ Apply + Verify server jobs
+- ✅ queue:work cron added (bounded, non-overlap)
+- ✅ 36 tests PASS (63 assertions)
 
 ## What Is Live
 | Item | URL / Location | Status |

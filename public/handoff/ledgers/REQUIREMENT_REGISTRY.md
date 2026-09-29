@@ -165,3 +165,63 @@ Source: Auth Contract 1.3 + HTTP Binding 1.4 + DFM-FDS-1.4 §8.2/§8.3
 | Stale version rejected | AdminChangeService::publish throws exception |
 | JSON envelope consistency | BaseApiController |
 | Production DB never touched | --env=testing isolated |
+
+## WP-13b Requirements (2026-09-29)
+
+Source: Auth Contract §3 + DFM §149/§216/§418/§461
+
+### Reauth Requirements
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP13B-001 | 5-min reauth window for HIGH/CRITICAL | DONE | ReauthTest |
+| REQ-WP13B-002 | Reauth timestamp per-user | DONE | users.recently_authenticated_at |
+| REQ-WP13B-003 | 401 REAUTH_REQUIRED error | DONE | ReauthTest T07 |
+| REQ-WP13B-004 | LOW/MEDIUM does not require reauth | DONE | ReauthTest T05 |
+
+### 2FA Requirements
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP13B-005 | TOTP (RFC 6238) second factor | DONE | TwoFactorTest |
+| REQ-WP13B-006 | CRITICAL requires 2FA | DONE | TwoFactorTest T10 |
+| REQ-WP13B-007 | Replay protection on TOTP codes | DONE | TwoFactorTest T05 |
+| REQ-WP13B-008 | Recovery codes (one-time, hashed) | DONE | TwoFactorTest T06-T08 |
+| REQ-WP13B-009 | Encrypted secret storage | DONE | User model encrypted cast |
+| REQ-WP13B-010 | 403 TWO_FACTOR_REQUIRED error | DONE | TwoFactorTest T10 |
+
+### Idempotency Requirements
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP13B-011 | Idempotency-Key header support | DONE | IdempotencyTest |
+| REQ-WP13B-012 | Same key + different body → 409 | DONE | IdempotencyTest T06 |
+| REQ-WP13B-013 | Response replay (cached) | DONE | IdempotencyTest T05 |
+| REQ-WP13B-014 | 24h TTL | DONE | IdempotencyRegistry |
+| REQ-WP13B-015 | Hourly cleanup | DONE | Scheduler |
+
+### Apply/Verify Requirements
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP13B-016 | Apply is a server job | DONE | ProcessOutboxEvent |
+| REQ-WP13B-017 | Verify is a server job | DONE | VerifySettingChange |
+| REQ-WP13B-018 | 202 QUEUED response | DONE | Controller |
+| REQ-WP13B-019 | Post-publish verification audit | DONE | VerifySettingChange |
+
+### Queue Infrastructure
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP13B-020 | Bounded queue:work via cron | DONE | crontab |
+| REQ-WP13B-021 | Outbox locked processing | DONE | ProcessOutboxEvent |
+| REQ-WP13B-022 | Non-overlapping schedules | DONE | max-time=50 < 60s |
+
+### Deferred to WP-13c
+
+| Req ID | Description | Reason |
+|--------|-------------|--------|
+| REQ-WP13C-001 | TOTP enrollment UI | Frontend |
+| REQ-WP13C-002 | Recovery codes display UI | Frontend |
+| REQ-WP13C-003 | Self-service 2FA disable | Frontend + audit |
+| REQ-WP13C-004 | Lost-factor recovery flow | Design unclear |

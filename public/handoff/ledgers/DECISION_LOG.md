@@ -108,3 +108,39 @@ Use `setting_versions.id` (UUID) as aggregate_id; setting key goes in payload_js
 **D-067:** SQLite cannot `ALTER TABLE ... ADD UNIQUE` in the same way MySQL can.
 WP-05 migration `create_offers_table.php:35` uses MySQL-specific syntax. Chose
 isolated MySQL test DB over fixing migration (which would be architecture change).
+
+## WP-13b Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-068 | Second factor = **TOTP** (RFC 6238) | User said "OTP" | ACCEPTED |
+| D-069 | Reauth proof = `users.recently_authenticated_at` | Design: "recent reauth proof" | ACCEPTED |
+| D-070 | Idempotency TTL = **24h** | Design: expires_at exists | ACCEPTED |
+| D-071 | Reauth storage = 4 users columns | Design column requirements | ACCEPTED |
+| D-072 | Apply/Verify = outbox consumer jobs | Design: "server jobs" | ACCEPTED |
+| D-073 | Queue:work cron added (bounded, 50s) | DFM §461 | ACCEPTED |
+| D-074 | Test DB APP_KEY = valid 32-byte | PHPUnit encryption | ACCEPTED |
+
+### Rationale
+
+**D-068 (TOTP):** User explicitly said "OTP". No SMS gateway, no SMTP, works offline, standard library (pragmarx/google2fa-laravel).
+
+**D-069 (Session timestamp):** Design says "recent re-authentication proof" — session-based, cookie-session admin flow (DFM §216), 5-minute window LOCKED.
+
+**D-070 (TTL 24h):** Standard retry window; cleanup job runs hourly.
+
+**D-071 (4 columns):** recently_authenticated_at, totp_secret (encrypted), totp_enabled_at, totp_recovery_codes (encrypted:array). All nullable.
+
+**D-072 (Outbox jobs):** Design: "Apply and verification are server jobs, never browser assertions."
+
+**D-073 (cron):** max-time=50 < 60s interval = non-overlap.
+
+**D-074 (APP_KEY):** Old test key was invalid (33 bytes). Replaced with valid 32-byte key.
+
+### Deferred to WP-13c
+
+| Req | Reason |
+|-----|--------|
+| TOTP enrollment UI | Frontend (Flutter/Admin UI) — WP-13c |
+| Recovery codes display UI | Frontend — WP-13c |
+| Self-service disable 2FA | Frontend — WP-13c |

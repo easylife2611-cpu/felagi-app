@@ -119,3 +119,43 @@ Date: 2026-09-29
 - audit_logs: SHA-256 hash chain active
 - outbox_events: aggregate_id = setting_versions.id
 - setting_versions: append-only (immutable)
+
+## WP-13b — Reauth + TOTP 2FA + Idempotency (DONE)
+Date: 2026-09-29
+
+**Delivered:** 12 files
+- Migrations: 1 (add_2fa_and_reauth_to_users_table)
+- Services: 3 (ReauthValidator, TotpService, IdempotencyRegistry)
+- Middleware: 2 (RequireReauth, IdempotencyKey)
+- Jobs: 3 (ProcessOutboxEvent, VerifySettingChange, CleanupExpiredIdempotencyKeys)
+- Exceptions: 4 (ReauthRequired, TwoFactorRequired, InvalidTotpCode, IdempotencyConflict)
+- Composer: pragmarx/google2fa-laravel v3.0.1
+
+**Endpoints added:**
+- POST /api/v1/admin/changes/{id}/apply   (server job)
+- POST /api/v1/admin/changes/{id}/verify  (server job)
+
+**Middleware attached:**
+- publish route:    [reauth, idempotent]
+- apply route:      [idempotent]
+- verify route:     [idempotent]
+- rollback route:   [reauth]
+- store route:      [idempotent]
+
+**Cron:**
+- + queue:work (every min, --stop-when-empty --max-time=50)
+
+**Design compliance:**
+- Auth Contract §3: 5-min reauth window + 2FA for CRITICAL
+- DFM §149: Idempotency-Key + 409 IDEMPOTENCY_CONFLICT
+- DFM §461: bounded queue:work via cron
+- DFM §418: verify as server job
+
+**Verification:**
+- 36 tests PASS (63 assertions, 4.98s)
+- Production DB untouched
+- `.env.testing` APP_KEY fixed (32 bytes)
+
+**Deferred:**
+- Reauth self-service enrollment UI (WP-13c)
+- Recovery codes UI display (WP-13c)

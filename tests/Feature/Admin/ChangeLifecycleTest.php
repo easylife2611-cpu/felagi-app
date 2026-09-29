@@ -26,6 +26,12 @@ class ChangeLifecycleTest extends TestCase
             'user_id' => $u->id,
             'role'    => 'MAIN_ADMIN',
         ]);
+
+        // WP-13b: fresh reauth within 5-minute window
+        // (publish route requires 'reauth' middleware)
+        $u->recently_authenticated_at = now();
+        $u->save();
+
         return $u;
     }
 

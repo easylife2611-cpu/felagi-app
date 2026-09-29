@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Exceptions\SettingsVersionConflictException;
+use App\Exceptions\TwoFactorRequiredException;
 use App\Models\Setting;
 use App\Models\SettingDraft;
 use App\Models\SettingVersion;
@@ -24,6 +25,8 @@ class AdminChangeService
     public function __construct(
         private readonly AuditWriter $audit,
         private readonly OutboxWriter $outbox,
+        private readonly ReauthValidator $reauth,
+        private readonly TotpService $totp,
     ) {}
 
     /**
@@ -159,6 +162,12 @@ class AdminChangeService
         if (empty($reason) || mb_strlen($reason) < 5) {
             throw new \InvalidArgumentException('Reason is required (min 5 characters).');
         }
+
+        // WP-13b: reauth + 2FA checks (design: Auth Contract §3 + DFM §8.3)
+        // HIGH/CRITICAL require fresh reauth within 5 minutes.
+        // CRITICAL additionally requires an active TOTP second factor.
+        $this->reauth->require($actor, $setting);
+        $this->totp->requireFor($actor, $setting);
 
         $requestId = request()->attributes->get('request_id');
 

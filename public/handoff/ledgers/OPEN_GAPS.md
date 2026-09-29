@@ -96,3 +96,30 @@ Last Updated: 2026-09-29
 | GAP-38 | APP_DEBUG=true in production | CRITICAL |
 | GAP-42 | auth_attempts table missing | CRITICAL |
 | GAP-43 | DatabaseSeeder schema mismatch | HIGH |
+
+## WP-13b Updates (2026-09-29)
+
+### Resolved in WP-13b
+
+| ID | Description | Resolution |
+|----|-------------|------------|
+| GAP-45 | Reauth (5-min window) not implemented | ✅ RESOLVED — ReauthValidator + users.recently_authenticated_at |
+| GAP-46 | Second factor (CRITICAL) not implemented | ✅ RESOLVED — TotpService (RFC 6238) + requireFor() |
+| GAP-47 | Idempotency-Key header ignored | ✅ RESOLVED — IdempotencyRegistry + middleware |
+| GAP-48 | Apply/Verify workflow not implemented | ✅ RESOLVED — ProcessOutboxEvent + VerifySettingChange jobs |
+
+### New GAPs (from WP-13b)
+
+| ID | Gap | Severity | Owner | Blocker |
+|----|-----|----------|-------|---------|
+| GAP-50 | TOTP enrollment UI (QR + verify) | MEDIUM | WP-13c | Frontend not implemented |
+| GAP-51 | Recovery codes display UI | MEDIUM | WP-13c | Frontend not implemented |
+| GAP-52 | Self-service 2FA disable | MEDIUM | WP-13c | Frontend + audit flow |
+| GAP-53 | Recovery flow (lost factor) | HIGH | WP-13c | Design: "controlled, audited process" |
+| GAP-54 | APP_DEBUG=true (from WP-13, still open) | CRITICAL | Ops | Separate WP |
+
+### Notes
+
+**GAP-50, GAP-51, GAP-52** — 2FA infrastructure አለ (TOTP service + recovery codes). ሆኖም ተጠቃሚ UI የለም — Flutter/Admin frontend ያስፈልጋል. WP-13c ይሸፍናል።
+
+**GAP-53** — Auth Contract §449: "lost-factor recovery is a controlled, audited process, not a secret bypass." ሂደቱ ግን በ design አልተገለጸም።

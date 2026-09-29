@@ -118,3 +118,48 @@ Added: 2026-09-29
 - 8 tests, 15 assertions
 - Uses RefreshDatabase (isolated MySQL test DB)
 - Setup: seed ControlRegistrySeeder
+
+## Layer 7 — WP-13b (Reauth + 2FA + Idempotency)
+Added: 2026-09-29
+
+### Reauth Layer
+- users.recently_authenticated_at (5-min window — Auth Contract §3)
+- ReauthValidator::isFresh(), ageInMinutes(), require(), mark(), clear()
+- RequireReauth middleware → 401 REAUTH_REQUIRED
+
+### 2FA Layer (TOTP — RFC 6238)
+- users.totp_secret (encrypted)
+- users.totp_enabled_at
+- users.totp_recovery_codes (encrypted:array, SHA-256 hashed values)
+- TotpService::generateSecret(), verify(), generateRecoveryCodes(), consumeRecoveryCode(), requireFor()
+- pragmarx/google2fa-laravel v3.0.1
+
+### Idempotency Layer
+- DFM §149 compliance
+- IdempotencyRegistry::begin(), complete(), cleanup(), requestHash()
+- IdempotencyKey middleware → 409 IDEMPOTENCY_CONFLICT / replay
+- Header: `Idempotency-Key`
+- TTL: 24h (D-070)
+
+### Job Layer (Outbox consumers)
+- ProcessOutboxEvent → routes to handlers (locked_until)
+- VerifySettingChange → server probe + audit
+- CleanupExpiredIdempotencyKeys → hourly cleanup
+
+### Exception Layer
+- ReauthRequiredException → 401
+- TwoFactorRequiredException → 403
+- InvalidTotpCodeException → 422
+- IdempotencyConflictException → 409
+
+### Scheduler (routes/console.php)
+- outbox-dispatch → everyMinute
+- idempotency-cleanup → hourly
+
+### Cron (crontab)
+- schedule:run (every min — WP-21)
+- queue:work --stop-when-empty --max-time=50 (every min — WP-13b)
+
+### Endpoints (WP-13b additions)
+- POST /api/v1/admin/changes/{id}/apply  → 202 QUEUED (server job)
+- POST /api/v1/admin/changes/{id}/verify → 202 QUEUED (server job)

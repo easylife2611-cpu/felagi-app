@@ -24,6 +24,10 @@ class User extends Authenticatable
         'rating_count',
         'version',
         'last_login_at',
+        'recently_authenticated_at',
+        'totp_secret',
+        'totp_enabled_at',
+        'totp_recovery_codes',
     ];
 
     protected $hidden = [
@@ -36,6 +40,10 @@ class User extends Authenticatable
         'rating_count' => 'integer',
         'version' => 'integer',
         'last_login_at' => 'datetime',
+        'recently_authenticated_at' => 'datetime',
+        'totp_enabled_at' => 'datetime',
+        'totp_secret' => 'encrypted',
+        'totp_recovery_codes' => 'encrypted:array',
         'deleted_at' => 'datetime',
     ];
 

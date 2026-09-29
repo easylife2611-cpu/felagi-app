@@ -347,3 +347,112 @@ See DECISION_LOG.md for D-054 through D-067:
 
 Resolved: GAP-07, GAP-34, GAP-36, GAP-40, GAP-44
 New: GAP-45 (reauth), GAP-46 (2FA), GAP-47 (idempotency), GAP-48 (apply/verify), GAP-49 (rollback E2E test)
+
+## 2026-09-29 — WP-13b Reauth + TOTP 2FA + Idempotency (DONE)
+
+### Status Transition
+READY → IN_PROGRESS → IMPLEMENTED → INTEGRATED → TESTED → VERIFIED → DONE
+
+### Delivered (15 new + 4 patched)
+
+**Migration (1):**
+- 2026_09_29_111104_add_2fa_and_reauth_to_users_table.php
+  → 4 columns: recently_authenticated_at, totp_secret (encrypted),
+    totp_enabled_at, totp_recovery_codes (encrypted:array)
+
+**Composer (1):**
+- pragmarx/google2fa-laravel v3.0.1
+
+**Services (3):**
+- ReauthValidator (5-min window check)
+- TotpService (RFC 6238 + replay protection + recovery codes)
+- IdempotencyRegistry (DFM §149 compliant)
+
+**Middleware (2):**
+- RequireReauth → 401 REAUTH_REQUIRED
+- IdempotencyKey → 409 IDEMPOTENCY_CONFLICT
+
+**Jobs (3):**
+- ProcessOutboxEvent (locked processing)
+- VerifySettingChange (server-side probe + audit)
+- CleanupExpiredIdempotencyKeys (hourly cleanup)
+
+**Exceptions (4):**
+- ReauthRequiredException (401)
+- TwoFactorRequiredException (403)
+- InvalidTotpCodeException (422)
+- IdempotencyConflictException (409)
+
+### Patches (4)
+
+- AdminChangeService — inject ReauthValidator + TotpService + require() calls in publish()
+- AdminChangeController — add apply() + verify() + 3 new catch blocks
+- routes/api.php — 12 admin routes with middleware
+- routes/console.php — outbox-dispatch + idempotency-cleanup schedules
+
+### Infrastructure (2)
+
+- Cron: `queue:work --stop-when-empty --max-time=50` (every min)
+- .env.testing APP_KEY fixed (32-byte AES-256-CBC)
+
+### Test Evidence
+
+| Test File | Count | Result |
+|-----------|-------|--------|
+| ChangeLifecycleTest | 8 | ✅ PASS |
+| ReauthTest | 9 | ✅ PASS |
+| TwoFactorTest | 11 | ✅ PASS |
+| IdempotencyTest | 8 | ✅ PASS |
+| **Total** | **36** | **✅ PASS (63 assertions)** |
+
+Duration: 4.98s
+DB: zagcreht_felagi_test (isolated)
+
+### Security Properties Verified
+
+- 5-min reauth window enforced (Auth Contract §3)
+- TOTP 2FA for CRITICAL (RFC 6238)
+- Replay protection (60s cache)
+- Recovery codes (SHA-256 hashed)
+- Idempotency-Key enforcement (409 on conflict)
+- Idempotency replay (cached response)
+- Outbox locked processing (5-min lock)
+- Production DB isolation
+- No plaintext secret storage (encrypted cast)
+
+### Design Compliance
+
+| Design Lock | Implementation |
+|-------------|----------------|
+| Auth Contract §3 (5-min + 2FA) | ✅ |
+| DFM §149 (idempotency_keys) | ✅ |
+| DFM §461 (bounded queue via cron) | ✅ |
+| DFM §418 (verify as server job) | ✅ |
+| DFM §216 (cookie session admin) | ✅ (existing) |
+
+### Ledger Updates (11 files)
+
+MASTER_BASELINE, WORK_PACKAGES, RELEASE_STATUS, IMPLEMENTATION_LEDGER,
+TEST_VERIFICATION, DECISION_LOG, OPEN_GAPS, CHANGE_LOG,
+ARCHITECTURE_MAP, REQUIREMENT_REGISTRY, HANDOFF_STATE
+
+### Decision Log
+
+D-068 → D-074 (7 new decisions)
+- D-068: TOTP (user said "OTP")
+- D-069: Session timestamp for reauth
+- D-070: 24h idempotency TTL
+- D-071: 4 users columns
+- D-072: Outbox consumer jobs for apply/verify
+- D-073: queue:work cron (bounded)
+- D-074: Test APP_KEY fix
+
+### Resolved GAPs
+
+GAP-45 (reauth), GAP-46 (2FA), GAP-47 (idempotency), GAP-48 (apply/verify)
+
+### New GAPs (WP-13c)
+
+GAP-50 (TOTP enrollment UI), GAP-51 (recovery codes UI),
+GAP-52 (2FA disable UI), GAP-53 (lost-factor recovery flow),
+GAP-54 (APP_DEBUG production — carried from WP-13)

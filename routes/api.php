@@ -92,24 +92,39 @@ Route::prefix('v1')->group(function () {
 
 
     // =========================================
-    // ADMIN — Change Lifecycle (WP-13)
+    // ADMIN — Change Lifecycle (WP-13 + WP-13b)
     // =========================================
     Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
 
         Route::prefix('changes')->group(function () {
-            Route::post('/',                    [AdminChangeController::class, 'store']);
+            // Draft lifecycle (WP-13)
+            Route::post('/',                    [AdminChangeController::class, 'store'])
+                ->middleware('idempotent');
             Route::get('{id}',                  [AdminChangeController::class, 'show']);
             Route::post('{id}/validate',        [AdminChangeController::class, 'validateDraft']);
             Route::post('{id}/simulate',        [AdminChangeController::class, 'simulate']);
             Route::post('{id}/preview',         [AdminChangeController::class, 'preview']);
-            Route::post('{id}/publish',         [AdminChangeController::class, 'publish']);
+
+            // Publish (WP-13b: reauth + idempotency middleware)
+            Route::post('{id}/publish',         [AdminChangeController::class, 'publish'])
+                ->middleware(['reauth', 'idempotent']);
+
+            // Apply + Verify (WP-13b: server jobs)
+            Route::post('{id}/apply',           [AdminChangeController::class, 'apply'])
+                ->middleware('idempotent');
+            Route::post('{id}/verify',          [AdminChangeController::class, 'verify'])
+                ->middleware('idempotent');
+
             Route::get('{id}/audit',            [AdminChangeController::class, 'audit']);
-            Route::post('{id}/rollback',        [AdminChangeController::class, 'rollback']);
+            Route::post('{id}/rollback',        [AdminChangeController::class, 'rollback'])
+                ->middleware('reauth');
         });
 
         // Legacy aliases (Auth Contract §HTTP 1.4)
-        Route::post('settings/drafts/{id}/publish', [AdminChangeController::class, 'publish']);
-        Route::post('settings/{key}/rollback',      [AdminChangeController::class, 'rollback']);
+        Route::post('settings/drafts/{id}/publish', [AdminChangeController::class, 'publish'])
+            ->middleware(['reauth', 'idempotent']);
+        Route::post('settings/{key}/rollback',      [AdminChangeController::class, 'rollback'])
+            ->middleware('reauth');
     });
 
 });

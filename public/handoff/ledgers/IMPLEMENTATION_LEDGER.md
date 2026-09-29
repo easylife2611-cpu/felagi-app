@@ -306,3 +306,84 @@ WP-05 COMPLETE.
 **Status transition:** READY → IN_PROGRESS → IMPLEMENTED → INTEGRATED → TESTED → VERIFIED → **DONE**
 
 **Note:** DONE requires all 6 phases (implemented + integrated + tested + verified + documented + evidenced). All phases satisfied per the ChangeLifecycleTest evidence.
+
+## WP-13b Additions (2026-09-29)
+
+### Migration (1)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L160 | users table: 4 new columns | **DONE** | 2026_09_29_111104_add_2fa_and_reauth_to_users_table.php |
+
+### Composer (1)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L161 | pragmarx/google2fa-laravel | **DONE** | v3.0.1 |
+
+### Services (3)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L162 | ReauthValidator | **DONE** | 5-min window check |
+| L163 | TotpService | **DONE** | RFC 6238, replay protection |
+| L164 | IdempotencyRegistry | **DONE** | DFM §149 compliant |
+
+### Middleware (2)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L165 | RequireReauth | **DONE** | 401 REAUTH_REQUIRED |
+| L166 | IdempotencyKey | **DONE** | 409 IDEMPOTENCY_CONFLICT |
+
+### Jobs (3)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L167 | ProcessOutboxEvent | **DONE** | Locked processing |
+| L168 | VerifySettingChange | **DONE** | Server probe + audit |
+| L169 | CleanupExpiredIdempotencyKeys | **DONE** | Hourly cleanup |
+
+### Exceptions (4)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L170 | ReauthRequiredException | **DONE** | 401 mapping |
+| L171 | TwoFactorRequiredException | **DONE** | 403 mapping |
+| L172 | InvalidTotpCodeException | **DONE** | 422 mapping |
+| L173 | IdempotencyConflictException | **DONE** | 409 mapping |
+
+### Patches (4)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L174 | AdminChangeService — reauth + 2FA | **DONE** | publish() patched |
+| L175 | AdminChangeController — apply + verify | **DONE** | 2 new methods |
+| L176 | routes/api.php — 12 admin routes | **DONE** | middleware attached |
+| L177 | routes/console.php — scheduler | **DONE** | outbox + cleanup |
+
+### Infrastructure (2)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L178 | Cron: queue:work | **DONE** | every min, bounded |
+| L179 | .env.testing APP_KEY fixed | **DONE** | 32 bytes AES-256 |
+
+### Tests (3)
+
+| ID | Item | Status | Evidence |
+|----|------|--------|----------|
+| L180 | ReauthTest | **DONE** | 9 tests PASS |
+| L181 | TwoFactorTest | **DONE** | 11 tests PASS |
+| L182 | IdempotencyTest | **DONE** | 8 tests PASS |
+
+### Summary
+
+- **Total new files:** 15
+- **Total patched files:** 4
+- **Total admin routes:** 12
+- **Total tests (WP-13 + WP-13b):** 36 PASS
+- **Composer packages:** +1
+- **Cron entries:** +1
+
+**Status:** DONE ✅
