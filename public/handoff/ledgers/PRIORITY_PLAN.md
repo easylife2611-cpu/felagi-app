@@ -12,15 +12,15 @@ Last Updated: 2026-09-29
 ### TIER 1 — Fast Unblockers
 | WP | Scope | Status |
 |----|-------|--------|
-| WP-21 | Laravel/cPanel Deploy | READY |
-| WP-22 | DB Queue + Cron | READY |
+| WP-21 | Laravel/cPanel Deploy | ✅ DONE |
+| WP-22 | DB Queue + Cron | ✅ DONE |
 | WP-03 | Browser/A11y | BLOCKED |
 | WP-04 | Flutter | BLOCKED |
 
 ### TIER 2 — Core Infrastructure
 | WP | Scope | Blocker |
 |----|-------|---------|
-| WP-27 | Telegram OIDC | Creds |
+| WP-27 | Telegram OIDC | ✅ DONE |
 | WP-11 | Payment Live | Creds |
 | WP-25 | Webhook | Sandbox |
 | WP-14 | Telegram Delivery | Bot token |
@@ -29,9 +29,10 @@ Last Updated: 2026-09-29
 ### TIER 3 — Feature Completeness
 | WP | Scope | Blocker |
 |----|-------|---------|
-| WP-05 | Backend Services | Creds |
+| WP-05 | Backend Services | ✅ DONE |
 | WP-12 | Sponsored Ads | Infra |
-| WP-13 | Admin Lifecycle | Backend |
+| WP-13 | Admin Lifecycle | ✅ DONE |
+| WP-13c | 2FA Enrollment UI | DEFERRED (UNKNOWN) |
 | WP-26 | File Malware | Host AV |
 
 ### TIER 4 — Verification Sweeps
@@ -54,7 +55,7 @@ Last Updated: 2026-09-29
 | WP | Scope | Requires |
 |----|-------|----------|
 | WP-23 | Backup Drill | Target |
-| WP-24 | T01-T18 | Stack |
+| WP-24 | T01-T18 | UNKNOWN (definitions missing) |
 | WP-28 | Safe Mode | Stack |
 | WP-08 | Observability | Metrics |
 | WP-09 | **Production Gates** | ALL above |

@@ -66,7 +66,7 @@ Last Updated: 2026-09-29
 
 | ID | Description | Resolution |
 |----|-------------|------------|
-| GAP-07 | OutboxEvent model missing | ✅ RESOLVED — created (app/Models/OutboxEvent.php) |
+| GAP-60 | OutboxEvent model missing | ✅ RESOLVED — created (app/Models/OutboxEvent.php) |
 | GAP-34 | .env.testing missing (phpunit used production DB) | ✅ RESOLVED — MySQL test DB created (zagcreht_felagi_test) |
 | GAP-36 | UserFactory schema mismatch (name/email/password) | ✅ RESOLVED — aligned to telegram_subject/full_name |
 | GAP-40 | Missing directories (7) | ✅ RESOLVED — app/Exceptions, app/Services/Admin, app/Policies, etc. |
@@ -131,9 +131,6 @@ Last Updated: 2026-09-29
 | ID | Description | Resolution |
 |----|-------------|------------|
 | GAP-31 | Telegram OIDC credentials missing | ✅ RESOLVED — credentials configured |
-| GAP-42 | auth_attempts table missing | ✅ RESOLVED — WP-05a |
-| GAP-46 | Second factor not implemented | ✅ RESOLVED — WP-13b (TOTP) |
-| GAP-55 | Telegram OIDC full flow pending | ✅ RESOLVED — telegramExchange() implemented |
 
 ### New GAPs (from WP-27)
 
@@ -149,4 +146,3 @@ Last Updated: 2026-09-29
 | ID | Description | Resolution |
 |----|-------------|------------|
 | D-091 | Race condition in telegramExchange | ✅ RESOLVED — HMAC-signed handoff |
-| GAP-56 | Live E2E test (still open) | — |

@@ -523,3 +523,44 @@ WP-05 COMPLETE.
 - Patched: 2 files (service + controller)
 - Tests: 6 new (total TelegramOidc: 26)
 - Race condition: D-091 RESOLVED
+
+## L188 — CCB-B10 (Constitution Compliance Block) — 2026-09-29
+
+**Type:** Documentation-only (no code, no DB, no routes)
+**Reason:** 8 data integrity violations identified in baseline audit
+
+### Fixes Applied
+- WORK_PACKAGES.md: WP-27 BLOCKED duplicate removed (DONE only)
+- WORK_PACKAGES.md: Statistics corrected DONE 8 → 10 (+WP-05, +WP-22)
+- WORK_PACKAGES.md: PARTIAL 2 → 1 (WP-06 only)
+- WORK_PACKAGES.md: READY row removed (WP-05 is DONE)
+- WORK_PACKAGES.md: BLOCKED 21 → 20
+- WORK_PACKAGES.md: WP-13c registered as DEFERRED
+- OPEN_GAPS.md: GAP-07 (OutboxEvent RESOLVED) → GAP-60
+- OPEN_GAPS.md: GAP-42 duplicate resolved → single entry
+- OPEN_GAPS.md: GAP-46 duplicate resolved → 2 entries
+- OPEN_GAPS.md: GAP-56 duplicate resolved → single entry
+- HANDOFF_STATE.md: Next Priority refreshed
+- HANDOFF_STATE.md: PROJECT_CONTROL path → public/handoff/ledgers/*
+- PRIORITY_PLAN.md: TIER 1/2/3 aligned with WORK_PACKAGES
+- PRIORITY_PLAN.md: WP-13c added DEFERRED
+- PRIORITY_PLAN.md: WP-24 → UNKNOWN
+
+### Files Changed (7)
+- public/handoff/ledgers/WORK_PACKAGES.md
+- public/handoff/ledgers/OPEN_GAPS.md
+- public/handoff/ledgers/HANDOFF_STATE.md
+- public/handoff/ledgers/PRIORITY_PLAN.md
+- public/handoff/ledgers/IMPLEMENTATION_LEDGER.md (this)
+- public/handoff/ledgers/DECISION_LOG.md
+- public/handoff/ledgers/CHANGE_LOG.md
+
+### Tests
+N/A — documentation-only. No code or schema changes.
+
+### Evidence
+- Baseline audit: 4 rounds of grep/diagnostic
+- Verification commands in CHANGE_LOG.md B10 entry
+
+### Rollback
+git revert <commit-hash>

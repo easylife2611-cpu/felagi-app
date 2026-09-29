@@ -64,17 +64,27 @@ Last Updated: 2026-09-29 (WP-13b DONE)
 | WP-17/18 | Device/AT testing |
 | WP-24 | Felagi routes needed first |
 
+
 ## Next Work Package Priority
-1. **WP-13b** — Reauth + Idempotency + 2FA (WP-13 follow-up)
-2. **WP-05** — Remaining Felagi backend routes
-3. **WP-22** — Queue worker setup (cron done)
-4. **WP-24** — Integration tests
-5. **WP-27** — Telegram OIDC
-6. **WP-10** — AI Integration (BLOCKED: provider key)
+
+### Blocked on UNKNOWN (need spec)
+1. **WP-24** — T01-T18 Integration Tests (UNKNOWN: definitions missing — see D-096)
+2. **WP-13c** — 2FA Enrollment UI (UNKNOWN: frontend stack undefined — see D-097)
+
+### Constitution Compliance (additive, safe)
+3. **CCB-B10** — Ledger data integrity (in progress)
+4. **B10 Bundles** — Regenerate 4 artifacts
+
+### Blocked on external dependencies
+5. **WP-10** — AI Integration (provider key)
+6. **WP-11** — Payment Live (payment creds)
+7. **WP-14** — Telegram Delivery (bot token)
+8. **WP-25** — Webhook Signature (provider sandbox)
+
 
 ## Continuity Rule
 A competent developer can continue reading:
-- `PROJECT_CONTROL/*.md` (13 ledgers)
+- `public/handoff/ledgers/*.md` (13 canonical ledgers)
 - `Felagi_Design_Package/Developer_Handoff/START_HERE.md`
 - `Felagi_Design_Package/README.md`
 

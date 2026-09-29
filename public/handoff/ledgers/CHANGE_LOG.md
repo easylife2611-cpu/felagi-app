@@ -649,3 +649,40 @@ GAP-56 (live E2E test pending manual user test)
 - 26 tests PASS (up from 20)
 - Full Admin suite: 88 PASS
 - Race-free: T25 (two users, correct one selected)
+
+## B10 — CCB (Constitution Compliance Block) — 2026-09-29
+
+### Summary
+Documentation-only release fixing 8 data integrity violations. No code, DB,
+migrations, or routes changed.
+
+### Changed
+| File | Change | Type |
+|------|--------|------|
+| WORK_PACKAGES.md | WP-27 dedup; stats 8→10 DONE, 2→1 PARTIAL, READY removed, 21→20 BLOCKED; WP-13c added | fix |
+| OPEN_GAPS.md | GAP-07→GAP-60; 3 literal dups removed (GAP-42/46/56) | fix |
+| HANDOFF_STATE.md | Next Priority refreshed; path corrected | chore |
+| PRIORITY_PLAN.md | TIER 1/2/3 aligned; WP-13c added; WP-24 UNKNOWN | chore |
+| IMPLEMENTATION_LEDGER.md | L188 CCB entry | docs |
+| DECISION_LOG.md | D-096, D-097 | docs |
+| CHANGE_LOG.md | This entry | docs |
+
+### Verification
+- `grep -c "^| WP-27 " WORK_PACKAGES.md` → 1
+- `grep -E "^- (DONE|VERIFIED|PARTIAL|BLOCKED):" WORK_PACKAGES.md` → 10/1/1/20
+- GAP-42/46/56 single or dual entry (original + resolved)
+- All 47 GAP IDs unique within their tracking sections
+
+### Constitution Compliance
+- UNKNOWN ≠ MISSING: T01-T18, WP-13c documented
+- No hidden assumptions: all edits traceable
+- No silent changes: L188 + D-096 + D-097 + this entry
+- DONE (WP-05, WP-13) = implemented + tested + verified + documented + evidenced
+
+### Remaining Open (post-B10)
+- GAP-55: handoff/index.html outdated (B11)
+- GAP-56: downloads/ listing 403/404 (B11)
+- GAP-57: production root = Laravel default (B11)
+
+### Rollback
+git revert <B10-commit> ; or restore from *.bak.b10.p4

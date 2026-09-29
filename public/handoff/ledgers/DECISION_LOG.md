@@ -410,3 +410,41 @@ OR:
 4. ALL test runs MUST verify exit code
 
 Constitution compliance: 2nd violation documented; LOCKED rule stricter.
+
+## D-096 — T01-T18 Integration Test Definitions UNKNOWN — 2026-09-29
+
+**Context:** WP-24 (T01-T18 Integration Tests) registered as BLOCKED
+("Felagi routes needed"). Routes blocker now RESOLVED (47 API routes at
+WP-27b), yet T01-T18 test definitions remain undocumented.
+
+**Evidence:**
+- TEST_VERIFICATION.md L43: "All 18 tests REQUIRES_EVIDENCE — need live stack"
+- No assertions, no acceptance criteria, no test matrix
+- WORK_PACKAGES.md L39 + PRIORITY_PLAN.md L57 refer to T01-T18 without definition
+
+**Decision:** Mark WP-24 as BLOCKED-ON-UNKNOWN. Do not guess test scope.
+
+**Constitution:** UNKNOWN ≠ MISSING.
+
+**Resolution:** Stakeholder provides T01-T18 spec (test names, behaviors, criteria).
+
+---
+
+## D-097 — WP-13c Frontend Stack UNKNOWN — 2026-09-29
+
+**Context:** WP-13c (2FA Enrollment UI) has 4 requirements in
+REQUIREMENT_REGISTRY.md (REQ-WP13C-001..004) but was absent from
+WORK_PACKAGES.md prior to CCB.
+
+**Evidence:**
+- REQUIREMENT_REGISTRY.md L222-227: 4 requirements, reason "Frontend"
+- REQ-WP13C-004 reason is literally "Design unclear"
+- ARCHITECTURE_MAP.md L42: "Flutter starter (18 classes) — COMPILE BLOCKED"
+- Admin web frontend stack undefined
+
+**Decision:** Register WP-13c as DEFERRED. Do not implement without stack decision.
+
+**Constitution:** Do not guess missing requirements.
+
+**Resolution:** Stakeholder defines (1) admin frontend stack, (2) design spec,
+(3) lost-factor recovery flow.

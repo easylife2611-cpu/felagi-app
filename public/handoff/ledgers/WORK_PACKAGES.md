@@ -39,15 +39,14 @@ NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED 
 | WP-24 | T01-T18 Integration Tests | **BLOCKED** | Felagi routes needed |
 | WP-25 | Webhook Signature | **BLOCKED** | Provider sandbox |
 | WP-26 | File Malware Scanning | **BLOCKED** | Host AV |
-| WP-27 | Telegram OIDC Full Flow | **BLOCKED** | Telegram creds |
 | WP-28 | Safe Mode Drills | **BLOCKED** | Full stack |
 
+| WP-13c | 2FA Enrollment UI | **DEFERRED** | design unclear |
 ## Statistics
-- DONE: 8 (WP-01, WP-21, WP-13, WP-13b, WP-05a, WP-05b, WP-27, WP-27b)
+- DONE: 10 (WP-01, WP-05, WP-05a, WP-05b, WP-13, WP-13b, WP-21, WP-22, WP-27, WP-27b)
 - VERIFIED: 1 (WP-02)
-- PARTIAL: 2 (WP-06, WP-22)
-- READY: 1 (WP-05)
-- BLOCKED: 21
+- PARTIAL: 1 (WP-06)
+- BLOCKED: 20
 
 ## WP-21 Completion Details
 **Date:** 2026-09-29
