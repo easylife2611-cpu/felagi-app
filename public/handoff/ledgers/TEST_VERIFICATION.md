@@ -304,3 +304,45 @@ The full test suite remains: **106 tests · 220 assertions**.
 - `Implemented ≠ Verified`
 - `Verified ≠ Deployed`
 - `Production PASS` — NOT claimed (6/9 gates pending)
+
+---
+## B19 — Model Unit Tests (2026-09-29)
+
+### New Test Files (3)
+
+| File | Tests | Purpose |
+|------|-------|---------|
+| AuditLogTest.php | 8 | Hash chain, scopes, casts, actor |
+| SettingVersionTest.php | 8 | Immutability, casts, relations |
+| OutboxEventTest.php | 9 | Statuses, scopes, markDone/markFailed |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B19 | 106 | 220 |
+| B19 | +25 | +46 |
+| **Post-B19** | **131** | **266** |
+
+### B19 Test Run
+
+Command: APP_ENV=testing php artisan test
+Result: 131 passed (266 assertions)
+Duration: 7.61s
+Test DB: zagcreht_felagi_test (isolated)
+
+### Test Coverage Expansion
+
+| Model | Before B19 | After B19 |
+|-------|------------|-----------|
+| AuditLog | 0 | 8 |
+| SettingVersion | 0 | 8 |
+| OutboxEvent | 0 | 9 |
+
+### Schema Findings (B19 audit)
+
+Two NOT NULL columns without defaults were discovered:
+- setting_versions.reason (NOT NULL)
+- audit_logs.request_id (NOT NULL)
+
+Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED).

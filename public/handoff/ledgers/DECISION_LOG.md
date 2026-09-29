@@ -596,3 +596,41 @@ the original LOCKED content.
 ### Rollback
 
 All B17 changes: git revert <B17-commit> (see B17_ROLLBACK.md)
+
+---
+## B19 — Model Unit Tests (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-111 | Model tests placed in Feature/Models (not Unit) | RefreshDatabase requires Laravel bootstrap | ACCEPTED |
+| D-112 | NOT NULL schema columns made explicit in tests (not schema change) | D-054 AUDIT BEFORE ACTION; no architecture change without approval | ACCEPTED |
+
+### Rationale
+
+**D-111:** The 3 new test files (AuditLogTest, SettingVersionTest, OutboxEventTest) all use RefreshDatabase trait. This requires full Laravel bootstrap (DB, migrations, container). Placing them under tests/Feature/Models (rather than tests/Unit) is consistent with existing pattern and required for DB isolation (D-067 MySQL test DB).
+
+**D-112:** B19 audit uncovered two NOT NULL columns without DB defaults:
+- setting_versions.reason
+- audit_logs.request_id
+
+Two options were available:
+(a) Modify migrations to add defaults -> architecture change, requires approval
+(b) Make the columns explicit in test payloads -> no schema change
+
+Option (b) chosen. This preserves the LOCKED schema and documents the required columns via tests. It also surfaces the NOT NULL constraint as a de-facto contract.
+
+This is consistent with D-100/D-101 (deferred design improvements) - do not silently alter schema.
+
+### Test Results (verified)
+
+- Command: APP_ENV=testing php artisan test
+- Result: 131 passed (266 assertions)
+- Failures: 0
+- Duration: 7.61s
+
+### Constitution Compliance
+
+- No hidden work -> both decisions documented
+- No silent changes -> no schema touched
+- D-054 AUDIT BEFORE ACTION -> audit preceded all code
+- IMPLEMENTED != VERIFIED -> tests run before commit

@@ -868,3 +868,53 @@ git revert <B17-commit> — see B17_ROLLBACK.md
 - U-21 — B-Blocks vs WPs formalization (stakeholder)
 - D-096 — T01-T18 spec request (stakeholder)
 - D-097 — WP-13c frontend stack (stakeholder)
+
+## B19 — Model Unit Tests (2026-09-29)
+
+### Summary
+Added unit test coverage for 3 previously untested critical models.
+All 25 new tests PASS. Suite: 106 -> 131 tests.
+
+### New Test Files (3)
+
+| File | Tests | Focus |
+|------|-------|-------|
+| tests/Feature/Models/AuditLogTest.php | 8 | Hash chain, scopes, casts, actor |
+| tests/Feature/Models/SettingVersionTest.php | 8 | Immutability, casts, relations |
+| tests/Feature/Models/OutboxEventTest.php | 9 | Statuses, scopes, markDone/markFailed |
+
+### Test Results
+
+| Metric | Value |
+|--------|-------|
+| Tests run | 131 (was 106) |
+| Assertions | 266 (was 220) |
+| Failures | 0 |
+| Duration | 7.61s |
+| Test DB | zagcreht_felagi_test (isolated) |
+
+### Audit Findings
+
+B19 audit discovered 2 NOT NULL columns without defaults:
+- setting_versions.reason
+- audit_logs.request_id
+
+Both were made explicit in test payloads. No schema change made.
+
+### Not Changed
+
+- No production code modified
+- No migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+
+- D-054 AUDIT BEFORE ACTION - audit ran first
+- IMPLEMENTED != VERIFIED - tests proven before commit
+- No hidden work - all files listed
+- No silent changes - DECISION_LOG D-111, D-112 logged
+
+### Rollback
+
+git revert <B19-commit>
