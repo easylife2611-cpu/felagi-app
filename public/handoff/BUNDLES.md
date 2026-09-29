@@ -1,53 +1,47 @@
 # Felagi v1.4.2 — Bundle Index
 
-**Generated:** 20260929-1205
-**Last Tag:** WP05a_DONE
-**Latest commits:**
-- felagi_app:     3ad9c84 (WP-05a: auth_attempts + PKCE)
-- felagi_extracted: e74741b (cleanup: remove .bak from tracking)
+**Generated:** 20260929-1224
+**Tag:** WP05b_DONE
+
+**Git state:**
+- felagi_app:       `4196547` (28 commits)
+- felagi_extracted: `1e1acbb` (11 commits)
 
 ## Active Bundles
 
-| File | Size | Content |
-|------|------|---------|
-| `Felagi_App_v1.4.2_20260929-1205_WP05a_DONE.bundle` | 205K | felagi_app git (25 commits) |
-| `Felagi_Design_v1.4.2_20260929-1205_WP05a_DONE.bundle` | 3.5M | felagi_extracted git (10 commits) |
-| `Felagi_v1.4.2_20260929-1205_WP05a_DONE_full.tar.gz` | 151K | felagi_app full (no vendor) |
+| File | Content |
+|------|---------|
+| `Felagi_App_v1.4.2_20260929-1224_WP05b_DONE.bundle` | felagi_app git |
+| `Felagi_Design_v1.4.2_20260929-1224_WP05b_DONE.bundle` | felagi_extracted git |
+| `Felagi_v1.4.2_20260929-1224_WP05b_DONE_full.tar.gz` | Lean source (composer install required) |
+| `Felagi_v1.4.2_20260929-1224_WP05b_DONE_FULL_with_vendor.tar.gz` | Full source with vendor (runnable) |
 
-## Restore Instructions
+## Restore
 
 ### App bundle
-```bash
-git clone Felagi_App_v1.4.2_20260929-1205_WP05a_DONE.bundle felagi_app_restored
-cd felagi_app_restored
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate
-```
+    git clone Felagi_App_v1.4.2_20260929-1224_WP05b_DONE.bundle felagi_app
+    cd felagi_app && composer install
+    cp .env.example .env && php artisan key:generate
+    php artisan migrate
 
 ### Design bundle
-```bash
-git clone Felagi_Design_v1.4.2_20260929-1205_WP05a_DONE.bundle felagi_extracted_restored
-```
+    git clone Felagi_Design_v1.4.2_20260929-1224_WP05b_DONE.bundle felagi_extracted
+
+### Lean tarball
+    tar -xzf Felagi_v1.4.2_20260929-1224_WP05b_DONE_full.tar.gz && cd felagi_app && composer install
 
 ### Full tarball
-```bash
-tar -xzf Felagi_v1.4.2_20260929-1205_WP05a_DONE_full.tar.gz
-cd felagi_app
-composer install
-```
+    tar -xzf Felagi_v1.4.2_20260929-1224_WP05b_DONE_FULL_with_vendor.tar.gz && cd felagi_app
 
-## Completed Work Packages
+## Completed WPs
 
-- ✅ WP-13: Admin Change Lifecycle (7b97c36)
-- ✅ WP-13b: Reauth + TOTP 2FA + Idempotency (679f8f8)
-- ✅ WP-05a: Auth Attempts + PKCE (3ad9c84)
-- ✅ GAP-54: APP_DEBUG=false (baf007a)
-- ✅ WP-05d: Cleanup .bak files (3aa4547)
+- WP-13:  Admin Change Lifecycle
+- WP-13b: Reauth + TOTP 2FA + Idempotency
+- WP-05a: Auth Attempts + PKCE OIDC
+- WP-05b: Telegram Foundation
+- GAP-54: APP_DEBUG=false
+- WP-05d: Cleanup .bak files
 
-## Test Status
+## Tests
 
-- **50 tests PASS** (97 assertions)
-- Duration: ~5 seconds
-- Test DB: MySQL isolated (zagcreht_felagi_test)
+**62 PASS** (127 assertions) — MySQL test DB isolated
