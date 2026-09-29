@@ -524,7 +524,7 @@ WP-05 COMPLETE.
 - Tests: 6 new (total TelegramOidc: 26)
 - Race condition: D-091 RESOLVED
 
-## L188 — CCB-B10 (Constitution Compliance Block) — 2026-09-29
+## L212 — CCB-B10 (Constitution Compliance Block) — 2026-09-29
 
 **Type:** Documentation-only (no code, no DB, no routes)
 **Reason:** 8 data integrity violations identified in baseline audit
@@ -565,7 +565,7 @@ N/A — documentation-only. No code or schema changes.
 ### Rollback
 git revert <commit-hash>
 
-## L189 — B13 (downloads/ index) — 2026-09-29
+## L213 — B13 (downloads/ index) — 2026-09-29
 
 **Type:** Static asset + .gitignore fix
 **Closes:** GAP-61 (newly registered)
@@ -594,7 +594,7 @@ This gap was never formally registered before B13 → assigned GAP-61.
 ### Rollback
 git revert dc1159a
 
-## L190 — B14 (Production root gap corrected, GAP-62) — 2026-09-29
+## L214 — B14 (Production root gap corrected, GAP-62) — 2026-09-29
 
 **Type:** Documentation-only (no code, no DB, no routes)
 **Closes:** N/A — GAP-62 registered as UNKNOWN (not fixed)
@@ -613,7 +613,7 @@ git revert dc1159a
 - Register GAP-62 (UNKNOWN) in OPEN_GAPS.md
 - Correct B10 CHANGE_LOG mislabel (was "GAP-57")
 - Append D-098 to DECISION_LOG
-- This entry (L190)
+- This entry (L214)
 
 ### Constitution Compliance
 - UNKNOWN ≠ MISSING — GAP-62 explicitly marked UNKNOWN
@@ -630,7 +630,7 @@ git revert dc1159a
 ### Rollback
 git revert <B14-commit>
 
-## L191 — B15 (S001 Welcome at production root) — 2026-09-29
+## L215 — B15 (S001 Welcome at production root) — 2026-09-29
 
 **Type:** Frontend view replacement (LOCKED design)
 **Closes:** GAP-62
@@ -665,7 +665,7 @@ git revert <B14-commit>
 ### Rollback
 git revert 2f1b603
 
-## L192 — B16 (non-admin test coverage + .bak cleanup) — 2026-09-29
+## L216 — B16 (non-admin test coverage + .bak cleanup) — 2026-09-29
 
 **Type:** Test coverage + housekeeping
 **Addresses:** Non-admin test gap (proven via Phase 2 audit)

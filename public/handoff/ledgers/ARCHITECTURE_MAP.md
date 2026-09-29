@@ -163,3 +163,110 @@ Added: 2026-09-29
 ### Endpoints (WP-13b additions)
 - POST /api/v1/admin/changes/{id}/apply  → 202 QUEUED (server job)
 - POST /api/v1/admin/changes/{id}/verify → 202 QUEUED (server job)
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+Original Layer 0–7 preserved above. New layers appended for WPs and blocks
+completed after original architecture snapshot.
+
+## Layer 8 — Extended Backend (WP-05a, WP-05b, WP-27, WP-27b)
+
+### Auth Attempts + PKCE (WP-05a)
+- `auth_attempts` table (9 columns per DFM §218):
+  state_hash, nonce_hash, pkce_verifier_encrypted, handoff_hash,
+  expires_at, consumed_at, return_uri, created_at, updated_at
+- `AuthAttempt` model (encrypted PKCE verifier cast)
+- `AuthAttemptService::generateVerifier()` (64 chars, RFC 7636)
+- `AuthAttemptService::generateChallenge()` (S256)
+- `AuthController.telegramStart()` patched with PKCE parameters
+
+### Telegram Foundation (WP-05b)
+- `TelegramDestination` model — 18 cols, scopeActive, canPublish
+- `TelegramPublication` model — 9 states, scopePending
+- `TelegramPublicationEvent` model — append-only, no timestamps
+- `AdminTelegramController` — 4 read-only methods
+- 4 GET routes: destinations (index, show), publications (index, show)
+
+### Telegram OIDC Full Flow (WP-27)
+- `firebase/php-jwt` v7.2.1 (RS256 verification)
+- `config/services.php` telegram section (OIDC URLs + credentials)
+- `OidcExchangeException` — 11 reason codes
+- `TelegramOidcService`:
+  - `exchangeCode()` — POST to token_url
+  - `validateIdToken()` — JWKS fetch + 7-step validation
+  - `completeLogin()` — atomic: exchange → validate → upsert → markReauth
+- `AuthController.telegramCallback()` — code → id_token → user → handoff
+- `AuthController.telegramExchange()` — handoff → Sanctum token
+- `personal_access_tokens.tokenable_id` — bigint → char(36) UUID fix
+
+### HMAC-Signed Handoff (WP-27b)
+- Handoff format: `<base64url(JSON{a,e,u})>.<HMAC-SHA256-hex>`
+  - `a` = attempt_id (UUID)
+  - `e` = expires_at (unix timestamp, 60s TTL)
+  - `u` = user_id (UUID, optional)
+- `AuthAttemptService.generateHandoff(?User $user)` — signs payload
+- `AuthAttemptService.consumeByHandoff()` → `{attempt, user}` (signature change)
+- Race-free user binding (D-091 resolved)
+- DFM §218 preserved (no schema change)
+
+## Layer 9 — Ledger Governance Blocks (B10-B17)
+
+### B10 — Constitution Compliance Block
+- Type: Documentation-only
+- Fixed: 8 data integrity violations in ledgers
+- Files touched: WORK_PACKAGES, OPEN_GAPS, HANDOFF_STATE, PRIORITY_PLAN
+- Evidence: IMPLEMENTATION_LEDGER L212
+
+### B13 — /downloads/ Static Index
+- `public/downloads/index.html` (6.5 KB)
+- `.gitignore` exception for downloads/index.html
+- Closes GAP-61
+
+### B14 — GAP-62 Registration
+- Type: Documentation-only
+- Registered: GAP-62 (production root UNKNOWN)
+- Corrected: B10 CHANGE_LOG mislabel (GAP-57 → GAP-62)
+- Evidence: IMPLEMENTATION_LEDGER L214
+
+### B15 — S001 Welcome Deployment
+- `resources/views/welcome.blade.php` — replaced with LOCKED S001
+- `lang/am.json` + `lang/en.json` (5 keys each)
+- `public/assets/brand/felagi-lockup.svg` + `-on-dark.svg`
+- LOCKED source: UI_Handoff/ui-preview/app.js:144
+- Closes GAP-62
+
+### B16 — Test Coverage Expansion
+- `tests/Feature/Need/NeedFlowTest.php` — 6 tests
+- `tests/Feature/Offer/OfferFlowTest.php` — 6 tests
+- `tests/Feature/Message/MessageFlowTest.php` — 4 tests
+- Suite: 90 → 106 tests (220 assertions)
+- `.archives/20260929-b16-bak-cleanup/` — 8 .bak archived
+
+### B17 — Ledger Integrity Sweep
+- L188-L192 duplicate IDs renumbered → L212-L216
+- HANDOFF_STATE.md full rewrite (124 lines)
+- MASTER_BASELINE append-only extensions (78 insertions)
+- REQUIREMENT_REGISTRY append-only extensions (76 insertions)
+- GAP-38/GAP-54 merge, GAP-07/GAP-60 clarification, GAP-42 removal
+- Table count 25 → 38 documented
+
+## Layer 10 — Authority Hierarchy Extension
+Original: 6 levels
+Extended: no change (WP-27 follows existing hierarchy)
+
+## Layer 11 — Test Infrastructure
+### Test DB Isolation
+- `zagcreht_felagi_test` — dedicated MySQL test database
+- `.env.testing` — separate config with valid 32-byte APP_KEY
+- `bin/migrate-test.sh` — always clears config cache first (D-076)
+
+### Test Count Evolution
+- WP-13: 8 tests
+- WP-13b: +28 (36 cumulative)
+- WP-05a: +14 (50 cumulative)
+- WP-05b: +12 (62 cumulative)
+- WP-27: +22 (84 cumulative)
+- WP-27b: +4 (88 cumulative)
+- (interim): +2 (90 cumulative — UNKNOWN reconciliation)
+- B16: +16 (106 cumulative)
+- **Final: 106 tests, 220 assertions**

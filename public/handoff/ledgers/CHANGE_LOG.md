@@ -663,7 +663,7 @@ migrations, or routes changed.
 | OPEN_GAPS.md | GAP-07→GAP-60; 3 literal dups removed (GAP-42/46/56) | fix |
 | HANDOFF_STATE.md | Next Priority refreshed; path corrected | chore |
 | PRIORITY_PLAN.md | TIER 1/2/3 aligned; WP-13c added; WP-24 UNKNOWN | chore |
-| IMPLEMENTATION_LEDGER.md | L188 CCB entry | docs |
+| IMPLEMENTATION_LEDGER.md | L212 CCB entry | docs |
 | DECISION_LOG.md | D-096, D-097 | docs |
 | CHANGE_LOG.md | This entry | docs |
 
@@ -676,7 +676,7 @@ migrations, or routes changed.
 ### Constitution Compliance
 - UNKNOWN ≠ MISSING: T01-T18, WP-13c documented
 - No hidden assumptions: all edits traceable
-- No silent changes: L188 + D-096 + D-097 + this entry
+- No silent changes: L212 + D-096 + D-097 + this entry
 - DONE (WP-05, WP-13) = implemented + tested + verified + documented + evidenced
 
 ### Remaining Open (post-B10)
@@ -743,7 +743,7 @@ Documentation-only. No code/DB/routes changed.
 |------|--------|
 | OPEN_GAPS.md | GAP-62 registered (UNKNOWN) |
 | CHANGE_LOG.md | B10 mislabel fixed + this entry |
-| IMPLEMENTATION_LEDGER.md | L190 appended |
+| IMPLEMENTATION_LEDGER.md | L214 appended |
 | DECISION_LOG.md | D-098 appended |
 
 ### Not Changed
@@ -803,3 +803,68 @@ Addressed non-admin test coverage gap (Phase 2 audit: 47 API routes, 1 non-admin
 
 ### Not Changed
 - No production code, no migrations, no routes, no new design
+
+
+## B17 — Ledger Integrity Sweep (DONE) — 2026-09-29
+
+### Summary
+Documentation-only sweep fixing 12 ledger integrity issues discovered
+in post-B16 audit. No code, no DB, no routes, no design changes.
+
+### Issues Fixed (12)
+
+| # | Issue | Fix | File |
+|---|-------|-----|------|
+| 1 | L188-L192 duplicate IDs (5 IDs) | Renumbered to L212-L216 | IMPLEMENTATION_LEDGER |
+| 2 | HANDOFF_STATE stale (WP-05, 9 tables, stats) | Full rewrite | HANDOFF_STATE |
+| 3 | MASTER_BASELINE missing WP-27/05a/b/B10-B16 | Append-only extensions | MASTER_BASELINE |
+| 4 | REQUIREMENT_REGISTRY missing 42 REQ IDs | Append-only extensions | REQUIREMENT_REGISTRY |
+| 5 | ARCHITECTURE_MAP missing Layer 8-11 | Append-only extensions | ARCHITECTURE_MAP |
+| 6 | GAP-38/GAP-54 duplicate (same issue) | GAP-38 → SUPERSEDED | OPEN_GAPS |
+| 7 | GAP-07/GAP-60 confusion | GAP-07 marked renumbered | OPEN_GAPS |
+| 8 | GAP-42 in open list (resolved in WP-05a) | Marked RESOLVED | OPEN_GAPS |
+| 9 | Table count 25 vs 38 ambiguity | Reconciliation section | MASTER_BASELINE |
+| 10 | Test count evolution unclear | Full trail + UNKNOWN | TEST_VERIFICATION |
+| 11 | PRIORITY_PLAN TIER 0 stale | Append-only update | PRIORITY_PLAN |
+| 12 | B-Blocks vs WPs (U-21) | Documented UNKNOWN | WORK_PACKAGES |
+
+### Files Changed (11)
+
+1. IMPLEMENTATION_LEDGER.md — L188-L192 → L212-L216
+2. CHANGE_LOG.md — 3 sed fixes + this entry
+3. HANDOFF_STATE.md — full rewrite (102 → 124 lines)
+4. MASTER_BASELINE.md — append-only (+78 lines, 0 deletions)
+5. REQUIREMENT_REGISTRY.md — append-only (+76 lines, 42 new REQ IDs)
+6. ARCHITECTURE_MAP.md — append-only (+107 lines, Layers 8-11)
+7. WORK_PACKAGES.md — append-only (+43 lines, B-Blocks table)
+8. PRIORITY_PLAN.md — append-only (+58 lines)
+9. TEST_VERIFICATION.md — append-only (+127 lines, full trail)
+10. DECISION_LOG.md — D-102 → D-110 (see step 10)
+11. RELEASE_STATUS.md — B17 summary (see step 11)
+
+### Test Evidence
+N/A — Documentation-only. No code, schema, or routes changed.
+Full suite remains: 106 tests · 220 assertions (unchanged).
+
+### Evidence Chain
+- Backup: ~/B17_backups/20260929_144348/ (13 files)
+- Audit: cross-reference grep (5 files)
+- Fix: 9 sed commands + 8 append blocks
+- Verify: 6 verification gates (all PASS)
+- Rollback: B17_ROLLBACK.md (see step 13)
+
+### Constitution Compliance
+- No hidden work — 12 issues documented with fix + evidence
+- No hidden assumptions — UNKNOWN items marked, not guessed
+- No silent changes — 10 new decisions (D-102→D-110)
+- No duplicate ownership — D-102 fixed 5 duplicate L-IDs
+- DONE = implemented + integrated + tested + verified + documented + evidenced
+- UNKNOWN ≠ MISSING — U-21 (B-Blocks vs WPs) documented
+
+### Rollback
+git revert <B17-commit> — see B17_ROLLBACK.md
+
+### Follow-up
+- U-21 — B-Blocks vs WPs formalization (stakeholder)
+- D-096 — T01-T18 spec request (stakeholder)
+- D-097 — WP-13c frontend stack (stakeholder)

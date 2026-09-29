@@ -106,3 +106,41 @@ Last Verified: 2026-09-29
 | **TOTAL** | **10/54** | **37** | **7** |
 
 **WP-21 CAN START. WP-22 READY. Others blocked.**
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+
+### Environment Changes Since Original Checklist
+
+| Item | Original | Current |
+|------|----------|---------|
+| MySQL DB | Not created | `zagcreht_felagi` (38 tables) |
+| MySQL test DB | Not created | `zagcreht_felagi_test` (isolated) |
+| Laravel | Not installed | 11.56.1 |
+| HTTPS live | Not deployed | https://zagcreativity.com |
+| Cron | Not configured | 1-min scheduler + queue:work |
+| Composer packages | 0 | 110+ (incl. Sanctum, firebase/php-jwt, google2fa) |
+| Git repo | Not initialized | `~/felagi_app/.git` (commits: 1bb9f19 → 64a8c27) |
+
+### Still Missing (as of B17)
+
+| # | Resource | Status |
+|---|----------|--------|
+| 1 | Flutter SDK | NOT FOUND |
+| 2 | Node.js | NOT FOUND |
+| 3 | Python 3.10+ | 3.6.8 (too old) |
+| 4 | Chromium/Firefox | NOT FOUND |
+| 5 | Telegram OIDC creds | PARTIAL (WP-27 done, live E2E pending) |
+| 6 | AI API key | MISSING |
+| 7 | Payment credentials | MISSING |
+| 8 | Backup target | NOT CONFIGURED |
+| 9 | Android/iOS device | MISSING |
+| 10 | Amharic reviewer | MISSING |
+
+### B16 .bak Cleanup
+
+8 stale `.bak` files moved to `.archives/20260929-b16-bak-cleanup/`.
+
+### B17 Verification
+
+No environment changes. Documentation-only.

@@ -177,3 +177,130 @@ All 18 tests REQUIRES_EVIDENCE — need live stack.
 - `Implemented ≠ Verified` — ✅ verified (36/36)
 - `Verified ≠ Deployed` — deploy separate
 - `Production PASS` — not claimed (WP-13b scope only)
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+Original test evidence preserved above. New tests appended for traceability.
+
+## Test Count Evolution — Full Trail
+
+The test suite grew from 8 (WP-13) to 106 (B16). Chronological record:
+
+| Stage | Date | New | Cumulative | Evidence |
+|-------|------|-----|------------|----------|
+| WP-13 | 2026-09-29 | 8 | 8 | ChangeLifecycleTest |
+| WP-13b | 2026-09-29 | 28 | 36 | Reauth + 2FA + Idempotency |
+| WP-05a | 2026-09-29 | 14 | 50 | AuthAttemptTest |
+| WP-05b | 2026-09-29 | 12 | 62 | TelegramFoundationTest |
+| WP-27 | 2026-09-29 | 22 | 84 | TelegramOidcTest (+2 reconciliation) |
+| WP-27b | 2026-09-29 | 4 | 88 | HMAC tests (net of refactor) |
+| (interim) | 2026-09-29 | 2 | 90 | UNKNOWN reconciliation |
+| B16 | 2026-09-29 | 16 | 106 | NeedFlow + OfferFlow + MessageFlow |
+| **Final** | — | — | **106** | **220 assertions** |
+
+### UNKNOWN Reconciliation (documented, not blocking)
+
+The following transitions have unclear deltas:
+- 62 → 84: +22 (WP-27 claimed 20 tests → +2 unaccounted)
+- 84 → 88: +4 (WP-27b claimed 6 tests → -2 unaccounted)
+- 88 → 90: +2 (no documented source)
+
+**Impact:** None. The final count (106) is verified via B16 full-suite run.
+**Action:** Documented as UNKNOWN. No further reconciliation unless a
+verification discrepancy emerges.
+
+## WP-05a Test Evidence — AuthAttemptTest
+
+| Test | Status | Assertions |
+|------|--------|------------|
+| PKCE verifier generation (64 chars) | PASS | — |
+| S256 challenge derivation | PASS | — |
+| auth_attempts row creation | PASS | — |
+| Encrypted PKCE cast | PASS | — |
+| handoff_hash SHA-256 | PASS | — |
+| Single-use enforcement | PASS | — |
+| (plus 8 more) | PASS | — |
+| **Total** | **14 PASS** | **34 assertions** |
+
+## WP-05b Test Evidence — TelegramFoundationTest
+
+| Test | Status |
+|------|--------|
+| TelegramDestination model (scopeActive) | PASS |
+| TelegramDestination canPublish | PASS |
+| TelegramPublication (9 states) | PASS |
+| TelegramPublication scopePending | PASS |
+| TelegramPublicationEvent append-only | PASS |
+| AdminTelegramController destinations.index | PASS |
+| AdminTelegramController destinations.show | PASS |
+| AdminTelegramController publications.index | PASS |
+| AdminTelegramController publications.show | PASS |
+| Authorization (admin only) | PASS |
+| Route registration | PASS |
+| Model relationships | PASS |
+| **Total** | **12 PASS** |
+
+## WP-27 Test Evidence — TelegramOidcTest
+
+| Category | Tests | Status |
+|----------|-------|--------|
+| OIDC exchange (code → token) | 4 | PASS |
+| ID token validation (7-step) | 5 | PASS |
+| JWKS caching | 2 | PASS |
+| Clock skew tolerance | 1 | PASS |
+| User upsert | 3 | PASS |
+| Handoff generation | 3 | PASS |
+| Sanctum token issuance | 2 | PASS |
+| **Total** | **20 PASS** | **43 assertions** |
+
+## WP-27b Test Evidence — HMAC Tests (T21-T26)
+
+| Test | Status |
+|------|--------|
+| T21 — HMAC signature validity | PASS |
+| T22 — Invalid signature rejected | PASS |
+| T23 — Expired handoff rejected | PASS |
+| T24 — User ID embedded correctly | PASS |
+| T25 — Multi-user race: correct user selected | PASS |
+| T26 — DFM §218 compliance (no schema change) | PASS |
+| **Total** | **6 PASS** |
+
+## B16 Test Evidence — Flow Tests
+
+### NeedFlowTest (6 tests)
+- test_can_create_need
+- test_can_list_needs
+- test_can_show_need
+- test_can_update_own_need
+- test_cannot_update_other_need
+- test_unauthorized_returns_401
+
+### OfferFlowTest (6 tests)
+- test_can_create_offer
+- test_can_list_offers
+- test_can_show_offer
+- test_can_update_own_offer
+- test_cannot_update_other_offer
+- test_unauthorized_returns_401
+
+### MessageFlowTest (4 tests)
+- test_can_send_message
+- test_can_list_messages
+- test_cannot_message_without_offer
+- test_unauthorized_returns_401
+
+**B16 Total:** 16 tests · 30 assertions
+
+## B17 Verification — No Tests Run
+
+B17 is documentation-only. No code, schema, or route changes.
+No tests added, modified, or run.
+
+The full test suite remains: **106 tests · 220 assertions**.
+
+## Evidence Boundary (unchanged)
+
+- `Designed ≠ Implemented ≠ Verified`
+- `Implemented ≠ Verified`
+- `Verified ≠ Deployed`
+- `Production PASS` — NOT claimed (6/9 gates pending)

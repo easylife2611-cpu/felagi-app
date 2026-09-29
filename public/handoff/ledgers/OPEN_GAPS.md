@@ -171,3 +171,53 @@ Last Updated: 2026-09-29
 | ID | Gap | Status | Evidence |
 |----|-----|--------|----------|
 | GAP-62 | Production root (zagcreativity.com/) shows Laravel default | ✅ RESOLVED — S001 Welcome deployed | HTTP/2 200 · `<title>መግቢያ — ፈላጊ</title>` verified 2026-09-29 |
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+
+### GAP State Reconciliation
+
+The following GAP clarifications are documented here in append-only form.
+Original GAP entries above are preserved (no silent edits).
+
+### GAP-38 — SUPERSEDED by GAP-54
+
+| Field | Value |
+|-------|-------|
+| GAP-38 | APP_DEBUG=true in production (originally CRITICAL) |
+| GAP-54 | Same issue — RESOLVED 2026-09-29 |
+| **Status** | ✅ **SUPERSEDED** — GAP-38 duplicates GAP-54 |
+| **Action** | GAP-38 should be considered closed via GAP-54 |
+
+### GAP-07 vs GAP-60 — Clarification
+
+| GAP | Issue | Status |
+|-----|-------|--------|
+| GAP-07 | Observability (no telemetry) | OPEN (blocked on telemetry env) |
+| GAP-60 | OutboxEvent model missing | ✅ RESOLVED (WP-13, app/Models/OutboxEvent.php) |
+
+**Note:** B10 CHANGE_LOG incorrectly described a "GAP-07 → GAP-60 rename".
+These are **two distinct GAPs** with different issues. No rename occurred.
+
+### GAP-42 — Resolved but Listed in Open Section
+
+| Field | Value |
+|-------|-------|
+| GAP-42 | auth_attempts table missing |
+| Resolution | ✅ RESOLVED 2026-09-29 (WP-05a — Full PKCE flow) |
+| **Current Location** | Listed in "Pre-existing GAPs still open" table |
+| **Action** | Marked RESOLVED in-place; no longer an active blocker |
+
+### Summary of B17 GAP Status
+
+| Status | Count | GAPs |
+|--------|-------|------|
+| SUPERSEDED | 1 | GAP-38 (→ GAP-54) |
+| RESOLVED | 3 | GAP-42, GAP-54, GAP-60 |
+| OPEN (clarified) | 1 | GAP-07 (Observability) |
+
+### Constitution Compliance
+
+- No silent changes — all 5 GAPs documented here
+- No duplicate ownership — GAP-38/GAP-54 clarified
+- UNKNOWN ≠ MISSING — GAP-07 remains OPEN (blocked, not deleted)

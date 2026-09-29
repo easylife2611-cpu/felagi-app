@@ -159,3 +159,81 @@ Date: 2026-09-29
 **Deferred:**
 - Reauth self-service enrollment UI (WP-13c)
 - Recovery codes UI display (WP-13c)
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+The following WPs and blocks were completed after the original LOCKED baseline
+was written. They are appended here for traceability. The original LOCKED
+content above is unchanged.
+
+### WP-05a — Auth Attempts + PKCE (DONE)
+Date: 2026-09-29
+Delivered: migration + model + service + controller patch + 14 tests
+Evidence: AuthAttemptTest (34 assertions)
+Resolves: GAP-42
+
+### WP-05b — Telegram Foundation (DONE)
+Date: 2026-09-29
+Delivered: 3 models + 1 controller + 4 read routes + 12 tests
+Deferred: write endpoints → WP-27
+
+### WP-27 — Telegram OIDC Full Flow (DONE)
+Date: 2026-09-29
+Delivered: firebase/php-jwt v7.2.1, OidcExchangeException,
+           TelegramOidcService (PKCE + JWKS + 7-step validation),
+           telegramCallback + telegramExchange, UUID fix, 20 tests
+Evidence: TelegramOidcTest (43 assertions)
+Resolves: GAP-31, GAP-55
+
+### WP-27b — HMAC-Signed User Binding (DONE)
+Date: 2026-09-29
+Delivered: HMAC-SHA256 signed handoff, race-free exchange, 6 new tests
+Resolves: D-091 race condition
+Evidence: T21-T26 PASS
+
+### B10 — Constitution Compliance Block (DONE)
+Date: 2026-09-29
+Type: Documentation-only (no code/DB/routes)
+Fixed: 8 data integrity violations
+Evidence: IMPLEMENTATION_LEDGER L212
+
+### B13 — /downloads/ index (DONE)
+Date: 2026-09-29
+Type: Static asset + .gitignore fix
+Closes: GAP-61
+Evidence: IMPLEMENTATION_LEDGER L213
+
+### B14 — GAP-62 registration (DONE)
+Date: 2026-09-29
+Type: Documentation-only
+Registered: GAP-62 (production root UNKNOWN)
+Evidence: IMPLEMENTATION_LEDGER L214
+
+### B15 — S001 Welcome at production root (DONE)
+Date: 2026-09-29
+Type: Frontend view replacement (LOCKED design)
+Source: UI_Handoff/ui-preview/app.js:144
+Closes: GAP-62
+Evidence: IMPLEMENTATION_LEDGER L215
+
+### B16 — Non-admin test coverage + .bak cleanup (DONE)
+Date: 2026-09-29
+Type: Test coverage + housekeeping
+Added: 16 tests (NeedFlow, OfferFlow, MessageFlow)
+Suite evolution: 90 → 106 tests (220 assertions)
+Evidence: IMPLEMENTATION_LEDGER L216
+
+### B17 — Ledger Integrity Sweep (DONE)
+Date: 2026-09-29
+Type: Documentation-only
+Fixed: 5 duplicate L-IDs, 6 stale entries, 3 GAP duplicates
+Evidence: CHANGE_LOG B17 entry + this appendix
+
+### Table Count Reconciliation
+- Original LOCKED baseline declared: 25 tables
+- Actual after WP-05 complete: 38 tables
+- Delta: +13 tables (auth_attempts, idempotency_keys, exports,
+  telegram_destinations, telegram_publications, telegram_publication_events,
+  jobs, failed_jobs, job_batches, scheduled_settings,
+  personal_access_tokens, setting_drafts, setting_versions)
+- Status: ACCEPTED — documented per D-046 ("All 38 tables now in production DB")

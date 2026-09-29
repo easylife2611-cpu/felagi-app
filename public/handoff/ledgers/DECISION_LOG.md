@@ -520,3 +520,79 @@ correctly return 403/404 — verified by B16 tests.
 policy-per-model structure. Inline authz is sufficient and tested.
 
 **Recorded as best-practice improvement (not critical).**
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-102 | L188-L192 → L212-L216 renumbering | No duplicate ownership violated | LOCKED |
+| D-103 | HANDOFF_STATE.md full rewrite | Stale content (WP-05 wrong, tables wrong, stats wrong) | ACCEPTED |
+| D-104 | MASTER_BASELINE extended (append-only) | Last Updated claim was false; append-only preserves history | ACCEPTED |
+
+### Rationale
+
+**D-102:** No duplicate ownership is a locked invariant. L188-L192 appeared
+twice in IMPLEMENTATION_LEDGER. The first occurrence (WP-05b models) is
+correct. The second set (B10-B16) was renumbered to L212-L216 so both
+sets remain traceable.
+
+**D-103:** HANDOFF_STATE contained 3 critical errors:
+- "WP-05: Felagi routes not yet implemented" (WP-05 = DONE)
+- "MySQL DB: 9 tables" (actual = 38 tables)
+- "28 WPs (2 DONE, 1 VERIFIED, 2 PARTIAL, 2 READY, 21 BLOCKED)"
+  (actual = 10 DONE, 1 VERIFIED, 1 PARTIAL, 16 BLOCKED, 1 DEFERRED)
+
+Full rewrite required. Historical record preserved via git.
+
+**D-104:** MASTER_BASELINE "Last Updated: 2026-09-29" but WP-27, WP-05a/b,
+B10-B16 were all completed that day and missing. Append-only preserves the
+original LOCKED baseline while documenting evolution.
+
+| D-105 | REQUIREMENT_REGISTRY append-only for WP-05a/b/27/27b | Full traceability required | ACCEPTED |
+| D-106 | ARCHITECTURE_MAP Layer 8 + Layer 9 added | WP-27/27b/05a/05b and B10-B17 missing from map | ACCEPTED |
+| D-107 | GAP-38 merged into GAP-54 | Same issue (APP_DEBUG), duplicate entry | ACCEPTED |
+
+### Rationale (continued)
+
+**D-105:** 42 new REQ IDs were added for WP-05a (7), WP-05b (6), WP-27 (10),
+WP-27b (7), and B10-B17 (12). Full traceability requires each requirement
+to have a unique ID and clear verification link.
+
+**D-106:** Layer 8 covers Extended Backend (WP-05a/b/27/27b). Layer 9 covers
+Ledger Governance Blocks (B10-B17). Original map ended at Layer 7 (WP-13b).
+
+**D-107:** GAP-38 (APP_DEBUG CRITICAL) and GAP-54 (APP_DEBUG resolved) are
+the same issue. GAP-38 was registered before the fix; GAP-54 after. Merged
+by marking GAP-38 as SUPERSEDED by GAP-54.
+
+| D-108 | GAP-07 marked renumbered to GAP-60 | Duplicate resolution | ACCEPTED |
+| D-109 | GAP-42 removed from open list | Resolved in WP-05a; still listed as open | ACCEPTED |
+| D-110 | Table count 25 → 38 documented | WP-05 expanded; baseline unchanged | ACCEPTED |
+
+### Rationale (continued)
+
+**D-108:** GAP-07 (Observability) was renumbered to GAP-60 in B10. The
+original GAP-07 entry remained, creating double-booking. Marked as
+renumbered.
+
+**D-109:** GAP-42 (auth_attempts table missing) was resolved in WP-05a
+(2026-09-29). It remained in the "Pre-existing GAPs still open" list.
+Removed to eliminate ambiguity.
+
+**D-110:** Original baseline declared 25 tables. WP-05 delivered 38. This
+is documented per D-046 ("All 38 tables now in production DB"). B17 adds
+this reconciliation to MASTER_BASELINE for consistency without modifying
+the original LOCKED content.
+
+### Constitution Compliance
+
+- No duplicate ownership → D-102 fixes 5 violations
+- DONE = implemented + integrated + tested + verified + documented + evidenced
+  → D-103 restores HANDOFF_STATE accuracy
+- No hidden work → D-104 through D-110 all documented
+- UNKNOWN ≠ MISSING → B-blocks vs WPs documented as U-21
+
+### Rollback
+
+All B17 changes: git revert <B17-commit> (see B17_ROLLBACK.md)

@@ -77,3 +77,61 @@ Last Updated: 2026-09-29
 
 ## Constitution Rule
 "If one task is BLOCKED, isolate and document the blocker and continue independent safe Work Packages."
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+Original TIER plan preserved above. Additive updates below.
+
+## TIER 0 Completion Clarification (B17)
+
+The TIER 0 items (WP-01, WP-02, WP-ENV, WP-PRIORITY) were marked DONE in
+the original plan. Post-audit status confirmed:
+- WP-01 Foundation Registry — DONE
+- WP-02 Static Re-run — VERIFIED (7,810+ PASS)
+- WP-ENV Environment Verification — DONE
+- WP-PRIORITY Ledgers built — DONE
+
+## B-Blocks Completion (B10-B17)
+
+All 8 B-blocks completed on 2026-09-29:
+
+| Block | Deliverable | Status |
+|-------|-------------|--------|
+| B10 | Constitution Compliance (8 fixes) | DONE |
+| B11 | Main Admin Foundation verification | DONE |
+| B12 | Bundle refresh | DONE |
+| B13 | /downloads/ deployed (GAP-61) | DONE |
+| B14 | GAP-62 registered | DONE |
+| B15 | S001 Welcome live (GAP-62 closed) | DONE |
+| B16 | Non-admin tests + cleanup | DONE |
+| B17 | Ledger Integrity Sweep | DONE |
+
+## Next Priority (post-B17)
+
+### Immediate — Stakeholder Decisions Required
+1. **WP-24** — T01-T18 Integration Tests — D-096 (UNKNOWN definitions)
+2. **WP-13c** — 2FA Enrollment UI — D-097 (UNKNOWN stack)
+3. **WP-05c** — Admin read endpoints spec (pending)
+4. **U-21** — B-Blocks vs Work Packages — formalize or keep separate?
+
+### Safe, Additive Work (Constitution-compliant, no external deps)
+5. **B18** — Extended non-admin write tests (extend B16 pattern)
+6. **B18** — Model unit tests (fill missing coverage)
+7. **B18** — Migration integrity audit (additive, no schema change)
+
+### Blocked on External Dependencies
+8. **WP-10** — AI Integration (provider key)
+9. **WP-11** — Payment Live (payment creds)
+10. **WP-14** — Telegram Delivery (bot token)
+11. **WP-25** — Webhook Signature (provider sandbox)
+12. **WP-23** — Backup Restore Drill (backup target)
+
+### Blocked on Device/Tooling
+13. **WP-03/04** — Browser/Flutter SDK
+14. **WP-17/18** — Device/AT testing
+
+## Recommended Sequence (revised)
+1. **Stakeholder decisions** — WP-24, WP-13c, WP-05c, U-21
+2. **B18** — Safe additive test work (parallel)
+3. **External deps** — await creds for WP-10, WP-11, WP-14, WP-25
+4. **WP-09** — Final production gates (when above complete)

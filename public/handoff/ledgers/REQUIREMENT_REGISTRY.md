@@ -225,3 +225,79 @@ Source: Auth Contract §3 + DFM §149/§216/§418/§461
 | REQ-WP13C-002 | Recovery codes display UI | Frontend |
 | REQ-WP13C-003 | Self-service 2FA disable | Frontend + audit |
 | REQ-WP13C-004 | Lost-factor recovery flow | Design unclear |
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+Requirements for WPs and blocks completed after original registry snapshot.
+
+## WP-05a Requirements — Auth Attempts + PKCE
+Source: DFM §218 + RFC 7636
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP05A-001 | auth_attempts table (9 columns per DFM §218) | DONE | migration |
+| REQ-WP05A-002 | AuthAttempt model with encrypted PKCE cast | DONE | app/Models/AuthAttempt.php |
+| REQ-WP05A-003 | AuthAttemptService (RFC 7636 S256) | DONE | app/Services/ |
+| REQ-WP05A-004 | AuthController.telegramStart includes PKCE params | DONE | AuthController patch |
+| REQ-WP05A-005 | 64-char PKCE verifier (RFC 7636 range) | DONE | D-077 |
+| REQ-WP05A-006 | handoff_hash SHA-256 single-use | DONE | D-079 |
+| REQ-WP05A-007 | 14 tests PASS (34 assertions) | DONE | AuthAttemptTest |
+
+## WP-05b Requirements — Telegram Foundation
+Source: Design_Integration_Contract.md + DFM §275
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP05B-001 | TelegramDestination model (18 cols) | DONE | 18 cols, scopeActive |
+| REQ-WP05B-002 | TelegramPublication model (9 states) | DONE | 9 states, scopePending |
+| REQ-WP05B-003 | TelegramPublicationEvent (append-only) | DONE | no timestamps |
+| REQ-WP05B-004 | AdminTelegramController (4 read methods) | DONE | app/Http/Controllers |
+| REQ-WP05B-005 | 4 GET routes registered | DONE | 2 destinations + 2 publications |
+| REQ-WP05B-006 | 12 tests PASS | DONE | TelegramFoundationTest |
+
+## WP-27 Requirements — Telegram OIDC Full Flow
+Source: DFM §218 + Auth Contract §3 + Auth Contract §449
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP27-001 | firebase/php-jwt v7.2.1 dependency | DONE | composer.json |
+| REQ-WP27-002 | config/services.php telegram section | DONE | OIDC URLs + credentials |
+| REQ-WP27-003 | OidcExchangeException (11 reasons) | DONE | app/Exceptions/ |
+| REQ-WP27-004 | TelegramOidcService exchangeCode + JWKS | DONE | 7-step validation |
+| REQ-WP27-005 | telegramCallback (code → id_token → user) | DONE | AuthController |
+| REQ-WP27-006 | telegramExchange (handoff → Sanctum token) | DONE | AuthController |
+| REQ-WP27-007 | personal_access_tokens UUID fix | DONE | migration (D-090) |
+| REQ-WP27-008 | JWKS cached 1h | DONE | D-087 |
+| REQ-WP27-009 | 60s clock skew tolerance | DONE | D-088 |
+| REQ-WP27-010 | 20 tests PASS (43 assertions) | DONE | TelegramOidcTest |
+
+## WP-27b Requirements — HMAC-Signed User Binding
+Source: DFM §218 (preserved)
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-WP27B-001 | HMAC-SHA256 signed handoff | DONE | AuthAttemptService |
+| REQ-WP27B-002 | Handoff format base64url(JSON{a,e,u}).HMAC | DONE | D-092 |
+| REQ-WP27B-003 | 60s TTL on handoff code | DONE | embedded 'e' |
+| REQ-WP27B-004 | consumeByHandoff returns {attempt, user} | DONE | signature change |
+| REQ-WP27B-005 | Race-free user binding (D-091 resolved) | DONE | T25 multi-user test |
+| REQ-WP27B-006 | 6 new tests (T21-T26) | DONE | HMAC test suite |
+| REQ-WP27B-007 | No schema change (DFM §218 preserved) | DONE | D-092 trade-off |
+
+## B10-B17 Requirements — Ledger Integrity
+Source: Constitution + audit
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| REQ-B10-001 | Fix 8 ledger data integrity violations | DONE | CHANGE_LOG B10 |
+| REQ-B13-001 | /downloads/ index (GAP-61) | DONE | HTTP 200 verified |
+| REQ-B14-001 | GAP-62 registered as UNKNOWN | DONE | OPEN_GAPS |
+| REQ-B15-001 | S001 Welcome at production root | DONE | HTTP 200 + title verified |
+| REQ-B16-001 | Non-admin test coverage +16 | DONE | 106 total tests |
+| REQ-B17-001 | L188-L192 duplicate IDs → L212-L216 | DONE | IMPLEMENTATION_LEDGER |
+| REQ-B17-002 | HANDOFF_STATE full rewrite | DONE | 124 lines |
+| REQ-B17-003 | MASTER_BASELINE append-only extensions | DONE | 78 insertions, 0 deletions |
+| REQ-B17-004 | GAP-38/GAP-54 merge | DONE | OPEN_GAPS |
+| REQ-B17-005 | GAP-07/GAP-60 clarification | DONE | OPEN_GAPS |
+| REQ-B17-006 | GAP-42 removed from open list | DONE | OPEN_GAPS |
+| REQ-B17-007 | Table count 25 → 38 documented | DONE | MASTER_BASELINE |

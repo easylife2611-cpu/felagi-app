@@ -74,3 +74,46 @@ NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED 
 **Related:**
 - WP-13b (follow-up): Reauth + Idempotency + Second Factor
 - GAP-45, GAP-46, GAP-47 — deferred to WP-13b
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+Original WP table (WP-01 → WP-28) preserved above.
+B-Blocks are a separate tracking category (see D-110, U-21).
+
+## B-Blocks — Documentation/Quality Blocks
+
+| Block | Scope | Status | Evidence |
+|-------|-------|--------|----------|
+| B10 | Constitution Compliance Block (8 fixes) | DONE | IMPLEMENTATION_LEDGER L212 |
+| B11 | Main Admin Foundation verification (14/14 artifacts) | DONE | — |
+| B12 | Bundle refresh @ 1343_B12_DONE | DONE | Bundle artifact |
+| B13 | /downloads/ index (GAP-61 closed) | DONE | HTTP 200 verified |
+| B14 | GAP-62 registration + B10 mislabel fix | DONE | OPEN_GAPS |
+| B15 | S001 Welcome at production root (GAP-62 closed) | DONE | HTTP 200 + title |
+| B16 | Non-admin tests (+16) + .bak cleanup | DONE | 106 tests total |
+| B17 | Ledger Integrity Sweep | DONE | This entry |
+
+## B-Blocks vs Work Packages — Formal Relationship (UNKNOWN U-21)
+
+The relationship between "B-blocks" and "Work Packages" is not formally
+defined. Evidence suggests B-blocks are:
+- Documentation/quality improvements
+- Cross-cutting fixes (not feature work)
+- Tracked in IMPLEMENTATION_LEDGER with L-IDs (L212-L216)
+
+They do NOT appear in the WP statistics table above.
+This may be intentional (separate tracking) or a gap.
+
+**Decision required from stakeholder:** Should B-blocks be:
+(a) Formalized as WPs (renumber to WP-29+)?
+(b) Kept as a separate "blocks" category?
+(c) Merged into existing WPs?
+
+For now: documented as-is. Do not guess (per D-096/D-097 pattern).
+
+## B17 Statistics Update
+
+WP totals remain: 10 DONE, 1 VERIFIED, 1 PARTIAL, 16 BLOCKED, 1 DEFERRED.
+B-Blocks totals: **8 DONE** (B10, B11, B12, B13, B14, B15, B16, B17).
+
+B-Blocks are NOT counted in WP totals (see U-21).
