@@ -37,7 +37,6 @@ class AdminReadEndpointsTest extends TestCase
             ['monetization',      'monetization'],
             ['maintenance',       'maintenance'],
             ['reports',           'reports'],
-            ['ads',               'ads'],
         ];
     }
 

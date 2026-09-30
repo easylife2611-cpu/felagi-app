@@ -52,7 +52,7 @@ class AdminReadController extends BaseApiController
         'A020' => ['monetization',  Setting::class],
         'A021' => ['maintenance',   null],
         'A022' => ['reports',       Report::class],
-        'A023' => ['ads',           null],
+        // A023 (Sponsored Ads) — handled by AdminAdsController (L267)
     ];
 
     // ─────────────────────────────────────────────────────────
@@ -81,7 +81,6 @@ class AdminReadController extends BaseApiController
     public function monetization(AdminListRequest $r): JsonResponse   { return $this->handle('A020', $r); }
     public function maintenance(AdminListRequest $r): JsonResponse    { return $this->handle('A021', $r); }
     public function reports(AdminListRequest $r): JsonResponse        { return $this->handle('A022', $r); }
-    public function ads(AdminListRequest $r): JsonResponse            { return $this->handle('A023', $r); }
 
     // ─────────────────────────────────────────────────────────
     // Shared handler

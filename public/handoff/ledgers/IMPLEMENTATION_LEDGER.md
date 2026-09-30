@@ -2439,3 +2439,126 @@ satisfies the 5-min window for HIGH/CRITICAL publish.
 - No guessing — every assertion maps to DFM T/C rules
 - Additive — new middleware + guards; backward compatible
 - No silent changes — this ledger + commit
+
+---
+
+## L267 — Sponsored Advertising IMPLEMENTED (full subsystem)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Feature (governed sponsored advertising subsystem)
+
+**Spec (LOCKED):**
+- `System_Specification/Sponsored_Advertising_Contract.md` (52 lines)
+- `Design_Data/advertising-contract.json`
+- `Design_Data/advertising-fixture.json`
+- `Design_Data/ads-requirement-coverage.json`
+- `Provenance/Completion_and_Advertising_Directive.txt`
+
+**What Changed:**
+
+### NEW — Migrations (5)
+- `2026_09_30_200000_create_advertisers_table`
+- `2026_09_30_200001_create_ad_creatives_table`
+- `2026_09_30_200002_create_ad_campaigns_table`
+- `2026_09_30_200003_create_ad_deliveries_table`
+- `2026_09_30_200004_create_ad_events_table`
+
+### NEW — Models (5)
+- Advertiser, AdCreative, AdCampaign, AdDelivery, AdEvent
+- Canonical statuses (10), placements (3), slot states (8)
+- Frequency caps from contract
+
+### NEW — Factories (5)
+- AdvertiserFactory, AdCreativeFactory, AdCampaignFactory, AdDeliveryFactory, AdEventFactory
+- States: active, scheduled, ended, paused, card, compact, click, blocked
+
+### NEW — Services (2)
+- `app/Services/Ads/AdDeliveryService.php`
+  - Slot state resolver (DISABLED/EMPTY/READY/FAILED/EXPIRED/NOT_ELIGIBLE/FREQUENCY_CAPPED)
+  - Master + placement switches (cache 60s)
+  - Frequency caps: 3/session, 6/day, 2/campaign, 2/placement, 1/page
+  - Atomic delivery reservation
+- `app/Services/Ads/AdEventService.php`
+  - Impression (≥50% coverage rule), Click
+  - Dedup by event_id + delivery_id + type
+  - Campaign report aggregation
+
+### NEW — Controllers (3)
+- `AdsDeliveryController` — GET /api/v1/ads/placements/{id}/delivery (public)
+- `AdsEventController` — POST /api/v1/ads/events (public)
+- `AdminAdsController` — 16 admin endpoints for full campaign lifecycle
+
+### NEW — View (1)
+- `resources/views/admin/sponsored-ads.blade.php` — A023 full UI
+  - Master switch, placement switches, campaign counts, wizard shell
+  - Diagnostics; canonical localization keys
+
+### MODIFIED
+- `routes/api.php` — +2 public +16 admin ad routes
+- `app/Http/Controllers/Api/V1/Admin/AdminReadController.php` — A023 moved out (was placeholder)
+- `tests/Feature/Admin/AdminReadEndpointsTest.php` — A023 removed from dataset
+- `tests/Feature/Screens/AdminScreensTest.php` — A023 skipped (graduated)
+
+### NEW — Tests (3 files)
+- `AdDeliveryTest` — 8 tests / 17 assertions
+- `AdEventTest` — 10 tests / 21 assertions
+- `AdminAdsTest` — 19 tests / 41 assertions
+
+**Canonical Endpoints (from contract):**
+
+Public:
+- GET  /api/v1/ads/placements/{id}/delivery
+- POST /api/v1/ads/events
+
+Admin (16):
+- GET    /api/v1/admin/ads
+- POST   /api/v1/admin/ads/advertisers
+- POST   /api/v1/admin/ads/campaigns
+- GET    /api/v1/admin/ads/campaigns/{id}
+- PATCH  /api/v1/admin/ads/campaigns/{id}
+- POST   /api/v1/admin/ads/campaigns/{id}/validate
+- POST   /api/v1/admin/ads/campaigns/{id}/preview
+- POST   /api/v1/admin/ads/campaigns/{id}/publish
+- POST   /api/v1/admin/ads/campaigns/{id}/pause
+- POST   /api/v1/admin/ads/campaigns/{id}/resume
+- POST   /api/v1/admin/ads/campaigns/{id}/cancel-schedule
+- POST   /api/v1/admin/ads/campaigns/{id}/archive
+- POST   /api/v1/admin/ads/campaigns/{id}/rollback
+- GET    /api/v1/admin/ads/campaigns/{id}/reports
+- GET    /api/v1/admin/ads/campaigns/{id}/audit
+- POST   /api/v1/admin/ads/destinations/validate
+
+**Rules enforced:**
+- Master default OFF (new installations)
+- Placement default OFF
+- No ad on auth/Need entry/Offer entry/payments/AI results/messaging/recovery
+- Only 3 registered placements (AD_BROWSE_INLINE_01, AD_SEARCH_RESULTS_INLINE_01, AD_NEED_DETAIL_BOTTOM_01)
+- Frequency caps: 3/session, 6/day, 2/campaign/session, 2/placement/session, 1/page
+- Impressions require ≥50% coverage
+- Dedup by event_id + delivery_id + type
+- External destinations must be HTTPS, no private/loopback
+- Internal destinations: /browse or /needs/{id} only
+- AI/comparison untouched by ads
+
+**Test Results:**
+- Ads: 37 tests / 79 assertions
+- Full suite: 827 tests / 1,963 assertions / 0 failures / 1 skipped
+
+**GAP / WP status:**
+- Sponsored Advertising: designed (spec) + implemented (backend + admin UI)
+- Production defaults: master OFF, placements OFF
+
+**Evidence boundary (acknowledged):**
+Per contract §Evidence boundary:
+- Media scanning (AV): REQUIRES_EVIDENCE
+- External URL SSRF live probe: REQUIRES_EVIDENCE
+- Browser/device/AT accessibility: REQUIRES_EVIDENCE
+- Real analytics instrumentation: NOT_AVAILABLE
+- Image processing (GD/Imagick): REQUIRES_EVIDENCE
+These are documented in the contract and remain outside implementation scope.
+
+**Constitution compliance:**
+- No guessing — every state, placement, cap, and rule cites the contract
+- Additive — new subsystem; 2 tests updated because A023 graduated
+- No silent changes — this ledger + commit

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\AdsDeliveryController;
+use App\Http\Controllers\Api\V1\AdsEventController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\ComparisonController;
@@ -13,6 +15,7 @@ use App\Http\Controllers\Api\V1\TwoFactorController;
 use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
 use App\Http\Controllers\Api\V1\Admin\AdminTelegramController;
 use App\Http\Controllers\Api\V1\Admin\AdminReadController;
+use App\Http\Controllers\Api\V1\Admin\AdminAdsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +26,14 @@ use Illuminate\Support\Facades\Route;
 
 // Public health check (no auth)
 Route::get("/health", HealthController::class);
+
+// Sponsored Ads — public endpoints (no auth)
+Route::prefix("ads")->group(function () {
+    Route::get("placements/{id}/delivery", [AdsDeliveryController::class, "show"])
+        ->middleware("throttle:120,1");
+    Route::post("events", [AdsEventController::class, "store"])
+        ->middleware("throttle:300,1");
+});
 
 Route::prefix('v1')->group(function () {
 
@@ -188,6 +199,26 @@ Route::prefix('v1')->group(function () {
             Route::get('publications/{id}',            [AdminTelegramController::class, 'showPublication']);
         });
 
+        // Sponsored Ads admin endpoints (L267)
+        Route::prefix('ads')->group(function () {
+            Route::get('/', [AdminAdsController::class, 'index']);
+            Route::post('advertisers', [AdminAdsController::class, 'storeAdvertiser']);
+            Route::post('campaigns', [AdminAdsController::class, 'storeCampaign']);
+            Route::get('campaigns/{id}', [AdminAdsController::class, 'showCampaign']);
+            Route::patch('campaigns/{id}', [AdminAdsController::class, 'updateCampaign']);
+            Route::post('campaigns/{id}/validate', [AdminAdsController::class, 'validateCampaign']);
+            Route::post('campaigns/{id}/preview', [AdminAdsController::class, 'previewCampaign']);
+            Route::post('campaigns/{id}/publish', [AdminAdsController::class, 'publishCampaign']);
+            Route::post('campaigns/{id}/pause', [AdminAdsController::class, 'pauseCampaign']);
+            Route::post('campaigns/{id}/resume', [AdminAdsController::class, 'resumeCampaign']);
+            Route::post('campaigns/{id}/cancel-schedule', [AdminAdsController::class, 'cancelSchedule']);
+            Route::post('campaigns/{id}/archive', [AdminAdsController::class, 'archiveCampaign']);
+            Route::post('campaigns/{id}/rollback', [AdminAdsController::class, 'rollbackCampaign']);
+            Route::get('campaigns/{id}/reports', [AdminAdsController::class, 'reportCampaign']);
+            Route::get('campaigns/{id}/audit', [AdminAdsController::class, 'auditCampaign']);
+            Route::post('destinations/validate', [AdminAdsController::class, 'validateDestination']);
+        });
+
         // WP-05c: Admin read endpoints (L262)
         Route::get('dashboard',     [AdminReadController::class, 'dashboard']);
         Route::get('telegram-overview', [AdminReadController::class, 'telegram']);
@@ -211,7 +242,6 @@ Route::prefix('v1')->group(function () {
         Route::get('monetization',  [AdminReadController::class, 'monetization']);
         Route::get('maintenance',   [AdminReadController::class, 'maintenance']);
         Route::get('reports',       [AdminReadController::class, 'reports']);
-        Route::get('ads',           [AdminReadController::class, 'ads']);
     });
 
 });

@@ -66,6 +66,11 @@ class AdminScreensTest extends TestCase
     #[DataProvider('adminRouteProvider')]
     public function test_admin_route_has_pending_notice(string $path, string $spec): void
     {
+        // A023 (Sponsored Ads) is now a full UI — it is not a placeholder.
+        if ($spec === 'A023') {
+            $this->markTestSkipped('A023 graduated from placeholder (L267)');
+        }
+
         $res = $this->get($path);
         $res->assertStatus(200);
         // Every admin screen has a pending notice until backend integration

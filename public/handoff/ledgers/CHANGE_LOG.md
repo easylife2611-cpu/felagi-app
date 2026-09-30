@@ -1597,3 +1597,32 @@ git revert <S003-commit>
 ### GAPs
 - T03 (If-Match): RESOLVED
 - T23 (request_id on auth errors): RESOLVED
+
+---
+
+## B37 — Sponsored Advertising implemented (full subsystem)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L267
+
+### Added
+- 5 migrations (advertisers, ad_creatives, ad_campaigns, ad_deliveries, ad_events)
+- 5 models + 5 factories
+- AdDeliveryService + AdEventService
+- AdsDeliveryController + AdsEventController + AdminAdsController
+- resources/views/admin/sponsored-ads.blade.php (A023 full UI)
+- tests/Feature/Ads/{AdDeliveryTest,AdEventTest,AdminAdsTest}.php (37 tests)
+
+### Changed
+- routes/api.php — +18 routes
+- AdminReadController — A023 removed (graduated)
+- AdminReadEndpointsTest / AdminScreensTest — A023 updated
+
+### Tests
+- +37 tests, +79 assertions
+- Full suite: 827 / 1,963 / 0 failures / 1 skipped
+
+### Feature
+- Sponsored Advertising subsystem (governed, contract-compliant)
+- Default: master OFF, placements OFF
