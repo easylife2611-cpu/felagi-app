@@ -516,3 +516,26 @@ Read: L234, CHANGE_LOG S008, spec S009
 
 ### Continuity
 Read: L235, CHANGE_LOG S009, spec S010
+
+---
+## S011 Submit Offer — Handoff — 2026-09-30
+
+### What Changed
+- Full submit-offer screen (S011 spec)
+- NEW: resources/views/submit-offer.blade.php (434 lines)
+- NEW: routes/web.php — GET /needs/{id}/offers/new
+- lang/en.json + lang/am.json: +20 keys each (119 total)
+
+### Test Results
+- S011SubmitOfferTest: 15 tests (34 assertions)
+- Full suite: 497 tests, 0 failures
+
+### Next Steps (Priority Order)
+1. **S010 Received Offers** (/needs/:id/offers) — owner-only offers list
+2. **S012 Offer Detail** (/offers/:id)
+3. **S018 Notifications** (/notifications)
+4. **S007 Created Success** (/needs/:id/created)
+5. **GAP-S003-PHOTO** (profile photo upload)
+
+### Continuity
+Read: L236, CHANGE_LOG S011, spec S010

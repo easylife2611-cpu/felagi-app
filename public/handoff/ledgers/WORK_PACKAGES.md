@@ -168,3 +168,4 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 | S005-CREATE | Create Need (full) | DONE | IMPLEMENTATION_LEDGER L233 |
 | S008-DETAIL | Need Details (full) | DONE | IMPLEMENTATION_LEDGER L234 |
 | S009-MY-NEEDS | My Needs (full) | DONE | IMPLEMENTATION_LEDGER L235 |
+| S011-SUBMIT-OFFER | Submit Offer (full) | DONE | IMPLEMENTATION_LEDGER L236 |

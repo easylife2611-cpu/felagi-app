@@ -1398,3 +1398,66 @@ S005 (create) | S008 (detail) — cards link to /needs/{id}
 - UNKNOWN != MISSING (no speculative fields)
 - Design-compliant (S009 spec + manifest + api-mapping)
 - No silent change (this ledger entry)
+
+## L236 — S011 Submit Offer (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S011 Submit Offer — missing (S008 provider action linked to /needs/:id/offers/new but view did not exist)
+
+### Changes
+- NEW: resources/views/submit-offer.blade.php (434 lines, S011 spec)
+- UPD: routes/web.php — added GET /needs/{id}/offers/new -> view('submit-offer')
+- UPD: lang/en.json — +20 keys (offeredPrice, proposalMessage, deliveryTime, etc.)
+- UPD: lang/am.json — +20 keys (parallel Amharic)
+- NEW: tests/Feature/Screens/S011SubmitOfferTest.php (15 tests, 34 assertions)
+
+### Screen anatomy (spec compliance)
+- AppBar 64 with back button + draft indicator
+- Need preview (title + category + location + budget)
+- Form fields: offered_price, currency, proposal_message,
+  delivery_time_text, availability_text, additional_notes
+- Submit -> POST /api/v1/needs/{needId}/offers
+- Cancel -> /needs/{needId}
+- Ads: prohibited per spec
+
+### States implemented
+draft (auto-saved) | validation (inline+summary) | saving (spinner) |
+success (redirect to /offers/{id}) | duplicate (409) | deadline-passed (422) |
+conflict (409) | offline
+
+### Validation (client + server)
+- offered_price: required, numeric, >= 0
+- proposal_message: required, 20-10000
+- delivery_time_text: optional, max 255
+- availability_text: optional, max 255
+- additional_notes: optional, max 10000
+
+### Business rules
+- Owner cannot offer on own need (403)
+- Need must be OPEN (409)
+- Offer deadline must not have passed (422)
+- One offer per provider per need (409)
+
+### Transitions
+S008 (back) | S012 (offer detail - redirect after success) |
+S023 (unlock - future) | S021 (support - future)
+
+### API note
+- Spec references POST /api/v1/offer-submissions
+- Backend actual: POST /api/v1/needs/{needId}/offers
+- Implemented against backend (consistent with S005 approach)
+
+### Test Results
+- S011SubmitOfferTest: 15 tests, 34 assertions
+- Full suite: 482 -> 497 tests, 0 failures
+
+### Not changed
+- No DB migration
+- No API change (offers endpoint already existed)
+- S003/S004/S005/S008/S009 untouched
+
+### Constitution
+- Additive (new view + route only)
+- UNKNOWN != MISSING (no speculative fields)
+- Design-compliant (S011 spec + manifest + api-mapping)
+- No silent change (this ledger entry)
