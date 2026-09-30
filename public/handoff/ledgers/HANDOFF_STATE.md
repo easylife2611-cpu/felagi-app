@@ -470,3 +470,26 @@ Read: L232, CHANGE_LOG S004, spec S005
 
 ### Continuity
 Read: L233, CHANGE_LOG S005, spec S008
+
+---
+## S008 Need Details — Handoff — 2026-09-30
+
+### What Changed
+- Full need-details screen (S008 spec)
+- NEW: resources/views/show-need.blade.php (348 lines)
+- NEW: routes/web.php — GET /needs/{id}
+- lang/en.json + lang/am.json: +18 keys each (91 total)
+
+### Test Results
+- S008NeedDetailTest: 16 tests (28 assertions)
+- Full suite: 469 tests, 0 failures
+
+### Next Steps (Priority Order)
+1. **S009 My Needs** (/my/needs) — GET /api/v1/my/needs
+2. **S010 Need Offers** (/needs/:id/offers) — owner-only offers list
+3. **S011 Submit Offer** (/needs/:id/offers/new)
+4. **S018 Notifications** (/notifications)
+5. **GAP-S003-PHOTO** (profile photo upload)
+
+### Continuity
+Read: L234, CHANGE_LOG S008, spec S009

@@ -17,3 +17,7 @@ Route::get('/browse', function () {
 Route::get('/needs/new', function () {
     return view('create-need');
 });
+
+Route::get('/needs/{id}', function ($id) {
+    return view('show-need');
+});

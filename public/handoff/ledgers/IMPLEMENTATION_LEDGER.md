@@ -1301,3 +1301,52 @@ Prohibited per spec (S005 has no ad slots)
 - UNKNOWN != MISSING (no speculative fields)
 - Design-compliant (S005 spec + manifest + api-mapping)
 - No silent change (this ledger entry)
+
+## L234 — S008 Need Details (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S008 Need Details — missing (S004 cards linked to /needs/:id but view did not exist)
+
+### Changes
+- NEW: resources/views/show-need.blade.php (348 lines, S008 spec)
+- UPD: routes/web.php — added GET /needs/{id} -> view('show-need')
+- UPD: lang/en.json — +18 keys (needDetails, postedBy, manage, actions, etc.)
+- UPD: lang/am.json — +18 keys (parallel Amharic)
+- NEW: tests/Feature/Screens/S008NeedDetailTest.php (16 tests, 28 assertions)
+
+### Screen anatomy (spec compliance)
+- AppBar 64 with back button
+- Need card: category chip, status badge, title, description
+- Meta grid: budget, status, location, quantity, deadline, offer deadline, posted
+- Requester card: avatar, name, rating
+- Owner actions: view offers, edit (OPEN only), complete (IN_PROGRESS), cancel (OPEN)
+- Provider actions: submit offer (OPEN only)
+- Ads: AD_NEED_DETAIL_BOTTOM_01
+
+### States implemented
+loading | public (anonymous) | owner (with actions) | terminal (completed/cancelled)
+| denied (403) | error (404) | offline
+
+### API integration
+- GET /api/v1/needs/{id} -> public projection with is_owner, offer_count
+- POST /api/v1/needs/{id}/cancel (owner only, OPEN state)
+- POST /api/v1/needs/{id}/complete (owner only, IN_PROGRESS state)
+
+### Transitions
+S004 (back) | S005 (edit) | S010 (offers) | S011 (submit offer) |
+S014/S016 (comparisons - future) | S019/S020 (boost/rating - future)
+
+### Test Results
+- S008NeedDetailTest: 16 tests, 28 assertions
+- Full suite: 453 -> 469 tests, 0 failures
+
+### Not changed
+- No DB migration
+- No API change (all endpoints already existed)
+- S003/S004/S005 untouched
+
+### Constitution
+- Additive (new view + route only)
+- UNKNOWN != MISSING (no speculative fields)
+- Design-compliant (S008 spec + manifest + api-mapping)
+- No silent change (this ledger entry)
