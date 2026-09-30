@@ -1655,3 +1655,26 @@ git revert <S003-commit>
 ### Feature
 - Admin browser login (Telegram-first, session-based)
 - 3 roles supported (MAIN_ADMIN / ADMIN / MODERATOR)
+
+---
+
+## B39 — Completion matrix + status report
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L269
+
+### Added
+- docs/reports/COMPLETION_MATRIX_20260930.md (276 lines)
+- docs/reports/STATUS_REPORT_20260930.md (196 lines)
+
+### Changed
+- public/handoff/SOURCE_OF_TRUTH.md (HEAD + timestamp)
+
+### Tests
+- No change (845 / 1991 / 0 failures)
+
+### Documentation
+- Full screen-by-screen completion matrix
+- Executive status report
+- 11 external blockers documented with owners

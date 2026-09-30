@@ -2649,3 +2649,41 @@ These are documented in the contract and remain outside implementation scope.
 - No guessing — Telegram-first per User schema + Admin contract
 - Additive — new middleware + controller + view
 - No silent changes — this ledger + commit
+
+---
+
+## L269 — Completion Matrix + Status Report (documentation)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Documentation (no code)
+
+**What Changed:**
+
+### NEW — docs/reports/COMPLETION_MATRIX_20260930.md (276 lines)
+- Screen-by-screen matrix (23 user + 23 admin)
+- Backend features: 11 DONE, 1 PARTIAL, 1 BLOCKED
+- Infrastructure: 45 migrations, 34 models, 13 services
+- API endpoints: 107
+- Tests: 845
+- Blockers enumerated (11 external)
+
+### NEW — docs/reports/STATUS_REPORT_20260930.md (196 lines)
+- Executive summary
+- What is done / partial / blocked
+- Session achievements (13 commits)
+- Next steps + environment status
+- How to continue
+
+### UPDATED — public/handoff/SOURCE_OF_TRUTH.md
+- HEAD refresh to 2295a55
+- Timestamp refresh
+
+**Result:**
+- No code change
+- 845 tests / 1,991 assertions / 0 failures (unchanged)
+
+**Constitution compliance:**
+- No silent changes
+- UNKNOWN != MISSING (blockers documented)
+- No hidden work
