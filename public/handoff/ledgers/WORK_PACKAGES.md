@@ -117,3 +117,5 @@ WP totals remain: 10 DONE, 1 VERIFIED, 1 PARTIAL, 16 BLOCKED, 1 DEFERRED.
 B-Blocks totals: **8 DONE** (B10, B11, B12, B13, B14, B15, B16, B17).
 
 B-Blocks are NOT counted in WP totals (see U-21).
+| B18-B24 | Ledger drift — pending backfill (GAP-70) | DEFERRED | OPEN_GAPS GAP-70 |
+| B25 | Payment domain tests (+54) | DONE | IMPLEMENTATION_LEDGER L217 |

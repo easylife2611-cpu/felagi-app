@@ -250,3 +250,32 @@ All 4 artifacts in ~/ (supersede B19 bundles):
 - Tests: 162 passed (320 assertions)
 - Model test files: 6 (B19: 3 + B21: 3)
 - Both repos CLEAN
+
+---
+## B25 — Payment Domain Test Suite (WP-B25 / R-TEST-01) — 2026-09-30
+
+### What Changed
+
+- 4 new test files under tests/Feature/Models/
+- 54 new tests, 83 new assertions
+- Full suite: 162 → 216 tests (320 → 403 assertions)
+- R-TEST-01 (Payment/AI model tests MISSING) → COVERED
+
+### State
+
+- App HEAD (before commit): 143a756 (B24)
+- App HEAD (after commit): (pending)
+- Design HEAD: 27edd9d (B11)
+- Tests: 216 passed (403 assertions)
+- Evidence: evidence/WP-B25_evidence.md
+
+### Blocked / Pending
+
+- **VERIFIED status:** requires second reviewer (Constitution Art. DONE definition)
+- **B17-B24 ledger backfill:** PENDING (see OPEN_GAPS GAP-70)
+- **Bundle refresh at B25_DONE:** not yet created
+
+### Continuity
+
+Next developer reading this + IMPLEMENTATION_LEDGER L217 + TEST_VERIFICATION B25
+can resume without chat reconstruction.

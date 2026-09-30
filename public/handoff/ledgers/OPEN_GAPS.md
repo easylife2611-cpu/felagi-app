@@ -221,3 +221,40 @@ These are **two distinct GAPs** with different issues. No rename occurred.
 - No silent changes — all 5 GAPs documented here
 - No duplicate ownership — GAP-38/GAP-54 clarified
 - UNKNOWN ≠ MISSING — GAP-07 remains OPEN (blocked, not deleted)
+
+---
+
+## GAP-70 — Ledger Drift: B17-B24 not recorded in canonical ledgers
+
+**Type:** Documentation integrity / Constitution compliance
+**Severity:** HIGH (affects handoff state, not production code)
+**Opened:** 2026-09-30
+
+**Evidence of drift:**
+
+| Ledger | Last Entry | HEAD (143a756=B24) |
+|---|---|---|
+| IMPLEMENTATION_LEDGER | L216 (B16) | B24 → gap B17-B24 |
+| WORK_PACKAGES (B-blocks) | B17 | B24 → gap B18-B24 |
+| CHANGE_LOG | B21 | B24 → gap B22-B24 |
+| TEST_VERIFICATION | B21 | B24 → gap B22-B24 |
+| HANDOFF_STATE | B22 | B24 → gap B23-B24 |
+
+**Cause:** B17-B24 code was committed to git but ledger entries were not appended. Partial documentation exists in HANDOFF_STATE (B18, B20, B22 bundle refresh entries).
+
+**Required action (next session):**
+
+1. `git log --oneline 143a756 ^6ea8a97` → list B17-B24 commits
+2. For each commit, extract changes → IMPLEMENTATION_LEDGER L217-L224
+3. Update WORK_PACKAGES B-blocks table (B18-B24)
+4. Backfill CHANGE_LOG + TEST_VERIFICATION
+5. Produce bundle refresh at B25_DONE
+
+**Do NOT guess** entries. Each must be traceable to a git commit + evidence.
+
+**Constitution reference:**
+- Art. "Maintain one canonical project ledger"
+- Art. "No hidden work"
+- Art. "No silent changes"
+
+**Status:** OPEN — deferred to next session

@@ -987,3 +987,48 @@ All handled in test payloads (no schema change). See D-112 and audit doc.
 ### Rollback
 
 git revert <B21-commit>
+
+---
+
+## B25 — Payment Domain Test Suite (WP-B25 / R-TEST-01) — 2026-09-30
+
+**Type:** Test coverage
+**HEAD before:** 143a756 (B24)
+
+### Test Results
+
+| Metric | Value |
+|--------|-------|
+| Tests run | 216 (was 162) |
+| Assertions | 403 (was 320) |
+| Failures | 0 |
+| Duration | 7.54s |
+| New files | 5 (4 tests + 1 evidence) |
+
+### Files Added
+
+- tests/Feature/Models/PaymentTest.php (16 tests)
+- tests/Feature/Models/PaymentEventTest.php (13 tests)
+- tests/Feature/Models/BoostTest.php (14 tests)
+- tests/Feature/Models/BoostPackageTest.php (11 tests)
+- evidence/WP-B25_evidence.md
+- evidence/WP-B25_phpunit_20260930_053259.log
+
+### Not Changed
+
+- No production code modified
+- No migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+
+- D-054 AUDIT BEFORE ACTION - schema audited first
+- IMPLEMENTED != VERIFIED - tests proven, awaiting VERIFIED
+- UNKNOWN != MISSING - 10 UNKNOWNs resolved before coding
+- No silent changes - all schema findings logged
+- No production code modified
+
+### Rollback
+
+git revert <B25-commit>  # test-only

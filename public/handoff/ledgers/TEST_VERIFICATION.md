@@ -394,3 +394,49 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - Result: 162 passed (320 assertions)
 - Failures: 0
 - Duration: 8.52s
+
+---
+
+## B25 — Payment Domain Test Suite (WP-B25 / R-TEST-01) — 2026-09-30
+
+### Test File Breakdown
+
+| Test File | Tests | Coverage |
+|-----------|-------|----------|
+| PaymentTest.php | 16 | UUID, casts, relationships, scopes, constants, unique constraints |
+| PaymentEventTest.php | 13 | No timestamps, nullable FK, unique constraint, casts |
+| BoostTest.php | 14 | 4 relations, active scope, unique payment_id, casts |
+| BoostPackageTest.php | 11 | Defaults, active scope, hasMany boosts, casts |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B25 | 162 | 320 |
+| B25 | +54 | +83 |
+| **Post-B25** | **216** | **403** |
+
+### Coverage Expansion
+
+| Model | Before B25 | After B25 |
+|-------|------------|-----------|
+| Payment | 0 | 16 |
+| PaymentEvent | 0 | 13 |
+| Boost | 0 | 14 |
+| BoostPackage | 0 | 11 |
+
+### Schema Findings
+
+- payments UNIQUE(payer_id, idempotency_key) — composite
+- payments UNIQUE(provider, provider_reference)
+- payment_events UNIQUE(provider, provider_event_id)
+- boosts.payment_id UNIQUE (1:1 with payments)
+- boost_packages: no `name`; defaults: currency='ETB', active=false
+
+### Test Run
+
+- Command: `vendor/bin/phpunit tests/Feature/Models/{PaymentTest,PaymentEventTest,BoostTest,BoostPackageTest}.php --testdox`
+- Result: **54 passed (83 assertions)**
+- Failures: 0
+- Duration: 7.54s
+- PHP: 8.2.33 | PHPUnit: 11.5.56

@@ -688,3 +688,47 @@ git revert 2f1b603
 
 ### Rollback
 git revert 44f9494
+
+## L217 — B25 (Payment Domain Test Suite) — 2026-09-30
+
+**Type:** Test coverage (WP-B25 / R-TEST-01)
+**Addresses:** Payment/AI model tests MISSING (per FELAGI_STATUS audit)
+
+### Changes
+- NEW: tests/Feature/Models/PaymentTest.php (16 tests, 7716 bytes)
+- NEW: tests/Feature/Models/PaymentEventTest.php (13 tests, 5608 bytes)
+- NEW: tests/Feature/Models/BoostTest.php (14 tests, 6620 bytes)
+- NEW: tests/Feature/Models/BoostPackageTest.php (11 tests, 3437 bytes)
+- NEW: evidence/WP-B25_evidence.md
+- NEW: evidence/WP-B25_phpunit_20260930_053259.log
+
+### Test Results
+- B25 new: 54 tests (83 assertions)
+- Full suite: 162 → 216 tests (320 → 403 assertions total)
+- Failures: 0
+- Duration: 7.54s
+- PHP: 8.2.33 | PHPUnit: 11.5.56
+
+### Schema Findings (via test failures during development)
+- Payment unique: (payer_id, idempotency_key) + (provider, provider_reference)
+- PaymentEvent unique: (provider, provider_event_id)
+- Boost.payment_id UNIQUE (1:1 with Payment)
+- BoostPackage: no `name` column; currency default ETB; active default false
+- PaymentEvent: no timestamps; payment_id nullable
+
+### Not Changed
+- No production code modified (test-only)
+- No DB migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+- No production code changed
+- UNKNOWN markers resolved before coding (10 UNKNOWNs → verified)
+- No hidden work
+- IMPLEMENTED != VERIFIED — VERIFIED pending second reviewer
+
+### Rollback
+git revert HEAD  # test-only, safe
+# OR
+rm tests/Feature/Models/{PaymentTest,PaymentEventTest,BoostTest,BoostPackageTest}.php

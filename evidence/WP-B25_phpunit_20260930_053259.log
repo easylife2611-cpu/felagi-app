@@ -1,0 +1,72 @@
+PHPUnit 11.5.56 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.33
+Configuration: /home/zagcreht/felagi_app/phpunit.xml
+
+......................................................            54 / 54 (100%)
+
+Time: 00:05.892, Memory: 48.50 MB
+
+Boost (Tests\Feature\Models\Boost)
+ ✔ Uuid auto generated
+ ✔ Persists core attributes
+ ✔ Belongs to need
+ ✔ Belongs to requester
+ ✔ Belongs to package
+ ✔ Belongs to payment
+ ✔ Status constants
+ ✔ Price snapshot casts decimal 2
+ ✔ Duration days casts integer
+ ✔ Starts at casts to datetime
+ ✔ Expires at casts to datetime
+ ✔ Starts at nullable
+ ✔ Scope active requires status and window
+ ✔ Payment id is unique per boost
+
+Boost Package (Tests\Feature\Models\BoostPackage)
+ ✔ Uuid auto generated
+ ✔ Persists core attributes
+ ✔ Duration days casts integer
+ ✔ Price casts to decimal 2
+ ✔ Active casts to boolean
+ ✔ Default currency is etb
+ ✔ Default active is false
+ ✔ Published settings version nullable
+ ✔ Has many boosts
+ ✔ Scope active filters correctly
+ ✔ Duration days accepts unsigned smallint
+
+Payment (Tests\Feature\Models\Payment)
+ ✔ Uuid auto generated
+ ✔ Persists core attributes
+ ✔ Belongs to payer
+ ✔ Belongs to need
+ ✔ Has many events
+ ✔ Boost is null initially
+ ✔ Amount casts to decimal 2
+ ✔ Confirmed at casts to datetime
+ ✔ Failed at casts to datetime
+ ✔ Is confirmed false for pending
+ ✔ Is confirmed true for confirmed
+ ✔ Scope confirmed filters
+ ✔ Purpose constants
+ ✔ Status constants
+ ✔ Unique payer id and idempotency key
+ ✔ Unique provider and provider reference
+
+Payment Event (Tests\Feature\Models\PaymentEvent)
+ ✔ Uuid auto generated
+ ✔ No timestamps
+ ✔ Belongs to payment
+ ✔ Payment id nullable
+ ✔ Signature valid casts to boolean
+ ✔ Sanitized metadata casts to array
+ ✔ Sanitized metadata nullable
+ ✔ Received at casts to datetime
+ ✔ Processing status constants
+ ✔ Default processing status is received
+ ✔ Unique provider and provider event id
+ ✔ Payload digest stores 64 hex
+ ✔ Event type stored correctly
+
+OK (54 tests, 83 assertions)
