@@ -446,3 +446,27 @@ Read: L231, CHANGE_LOG S003, design spec S004-S023
 
 ### Continuity
 Read: L232, CHANGE_LOG S004, spec S005
+
+---
+## S005 Create Need — Handoff — 2026-09-30
+
+### What Changed
+- Full create-need screen (S005 spec)
+- NEW: resources/views/create-need.blade.php (362 lines)
+- NEW: routes/web.php — GET /needs/new
+- lang/en.json + lang/am.json: +26 keys each (73 total)
+
+### Test Results
+- S005CreateNeedTest: 14 tests (44 assertions)
+- Full suite: 453 tests, 0 failures
+
+### Next Steps (Priority Order)
+1. **S008 Need Detail** (/needs/:id) — view + GET /api/v1/needs/{id}
+2. **S006 Public Preview** (/needs/new/public-preview) — local preview
+3. **S007 Created Success** (/needs/:id/created) — confirmation screen
+4. **S011 Submit Offer** (/needs/:id/offers/new)
+5. **S009 My Needs** (/my/needs)
+6. **GAP-S003-PHOTO** (profile photo upload)
+
+### Continuity
+Read: L233, CHANGE_LOG S005, spec S008

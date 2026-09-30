@@ -13,3 +13,7 @@ Route::get('/profile', function () {
 Route::get('/browse', function () {
     return view('browse');
 });
+
+Route::get('/needs/new', function () {
+    return view('create-need');
+});

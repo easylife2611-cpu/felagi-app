@@ -1246,3 +1246,58 @@ S013 (/my/offers) | S018 (/notifications)
 - UNKNOWN != MISSING (no speculative fields)
 - Design-compliant (S004 spec + manifest + api-mapping)
 - No silent change (this ledger entry)
+
+## L233 — S005 Create Need (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S005 Create Need — missing (S004 FAB linked to /needs/new but view did not exist)
+
+### Changes
+- NEW: resources/views/create-need.blade.php (362 lines, S005 spec)
+- UPD: routes/web.php — added GET /needs/new -> view('create-need')
+- UPD: lang/en.json — +26 keys (title, category, description, budget, deadline, etc.)
+- UPD: lang/am.json — +26 keys (parallel Amharic)
+- NEW: tests/Feature/Screens/S005CreateNeedTest.php (14 tests, 44 assertions)
+
+### Screen anatomy (spec compliance)
+- AppBar 64 with back button + draft indicator
+- Form fields: title, category_id, description, location_text,
+  budget_min, budget_max, currency, quantity, deadline_at,
+  offer_deadline_at, telegram_publication_acknowledged
+- Categories loaded via GET /api/v1/categories
+- Draft auto-save to localStorage (actor-scoped)
+- Submit -> POST /api/v1/needs
+- Cancel -> /browse
+
+### States implemented
+draft (auto-saved) | validation (inline+summary) | saving (spinner) |
+success (redirect to /needs/{id}) | error | offline
+
+### Validation (client + server)
+- title: required, 5-255
+- category_id: required, uuid, exists
+- description: required, 20-10000
+- budget_max >= budget_min
+- telegram_publication_acknowledged: required, accepted
+
+### Transitions
+S004 (cancel) | S006 (public preview - future) | S007 (created - redirect)
+| S021 (support - future)
+
+### Ads
+Prohibited per spec (S005 has no ad slots)
+
+### Test Results
+- S005CreateNeedTest: 14 tests, 44 assertions
+- Full suite: 439 -> 453 tests, 0 failures
+
+### Not changed
+- No DB migration
+- No API change (POST /api/v1/needs already existed)
+- S003/S004 untouched
+
+### Constitution
+- Additive (new view + route only)
+- UNKNOWN != MISSING (no speculative fields)
+- Design-compliant (S005 spec + manifest + api-mapping)
+- No silent change (this ledger entry)

@@ -165,3 +165,4 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 | WIDGET-FLOW | OIDC -> Widget pivot | DONE | IMPLEMENTATION_LEDGER L230 |
 | S003-PROFILE | Post-login Profile screen | DONE | IMPLEMENTATION_LEDGER L231 |
 | S004-BROWSE | Browse Needs (full) | DONE | IMPLEMENTATION_LEDGER L232 |
+| S005-CREATE | Create Need (full) | DONE | IMPLEMENTATION_LEDGER L233 |
