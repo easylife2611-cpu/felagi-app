@@ -264,7 +264,7 @@ All 4 artifacts in ~/ (supersede B19 bundles):
 ### State
 
 - App HEAD (before commit): 143a756 (B24)
-- App HEAD (after commit): (pending)
+- App HEAD (after commit): 202716b (B25)
 - Design HEAD: 27edd9d (B11)
 - Tests: 216 passed (403 assertions)
 - Evidence: evidence/WP-B25_evidence.md
