@@ -4,6 +4,7 @@ namespace Tests\Feature\Screens;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class AdminScreensTest extends TestCase
 {
@@ -42,9 +43,7 @@ class AdminScreensTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider adminRouteProvider
-     */
+    #[DataProvider('adminRouteProvider')]
     public function test_admin_route_renders(string $path, string $spec): void
     {
         $res = $this->get($path);
@@ -54,9 +53,7 @@ class AdminScreensTest extends TestCase
         $res->assertSee('id="toast"', false);
     }
 
-    /**
-     * @dataProvider adminRouteProvider
-     */
+    #[DataProvider('adminRouteProvider')]
     public function test_admin_route_has_sidebar_nav(string $path, string $spec): void
     {
         $res = $this->get($path);
@@ -66,9 +63,7 @@ class AdminScreensTest extends TestCase
         $res->assertSee('href="/admin/dashboard"', false);
     }
 
-    /**
-     * @dataProvider adminRouteProvider
-     */
+    #[DataProvider('adminRouteProvider')]
     public function test_admin_route_has_pending_notice(string $path, string $spec): void
     {
         $res = $this->get($path);

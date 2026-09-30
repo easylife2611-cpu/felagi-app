@@ -1998,3 +1998,35 @@ references `settings.key`. Documented as canonical pattern for FK-by-natural-key
 - Art. "Additive only" — no destructive changes
 - Art. "No hidden work" — ledger entry added
 - Art. "No silent changes" — commit + ledger
+
+---
+
+## L259 — PHPUnit 11 deprecation cleanup (AdminScreensTest)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Test infrastructure (non-breaking)
+
+**What Changed:**
+
+### `tests/Feature/Screens/AdminScreensTest.php`
+- Imported `PHPUnit\Framework\Attributes\DataProvider`
+- Converted 3× `@dataProvider adminRouteProvider` (doc-comment metadata)
+  → `#[DataProvider('adminRouteProvider')]` (PHP 8 attribute)
+- Removed 3× empty `/** */` doc-comment stubs
+
+**Why:**
+PHPUnit 11 deprecates metadata in doc-comments; PHPUnit 12 removes support.
+Migrating now prevents future breakage.
+
+**Result:**
+- Before: 699 tests · 1,380 assertions · **3 PHPUnit deprecations**
+- After:  699 tests · 1,380 assertions · **0 deprecations**
+- Zero test count/assertion changes (pure infra)
+
+**Constitution compliance:**
+- Art. "Additive only" — no test logic changed
+- Art. "No silent changes" — ledger + commit
+- Art. "No hidden work" — documented
+
+**Deprecation source:** PHPUnit 11.5.56 (target: PHPUnit 12 compatibility)

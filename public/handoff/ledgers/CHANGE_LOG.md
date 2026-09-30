@@ -1418,3 +1418,21 @@ git revert <S003-commit>
 
 ### GAPs
 - GAP-71c — ✅ RESOLVED
+
+---
+
+## B29 — PHPUnit 11 deprecation cleanup
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L259
+
+### Changed
+- tests/Feature/Screens/AdminScreensTest.php
+  - `@dataProvider` → `#[DataProvider]` (3×)
+  - Removed empty `/** */` stubs (3×)
+  - Added `use PHPUnit\Framework\Attributes\DataProvider;`
+
+### Tests
+- 699 tests · 1,380 assertions · **0 deprecations**
+- (Previous: 3 PHPUnit deprecations)
