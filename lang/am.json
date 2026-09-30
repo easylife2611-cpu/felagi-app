@@ -117,5 +117,18 @@
     "minChars20": "ቢያንስ 20 ቁምፊዎች",
     "offerSubmitted": "ቅናሽ በተሳካ ሁኔታ ገብቷል",
     "offerDeadlinePassed": "የቅናሽ የመጨረሻ ቀን አልፏል",
-    "offerAlreadyExists": "ለዚህ ፍላጎት አስቀድመው ቅናሽ አስገብተዋል"
+    "offerAlreadyExists": "ለዚህ ፍላጎት አስቀድመው ቅናሽ አስገብተዋል",
+    "receivedOffersTitle": "የተቀበሉ አቅርቦቶች",
+    "accessDeniedOffers": "የተቀበሉ አቅርቦቶችን ማየት የሚችለው የፍላጎቱ ባለቤት ብቻ ነው።",
+    "backToMyNeeds": "ወደ የኔ ፍላጎቶች ተመለስ",
+    "noOffersTitle": "እስካሁን ቅናሽ የለም",
+    "noOffersBody": "አቅራቢዎች ቅናሽ ሲያስገቡ እዚህ ይታያሉ።",
+    "backToNeed": "ወደ ፍላጎት ተመለስ",
+    "compareHint": "ለማነጻጸር ዝግጁ",
+    "compareOffers": "ቅናሾችን አነጻጽር",
+    "offerStatusPending": "በመጠባበቅ ላይ",
+    "offerStatusAccepted": "ተቀባይነት አግኝቷል",
+    "offerStatusRejected": "ተቀባይነት አላገኘም",
+    "offerStatusWithdrawn": "ተመልሷል",
+    "viewDetails": "ዝርዝር ይመልከቱ"
 }

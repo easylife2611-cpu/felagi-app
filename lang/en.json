@@ -117,5 +117,18 @@
     "minChars20": "Minimum 20 characters",
     "offerSubmitted": "Offer submitted successfully",
     "offerDeadlinePassed": "The offer deadline has passed",
-    "offerAlreadyExists": "You already submitted an offer for this need"
+    "offerAlreadyExists": "You already submitted an offer for this need",
+    "receivedOffersTitle": "Received Offers",
+    "accessDeniedOffers": "Only the need owner can view received offers.",
+    "backToMyNeeds": "Back to My Needs",
+    "noOffersTitle": "No offers yet",
+    "noOffersBody": "When providers submit offers, they will appear here.",
+    "backToNeed": "Back to Need",
+    "compareHint": "Ready to compare",
+    "compareOffers": "Compare offers",
+    "offerStatusPending": "Pending",
+    "offerStatusAccepted": "Accepted",
+    "offerStatusRejected": "Rejected",
+    "offerStatusWithdrawn": "Withdrawn",
+    "viewDetails": "View details"
 }

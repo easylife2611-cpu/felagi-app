@@ -29,3 +29,7 @@ Route::get('/my/needs', function () {
 Route::get('/needs/{id}/offers/new', function ($id) {
     return view('submit-offer');
 });
+
+Route::get('/needs/{id}/offers', function ($id) {
+    return view('received-offers');
+});

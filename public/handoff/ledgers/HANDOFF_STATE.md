@@ -539,3 +539,27 @@ Read: L235, CHANGE_LOG S009, spec S010
 
 ### Continuity
 Read: L236, CHANGE_LOG S011, spec S010
+
+---
+## S010 Received Offers — Handoff — 2026-09-30
+
+### What Changed
+- Full received-offers screen (S010 spec)
+- NEW: resources/views/received-offers.blade.php (336 lines)
+- NEW: routes/web.php — GET /needs/{id}/offers
+- lang/en.json + lang/am.json: +13 keys each (132 total)
+
+### Test Results
+- S010ReceivedOffersTest: 12 tests (32 assertions)
+- Full suite: 509 tests, 0 failures
+
+### Next Steps (Priority Order)
+1. **S012 Offer Detail** (/offers/:id) — accept/reject flow
+2. **S014 Compare Offers** (/needs/:id/compare)
+3. **S013 My Offers** (/my/offers) — provider list
+4. **S018 Notifications** (/notifications)
+5. **S007 Created Success** (/needs/:id/created)
+6. **GAP-S003-PHOTO** (profile photo upload)
+
+### Continuity
+Read: L237, CHANGE_LOG S010, spec S012

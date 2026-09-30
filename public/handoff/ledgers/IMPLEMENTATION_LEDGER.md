@@ -1461,3 +1461,49 @@ S023 (unlock - future) | S021 (support - future)
 - UNKNOWN != MISSING (no speculative fields)
 - Design-compliant (S011 spec + manifest + api-mapping)
 - No silent change (this ledger entry)
+
+## L237 — S010 Received Offers (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S010 Received Offers — missing (S008 owner action linked to /needs/:id/offers but view did not exist)
+
+### Changes
+- NEW: resources/views/received-offers.blade.php (336 lines, S010 spec)
+- UPD: routes/web.php — added GET /needs/{id}/offers -> view('received-offers')
+- UPD: lang/en.json — +13 keys (receivedOffersTitle, compareHint, offerStatus*, etc.)
+- UPD: lang/am.json — +13 keys (parallel Amharic)
+- NEW: tests/Feature/Screens/S010ReceivedOffersTest.php (12 tests, 32 assertions)
+
+### Screen anatomy (spec compliance)
+- AppBar 64 with back + offer count badge
+- Need banner (title, category, status, location)
+- Compare bar (appears when >= 2 pending offers)
+- Offer cards: provider (avatar, name, rating), status badge, price,
+  proposal message, delivery/availability, created_at
+- Ads: prohibited per spec
+
+### States implemented
+loading (skeleton) | list | empty | terminal | denied (403) | error (404) | offline
+
+### API integration
+- GET /api/v1/needs/{needId}/offers (owner-only, with provider relation)
+- Returns all offer statuses (PENDING/ACCEPTED/REJECTED/WITHDRAWN)
+- Ordered newest first
+
+### Transitions
+S008 (back) | S012 (offer detail — card click) | S014 (compare — button)
+
+### Test Results
+- S010ReceivedOffersTest: 12 tests, 32 assertions
+- Full suite: 497 -> 509 tests, 0 failures
+
+### Not changed
+- No DB migration
+- No API change (offers endpoint already existed)
+- S003/S004/S005/S008/S009/S011 untouched
+
+### Constitution
+- Additive (new view + route only)
+- UNKNOWN != MISSING (no speculative fields)
+- Design-compliant (S010 spec + manifest + api-mapping)
+- No silent change (this ledger entry)
