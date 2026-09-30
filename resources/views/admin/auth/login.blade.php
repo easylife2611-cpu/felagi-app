@@ -17,17 +17,16 @@
         .alert{padding:12px 14px;border-radius:8px;font-size:13px;margin-bottom:16px}
         .alert-warn{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00}
         .alert-info{background:#e3f2fd;border:1px solid #90caf9;color:#0d47a1}
+        .alert-err{background:#fee2e2;border:1px solid #fca5a5;color:#991b1b}
         .btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:background .15s;width:100%}
         .btn-telegram{background:#0088cc;color:#fff}
         .btn-telegram:hover{background:#0077b3}
-        .btn-admin{background:#26c281;color:#fff;margin-top:12px}
-        .btn-admin:hover{background:#1fa76d}
         .btn-secondary{background:#eef2f6;color:#192431;margin-top:12px}
         .btn-secondary:hover{background:#e0e6ec}
         .foot{margin-top:24px;font-size:12px;color:#8a95a3;text-align:center;line-height:1.6}
         .foot a{color:#003366;text-decoration:none}
-        .foot a:hover{text-decoration:underline}
-        .divider{text-align:center;color:#8a95a3;font-size:12px;margin:20px 0}
+        #tg-widget{display:flex;justify-content:center;margin:20px 0}
+        #status{margin-top:12px;font-size:13px;color:#586675;text-align:center}
     </style>
 </head>
 <body>
@@ -38,9 +37,15 @@
         </div>
 
         <h1>{{ __('admin.auth.login_title') }}</h1>
-        <p class="sub">
-            {{ __('admin.auth.login_subtitle') }}
-        </p>
+        <p class="sub">{{ __('admin.auth.login_subtitle') }}</p>
+
+        @if ($errors->any())
+            <div class="alert alert-err">
+                @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                @endforeach
+            </div>
+        @endif
 
         @if ($authenticated && !$hasAdminRole)
             <div class="alert alert-warn">
@@ -50,26 +55,55 @@
         @endif
 
         @if ($authenticated && $hasAdminRole)
-            <div class="alert alert-info">
-                {{ __('admin.auth.already_signed_in') }}
-            </div>
-            <a href="/admin/dashboard" class="btn btn-admin">
-                {{ __('admin.auth.go_dashboard') }}
-            </a>
+            <div class="alert alert-info">{{ __('admin.auth.already_signed_in') }}</div>
+            <a href="/admin/dashboard" class="btn btn-telegram">{{ __('admin.auth.go_dashboard') }}</a>
         @else
-            {{-- Primary: Telegram sign-in (existing S002 flow) --}}
-            <a href="/auth/telegram" class="btn btn-telegram">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
-                </svg>
-                {{ __('admin.auth.sign_in_telegram') }}
-            </a>
+            {{-- Telegram Login Widget --}}
+            <div id="tg-widget"></div>
+            <div id="status">Loading Telegram…</div>
 
-            <div class="divider">{{ __('common.or') }}</div>
+            <form id="tg-form" method="POST" action="{{ route('admin.login.telegram') }}" style="display:none">
+                @csrf
+                <input type="hidden" name="id" id="tg-id">
+                <input type="hidden" name="first_name" id="tg-first_name">
+                <input type="hidden" name="last_name" id="tg-last_name">
+                <input type="hidden" name="username" id="tg-username">
+                <input type="hidden" name="photo_url" id="tg-photo_url">
+                <input type="hidden" name="auth_date" id="tg-auth_date">
+                <input type="hidden" name="hash" id="tg-hash">
+            </form>
 
-            <a href="/" class="btn btn-secondary">
-                {{ __('common.back_home') }}
-            </a>
+            <script>
+                window.onTelegramAuth = function (user) {
+                    document.getElementById('status').textContent = 'Signing you in…';
+                    document.getElementById('tg-id').value         = user.id;
+                    document.getElementById('tg-first_name').value = user.first_name || '';
+                    document.getElementById('tg-last_name').value  = user.last_name || '';
+                    document.getElementById('tg-username').value   = user.username || '';
+                    document.getElementById('tg-photo_url').value  = user.photo_url || '';
+                    document.getElementById('tg-auth_date').value  = user.auth_date;
+                    document.getElementById('tg-hash').value       = user.hash;
+                    document.getElementById('tg-form').submit();
+                };
+            </script>
+            <script async
+                    src="https://telegram.org/js/telegram-widget.js?22"
+                    data-telegram-login="{{ config('services.telegram.bot_username', 'FelagiMarketBot') }}"
+                    data-size="large"
+                    data-request-access="write"
+                    data-userpic="true"
+                    data-onauth="onTelegramAuth(user)"></script>
+            <script>
+                setTimeout(() => {
+                    const s = document.getElementById('status');
+                    const w = document.getElementById('tg-widget');
+                    if (s && w && w.children.length > 0) {
+                        s.style.display = 'none';
+                    }
+                }, 1500);
+            </script>
+
+            <a href="/" class="btn btn-secondary">{{ __('common.back_home') }}</a>
         @endif
 
         <div class="foot">

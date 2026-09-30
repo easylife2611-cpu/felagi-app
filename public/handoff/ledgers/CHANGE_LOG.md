@@ -1678,3 +1678,28 @@ git revert <S003-commit>
 - Full screen-by-screen completion matrix
 - Executive status report
 - 11 external blockers documented with owners
+
+---
+
+## B40 — Admin Login: Telegram Widget integration (L268-followup)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L268-followup
+
+### Added
+- POST /admin/login/telegram route
+- AdminLoginController::telegramCallback()
+- Telegram Widget embedded in login page
+
+### Changed
+- resources/views/admin/auth/login.blade.php
+- .gitignore (env backup patterns)
+
+### Tests
+- No change (845 / 1991 / 0 failures)
+
+### Verification
+- Live at https://zagcreativity.com/admin/login
+- BotFather domain: zagcreativity.com
+- Login flow works (Telegram Widget -> session)

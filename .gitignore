@@ -31,3 +31,9 @@ error_log
 /public/downloads/*
 !/public/downloads/index.html
 !evidence/*.log
+
+# Env backups
+.env.bak
+.env.bak.*
+.env.broken
+.env.broken.*

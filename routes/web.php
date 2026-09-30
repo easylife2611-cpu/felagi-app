@@ -7,6 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// S002 Telegram sign-in (alias for welcome — admin login redirects here)
+Route::get('/auth/telegram', function () {
+    return view('welcome');
+});
+
 Route::get('/profile', function () {
     return view('profile');
 });
@@ -98,6 +103,11 @@ Route::prefix('admin')->group(function () {
     // Public: login page
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])
         ->name('admin.login');
+
+    // Public: Telegram widget callback for admin login (creates web session)
+    Route::post('/login/telegram', [AdminLoginController::class, 'telegramCallback'])
+        ->middleware('throttle:10,1')
+        ->name('admin.login.telegram');
 
     // Protected: logout + admin panel (auth + admin role)
     Route::middleware(['auth', 'admin'])->group(function () {

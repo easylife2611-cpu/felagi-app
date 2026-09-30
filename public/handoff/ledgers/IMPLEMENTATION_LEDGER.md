@@ -2687,3 +2687,50 @@ These are documented in the contract and remain outside implementation scope.
 - No silent changes
 - UNKNOWN != MISSING (blockers documented)
 - No hidden work
+
+---
+
+## L268-followup — Admin Login: Telegram Widget integration
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Feature completion (Telegram Widget for admin login)
+
+**What Changed:**
+
+### MODIFIED — app/Http/Controllers/Admin/Auth/AdminLoginController.php
+- Added telegramCallback() method
+- Verifies Telegram Widget payload via TelegramWidgetService
+- Creates web session via Auth::login()
+- Checks admin role before session creation
+- Redirects to /admin/dashboard
+
+### MODIFIED — routes/web.php
+- Added POST /admin/login/telegram -> AdminLoginController@telegramCallback
+- Name: admin.login.telegram
+- Throttle: 10/min
+
+### MODIFIED — resources/views/admin/auth/login.blade.php
+- Replaced "Sign in with Telegram" link (which went to /auth/telegram)
+- With embedded Telegram Login Widget
+- Widget JS auto-submits signed payload to POST /admin/login/telegram
+- Hidden form fields: id, first_name, last_name, username, photo_url, auth_date, hash
+- Loading state + error display
+
+### MODIFIED — .gitignore
+- Broader patterns: .env.bak, .env.bak.*, .env.broken, .env.broken.*
+
+**Why:**
+Initial L268 commit (2295a55) linked to /auth/telegram which uses Sanctum flow
+(localStorage token). Admin routes use web session (auth:web). Separate mechanisms.
+Admin login needed own Widget -> session flow.
+
+**Proof:**
+- Verified live: https://zagcreativity.com/admin/login
+- BotFather domain set: zagcreativity.com
+- Telegram Widget loaded, login as So -> Admin Dashboard rendered
+
+**Constitution compliance:**
+- No guessing
+- Additive
+- No silent changes

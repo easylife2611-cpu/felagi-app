@@ -7,6 +7,8 @@ use App\Models\UserRole;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Auth\TelegramWidgetService;
+use App\Exceptions\OidcExchangeException;
 use Illuminate\View\View;
 
 /**
@@ -62,4 +64,38 @@ class AdminLoginController extends Controller
             ->whereNull('revoked_at')
             ->exists();
     }
+    /**
+     * POST /admin/login/telegram
+     * Verify Telegram Widget data and create a web session.
+     *
+     * Widget JS POSTs the signed payload here (id, first_name, ..., hash).
+     * We verify with TelegramWidgetService then Auth::login() → web session.
+     */
+    public function telegramCallback(Request $request, TelegramWidgetService $widgetService): RedirectResponse
+    {
+        try {
+            $verified = $widgetService->verify($request->all());
+        } catch (OidcExchangeException $e) {
+            return back()->withErrors([
+                "telegram" => "Telegram verification failed: " . $e->getMessage(),
+            ]);
+        }
+
+        $result = $widgetService->upsertUser($verified);
+        $user = $result["user"];
+
+        // Must have an active admin role
+        if (!$this->hasAdminRole($user)) {
+            return back()->withErrors([
+                "telegram" => __("admin.auth.no_admin_role_hint"),
+            ]);
+        }
+
+        // Create web session
+        Auth::login($user, false);
+        $request->session()->regenerate();
+
+        return redirect()->intended("/admin/dashboard");
+    }
+
 }
