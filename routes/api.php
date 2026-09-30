@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\RatingController;
 use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
 use App\Http\Controllers\Api\V1\Admin\AdminTelegramController;
+use App\Http\Controllers\Api\V1\Admin\AdminReadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -170,6 +171,31 @@ Route::prefix('v1')->group(function () {
             Route::get('publications',                 [AdminTelegramController::class, 'publications']);
             Route::get('publications/{id}',            [AdminTelegramController::class, 'showPublication']);
         });
+
+        // WP-05c: Admin read endpoints (L262)
+        Route::get('dashboard',     [AdminReadController::class, 'dashboard']);
+        Route::get('telegram-overview', [AdminReadController::class, 'telegram']);
+        Route::get('health',        [AdminReadController::class, 'health']);
+        Route::get('features',      [AdminReadController::class, 'features']);
+        Route::get('marketplace',   [AdminReadController::class, 'marketplace']);
+        Route::get('ai',            [AdminReadController::class, 'ai']);
+        Route::get('payments',      [AdminReadController::class, 'payments']);
+        Route::get('users',         [AdminReadController::class, 'users']);
+        Route::get('content',       [AdminReadController::class, 'content']);
+        Route::get('notifications', [AdminReadController::class, 'notifications']);
+        Route::get('files',         [AdminReadController::class, 'files']);
+        Route::get('jobs',          [AdminReadController::class, 'jobs']);
+        Route::get('backups',       [AdminReadController::class, 'backups']);
+        Route::get('integrity',     [AdminReadController::class, 'integrity']);
+        Route::get('security',      [AdminReadController::class, 'security']);
+        Route::get('audit',         [AdminReadController::class, 'audit']);
+        Route::get('settings',      [AdminReadController::class, 'settings']);
+        Route::get('recovery',      [AdminReadController::class, 'recovery']);
+        Route::get('safe-mode',     [AdminReadController::class, 'safeMode']);
+        Route::get('monetization',  [AdminReadController::class, 'monetization']);
+        Route::get('maintenance',   [AdminReadController::class, 'maintenance']);
+        Route::get('reports',       [AdminReadController::class, 'reports']);
+        Route::get('ads',           [AdminReadController::class, 'ads']);
     });
 
 });

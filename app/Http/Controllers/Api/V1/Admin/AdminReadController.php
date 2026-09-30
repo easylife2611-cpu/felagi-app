@@ -1,0 +1,228 @@
+<?php
+
+namespace App\Http\Controllers\Api\V1\Admin;
+
+use App\Http\Controllers\Api\V1\BaseApiController;
+use App\Http\Requests\Admin\AdminListRequest;
+use App\Models\Attachment;
+use App\Models\AuditLog;
+use App\Models\Payment;
+use App\Models\Report;
+use App\Models\Setting;
+use App\Models\TelegramDestination;
+use App\Models\User;
+use App\Policies\AdminReadPolicy;
+use Illuminate\Http\JsonResponse;
+
+/**
+ * WP-05c — Admin read endpoints (23 screens).
+ *
+ * Per docs/specs/WP-05c_LOCKED.md:
+ *   - Capability-based auth via AdminReadPolicy
+ *   - Offset pagination (default 25, max 100)
+ *   - BaseApiController envelope
+ *   - Audit log on every successful read
+ *
+ * Screens without a backing model return explicit placeholder data
+ * (meta.source = 'placeholder') — never guessed values.
+ */
+class AdminReadController extends BaseApiController
+{
+    /** Map: screen → [area, model|null] */
+    private const SCREENS = [
+        'A001' => ['dashboard',     null],
+        'A002' => ['telegram',      TelegramDestination::class],
+        'A003' => ['health',        null],
+        'A004' => ['features',      Setting::class],
+        'A005' => ['marketplace',   Report::class],
+        'A006' => ['ai',            null],
+        'A007' => ['payments',      Payment::class],
+        'A008' => ['users',         User::class],
+        'A009' => ['content',       Setting::class],
+        'A010' => ['notifications', null],
+        'A011' => ['files',         Attachment::class],
+        'A012' => ['jobs',          null],
+        'A013' => ['backups',       null],
+        'A014' => ['integrity',     null],
+        'A015' => ['security',      null],
+        'A016' => ['audit',         AuditLog::class],
+        'A017' => ['settings',      Setting::class],
+        'A018' => ['recovery',      null],
+        'A019' => ['safe-mode',     null],
+        'A020' => ['monetization',  Setting::class],
+        'A021' => ['maintenance',   null],
+        'A022' => ['reports',       Report::class],
+        'A023' => ['ads',           null],
+    ];
+
+    // ─────────────────────────────────────────────────────────
+    // A001–A023 — each method delegates to handle($screen, $req)
+    // ─────────────────────────────────────────────────────────
+
+    public function dashboard(AdminListRequest $r): JsonResponse      { return $this->handle('A001', $r); }
+    public function telegram(AdminListRequest $r): JsonResponse       { return $this->handle('A002', $r); }
+    public function health(AdminListRequest $r): JsonResponse         { return $this->handle('A003', $r); }
+    public function features(AdminListRequest $r): JsonResponse       { return $this->handle('A004', $r); }
+    public function marketplace(AdminListRequest $r): JsonResponse    { return $this->handle('A005', $r); }
+    public function ai(AdminListRequest $r): JsonResponse             { return $this->handle('A006', $r); }
+    public function payments(AdminListRequest $r): JsonResponse       { return $this->handle('A007', $r); }
+    public function users(AdminListRequest $r): JsonResponse          { return $this->handle('A008', $r); }
+    public function content(AdminListRequest $r): JsonResponse        { return $this->handle('A009', $r); }
+    public function notifications(AdminListRequest $r): JsonResponse  { return $this->handle('A010', $r); }
+    public function files(AdminListRequest $r): JsonResponse          { return $this->handle('A011', $r); }
+    public function jobs(AdminListRequest $r): JsonResponse           { return $this->handle('A012', $r); }
+    public function backups(AdminListRequest $r): JsonResponse        { return $this->handle('A013', $r); }
+    public function integrity(AdminListRequest $r): JsonResponse      { return $this->handle('A014', $r); }
+    public function security(AdminListRequest $r): JsonResponse       { return $this->handle('A015', $r); }
+    public function audit(AdminListRequest $r): JsonResponse          { return $this->handle('A016', $r); }
+    public function settings(AdminListRequest $r): JsonResponse       { return $this->handle('A017', $r); }
+    public function recovery(AdminListRequest $r): JsonResponse       { return $this->handle('A018', $r); }
+    public function safeMode(AdminListRequest $r): JsonResponse       { return $this->handle('A019', $r); }
+    public function monetization(AdminListRequest $r): JsonResponse   { return $this->handle('A020', $r); }
+    public function maintenance(AdminListRequest $r): JsonResponse    { return $this->handle('A021', $r); }
+    public function reports(AdminListRequest $r): JsonResponse        { return $this->handle('A022', $r); }
+    public function ads(AdminListRequest $r): JsonResponse            { return $this->handle('A023', $r); }
+
+    // ─────────────────────────────────────────────────────────
+    // Shared handler
+    // ─────────────────────────────────────────────────────────
+
+    private function handle(string $screen, AdminListRequest $req): JsonResponse
+    {
+        [$area, $modelClass] = self::SCREENS[$screen];
+
+        // 1. Authorize (deny by default)
+        $allowed = (new AdminReadPolicy())->viewAny($req->user(), $area);
+        if (! $allowed) {
+            // Failed denied attempt = security event (per contract)
+            $this->auditDenied($screen, $area);
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $page    = $req->pageNumber();
+        $perPage = $req->perPage();
+
+        // 2. Data source
+        if ($modelClass === null) {
+            // Placeholder: no backing model yet (infrastructure screen)
+            $items = [];
+            $total = 0;
+            $source = 'placeholder';
+        } else {
+            $query = $modelClass::query();
+
+            // Apply search if model has a `search` scope or common columns
+            if (($q = $req->searchTerm()) !== null) {
+                $query->where(function ($w) use ($q) {
+                    // Conservative: no field guessing — only generic id match if nothing else known
+                    $w->where('id', 'like', "%{$q}%");
+                });
+            }
+
+            // Status filter (only if column exists on the model — no guessing)
+            if (($s = $req->statusFilter()) !== null && $this->hasColumn($modelClass, 'status')) {
+                $query->where('status', $s);
+            }
+
+            // Date filter (created_at if it exists)
+            if (($from = $req->dateFrom()) !== null && $this->hasColumn($modelClass, 'created_at')) {
+                $query->where('created_at', '>=', $from . ' 00:00:00');
+            }
+            if (($to = $req->dateTo()) !== null && $this->hasColumn($modelClass, 'created_at')) {
+                $query->where('created_at', '<=', $to . ' 23:59:59');
+            }
+
+            $total  = $query->count();          // BEFORE pagination (per contract)
+
+            // Order: use created_at only if it exists; else id
+            if ($this->hasColumn($modelClass, 'created_at')) {
+                $query->orderBy('created_at', 'desc');
+            } elseif ($this->hasColumn($modelClass, 'id')) {
+                $query->orderBy('id', 'desc');
+            }
+
+            $items = $query
+                ->skip(($page - 1) * $perPage)
+                ->take($perPage)
+                ->get()
+                ->toArray();
+
+            $source = 'model:' . class_basename($modelClass);
+        }
+
+        // 3. Audit successful read
+        $this->auditRead($screen, $area, $total);
+
+        // 4. Envelope
+        return $this->success(
+            data: $items,
+            message: 'OK',
+            status: 200,
+            meta: [
+                'screen'    => $screen,
+                'area'      => $area,
+                'source'    => $source,
+                'total'     => $total,
+                'page'      => $page,
+                'per_page'  => $perPage,
+                'last_page' => $perPage > 0 ? (int) ceil($total / $perPage) : 1,
+            ]
+        );
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // Helpers
+    // ─────────────────────────────────────────────────────────
+
+    private function hasColumn(string $modelClass, string $column): bool
+    {
+        try {
+            return \Illuminate\Support\Facades\Schema::hasColumn((new $modelClass)->getTable(), $column);
+        } catch (\Throwable) {
+            return false;
+        }
+    }
+
+    private function auditRead(string $screen, string $area, int $total): void
+    {
+        try {
+            AuditLog::create([
+                'actor_id'      => optional(request()->user())->id,
+                'action'        => "admin.read.{$area}",
+                'entity_type'   => 'admin_screen',
+                'entity_id'     => $screen,
+                'request_id'    => $this->requestId(),
+                'reason'        => 'admin read',
+                'before_digest' => null,
+                'after_digest'  => null,
+                'safe_metadata' => ['screen' => $screen, 'area' => $area, 'total' => $total],
+                'occurred_at'   => now(),
+                'prev_hash'     => null,
+                'hash'          => hash('sha256', $screen . $area . $total . now()->toIso8601String()),
+            ]);
+        } catch (\Throwable) {
+            // Audit must never break a successful read
+        }
+    }
+
+    private function auditDenied(string $screen, string $area): void
+    {
+        try {
+            AuditLog::create([
+                'actor_id'      => optional(request()->user())->id,
+                'action'        => "admin.read.denied.{$area}",
+                'entity_type'   => 'admin_screen',
+                'entity_id'     => $screen,
+                'request_id'    => $this->requestId(),
+                'reason'        => 'denied',
+                'before_digest' => null,
+                'after_digest'  => null,
+                'safe_metadata' => ['screen' => $screen, 'area' => $area],
+                'occurred_at'   => now(),
+                'prev_hash'     => null,
+                'hash'          => hash('sha256', 'denied' . $screen . $area . now()->toIso8601String()),
+            ]);
+        } catch (\Throwable) {
+        }
+    }
+}

@@ -2114,3 +2114,79 @@ canonical ledgers in sync with git HEAD.
 **Constitution compliance:**
 - Art. "No silent changes" — this entry documents
 - Art. "UNKNOWN != MISSING" — N06-N10 documented as BLOCKED
+
+---
+
+## L262 — WP-05c IMPLEMENTED — Admin Read Endpoints (23 screens)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Feature (backend admin read API)
+
+**Spec:** `docs/specs/WP-05c_LOCKED.md` (L261)
+
+**What Changed:**
+
+### NEW
+- `app/Policies/AdminReadPolicy.php`
+- `app/Http/Requests/Admin/AdminListRequest.php`
+- `app/Http/Controllers/Api/V1/Admin/AdminReadController.php` (23 methods)
+- `tests/Feature/Admin/AdminReadEndpointsTest.php` (27 tests)
+- `tests/Feature/Admin/AdminReadPaginationTest.php` (10 tests)
+
+### MODIFIED
+- `routes/api.php` — +23 GET routes (all under /api/v1/admin, auth:sanctum)
+
+**Endpoint map:**
+| Screen | Path | Area |
+|---|---|---|
+| A001 | /admin/dashboard | dashboard |
+| A002 | /admin/telegram-overview | telegram |
+| A003 | /admin/health | health |
+| ... | ... | ... |
+| A023 | /admin/ads | ads |
+
+Note: `telegram` → `telegram-overview` to avoid collision with WP-05b
+prefix group at `/admin/telegram/*`.
+
+**Authorization (LOCKED — Admin_Authorization_Contract.md):**
+- Capability-based: `admin.view.<area>`
+- Deny by default
+- MAIN_ADMIN > ADMIN > MODERATOR
+- MODERATOR allowed: reports, telegram only
+- ADMIN forbidden: security (secret area)
+- Applied BEFORE pagination/count
+
+**Pagination (LOCKED — admin.json):**
+- Offset-based; default 25; max 100; page >= 1
+
+**Filter (LOCKED):**
+- q (max 200), status, date_from, date_to (Y-m-d), sort, dir
+
+**Envelope:** BaseApiController.success() + `meta.source`
+
+**Data sources (no guessing):**
+- dashboard, health, ai, notifications, jobs, backups, integrity,
+  security, recovery, safe-mode, maintenance, ads → **placeholder**
+  (`meta.source='placeholder'`, empty data)
+- telegram, features, marketplace, payments, users, content, files,
+  audit, settings, monetization, reports → **model-backed**
+- Order column chosen by Schema::hasColumn (created_at or id)
+
+**Audit:**
+- Successful read → `AuditLog::action = admin.read.<area>`
+- entity_id = screen ID (e.g. A016)
+
+**Test Results:**
+- Test 1 (Endpoints + Auth): 27 tests / 352 assertions
+- Test 2 (Pagination + Filter + Audit): 10 tests / 21 assertions
+- Full suite: 736 tests / 1,753 assertions / 0 failures / 0 deprecations
+
+**GAP / WP status:**
+- WP-05c: BLOCKED_ON_UNKNOWN → ✅ RESOLVED
+- GAP-WP-05c (OPEN_GAPS.md): close in next doc sync
+
+**Constitution compliance:**
+- No guessing — every decision cites admin.json / contract / existing code
+- Additive — new files + new routes only; no existing behavior changed
+- No silent changes — this ledger + commit

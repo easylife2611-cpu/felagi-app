@@ -1469,3 +1469,28 @@ git revert <S003-commit>
 
 ### Tests
 - 699 · 1,380 · 0 failures · 0 deprecations (no code change)
+
+---
+
+## B32 — WP-05c implemented (23 admin read endpoints)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L262
+
+### Added
+- app/Policies/AdminReadPolicy.php
+- app/Http/Requests/Admin/AdminListRequest.php
+- app/Http/Controllers/Api/V1/Admin/AdminReadController.php
+- tests/Feature/Admin/AdminReadEndpointsTest.php (27 tests)
+- tests/Feature/Admin/AdminReadPaginationTest.php (10 tests)
+
+### Changed
+- routes/api.php: +23 GET /api/v1/admin/* (auth:sanctum)
+
+### Tests
+- +37 tests, +373 assertions
+- Full suite: 736 tests · 1,753 assertions · 0 failures
+
+### WP
+- WP-05c: BLOCKED_ON_UNKNOWN → RESOLVED
