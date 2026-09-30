@@ -69,4 +69,4 @@ rm tests/Feature/Models/PaymentTest.php \
 - [x] TESTED — 54/54 pass
 - [ ] VERIFIED — requires second reviewer
 - [x] DOCUMENTED — this file
-- [x] EVIDENCED — WP-B25_phpunit_20260930_053259.log + WP-B25_phpunit_20260930_054848.log (re-run)
+- [x] EVIDENCED — WP-B25_phpunit_20260930_053259.log
