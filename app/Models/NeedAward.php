@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class NeedAward extends Model
 {
+    use HasFactory;
+
     public $timestamps = false;
     public $incrementing = false;
     protected $primaryKey = 'need_id';
