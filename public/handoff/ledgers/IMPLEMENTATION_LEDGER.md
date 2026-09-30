@@ -1507,3 +1507,61 @@ S008 (back) | S012 (offer detail — card click) | S014 (compare — button)
 - UNKNOWN != MISSING (no speculative fields)
 - Design-compliant (S010 spec + manifest + api-mapping)
 - No silent change (this ledger entry)
+
+## L238 — S012 Offer Detail (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S012 Offer Detail — missing (S010 cards linked to /offers/:id but view did not exist)
+
+### Changes
+- NEW: resources/views/offer-detail.blade.php (476 lines, S012 spec)
+- UPD: routes/web.php — added GET /offers/{id} -> view('offer-detail')
+- UPD: lang/en.json — +22 keys (offerDetailsTitle, actions, accept/reject/withdraw, etc.)
+- UPD: lang/am.json — +22 keys (parallel Amharic)
+- NEW: tests/Feature/Screens/S012OfferDetailTest.php (16 tests, 27 assertions)
+
+### Screen anatomy (spec compliance)
+- AppBar 64 with back button
+- Status banner (PENDING/ACCEPTED/REJECTED/WITHDRAWN)
+- Offer card: price, proposal message
+- Details card: delivery, availability, notes, timestamps
+- Provider card: avatar, name, rating
+- Related need card: link back to /needs/{id}
+- Action card with state-aware buttons
+- Confirmation modal (accept/reject/withdraw)
+- Ads: prohibited per spec
+
+### States implemented
+loading | pending | accepted | rejected | withdrawn | confirmation (modal) |
+denied (403/404) | error | offline
+
+### Action matrix (participant-aware)
+- Owner + PENDING + Need OPEN -> Accept, Reject
+- Provider + PENDING -> Withdraw
+- Terminal state -> read-only (no mutation buttons)
+- Both -> Messages link (S017)
+
+### API integration
+- GET /api/v1/offers/{id} (participant only: provider OR need owner)
+- POST /api/v1/offers/{id}/accept (owner + PENDING + need OPEN)
+- POST /api/v1/offers/{id}/reject (owner + PENDING)
+- POST /api/v1/offers/{id}/withdraw (provider + PENDING)
+
+### Transitions
+S010 (back) | S013 (back for provider) | S017 (messages) |
+S020 (rating - future) | S021 (support - future)
+
+### Test Results
+- S012OfferDetailTest: 16 tests, 27 assertions
+- Full suite: 509 -> 525 tests, 0 failures
+
+### Not changed
+- No DB migration
+- No API change (all endpoints already existed)
+- S003-S011 untouched
+
+### Constitution
+- Additive (new view + route only)
+- UNKNOWN != MISSING (no speculative fields)
+- Design-compliant (S012 spec + manifest + api-mapping)
+- No silent change (this ledger entry)

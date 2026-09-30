@@ -563,3 +563,27 @@ Read: L236, CHANGE_LOG S011, spec S010
 
 ### Continuity
 Read: L237, CHANGE_LOG S010, spec S012
+
+---
+## S012 Offer Detail — Handoff — 2026-09-30
+
+### What Changed
+- Full offer-detail screen (S012 spec)
+- NEW: resources/views/offer-detail.blade.php (476 lines)
+- NEW: routes/web.php — GET /offers/{id}
+- lang/en.json + lang/am.json: +22 keys each (154 total)
+
+### Test Results
+- S012OfferDetailTest: 16 tests (27 assertions)
+- Full suite: 525 tests, 0 failures
+
+### Next Steps (Priority Order)
+1. **S013 My Offers** (/my/offers) — provider list
+2. **S018 Notifications** (/notifications)
+3. **S014 Compare Offers** (/needs/:id/compare)
+4. **S007 Created Success** (/needs/:id/created)
+5. **S017 Messages** (/offers/:id/messages)
+6. **GAP-S003-PHOTO** (profile photo upload)
+
+### Continuity
+Read: L238, CHANGE_LOG S012, spec S013

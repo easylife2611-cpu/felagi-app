@@ -33,3 +33,7 @@ Route::get('/needs/{id}/offers/new', function ($id) {
 Route::get('/needs/{id}/offers', function ($id) {
     return view('received-offers');
 });
+
+Route::get('/offers/{id}', function ($id) {
+    return view('offer-detail');
+});
