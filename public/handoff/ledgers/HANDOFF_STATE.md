@@ -264,8 +264,9 @@ All 4 artifacts in ~/ (supersede B19 bundles):
 ### State
 
 - App HEAD (before commit): 143a756 (B24)
-- App HEAD (after commit): 4e66721 (B25 final)
-- B25 commit chain: 202716b → 3725843 → f68b3f8 → 4e66721
+- B25 code commit: 202716b
+- B25 docs HEAD: git rev-parse HEAD (rolling — not pinned)
+- B25 commit chain: 202716b (code) → docs-only commits to HEAD
 - Design HEAD: 27edd9d (B11)
 - Tests: 216 passed (403 assertions)
 - Evidence: evidence/WP-B25_evidence.md
