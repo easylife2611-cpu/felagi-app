@@ -1519,3 +1519,27 @@ git revert <S003-commit>
 ### Tests
 - +3 tests, +18 assertions
 - Full suite: 739 tests / 1,771 assertions / 0 failures
+
+---
+
+## B34 — WP-13c backend (2FA enrollment API)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L264
+
+### Added
+- app/Http/Controllers/Api/V1/TwoFactorController.php (7 methods)
+- tests/Feature/Auth/TwoFactorEnrollmentTest.php (22 tests)
+- database/migrations/2026_09_30_155000_alter_totp_recovery_codes_to_text.php
+
+### Changed
+- routes/api.php: +7 routes under /api/v1/auth/2fa/*
+
+### Tests
+- +22 tests, +59 assertions
+- Full suite: 761 tests / 1,830 assertions / 0 failures
+
+### WP
+- WP-13c backend: DONE
+- WP-13c UI: still BLOCKED (D-097)

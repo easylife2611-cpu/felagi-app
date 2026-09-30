@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\NeedController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\RatingController;
+use App\Http\Controllers\Api\V1\TwoFactorController;
 use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
 use App\Http\Controllers\Api\V1\Admin\AdminTelegramController;
 use App\Http\Controllers\Api\V1\Admin\AdminReadController;
@@ -47,6 +48,17 @@ Route::prefix('v1')->group(function () {
         Route::post('telegram/exchange', [AuthController::class, 'telegramExchange'])
             ->middleware('throttle:10,1');
         Route::post('refresh', [AuthController::class, 'refresh']);
+
+        // WP-13c: 2FA endpoints (backend only — UI deferred per D-097)
+        Route::prefix('2fa')->middleware('auth:sanctum')->group(function () {
+            Route::get('status', [TwoFactorController::class, 'status']);
+            Route::post('enroll/start', [TwoFactorController::class, 'enrollStart'])->middleware('throttle:10,1');
+            Route::post('enroll/verify', [TwoFactorController::class, 'enrollVerify'])->middleware('throttle:10,1');
+            Route::post('verify', [TwoFactorController::class, 'verify'])->middleware('throttle:10,1');
+            Route::post('recovery', [TwoFactorController::class, 'recovery'])->middleware('throttle:10,1');
+            Route::post('recovery-codes/regenerate', [TwoFactorController::class, 'regenerateRecoveryCodes'])->middleware('throttle:5,1');
+            Route::post('disable', [TwoFactorController::class, 'disable'])->middleware('throttle:5,1');
+        });
 
         Route::middleware('auth:sanctum')->group(function () {
             Route::post('logout', [AuthController::class, 'logout']);

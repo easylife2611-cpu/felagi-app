@@ -2236,3 +2236,72 @@ prefix group at `/admin/telegram/*`.
 - A/C/D: Reports only — no code
 - E: New endpoint — no existing behavior changed
 - B: File ops only — no code affected
+
+---
+
+## L264 — WP-13c BACKEND — 2FA enrollment API (7 endpoints)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Feature (backend API for 2FA enrollment)
+
+**Spec:**
+- Admin_Authorization_Contract.md §3 ("CRITICAL requires second factor")
+- DFM-FDS-1.4.md §449 ("lost-factor recovery is a controlled, audited process")
+- Reuses existing `app/Services/Admin/TotpService.php` (WP-13b)
+
+**What Changed:**
+
+### NEW: app/Http/Controllers/Api/V1/TwoFactorController.php
+- 7 methods: status, enrollStart, enrollVerify, verify, recovery, regenerateRecoveryCodes, disable
+
+### MODIFIED: routes/api.php
+- +7 routes under `/api/v1/auth/2fa/*` (all auth:sanctum)
+- Throttle: 10/min (verify, recovery, enroll) + 5/min (regenerate, disable)
+
+### NEW: tests/Feature/Auth/TwoFactorEnrollmentTest.php
+- 22 tests / 59 assertions
+
+### NEW: migration `2026_09_30_155000_alter_totp_recovery_codes_to_text.php`
+- Fix: `users.totp_recovery_codes` JSON → TEXT
+- Reason: `encrypted:array` cast produces base64 (not JSON) — MySQL constraint failed
+- Encryption-at-rest preserved via model cast
+
+**Endpoints:**
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | /api/v1/auth/2fa/status | Current 2FA state |
+| POST | /api/v1/auth/2fa/enroll/start | Generate secret + OTPAuth URL |
+| POST | /api/v1/auth/2fa/enroll/verify | Verify first code → enable + return recovery codes |
+| POST | /api/v1/auth/2fa/verify | Verify code (login/reauth step) |
+| POST | /api/v1/auth/2fa/recovery | Consume recovery code (one-time) |
+| POST | /api/v1/auth/2fa/recovery-codes/regenerate | New codes (requires TOTP) |
+| POST | /api/v1/auth/2fa/disable | Disable (TOTP or recovery code) |
+
+**Enrollment flow:**
+enroll/start → secret stored (encrypted) · `totp_enabled_at` NULL (still OFF)
+enroll/verify → `totp_enabled_at` set · recovery codes stored (encrypted array)
+
+**Reauth integration:**
+Every successful verify/recovery calls `ReauthValidator::mark()` —
+satisfies the 5-min window for HIGH/CRITICAL publish.
+
+**Test Results:**
+- TwoFactorEnrollmentTest: 22 tests / 59 assertions
+- Full suite: 761 tests / 1,830 assertions / 0 failures
+
+**WP-13c status:**
+- Backend: ✅ DONE
+- Frontend UI: 🔴 BLOCKED (D-097 — "Frontend Stack UNKNOWN")
+
+**GAP status:**
+- GAP-50 (TOTP enrollment UI): backend ready; UI blocked
+- GAP-51 (Recovery codes UI): backend ready; UI blocked
+- GAP-52 (Self-service 2FA disable): backend ready; UI blocked
+- GAP-53 (Recovery flow): backend ready; UI blocked
+
+**Constitution compliance:**
+- No guessing — every endpoint maps to existing service contract
+- Additive — new files + new routes; no existing behavior changed
+- No silent changes — this ledger + migration + commit
