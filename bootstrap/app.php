@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Str;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->api(prepend: [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \App\Http\Middleware\RequestId::class,
         ]);
 
         $middleware->alias([
@@ -23,5 +25,44 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // T23: consistent JSON envelope with request_id for auth errors
+
+        $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'error' => [
+                        'code' => 'UNAUTHENTICATED',
+                        'message' => 'Authentication required.',
+                    ],
+                    'request_id' => $request->attributes->get('request_id') ?? (string) Str::uuid(),
+                ], 401);
+            }
+        });
+
+        $exceptions->render(function (\Illuminate\Auth\Access\AuthorizationException $e, $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'error' => [
+                        'code' => 'FORBIDDEN',
+                        'message' => 'Insufficient permissions.',
+                    ],
+                    'request_id' => $request->attributes->get('request_id') ?? (string) Str::uuid(),
+                ], 403);
+            }
+        });
+
+        $exceptions->render(function (\Illuminate\Database\Eloquent\ModelNotFoundException $e, $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'error' => [
+                        'code' => 'NOT_FOUND',
+                        'message' => 'Resource not found.',
+                    ],
+                    'request_id' => $request->attributes->get('request_id') ?? (string) Str::uuid(),
+                ], 404);
+            }
+        });
     })->create();

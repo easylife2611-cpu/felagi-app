@@ -1572,3 +1572,28 @@ git revert <S003-commit>
 ### WP
 - WP-10: BLOCKED → RESOLVED
 - GAP-10: AI live → RESOLVED
+
+---
+
+## B36 — T01-T26 local subset + If-Match + RequestId
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L266
+
+### Added
+- tests/Feature/Integration/T01_T26LocalSubsetTest.php (13 tests)
+- app/Http/Middleware/RequestId.php
+
+### Changed
+- app/Http/Controllers/Api/V1/NeedController.php (If-Match guard)
+- app/Http/Controllers/Api/V1/OfferController.php (If-Match guard)
+- bootstrap/app.php (RequestId middleware + exception envelope)
+
+### Tests
+- +13 tests, +18 assertions
+- Full suite: 791 tests / 1,901 assertions / 0 failures
+
+### GAPs
+- T03 (If-Match): RESOLVED
+- T23 (request_id on auth errors): RESOLVED

@@ -143,6 +143,16 @@ class NeedController extends BaseApiController
             return $this->error('FORBIDDEN', 'Not your Need.', 403);
         }
 
+        // T03: If-Match guard (DFM C13/C23)
+        $ifMatch = $request->header('If-Match');
+        if ($ifMatch !== null && (string) $ifMatch !== '' && (string) $ifMatch !== (string) $need->version) {
+            return $this->error(
+                'VERSION_CONFLICT',
+                'Stale If-Match: resource version has changed. Refresh and retry.',
+                409
+            );
+        }
+
         if ($need->status !== Need::STATUS_OPEN) {
             return $this->error('STATE_CONFLICT', 'Only OPEN Needs can be edited.', 409);
         }

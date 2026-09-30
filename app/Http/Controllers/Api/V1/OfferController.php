@@ -122,6 +122,16 @@ class OfferController extends BaseApiController
             return $this->error('STATE_CONFLICT', 'Only PENDING Offers can be edited.', 409);
         }
 
+        // T03: If-Match guard (DFM C13/C23)
+        $ifMatch = $request->header('If-Match');
+        if ($ifMatch !== null && (string) $ifMatch !== '' && (string) $ifMatch !== (string) $offer->version) {
+            return $this->error(
+                'VERSION_CONFLICT',
+                'Stale If-Match: resource version has changed. Refresh and retry.',
+                409
+            );
+        }
+
         $need = $offer->need;
         if (!$need || $need->status !== Need::STATUS_OPEN) {
             return $this->error('STATE_CONFLICT', 'Need no longer OPEN.', 409);

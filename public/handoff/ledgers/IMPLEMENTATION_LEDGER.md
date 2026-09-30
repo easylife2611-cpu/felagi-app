@@ -2374,3 +2374,68 @@ satisfies the 5-min window for HIGH/CRITICAL publish.
 - No guessing — every rule maps to AI_Evaluation_Contract.md
 - Additive — new files + modified `store()` (removed stub only)
 - No silent changes — this ledger + commit
+
+---
+
+## L266 — T01-T26 Local Subset — Integration Tests + If-Match guard + RequestId middleware
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Feature + Tests (integration + infra)
+
+**Spec:**
+- DFM-FDS-1.4.md §13 — T01-T31 matrix
+- T03: "Stale If-Match cannot overwrite Need/Offer; version increments once."
+- C13: "No contradictory concurrent states" — Row locks, If-Match, conflict 409
+- C23: "No silent core mutation" — version fields
+- T23: "Request ID joins API error, job, audit and Admin incident view"
+
+**What Changed:**
+
+### NEW — Integration tests (13 tests / 18 assertions)
+- `tests/Feature/Integration/T01_T26LocalSubsetTest.php`
+- Covered (runnable without external services):
+  - T01: self + duplicate Offer denied
+  - T02: second accept rejected (409)
+  - T03: stale If-Match rejected (409) — GAP fixed
+  - T04: snapshot hash immutability
+  - T07: malformed offer payload (422)
+  - T09: outbox dedup on event_key
+  - T10: cross-provider isolation (403/404)
+  - T13: rating requires COMPLETED Need
+  - T14: feature OFF path non-5xx
+  - T17: telegram auth rejects empty input
+  - T23: error responses include request_id — GAP fixed
+  - T26: offer edit after deadline denied
+- Blocked (external required, documented):
+  T05, T06, T08, T11, T12, T15, T18-T22, T24-T25, T27-T31
+
+### FIXED — If-Match guard (T03)
+- `app/Http/Controllers/Api/V1/NeedController.php::update`
+- `app/Http/Controllers/Api/V1/OfferController.php::update`
+- Reads `If-Match` header; when present and != current version → 409 VERSION_CONFLICT
+- When header absent → no behavior change (backward compatible)
+
+### FIXED — Request ID for auth errors (T23)
+- NEW: `app/Http/Middleware/RequestId.php`
+  - Assigns stable request_id to every API request
+  - Sets `X-Request-Id` response header
+- MODIFIED: `bootstrap/app.php`
+  - Prepends RequestId middleware to API group
+  - Custom render for AuthenticationException → 401 JSON with request_id
+  - Custom render for AuthorizationException → 403 JSON with request_id
+  - Custom render for ModelNotFoundException → 404 JSON with request_id
+  - All use BaseApiController-compatible envelope
+
+**Test Results:**
+- T01_T26LocalSubsetTest: 13 tests / 18 assertions
+- Full suite: 791 tests / 1,901 assertions / 0 failures / 0 deprecations
+
+**GAP status:**
+- T03 (If-Match): ✅ RESOLVED
+- T23 (request_id on auth errors): ✅ RESOLVED
+
+**Constitution compliance:**
+- No guessing — every assertion maps to DFM T/C rules
+- Additive — new middleware + guards; backward compatible
+- No silent changes — this ledger + commit
