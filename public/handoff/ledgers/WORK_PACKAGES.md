@@ -122,3 +122,4 @@ B-Blocks are NOT counted in WP totals (see U-21).
 | B26 | AI/Comparison domain tests (+68) | DONE | IMPLEMENTATION_LEDGER L218 |
 | B27 | Safety/Marketplace tests (+66) + GAP-71 fix | DONE | IMPLEMENTATION_LEDGER L219 |
 | B28 | Settings/Role tests (+62) | DONE | IMPLEMENTATION_LEDGER L220 |
+| GAP-71b | Attachment factory + HasFactory | DONE | IMPLEMENTATION_LEDGER L228 |

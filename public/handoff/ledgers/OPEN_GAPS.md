@@ -328,3 +328,23 @@ canonical ledgers.
 - Art. "No duplicate ownership" — existing B19/B21 entries preserved
 
 **Closed by:** Backfill commit (this commit)
+
+---
+
+## GAP-71b — RESOLVED (2026-09-30) — Attachment factory infrastructure
+
+**Type:** Infrastructure gap (deferred from B27)
+**Opened:** 2026-09-30 (noted during B27)
+**Status:** RESOLVED (2026-09-30)
+
+**Issue:** AttachmentTest used `::create()` directly. No factory existed
+for future tests that might want factory-style setup.
+
+**Resolution:**
+- NEW database/factories/AttachmentFactory.php
+- HasFactory trait added to Attachment model
+- States: clean(), rejected(), publicVisibility(), forNeed()
+- Smoke tested via tinker
+- Existing tests unchanged (still use ::create())
+
+**Closed by:** GAP-71b commit (this commit)

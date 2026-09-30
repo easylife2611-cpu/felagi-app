@@ -1080,3 +1080,31 @@ convenience. Do NOT renumber existing L-IDs.
 ---
 
 **End of GAP-70 Backfill section.**
+
+## L228 — GAP-71b (Attachment Factory + HasFactory) — 2026-09-30
+
+**Type:** Infrastructure (test factories)
+**Addresses:** GAP-71b (deferred from B27 — factory infrastructure)
+
+### Changes
+- NEW: database/factories/AttachmentFactory.php
+- UPD: app/Models/Attachment.php (HasFactory trait added)
+
+### Factory States
+- clean() / rejected() / publicVisibility() / forNeed()
+
+### Test Results
+- Full suite: 412 tests (unchanged)
+- AttachmentTest: 21 tests (unchanged)
+- Smoke test: tinker verified
+
+### Not Changed
+- No production logic (trait add only)
+- No migrations, no routes
+
+### Rollback
+git revert HEAD
+
+### Constitution
+- Additive infrastructure — no breaking change
+- No silent changes

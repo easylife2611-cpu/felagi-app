@@ -1295,3 +1295,26 @@ already existed above and are NOT duplicated here.
 - IMPLEMENTED != VERIFIED — tests not re-run beyond existing 162
 
 **End of GAP-70 Backfill — CHANGE_LOG.**
+
+---
+
+## GAP-71b — Attachment Factory + HasFactory — 2026-09-30
+
+**Type:** Infrastructure (test factories)
+**HEAD before:** 4285ad1 (QUALITY_DONE)
+
+### Files Added/Changed
+- NEW: database/factories/AttachmentFactory.php
+- UPD: app/Models/Attachment.php (HasFactory trait)
+
+### Test Results
+- Full suite: 412 (unchanged)
+- AttachmentTest: 21/21 pass
+
+### Constitution
+- Additive infrastructure
+- No breaking change
+- No silent changes
+
+### Rollback
+git revert <GAP-71b-commit>
