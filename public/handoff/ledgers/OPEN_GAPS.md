@@ -348,3 +348,26 @@ for future tests that might want factory-style setup.
 - Existing tests unchanged (still use ::create())
 
 **Closed by:** GAP-71b commit (this commit)
+
+---
+
+## GAP-WP-05c — Admin Read Endpoints Spec (BLOCKED_ON_UNKNOWN)
+
+**Type:** Spec gap (UNKNOWN, not MISSING)
+**Severity:** MEDIUM (blocks WP-05c only)
+**Opened:** 2026-09-30
+
+**Issue:**
+- Spec request exists: `docs/spec-requests/WP-05c_admin_read_endpoints.md`
+- Status: PENDING STAKEHOLDER
+- 6 UNKNOWN questions (see spec request)
+- WP not registered in WORK_PACKAGES.md until 2026-09-30
+
+**Constitution constraint:**
+- Art. "Do not guess missing requirements" — no implementation without LOCKED spec
+- Art. "UNKNOWN != MISSING" — registered as UNKNOWN
+
+**Action required:**
+Stakeholder to answer 6 questions + provide LOCKED spec.
+
+**Status:** OPEN — BLOCKED_ON_UNKNOWN

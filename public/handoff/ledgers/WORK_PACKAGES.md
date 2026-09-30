@@ -123,3 +123,41 @@ B-Blocks are NOT counted in WP totals (see U-21).
 | B27 | Safety/Marketplace tests (+66) + GAP-71 fix | DONE | IMPLEMENTATION_LEDGER L219 |
 | B28 | Settings/Role tests (+62) | DONE | IMPLEMENTATION_LEDGER L220 |
 | GAP-71b | Attachment factory + HasFactory | DONE | IMPLEMENTATION_LEDGER L228 |
+
+---
+
+## WP-05c — Admin Read Endpoints (BLOCKED_ON_UNKNOWN)
+
+**Registered:** 2026-09-30 (discovered during Phase D audit)
+**Status:** BLOCKED_ON_UNKNOWN
+**Spec request:** docs/spec-requests/WP-05c_admin_read_endpoints.md
+
+### Why BLOCKED_ON_UNKNOWN
+
+- Spec request document exists but marked "PENDING STAKEHOLDER"
+- 6 UNKNOWN items (per spec request):
+  1. Which admin resources need read endpoints? (Users? Needs? Offers? Payments? Audit logs?)
+  2. What fields per resource?
+  3. Pagination strategy? (cursor vs offset)
+  4. Filter/sort/search requirements?
+  5. Field-level authorization?
+  6. Response envelope?
+- Constitution Art. "Do not guess missing requirements" — no implementation without LOCKED spec
+- Constitution Art. "UNKNOWN != MISSING" — registered as UNKNOWN, not MISSING
+
+### What We Know
+
+- Admin WRITE endpoints exist: /api/v1/admin/changes/* (16 routes)
+- 2 controllers: AdminChangeController, AdminTelegramController
+- Authorization pattern: SettingPolicy (extensible)
+- Estimated work after spec: 3-5 controllers, 5-10 routes, 20-30 tests
+
+### Required Action
+
+Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
+
+### Escalation
+
+- Product Owner: (UNKNOWN — to be filled)
+- Design Owner: (UNKNOWN — to be filled)
+- Release Owner: (UNKNOWN — to be filled)
