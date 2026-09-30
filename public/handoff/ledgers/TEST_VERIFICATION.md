@@ -488,3 +488,46 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - Duration: 4.87s
 - Full suite: 284 passed (496 assertions), 11.02s
 - PHP: 8.2.33 | PHPUnit: 11.5.56
+
+---
+
+## B27 — Safety/Marketplace Domain Test Suite (R-TEST-03/04/05) — 2026-09-30
+
+### Test File Breakdown
+
+| Test File | Tests | Coverage |
+|-----------|-------|----------|
+| CategoryTest.php | 15 | UUID, casts, scopes, unique slug, name(locale) |
+| NeedAwardTest.php | 13 | Composite PK, composite FK, no timestamps |
+| AttachmentTest.php | 21 | SoftDeletes, nullable FKs, isScanClean |
+| ReportTest.php | 17 | Polymorphic entity_id, status flow |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B27 | 284 | 496 |
+| B27 | +66 | +99 |
+| **Post-B27** | **350** | **595** |
+
+### Coverage Expansion
+
+| Model | Before B27 | After B27 |
+|-------|------------|-----------|
+| Category | 0 | 15 |
+| NeedAward | 0 | 13 |
+| Attachment | 0 | 21 |
+| Report | 0 | 17 |
+
+### Schema Findings
+
+- categories UNIQUE(slug)
+- need_awards PK(need_id) + composite FK (offer_id, need_id)
+- reports.entity_id polymorphic (no FK)
+- GAP-71: Attachment::isClean -> isScanClean
+
+### Test Run
+
+- B27: 66 passed (99 assertions)
+- Full suite: 350 passed (595 assertions)
+- PHP: 8.2.33 | PHPUnit: 11.5.56

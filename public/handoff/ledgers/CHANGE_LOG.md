@@ -1077,3 +1077,57 @@ git revert 202716b..HEAD  # test-only (whole chain — code + docs)
 ### Rollback
 
 git revert <B26-commit>  # test-only
+
+---
+
+## B27 — Safety/Marketplace Tests + GAP-71 Fix — 2026-09-30
+
+**Type:** Test coverage + Breaking production fix (approved)
+**HEAD before:** 861fd6e (B26)
+
+### Breaking Change Disclosure
+
+**Production fix:** app/Models/Attachment.php line 74
+
+    - public function isClean(): bool
+    + public function isScanClean(): bool
+
+**Reason:** isClean() collides with Laravel Model::isClean($attributes = null).
+Every new Attachment() raised TypeError. Latent since B17.
+**Approval:** explicit user approval (Constitution Art.).
+**Callers before fix:** none (grep verified).
+**Detailed in:** GAP-71 (RESOLVED).
+
+### Test Results
+
+| Metric | Value |
+|--------|-------|
+| Tests run | 350 (was 284) |
+| Assertions | 595 (was 496) |
+| Failures | 0 |
+| New files | 5 (4 tests + 1 evidence) + 2 logs |
+
+### Files Added
+- tests/Feature/Models/CategoryTest.php (15 tests)
+- tests/Feature/Models/NeedAwardTest.php (13 tests)
+- tests/Feature/Models/AttachmentTest.php (21 tests)
+- tests/Feature/Models/ReportTest.php (17 tests)
+- evidence/WP-B27_evidence.md + 2 logs
+
+### Files Changed (production)
+- app/Models/Attachment.php — isClean → isScanClean (GAP-71)
+
+### Not Changed
+- No migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+- Breaking change APPROVED — explicit user authorization
+- GAP-71 logged BEFORE fix — no silent change
+- No production code modified without disclosure
+
+### Rollback
+    git revert <B27-commit>  # reverts both production fix + tests
+    # OR selective:
+    git revert <B27-commit> -- app/Models/Attachment.php

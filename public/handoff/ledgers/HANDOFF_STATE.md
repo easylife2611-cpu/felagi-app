@@ -310,3 +310,30 @@ can resume without chat reconstruction.
 
 Next developer reading this + IMPLEMENTATION_LEDGER L218 + TEST_VERIFICATION B26
 can resume without chat reconstruction.
+
+---
+## B27 — Safety/Marketplace Domain Test Suite — 2026-09-30
+
+### What Changed
+- 4 test files (Category, NeedAward, Attachment, Report): +66 tests
+- Production fix: Attachment::isClean -> isScanClean (GAP-71, approved)
+- Full suite: 284 -> 350 tests (496 -> 595 assertions)
+- R-TEST-03/04/05 -> COVERED
+- GAP-71 -> RESOLVED
+
+### State
+- App HEAD (before commit): 861fd6e (B26)
+- Design HEAD: 27edd9d (B11)
+- Tests: 350 passed (595 assertions)
+- Evidence: evidence/WP-B27_evidence.md
+
+### Blocked / Pending
+- VERIFIED status: requires second reviewer
+- GAP-70 (B17-B24 backfill): PENDING
+- Bundle refresh at B27_DONE: not yet created
+
+### Breaking Change Disclosure
+Attachment::isClean -> isScanClean — user approved, zero callers, in CHANGE_LOG.
+
+### Continuity
+Next developer: L219 + TEST_VERIFICATION B27 + CHANGE_LOG.

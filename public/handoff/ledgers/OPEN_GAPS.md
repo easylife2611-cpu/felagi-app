@@ -258,3 +258,40 @@ These are **two distinct GAPs** with different issues. No rename occurred.
 - Art. "No silent changes"
 
 **Status:** OPEN — deferred to next session
+
+---
+
+## GAP-71 — Production Bug: Attachment::isClean() name collision
+
+**Type:** Production bug (pre-existing)
+**Severity:** HIGH (blocks B27 tests; method unusable)
+**Opened:** 2026-09-30
+
+**Evidence:**
+
+Attachment.php line 74 declares `public function isClean(): bool`.
+Laravel's base `Model` class declares `public function isClean($attributes = null)`.
+PHP raises TypeError: "Declaration of Attachment::isClean(): bool must be
+compatible with Model::isClean($attributes = null)".
+
+**Impact:**
+- Every Attachment instantiation triggers TypeError.
+- isClean() cannot be called.
+- Latent because no Attachment tests existed until B27.
+
+**Required action (with explicit approval — BREAKING change):**
+
+Rename Attachment::isClean() to Attachment::isScanClean():
+
+1. Update app/Models/Attachment.php (line 74).
+2. Add CHANGE_LOG entry (public API change).
+3. Update any callers (grep currently: none).
+4. Re-run tests.
+
+**Constitution reference:**
+- Art. "Do not perform destructive, security-sensitive, breaking or
+  architecture-changing work without explicit approval".
+- This IS a breaking change -> requires approval.
+
+**Status:** RESOLVED — fixed in B27 (2026-09-30)
+**Closed by:** B27 — see CHANGE_LOG + L219

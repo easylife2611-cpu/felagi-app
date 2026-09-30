@@ -775,3 +775,43 @@ rm tests/Feature/Models/{PaymentTest,PaymentEventTest,BoostTest,BoostPackageTest
 git revert HEAD  # test-only, safe
 # OR
 rm tests/Feature/Models/Comparison{Test,OfferTest,ResultTest,AttemptTest}.php
+
+## L219 — B27 (Safety/Marketplace Tests + GAP-71 Fix) — 2026-09-30
+
+**Type:** Test coverage + breaking production fix (approved)
+**Addresses:** R-TEST-03/04/05 + GAP-71
+
+### Changes
+- NEW: tests/Feature/Models/CategoryTest.php (15 tests)
+- NEW: tests/Feature/Models/NeedAwardTest.php (13 tests)
+- NEW: tests/Feature/Models/AttachmentTest.php (21 tests)
+- NEW: tests/Feature/Models/ReportTest.php (17 tests)
+- NEW: evidence/WP-B27_evidence.md + 2 logs
+- CHANGED (approved): app/Models/Attachment.php isClean -> isScanClean (GAP-71)
+
+### Test Results
+- B27 new: 66 tests (99 assertions)
+- Full suite: 284 -> 350 tests (496 -> 595 assertions)
+- Failures: 0
+- PHP: 8.2.33 | PHPUnit: 11.5.56
+
+### Schema Findings
+- NeedAward: composite PK (need_id) + composite FK (offer_id, need_id)
+- Report: entity_id polymorphic-style (no FK)
+- Attachment: SoftDeletes + no timestamps
+- GAP-71: Attachment::isClean() name collision with Model::isClean()
+
+### GAP-71 Resolution
+- BREAKING change: isClean -> isScanClean
+- User approval: explicit
+- Callers before fix: none
+
+### Not Changed
+- No migrations added
+- No routes changed
+- No new design
+
+### Rollback
+git revert <B27-commit>  # reverts production fix + tests
+# OR selective:
+git revert <B27-commit> -- app/Models/Attachment.php

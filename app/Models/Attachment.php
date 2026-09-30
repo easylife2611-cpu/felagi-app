@@ -71,7 +71,7 @@ class Attachment extends Model
         return $query->where('scan_status', self::SCAN_CLEAN);
     }
 
-    public function isClean(): bool
+    public function isScanClean(): bool
     {
         return $this->scan_status === self::SCAN_CLEAN;
     }
