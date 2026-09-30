@@ -370,7 +370,11 @@ for future tests that might want factory-style setup.
 **Action required:**
 Stakeholder to answer 6 questions + provide LOCKED spec.
 
-**Status:** OPEN — BLOCKED_ON_UNKNOWN
+**Status:** ✅ RESOLVED (2026-09-30) — via L262 (commit 7cec529)
+
+**Resolution:** Evidence-based spec extracted from Felagi_Design_Package
+(System_Specification/Admin_Authorization_Contract.md + Design_Data/admin.json).
+23 endpoints implemented. 37 tests added. Full suite: 736/1753/0/0.
 
 ---
 
