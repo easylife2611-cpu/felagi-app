@@ -587,3 +587,30 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - B24: S001 signIn fix (tests 162, unchanged)
 
 **End of GAP-70 Backfill — TEST_VERIFICATION.**
+
+---
+
+## GAP-71c — 14 Additional Factories (Infrastructure) — 2026-09-30
+
+### Factories Added
+| Batch | Factories |
+|-------|-----------|
+| 1 (Payment) | PaymentFactory, BoostFactory, BoostPackageFactory, PaymentEventFactory, CategoryFactory, NeedFactory |
+| 2 (AI) | OfferFactory, ComparisonFactory, ComparisonOfferFactory, ComparisonResultFactory, ComparisonAttemptFactory |
+| 3 (Safety) | NeedAwardFactory, ReportFactory |
+| 4 (Settings) | SettingFactory, SettingDraftFactory, UserRoleFactory |
+
+### HasFactory Traits Added
+16 models: Category, Need, Payment, Boost, BoostPackage, PaymentEvent,
+Offer, Comparison, ComparisonOffer, ComparisonResult, ComparisonAttempt,
+NeedAward, Report, Setting, SettingDraft, UserRole
+
+### Test Suite
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-GAP-71c | 412 | 691 |
+| GAP-71c | 0 | 0 (infrastructure only) |
+| **Post-GAP-71c** | **412** | **691** |
+
+### Smoke Tests
+All 14 factories verified via tinker.

@@ -371,3 +371,26 @@ for future tests that might want factory-style setup.
 Stakeholder to answer 6 questions + provide LOCKED spec.
 
 **Status:** OPEN — BLOCKED_ON_UNKNOWN
+
+---
+
+## GAP-71c — RESOLVED (2026-09-30) — Remaining factories
+
+**Type:** Infrastructure gap
+**Opened:** 2026-09-30
+**Status:** RESOLVED
+
+**Issue:** Only UserFactory + AttachmentFactory existed.
+
+**Resolution:**
+- 14 new factories: Category, Need, Payment, Boost, BoostPackage,
+  PaymentEvent, Offer, Comparison, ComparisonOffer, ComparisonResult,
+  ComparisonAttempt, NeedAward, Report, Setting, SettingDraft, UserRole
+- HasFactory trait added to 16 models
+- Smoke tested all 14 factories
+
+**Deferred (no tests yet):**
+AuditLog, AuthAttempt, Message, Notification, OutboxEvent, Rating,
+SettingVersion, TelegramDestination, TelegramPublication, TelegramPublicationEvent
+
+**Closed by:** GAP-71c commit

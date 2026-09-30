@@ -1108,3 +1108,25 @@ git revert HEAD
 ### Constitution
 - Additive infrastructure — no breaking change
 - No silent changes
+
+## L229 — GAP-71c (14 Factories + HasFactory Traits) — 2026-09-30
+
+**Type:** Infrastructure (test factories, additive)
+**Addresses:** GAP-71c (extension of GAP-71b)
+
+### Changes
+- NEW: 16 factory files (Category, Need, Payment, Boost, BoostPackage,
+  PaymentEvent, Offer, Comparison, ComparisonOffer, ComparisonResult,
+  ComparisonAttempt, NeedAward, Report, Setting, SettingDraft, UserRole)
+- UPD: 16 models (HasFactory trait added)
+
+### Test Results
+- Full suite: 412 tests (unchanged)
+- Smoke test: all 14 factories create successfully
+
+### Not Changed
+- No production logic, no migrations, no routes
+
+### Constitution
+- Additive infrastructure
+- No breaking changes

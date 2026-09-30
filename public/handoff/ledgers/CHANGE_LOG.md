@@ -1318,3 +1318,23 @@ already existed above and are NOT duplicated here.
 
 ### Rollback
 git revert <GAP-71b-commit>
+
+---
+
+## GAP-71c — 14 Additional Factories + HasFactory — 2026-09-30
+
+**Type:** Infrastructure (test factories)
+**HEAD before:** 331e98e (INCIDENT-FIX)
+
+### Files Added
+- 16 factory files
+
+### Files Modified
+- 16 models (HasFactory trait added)
+
+### Test Results
+- Full suite: 412 (unchanged)
+- Smoke test: all pass
+
+### Rollback
+git revert <GAP-71c-commit>
