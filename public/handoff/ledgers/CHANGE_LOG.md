@@ -1031,4 +1031,4 @@ git revert <B21-commit>
 
 ### Rollback
 
-git revert 202716b  # test-only
+git revert 202716b..4e66721  # test-only (whole chain)

@@ -729,6 +729,6 @@ git revert 44f9494
 - IMPLEMENTED != VERIFIED — VERIFIED pending second reviewer
 
 ### Rollback
-git revert 202716b  # test-only, safe
+git revert 202716b..4e66721  # test-only, safe (whole chain)
 # OR
 rm tests/Feature/Models/{PaymentTest,PaymentEventTest,BoostTest,BoostPackageTest}.php
