@@ -1193,3 +1193,56 @@ S001 (welcome) → S002 (widget) → **S003 (/profile)** → S004 (/browse)
 - Additive UI
 - Design-compliant (S003 spec)
 - UNKNOWN markers: profile_photo upload → DEFERRED (GAP-S003-PHOTO)
+
+## L232 — S004 Browse Needs (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S004 was placeholder (62-line stub) — full spec not implemented
+
+### Changes
+- REPLACE: resources/views/browse.blade.php (62 → 159 lines, S004 spec)
+- UPD: lang/en.json — +30 keys (search, chips, states, nav, ads, sort)
+- UPD: lang/am.json — +30 keys (parallel Amharic)
+- UPD: app/Http/Controllers/Api/V1/NeedController.php — index()
+  - ADD validation: keyword max:255, category_id uuid exists, per_page 1-50, sort enum
+  - ADD sort: newest|budget_low|budget_high|deadline_soon
+  - (non-breaking: existing callers unaffected)
+- NEW: tests/Feature/Screens/S004BrowseTest.php (15 tests, 41 assertions)
+
+### Screen anatomy (spec compliance)
+- AppBar 64 with brand mark
+- Search 48 (keyword 0-255, debounced 300ms)
+- Category chips (GET /api/v1/categories)
+- Filter + sort controls
+- Need feed (GET /api/v1/needs)
+- Separate create action (FAB -> /needs/new)
+- 5-item bottom nav (S004/S009/S013/S018/S003)
+- Ads: AD_BROWSE_INLINE_01, AD_SEARCH_RESULTS_INLINE_01
+
+### States implemented
+loading (skeleton) | content | empty (filters) | error | offline
+
+### Responsive
+mobile 1-col | tablet (>=640px) 2-col | laptop (>=1024px) 3-col
+bottom-nav hidden >=768px; FAB repositioned
+
+### Transitions
+S005 (/needs/new) | S008 (/needs/:id) | S009 (/my/needs) |
+S013 (/my/offers) | S018 (/notifications)
+
+### Test Results
+- S004BrowseTest: 15 tests, 41 assertions
+- Full suite: 424 -> 439 tests (730 -> 771 assertions)
+- Failures: 0
+
+### Not changed
+- No DB migration
+- No route removal
+- No API breaking change
+- S003 profile untouched
+
+### Constitution
+- Additive (validate() added; no existing contract removed)
+- UNKNOWN != MISSING (no speculative fields)
+- Design-compliant (S004 spec + manifest + api-mapping)
+- No silent change (this ledger entry)

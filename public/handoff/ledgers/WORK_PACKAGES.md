@@ -164,4 +164,4 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 | GAP-71c | 14 additional factories + HasFactory | DONE | IMPLEMENTATION_LEDGER L229 |
 | WIDGET-FLOW | OIDC -> Widget pivot | DONE | IMPLEMENTATION_LEDGER L230 |
 | S003-PROFILE | Post-login Profile screen | DONE | IMPLEMENTATION_LEDGER L231 |
-| S004-BROWSE | Browse Needs (placeholder) | PARTIAL | browse.blade.php stub |
+| S004-BROWSE | Browse Needs (full) | DONE | IMPLEMENTATION_LEDGER L232 |

@@ -18,35 +18,52 @@ class NeedController extends BaseApiController
      */
     public function index(Request $request): JsonResponse
     {
+        $validated = $request->validate([
+            'keyword'     => ['nullable', 'string', 'max:255'],
+            'category_id' => ['nullable', 'uuid', 'exists:categories,id'],
+            'location'    => ['nullable', 'string', 'max:100'],
+            'page'        => ['nullable', 'integer', 'min:1'],
+            'per_page'    => ['nullable', 'integer', 'min:1', 'max:50'],
+            'sort'        => ['nullable', 'in:newest,budget_low,budget_high,deadline_soon'],
+        ]);
+
         $query = Need::query()
             ->with(['category', 'requester:id,full_name,profile_photo_url,rating_score,rating_count'])
             ->where('status', Need::STATUS_OPEN)
             ->whereNull('archived_at')
             ->whereNull('deleted_at');
 
-        if ($request->filled('keyword')) {
-            $kw = $request->string('keyword');
+        if (!empty($validated['keyword'])) {
+            $kw = $validated['keyword'];
             $query->where(function ($q) use ($kw) {
                 $q->where('title', 'like', "%{$kw}%")
                   ->orWhere('description', 'like', "%{$kw}%");
             });
         }
 
-        if ($request->filled('category_id')) {
-            $query->where('category_id', $request->input('category_id'));
+        if (!empty($validated['category_id'])) {
+            $query->where('category_id', $validated['category_id']);
         }
 
-        if ($request->filled('location')) {
-            $query->where('location_text', 'like', '%' . $request->input('location') . '%');
+        if (!empty($validated['location'])) {
+            $query->where('location_text', 'like', '%' . $validated['location'] . '%');
         }
 
-        $perPage = min((int) $request->input('per_page', 20), 50);
-        $needs = $query->orderByDesc('created_at')->paginate($perPage);
+        $sort = $validated['sort'] ?? 'newest';
+        match ($sort) {
+            'budget_low'    => $query->orderBy('budget_min', 'asc'),
+            'budget_high'   => $query->orderBy('budget_max', 'desc'),
+            'deadline_soon' => $query->orderBy('deadline_at', 'asc')->orderByDesc('created_at'),
+            default         => $query->orderByDesc('created_at'),
+        };
+
+        $perPage = (int) ($validated['per_page'] ?? 20);
+        $needs = $query->paginate($perPage);
 
         return $this->success($needs->items(), 'Needs retrieved.', 200, [
-            'page' => $needs->currentPage(),
+            'page'     => $needs->currentPage(),
             'per_page' => $needs->perPage(),
-            'total' => $needs->total(),
+            'total'    => $needs->total(),
             'has_more' => $needs->hasMorePages(),
         ]);
     }
