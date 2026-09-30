@@ -1,0 +1,24 @@
+PHPUnit 11.5.56 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.33
+Configuration: /home/zagcreht/felagi_app/phpunit.xml
+
+............                                                      12 / 12 (100%)
+
+Time: 00:03.428, Memory: 46.50 MB
+
+Telegram Widget (Tests\Feature\Auth\TelegramWidget)
+ ✔ Verify accepts valid signature
+ ✔ Verify rejects tampered hash
+ ✔ Verify rejects tampered first name
+ ✔ Verify rejects expired auth date
+ ✔ Verify rejects missing bot token
+ ✔ Upsert user creates new
+ ✔ Upsert user updates existing
+ ✔ Widget start returns config
+ ✔ Widget start validates return uri
+ ✔ Widget callback full flow
+ ✔ Widget callback rejects invalid hash
+ ✔ Widget callback rejects missing state
+
+OK (12 tests, 39 assertions)

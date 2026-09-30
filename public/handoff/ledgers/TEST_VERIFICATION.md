@@ -614,3 +614,25 @@ NeedAward, Report, Setting, SettingDraft, UserRole
 
 ### Smoke Tests
 All 14 factories verified via tinker.
+
+
+---
+
+## WIDGET-FLOW — Telegram Login Widget — 2026-09-30
+
+### Test File
+- tests/Feature/Auth/TelegramWidgetTest.php (12 tests, 39 assertions)
+
+### Test Suite Growth
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-Widget | 412 | 691 |
+| Widget | +12 | +39 |
+| Post-Widget | 424 | 730 |
+
+### Coverage
+- HMAC-SHA256 verification (valid + 4 invalid)
+- User upsert (create + update)
+- Widget start config
+- Full callback flow
+- Error paths (401, 400)

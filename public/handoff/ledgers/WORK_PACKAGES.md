@@ -162,3 +162,4 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 - Design Owner: (UNKNOWN — to be filled)
 - Release Owner: (UNKNOWN — to be filled)
 | GAP-71c | 14 additional factories + HasFactory | DONE | IMPLEMENTATION_LEDGER L229 |
+| WIDGET-FLOW | OIDC -> Widget pivot | DONE | IMPLEMENTATION_LEDGER L230 |

@@ -394,3 +394,31 @@ AuditLog, AuthAttempt, Message, Notification, OutboxEvent, Rating,
 SettingVersion, TelegramDestination, TelegramPublication, TelegramPublicationEvent
 
 **Closed by:** GAP-71c commit
+
+
+---
+
+## GAP-64-REOPENED — RESOLVED (2026-09-30) — OIDC not available
+
+**Type:** Production bug (B24 fix incomplete)
+**Opened:** 2026-09-30 (user report)
+**Status:** RESOLVED via Widget flow
+
+**Issue:**
+B24 fix added bot_id but client_id remained numeric bot ID.
+Telegram served Widget page instead of OIDC. Callback failed with
+"Missing state or code".
+
+**Evidence:**
+- BotFather: "Web login is currently unavailable for Felagi @FelagiMarketBot"
+- Only Login Widget available
+
+**Resolution:**
+- Telegram Widget flow (HMAC verification)
+- 12 tests added
+- Full suite: 424 tests
+
+**Preserved:**
+- OIDC code path kept (DEFERRED)
+
+**Closed by:** WIDGET-FLOW commit

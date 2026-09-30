@@ -41,6 +41,8 @@ return [
         'client_secret' => env('TELEGRAM_CLIENT_SECRET'),
         'redirect_uri'  => env('TELEGRAM_REDIRECT_URI'),
         'bot_id'        => env('TELEGRAM_BOT_ID', env('TELEGRAM_CLIENT_ID')),
+        'bot_token'     => env('TELEGRAM_BOT_TOKEN'),
+        'bot_username'  => env('TELEGRAM_BOT_USERNAME', 'FelagiMarketBot'),
 
         'oidc' => [
             'discovery_url'     => env('TELEGRAM_OIDC_DISCOVERY_URL', 'https://oauth.telegram.org/.well-known/openid-configuration'),

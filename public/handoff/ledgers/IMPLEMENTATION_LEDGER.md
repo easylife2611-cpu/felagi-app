@@ -1130,3 +1130,37 @@ git revert HEAD
 ### Constitution
 - Additive infrastructure
 - No breaking changes
+
+
+## L230 — WIDGET-FLOW (OIDC -> Widget pivot) — 2026-09-30
+
+**Type:** Architecture pivot (production fix)
+**Addresses:** B24 root cause (OIDC unavailable for this bot)
+
+### Changes
+- NEW: app/Services/Auth/TelegramWidgetService.php
+- NEW: tests/Feature/Auth/TelegramWidgetTest.php (12 tests)
+- UPD: AuthController — telegramWidgetStart + telegramWidgetCallback
+- UPD: routes/api.php — 2 widget routes
+- UPD: config/services.php — bot_token + bot_username
+- UPD: welcome.blade.php — Widget JS + handoff exchange
+- UPD: .env — TELEGRAM_BOT_TOKEN + TELEGRAM_BOT_USERNAME
+
+### Preserved (DEFERRED)
+- TelegramOidcService.php (kept)
+- OIDC routes (kept)
+
+### Test Results
+- Widget: 12 tests (39 assertions)
+- Full suite: 412 -> 424 tests (691 -> 730 assertions)
+- Failures: 0
+
+### Root Cause
+BotFather: "Web login is currently unavailable for Felagi @FelagiMarketBot"
+- B24 GAP-64 fix was incomplete — fixed bot_id presence, not client_id correctness
+- client_id=8629327448 is numeric bot ID, not hex OIDC client_id
+
+### Constitution
+- No destructive change (OIDC kept)
+- Additive
+- No silent changes (documented)

@@ -27,6 +27,13 @@ Route::prefix('v1')->group(function () {
         Route::post('telegram/start', [AuthController::class, 'telegramStart'])
             ->middleware('throttle:5,15');
 
+        // Widget flow (BotFather "Web Login" unavailable)
+        Route::post('telegram/widget/start', [AuthController::class, 'telegramWidgetStart'])
+            ->middleware('throttle:5,15');
+
+        Route::get('telegram/widget/callback', [AuthController::class, 'telegramWidgetCallback'])
+            ->middleware('throttle:10,1');
+
         // WP-27: Telegram redirects user here with ?code=&state=
         Route::get('telegram/callback', [AuthController::class, 'telegramCallback'])
             ->middleware('throttle:10,1');

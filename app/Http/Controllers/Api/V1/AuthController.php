@@ -7,6 +7,7 @@ use App\Models\AuthAttempt;
 use App\Models\User;
 use App\Services\Auth\AuthAttemptService;
 use App\Services\Auth\TelegramOidcService;
+use App\Services\Auth\TelegramWidgetService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class AuthController extends BaseApiController
     public function __construct(
         private readonly AuthAttemptService $attemptService,
         private readonly TelegramOidcService $oidcService,
+        private readonly TelegramWidgetService $widgetService,
     ) {}
 
     /**
@@ -179,6 +181,91 @@ class AuthController extends BaseApiController
         } catch (OidcExchangeException $e) {
             return $this->error('OIDC_EXCHANGE_FAILED', $e->getMessage(), 401, $e->toArray());
         }
+    }
+
+    /**
+     * POST /api/v1/auth/telegram/widget/start
+     *
+     * Widget flow: creates auth attempt, returns widget config.
+     * Frontend injects Telegram Widget script with callback_url.
+     */
+    public function telegramWidgetStart(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'return_uri' => ['required', 'url', 'max:500'],
+        ]);
+
+        $allowedHosts = config('auth.telegram_allowed_hosts', []);
+        $returnHost = parse_url($validated['return_uri'], PHP_URL_HOST);
+        if (!empty($allowedHosts) && !in_array($returnHost, $allowedHosts, true)) {
+            return $this->error('URI_NOT_ALLOWED', 'Return URI not allowed.', 422);
+        }
+
+        $created = $this->attemptService->create($validated['return_uri']);
+
+        $callbackUrl = url('/api/v1/auth/telegram/widget/callback')
+            . '?state=' . urlencode($created['state']);
+
+        return $this->success([
+            'bot_username' => config('services.telegram.bot_username', 'FelagiMarketBot'),
+            'callback_url' => $callbackUrl,
+            'attempt_id'   => $created['attempt']->id,
+            'expires_at'   => $created['attempt']->expires_at->toIso8601String(),
+        ], 'Widget auth attempt created.');
+    }
+
+    /**
+     * GET /api/v1/auth/telegram/widget/callback
+     *
+     * Telegram Widget redirects user here with:
+     *   ?id=X&first_name=Y&auth_date=Z&hash=H&state=S
+     *
+     * 1. Verify HMAC-SHA256 hash
+     * 2. Find auth attempt by state
+     * 3. Upsert user by telegram_subject
+     * 4. Generate single-use handoff code (reuses WP-27b)
+     * 5. Redirect to return_uri?handoff_code=X
+     */
+    public function telegramWidgetCallback(Request $request): JsonResponse|RedirectResponse
+    {
+        $state = $request->query('state');
+        if (!$state) {
+            return $this->error('INVALID_CALLBACK', 'Missing state.', 400);
+        }
+
+        try {
+            $verified = $this->widgetService->verify($request->query());
+        } catch (OidcExchangeException $e) {
+            return $this->error('WIDGET_VERIFICATION_FAILED', $e->getMessage(), 401, $e->toArray());
+        }
+
+        $attempt = $this->attemptService->findByState($state);
+        if (!$attempt) {
+            return $this->error('ATTEMPT_NOT_FOUND', 'Auth attempt not found.', 401);
+        }
+
+        $result = $this->widgetService->upsertUser($verified);
+        $user = $result['user'];
+
+        $handoff = $this->attemptService->generateHandoff($attempt, $user);
+
+        $returnUri = $attempt->return_uri_allowlisted;
+        $separator = str_contains($returnUri, '?') ? '&' : '?';
+        $redirectUrl = $returnUri . $separator . 'handoff_code=' . urlencode($handoff);
+
+        if ($request->wantsJson()) {
+            return $this->success([
+                'handoff_code' => $handoff,
+                'redirect_url' => $redirectUrl,
+                'user'         => [
+                    'id'        => $user->id,
+                    'full_name' => $user->full_name,
+                    'status'    => $user->status,
+                ],
+            ], 'Widget callback processed.');
+        }
+
+        return redirect()->away($redirectUrl);
     }
 
     /**

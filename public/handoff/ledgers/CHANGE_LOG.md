@@ -1338,3 +1338,34 @@ git revert <GAP-71b-commit>
 
 ### Rollback
 git revert <GAP-71c-commit>
+
+
+---
+
+## WIDGET-FLOW — OIDC -> Widget pivot — 2026-09-30
+
+**Type:** Architecture pivot (production fix)
+
+### Root Cause
+BotFather confirms "Web login is currently unavailable" for Felagi bot.
+B24 (GAP-64) was incomplete: bot_id was added but client_id remained
+numeric bot ID (not hex OIDC client_id). URL rendered Widget page.
+
+### Changes
+- NEW TelegramWidgetService (HMAC verification)
+- NEW TelegramWidgetTest (12 tests)
+- AuthController: 2 new methods
+- routes: 2 new routes
+- welcome.blade.php: Widget JS
+- config/services.php: bot_token + bot_username
+- .env: TELEGRAM_BOT_TOKEN + TELEGRAM_BOT_USERNAME
+
+### Preserved
+- OIDC service + routes (DEFERRED)
+
+### Tests
+- Widget: 12 (39 assertions)
+- Full: 424 (730 assertions)
+
+### Rollback
+git revert <WIDGET-commit>
