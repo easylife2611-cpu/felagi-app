@@ -295,3 +295,36 @@ Rename Attachment::isClean() to Attachment::isScanClean():
 
 **Status:** RESOLVED — fixed in B27 (2026-09-30)
 **Closed by:** B27 — see CHANGE_LOG + L219
+
+---
+
+## GAP-70 — RESOLVED (2026-09-30) — Ledger Drift: B17-B24
+
+**Type:** Documentation integrity / Constitution compliance
+**Opened:** 2026-09-30
+**Status:** RESOLVED (2026-09-30)
+
+**Original issue:**
+B17–B24 code existed in git but was not recorded in canonical ledgers
+(IMPLEMENTATION_LEDGER, TEST_VERIFICATION, CHANGE_LOG, WORK_PACKAGES).
+
+**Resolution:**
+- IMPLEMENTATION_LEDGER: L221–L227 appended (B18–B24)
+- TEST_VERIFICATION: B18/B20/B22/B23/B24 "no test changes" note
+  (B19 + B21 already documented in original location)
+- CHANGE_LOG: B18/B20/B22/B23/B24 entries appended
+  (B19 + B21 already documented in original location)
+- HANDOFF_STATE: B18–B24 backfill summary added
+- WORK_PACKAGES: B18-B24 marked DONE (was DEFERRED)
+
+**Evidence:**
+Git log range 6ea8a97..143a756 (10 commits) now fully documented in
+canonical ledgers.
+
+**Constitution compliance:**
+- Art. "Maintain one canonical project ledger" — restored
+- Art. "No hidden work" — B18-B24 now visible
+- Art. "No silent changes" — backfill explicitly marked
+- Art. "No duplicate ownership" — existing B19/B21 entries preserved
+
+**Closed by:** Backfill commit (this commit)

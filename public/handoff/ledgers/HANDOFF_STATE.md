@@ -364,3 +364,33 @@ All 7 R-TEST items now COVERED:
 
 ### Continuity
 Next developer: L220 + TEST_VERIFICATION B28 + CHANGE_LOG.
+
+---
+## B18–B24 — Backfill Summary (GAP-70 resolved 2026-09-30)
+
+The B18–B24 commits (2026-09-29) were previously unrecorded in canonical
+ledgers. Backfilled from git history on 2026-09-30. Full details in
+IMPLEMENTATION_LEDGER L221–L227, TEST_VERIFICATION backfill section,
+CHANGE_LOG backfill section.
+
+### Timeline
+| Block | Commit | Scope | Tests Δ |
+|---|---|---|---|
+| B18 | dbc689c | Bundle refresh @ B17_DONE | 0 |
+| B19 | b451224 | Model tests: AuditLog+OutboxEvent+SettingVersion (+25) | 106→131 |
+| B20 | 6c6bcb6 | Bundle refresh @ B19_DONE | 0 |
+| B21 | c64fa28 | Model tests: Notification+Rating+User (+31) + audit + specs | 131→162 |
+| B22 | 1a17a7c + 6bc49c8 + 7a0d21e | STATUS_REPORT + SOURCE_OF_TRUTH + bundle | 0 |
+| B23 | 48217b2 | Public publication to /handoff + /downloads | 0 |
+| B24 | 3e7236c + 143a756 | S001 signIn fix (GAP-63/64/65/66) | 0 |
+
+### Milestone
+- Test suite: 106 → 162 tests (220 → 320 assertions)
+- SOURCE_OF_TRUTH.md consolidated (1927 lines)
+- 4 public URLs published (HTTP 200)
+- Telegram bot configured (FelagiMarketBot: 8629327448)
+
+### State before B25
+- App HEAD: 143a756 (B24)
+- Design HEAD: 27edd9d (B11)
+- Tests: 162 (320 assertions)

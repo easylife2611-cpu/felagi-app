@@ -569,3 +569,21 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - B28: 62 passed (96 assertions)
 - Full suite: 412 passed (691 assertions)
 - PHP: 8.2.33 | PHPUnit: 11.5.56
+
+---
+
+## GAP-70 Backfill — B18, B20, B22, B23, B24 (added 2026-09-30)
+
+**Reason:** B18/B20/B22/B23/B24 were doc-only (no test changes). Recorded here for completeness. B19 and B21 tests were already documented above.
+
+---
+
+## B18, B20, B22, B23, B24 — No Test Changes
+
+- B18: Bundle refresh (tests 106, unchanged)
+- B20: Bundle refresh (tests 131, unchanged)
+- B22: Bundle refresh + docs (tests 162, unchanged)
+- B23: Publication (tests 162, unchanged)
+- B24: S001 signIn fix (tests 162, unchanged)
+
+**End of GAP-70 Backfill — TEST_VERIFICATION.**

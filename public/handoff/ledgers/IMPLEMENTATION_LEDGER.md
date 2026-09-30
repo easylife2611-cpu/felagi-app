@@ -847,3 +847,236 @@ git revert <B27-commit> -- app/Models/Attachment.php
 git revert HEAD  # test-only
 # OR
 rm tests/Feature/Models/{SettingTest,SettingDraftTest,UserRoleTest}.php
+
+---
+
+## ⚠️ GAP-70 Backfill — B18–B24 Ledger Entries (added 2026-09-30)
+
+**Reason:** B18–B24 commits existed in git but were never recorded in the
+canonical ledgers. Backfilled from git history on 2026-09-30 (GAP-70).
+**Chronology:** These entries precede L217 (B25) — appended at end for
+convenience. Do NOT renumber existing L-IDs.
+
+---
+
+## L221 — B18 (Bundle Refresh @ B17_DONE) — 2026-09-29
+
+**Commit:** dbc689c
+**Type:** Documentation / Bundle refresh
+
+### Changes
+- UPD: public/handoff/ledgers/HANDOFF_STATE.md (41 insertions)
+
+### Bundle Artifacts (in ~/)
+- Felagi_App_v1.4.2_20260929-1514_B17_DONE.bundle (974K)
+- Felagi_Design_v1.4.2_20260929-1514_B17_DONE.bundle (3.5M)
+- Felagi_v1.4.2_20260929-1514_B17_DONE_full.tar.gz (45M)
+- Felagi_v1.4.2_20260929-1514_B17_DONE_FULL_with_vendor.tar.gz (76M)
+
+### Clone Verification
+- App bundle HEAD: 6ea8a97 (B17), 51 commits, 14 ledgers
+- Design bundle HEAD: 27edd9d (B11), 15 commits
+- Tarball: 317 entries, B17_ROLLBACK.md present
+
+### Test Results
+- Tests: 106 (unchanged — doc-only)
+
+### Constitution Compliance
+- No production code changed
+- No silent changes
+
+---
+
+## L222 — B19 (Model Unit Tests — AuditLog + OutboxEvent + SettingVersion) — 2026-09-29
+
+**Commit:** b451224
+**Type:** Test coverage
+
+### Changes
+- NEW: tests/Feature/Models/AuditLogTest.php (140 lines)
+- NEW: tests/Feature/Models/OutboxEventTest.php (173 lines)
+- NEW: tests/Feature/Models/SettingVersionTest.php (208 lines)
+- UPD: public/handoff/ledgers/CHANGE_LOG.md (+50)
+- UPD: public/handoff/ledgers/DECISION_LOG.md (+38, D-111, D-112)
+- UPD: public/handoff/ledgers/TEST_VERIFICATION.md (+42)
+
+### Test Results
+- B19 new: +25 tests
+- Full suite: 106 → 131 tests (220 → 266 assertions)
+- Failures: 0
+
+### Schema Findings
+- audit_logs.request_id NOT NULL, no default — made explicit in tests
+- No production code, no migrations, no routes changed
+
+### Constitution Compliance
+- D-054 AUDIT BEFORE ACTION (applied)
+- IMPLEMENTED != VERIFIED (tests proven before commit)
+
+---
+
+## L223 — B20 (Bundle Refresh @ B19_DONE) — 2026-09-29
+
+**Commit:** 6c6bcb6
+**Type:** Documentation / Bundle refresh
+
+### Changes
+- UPD: public/handoff/ledgers/HANDOFF_STATE.md (41 insertions)
+
+### Bundle Artifacts
+- Felagi_App_v1.4.2_20260929-1530_B19_DONE.bundle (980K)
+- Felagi_Design_v1.4.2_20260929-1530_B19_DONE.bundle (3.5M)
+- Felagi_v1.4.2_20260929-1530_B19_DONE_full.tar.gz (45M)
+- Felagi_v1.4.2_20260929-1530_B19_DONE_FULL_with_vendor.tar.gz (76M)
+
+### Clone Verification
+- App bundle HEAD: b451224 (B19), 53 commits, 14 ledgers, 3 model test files
+- Design bundle HEAD: 27edd9d (B11), 15 commits
+- Tarball: 321 entries
+
+### Supersedes
+- B18 bundle (B17_DONE) — archived
+
+### Test Results
+- Tests: 131 (unchanged)
+
+---
+
+## L224 — B21 (Extended Model Tests + Migration Audit + Spec Requests) — 2026-09-29
+
+**Commit:** c64fa28
+**Type:** Test coverage + Documentation
+
+### Changes
+- NEW: tests/Feature/Models/NotificationTest.php (120 lines, 11 tests)
+- NEW: tests/Feature/Models/RatingTest.php (153 lines, 9 tests)
+- NEW: tests/Feature/Models/UserTest.php (139 lines, 11 tests)
+- NEW: tests/Feature/Models/Concerns/CreatesTestCategory.php (19 lines)
+- NEW: docs/audits/MIGRATION_INTEGRITY_B21.md (69 lines)
+- NEW: docs/spec-requests/T01-T18_integration_tests.md (86 lines)
+- NEW: docs/spec-requests/WP-05c_admin_read_endpoints.md (64 lines)
+- UPD: public/handoff/ledgers/CHANGE_LOG.md (+69)
+- UPD: public/handoff/ledgers/DECISION_LOG.md (+43)
+- UPD: public/handoff/ledgers/TEST_VERIFICATION.md (+48)
+
+### Test Results
+- B21 new: +31 tests (+54 assertions)
+- Full suite: 131 → 162 tests (266 → 320 assertions)
+- Failures: 0
+
+### Schema Findings (via test failures)
+- 5 NOT NULL no-default columns discovered:
+  setting_versions.reason, audit_logs.request_id, needs.category_id,
+  offers.offered_price, offers.proposal_message
+- 1 unique constraint: ratings UNIQUE(need_id, from_user_id, to_user_id)
+- All handled in test payloads (no schema change). See D-112.
+
+### Constitution Compliance
+- D-054 AUDIT BEFORE ACTION
+- IMPLEMENTED != VERIFIED — tests proven before commit
+- UNKNOWN != MISSING — spec requests documented
+
+---
+
+## L225 — B22 (Bundle Refresh @ B21_DONE + Status Report + SOURCE_OF_TRUTH) — 2026-09-29
+
+**Commits:** 1a17a7c + 6bc49c8 + 7a0d21e (grouped)
+**Type:** Documentation / Bundle refresh / Consolidation
+
+### Changes
+- NEW: FELAGI_STATUS_REPORT.md (523 lines)
+- NEW: SOURCE_OF_TRUTH.md (1927 lines, consolidated 4 docs)
+- UPD: public/handoff/ledgers/HANDOFF_STATE.md (+46)
+
+### Bundle Artifacts
+- Felagi_App_v1.4.2_20260929-1551_B21_DONE.bundle (999K)
+- Felagi_Design_v1.4.2_20260929-1551_B21_DONE.bundle (3.5M)
+- Felagi_v1.4.2_20260929-1551_B21_DONE_full.tar.gz (45M)
+- Felagi_v1.4.2_20260929-1551_B21_DONE_FULL_with_vendor.tar.gz (76M)
+
+### Clone Verification
+- App bundle HEAD: c64fa28 (B21), 55 commits, 14 ledgers
+- 6 model test files, 1 audit doc, 2 spec requests
+- Design bundle HEAD: 27edd9d (B11), 15 commits
+- Tarball: 332 entries
+
+### SOURCE_OF_TRUTH.md Contents
+- Section 1: FELAGI_STATUS_REPORT.md (523 lines)
+- Section 2: HANDOFF_STATE.md (261 lines)
+- Section 3: DECISION_LOG.md (688 lines)
+- Section 4: TEST_VERIFICATION.md (405 lines)
+
+### Supersedes
+- B20 bundle (B19_DONE) — archived
+
+### Test Results
+- Tests: 162 (unchanged)
+
+---
+
+## L226 — B23 (Publish SOURCE_OF_TRUTH to Public Directories) — 2026-09-29
+
+**Commit:** 48217b2
+**Type:** Documentation / Publication
+
+### Changes
+- NEW: public/handoff/SOURCE_OF_TRUTH.md (1927 lines)
+- NEW: public/handoff/FELAGI_STATUS_REPORT.md (523 lines)
+- NEW: public/downloads/SOURCE_OF_TRUTH.md
+- NEW: public/downloads/FELAGI_STATUS_REPORT.md
+
+### Live URLs Verified (HTTP/2 200)
+- https://zagcreativity.com/handoff/SOURCE_OF_TRUTH.md
+- https://zagcreativity.com/handoff/FELAGI_STATUS_REPORT.md
+- https://zagcreativity.com/downloads/SOURCE_OF_TRUTH.md
+- https://zagcreativity.com/downloads/FELAGI_STATUS_REPORT.md
+
+### Test Results
+- Tests: 162 (unchanged)
+
+---
+
+## L227 — B24 (S001 signIn — GAP-63/64/65/66 Chained Fixes) — 2026-09-29
+
+**Commits:** 3e7236c + 143a756 (grouped)
+**Type:** Production bug fix (approved) + Documentation
+
+### GAPs Resolved
+- **GAP-63:** JS read top-level data.auth_url, backend returns nested
+  → Fix: `data.data || data` fallback
+- **GAP-64:** bot_id parameter missing from Telegram OAuth URL
+  → Fix: added bot_id (8629327448)
+- **GAP-65:** CSRF token missing in fetch request
+  → Fix: meta tag + X-CSRF-TOKEN header + credentials
+- **GAP-66:** origin parameter missing
+  → Fix: origin = zagcreativity.com
+
+### Files Changed (code + docs)
+- resources/views/welcome.blade.php (CSRF + fetch, +21/-?)
+- app/Http/Controllers/Api/V1/AuthController.php (origin + bot_id)
+- config/services.php (bot_id mapping)
+- FELAGI_STATUS_REPORT.md (B24 section, +34)
+- SOURCE_OF_TRUTH.md (rebuilt, +87/-46)
+
+### BotFather Setup
+- Bot: FelagiMarketBot (8629327448)
+- Domain: zagcreativity.com
+
+### Evidence
+- URL parameters: 10/10 verified
+- Live URLs: 4/4 HTTP 200
+- Tests: 162 passed (320 assertions)
+
+### Not Changed
+- No migrations
+- No routes
+- No design
+
+### Constitution Compliance
+- Production change: user-requested fix (GAP-63/64/65/66)
+- No silent changes — all 4 GAPs documented
+- IMPLEMENTED != VERIFIED
+
+---
+
+**End of GAP-70 Backfill section.**

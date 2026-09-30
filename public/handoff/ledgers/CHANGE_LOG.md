@@ -1168,3 +1168,130 @@ Every new Attachment() raised TypeError. Latent since B17.
 
 ### Rollback
 git revert <B28-commit>  # test-only
+
+---
+
+## GAP-70 Backfill — B18, B20, B22, B23, B24 (added 2026-09-30)
+
+**Reason:** B18/B20/B22/B23/B24 existed in git but were not recorded in
+canonical CHANGE_LOG. Backfilled from git history. B19 and B21 entries
+already existed above and are NOT duplicated here.
+
+---
+
+## B18 — Bundle Refresh @ B17_DONE — 2026-09-29
+
+**Commit:** dbc689c
+**Type:** Bundle refresh (doc-only)
+**Tests:** 106 (unchanged)
+
+**Artifacts (in ~/):**
+- Felagi_App_v1.4.2_20260929-1514_B17_DONE.bundle (974K)
+- Felagi_Design_v1.4.2_20260929-1514_B17_DONE.bundle (3.5M)
+- Felagi_v1.4.2_20260929-1514_B17_DONE_full.tar.gz (45M)
+- Felagi_v1.4.2_20260929-1514_B17_DONE_FULL_with_vendor.tar.gz (76M)
+
+**Clone verified:** App HEAD=6ea8a97 (B17), 51 commits, 14 ledgers
+**Files changed:** HANDOFF_STATE.md (+41)
+
+---
+
+## B20 — Bundle Refresh @ B19_DONE — 2026-09-29
+
+**Commit:** 6c6bcb6
+**Type:** Bundle refresh
+**Tests:** 131 (unchanged)
+
+**Artifacts (in ~/):**
+- Felagi_App_v1.4.2_20260929-1530_B19_DONE.bundle (980K)
+- Felagi_Design_v1.4.2_20260929-1530_B19_DONE.bundle (3.5M)
+- Felagi_v1.4.2_20260929-1530_B19_DONE_full.tar.gz (45M)
+- Felagi_v1.4.2_20260929-1530_B19_DONE_FULL_with_vendor.tar.gz (76M)
+
+**Clone verified:** App HEAD=b451224 (B19), 53 commits, 3 model test files
+**Supersedes:** B18 bundle (B17_DONE)
+**Files changed:** HANDOFF_STATE.md (+41)
+
+---
+
+## B22 — Bundle Refresh + STATUS_REPORT + SOURCE_OF_TRUTH — 2026-09-29
+
+**Commits:** 1a17a7c + 6bc49c8 + 7a0d21e (grouped)
+**Type:** Documentation
+**Tests:** 162 (unchanged)
+
+**Artifacts (in ~/):**
+- Felagi_App_v1.4.2_20260929-1551_B21_DONE.bundle (999K)
+- Felagi_Design_v1.4.2_20260929-1551_B21_DONE.bundle (3.5M)
+- Felagi_v1.4.2_20260929-1551_B21_DONE_full.tar.gz (45M)
+- Felagi_v1.4.2_20260929-1551_B21_DONE_FULL_with_vendor.tar.gz (76M)
+
+**Files added:**
+- FELAGI_STATUS_REPORT.md (523 lines)
+- SOURCE_OF_TRUTH.md (1927 lines, consolidated 4 docs: STATUS + HANDOFF + DECISION + TEST_VERIFICATION)
+
+**Clone verified:** App HEAD=c64fa28 (B21), 55 commits, 14 ledgers, 6 model test files, 1 audit, 2 spec requests
+**Supersedes:** B20 bundle (B19_DONE)
+**Files changed:** HANDOFF_STATE.md (+46)
+
+---
+
+## B23 — Publish SOURCE_OF_TRUTH to Public Directories — 2026-09-29
+
+**Commit:** 48217b2
+**Type:** Publication
+**Tests:** 162 (unchanged)
+
+**Files added:**
+- public/handoff/SOURCE_OF_TRUTH.md (1927 lines)
+- public/handoff/FELAGI_STATUS_REPORT.md (523 lines)
+- public/downloads/SOURCE_OF_TRUTH.md
+- public/downloads/FELAGI_STATUS_REPORT.md
+
+**Live URLs verified (HTTP/2 200):**
+- https://zagcreativity.com/handoff/SOURCE_OF_TRUTH.md
+- https://zagcreativity.com/handoff/FELAGI_STATUS_REPORT.md
+- https://zagcreativity.com/downloads/SOURCE_OF_TRUTH.md
+- https://zagcreativity.com/downloads/FELAGI_STATUS_REPORT.md
+
+---
+
+## B24 — S001 signIn (GAP-63/64/65/66 Chained Fixes) — 2026-09-29
+
+**Commits:** 3e7236c + 143a756 (grouped)
+**Type:** Production bug fix (approved by user request)
+**Tests:** 162 (unchanged)
+
+### GAPs Resolved
+- **GAP-63:** JS read top-level data.auth_url, backend returns nested
+  → Fix: `data.data || data` fallback
+- **GAP-64:** bot_id parameter missing from Telegram OAuth URL
+  → Fix: added bot_id (8629327448)
+- **GAP-65:** CSRF token missing in fetch request
+  → Fix: meta tag + X-CSRF-TOKEN header + credentials
+- **GAP-66:** origin parameter missing
+  → Fix: origin = zagcreativity.com
+
+### Files Changed (code + docs)
+- resources/views/welcome.blade.php (CSRF + fetch)
+- app/Http/Controllers/Api/V1/AuthController.php (origin + bot_id)
+- config/services.php (bot_id mapping)
+- FELAGI_STATUS_REPORT.md (B24 section, +34)
+- SOURCE_OF_TRUTH.md (rebuilt, +87/-46)
+
+### Evidence
+- URL parameters: 10/10 verified
+- Live URLs: 4/4 HTTP 200
+- Tests: 162 passed (320 assertions)
+
+### Not Changed
+- No migrations
+- No routes
+- No design
+
+### Constitution Compliance
+- Production change: user-requested fix (GAP-63/64/65/66)
+- No silent changes — all 4 GAPs documented
+- IMPLEMENTED != VERIFIED — tests not re-run beyond existing 162
+
+**End of GAP-70 Backfill — CHANGE_LOG.**
