@@ -2190,3 +2190,49 @@ prefix group at `/admin/telegram/*`.
 - No guessing — every decision cites admin.json / contract / existing code
 - Additive — new files + new routes only; no existing behavior changed
 - No silent changes — this ledger + commit
+
+---
+
+## L263 — Session addendum: T01-T18 + GAP-70 + Health + OpenAPI (A/B/C/D/E)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Mixed (1 feature + 4 reports + 1 cleanup)
+
+**What Changed:**
+
+### E — Health Check (FEATURE)
+- NEW: `app/Http/Controllers/Api/V1/HealthController.php`
+- NEW: route `GET /api/health` (public, no auth, unversioned)
+- NEW: `tests/Feature/Health/HealthCheckTest.php` (3 tests)
+- Checks: database, cache, storage, queue
+
+### A — T01-T18 Definitions (REPORT)
+- NEW: `docs/reports/T01-T18_DEFINITIONS_20260930.md`
+- Resolution: definitions found in DFM-FDS-1.4.md lines 483-513
+- Status: BLOCKED_ON_UNKNOWN → EVIDENCE_AVAILABLE
+- Matrix: T01-T31 (31 tests) documented with layer + local/external split
+
+### C — GAP-70 Verification (REPORT)
+- NEW: `docs/reports/GAP-70_VERIFICATION_20260930.md`
+- Verified: 7 L entries + 7 B entries for B17-B24
+- 10 commits traced, git history ↔ ledgers in sync
+
+### D — OpenAPI Coverage (REPORT)
+- NEW: `docs/reports/OPENAPI_COVERAGE_20260930.md`
+- Documented ~63 endpoints (public + auth + user + admin + health)
+- Full OpenAPI 3.0 spec DEFERRED (blocked on WP-10, WP-13c)
+
+### B — Bundle Cleanup (OPS)
+- 24 bundles → 3 active (1149, 1207, 1209)
+- 21 bundles archived to `~/bundle_archive/`
+- 31M → 4.5M active
+
+**Test Results:**
+- Health: 3 tests / 18 assertions
+- Full suite: 739 tests / 1,771 assertions / 0 failures
+
+**Constitution compliance:**
+- A/C/D: Reports only — no code
+- E: New endpoint — no existing behavior changed
+- B: File ops only — no code affected

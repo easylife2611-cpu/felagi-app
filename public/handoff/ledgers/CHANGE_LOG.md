@@ -1494,3 +1494,28 @@ git revert <S003-commit>
 
 ### WP
 - WP-05c: BLOCKED_ON_UNKNOWN → RESOLVED
+
+---
+
+## B33 — Session addendum: health + reports + bundle cleanup
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L263
+
+### Added
+- app/Http/Controllers/Api/V1/HealthController.php (E)
+- tests/Feature/Health/HealthCheckTest.php (E)
+- docs/reports/T01-T18_DEFINITIONS_20260930.md (A)
+- docs/reports/GAP-70_VERIFICATION_20260930.md (C)
+- docs/reports/OPENAPI_COVERAGE_20260930.md (D)
+
+### Changed
+- routes/api.php: +GET /api/health (E)
+
+### Bundles (B)
+- Archived 21 old bundles to ~/bundle_archive/
+
+### Tests
+- +3 tests, +18 assertions
+- Full suite: 739 tests / 1,771 assertions / 0 failures

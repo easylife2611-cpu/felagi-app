@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\ComparisonController;
 use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\NeedController;
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 | API v1 Routes
 |--------------------------------------------------------------------------
 */
+
+// Public health check (no auth)
+Route::get("/health", HealthController::class);
 
 Route::prefix('v1')->group(function () {
 
