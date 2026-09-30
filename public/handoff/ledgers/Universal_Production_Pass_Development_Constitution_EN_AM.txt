@@ -1,0 +1,103 @@
+Universal Production Pass Development Constitution
+የዩኒቨርሳል ፕሮዳክሽን ፓስ የልማት ሥራ ሕገ-መንግስት
+
+Operate under the Universal Production Pass Development Constitution.
+Approved Product Specification, Design Specification, Architecture, Data/API Contracts, Security Rules and Acceptance Criteria are the locked baseline. Do not redesign, reinterpret, replace or silently weaken them.
+
+በ"Universal Production Pass Development Constitution" መሠረት ሥራውን አከናውን።
+የተፈቀዱት Product Specification, Design Specification, Architecture, Data/API Contracts, Security Rules እና Acceptance Criteria የተቆለፈ (Locked) ዋና መሠረት ናቸው። እነዚህን እንደገና አትንደፍ፣ ትርጉማቸውን በራስህ አትቀይር፣ አትተካ፣ በዝምታም አታዳክማቸው።
+
+Before coding, audit the current system and create a requirement registry, dependency map and coherent Work Packages.
+
+ኮድ ከመጻፍህ በፊት አሁን ያለውን ሲስተም ኦዲት አድርግ፣ Requirement Registry, Dependency Map እና ተያያዥ የሆኑ Work Packages ፍጠር።
+
+Do not work as a long chain of tiny independent tasks. Group strongly related frontend, backend, database, API, permission, error/recovery, security, tests, logging and documentation work into complete production-oriented Work Packages and execute each package end-to-end.
+
+ሥራውን በብዙ ትንንሽ እና እርስ በርስ ያልተያያዙ micro-tasks ረጅም ሰንሰለት አታድርግ። በጠንካራ ሁኔታ የተያያዙ frontend, backend, database, API, permission, error/recovery, security, tests, logging እና documentation ሥራዎችን በአንድ ሙሉ production-oriented Work Package ውስጥ አያይዘህ ከመጀመሪያ እስከ መጨረሻ አጠናቅቅ።
+
+Do not rebuild existing valid functionality. Discover first, reuse where appropriate, and build only proven missing capability.
+
+አሁን ያለ እና በትክክል የሚሠራ functionality እንደገና አትገንባ። መጀመሪያ Discover አድርግ፣ በሚገባ ከሆነ Reuse አድርግ፣ እና በማስረጃ የጎደለ መሆኑ የተረጋገጠ capability ብቻ ገንባ።
+
+Every requirement must have a unique ID and every implementation must trace back to a requirement.
+
+እያንዳንዱ requirement ልዩ Unique ID ሊኖረው ይገባል። እያንዳንዱ implementation ደግሞ ወደ የትኛው requirement እንደሚመለስ በግልጽ traceable መሆን አለበት።
+
+Maintain one canonical project ledger that always shows:
+NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED / VERIFIED / DONE / DEFERRED / N/A.
+
+ሁልጊዜ የፕሮጀክቱን ሁኔታ የሚያሳይ አንድ canonical Project Ledger አቆይ። እሱም የሚከተሉትን status ይጠቀም፦
+NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED / VERIFIED / DONE / DEFERRED / N/A.
+
+Never use DONE to mean "code written." DONE means implemented, integrated, tested, verified, documented and evidenced.
+
+"DONE" የሚለውን "ኮድ ተጻፈ" ማለት እንዳትጠቀም። DONE ማለት implemented, integrated, tested, verified, documented እና evidenced ሆኖ መጠናቀቅ ነው።
+
+Maintain continuously:
+MASTER_BASELINE
+REQUIREMENT_REGISTRY
+ARCHITECTURE_MAP
+WORK_PACKAGES
+IMPLEMENTATION_LEDGER
+TEST_VERIFICATION
+OPEN_GAPS
+CHANGE_LOG
+DECISION_LOG
+RELEASE_STATUS
+HANDOFF_STATE
+
+የሚከተሉትን መዝገቦች ሁልጊዜ አዘምን እና አቆይ፦
+MASTER_BASELINE
+REQUIREMENT_REGISTRY
+ARCHITECTURE_MAP
+WORK_PACKAGES
+IMPLEMENTATION_LEDGER
+TEST_VERIFICATION
+OPEN_GAPS
+CHANGE_LOG
+DECISION_LOG
+RELEASE_STATUS
+HANDOFF_STATE
+
+Every completed Work Package must leave the product in a runnable, non-broken state and include test evidence, affected files/modules, remaining gaps, known risks and rollback information.
+
+እያንዳንዱ የተጠናቀቀ Work Package ፕሮዳክቱን runnable እና non-broken ሁኔታ ላይ መተው አለበት። በተጨማሪ test evidence, affected files/modules, remaining gaps, known risks እና rollback information መያዝ አለበት።
+
+Do not guess missing requirements. Mark them UNKNOWN and report them. UNKNOWN ≠ MISSING. IMPLEMENTED ≠ VERIFIED. PARTIAL ≠ COMPLETE.
+
+የጎደሉ ወይም ያልተገለጹ requirements በግምት አትሙላ። UNKNOWN ብለህ መዝግብ እና report አድርግ።
+UNKNOWN ≠ MISSING.
+IMPLEMENTED ≠ VERIFIED.
+PARTIAL ≠ COMPLETE.
+
+If one task is blocked, isolate and document the blocker and continue independent safe Work Packages. Never fake dependent implementation.
+
+አንድ task BLOCKED ከሆነ blockerን isolate አድርግ፣ document አድርግ፣ እና ከእሱ ነፃ የሆኑ safe Work Packages ላይ ቀጥል። በblocked dependency ላይ የተመሠረተ implementation እንደተሰራ አታስመስል።
+
+Do not perform destructive, security-sensitive, breaking or architecture-changing work without explicit approval.
+
+Destructive, security-sensitive, breaking ወይም architecture-changing ሥራ explicit approval ሳይኖር አታከናውን።
+
+At the end of implementation, execute the full Production Readiness Gates:
+Baseline → Implementation → Integration → Verification → Security/Operations → Deployment/Post-Deployment Verification.
+
+Implementation ከተጠናቀቀ በኋላ ሙሉ Production Readiness Gates አሳልፍ፦
+Baseline → Implementation → Integration → Verification → Security/Operations → Deployment/Post-Deployment Verification.
+
+Production PASS is permitted only when all applicable critical requirements are VERIFIED and no unresolved BLOCKER/CRITICAL finding remains.
+
+Production PASS የሚፈቀደው ለፕሮዳክቱ የሚመለከቱ ሁሉም critical requirements VERIFIED ሲሆኑ እና unresolved BLOCKER/CRITICAL finding ሳይቀር ብቻ ነው።
+
+Maintain the project so that another competent developer can take over at any time, read the canonical project-control records, understand exactly what is complete, incomplete, blocked, tested and deployed, and continue without reconstructing project history from conversation or memory.
+
+ፕሮጀክቱን ማንኛውም competent developer በማንኛውም ጊዜ ሊረከበው በሚችል መልኩ አቆይ። አዲሱ developer canonical project-control records ብቻ በማንበብ ምን እንደተጠናቀቀ፣ ምን እንዳልተጠናቀቀ፣ ምን BLOCKED እንደሆነ፣ ምን TESTED እንደሆነ እና ምን DEPLOYED እንደሆነ በትክክል ማወቅ እና ከchat history ወይም ከሰው ማስታወሻ ታሪኩን እንደገና ሳይገነባ በደህና መቀጠል መቻል አለበት።
+
+No hidden work. No hidden assumptions. No silent changes. No unverified completion. No duplicate ownership. No dependency on a specific developer.
+
+የመጨረሻ የማይጣሱ ሕጎች፦
+የተደበቀ ሥራ አይኖር።
+የተደበቀ ግምት አይኖር።
+በዝምታ የሚደረግ ለውጥ አይኖር።
+ያልተረጋገጠ ሥራ DONE አይባል።
+Duplicate ownership አይኖር።
+ፕሮጀክቱ በአንድ የተወሰነ developer ላይ ጥገኛ አይሆን።
