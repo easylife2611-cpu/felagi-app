@@ -69,7 +69,7 @@ class S014CompareTest extends TestCase
         $res->assertStatus(409);
     }
 
-    public function test_comparison_returns_501_when_ai_not_configured(): void
+    public function test_comparison_returns_503_when_ai_call_fails(): void
     {
         $owner = User::factory()->create();
         $provider1 = User::factory()->create();
@@ -79,10 +79,19 @@ class S014CompareTest extends TestCase
         $o1 = Offer::factory()->create(['need_id' => $need->id, 'provider_id' => $provider1->id, 'status' => Offer::STATUS_PENDING]);
         $o2 = Offer::factory()->create(['need_id' => $need->id, 'provider_id' => $provider2->id, 'status' => Offer::STATUS_PENDING]);
 
+        // WP-10: AI is now wired; without an Http::fake the real Gemini call fails
+        // (or is unreachable in test env), so we expect 503 AI_COMPARISON_FAILED.
+        // Full success path is covered in tests/Feature/AI/ComparisonAiTest.php with Http::fake.
+        \Illuminate\Support\Facades\Http::fake([
+            '*generativelanguage.googleapis.com*' => \Illuminate\Support\Facades\Http::response([
+                'error' => ['code' => 500, 'message' => 'test failure'],
+            ], 500),
+        ]);
+
         $res = $this->actingAs($owner, 'sanctum')
             ->postJson('/api/v1/needs/'.$need->id.'/comparisons', ['offer_ids' => [$o1->id, $o2->id]]);
 
-        $res->assertStatus(501);
+        $res->assertStatus(503);
     }
 
     public function test_comparison_history_requires_owner(): void

@@ -2305,3 +2305,72 @@ satisfies the 5-min window for HIGH/CRITICAL publish.
 - No guessing — every endpoint maps to existing service contract
 - Additive — new files + new routes; no existing behavior changed
 - No silent changes — this ledger + migration + commit
+
+---
+
+## L265 — WP-10 IMPLEMENTED — AI Provider (Gemini) + Comparison Service
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Feature (AI provider integration + comparison engine)
+
+**Spec:**
+- AI_Evaluation_Contract.md (Felagi_Design_Package)
+- DFM-FDS-1.4.md §13 (C04 "AI analyzes, never decides", C20 "AI failure creates no fake result")
+- 4 canonical criteria: price (0.30), delivery_time (0.25), quality (0.30), reliability (0.15)
+
+**Provider:**
+- Google Gemini Developer API
+- Model: `gemini-flash-latest` (auto-updating alias)
+- Endpoint: POST /v1beta/models/{model}:generateContent?key=API_KEY
+- Structured JSON via `response_mime_type` + `response_schema`
+
+**What Changed:**
+
+### NEW
+- `config/ai.php` — provider + criteria config
+- `app/Services/AI/GeminiClient.php` — HTTP wrapper with retry + markdown strip
+- `app/Services/AI/ComparisonService.php` — 4-criteria evaluation engine
+- `tests/Feature/AI/ComparisonAiTest.php` — 17 tests (Http::fake mocked)
+
+### MODIFIED
+- `app/Http/Controllers/Api/V1/ComparisonController.php`
+  - `store()` now runs real AI comparison (removed 501 stub)
+- `tests/Feature/Screens/S014CompareTest.php`
+  - Renamed `test_comparison_returns_501_when_ai_not_configured` → `test_comparison_returns_503_when_ai_call_fails`
+  - Added `Http::fake` to force AI failure
+
+**Feature Rules (from DFM):**
+- C04: AI analyzes, never decides — output is advisory only
+- C20: AI failure → no fake result (schema gate + no DB write on error)
+- Fixed snapshot (C05), version per comparison (C06), immutability (C07)
+
+**Comparison Flow:**
+1. Requester POSTs /api/v1/needs/{id}/comparisons
+2. Service loads PENDING offers (max 20 from config)
+3. Builds prompt with redacted offer payloads
+4. Calls Gemini with 4-criteria response schema
+5. Validates schema (count + criteria range 0-100)
+6. Persists in transaction:
+   - `comparisons` row (status=COMPLETED, token usage, snapshot hash)
+   - `comparison_offers` rows (offer_id, provider_id, offer_snapshot, hash)
+   - `comparison_results` rows (score, criterion_scores, rationale, result_hash)
+
+**Error Handling:**
+- AI HTTP error → 503 AI_COMPARISON_FAILED, no DB writes
+- Malformed JSON → 503, no DB writes
+- Schema mismatch → 503, no DB writes
+
+**Test Results:**
+- ComparisonAiTest: 17 tests / 53 assertions
+- S014CompareTest: 8 tests / 13 assertions (updated)
+- Full suite: 778 tests / 1,883 assertions / 0 failures / 0 deprecations
+
+**WP / GAP status:**
+- WP-10: BLOCKED → ✅ RESOLVED
+- GAP-10 (AI live): RESOLVED (provider + credentials + service + tests)
+
+**Constitution compliance:**
+- No guessing — every rule maps to AI_Evaluation_Contract.md
+- Additive — new files + modified `store()` (removed stub only)
+- No silent changes — this ledger + commit

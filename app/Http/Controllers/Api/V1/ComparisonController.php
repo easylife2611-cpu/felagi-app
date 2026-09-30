@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Comparison;
 use App\Models\Need;
+use App\Services\AI\ComparisonService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class ComparisonController extends BaseApiController
 {
     /**
      * POST /api/v1/needs/{needId}/comparisons
-     * Initiate comparison (stub - full AI integration in WP-10).
+     * Run AI comparison via ComparisonService (WP-10).
      */
     public function store(Request $request, string $needId): JsonResponse
     {
@@ -41,11 +42,19 @@ class ComparisonController extends BaseApiController
             return $this->error('COMPARISON_PROCESSING', 'Comparison already in progress.', 409);
         }
 
-        return $this->error(
-            'AI_NOT_CONFIGURED',
-            'AI comparison requires provider configuration (WP-10).',
-            501
-        );
+        // WP-10: run AI comparison
+        try {
+            $service = app(ComparisonService::class);
+            $result = $service->evaluate($need, $request->user()->id);
+
+            return $this->success($result, 'Comparison completed.', 201);
+        } catch (\RuntimeException $e) {
+            return $this->error(
+                'AI_COMPARISON_FAILED',
+                $e->getMessage(),
+                503
+            );
+        }
     }
 
     /**
@@ -86,7 +95,6 @@ class ComparisonController extends BaseApiController
         $need = $comparison->need;
         $isOwner = $need && $need->requester_id === $user->id;
 
-        // Check if user is an included provider
         $isIncludedProvider = $comparison->comparisonOffers()
             ->where('provider_id', $user->id)
             ->exists();

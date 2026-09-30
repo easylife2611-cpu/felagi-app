@@ -1543,3 +1543,32 @@ git revert <S003-commit>
 ### WP
 - WP-13c backend: DONE
 - WP-13c UI: still BLOCKED (D-097)
+
+---
+
+## B35 — WP-10 AI provider + comparison service
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L265
+
+### Added
+- config/ai.php
+- app/Services/AI/GeminiClient.php
+- app/Services/AI/ComparisonService.php
+- tests/Feature/AI/ComparisonAiTest.php (17 tests)
+
+### Changed
+- app/Http/Controllers/Api/V1/ComparisonController.php (store → real AI)
+- tests/Feature/Screens/S014CompareTest.php (501 → 503)
+
+### Tests
+- +17 tests, +53 assertions
+- Full suite: 778 tests / 1,883 assertions / 0 failures
+
+### Provider
+- Google Gemini (gemini-flash-latest)
+
+### WP
+- WP-10: BLOCKED → RESOLVED
+- GAP-10: AI live → RESOLVED
