@@ -186,3 +186,157 @@ affect source consistency, service verification, or any runtime gate.
 ### Rollback
 
 All B17 changes: git revert <B17-commit> (see B17_ROLLBACK.md)
+
+---
+
+## B25–B28 + GAP-70 + GAP-71b Update — 2026-09-30
+
+**Deploy verified:** 2026-09-30 (s3145.fra1.stableserver.net)
+
+### Current State (post-B28)
+
+| Field | Value |
+|-------|-------|
+| App HEAD | `7cf679b` (GAP-71b) |
+| Design HEAD | `27edd9d` (B11) |
+| Production release | **STILL BLOCKED** (WP-09 gates unchanged) |
+| Deploy state | **LIVE** — all public URLs 200 |
+| Tests | **412** (was 162) |
+| Assertions | **691** (was 320) |
+| Model test files | 21 (was 6) |
+
+### B-Blocks Completed (B25–B28 + GAP-70 + GAP-71b)
+
+| Block | Scope | Tests | Evidence |
+|-------|-------|-------|----------|
+| B25 | Payment/Boost/PaymentEvent/BoostPackage | +54 | evidence/WP-B25_evidence.md |
+| B26 | AI/Comparison (4 models) | +68 | evidence/WP-B26_evidence.md |
+| B27 | Category/NeedAward/Attachment/Report | +66 | evidence/WP-B27_evidence.md |
+| B28 | Setting/SettingDraft/UserRole | +62 | evidence/WP-B28_evidence.md |
+| GAP-70 | B18–B24 ledger backfill | 0 | IMPLEMENTATION_LEDGER L221–L227 |
+| GAP-71 | Attachment::isClean → isScanClean | 0 | GAP-71 RESOLVED |
+| GAP-71b | AttachmentFactory + HasFactory | 0 | evidence/GAP-71b_evidence.md |
+| Quality | Evidence consistency + R-TEST registry | 0 | evidence/VERIFICATION_REPORT.md |
+
+### R-TEST Coverage — COMPLETE (7/7)
+
+| Req ID | Description | Status |
+|--------|-------------|--------|
+| R-TEST-01 | Payment/Boost tests | COVERED (B25) |
+| R-TEST-02 | AI/Comparison tests | COVERED (B26) |
+| R-TEST-03 | Category tests | COVERED (B27) |
+| R-TEST-04 | NeedAward tests | COVERED (B27) |
+| R-TEST-05 | Attachment+Report tests | COVERED (B27) |
+| R-TEST-06 | Setting+SettingDraft tests | COVERED (B28) |
+| R-TEST-07 | UserRole tests | COVERED (B28) |
+
+### Deploy Operations (Phase B — 2026-09-30)
+
+| Step | Action | Result |
+|------|--------|--------|
+| B1 | Pre-deploy smoke (4 URLs) | 200/200/200/200 |
+| B2 | `php artisan optimize:clear` | 6 caches cleared |
+| B3a | Pre-cache safety check | APP_ENV=production, APP_DEBUG=false |
+| B3b | `config:cache` + `view:cache` + `event:cache` | 3 caches rebuilt |
+| B3b | `route:cache` | **SKIPPED** (Closure route `/` — not cacheable) |
+| B4 | Queue restart | **SKIPPED** (crontab-driven, no persistent worker) |
+| B5 | Post-deploy smoke (5 URLs) | 200 (13–59ms each) |
+| B6 | New code live verification | isScanClean ✅, Factory ✅, HasFactory ✅ |
+
+### Production URLs (verified 2026-09-30 06:53 UTC)
+
+| URL | Code | Time |
+|-----|------|------|
+| https://zagcreativity.com | 200 | 39ms |
+| https://zagcreativity.com/up | 200 | 45ms |
+| https://zagcreativity.com/handoff/SOURCE_OF_TRUTH.md | 200 | 59ms |
+| https://zagcreativity.com/handoff/FELAGI_STATUS_REPORT.md | 200 | 13ms |
+| https://zagcreativity.com/downloads/index.html | 200 | 36ms |
+
+**S001 Welcome title:** `መግቢያ — ፈላጊ` ✅ (Amharic default)
+
+### Gate Status (unchanged)
+
+| Gate | Status | Change from B17 |
+|------|--------|-----------------|
+| G01 | MET | unchanged |
+| G02 | MET | unchanged |
+| G03 | MET | unchanged |
+| G04 | BLOCKED | unchanged |
+| G05 | BLOCKED | unchanged |
+| G06 | PARTIAL+ | unchanged |
+| G07 | REQUIRES_EVIDENCE | unchanged |
+| G08 | SOURCE MET / RUNTIME PENDING | unchanged |
+| G09 | REQUIRES_EVIDENCE | unchanged |
+
+**Production release:** STILL BLOCKED — no gate changes from this work.
+Production LIVE deploy completed (B25-B28 + GAP-71b) without new blockers.
+
+### Production Code Changes (B25–B28 + GAP-71b)
+
+| File | Change | Approval |
+|------|--------|----------|
+| app/Models/Attachment.php | isClean() → isScanClean() (GAP-71) | ✅ Explicit (user) |
+| app/Models/Attachment.php | HasFactory trait added (GAP-71b) | ✅ Additive |
+| database/factories/AttachmentFactory.php | NEW | ✅ Additive |
+
+**No migrations. No routes changed. No design changed.**
+
+### Breaking Change Disclosure (GAP-71)
+
+- **What:** `Attachment::isClean()` renamed → `isScanClean()`
+- **Why:** Signature conflict with Laravel `Model::isClean($attributes = null)`
+- **Impact:** Zero callers (grep verified before fix)
+- **Approval:** Explicit user authorization
+- **See:** CHANGE_LOG B27 + OPEN_GAPS GAP-71 RESOLVED
+
+### Rollback (B25–B28 + GAP-71b)
+
+| Scenario | Command |
+|----------|---------|
+| Rollback all B25-B28 + GAP-71b | `git revert 202716b..7cf679b` |
+| Rollback GAP-71 fix only | `git revert 6db0e86 -- app/Models/Attachment.php` |
+| Rollback GAP-71b factory only | `git revert 7cf679b` |
+| Clear all caches | `php artisan optimize:clear` |
+
+### Evidence Artifacts
+
+| File | Purpose |
+|------|---------|
+| evidence/WP-B25_evidence.md | B25 test suite |
+| evidence/WP-B26_evidence.md | B26 test suite |
+| evidence/WP-B27_evidence.md | B27 test suite |
+| evidence/WP-B28_evidence.md | B28 test suite |
+| evidence/GAP-71b_evidence.md | Attachment factory |
+| evidence/VERIFICATION_REPORT.md | Phase C quality sweep |
+| public/handoff/ledgers/IMPLEMENTATION_LEDGER.md | L217–L228 |
+| public/handoff/ledgers/REQUIREMENT_REGISTRY.md | R-TEST-01..07 |
+
+### Bundle Artifacts (latest)
+
+- `~/Felagi_App_v1.4.2_20260930-0650_GAP71b_DONE.bundle` (1.1M)
+- `~/Felagi_Design_v1.4.2_20260930-0650_GAP71b_DONE.bundle` (3.5M)
+- `~/Felagi_v1.4.2_20260930-0650_GAP71b_DONE_full.tar.gz` (45M)
+- `~/Felagi_v1.4.2_20260930-0650_GAP71b_DONE_FULL_with_vendor.tar.gz` (76M)
+
+### Complete WP & B-Block Status (post-B28)
+
+| Category | DONE | VERIFIED | PARTIAL | BLOCKED | DEFERRED |
+|----------|------|----------|---------|---------|----------|
+| Work Packages | 10 | 1 | 1 | 16 | 1 |
+| B-Blocks | 16 (B10–B28 minus gaps) | — | — | — | — |
+| GAPs (resolved) | 70, 71, 71b | — | — | — | — |
+
+### Handoff Continuity
+
+A competent developer can resume from:
+- `public/handoff/ledgers/*.md` (14 canonical ledgers)
+- `evidence/VERIFICATION_REPORT.md` (Phase C audit)
+- `SOURCE_OF_TRUTH.md` + `FELAGI_STATUS_REPORT.md`
+- Latest bundle: `20260930-0650_GAP71b_DONE`
+
+**No chat-history reconstruction required.**
+
+---
+
+**End of B25–B28 + GAP-70 + GAP-71b RELEASE_STATUS update.**
