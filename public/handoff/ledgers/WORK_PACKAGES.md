@@ -184,3 +184,4 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 | S021-REPORT | Report/Support (full) | DONE | IMPLEMENTATION_LEDGER |
 | S022-TELEGRAM | Telegram Publications (full) | DONE | IMPLEMENTATION_LEDGER |
 | S023-UNLOCK | Offer Unlock (full) | DONE | IMPLEMENTATION_LEDGER |
+| A001-A023 | Admin Screens (23, placeholders) | DONE | IMPLEMENTATION_LEDGER L252 |

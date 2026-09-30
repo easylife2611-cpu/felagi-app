@@ -1774,3 +1774,63 @@ loading | empty (< 2 eligible) | error | content (selection) | processing
 - GAP-S021-REPORT-API: no /api/v1/reports route
 - GAP-S022-TELEGRAM-API: no telegram-publication routes
 - GAP-S023-UNLOCK-API: no offer-submissions routes
+
+## L252 — A001-A023 Admin Screens (23 screens, batch) — 2026-09-30
+
+**Type:** Feature (admin panel frontend)
+
+### Changes
+- NEW: resources/views/layouts/admin.blade.php (184 lines)
+  - Sidebar nav (23 links, grouped: Overview/Marketplace/Distribution/Payments/Ops/Security)
+  - Topbar with user + logout
+  - Responsive: hamburger on mobile, sidebar fixed on desktop
+  - Shared toast + adminToast() + adminToken() helpers
+- NEW: resources/views/admin/*.blade.php (23 views):
+  - A001 dashboard.blade.php (24 lines)
+  - A002 telegram.blade.php (18)
+  - A003 health.blade.php (22)
+  - A004 features.blade.php (21)
+  - A005 marketplace.blade.php (21)
+  - A006 ai.blade.php (25)
+  - A007 payments.blade.php (21)
+  - A008 users.blade.php (17)
+  - A009 content.blade.php (17)
+  - A010 notifications.blade.php (17)
+  - A011 files.blade.php (17)
+  - A012 jobs.blade.php (21)
+  - A013 backups.blade.php (20)
+  - A014 integrity.blade.php (22)
+  - A015 security.blade.php (22)
+  - A016 audit.blade.php (18)
+  - A017 settings.blade.php (21)
+  - A018 recovery.blade.php (18)
+  - A019 safe-mode.blade.php (18)
+  - A020 monetization.blade.php (21)
+  - A021 maintenance.blade.php (18)
+  - A022 reports.blade.php (18)
+  - A023 sponsored-ads.blade.php (18)
+- UPD: routes/web.php — 23 admin routes (prefix admin)
+- UPD: lang/en.json + lang/am.json — +139 keys each (469 total)
+- NEW: tests/Feature/Screens/AdminScreensTest.php (72 tests, 211 assertions)
+
+### Coverage
+- Every admin screen renders 200 + layout shell + sidebar + pending notice
+- All 23 routes registered
+- All 23 views extend layouts.admin
+- Layout compiles (>5000 chars)
+
+### Backend Status
+- ALL admin screens are PLACEHOLDER pending backend integration
+- AdminChangeController + AdminTelegramController exist (from WP-13)
+- No read endpoints for stats (WP-05c BLOCKED_ON_UNKNOWN)
+- Pending notices make this explicit to users
+
+### Test Results
+- AdminScreensTest: 72 tests, 211 assertions (3 PHPUnit deprecations - @dataProvider)
+- Full suite: 588 -> 660 tests, 0 failures
+
+### Constitution
+- Additive (24 new files + 23 routes)
+- Placeholders explicit (no silent fake data)
+- UNKNOWN != MISSING (pending notices)
+- Design-compliant (matches admin-screen-manifest.json structure)
