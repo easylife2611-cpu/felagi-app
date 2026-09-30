@@ -1451,3 +1451,21 @@ git revert <S003-commit>
 
 ### Tests
 - 699 · 1,380 · 0 failures · 0 deprecations (no code change)
+
+---
+
+## B31 — D1-D5 audit reports + INDEX
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L261
+
+### Added
+- docs/reports/BUNDLE_INVENTORY_20260930.md (D2)
+- docs/reports/PHPUNIT12_COMPAT_20260930.md (D1)
+- docs/reports/SPEC_REQUESTS_STATUS_20260930.md (D4)
+- docs/reports/N06_N10_EVIDENCE_REQUIREMENTS_20260930.md (D3)
+- public/handoff/ledgers/INDEX.md (D5)
+
+### Tests
+- 699 · 1,380 · 0 failures · 0 deprecations (no code change)

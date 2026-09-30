@@ -2064,3 +2064,53 @@ canonical ledgers in sync with git HEAD.
 - Art. "Maintain one canonical project ledger" — restored
 - Art. "No silent changes" — this entry documents the fix
 - Art. "No hidden work" — visible in git log
+
+---
+
+## L261 — D1-D5 Audit Reports + Ledger Index
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Documentation (additive, no code)
+
+**What Changed:**
+
+### NEW: docs/reports/ (4 reports)
+- BUNDLE_INVENTORY_20260930.md — D2
+- PHPUNIT12_COMPAT_20260930.md — D1
+- SPEC_REQUESTS_STATUS_20260930.md — D4
+- N06_N10_EVIDENCE_REQUIREMENTS_20260930.md — D3
+
+### NEW: public/handoff/ledgers/INDEX.md
+- Quick reference to all canonical ledgers
+- Last 20 L### entries + last 20 B### entries
+- Session timeline
+- How-to-resume for new developers
+
+**Findings:**
+
+### D1 — PHPUnit 12 Forward-Compat
+- 0 legacy doc-comment patterns across 65 test files
+- Fully PHPUnit 12 ready (B29 already migrated AdminScreensTest)
+
+### D2 — Bundle Inventory
+- 4 App bundles + 1 Design bundle verified
+- Latest: `Felagi_App_v1.4.2_20260930-1144_FINAL.bundle`
+- SHA256: `877d7d16...34e6c9`
+
+### D3 — N06-N10 Evidence
+- 21 evidence items across 5 findings
+- All require external resources (not code)
+
+### D4 — Spec Requests
+- 2 pending: T01-T18, WP-05c
+- Both BLOCKED_ON_UNKNOWN
+
+**Result:**
+- No code change
+- 699 tests · 1,380 assertions · 0 failures · 0 deprecations
+- Developer onboarding materialized
+
+**Constitution compliance:**
+- Art. "No silent changes" — this entry documents
+- Art. "UNKNOWN != MISSING" — N06-N10 documented as BLOCKED
