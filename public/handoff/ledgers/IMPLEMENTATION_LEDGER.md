@@ -1164,3 +1164,32 @@ BotFather: "Web login is currently unavailable for Felagi @FelagiMarketBot"
 - No destructive change (OIDC kept)
 - Additive
 - No silent changes (documented)
+
+
+## L231 — S003 Profile + Post-Login Routing — 2026-09-30
+
+**Type:** Feature (post-login destination)
+**Addresses:** Login worked but no post-login UI
+
+### Changes
+- NEW: resources/views/profile.blade.php (229 lines — S003 spec)
+- NEW: resources/views/browse.blade.php (62 lines — S004 placeholder)
+- UPD: routes/web.php — added /profile + /browse
+- UPD: resources/views/welcome.blade.php — 3 redirects → /profile
+
+### Flow
+S001 (welcome) → S002 (widget) → **S003 (/profile)** → S004 (/browse)
+
+### Test Results
+- / HTTP 200
+- /profile HTTP 200 (12 form matches)
+- /browse HTTP 200 (6 placeholder matches)
+
+### Not Changed
+- No migration, no API change
+- No production API touched
+
+### Constitution
+- Additive UI
+- Design-compliant (S003 spec)
+- UNKNOWN markers: profile_photo upload → DEFERRED (GAP-S003-PHOTO)

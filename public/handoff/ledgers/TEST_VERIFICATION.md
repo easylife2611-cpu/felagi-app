@@ -636,3 +636,23 @@ All 14 factories verified via tinker.
 - Widget start config
 - Full callback flow
 - Error paths (401, 400)
+
+
+---
+
+## S003 Profile — Test Verification — 2026-09-30
+
+| Check | Result |
+|---|---|
+| /profile route | HTTP 200 |
+| /browse route | HTTP 200 |
+| profile.blade.php renders form | 12 matches |
+| browse.blade.php placeholder | 6 matches |
+| Post-login redirect → /profile | 3 redirects in welcome |
+| Design spec S003 | Followed |
+| Design spec S004 | Placeholder only |
+
+### Manual verification
+- curl /profile → form present
+- curl /browse → S004 placeholder present
+- curl / → 3 redirects to /profile

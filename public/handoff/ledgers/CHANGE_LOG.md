@@ -1369,3 +1369,29 @@ numeric bot ID (not hex OIDC client_id). URL rendered Widget page.
 
 ### Rollback
 git revert <WIDGET-commit>
+
+
+---
+
+## S003 Profile + Post-Login Routing — 2026-09-30
+
+**Type:** Feature
+**HEAD before:** 4f64b1d (HANDOFF_FINAL)
+
+### Changes
+- NEW: resources/views/profile.blade.php (S003 spec — 229 lines)
+- NEW: resources/views/browse.blade.php (S004 placeholder — 62 lines)
+- UPD: routes/web.php — /profile, /browse routes
+- UPD: resources/views/welcome.blade.php — 3 redirects → /profile
+
+### Flow
+Login → S003 Profile → S004 Browse
+
+### Verification
+- All routes HTTP 200
+- profile matches: 12
+- browse matches: 6
+- welcome redirects: 3
+
+### Rollback
+git revert <S003-commit>

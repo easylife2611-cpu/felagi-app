@@ -422,3 +422,24 @@ Telegram served Widget page instead of OIDC. Callback failed with
 - OIDC code path kept (DEFERRED)
 
 **Closed by:** WIDGET-FLOW commit
+
+
+---
+
+## GAP-S003-PHOTO — DEFERRED — profile_photo upload
+
+**Type:** UNKNOWN (design spec requires, backend missing)
+**Opened:** 2026-09-30
+**Status:** DEFERRED
+
+**Issue:** S003 spec requires `profile_photo` file upload (0–server-bound).
+Backend has no file upload endpoint.
+
+**Design ref:** Product_Design/Final_Screen_by_Screen_Specifications.md → S003 Fields
+
+**Resolution path:**
+- Backend: add POST /api/v1/profile/photo (multipart)
+- Storage: filesystem disk
+- Frontend: file input + preview
+
+**Not guessed — explicitly deferred.**
