@@ -99,4 +99,4 @@ Production fix: `git revert <B27-commit> -- app/Models/Attachment.php`
 - [x] TESTED — 66/66 pass; full suite 350/350 pass
 - [ ] VERIFIED — requires second reviewer
 - [x] DOCUMENTED — this file
-- [x] EVIDENCED — WP-B27_phpunit_${TS}.log + WP-B27_fullsuite_${TS}.log
+- [x] EVIDENCED — WP-B27_phpunit_20260930_061552.log + WP-B27_fullsuite_20260930_061552.log

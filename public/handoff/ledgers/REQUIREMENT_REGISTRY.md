@@ -301,3 +301,43 @@ Source: Constitution + audit
 | REQ-B17-005 | GAP-07/GAP-60 clarification | DONE | OPEN_GAPS |
 | REQ-B17-006 | GAP-42 removed from open list | DONE | OPEN_GAPS |
 | REQ-B17-007 | Table count 25 → 38 documented | DONE | MASTER_BASELINE |
+
+## R-TEST-01 to R-TEST-07 — Model Test Coverage (2026-09-30)
+
+**Source:** Original audit (FELAGI_STATUS_REPORT) identified 7 test gaps
+across 17 models. Addressed in B25–B28.
+
+| Req ID | Description | Status | Verified By |
+|--------|-------------|--------|-------------|
+| R-TEST-01 | Payment/Boost/PaymentEvent/BoostPackage tests | COVERED | B25 — 54 tests (IMPLEMENTATION_LEDGER L217) |
+| R-TEST-02 | AI/Comparison (4 models) tests | COVERED | B26 — 68 tests (IMPLEMENTATION_LEDGER L218) |
+| R-TEST-03 | Category model tests | COVERED | B27 — 15 tests (IMPLEMENTATION_LEDGER L219) |
+| R-TEST-04 | NeedAward model tests | COVERED | B27 — 13 tests (IMPLEMENTATION_LEDGER L219) |
+| R-TEST-05 | Attachment + Report model tests | COVERED | B27 — 38 tests (IMPLEMENTATION_LEDGER L219) |
+| R-TEST-06 | Setting + SettingDraft model tests | COVERED | B28 — 45 tests (IMPLEMENTATION_LEDGER L220) |
+| R-TEST-07 | UserRole model tests | COVERED | B28 — 17 tests (IMPLEMENTATION_LEDGER L220) |
+
+### Coverage Summary
+
+| Metric | Before B25–B28 | After B25–B28 |
+|--------|----------------|---------------|
+| Tests in suite | 162 | 412 |
+| Assertions | 320 | 691 |
+| Models with tests | 4 / 21 | 17 / 21 |
+| R-TEST items COVERED | 0 / 7 | **7 / 7** |
+
+### Remaining Uncovered Models (4)
+
+- Export (has B21 test indirectly via SettingVersion?)
+- ScheduledSetting (no direct test)
+- IdempotencyKey (no direct test)
+- TelegramDestination / TelegramPublication / TelegramPublicationEvent (WP-27 covers indirectly)
+
+### Notes
+
+- Test convention: tests/Feature/Models/ (not tests/Unit/Models/)
+- No HasFactory trait on any model — all use ::create()
+- Evidence: evidence/WP-B{25..28}_evidence.md + logs
+- Verification: 412/412 pass on 2026-09-30 (13.48s)
+
+**End of R-TEST backfill.**

@@ -99,4 +99,4 @@ rm tests/Feature/Models/Comparison{Test,OfferTest,ResultTest,AttemptTest}.php
 - [x] TESTED — 68/68 pass; full suite 284/284 pass
 - [ ] VERIFIED — requires second reviewer
 - [x] DOCUMENTED — this file
-- [x] EVIDENCED — WP-B26_phpunit_${TS}.log + WP-B26_fullsuite_${TS}.log
+- [x] EVIDENCED — WP-B26_phpunit_20260930_060520.log + WP-B26_fullsuite_20260930_060520.log
