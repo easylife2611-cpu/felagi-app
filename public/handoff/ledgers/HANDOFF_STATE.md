@@ -675,3 +675,29 @@ Read: L243-L251, HANDOFF_STATE
 
 ### Continuity
 Read: L252, HANDOFF_STATE
+
+---
+## Backend GAPs Resolved (L253-L257) — 2026-09-30
+
+### What Changed
+- GAP-S003-PHOTO RESOLVED (profile photo upload endpoint + UI)
+- GAP-S019-BOOST-API RESOLVED (BoostController + 3 routes)
+- GAP-S021-REPORT-API RESOLVED (ReportController + payload fix)
+- GAP-S022-TELEGRAM-API RESOLVED (TelegramPublicationController)
+- GAP-S023-UNLOCK-API RESOLVED (OfferSubmission model + OfferUnlockController)
+
+### Migrations
+- add_profile_photo_path_to_users
+- make_boost_payment_id_nullable
+- create_offer_submissions_table
+
+### Test Results
+- 5 new test files, 30 tests
+- Full suite: 690 tests, 0 failures
+
+### Remaining GAPs
+- WP-05c (admin read endpoints — BLOCKED_ON_UNKNOWN)
+- WP-10 (AI provider — BLOCKED)
+
+### Continuity
+Read: L253-L257, OPEN_GAPS, HANDOFF_STATE

@@ -467,5 +467,10 @@
     "adminAdSlots": "Ad slots",
     "adminNoSponsoredAds": "No sponsored ads",
     "adminSponsoredAdsIntro": "Manage sponsored ad campaigns here.",
-    "adminCreateSponsoredAd": "Create sponsored ad"
+    "adminCreateSponsoredAd": "Create sponsored ad",
+    "changePhoto": "Change photo",
+    "photoHint": "JPG, PNG, or WebP · max 5 MB · min 100×100",
+    "photoTooLarge": "Photo must be smaller than 5 MB",
+    "photoUpdated": "Photo updated",
+    "photoUploadFailed": "Could not upload photo"
 }

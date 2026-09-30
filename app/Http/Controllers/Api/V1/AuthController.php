@@ -333,4 +333,37 @@ class AuthController extends BaseApiController
 
         return $this->success($user->fresh(), 'Profile updated.');
     }
+
+    /**
+     * POST /api/v1/profile/photo
+     * Upload / replace the authenticated user's profile photo.
+     */
+    public function uploadProfilePhoto(\App\Http\Requests\Profile\UpdatePhotoRequest $request): \Illuminate\Http\JsonResponse
+    {
+        $user = $request->user();
+
+        // Delete old photo if exists
+        if ($user->profile_photo_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($user->profile_photo_path)) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo_path);
+        }
+
+        $file = $request->file('photo');
+        $ext = $file->getClientOriginalExtension() ?: 'jpg';
+        $filename = 'profile-photos/' . $user->id . '-' . time() . '.' . strtolower($ext);
+
+        $stored = $file->storeAs('profile-photos', basename($filename), 'public');
+        if (!$stored) {
+            return $this->error('UPLOAD_FAILED', 'Could not store photo.', 500);
+        }
+
+        $user->profile_photo_path = $stored;
+        $user->profile_photo_url = \Illuminate\Support\Facades\Storage::disk('public')->url($stored);
+        $user->save();
+
+        return $this->success([
+            'profile_photo_path' => $user->profile_photo_path,
+            'profile_photo_url' => $user->profile_photo_url,
+        ], 'Photo uploaded.');
+    }
+
 }

@@ -467,5 +467,10 @@
     "adminAdSlots": "የማስታወቂያ ቦታዎች",
     "adminNoSponsoredAds": "በትብብር ማስታወቂያ የለም",
     "adminSponsoredAdsIntro": "በትብብር የማስታወቂያ ዘመቻዎችን እዚህ ያስተዳድሩ።",
-    "adminCreateSponsoredAd": "በትብብር ማስታወቂያ ፍጠር"
+    "adminCreateSponsoredAd": "በትብብር ማስታወቂያ ፍጠር",
+    "changePhoto": "ፎቶ ቀይር",
+    "photoHint": "JPG, PNG, ወይም WebP · ከፍተኛ 5 ሜባ · ቢያንስ 100×100",
+    "photoTooLarge": "ፎቶው ከ5 ሜባ በታች መሆን አለበት",
+    "photoUpdated": "ፎቶ ተሻሽሏል",
+    "photoUploadFailed": "ፎቶ መስቀል አልተቻለም"
 }

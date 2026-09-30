@@ -64,6 +64,7 @@ Route::prefix('v1')->group(function () {
 
         // Profile
         Route::patch('profile', [AuthController::class, 'updateProfile']);
+        Route::post('profile/photo', [AuthController::class, 'uploadProfilePhoto']);
 
         // Needs
         Route::post('needs', [NeedController::class, 'store'])
@@ -109,6 +110,27 @@ Route::prefix('v1')->group(function () {
     // =========================================
     // ADMIN — Change Lifecycle (WP-13 + WP-13b)
     // =========================================
+        // ─── Boost & Payments (S019) ───
+    Route::get('boost-packages', [\App\Http\Controllers\Api\V1\BoostController::class, 'packages']);
+    Route::post('needs/{needId}/boosts', [\App\Http\Controllers\Api\V1\BoostController::class, 'store'])
+        ->middleware('auth:sanctum');
+    Route::get('payments/{id}', [\App\Http\Controllers\Api\V1\BoostController::class, 'showPayment'])
+        ->middleware('auth:sanctum');
+
+        // ─── Reports, Telegram, Offer Unlock (S021-S023) ───
+    Route::post('reports', [\App\Http\Controllers\Api\V1\ReportController::class, 'store'])
+        ->middleware('auth:sanctum');
+    Route::get('needs/{needId}/telegram-publications', [\App\Http\Controllers\Api\V1\TelegramPublicationController::class, 'index'])
+        ->middleware('auth:sanctum');
+    Route::post('needs/{needId}/telegram-publication/stop', [\App\Http\Controllers\Api\V1\TelegramPublicationController::class, 'stop'])
+        ->middleware('auth:sanctum');
+    Route::post('offer-submissions', [\App\Http\Controllers\Api\V1\OfferUnlockController::class, 'store'])
+        ->middleware('auth:sanctum');
+    Route::get('offer-submissions/{id}', [\App\Http\Controllers\Api\V1\OfferUnlockController::class, 'show'])
+        ->middleware('auth:sanctum');
+    Route::post('offer-submissions/{id}/resume', [\App\Http\Controllers\Api\V1\OfferUnlockController::class, 'resume'])
+        ->middleware('auth:sanctum');
+
     Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
 
         Route::prefix('changes')->group(function () {

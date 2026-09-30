@@ -1834,3 +1834,110 @@ loading | empty (< 2 eligible) | error | content (selection) | processing
 - Placeholders explicit (no silent fake data)
 - UNKNOWN != MISSING (pending notices)
 - Design-compliant (matches admin-screen-manifest.json structure)
+
+## L253 — Backend: Profile Photo Upload (GAP-S003-PHOTO RESOLVED) — 2026-09-30
+
+**Type:** Feature (backend + frontend)
+
+### Changes
+- NEW: app/Http/Requests/Profile/UpdatePhotoRequest.php (27 lines)
+- UPD: app/Http/Controllers/Api/V1/AuthController.php — uploadProfilePhoto()
+- UPD: routes/api.php — POST /api/v1/profile/photo
+- UPD: resources/views/profile.blade.php — photo upload UI + JS
+- UPD: lang/en.json + lang/am.json — +6 keys each
+- NEW: tests/Feature/Profile/ProfilePhotoUploadTest.php (5 tests)
+- NEW: migrations:
+  - 2026_09_30_105931_add_profile_photo_path_to_users.php
+
+### API
+- POST /api/v1/profile/photo (multipart, auth:sanctum)
+- Validation: image, mimes jpg/png/webp, max 5MB, min 100×100
+- Replaces existing photo (deletes old file)
+
+### GAP-S003-PHOTO Status: RESOLVED ✅
+
+---
+
+## L254 — Backend: Boost & Payments (GAP-S019-BOOST-API RESOLVED) — 2026-09-30
+
+**Type:** Feature (backend)
+
+### Changes
+- NEW: app/Http/Controllers/Api/V1/BoostController.php (96 lines)
+- UPD: routes/api.php — 3 routes
+- UPD: app/Http/Controllers/Api/V1/BoostController.php — status='PENDING'
+- NEW: migration 2026_09_30_110109_make_boost_payment_id_nullable.php
+- NEW: tests/Feature/Boost/BoostControllerTest.php (5 tests)
+
+### API
+- GET /api/v1/boost-packages (public)
+- POST /api/v1/needs/{needId}/boosts (owner + OPEN need)
+- GET /api/v1/payments/{id} (owner)
+
+### GAP-S019-BOOST-API Status: RESOLVED ✅
+
+---
+
+## L255 — Backend: Reports (GAP-S021-REPORT-API RESOLVED) — 2026-09-30
+
+**Type:** Feature (backend)
+
+### Changes
+- NEW: app/Http/Controllers/Api/V1/ReportController.php (39 lines)
+- UPD: routes/api.php — POST /api/v1/reports
+- UPD: resources/views/report-support.blade.php — payload fix (reason_code/details/entity_id UUID)
+- UPD: lang/en.json + lang/am.json — +1 key (invalidUuid)
+- NEW: tests/Feature/Report/ReportControllerTest.php (6 tests)
+
+### API
+- POST /api/v1/reports (auth)
+- Validation: reason_code enum, entity_type enum (UPPERCASE), entity_id UUID, details 20-5000
+
+### GAP-S021-REPORT-API Status: RESOLVED ✅
+
+---
+
+## L256 — Backend: Telegram Publications (GAP-S022-TELEGRAM-API RESOLVED) — 2026-09-30
+
+**Type:** Feature (backend)
+
+### Changes
+- NEW: app/Http/Controllers/Api/V1/TelegramPublicationController.php (72 lines)
+- UPD: routes/api.php — 2 routes
+- NEW: tests/Feature/Telegram/TelegramPublicationTest.php (5 tests)
+
+### API
+- GET /api/v1/needs/{needId}/telegram-publications (owner only)
+- POST /api/v1/needs/{needId}/telegram-publication/stop (owner only)
+
+### GAP-S022-TELEGRAM-API Status: RESOLVED ✅
+
+---
+
+## L257 — Backend: Offer Submission Unlock (GAP-S023-UNLOCK-API RESOLVED) — 2026-09-30
+
+**Type:** Feature (backend)
+
+### Changes
+- NEW: app/Models/OfferSubmission.php (45 lines)
+- NEW: migration 2026_09_30_105335_create_offer_submissions_table.php
+- NEW: database/factories/OfferSubmissionFactory.php
+- NEW: app/Http/Controllers/Api/V1/OfferUnlockController.php (89 lines)
+- UPD: routes/api.php — 3 routes
+- NEW: tests/Feature/Offer/OfferUnlockTest.php (5 tests)
+
+### API
+- POST /api/v1/offer-submissions (create)
+- GET /api/v1/offer-submissions/{id}
+- POST /api/v1/offer-submissions/{id}/resume
+
+### GAP-S023-UNLOCK-API Status: RESOLVED ✅
+
+---
+
+## L253-L257 Summary
+- 4 new controllers, 1 new model, 1 new factory, 4 new migrations
+- 9 new API endpoints
+- 27 new tests (across 5 test files)
+- 5 GAPs RESOLVED
+- Full suite: 660 -> 690 tests, 0 failures

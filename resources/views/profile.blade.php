@@ -65,6 +65,14 @@
         @keyframes spin { to { transform: rotate(360deg); } }
         #profile-form { display: none; }
         #profile-form.visible { display: block; }
+    
+.photo-wrap{position:relative;display:inline-block;margin-bottom:12px}
+.photo-wrap .photo-preview{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #eef1f4;background:#eef1f4;display:block}
+.photo-wrap .photo-placeholder{width:96px;height:96px;border-radius:50%;background:#eef1f4;color:#8a95a3;display:flex;align-items:center;justify-content:center;font-size:32px;border:3px solid #eef1f4}
+.photo-wrap .photo-edit{position:absolute;bottom:0;right:0;width:32px;height:32px;border-radius:50%;background:#003366;color:#fff;border:3px solid #fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}
+.photo-wrap .photo-edit:hover{background:#002a52}
+.photo-hint{font-size:11px;color:#8a95a3;margin-top:6px;text-align:center}
+
     </style>
 </head>
 <body>
@@ -85,7 +93,14 @@
 
             <form id="profile-form">
                 <div class="form-group" style="text-align: center;">
-                    <img id="photo-preview" class="photo-preview" src="" alt="" style="display: none;">
+                    <div class="photo-wrap">
+                        <div id="photo-placeholder" class="photo-placeholder">&#128100;</div>
+                        <img id="photo-preview" class="photo-preview" src="" alt="" style="display: none;">
+                        <label for="photo-input" class="photo-edit" title="{{ __('changePhoto') }}">&#128247;</label>
+                        <input type="file" id="photo-input" accept="image/jpeg,image/png,image/webp" hidden>
+                    </div>
+                    <div class="photo-hint">{{ __('photoHint') }}</div>
+                    <div class="field-error" id="error-photo"></div>
                 </div>
 
                 <div class="form-group">
@@ -223,6 +238,72 @@
             window.location.href = '/';
         };
 
+
+        // ─── Photo upload ───
+        const photoInput = document.getElementById('photo-input');
+        async function uploadPhoto(file){
+            const token = getToken();
+            if (!token) { window.location.href = '/'; return; }
+            if (file.size > 5 * 1024 * 1024) {
+                const e = document.getElementById('error-photo');
+                e.textContent = '{{ __('photoTooLarge') }}';
+                e.classList.add('visible');
+                return;
+            }
+            const errEl = document.getElementById('error-photo');
+            errEl.classList.remove('visible');
+
+            const fd = new FormData();
+            fd.append('photo', file);
+
+            try {
+                const res = await fetch('/api/v1/profile/photo', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' + token,
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: fd
+                });
+                const data = await res.json();
+                if (res.status === 422 && data.errors) {
+                    Object.entries(data.errors).forEach(([f, msgs]) => {
+                        const el = document.getElementById('error-photo');
+                        if (el) {
+                            el.textContent = Array.isArray(msgs) ? msgs[0] : msgs;
+                            el.classList.add('visible');
+                        }
+                    });
+                    return;
+                }
+                if (!res.ok) throw new Error(data.message || 'HTTP ' + res.status);
+                const payload = data.data || data;
+                if (payload.profile_photo_url) {
+                    const img = document.getElementById('photo-preview');
+                    const ph = document.getElementById('photo-placeholder');
+                    img.src = payload.profile_photo_url + '?t=' + Date.now();
+                    img.style.display = 'block';
+                    if (ph) ph.style.display = 'none';
+                    const u = JSON.parse(localStorage.getItem('felagi_user') || '{}');
+                    u.profile_photo_url = payload.profile_photo_url;
+                    localStorage.setItem('felagi_user', JSON.stringify(u));
+                    showStatus('success', '{{ __('photoUpdated') }}');
+                }
+            } catch (e) {
+                console.error('[FELAGI] Photo upload failed:', e);
+                showStatus('error', '{{ __('photoUploadFailed') }}');
+            }
+        }
+        if (photoInput) {
+            photoInput.addEventListener('change', (e) => {
+                const f = e.target.files && e.target.files[0];
+                if (f) uploadPhoto(f);
+            });
+        }
+
+        // ─── Load profile ───
         loadProfile();
     </script>
 </body>

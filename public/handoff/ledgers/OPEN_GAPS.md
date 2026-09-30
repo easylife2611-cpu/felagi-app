@@ -443,3 +443,11 @@ Backend has no file upload endpoint.
 - Frontend: file input + preview
 
 **Not guessed — explicitly deferred.**
+
+## GAP Resolutions (2026-09-30)
+
+- ✅ GAP-S003-PHOTO — RESOLVED via L253
+- ✅ GAP-S019-BOOST-API — RESOLVED via L254
+- ✅ GAP-S021-REPORT-API — RESOLVED via L255
+- ✅ GAP-S022-TELEGRAM-API — RESOLVED via L256
+- ✅ GAP-S023-UNLOCK-API — RESOLVED via L257
