@@ -281,3 +281,32 @@ All 4 artifacts in ~/ (supersede B19 bundles):
 
 Next developer reading this + IMPLEMENTATION_LEDGER L217 + TEST_VERIFICATION B25
 can resume without chat reconstruction.
+
+---
+## B26 — AI/Comparison Domain Test Suite (WP-B26 / R-TEST-02) — 2026-09-30
+
+### What Changed
+
+- 4 new test files under tests/Feature/Models/ (Comparison domain)
+- 68 new tests, 93 new assertions
+- Full suite: 216 → 284 tests (403 → 496 assertions)
+- R-TEST-02 (AI/Comparison model tests MISSING) → COVERED
+
+### State
+
+- App HEAD (before commit): ce47d24 (B25 final)
+- App HEAD (after commit): (set after commit)
+- Design HEAD: 27edd9d (B11)
+- Tests: 284 passed (496 assertions)
+- Evidence: evidence/WP-B26_evidence.md
+
+### Blocked / Pending
+
+- **VERIFIED status:** requires second reviewer
+- **B17-B24 ledger backfill:** PENDING (see OPEN_GAPS GAP-70)
+- **Bundle refresh at B26_DONE:** not yet created
+
+### Continuity
+
+Next developer reading this + IMPLEMENTATION_LEDGER L218 + TEST_VERIFICATION B26
+can resume without chat reconstruction.

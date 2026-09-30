@@ -1,0 +1,87 @@
+PHPUnit 11.5.56 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.33
+Configuration: /home/zagcreht/felagi_app/phpunit.xml
+
+................................................................. 65 / 68 ( 95%)
+...                                                               68 / 68 (100%)
+
+Time: 00:06.277, Memory: 48.50 MB
+
+Comparison (Tests\Feature\Models\Comparison)
+ ✔ Uuid auto generated
+ ✔ Persists core attributes
+ ✔ Belongs to need
+ ✔ Belongs to triggered by user
+ ✔ Has many comparison offers
+ ✔ Has many results
+ ✔ Has many attempts
+ ✔ Need snapshot casts to array
+ ✔ Version number casts integer
+ ✔ Offer counts cast integer
+ ✔ Estimated cost casts decimal 4
+ ✔ Estimated cost nullable
+ ✔ Requested at casts to datetime
+ ✔ Completed at casts to datetime
+ ✔ Status constants
+ ✔ Default status is pending
+ ✔ Scope completed filters
+ ✔ Is completed returns true for completed
+ ✔ Is completed returns false for pending
+ ✔ Is failed returns true for failed
+ ✔ Unique need id and version number
+ ✔ Eligible offer count defaults zero
+ ✔ Attempt count defaults zero
+
+Comparison Attempt (Tests\Feature\Models\ComparisonAttempt)
+ ✔ Uuid auto generated
+ ✔ No timestamps
+ ✔ Belongs to comparison
+ ✔ Attempt number casts integer
+ ✔ Started at casts to datetime
+ ✔ Finished at casts to datetime
+ ✔ Finished at nullable
+ ✔ Token usage casts to array
+ ✔ Token usage nullable
+ ✔ Status constants
+ ✔ Default status is processing
+ ✔ Failure code nullable
+ ✔ Failure code stored
+ ✔ Provider request id nullable
+ ✔ Unique comparison id and attempt number
+ ✔ Multiple attempts with different numbers
+ ✔ Started at auto set by db
+
+Comparison Offer (Tests\Feature\Models\ComparisonOffer)
+ ✔ Uuid auto generated
+ ✔ Belongs to comparison
+ ✔ Belongs to offer
+ ✔ Belongs to provider
+ ✔ Has one result initially null
+ ✔ Offer snapshot casts to array
+ ✔ Credibility snapshot casts to array
+ ✔ Offer snapshot hash stores 64 hex
+ ✔ Unique comparison id and offer id
+ ✔ Can add multiple offers to one comparison
+ ✔ Uses timestamps
+ ✔ Created at populated
+ ✔ Updated at populated
+
+Comparison Result (Tests\Feature\Models\ComparisonResult)
+ ✔ Uuid auto generated
+ ✔ No timestamps
+ ✔ Belongs to comparison
+ ✔ Belongs to comparison offer
+ ✔ Score casts decimal 2
+ ✔ Score nullable
+ ✔ Criterion scores casts to array
+ ✔ Strengths casts to array
+ ✔ Weaknesses casts to array
+ ✔ Missing information casts to array
+ ✔ Risk notes casts to array
+ ✔ Fit explanation stored as text
+ ✔ Result hash is 64 chars
+ ✔ Created at casts to datetime
+ ✔ Unique comparison id and comparison offer id
+
+OK (68 tests, 93 assertions)

@@ -1032,3 +1032,48 @@ git revert <B21-commit>
 ### Rollback
 
 git revert 202716b..HEAD  # test-only (whole chain — code + docs)
+
+---
+
+## B26 — AI/Comparison Domain Test Suite (WP-B26 / R-TEST-02) — 2026-09-30
+
+**Type:** Test coverage
+**HEAD before:** ce47d24 (B25 final)
+
+### Test Results
+
+| Metric | Value |
+|--------|-------|
+| Tests run | 284 (was 216) |
+| Assertions | 496 (was 403) |
+| Failures | 0 |
+| Duration | 11.02s (full), 4.87s (B26 only) |
+| New files | 5 (4 tests + 1 evidence) + 2 logs |
+
+### Files Added
+
+- tests/Feature/Models/ComparisonTest.php (23 tests)
+- tests/Feature/Models/ComparisonOfferTest.php (13 tests)
+- tests/Feature/Models/ComparisonResultTest.php (15 tests)
+- tests/Feature/Models/ComparisonAttemptTest.php (17 tests)
+- evidence/WP-B26_evidence.md
+- evidence/WP-B26_phpunit_*.log + WP-B26_fullsuite_*.log
+
+### Not Changed
+
+- No production code modified
+- No migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+
+- D-054 AUDIT BEFORE ACTION - schema audited first
+- IMPLEMENTED != VERIFIED - tests proven, awaiting VERIFIED
+- UNKNOWN != MISSING - UNKNOWNs resolved before coding
+- No silent changes - all schema findings logged
+- No production code modified
+
+### Rollback
+
+git revert <B26-commit>  # test-only

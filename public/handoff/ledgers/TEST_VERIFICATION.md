@@ -440,3 +440,51 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - Failures: 0
 - Duration: 7.54s
 - PHP: 8.2.33 | PHPUnit: 11.5.56
+
+---
+
+## B26 — AI/Comparison Domain Test Suite (WP-B26 / R-TEST-02) — 2026-09-30
+
+### Test File Breakdown
+
+| Test File | Tests | Coverage |
+|-----------|-------|----------|
+| ComparisonTest.php | 23 | UUID, casts, relations, scopes, constants, unique (need_id, version_number) |
+| ComparisonOfferTest.php | 13 | Relations, JSON casts, unique (comparison_id, offer_id), timestamps |
+| ComparisonResultTest.php | 15 | No timestamps, composite FK, JSON casts, unique (comparison_id, comparison_offer_id) |
+| ComparisonAttemptTest.php | 17 | No timestamps, casts, unique (comparison_id, attempt_number), status enum |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B26 | 216 | 403 |
+| B26 | +68 | +93 |
+| **Post-B26** | **284** | **496** |
+
+### Coverage Expansion
+
+| Model | Before B26 | After B26 |
+|-------|------------|-----------|
+| Comparison | 0 | 23 |
+| ComparisonOffer | 0 | 13 |
+| ComparisonResult | 0 | 15 |
+| ComparisonAttempt | 0 | 17 |
+
+### Schema Findings
+
+- comparisons UNIQUE(need_id, version_number)
+- comparison_offers UNIQUE(comparison_id, offer_id) + composite UNIQUE(id, comparison_id)
+- comparison_results UNIQUE(comparison_id, comparison_offer_id)
+- comparison_results composite FK: (comparison_offer_id, comparison_id) → comparison_offers(id, comparison_id)
+- comparison_attempts UNIQUE(comparison_id, attempt_number)
+- MySQL JSON coercion noted (5.0 → 5)
+
+### Test Run
+
+- Command: `vendor/bin/phpunit tests/Feature/Models/Comparison{Test,OfferTest,ResultTest,AttemptTest}.php --testdox`
+- Result: **68 passed (93 assertions)**
+- Failures: 0
+- Duration: 4.87s
+- Full suite: 284 passed (496 assertions), 11.02s
+- PHP: 8.2.33 | PHPUnit: 11.5.56

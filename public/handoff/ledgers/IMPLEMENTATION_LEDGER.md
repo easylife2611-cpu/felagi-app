@@ -732,3 +732,46 @@ git revert 44f9494
 git revert 202716b..HEAD  # test-only, safe (whole chain — code + docs)
 # OR
 rm tests/Feature/Models/{PaymentTest,PaymentEventTest,BoostTest,BoostPackageTest}.php
+
+## L218 — B26 (AI/Comparison Domain Test Suite) — 2026-09-30
+
+**Type:** Test coverage (WP-B26 / R-TEST-02)
+**Addresses:** AI/Comparison model tests MISSING (per FELAGI_STATUS audit)
+
+### Changes
+- NEW: tests/Feature/Models/ComparisonTest.php (23 tests, 8149 bytes)
+- NEW: tests/Feature/Models/ComparisonOfferTest.php (13 tests, 7093 bytes)
+- NEW: tests/Feature/Models/ComparisonResultTest.php (15 tests, 6840 bytes)
+- NEW: tests/Feature/Models/ComparisonAttemptTest.php (17 tests, 6102 bytes)
+- NEW: evidence/WP-B26_evidence.md
+- NEW: evidence/WP-B26_phpunit_*.log + WP-B26_fullsuite_*.log
+
+### Test Results
+- B26 new: 68 tests (93 assertions)
+- Full suite: 216 → 284 tests (403 → 496 assertions total)
+- Failures: 0
+- Duration: 4.87s (B26), 11.02s (full)
+- PHP: 8.2.33 | PHPUnit: 11.5.56
+
+### Schema Findings (via test failures during development)
+- MySQL JSON coercion: 5.0 → 5 (integer) in JSON columns
+- Composite FK (comparison_results.comparison_offer_id, comparison_id) → comparison_offers(id, comparison_id) verified
+- Composite unique (id, comparison_id) on comparison_offers verified
+- No HasFactory on any of the 4 models
+
+### Not Changed
+- No production code modified (test-only)
+- No DB migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+- No production code changed
+- UNKNOWN markers resolved before coding
+- No hidden work
+- IMPLEMENTED != VERIFIED — VERIFIED pending second reviewer
+
+### Rollback
+git revert HEAD  # test-only, safe
+# OR
+rm tests/Feature/Models/Comparison{Test,OfferTest,ResultTest,AttemptTest}.php
