@@ -1131,3 +1131,40 @@ Every new Attachment() raised TypeError. Latent since B17.
     git revert <B27-commit>  # reverts both production fix + tests
     # OR selective:
     git revert <B27-commit> -- app/Models/Attachment.php
+
+---
+
+## B28 — Settings/Role Domain Test Suite (WP-B28 / R-TEST-06+07) — 2026-09-30
+
+**Type:** Test coverage
+**HEAD before:** 6db0e86 (B27)
+
+### Test Results
+
+| Metric | Value |
+|--------|-------|
+| Tests run | 412 (was 350) |
+| Assertions | 691 (was 595) |
+| Failures | 0 |
+| Duration | 14.28s (full suite) |
+
+### Files Added
+- tests/Feature/Models/SettingTest.php (25 tests)
+- tests/Feature/Models/SettingDraftTest.php (20 tests)
+- tests/Feature/Models/UserRoleTest.php (17 tests)
+- evidence/WP-B28_evidence.md + 2 logs
+
+### Not Changed
+- No production code modified
+- No migrations added
+- No routes changed
+- No new design
+
+### Constitution Compliance
+- D-054 AUDIT BEFORE ACTION - schema audited first
+- IMPLEMENTED != VERIFIED - tests proven, awaiting VERIFIED
+- UNKNOWN != MISSING - all UNKNOWNs resolved before coding
+- No silent changes
+
+### Rollback
+git revert <B28-commit>  # test-only

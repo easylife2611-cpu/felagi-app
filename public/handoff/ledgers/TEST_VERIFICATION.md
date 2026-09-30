@@ -531,3 +531,41 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - B27: 66 passed (99 assertions)
 - Full suite: 350 passed (595 assertions)
 - PHP: 8.2.33 | PHPUnit: 11.5.56
+
+---
+
+## B28 — Settings/Role Domain Test Suite (R-TEST-06/07) — 2026-09-30
+
+### Test File Breakdown
+
+| Test File | Tests | Coverage |
+|-----------|-------|----------|
+| SettingTest.php | 25 | PK=key, casts, helpers, risk |
+| SettingDraftTest.php | 20 | HasUuids, FK, isEditable, status flow |
+| UserRoleTest.php | 17 | Composite PK, scope active, user relation |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B28 | 350 | 595 |
+| B28 | +62 | +96 |
+| **Post-B28** | **412** | **691** |
+
+### Coverage Expansion
+
+| Model | Before B28 | After B28 |
+|-------|------------|-----------|
+| Setting | 0 | 25 |
+| SettingDraft | 0 | 20 |
+| UserRole | 0 | 17 |
+
+### Schema Findings
+- settings: UPDATED_AT const, no created_at
+- setting_drafts FK (setting_key->key) verified
+- user_roles: composite PK (user_id, role), granted_at useCurrent
+
+### Test Run
+- B28: 62 passed (96 assertions)
+- Full suite: 412 passed (691 assertions)
+- PHP: 8.2.33 | PHPUnit: 11.5.56

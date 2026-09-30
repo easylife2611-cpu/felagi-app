@@ -337,3 +337,30 @@ Attachment::isClean -> isScanClean — user approved, zero callers, in CHANGE_LO
 
 ### Continuity
 Next developer: L219 + TEST_VERIFICATION B27 + CHANGE_LOG.
+
+---
+## B28 — Settings/Role Domain Test Suite — 2026-09-30
+
+### What Changed
+- 3 test files (Setting, SettingDraft, UserRole): +62 tests
+- Full suite: 350 -> 412 tests (595 -> 691 assertions)
+- R-TEST-06 (Setting+SettingDraft): PARTIAL -> COVERED
+- R-TEST-07 (UserRole): 0 -> COVERED
+
+### State
+- App HEAD (before commit): 6db0e86 (B27)
+- Design HEAD: 27edd9d (B11)
+- Tests: 412 passed (691 assertions)
+- Evidence: evidence/WP-B28_evidence.md
+
+### Blocked / Pending
+- VERIFIED status: requires second reviewer
+- GAP-70 (B17-B24 backfill): PENDING
+- Bundle refresh at B28_DONE: not yet created
+
+### R-TEST coverage -- COMPLETE
+All 7 R-TEST items now COVERED:
+- R-TEST-01 (B25), R-TEST-02 (B26), R-TEST-03/04/05 (B27), R-TEST-06/07 (B28)
+
+### Continuity
+Next developer: L220 + TEST_VERIFICATION B28 + CHANGE_LOG.

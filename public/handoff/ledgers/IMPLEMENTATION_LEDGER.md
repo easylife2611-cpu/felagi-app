@@ -815,3 +815,35 @@ rm tests/Feature/Models/Comparison{Test,OfferTest,ResultTest,AttemptTest}.php
 git revert <B27-commit>  # reverts production fix + tests
 # OR selective:
 git revert <B27-commit> -- app/Models/Attachment.php
+
+## L220 — B28 (Settings/Role Test Suite) — 2026-09-30
+
+**Type:** Test coverage (WP-B28 / R-TEST-06 + R-TEST-07)
+**Addresses:** Setting + SettingDraft + UserRole tests MISSING
+
+### Changes
+- NEW: tests/Feature/Models/SettingTest.php (25 tests)
+- NEW: tests/Feature/Models/SettingDraftTest.php (20 tests)
+- NEW: tests/Feature/Models/UserRoleTest.php (17 tests)
+- NEW: evidence/WP-B28_evidence.md + 2 logs
+
+### Test Results
+- B28 new: 62 tests (96 assertions)
+- Full suite: 350 -> 412 tests (595 -> 691 assertions)
+- Failures: 0
+- PHP: 8.2.33 | PHPUnit: 11.5.56
+
+### Schema Findings
+- settings: PK key, UPDATED_AT const (no created_at)
+- setting_drafts FK setting_key -> settings.key
+- user_roles: composite PK (user_id, role), granted_at useCurrent
+
+### Not Changed
+- No production code modified (test-only)
+- No migrations added
+- No routes changed
+
+### Rollback
+git revert HEAD  # test-only
+# OR
+rm tests/Feature/Models/{SettingTest,SettingDraftTest,UserRoleTest}.php

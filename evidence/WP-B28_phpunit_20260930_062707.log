@@ -1,0 +1,78 @@
+PHPUnit 11.5.56 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.33
+Configuration: /home/zagcreht/felagi_app/phpunit.xml
+
+..............................................................    62 / 62 (100%)
+
+Time: 00:06.875, Memory: 46.50 MB
+
+Setting (Tests\Feature\Models\Setting)
+ ✔ Primary key is key string
+ ✔ No incrementing
+ ✔ No timestamps auto
+ ✔ Persists core attributes
+ ✔ Key is primary key
+ ✔ Value json casts to array
+ ✔ Default json casts to array
+ ✔ Schema json casts to array
+ ✔ Is secret casts to boolean
+ ✔ Default is secret is false
+ ✔ Version number defaults to one
+ ✔ Updated at cast datetime
+ ✔ Updated by nullable
+ ✔ Belongs to updated by user
+ ✔ Has many versions
+ ✔ Has many drafts
+ ✔ Group constants
+ ✔ Risk constants
+ ✔ Type constants
+ ✔ Requires reauth true for high
+ ✔ Requires reauth true for critical
+ ✔ Requires reauth false for low
+ ✔ Requires reauth false for medium
+ ✔ Requires second factor true for critical
+ ✔ Requires second factor false for high
+
+Setting Draft (Tests\Feature\Models\SettingDraft)
+ ✔ Uuid auto generated
+ ✔ Uses timestamps
+ ✔ Persists core attributes
+ ✔ Belongs to setting
+ ✔ Belongs to proposer
+ ✔ Proposed value json casts to array
+ ✔ Validation report casts to array
+ ✔ Validation report nullable
+ ✔ Impact preview casts to array
+ ✔ Impact preview nullable
+ ✔ Created at casts to datetime
+ ✔ Updated at casts to datetime
+ ✔ Status constants
+ ✔ Default status is draft
+ ✔ Is editable true for draft
+ ✔ Is editable true for validated
+ ✔ Is editable false for rejected
+ ✔ Is editable false for published
+ ✔ Fk setting key must exist
+ ✔ Multiple drafts for same setting allowed
+
+User Role (Tests\Feature\Models\UserRole)
+ ✔ No incrementing
+ ✔ No timestamps
+ ✔ Persists core attributes
+ ✔ Belongs to user
+ ✔ Granted by nullable
+ ✔ Belongs to granted by user
+ ✔ Granted at casts to datetime
+ ✔ Granted at auto set by db
+ ✔ Revoked at nullable
+ ✔ Revoked at casts to datetime
+ ✔ Role constants
+ ✔ Scope active filters revoked
+ ✔ Composite pk prevents duplicate user role
+ ✔ Same user can have multiple roles
+ ✔ User roles relation
+ ✔ User scope with role finds admins
+ ✔ User scope with role excludes revoked
+
+OK (62 tests, 96 assertions)
