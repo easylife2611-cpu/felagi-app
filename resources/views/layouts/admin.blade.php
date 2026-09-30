@@ -125,8 +125,13 @@ main{padding:24px;flex:1;max-width:1400px}
         <span class="page-title">@yield('page-title', __('adminPanel'))</span>
       </div>
       <div class="right">
-        <span class="who" id="admin-who"></span>
-        <button class="btn-logout" onclick="adminLogout()">{{ __('logout') }}</button>
+        <span class="who" id="admin-who">
+          &#128100; {{ auth()->user()->full_name ?? '—' }}
+        </span>
+        <form method="POST" action="{{ route('admin.logout') }}" style="margin:0">
+          @csrf
+          <button type="submit" class="btn-logout">{{ __('logout') }}</button>
+        </form>
       </div>
     </header>
 
@@ -149,23 +154,8 @@ Array.prototype.forEach.call(document.querySelectorAll('.sidebar nav a'),functio
   if(a.getAttribute('href')===path)a.classList.add('active');
 });
 
-try{
-  var u=JSON.parse(localStorage.getItem('felagi_user')||'null');
-  if(u&&u.full_name){
-    var el=document.getElementById('admin-who');
-    if(el)el.innerHTML='&#128100; '+u.full_name;
-  }
-}catch(e){}
-
-window.adminLogout=function(){
-  var t=localStorage.getItem(LS_TOKEN);
-  if(t){
-    fetch('/api/v1/auth/logout',{method:'POST',headers:{'Accept':'application/json','Authorization':'Bearer '+t,'X-CSRF-TOKEN':csrf}}).catch(function(){});
-  }
-  localStorage.removeItem(LS_TOKEN);
-  localStorage.removeItem('felagi_user');
-  window.location.href='/';
-};
+// Admin auth is server-side session-based (form POST + CSRF).
+// Logout uses POST /admin/logout with CSRF token.
 
 window.adminToast=function(msg,ms){
   ms=ms||2400;

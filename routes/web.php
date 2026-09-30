@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Auth\AdminLoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -91,28 +92,40 @@ Route::get('/needs/{id}/offers/unlock', function ($id) {
 });
 
 // ─── Admin Routes (A001-A023) ───
+// Login is public; all other admin routes require auth + admin role.
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard',                  fn() => view('admin.dashboard'));
-    Route::get('/telegram',                   fn() => view('admin.telegram'));
-    Route::get('/health',                     fn() => view('admin.health'));
-    Route::get('/features',                   fn() => view('admin.features'));
-    Route::get('/marketplace',                fn() => view('admin.marketplace'));
-    Route::get('/ai',                         fn() => view('admin.ai'));
-    Route::get('/payments',                   fn() => view('admin.payments'));
-    Route::get('/users',                      fn() => view('admin.users'));
-    Route::get('/content',                    fn() => view('admin.content'));
-    Route::get('/notifications',              fn() => view('admin.notifications'));
-    Route::get('/files',                      fn() => view('admin.files'));
-    Route::get('/jobs',                       fn() => view('admin.jobs'));
-    Route::get('/backups',                    fn() => view('admin.backups'));
-    Route::get('/integrity',                  fn() => view('admin.integrity'));
-    Route::get('/security',                   fn() => view('admin.security'));
-    Route::get('/audit',                      fn() => view('admin.audit'));
-    Route::get('/settings',                   fn() => view('admin.settings'));
-    Route::get('/recovery',                   fn() => view('admin.recovery'));
-    Route::get('/safe-mode',                  fn() => view('admin.safe-mode'));
-    Route::get('/monetization',               fn() => view('admin.monetization'));
-    Route::get('/maintenance',                fn() => view('admin.maintenance'));
-    Route::get('/reports',                    fn() => view('admin.reports'));
-    Route::get('/monetization/sponsored-ads', fn() => view('admin.sponsored-ads'));
+
+    // Public: login page
+    Route::get('/login', [AdminLoginController::class, 'showLoginForm'])
+        ->name('admin.login');
+
+    // Protected: logout + admin panel (auth + admin role)
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::post('/logout', [AdminLoginController::class, 'logout'])
+            ->name('admin.logout');
+
+        Route::get('/dashboard',                  fn() => view('admin.dashboard'));
+        Route::get('/telegram',                   fn() => view('admin.telegram'));
+        Route::get('/health',                     fn() => view('admin.health'));
+        Route::get('/features',                   fn() => view('admin.features'));
+        Route::get('/marketplace',                fn() => view('admin.marketplace'));
+        Route::get('/ai',                         fn() => view('admin.ai'));
+        Route::get('/payments',                   fn() => view('admin.payments'));
+        Route::get('/users',                      fn() => view('admin.users'));
+        Route::get('/content',                    fn() => view('admin.content'));
+        Route::get('/notifications',              fn() => view('admin.notifications'));
+        Route::get('/files',                      fn() => view('admin.files'));
+        Route::get('/jobs',                       fn() => view('admin.jobs'));
+        Route::get('/backups',                    fn() => view('admin.backups'));
+        Route::get('/integrity',                  fn() => view('admin.integrity'));
+        Route::get('/security',                   fn() => view('admin.security'));
+        Route::get('/audit',                      fn() => view('admin.audit'));
+        Route::get('/settings',                   fn() => view('admin.settings'));
+        Route::get('/recovery',                   fn() => view('admin.recovery'));
+        Route::get('/safe-mode',                  fn() => view('admin.safe-mode'));
+        Route::get('/monetization',               fn() => view('admin.monetization'));
+        Route::get('/maintenance',                fn() => view('admin.maintenance'));
+        Route::get('/reports',                    fn() => view('admin.reports'));
+        Route::get('/monetization/sponsored-ads', fn() => view('admin.sponsored-ads'));
+    });
 });

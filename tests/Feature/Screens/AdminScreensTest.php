@@ -3,12 +3,27 @@
 namespace Tests\Feature\Screens;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
+use App\Models\UserRole;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class AdminScreensTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // All /admin/* routes now require an authenticated admin.
+        $admin = User::factory()->create();
+        UserRole::create([
+            'user_id' => $admin->id,
+            'role'    => UserRole::ROLE_MAIN_ADMIN,
+        ]);
+        $this->actingAs($admin, 'web');
+    }
 
     /**
      * All 23 admin routes should render 200 (placeholders).
@@ -87,7 +102,8 @@ class AdminScreensTest extends TestCase
                 $adminRoutes[] = $uri;
             }
         }
-        $this->assertCount(23, $adminRoutes);
+        // 23 admin panel screens + login + logout = 25
+        $this->assertCount(25, $adminRoutes);
     }
 
     public function test_admin_layout_is_extended_by_all_views(): void

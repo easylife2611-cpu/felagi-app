@@ -22,7 +22,17 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'reauth' => \App\Http\Middleware\RequireReauth::class,
             'idempotent' => \App\Http\Middleware\IdempotencyKey::class,
+            'admin' => \App\Http\Middleware\EnsureAdminRole::class,
         ]);
+
+        // Redirect unauthenticated users to /admin/login (for /admin/* routes)
+        // Otherwise fall back to the named 'login' route if it exists.
+        $middleware->redirectGuestsTo(function ($request) {
+            if ($request->is('admin/*') || $request->is('admin')) {
+                return '/admin/login';
+            }
+            return null;
+        });
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // T23: consistent JSON envelope with request_id for auth errors

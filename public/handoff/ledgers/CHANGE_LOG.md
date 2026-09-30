@@ -1626,3 +1626,32 @@ git revert <S003-commit>
 ### Feature
 - Sponsored Advertising subsystem (governed, contract-compliant)
 - Default: master OFF, placements OFF
+
+---
+
+## B38 — Admin browser login (Telegram-first, session-based)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L268
+
+### Added
+- app/Http/Middleware/EnsureAdminRole.php
+- app/Http/Controllers/Admin/Auth/AdminLoginController.php
+- resources/views/admin/auth/login.blade.php
+- tests/Feature/Admin/Auth/AdminLoginTest.php (15 tests)
+
+### Changed
+- routes/web.php: /admin/* now requires auth + admin
+- bootstrap/app.php: admin alias + redirectGuestsTo
+- layouts/admin.blade.php: server-side who + CSRF logout form
+- lang/en.json + lang/am.json: +39 keys
+- AdminScreensTest: admin auth setUp + count 25
+
+### Tests
+- +15 tests, +28 assertions
+- Full suite: 842 / 1,991 / 0 failures / 1 skipped
+
+### Feature
+- Admin browser login (Telegram-first, session-based)
+- 3 roles supported (MAIN_ADMIN / ADMIN / MODERATOR)

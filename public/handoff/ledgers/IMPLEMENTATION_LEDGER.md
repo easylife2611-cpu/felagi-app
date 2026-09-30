@@ -2562,3 +2562,90 @@ These are documented in the contract and remain outside implementation scope.
 - No guessing — every state, placement, cap, and rule cites the contract
 - Additive — new subsystem; 2 tests updated because A023 graduated
 - No silent changes — this ledger + commit
+
+---
+
+## L268 — Admin Browser Login (Telegram-first, session-based)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Feature (admin authentication)
+
+**Spec:**
+- `Admin_Authorization_Contract.md`: browser Admin session, Admin role check
+- `DFM-FDS-1.4.md §5.1`: Telegram login uses OIDC flow
+- Felagi identity model: NO email/password (User.telegram_subject is primary)
+
+**What Changed:**
+
+### NEW — Middleware
+- `app/Http/Middleware/EnsureAdminRole.php`
+  - Requires `auth` + at least one active admin role (MAIN_ADMIN/ADMIN/MODERATOR)
+  - Redirects guest → /admin/login
+  - Aborts 403 for authenticated non-admin
+
+### NEW — Controller
+- `app/Http/Controllers/Admin/Auth/AdminLoginController.php`
+  - showLoginForm: public login page (Telegram-based)
+  - logout: session invalidation
+
+### NEW — View
+- `resources/views/admin/auth/login.blade.php`
+  - Telegram sign-in button (uses existing /auth/telegram S002 flow)
+  - "No admin access" alert for authenticated non-admin
+  - "Already signed in" hint + Go to Dashboard for admins
+
+### MODIFIED — Routes
+- `routes/web.php`
+  - `/admin/login` (public)
+  - `/admin/logout` (auth + admin, POST)
+  - All other `/admin/*` wrapped in `['auth', 'admin']` middleware group
+
+### MODIFIED — Layout
+- `resources/views/layouts/admin.blade.php`
+  - `admin-who` now server-side `{{ auth()->user()->full_name }}`
+  - Logout is now `<form method="POST">` + CSRF (session auth)
+  - Removed JS-based `adminLogout()` (fetch/localStorage)
+
+### MODIFIED — Bootstrap
+- `bootstrap/app.php`
+  - Registered `admin` middleware alias
+  - Added `redirectGuestsTo` → /admin/login for /admin/* routes
+
+### MODIFIED — Translations
+- `lang/en.json` + `lang/am.json`
+  - +39 admin.auth.* + admin.ads.* keys
+  - Fixed `__()` 3-param misuse (Blade): use 1-param only
+
+### NEW — Tests
+- `tests/Feature/Admin/Auth/AdminLoginTest.php` — 15 tests / 28 assertions
+
+### MODIFIED — Tests
+- `tests/Feature/Screens/AdminScreensTest.php`
+  - setUp: authenticate MAIN_ADMIN user
+  - Routes count 23 → 25 (login + logout)
+
+**Auth Flow:**
+
+| Route | Middleware | Purpose |
+|---|---|---|
+| GET /admin/login | public | Login page |
+| POST /admin/logout | auth + admin | Logout |
+| GET /admin/* | auth + admin | Admin panel |
+
+**Rules:**
+- Telegram-first (no email/password)
+- 3 roles: MAIN_ADMIN, ADMIN, MODERATOR
+- Revoked roles rejected
+- Non-admin authenticated → 403
+- Guest → redirect /admin/login
+
+**Test Results:**
+- AdminLoginTest: 15 / 28
+- AdminScreensTest: 72 / 209 (1 skip: A023 graduated)
+- Full suite: 842 tests / 1,991 assertions / 0 failures / 1 skipped
+
+**Constitution compliance:**
+- No guessing — Telegram-first per User schema + Admin contract
+- Additive — new middleware + controller + view
+- No silent changes — this ledger + commit
