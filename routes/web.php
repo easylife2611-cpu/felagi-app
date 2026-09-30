@@ -37,3 +37,19 @@ Route::get('/needs/{id}/offers', function ($id) {
 Route::get('/offers/{id}', function ($id) {
     return view('offer-detail');
 });
+
+Route::get('/my/offers', function () {
+    return view('my-offers');
+});
+
+Route::get('/notifications', function () {
+    return view('notifications');
+});
+
+Route::get('/offers/{id}/messages', function ($id) {
+    return view('offer-messages');
+});
+
+Route::get('/needs/{id}/compare', function ($id) {
+    return view('compare-offers');
+});

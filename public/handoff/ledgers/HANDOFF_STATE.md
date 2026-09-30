@@ -587,3 +587,31 @@ Read: L237, CHANGE_LOG S010, spec S012
 
 ### Continuity
 Read: L238, CHANGE_LOG S012, spec S013
+
+---
+## S013 + S018 + S017 + S014 — Handoff — 2026-09-30
+
+### What Changed
+- NEW: my-offers.blade.php (257 lines)
+- NEW: notifications.blade.php (322 lines)
+- NEW: offer-messages.blade.php (328 lines)
+- NEW: compare-offers.blade.php (375 lines)
+- UPD: routes/web.php — 4 new routes
+- UPD: lang/en.json + lang/am.json — +31 keys each (185 total)
+- NEW: NotificationFactory + MessageFactory
+- UPD: Notification + Message models — HasFactory trait
+
+### Test Results
+- 4 new test files: 29 tests, 54 assertions
+- Full suite: 554 tests, 0 failures
+
+### Next Steps
+1. **S007 Created Success** (/needs/:id/created)
+2. **S006 Public Preview** (/needs/new/public-preview)
+3. **S015/S016 Comparison Result** (requires WP-10)
+4. **S019-S023** (remaining user screens)
+5. **GAP-S003-PHOTO** (profile photo upload)
+6. **A001-A023** (23 admin screens)
+
+### Continuity
+Read: L239-L242, spec S007

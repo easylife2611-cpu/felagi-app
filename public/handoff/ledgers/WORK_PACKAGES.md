@@ -171,3 +171,7 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 | S011-SUBMIT-OFFER | Submit Offer (full) | DONE | IMPLEMENTATION_LEDGER L236 |
 | S010-RECEIVED-OFFERS | Received Offers (full) | DONE | IMPLEMENTATION_LEDGER L237 |
 | S012-OFFER-DETAIL | Offer Detail (full) | DONE | IMPLEMENTATION_LEDGER L238 |
+| S013-MY-OFFERS | My Offers (full) | DONE | IMPLEMENTATION_LEDGER |
+| S018-NOTIFICATIONS | Notifications (full) | DONE | IMPLEMENTATION_LEDGER |
+| S017-MESSAGES | Messages (full) | DONE | IMPLEMENTATION_LEDGER |
+| S014-COMPARE | Compare Confirmation (full) | DONE | IMPLEMENTATION_LEDGER |

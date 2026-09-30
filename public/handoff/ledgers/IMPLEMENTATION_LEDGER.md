@@ -1565,3 +1565,129 @@ S020 (rating - future) | S021 (support - future)
 - UNKNOWN != MISSING (no speculative fields)
 - Design-compliant (S012 spec + manifest + api-mapping)
 - No silent change (this ledger entry)
+
+## L239 — S013 My Offers (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S013 My Offers — missing (nav link existed; view did not)
+
+### Changes
+- NEW: resources/views/my-offers.blade.php (257 lines)
+- UPD: routes/web.php — added GET /my/offers
+- UPD: lang/en.json + lang/am.json — +3 keys (myOffers*)
+- NEW: tests/Feature/Screens/S013MyOffersTest.php (6 tests)
+
+### Screen anatomy
+- AppBar + offer count badge
+- Status filter chips (All/PENDING/ACCEPTED/REJECTED/WITHDRAWN)
+- Card grid: need title, status badge, price, message, dates
+- Empty state with CTA to browse
+- 5-item nav (My Offers active)
+- Ads: prohibited per spec
+
+### API
+- GET /api/v1/my/offers?status=X&page=N&per_page=20
+
+---
+
+## L240 — S018 Notifications (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S018 Notifications — missing
+
+### Changes
+- NEW: resources/views/notifications.blade.php (322 lines)
+- UPD: routes/web.php — added GET /notifications
+- UPD: lang/en.json + lang/am.json — +4 keys (filterUnread, noNotifications*, justNow)
+- NEW: tests/Feature/Screens/S018NotificationsTest.php (8 tests)
+
+### Screen anatomy
+- AppBar + unread count badge
+- Filter chips (All/Unread)
+- Notification cards: icon, title, body, time, unread dot
+- Click → mark read (POST /notifications/{id}/read)
+- Nav badge dot when unread > 0
+- Ads: prohibited per spec
+
+### API
+- GET /api/v1/notifications?unread=1&page=N&per_page=20
+- POST /api/v1/notifications/{id}/read
+
+---
+
+## L241 — S017 Messages (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S017 Messages — missing (S012 "Open messages" linked to /offers/:id/messages)
+
+### Changes
+- NEW: resources/views/offer-messages.blade.php (328 lines)
+- UPD: routes/web.php — added GET /offers/{id}/messages
+- UPD: lang/en.json + lang/am.json — +10 keys (messagesTitle, send, today, etc.)
+- NEW: tests/Feature/Screens/S017MessagesTest.php (7 tests)
+
+### Screen anatomy
+- AppBar with offer context (need title + price)
+- Chat bubbles (mine right/blue, other left/white)
+- Day separators (Today/Yesterday/date)
+- Composer with auto-grow textarea + Enter-to-send
+- Draft auto-save per offer (localStorage)
+- 15s polling for new messages
+- Ads: prohibited per spec
+
+### API
+- GET /api/v1/offers/{offerId}/messages (participant only)
+- POST /api/v1/offers/{offerId}/messages
+
+---
+
+## L242 — S014 Compare Confirmation (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation — frontend ready, backend AI 501)
+**Addresses:** S014 Compare — missing (S010 compare button linked to /needs/:id/compare)
+
+### Changes
+- NEW: resources/views/compare-offers.blade.php (375 lines)
+- UPD: routes/web.php — added GET /needs/{id}/compare
+- UPD: lang/en.json + lang/am.json — +17 keys (compare*, evaluate*, aiNotConfigured)
+- NEW: tests/Feature/Screens/S014CompareTest.php (8 tests)
+
+### Screen anatomy
+- AppBar with back button
+- Intro card (AI explanation)
+- Need preview card
+- Select-all checkbox
+- Offer selection cards (2-10 eligible, PENDING only)
+- Sticky actions bar (Cancel / Evaluate offers)
+- Ads: prohibited per spec
+
+### States
+loading | empty (< 2 eligible) | error | content (selection) | processing
+
+### API
+- GET /api/v1/needs/{needId}/offers (eligible selection)
+- POST /api/v1/needs/{needId}/comparisons (WP-10 blocked; returns 501)
+
+### Constitution note
+- Backend AI comparison requires WP-10 (provider credentials)
+- Frontend fully implemented; 501 handled gracefully with user-facing message
+- When WP-10 unblocked, no frontend change needed
+
+### Test Results
+- S013: 6 tests
+- S018: 8 tests
+- S017: 7 tests
+- S014: 8 tests
+- Total: 29 tests, 54 assertions
+- Full suite: 525 -> 554 tests, 0 failures
+
+### Not changed
+- No DB migration
+- No API change (all endpoints already existed)
+- S003-S012 untouched
+
+### Constitution
+- Additive (4 views + 4 routes)
+- UNKNOWN != MISSING
+- Design-compliant (S013/S014/S017/S018 specs)
+- No silent change
