@@ -2030,3 +2030,37 @@ Migrating now prevents future breakage.
 - Art. "No hidden work" — documented
 
 **Deprecation source:** PHPUnit 11.5.56 (target: PHPUnit 12 compatibility)
+
+---
+
+## L260 — Documentation reconciliation (GAP-71c + SOURCE_OF_TRUTH)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Documentation (non-code)
+
+**What Changed:**
+
+### `public/handoff/ledgers/OPEN_GAPS.md`
+- GAP-71c "Deferred" list corrected:
+  - Message + Notification already done (S013+S018) — removed from list
+  - 8 remaining done in L258 — reflected
+  - Final: 29 factories · 29 models HasFactory · 100%
+
+### `public/handoff/SOURCE_OF_TRUTH.md`
+- `Generated:` timestamp refreshed
+- `App HEAD:` updated to current HEAD
+
+**Why:**
+Both files were stale after L258 + L259. Correcting them keeps
+canonical ledgers in sync with git HEAD.
+
+**Result:**
+- No code change
+- No test count change (699 / 1,380 / 0 failures / 0 deprecations)
+- Doc consistency restored
+
+**Constitution compliance:**
+- Art. "Maintain one canonical project ledger" — restored
+- Art. "No silent changes" — this entry documents the fix
+- Art. "No hidden work" — visible in git log

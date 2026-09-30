@@ -1436,3 +1436,18 @@ git revert <S003-commit>
 ### Tests
 - 699 tests · 1,380 assertions · **0 deprecations**
 - (Previous: 3 PHPUnit deprecations)
+
+---
+
+## B30 — Documentation reconciliation
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L260
+
+### Changed
+- OPEN_GAPS.md — GAP-71c stale list corrected
+- SOURCE_OF_TRUTH.md — HEAD/timestamp refreshed
+
+### Tests
+- 699 · 1,380 · 0 failures · 0 deprecations (no code change)

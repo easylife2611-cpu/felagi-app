@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
-**Generated:** 2026-09-30 11:15:56
-**App HEAD:** `5a1c801`
+**Generated:** 2026-09-30 11:43:41
+**App HEAD:** `9e63d07`
 **Design HEAD:** `27edd9d`
 
 ## Summary

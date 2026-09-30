@@ -389,11 +389,14 @@ Stakeholder to answer 6 questions + provide LOCKED spec.
 - HasFactory trait added to 16 models
 - Smoke tested all 14 factories
 
-**Deferred (no tests yet):**
-AuditLog, AuthAttempt, Message, Notification, OutboxEvent, Rating,
-SettingVersion, TelegramDestination, TelegramPublication, TelegramPublicationEvent
+**Note (corrected 2026-09-30 — L258):**
+- Message + Notification were already covered by S013+S018 factories.
+- Remaining 8 (AuditLog, AuthAttempt, OutboxEvent, Rating, SettingVersion,
+  TelegramDestination, TelegramPublication, TelegramPublicationEvent)
+  were completed in L258 (commit `7581e3d`).
+- Final state: **29 factories · 29 models with HasFactory · 100%**
 
-**Closed by:** GAP-71c commit
+**Closed by:** GAP-71c commit + L258 (7581e3d)
 
 
 ---
