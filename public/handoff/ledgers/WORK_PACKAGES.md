@@ -175,3 +175,12 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 | S018-NOTIFICATIONS | Notifications (full) | DONE | IMPLEMENTATION_LEDGER |
 | S017-MESSAGES | Messages (full) | DONE | IMPLEMENTATION_LEDGER |
 | S014-COMPARE | Compare Confirmation (full) | DONE | IMPLEMENTATION_LEDGER |
+| S006-PUBLIC-PREVIEW | Public Preview (full) | DONE | IMPLEMENTATION_LEDGER |
+| S007-CREATED | Need-Created (full) | DONE | IMPLEMENTATION_LEDGER |
+| S015-COMPARISON-RESULT | AI Comparison Result (full) | DONE | IMPLEMENTATION_LEDGER |
+| S016-COMPARISON-HISTORY | Comparison History (full) | DONE | IMPLEMENTATION_LEDGER |
+| S019-BOOST | Boost (full) | DONE | IMPLEMENTATION_LEDGER |
+| S020-RATING | Rating (full) | DONE | IMPLEMENTATION_LEDGER |
+| S021-REPORT | Report/Support (full) | DONE | IMPLEMENTATION_LEDGER |
+| S022-TELEGRAM | Telegram Publications (full) | DONE | IMPLEMENTATION_LEDGER |
+| S023-UNLOCK | Offer Unlock (full) | DONE | IMPLEMENTATION_LEDGER |

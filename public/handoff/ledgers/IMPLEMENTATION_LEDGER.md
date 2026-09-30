@@ -1691,3 +1691,86 @@ loading | empty (< 2 eligible) | error | content (selection) | processing
 - UNKNOWN != MISSING
 - Design-compliant (S013/S014/S017/S018 specs)
 - No silent change
+
+## L243 — S007 Need-Created Confirmation (full implementation) — 2026-09-30
+
+- NEW: need-created.blade.php (188 lines)
+- UPD: routes/web.php — GET /needs/{id}/created
+- Tests: S007NeedCreatedTest (3 tests)
+- Entry: S005 publish success
+- Transitions: view need, view received offers, create another
+
+## L244 — S006 Public Preview (full implementation) — 2026-09-30
+
+- NEW: need-preview.blade.php (236 lines)
+- UPD: routes/web.php — GET /needs/new/public-preview
+- Tests: S006NeedPreviewTest (3 tests)
+- Reads S005 draft (localStorage) + POST /api/v1/needs
+
+## L245 — S020 Rating (full implementation) — 2026-09-30
+
+- NEW: rate-participant.blade.php (323 lines)
+- UPD: routes/web.php — GET /needs/{id}/rating
+- Tests: S020RatingTest (4 tests)
+- API: POST /api/v1/needs/{needId}/ratings
+- 5-star + optional review; owner<->provider
+
+## L246 — S015 AI Comparison Result (full implementation) — 2026-09-30
+
+- NEW: comparison-result.blade.php (244 lines)
+- UPD: routes/web.php — GET /comparisons/{id}
+- Tests: S015ComparisonResultTest (4 tests)
+- API: GET /api/v1/comparisons/{id}
+- Status pill + AI note + ranking + included offers
+
+## L247 — S016 Comparison History (full implementation) — 2026-09-30
+
+- NEW: comparison-history.blade.php (202 lines)
+- UPD: routes/web.php — GET /needs/{id}/comparisons
+- Tests: S016ComparisonHistoryTest (5 tests)
+- API: GET /api/v1/needs/{needId}/comparisons
+
+## L248 — S019 Boost/Payments (full implementation) — 2026-09-30
+
+- NEW: boost-need.blade.php (218 lines)
+- UPD: routes/web.php — GET /needs/{id}/boost
+- Tests: S019BoostTest (3 tests)
+- API: GET /api/v1/boost-packages (BLOCKED — no controller)
+- GAP-S019-BOOST-API registered
+
+## L249 — S021 Report/Support (full implementation) — 2026-09-30
+
+- NEW: report-support.blade.php (252 lines)
+- UPD: routes/web.php — GET /support/report
+- Tests: S021ReportTest (5 tests)
+- API: POST /api/v1/reports (BLOCKED — no route)
+- GAP-S021-REPORT-API registered
+
+## L250 — S022 Telegram Publications (full implementation) — 2026-09-30
+
+- NEW: telegram-publications.blade.php (271 lines)
+- UPD: routes/web.php — GET /needs/{id}/publications
+- Tests: S022TelegramPublicationsTest (3 tests)
+- API: /api/v1/needs/{id}/telegram-publication* (BLOCKED)
+- GAP-S022-TELEGRAM-API registered
+
+## L251 — S023 Offer Submission Unlock (full implementation) — 2026-09-30
+
+- NEW: offer-unlock.blade.php (214 lines)
+- UPD: routes/web.php — GET /needs/{id}/offers/unlock
+- Tests: S023OfferUnlockTest (4 tests)
+- API: /api/v1/offer-submissions (BLOCKED)
+- GAP-S023-UNLOCK-API registered
+
+### Batch Summary (L243-L251)
+- 9 views (2,148 lines)
+- 9 routes
+- 9 test files (34 tests, 78 assertions)
+- ~145 new lang keys each (330 total)
+- Full suite: 554 -> 588 tests, 0 failures
+
+### GAPs Registered
+- GAP-S019-BOOST-API: no BoostController
+- GAP-S021-REPORT-API: no /api/v1/reports route
+- GAP-S022-TELEGRAM-API: no telegram-publication routes
+- GAP-S023-UNLOCK-API: no offer-submissions routes
