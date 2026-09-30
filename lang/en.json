@@ -89,5 +89,13 @@
     "needCompleted": "Need marked as completed",
     "needCancelled": "Need cancelled",
     "stateConflict": "Cannot perform this action in current state",
-    "actionFailed": "Action failed. Please try again."
+    "actionFailed": "Action failed. Please try again.",
+    "myNeedsTitle": "My Needs",
+    "filterAll": "All",
+    "statusOpen": "Open",
+    "statusInProgress": "In progress",
+    "statusCompleted": "Completed",
+    "statusCancelled": "Cancelled",
+    "noMyNeedsTitle": "You have no needs yet",
+    "noMyNeedsBody": "Create your first need to get offers from providers."
 }

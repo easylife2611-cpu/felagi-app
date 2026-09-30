@@ -21,3 +21,7 @@ Route::get('/needs/new', function () {
 Route::get('/needs/{id}', function ($id) {
     return view('show-need');
 });
+
+Route::get('/my/needs', function () {
+    return view('my-needs');
+});

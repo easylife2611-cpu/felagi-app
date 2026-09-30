@@ -1350,3 +1350,51 @@ S014/S016 (comparisons - future) | S019/S020 (boost/rating - future)
 - UNKNOWN != MISSING (no speculative fields)
 - Design-compliant (S008 spec + manifest + api-mapping)
 - No silent change (this ledger entry)
+
+## L235 — S009 My Needs (full implementation) — 2026-09-30
+
+**Type:** Feature (screen implementation)
+**Addresses:** S009 My Needs — missing (only /my/needs route did not exist)
+
+### Changes
+- NEW: resources/views/my-needs.blade.php (268 lines, S009 spec)
+- UPD: routes/web.php — added GET /my/needs -> view('my-needs')
+- UPD: lang/en.json — +8 keys (myNeedsTitle, filterAll, status*, noMyNeeds*, etc.)
+- UPD: lang/am.json — +8 keys (parallel Amharic)
+- NEW: tests/Feature/Screens/S009MyNeedsTest.php (13 tests, 55 assertions)
+
+### Screen anatomy (spec compliance)
+- AppBar 64 with back + create button
+- Status filter chips (All / Open / In progress / Completed / Cancelled)
+- Card grid: category chip, status badge, title, description, budget, location, deadline, offer_count
+- Empty state with CTA to create
+- Load more (pagination)
+- FAB create action
+- 5-item bottom nav (S004/S009/S013/S018/S003)
+- Ads: prohibited per spec
+
+### States implemented
+loading (skeleton) | list | empty | error | offline
+
+### API integration
+- GET /api/v1/my/needs?status=X&page=N&per_page=20
+- Returns only own needs (self scope)
+- Meta: { page, per_page, total }
+
+### Transitions
+S005 (create) | S008 (detail) — cards link to /needs/{id}
+
+### Test Results
+- S009MyNeedsTest: 13 tests, 55 assertions
+- Full suite: 469 -> 482 tests, 0 failures
+
+### Not changed
+- No DB migration
+- No API change (my/needs endpoint already existed)
+- S003/S004/S005/S008 untouched
+
+### Constitution
+- Additive (new view + route only)
+- UNKNOWN != MISSING (no speculative fields)
+- Design-compliant (S009 spec + manifest + api-mapping)
+- No silent change (this ledger entry)

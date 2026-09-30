@@ -89,5 +89,13 @@
     "needCompleted": "ፍላጎት እንደተጠናቀቀ ምልክት ተደርጓል",
     "needCancelled": "ፍላጎት ተሰርዟል",
     "stateConflict": "በአሁኑ ሁኔታ ይህ እርምጃ አይቻልም",
-    "actionFailed": "እርምጃ አልተሳካም። እንደገና ይሞክሩ።"
+    "actionFailed": "እርምጃ አልተሳካም። እንደገና ይሞክሩ።",
+    "myNeedsTitle": "የኔ ፍላጎቶች",
+    "filterAll": "ሁሉም",
+    "statusOpen": "ክፍት",
+    "statusInProgress": "በሂደት ላይ",
+    "statusCompleted": "ተጠናቋል",
+    "statusCancelled": "ተሰርዟል",
+    "noMyNeedsTitle": "እስካሁን ፍላጎት የለዎትም",
+    "noMyNeedsBody": "የመጀመሪያዎን ፍላጎት ይፍጠሩ እና ከአቅራቢዎች ቅናሽ ይቀበሉ።"
 }
