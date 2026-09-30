@@ -1941,3 +1941,60 @@ loading | empty (< 2 eligible) | error | content (selection) | processing
 - 27 new tests (across 5 test files)
 - 5 GAPs RESOLVED
 - Full suite: 660 -> 690 tests, 0 failures
+
+---
+
+## L258 — GAP-71c COMPLETE — Remaining factories (8 models)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Type:** Infrastructure (additive)
+
+**What Changed:**
+
+### NEW factories (8)
+- `database/factories/AuditLogFactory.php`
+- `database/factories/AuthAttemptFactory.php`
+- `database/factories/OutboxEventFactory.php`
+- `database/factories/RatingFactory.php`
+- `database/factories/SettingVersionFactory.php`
+- `database/factories/TelegramDestinationFactory.php`
+- `database/factories/TelegramPublicationFactory.php`
+- `database/factories/TelegramPublicationEventFactory.php`
+
+### MODIFIED models (8) — HasFactory trait added
+- `app/Models/AuditLog.php`
+- `app/Models/AuthAttempt.php`
+- `app/Models/OutboxEvent.php`
+- `app/Models/Rating.php`
+- `app/Models/SettingVersion.php`
+- `app/Models/TelegramDestination.php`
+- `app/Models/TelegramPublication.php`
+- `app/Models/TelegramPublicationEvent.php`
+
+**Result:**
+- Factories: 21 → 29 (+8)
+- Models with HasFactory: 21 → 29 (+8)
+- Tests: 699 · 1,380 assertions · 0 failures (no regressions)
+
+**FK design note:**
+`SettingVersionFactory` resolves `settings.key` FK via closure —
+`Setting::factory()->create()->key` — because `setting_versions.setting_key`
+references `settings.key`. Documented as canonical pattern for FK-by-natural-key.
+
+**States provided:**
+- AuditLogFactory: (base)
+- AuthAttemptFactory: `consumed()`, `expired()`
+- OutboxEventFactory: `done()`, `failed()`, `processing()`
+- RatingFactory: `positive()`, `negative()`
+- SettingVersionFactory: `forSetting($key)`
+- TelegramDestinationFactory: `draft()`, `paused()`
+- TelegramPublicationFactory: `posted()`, `failed()`, `removed()`
+- TelegramPublicationEventFactory: `sent()`, `failed()`
+
+**GAP-71c status:** ✅ RESOLVED
+
+**Constitution compliance:**
+- Art. "Additive only" — no destructive changes
+- Art. "No hidden work" — ledger entry added
+- Art. "No silent changes" — commit + ledger

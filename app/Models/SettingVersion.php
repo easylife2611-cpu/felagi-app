@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 class SettingVersion extends Model
 {
+    use HasFactory;
+
     use HasUuids;
 
     /** Immutable — append-only, no timestamps auto-set */

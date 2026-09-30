@@ -1395,3 +1395,26 @@ Login → S003 Profile → S004 Browse
 
 ### Rollback
 git revert <S003-commit>
+
+---
+
+## B28 — GAP-71c: Remaining factories (8 models)
+
+**Date:** 2026-09-30
+**Commit:** (this commit)
+**Ref:** L258
+
+### Added
+- 8 factories: AuditLog, AuthAttempt, OutboxEvent, Rating,
+  SettingVersion, TelegramDestination, TelegramPublication,
+  TelegramPublicationEvent
+
+### Changed
+- 8 models: HasFactory trait
+
+### Tests
+- 699 tests · 1,380 assertions · 0 failures
+- No new tests (infra only)
+
+### GAPs
+- GAP-71c — ✅ RESOLVED
