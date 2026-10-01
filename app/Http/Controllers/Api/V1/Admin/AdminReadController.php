@@ -14,6 +14,8 @@ use App\Models\User;
 use App\Policies\AdminReadPolicy;
 use App\Services\Admin\ControlDependencyService;
 use App\Services\Admin\ConfigDriftDetector;
+use App\Services\Admin\AdminMetricsService;
+use App\Services\Admin\AdminHealthService;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -64,6 +66,60 @@ class AdminReadController extends BaseApiController
     public function dashboard(AdminListRequest $r): JsonResponse      { return $this->handle('A001', $r); }
     public function telegram(AdminListRequest $r): JsonResponse       { return $this->handle('A002', $r); }
     public function health(AdminListRequest $r): JsonResponse         { return $this->handle('A003', $r); }
+
+    // L305 — additive: real metrics (separate endpoint, does not alter A001 handle())
+    public function dashboardMetrics(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'dashboard');
+        if (! $allowed) {
+            $this->auditDenied('A001', 'dashboard');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $metrics = app(AdminMetricsService::class)->summary();
+
+        return $this->success(
+            data: ['stats' => $metrics, 'source' => 'live'],
+            message: 'Dashboard metrics.',
+            status: 200,
+            meta: [
+                'screen'    => 'A001',
+                'area'      => 'dashboard',
+                'source'    => 'live',
+                'total'     => 0,
+                'page'      => 1,
+                'per_page'  => 20,
+                'last_page' => 1,
+            ]
+        );
+    }
+
+    // L305 — additive: real health (separate endpoint, does not alter A003 handle())
+    public function healthStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'health');
+        if (! $allowed) {
+            $this->auditDenied('A003', 'health');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $status = app(AdminHealthService::class)->status();
+
+        return $this->success(
+            data: ['components' => $status, 'source' => 'live'],
+            message: 'Health status.',
+            status: 200,
+            meta: [
+                'screen'    => 'A003',
+                'area'      => 'health',
+                'source'    => 'live',
+                'total'     => 0,
+                'page'      => 1,
+                'per_page'  => 20,
+                'last_page' => 1,
+            ]
+        );
+    }
     public function features(AdminListRequest $r): JsonResponse       { return $this->handle('A004', $r); }
     public function marketplace(AdminListRequest $r): JsonResponse    { return $this->handle('A005', $r); }
     public function ai(AdminListRequest $r): JsonResponse             { return $this->handle('A006', $r); }

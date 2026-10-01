@@ -233,6 +233,9 @@ Route::prefix('v1')->group(function () {
         Route::get('dashboard',     [AdminReadController::class, 'dashboard']);
         Route::get('telegram-overview', [AdminReadController::class, 'telegram']);
         Route::get('health',        [AdminReadController::class, 'health']);
+        // L305 — additive: real metrics + health status (do not alter A001/A003 handle())
+        Route::get('dashboard-metrics', [AdminReadController::class, 'dashboardMetrics']);
+        Route::get('health-status',     [AdminReadController::class, 'healthStatus']);
         Route::get('features',      [AdminReadController::class, 'features']);
         Route::get('marketplace',   [AdminReadController::class, 'marketplace']);
         Route::get('ai',            [AdminReadController::class, 'ai']);

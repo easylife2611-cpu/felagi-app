@@ -595,5 +595,9 @@
     "auth.reset.button": "Reset Password",
     "auth.reset.success": "Password reset successful",
     "auth.reset.invalid": "Invalid or expired reset link",
-    "auth.back_to_signin": "Back to sign in"
+    "auth.back_to_signin": "Back to sign in",
+    "adminLoading": "Loading...",
+    "admin.auth.loading_telegram": "Loading Telegram...",
+    "admin.auth.no_admin_access": "No admin access",
+    "admin.auth.no_admin_body": "Your account does not have an active admin role. Contact the Main Admin."
 }

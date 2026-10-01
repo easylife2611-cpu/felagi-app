@@ -595,5 +595,9 @@
     "auth.reset.button": "የይለፍ ቃል ቀይር",
     "auth.reset.success": "የይለፍ ቃል በተሳካ ሁኔታ ተቀይሯል",
     "auth.reset.invalid": "ልክ ያልሆነ ወይም ጊዜው ያለፈበት ማስፈንጠሪያ",
-    "auth.back_to_signin": "ወደ መግቢያ ተመለስ"
+    "auth.back_to_signin": "ወደ መግቢያ ተመለስ",
+    "adminLoading": "በመጫን ላይ...",
+    "admin.auth.loading_telegram": "Telegram በመጫን ላይ...",
+    "admin.auth.no_admin_access": "የአስተዳዳሪ ፈቃድ የለም",
+    "admin.auth.no_admin_body": "አካውንትዎ ንቁ የአስተዳዳሪ ሚና የለውም። ዋና አስተዳዳሪውን ያግኙ።"
 }
