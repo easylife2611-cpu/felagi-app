@@ -85,20 +85,19 @@ Legend:
 
 | Status | Count | Percentage |
 |---|---|---|
-| ✅ Verified | 27 | 53% |
-| 🟡 Partial | 18 | 35% |
+| ✅ Verified | 34 | 67% |
+| 🟡 Partial | 15 | 29% |
 | ❌ Missing | 0 | 0% |
-| ❓ Unknown / external | 6 | 12% |
+| ❓ Unknown / external | 2 | 4% |
 | **Total** | **51** | **100%** |
 
-### Verified (27):
+### Verified (34):
 AI-1, AI-3, AI-4, AI-6, AI-7, AI-8, AI-9, AI-13, AI-14, AI-15, AI-16, AI-17, AI-18, AI-19, AI-24, AI-25, AI-26, AI-27, AI-28, AI-29, AI-30, AI-34, AI-36, AI-37, AI-38, AI-39, AI-40, AI-44, AI-45, AI-46, AI-48, AI-49, AI-50, AI-51
 
-### Partial (18):
+### Partial (15):
 AI-2 (requirement model — uses Need fields), AI-5 (snapshot), AI-10 (hard requirement), AI-12 (clarification), AI-20 (download export), AI-21 (provider projection), AI-22 (provider feedback), AI-23 (equal result-event), AI-31 (admin AI center — WP-05c placeholder), AI-32 (criteria governance), AI-33 (AI kill switch — cache flag), AI-35 (partial result), AI-41 (visual rules), AI-42 (responsive), AI-47 (fairness test)
 
-### Unknown / external (6):
-AI-11 (contradiction detection — not explicit), AI-43 (accessibility — browser/AT), plus live AI evaluation items requiring a real provider.
+### Unknown / external (2):
 
 ### Developer-actionable findings
 

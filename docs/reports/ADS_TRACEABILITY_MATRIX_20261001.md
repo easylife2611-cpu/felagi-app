@@ -97,7 +97,7 @@ canonical owner, screen, API, implementation evidence, and test evidence.
 | 🟡 Partial (backend done; frontend = D-097) | 5 |
 | 🔴 BLOCKED (external) | 3 |
 | ⬜ NOT STARTED | 1 (ADS-58) |
-| **Total** | **60 + ADS-S008** |
+| **Total** | **61 (ADS-1..61) + ADS-S008 = 62 requirements** |
 
 ### Notes
 
