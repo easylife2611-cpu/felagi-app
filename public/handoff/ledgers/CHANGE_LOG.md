@@ -1861,3 +1861,17 @@ AC OPEN → RESOLVED.
 
 Tests: 931 → 941 (+10). Assertions: 2515 → 2548. Failures: 0.
 
+
+## L284 — AM Bulk Action Safety — 2026-10-01
+
+NEW: migration create_bulk_actions_table.
+NEW: app/Models/BulkAction.php.
+NEW: app/Services/Admin/BulkActionService.php.
+NEW: app/Http/Controllers/Api/V1/Admin/BulkActionController.php.
+NEW: tests/Feature/Admin/BulkActionSafetyTest.php (12 tests, 46 assertions).
+MODIFIED: routes/api.php (3 bulk routes with reauth + idempotent).
+
+AM OPEN → RESOLVED.
+
+Tests: 941 → 953 (+12). Assertions: 2548 → 2594. Failures: 0.
+

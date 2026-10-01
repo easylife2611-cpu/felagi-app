@@ -3615,3 +3615,85 @@ Read-only, never repairs.
 - UNKNOWN != MISSING — missing versions reported, not ignored
 - No silent changes — ledger + change log updated
 - Evidence-based — 10 tests verify behaviour
+
+---
+
+## L284 — AM Bulk Action Safety
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (bulk action safety — resolves audit item AM)
+
+### What Changed
+
+#### NEW — migration create_bulk_actions_table
+Persists frozen selection digest + per-item results + retry lineage.
+Columns: actor_id, action_type, entity_type, scope, selection_ids,
+selection_digest, expected_count, status, items, retry_of_id,
+created_at, executed_at, completed_at.
+
+#### NEW — app/Models/BulkAction.php
+Status constants (PREVIEWED/EXECUTED/PARTIAL/FAILED) + item constants
+(SUCCEEDED/FAILED/UNKNOWN). Retry lineage via retry_of_id.
+
+#### NEW — app/Services/Admin/BulkActionService.php
+Implements all Admin_Authorization_Contract.md §bulk requirements:
+- MAX_BATCH = 100
+- Frozen selection digest (order-insensitive, dedupe, sorted)
+- Empty selection rejected (no 'select all' silent = all records)
+- Recheck each item at execution
+- Item-level SUCCEEDED/FAILED/UNKNOWN
+- Retry reuses only failed item IDs
+- Per-item idempotency keys: `bulk:{bulk_id}:hash(entity_id)`
+- Per-item audit entry (setting.bulk-disable.item)
+- Supported actions: setting.disable, test.noop
+
+#### NEW — app/Http/Controllers/Api/V1/Admin/BulkActionController.php
+- POST /bulk/preview
+- POST /bulk/execute
+- POST /bulk/{id}/retry-failed
+All require reauth middleware; execute + retry also require idempotent.
+
+#### MODIFIED — routes/api.php
+3 new routes with reauth + idempotent middleware.
+
+#### NEW — tests/Feature/Admin/BulkActionSafetyTest.php (12 tests, 46 assertions)
+- preview requires auth
+- preview returns digest (64 chars)
+- preview rejects empty selection
+- preview rejects unknown action
+- preview digest is order-insensitive
+- execute requires matching digest (409)
+- execute disables settings (SUCCEEDED items + idempotency keys)
+- execute reports UNKNOWN for unauthorized actor (MODERATOR → FAILED)
+- execute reports PARTIAL when some items fail
+- retry reuses only failed items
+- retry rejects when no failures
+- preview enforces max batch
+
+### Backups
+- routes/api.php.bak.l284
+
+### Result
+- Full suite: 953 tests / 2594 assertions / 0 failures / 1 skipped
+  (was 941 / 2548 before L284)
+- +12 tests, +46 assertions
+- AM status: RESOLVED
+
+### Design Compliance
+Directly implements Admin_Authorization_Contract.md line 9:
+- ✅ Frozen selection digest at preview
+- ✅ Recheck per item at execution
+- ✅ Item-level succeeded/failed/unknown
+- ✅ Retry only failed with original idempotency keys
+- ✅ No 'select all' silently means all records
+- ✅ Max batch limit
+- ✅ Per-item audit
+
+### Constitution Compliance
+- Additive only (new table + model + service + controller + tests)
+- No guessing — behaviour derived from contract text
+- UNKNOWN != MISSING — unauthorized/missing items are UNKNOWN/FAILED,
+  never silently dropped
+- No silent changes — ledger + change log updated
+- Evidence-based — 12 tests verify every contract clause

@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\V1\TwoFactorController;
 use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
 use App\Http\Controllers\Api\V1\Admin\AdminTelegramController;
 use App\Http\Controllers\Api\V1\Admin\AdminReadController;
+use App\Http\Controllers\Api\V1\Admin\BulkActionController;
 use App\Http\Controllers\Api\V1\Admin\AdminAdsController;
 use Illuminate\Support\Facades\Route;
 
@@ -237,6 +238,13 @@ Route::prefix('v1')->group(function () {
         Route::get('backups',       [AdminReadController::class, 'backups']);
         Route::get('integrity',     [AdminReadController::class, 'integrity']);
         Route::get('integrity/drift', [AdminReadController::class, 'configDrift']);
+        // AM (audit L276) — bulk action safety
+        Route::post('bulk/preview',              [BulkActionController::class, 'preview'])
+            ->middleware('reauth');
+        Route::post('bulk/execute',              [BulkActionController::class, 'execute'])
+            ->middleware(['reauth', 'idempotent']);
+        Route::post('bulk/{id}/retry-failed',    [BulkActionController::class, 'retryFailed'])
+            ->middleware(['reauth', 'idempotent']);
         Route::get('security',      [AdminReadController::class, 'security']);
         Route::get('audit',         [AdminReadController::class, 'audit']);
         Route::get('settings',      [AdminReadController::class, 'settings']);
