@@ -1848,3 +1848,16 @@ AI-47 OPEN → RESOLVED.
 
 Tests: 920 → 931 (+11). Assertions: 2494 → 2515. Failures: 0.
 
+
+## L283 — AC Config Drift Detector — 2026-10-01
+
+NEW: app/Services/Admin/ConfigDriftDetector.php.
+NEW: Artisan command `config:drift {--json}`.
+NEW: tests/Feature/Admin/ConfigDriftDetectorTest.php (10 tests, 33 assertions).
+MODIFIED: AdminReadController (configDrift endpoint).
+MODIFIED: routes/api.php (GET /api/v1/admin/integrity/drift).
+
+AC OPEN → RESOLVED.
+
+Tests: 931 → 941 (+10). Assertions: 2515 → 2548. Failures: 0.
+

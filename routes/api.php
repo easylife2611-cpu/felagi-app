@@ -236,6 +236,7 @@ Route::prefix('v1')->group(function () {
         Route::get('jobs',          [AdminReadController::class, 'jobs']);
         Route::get('backups',       [AdminReadController::class, 'backups']);
         Route::get('integrity',     [AdminReadController::class, 'integrity']);
+        Route::get('integrity/drift', [AdminReadController::class, 'configDrift']);
         Route::get('security',      [AdminReadController::class, 'security']);
         Route::get('audit',         [AdminReadController::class, 'audit']);
         Route::get('settings',      [AdminReadController::class, 'settings']);

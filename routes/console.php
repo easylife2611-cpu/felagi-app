@@ -32,3 +32,47 @@ Schedule::call(function () {
 Schedule::job(new CleanupExpiredIdempotencyKeys())
     ->hourly()
     ->name('idempotency-cleanup');
+
+// ─── AC (audit L276) — Config drift detection ───
+
+Artisan::command('config:drift {--json}', function () {
+    /** @var \App\Services\Admin\ConfigDriftDetector $detector */
+    $detector = app(\App\Services\Admin\ConfigDriftDetector::class);
+    $report   = $detector->detect();
+
+    if ($this->option('json')) {
+        $this->line(json_encode($report, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        return 0;
+    }
+
+    $this->info("Config drift report — " . $report['checked_at']);
+    $this->line("Settings: {$report['total_settings']}   Versions: {$report['total_versions']}");
+    $this->line("Findings: {$report['drift_count']}");
+    $this->newLine();
+
+    if ($report['drift_count'] === 0) {
+        $this->info('No drift detected. Configuration matches published versions.');
+        return 0;
+    }
+
+    $this->warn('Summary:');
+    foreach ($report['summary'] as $kind => $count) {
+        if ($count > 0) {
+            $this->line("  {$kind}: {$count}");
+        }
+    }
+    $this->newLine();
+
+    $this->warn('Findings:');
+    foreach ($report['findings'] as $f) {
+        $this->line(sprintf(
+            '  [%s] %s (v%s)',
+            $f['kind'],
+            $f['setting_key'],
+            $f['version'] ?? '—'
+        ));
+    }
+
+    return $report['drift_count'] > 0 ? 1 : 0;
+})->purpose('Detect config drift between settings and their latest published versions');
+

@@ -3547,3 +3547,71 @@ Helpers:
 - UNKNOWN != MISSING — malformed outputs are rejected, not accepted
 - No silent changes — ledger + change log updated
 - Evidence-based — 11 tests verify the fairness invariants
+
+---
+
+## L283 — AC Config Drift Detector
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (config drift detection — resolves audit item AC)
+
+### What Changed
+
+#### NEW — app/Services/Admin/ConfigDriftDetector.php
+Compares live `settings` rows against the latest published
+`setting_versions` row. Four drift kinds:
+- VALUE_DRIFT:          current value differs from latest version
+- VERSION_DRIFT:        settings.version_number < latest version
+- NO_PUBLISHED_VERSION: setting exists but has no version row
+- ORPHANED_VERSION:     version references a missing setting (defensive)
+Read-only, never repairs.
+
+#### NEW — Artisan command `config:drift {--json}` in routes/console.php
+- Human-readable report by default
+- `--json` flag for machine output
+- Exit code 0 = no drift, 1 = drift present
+
+#### MODIFIED — app/Http/Controllers/Api/V1/Admin/AdminReadController.php
+- Added configDrift(): JsonResponse
+- Capability: AdminReadPolicy::viewAny(user, 'integrity')
+
+#### MODIFIED — routes/api.php
+- GET /api/v1/admin/integrity/drift
+
+#### NEW — tests/Feature/Admin/ConfigDriftDetectorTest.php (10 tests, 33 assertions)
+- seeded state has no published versions
+- detects VALUE_DRIFT (live 999 vs published 20)
+- detects VERSION_DRIFT (live v1 vs published v2)
+- detects ORPHANED_VERSION (synthetic, via FK-disable injection)
+- report shape
+- endpoint requires auth
+- endpoint returns report for admin
+- command exit 1 when drift present
+- command JSON output
+- command exit 0 when no drift
+
+### Backups
+- routes/console.php.bak.l283
+- routes/api.php.bak.l283
+- AdminReadController.php.bak.l283
+
+### Result
+- Full suite: 941 tests / 2548 assertions / 0 failures / 1 skipped
+  (was 931 / 2515 before L283)
+- +10 tests, +33 assertions
+- AC status: RESOLVED
+
+### Notes
+- ORPHANED_VERSION is a defensive check. The FK
+  `setting_versions.setting_key → settings.key` prevents genuine orphans
+  in production. The test disables FK enforcement briefly to inject a
+  synthetic orphan and confirm the detector still flags it.
+- VALUE_DRIFT and VERSION_DRIFT can both fire for the same key.
+
+### Constitution Compliance
+- Additive only (new service + new command + new endpoint + tests)
+- No guessing — findings derived from actual DB rows
+- UNKNOWN != MISSING — missing versions reported, not ignored
+- No silent changes — ledger + change log updated
+- Evidence-based — 10 tests verify behaviour

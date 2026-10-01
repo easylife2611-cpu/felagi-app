@@ -13,6 +13,7 @@ use App\Models\TelegramDestination;
 use App\Models\User;
 use App\Policies\AdminReadPolicy;
 use App\Services\Admin\ControlDependencyService;
+use App\Services\Admin\ConfigDriftDetector;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -247,5 +248,22 @@ class AdminReadController extends BaseApiController
         $report = app(ControlDependencyService::class)->inspect($setting);
 
         return $this->success($report, 'Control dependencies.');
+    }
+
+    /**
+     * GET /api/v1/admin/integrity/drift
+     *
+     * AC (audit L276) — configuration drift report.
+     */
+    public function configDrift(): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny(request()->user(), 'integrity');
+        if (! $allowed) {
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $report = app(ConfigDriftDetector::class)->detect();
+
+        return $this->success($report, 'Config drift report.');
     }
 }
