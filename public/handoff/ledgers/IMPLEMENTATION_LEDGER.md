@@ -3499,3 +3499,51 @@ Additive: NULL = no dependencies.
 - UNKNOWN != MISSING — settings without dependencies return empty
 - No silent changes — ledger + change log + model fix recorded
 - Evidence-based — 9 tests verify behaviour
+
+---
+
+## L282 — AI-47 Fairness Consistency Test
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Test (fairness consistency — resolves audit item AI-47)
+
+### What Changed
+
+#### NEW — tests/Feature/AI/FairnessConsistencyTest.php (11 tests, 21 assertions)
+Verifies the AI comparison service is provider-blind, criteria-stable,
+and schema-gated. This anchors AI_Evaluation_Contract.md §Fairness.
+
+Coverage:
+- **Provider blindness** (3 tests)
+  - prompt does not contain provider_id (loops all offers)
+  - prompt uses offer_index=0/1/2 (not identity)
+  - system instruction contains "Never reference competitor identity"
+- **Criteria stability** (3 tests)
+  - criteria weights sum to 1.0
+  - criteria keys are the canonical four (price, delivery_time, quality, reliability)
+  - prompt states all three weights (0.30, 0.25, 0.15)
+- **Schema gate** (3 tests)
+  - rejects wrong score count (3 offers, 2 scores)
+  - rejects out-of-range criterion (price=150)
+  - rejects missing criterion (quality removed)
+- **Determinism** (2 tests)
+  - identical offers share criteria shape (no drift between offers)
+  - version_number is monotonic (1 → 2)
+
+Helpers:
+- aiResponseText(int $count, array $override) — builds canonical AI JSON
+- fakeGemini(string $text, array &$captured) — captures outgoing request
+
+### Result
+- Full suite: 931 tests / 2515 assertions / 0 failures / 1 skipped
+  (was 920 / 2494 before L282)
+- +11 tests, +21 assertions
+- AI-47 status: RESOLVED
+
+### Constitution Compliance
+- Additive only (new test file, no production code changed)
+- No guessing — every assertion is anchored to a concrete behaviour
+- UNKNOWN != MISSING — malformed outputs are rejected, not accepted
+- No silent changes — ledger + change log updated
+- Evidence-based — 11 tests verify the fairness invariants
