@@ -81,6 +81,7 @@ class ControlRegistrySeeder extends Seeder
                     'risk'           => $risk,
                     'is_secret'      => $secret,
                     'version_number' => $existing?->version_number ?? 1,
+                    'dependencies'   => $this->dependenciesFor($key),
                 ],
             );
 
@@ -93,5 +94,50 @@ class ControlRegistrySeeder extends Seeder
 
         $total = count($controls);
         $this->command->info("Control registry seeded: {$total} settings ({$created} created, {$updated} updated).");
+    }
+
+    /**
+     * J (audit L276) — dependency map per DFM §8.2.
+     * Each entry: [setting_key => [[dep_key, required_value, message], ...]]
+     */
+    private function dependenciesMap(): array
+    {
+        return [
+            'feature.boosts' => [
+                [
+                    'key'     => 'feature.payments',
+                    'value'   => true,
+                    'message' => 'Boosts require Payments to be enabled first.',
+                ],
+            ],
+            'feature.ai_compare' => [
+                [
+                    'key'     => 'ai.model_id',
+                    'value'   => 'non_empty',
+                    'message' => 'AI Compare requires ai.model_id to be configured.',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Convert the map into the canonical array shape stored in the
+     * settings.dependencies JSON column.
+     */
+    private function dependenciesFor(string $key): ?array
+    {
+        $map = $this->dependenciesMap();
+        if (! isset($map[$key])) {
+            return null;
+        }
+        $out = [];
+        foreach ($map[$key] as $dep) {
+            $out[] = [
+                'key'     => $dep['key'],
+                'value'   => $dep['value'],
+                'message' => $dep['message'],
+            ];
+        }
+        return $out;
     }
 }

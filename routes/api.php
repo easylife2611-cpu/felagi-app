@@ -244,6 +244,7 @@ Route::prefix('v1')->group(function () {
         Route::get('monetization',  [AdminReadController::class, 'monetization']);
         Route::get('maintenance',   [AdminReadController::class, 'maintenance']);
         Route::get('reports',       [AdminReadController::class, 'reports']);
+        Route::get('controls/{key}/dependencies', [AdminReadController::class, 'controlDependencies']);
     });
 
 });

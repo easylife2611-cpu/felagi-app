@@ -20,13 +20,14 @@ class Setting extends Model
     protected $fillable = [
         'key', 'group', 'type', 'value_json', 'default_json',
         'schema_json', 'description', 'risk', 'is_secret',
-        'version_number', 'updated_by',
+        'version_number', 'updated_by', 'dependencies',
     ];
 
     protected $casts = [
         'value_json'   => 'array',
         'default_json' => 'array',
         'schema_json'  => 'array',
+        'dependencies' => 'array',
         'is_secret'    => 'boolean',
         'version_number' => 'integer',
         'updated_at'   => 'datetime',

@@ -12,6 +12,7 @@ use App\Models\Setting;
 use App\Models\TelegramDestination;
 use App\Models\User;
 use App\Policies\AdminReadPolicy;
+use App\Services\Admin\ControlDependencyService;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -223,5 +224,28 @@ class AdminReadController extends BaseApiController
             ]);
         } catch (\Throwable) {
         }
+    }
+
+    /**
+     * GET /api/v1/admin/controls/{key}/dependencies
+     *
+     * J (audit L276) — reports the dependency tree of a single setting
+     * and whether each dependency is currently satisfied.
+     */
+    public function controlDependencies(string $key): JsonResponse
+    {
+        $setting = Setting::find($key);
+        if (! $setting) {
+            return $this->error('NOT_FOUND', 'Setting not found.', 404);
+        }
+
+        $allowed = (new AdminReadPolicy())->viewAny(request()->user(), 'features');
+        if (! $allowed) {
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $report = app(ControlDependencyService::class)->inspect($setting);
+
+        return $this->success($report, 'Control dependencies.');
     }
 }

@@ -3417,3 +3417,85 @@ Also provides summarise() returning totals by severity and by offer.
   become advisory findings, not silent drops
 - No silent changes — recorded in ledger
 - Evidence-based — 9 tests verify the behaviour
+
+---
+
+## L281 — J Dependency-aware Controls
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (dependency-aware controls — resolves audit item J)
+
+### What Changed
+
+#### NEW — migration: add_dependencies_to_settings
+Adds nullable JSON `dependencies` column to `settings` table.
+Format: array of {key, value, message} objects.
+Additive: NULL = no dependencies.
+
+#### MODIFIED — app/Models/Setting.php
+- Added 'dependencies' to $fillable
+- Added 'dependencies' => 'array' cast
+
+#### MODIFIED — database/seeders/ControlRegistrySeeder.php
+- Added dependenciesMap() with 2 canonical rules (DFM §8.2):
+  - feature.boosts requires feature.payments == true
+  - feature.ai_compare requires ai.model_id non_empty
+- Added dependenciesFor() to convert map → canonical JSON shape
+- Seeder now writes dependencies column on every control
+
+#### NEW — app/Services/Admin/ControlDependencyService.php
+- inspect(Setting) → {setting_key, dependencies[], satisfied, violations[]}
+- Each dependency row: {key, required, current, status(SATISFIED|VIOLATED), message}
+- Supports two value rules:
+  - scalar exact match (bool / int / string)
+  - "non_empty" sentinel
+- inspectMany() bulk helper
+- Read-only — never mutates state
+
+#### MODIFIED — app/Http/Controllers/Api/V1/Admin/AdminReadController.php
+- Added controlDependencies(string $key): JsonResponse
+- Uses existing AdminReadPolicy::viewAny(user, 'features')
+- 404 for unknown key, 403 if not authorized
+
+#### MODIFIED — routes/api.php
+- Added GET /api/v1/admin/controls/{key}/dependencies
+
+#### NEW — tests/Feature/Admin/ControlDependencyTest.php (9 tests, 24 assertions)
+- migration added dependencies column
+- seeder populates boosts + ai_compare dependencies
+- service reports VIOLATED when dependency off
+- service reports SATISFIED when dependency on
+- service handles "non_empty" rule
+- endpoint 404 for unknown key
+- endpoint requires auth
+- endpoint returns dependency report
+
+### Backups
+- ControlRegistrySeeder.php.bak.l281
+- AdminChangeService.php.bak.l281 (not modified, backup only)
+- AdminReadController.php.bak.l281
+- routes/api.php.bak.l281
+
+### Result
+- Full suite: 920 tests / 2494 assertions / 0 failures / 1 skipped
+  (after SOURCE_OF_TRUTH refresh — the pre-refresh failure is expected)
+- J status: RESOLVED (dependency-aware controls implemented)
+- Also fixed: Setting model was missing 'dependencies' in fillable + casts
+  (this was a prerequisite discovered while wiring the service)
+
+### Notes
+- The 52 errors seen in the first full-suite run were all caused by the
+  Setting model missing the 'dependencies' cast; the seeder tried to
+  insert an array into a JSON column without Eloquent knowing to
+  encode it. Fixed by adding the cast + fillable entry.
+- The HandoffRefreshTest failure seen before this commit is expected:
+  SOURCE_OF_TRUTH is refreshed just before the commit lands. After the
+  commit, the test accepts current or parent HEAD.
+
+### Constitution Compliance
+- Additive only (new column, new service, new endpoint, new tests)
+- No guessing — dependency rules come from DFM §8.2
+- UNKNOWN != MISSING — settings without dependencies return empty
+- No silent changes — ledger + change log + model fix recorded
+- Evidence-based — 9 tests verify behaviour

@@ -1824,3 +1824,18 @@ AI-11 OPEN → RESOLVED.
 
 Tests: 902 → 911 (+9). Assertions: 2456 → 2470. Failures: 0.
 
+
+## L281 — J Dependency-aware Controls — 2026-10-01
+
+NEW: migration add_dependencies_to_settings.
+NEW: app/Services/Admin/ControlDependencyService.php.
+NEW: tests/Feature/Admin/ControlDependencyTest.php (9 tests, 24 assertions).
+MODIFIED: Setting model (+dependencies fillable +cast).
+MODIFIED: ControlRegistrySeeder (+dependencies map).
+MODIFIED: AdminReadController (controlDependencies endpoint).
+MODIFIED: routes/api.php (GET /api/v1/admin/controls/{key}/dependencies).
+
+J OPEN → RESOLVED.
+
+Tests: 911 → 920 (+9). Assertions: 2470 → 2494. Failures: 0.
+
