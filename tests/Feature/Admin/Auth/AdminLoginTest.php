@@ -44,12 +44,16 @@ class AdminLoginTest extends TestCase
         $this->get('/admin/login')->assertStatus(200);
     }
 
-    public function test_login_page_renders_telegram_button_when_not_authenticated(): void
+    public function test_login_page_renders_telegram_widget_when_not_authenticated(): void
     {
+        // L268-followup (4f78021) replaced the /auth/telegram link with an
+        // embedded Telegram Login Widget. Test updated by L271 to match the
+        // current Login blade (resources/views/admin/auth/login.blade.php).
         $res = $this->get('/admin/login');
         $res->assertStatus(200)
-            ->assertSee('Sign in with Telegram')
-            ->assertSee('/auth/telegram');
+            ->assertSee('telegram-widget.js', false)
+            ->assertSee('data-telegram-login', false)
+            ->assertSee('/admin/login/telegram', false);
     }
 
     // ─── Protected routes — unauthenticated ───

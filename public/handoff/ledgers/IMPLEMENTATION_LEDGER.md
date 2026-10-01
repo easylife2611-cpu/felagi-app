@@ -2800,3 +2800,78 @@ Admin login needed own Widget -> session flow.
 - UNKNOWN != MISSING (11 blockers documented)
 - No silent changes
 - No hidden work
+
+---
+
+## L271 — ADS-17 Creative Validation + test suite fixes
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (ADS-17) + test maintenance (pre-existing failures)
+
+### What Changed
+
+#### NEW — app/Services/Ads/AdCreativeValidator.php (5.0 KB)
+- Implements ADS-17 (Creative Validation) per
+  System_Specification/Sponsored_Advertising_Contract.md
+  (section: Data, validation and versioning)
+- Validates format (CARD/BANNER/COMPACT)
+- Validates bilingual copy code points:
+  title 80, body 240, CTA 30, alt 200
+- Rejects markup (HTML/JS/CSS/iframe/svg/math), javascript: scheme,
+  control characters
+- Media asset: returns REQUIRES_EVIDENCE (media store not implemented,
+  GAP-12) - does NOT fabricate PASS/FAIL (UNKNOWN != MISSING)
+- Text-only creative is valid
+
+#### MODIFIED — app/Http/Controllers/Api/V1/Admin/AdminAdsController.php
+- Added validateCreative(Request $request, string $id): JsonResponse
+- Persists validation_receipt (VALID/INVALID + errors + timestamp + actor + spec)
+- Backward compatible - no existing method changed
+
+#### MODIFIED — routes/api.php
+- Added POST /api/v1/admin/ads/creatives/{id}/validate (line 220,
+  inside existing admin ads group)
+
+#### NEW — tests/Feature/Ads/AdCreativeValidationTest.php (15 tests, 54 assertions)
+Covers: auth required, 404 unknown, valid text-only, missing AM title,
+missing EN body, title/body/CTA length, HTML/script/javascript rejection,
+Amharic code-point counting, media REQUIRES_EVIDENCE, invalid receipt
+persistence, all three formats.
+
+#### FIXED — tests/Feature/Admin/Auth/AdminLoginTest.php
+Pre-existing failure (from L268-followup 4f78021; not caused by L271):
+- L268-followup replaced /auth/telegram link with Telegram Login Widget
+- Test still asserted on the removed link
+- Renamed: test_login_page_renders_telegram_button_when_not_authenticated
+        to: test_login_page_renders_telegram_widget_when_not_authenticated
+- Assertions updated to: telegram-widget.js, data-telegram-login,
+  /admin/login/telegram
+
+#### FIXED — tests/Feature/Screens/AdminScreensTest.php
+Pre-existing failure (from L268-followup 4f78021):
+- L268-followup added POST /admin/login/telegram
+- Test asserted count 25, actual is now 26
+- Updated assertCount(26)
+- Comment updated: "23 screens + login + login/telegram + logout = 26"
+
+### Backups
+- app/Http/Controllers/Api/V1/Admin/AdminAdsController.php.bak.l271
+- routes/api.php.bak.l271
+- tests/Feature/Admin/Auth/AdminLoginTest.php.bak.l271
+- tests/Feature/Screens/AdminScreensTest.php.bak.l271
+
+### Result
+- Full suite: 857 tests / 2046 assertions / 0 failures / 1 skipped
+- Previously reported "845 tests / 0 failures" was inaccurate
+  2 tests had been failing since L268-followup (2026-09-30)
+- All 15 new ADS-17 tests pass
+- ADS-17 status: IMPLEMENTED (backend validation)
+  - Human content review still required (ADS-17 explicit)
+  - Media store / scanning remains BLOCKED (GAP-12, external)
+
+### Constitution Compliance
+- Additive only (no existing production method changed)
+- No guessing - media validation returns REQUIRES_EVIDENCE not PASS/FAIL
+- No silent changes - pre-existing failures explicitly documented here
+- Evidence-based - spec: Sponsored_Advertising_Contract.md

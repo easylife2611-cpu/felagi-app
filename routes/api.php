@@ -217,6 +217,7 @@ Route::prefix('v1')->group(function () {
             Route::get('campaigns/{id}/reports', [AdminAdsController::class, 'reportCampaign']);
             Route::get('campaigns/{id}/audit', [AdminAdsController::class, 'auditCampaign']);
             Route::post('destinations/validate', [AdminAdsController::class, 'validateDestination']);
+            Route::post('creatives/{id}/validate', [AdminAdsController::class, 'validateCreative']);
         });
 
         // WP-05c: Admin read endpoints (L262)

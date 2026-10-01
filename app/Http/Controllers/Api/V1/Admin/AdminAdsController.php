@@ -367,4 +367,47 @@ class AdminAdsController extends BaseApiController
 
         return $this->success(['valid' => true], 'Destination validated.');
     }
+
+    /** POST /api/v1/admin/ads/creatives/{id}/validate — ADS-17 */
+    public function validateCreative(Request $request, string $id): JsonResponse
+    {
+        $c = AdCreative::find($id);
+        if (! $c) {
+            return $this->error('NOT_FOUND', 'Creative not found.', 404);
+        }
+
+        /** @var \App\Services\Ads\AdCreativeValidator $validator */
+        $validator = app(\App\Services\Ads\AdCreativeValidator::class);
+        $errors = $validator->validate($c);
+
+        if (! empty($errors)) {
+            $c->validation_receipt = [
+                'status'       => 'INVALID',
+                'errors'       => $errors,
+                'validated_at' => now()->toIso8601String(),
+                'validated_by' => $request->user()?->id,
+                'spec'         => 'ADS-17',
+            ];
+            $c->save();
+
+            return $this->validationError($errors);
+        }
+
+        $receipt = [
+            'status'                => 'VALID',
+            'errors'                => [],
+            'validated_at'          => now()->toIso8601String(),
+            'validated_by'          => $request->user()?->id,
+            'spec'                  => 'ADS-17',
+            'format'                => $c->format,
+            'has_media'             => ! empty($c->media_asset_id),
+            'human_review_required' => ! empty($c->media_asset_id),
+            'human_review_note'     => 'Automated checks do not replace content review (ADS-17).',
+        ];
+
+        $c->validation_receipt = $receipt;
+        $c->save();
+
+        return $this->success($receipt, 'Creative validated.');
+    }
 }

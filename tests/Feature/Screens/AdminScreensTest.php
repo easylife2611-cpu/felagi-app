@@ -102,8 +102,9 @@ class AdminScreensTest extends TestCase
                 $adminRoutes[] = $uri;
             }
         }
-        // 23 admin panel screens + login + logout = 25
-        $this->assertCount(25, $adminRoutes);
+        // 23 admin panel screens + login + login/telegram + logout = 26
+        // (L268-followup 4f78021 added POST admin/login/telegram.)
+        $this->assertCount(26, $adminRoutes);
     }
 
     public function test_admin_layout_is_extended_by_all_views(): void
