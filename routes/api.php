@@ -269,3 +269,10 @@ Route::prefix('v1')->group(function () {
     });
 
 });
+
+// Consent API — Proclamation 1321/2024, Art. 7-8
+Route::middleware('auth:sanctum')->prefix('v1/consent')->group(function () {
+    Route::get('/',        [\App\Http\Controllers\V1\ConsentController::class, 'index']);
+    Route::post('/grant',  [\App\Http\Controllers\V1\ConsentController::class, 'grant']);
+    Route::post('/revoke', [\App\Http\Controllers\V1\ConsentController::class, 'revoke']);
+});
