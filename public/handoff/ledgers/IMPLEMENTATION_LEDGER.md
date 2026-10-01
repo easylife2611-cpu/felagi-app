@@ -3009,3 +3009,63 @@ GAP-FACT-01 status: OPEN → RESOLVED (verified 2026-10-01).
 - UNKNOWN != MISSING — GAP-FACT-01 was never MISSING; it was complete
 
 **Closed by:** L273 (this commit, documentation only)
+
+---
+
+## L274 — ADS-57 Traceability Matrix + ADS-61 Final Execution Instruction
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Documentation (traceability + final execution)
+
+### What Changed
+
+#### NEW — docs/reports/ADS_TRACEABILITY_MATRIX_20261001.md (125 lines)
+Per ADS-57 (TRACEABILITY). Maps all 60 ADS requirements + ADS-S008-PLACEMENT
+to canonical owner, API, implementation evidence, and test evidence.
+Sections: Data & Validation / Destination & Security / Admin Ads Center /
+Runtime & Rendering / Summary.
+Legend: ✅ Implemented / 🟡 Partial (D-097) / 🔴 BLOCKED (external) /
+⬜ NOT STARTED.
+
+Key counts:
+- ✅ Implemented with evidence: 51
+- 🟡 Partial: 5 (ADS-12, 13, 50, 51, 54, 56 — frontend D-097 + SSRF + matrix)
+- 🔴 BLOCKED: 3 (ADS-15 + infra)
+- ⬜ NOT STARTED: 1 (ADS-58 design package artifact update — external)
+
+#### NEW — docs/reports/ADS_FINAL_EXECUTION_20261001.md (101 lines)
+Per ADS-61 (FINAL EXECUTION INSTRUCTION). Terminal record of the Sponsored
+Advertising subsystem:
+- What is DONE (5 models, 5 migrations, 3 controllers, 2 services,
+  1 validator, 18 admin + 2 consumer endpoints, 9 controls, 3 placements,
+  A023 screen, privacy doc)
+- Test evidence table
+- What is BLOCKED (9 items — all external)
+- Execution boundary (Published != Applied != Verified)
+- Final execution checklist (11 checked, 5 external)
+- Sign-off
+
+#### NEW — tests/Feature/Ads/SponsoredAdsTraceabilityTest.php (6 tests, 18 assertions)
+- traceability matrix exists
+- traceability matrix covers key requirements (ADS-1, 17, 55, 57, 58, 61, S008)
+- traceability marks ADS-58 as NOT STARTED
+- final execution doc exists
+- final execution records evidence boundary
+- final execution records core metrics (18 admin, A023, 9 controls, 3 placements)
+
+### Result
+- Full suite: 872 tests / 2106 assertions / 0 failures / 1 skipped
+  (was 866 / 2088 before L274)
+- +6 tests, +18 assertions vs L272
+- ADS-57 status: IMPLEMENTED (traceability matrix)
+- ADS-61 status: IMPLEMENTED (final execution instruction)
+- ADS-58 status: NOT STARTED — requires design owner coordination (external)
+  This is the ONLY remaining genuinely-open ADS requirement.
+
+### Constitution Compliance
+- Additive only (no existing files modified except ledgers)
+- No guessing — every traceability row is anchored to a file/commit/test
+- No silent changes — partial/blocked rows explicitly marked
+- UNKNOWN != MISSING — D-097 items marked 🟡, not deleted
+- Evidence-based — 6 tests assert against the canonical docs

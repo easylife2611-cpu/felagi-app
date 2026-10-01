@@ -1740,3 +1740,16 @@ Verified 34/34 model factories exist with HasFactory trait. The gap was
 already closed by L258 (7581e3d) and later additive work; the gap analysis
 (L270) had not been refreshed. No code change.
 
+
+## L274 — ADS-57 Traceability Matrix + ADS-61 Final Execution — 2026-10-01
+
+NEW: docs/reports/ADS_TRACEABILITY_MATRIX_20261001.md (125 lines).
+NEW: docs/reports/ADS_FINAL_EXECUTION_20261001.md (101 lines).
+NEW: tests/Feature/Ads/SponsoredAdsTraceabilityTest.php (6 tests).
+
+ADS-57 OPEN → RESOLVED.
+ADS-61 OPEN → RESOLVED.
+ADS-58 remains NOT STARTED (external, design owner).
+
+Tests: 866 → 872 (+6). Assertions: 2088 → 2106. Failures: 0.
+
