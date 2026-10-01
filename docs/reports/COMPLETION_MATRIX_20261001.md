@@ -1,7 +1,7 @@
 # Felagi Completion Matrix — 2026-09-30
 
 **Generated:** 2026-10-01
-**HEAD:** `54613d8`
+**HEAD:** `9399b8f`
 **Purpose:** Detailed matrix of what is done vs pending, based on design package.
 
 ## Legend
@@ -316,3 +316,41 @@ Admin-actionable (6): AE, J, AC, AG, AH, AM
 AI-actionable (5): AI-11, AI-21, AI-22, AI-35, AI-47
 External / REQUIRES_EVIDENCE: G04, G05, G06, G07, G09 (per design package Release Gates)
 Design-owner: ADS-58 design-side artifacts
+
+
+---
+
+## L284 → L285 Addendum (2026-10-01)
+
+Two additional packages landed after the L283 snapshot:
+
+| Ledger | Scope | New tests | Full suite |
+|---|---|---|---|
+| L284 | AM — Bulk Action Safety | +12 | 953 / 2594 / 0 |
+| L285 | AI-35 + AI-21 + AI-22 + AG + AH | +29 | 982 / 2662 / 0 |
+
+### Full suite at 2026-10-01
+- **Tests:** 982
+- **Assertions:** 2662
+- **Failures:** 0
+- **Skipped:** 1
+
+### GAPs resolved (all developer-actionable complete)
+
+**Audit L276 (Admin):** AE, J, AC, AG, AH, AM — 6/6 ✅
+**Audit L277 (AI):** AI-11, AI-21, AI-22, AI-35, AI-47 — 5/5 ✅
+**ADS audit:** ADS-17, ADS-55, ADS-57, ADS-61 — ✅
+**Doc/infra:** GAP-FACT-01, GAP-TEST-01, GAP-AUD-01, GAP-AUD-02, GAP-ADS-58 (production-side) — ✅
+
+### Remaining (all REQUIRES_EVIDENCE / external)
+
+| Gate | Owner | Blocker |
+|---|---|---|
+| G04 | frontend QA | browser + AT |
+| G05 | Flutter team | SDK |
+| G06 | backend/security QA | live services |
+| G07 | product operations | paid activation |
+| G08 | lang/UX | runtime glyph |
+| G09 | operations | telemetry |
+| ADS-58 design-side | design owner | design package |
+| 11 CRITICAL | various | frontend, GitHub, ops, infra |
