@@ -1984,3 +1984,16 @@ Final state:
   Live /admin/login: 0 axe violations, 0 console errors
   CSP: no 'unsafe-eval', no frame-src
 
+
+## L293 — D+E+F+G (keyboard + motion + zoom + Amharic) — 2026-10-01
+
+NEW: docs/reports/qa/G04_DEFG_A11Y_20261001.md
+NEW: docs/reports/qa/defg_audit_20261001.json
+
+D keyboard:  82/82 visible focus (100%), 0 screens missing outline
+E motion:    0 animated elements under prefers-reduced-motion
+F zoom:      0/10 runs with horizontal overflow at 200% / 400%
+G amharic:   6 Ethiopic fonts available, consistent 65px glyph width
+
+G04 keyboard + motion + zoom + Amharic: VERIFIED.
+

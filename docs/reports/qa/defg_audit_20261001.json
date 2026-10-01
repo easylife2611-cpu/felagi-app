@@ -1,0 +1,240 @@
+{
+  "keyboard": [
+    {
+      "id": "S001",
+      "path": "/",
+      "tab_count": 10,
+      "visible_focus": 10,
+      "no_focus_indicator": [],
+      "reachable": true,
+      "first_focus": "button#signin-btn"
+    },
+    {
+      "id": "S004",
+      "path": "/browse",
+      "tab_count": 19,
+      "visible_focus": 19,
+      "no_focus_indicator": [],
+      "reachable": true,
+      "first_focus": "a"
+    },
+    {
+      "id": "S005",
+      "path": "/needs/new",
+      "tab_count": 20,
+      "visible_focus": 20,
+      "no_focus_indicator": [],
+      "reachable": true,
+      "first_focus": "a"
+    },
+    {
+      "id": "S021",
+      "path": "/support/report",
+      "tab_count": 18,
+      "visible_focus": 18,
+      "no_focus_indicator": [],
+      "reachable": true,
+      "first_focus": "a#back-btn"
+    },
+    {
+      "id": "A001",
+      "path": "/admin/login",
+      "tab_count": 15,
+      "visible_focus": 15,
+      "no_focus_indicator": [],
+      "reachable": true,
+      "first_focus": "a"
+    }
+  ],
+  "motion": [
+    {
+      "id": "S001",
+      "path": "/",
+      "animated": 0,
+      "transitioning": 1,
+      "total": 15
+    },
+    {
+      "id": "S004",
+      "path": "/browse",
+      "animated": 0,
+      "transitioning": 0,
+      "total": 67
+    },
+    {
+      "id": "S005",
+      "path": "/needs/new",
+      "animated": 0,
+      "transitioning": 12,
+      "total": 82
+    },
+    {
+      "id": "S021",
+      "path": "/support/report",
+      "animated": 0,
+      "transitioning": 7,
+      "total": 66
+    },
+    {
+      "id": "A001",
+      "path": "/admin/login",
+      "animated": 0,
+      "transitioning": 2,
+      "total": 19
+    }
+  ],
+  "zoom": [
+    {
+      "id": "S001",
+      "path": "/",
+      "scale": 200,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "S001",
+      "path": "/",
+      "scale": 400,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "S004",
+      "path": "/browse",
+      "scale": 200,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "S004",
+      "path": "/browse",
+      "scale": 400,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "S005",
+      "path": "/needs/new",
+      "scale": 200,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "S005",
+      "path": "/needs/new",
+      "scale": 400,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "S021",
+      "path": "/support/report",
+      "scale": 200,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "S021",
+      "path": "/support/report",
+      "scale": 400,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "A001",
+      "path": "/admin/login",
+      "scale": 200,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "id": "A001",
+      "path": "/admin/login",
+      "scale": 400,
+      "overflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    }
+  ],
+  "amharic": [
+    {
+      "id": "S001",
+      "path": "/",
+      "ethiopic_fonts_available": [
+        "Noto Sans Ethiopic",
+        "Noto Serif Ethiopic",
+        "Nyala",
+        "Abyssinica SIL",
+        "Kefa",
+        "Ebrima"
+      ],
+      "amharic_chars_in_body": 0,
+      "amharic_32px_width": 65
+    },
+    {
+      "id": "S004",
+      "path": "/browse",
+      "ethiopic_fonts_available": [
+        "Noto Sans Ethiopic",
+        "Noto Serif Ethiopic",
+        "Nyala",
+        "Abyssinica SIL",
+        "Kefa",
+        "Ebrima"
+      ],
+      "amharic_chars_in_body": 3,
+      "amharic_32px_width": 65
+    },
+    {
+      "id": "S005",
+      "path": "/needs/new",
+      "ethiopic_fonts_available": [
+        "Noto Sans Ethiopic",
+        "Noto Serif Ethiopic",
+        "Nyala",
+        "Abyssinica SIL",
+        "Kefa",
+        "Ebrima"
+      ],
+      "amharic_chars_in_body": 3,
+      "amharic_32px_width": 65
+    },
+    {
+      "id": "S021",
+      "path": "/support/report",
+      "ethiopic_fonts_available": [
+        "Noto Sans Ethiopic",
+        "Noto Serif Ethiopic",
+        "Nyala",
+        "Abyssinica SIL",
+        "Kefa",
+        "Ebrima"
+      ],
+      "amharic_chars_in_body": 0,
+      "amharic_32px_width": 65
+    },
+    {
+      "id": "A001",
+      "path": "/admin/login",
+      "ethiopic_fonts_available": [
+        "Noto Sans Ethiopic",
+        "Noto Serif Ethiopic",
+        "Nyala",
+        "Abyssinica SIL",
+        "Kefa",
+        "Ebrima"
+      ],
+      "amharic_chars_in_body": 3,
+      "amharic_32px_width": 65
+    }
+  ]
+}

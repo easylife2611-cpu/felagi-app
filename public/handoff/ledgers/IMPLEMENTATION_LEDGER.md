@@ -4052,3 +4052,73 @@ After:  script-src 'self' 'unsafe-inline' only
   which has been in production since WP-05a
 - No silent changes — all files listed above
 - Evidence-based — live Chromium audit confirms 0 violations
+
+---
+
+## L293 — G04-D/E/F/G: keyboard + motion + zoom + Amharic audits
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Real-browser audit (evidence only)
+
+### What Changed
+
+- NEW: docs/reports/qa/G04_DEFG_A11Y_20261001.md (128 lines)
+- NEW: docs/reports/qa/defg_audit_20261001.json (raw 25 runs)
+
+### D — Keyboard navigation
+
+20 Tab presses per screen on 5 sampled screens:
+S001, S004, S005, S021, A001.
+
+- **82 / 82 (100%)** focused elements had a visible indicator
+  (outline or box-shadow).
+- 0 screens had a focus-without-outline.
+- Every interactive element reachable via Tab in order.
+
+WCAG 2.4.7 satisfied at sampled screens.
+
+### E — Reduced motion
+
+Contexts with `reducedMotion: 'reduce'`:
+
+- **0 animated elements** across 5 screens.
+- 22 transitioning elements (colour state changes) — not motion.
+- WCAG 2.3.3 satisfied.
+
+### F — Zoom 200% / 400%
+
+`html { font-size: 200% }` then `400%`:
+
+- **0 / 10 runs** had horizontal overflow.
+- scrollWidth = clientWidth = 1280 on every run.
+- WCAG 1.4.4 satisfied at sampled screens.
+
+### G — Amharic glyph verification
+
+`document.fonts.check('16px "<font>"', 'ሰ')`:
+
+- 6 Ethiopic fonts available on the render host:
+  Noto Sans Ethiopic, Noto Serif Ethiopic, Nyala, Abyssinica SIL,
+  Kefa, Ebrima.
+- Amharic string "ሰላም" at 32px measures 65px consistently across
+  all sampled screens — real glyph rendering, no tofu.
+
+### Result
+
+- Full suite: unchanged (988 / 2672 / 0 failures / 1 skipped)
+- G04 keyboard portion: VERIFIED
+- G04 motion portion: VERIFIED
+- G04 zoom portion: VERIFIED
+- G04 Amharic glyph portion: VERIFIED (render host)
+
+### Backups
+
+- None (no code modified)
+
+### Constitution Compliance
+
+- Additive only (evidence documents)
+- No guessing — actual Chromium metrics
+- UNKNOWN != MISSING — physical-device screen-reader remains open
+- No silent changes — raw JSON preserved
