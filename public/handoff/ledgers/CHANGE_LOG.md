@@ -1763,3 +1763,16 @@ GAP-TEST-01 OPEN → RESOLVED.
 
 Tests: 872 → 876 (+4). Assertions: 2106 → 2360. Failures: 0.
 
+
+## L276 — GAP-AUD-01: Admin Requirements Audit (A–BC) — 2026-10-01
+
+NEW: docs/reports/ADMIN_REQUIREMENTS_AUDIT_20261001.md (144 lines).
+NEW: tests/Feature/Admin/AdminRequirementsAuditTest.php (7 tests, 30 assertions).
+
+GAP-AUD-01 OPEN → RESOLVED.
+
+Audit summary: 32 ✅ Verified · 6 🟡 Partial · 1 ❌ Missing · 16 ❓ Unknown.
+Developer-actionable findings: 6 (~17h total, documented).
+
+Tests: 876 → 883 (+7). Assertions: 2360 → 2390. Failures: 0.
+

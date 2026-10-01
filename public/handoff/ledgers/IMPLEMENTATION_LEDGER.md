@@ -3119,3 +3119,62 @@ No existing test file was modified.
 - No silent changes — this entry records the additions
 - Evidence-based — all 4 assertions rely on HTTP responses and
   route registration in the running app
+
+---
+
+## L276 — GAP-AUD-01: Admin Requirements Audit (A–BC, 55 items)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Audit (documentation + verification tests)
+
+### What Changed
+
+#### NEW — docs/reports/ADMIN_REQUIREMENTS_AUDIT_20261001.md (144 lines)
+Full audit of all 55 admin requirements (A–BC) from
+`Design_Data/admin-requirement-coverage.json`, mapping each to
+production evidence (controller / service / policy / middleware /
+model / view / test / doc).
+
+Summary:
+- ✅ Verified: 32 (58%)
+- 🟡 Partial: 6 (11%)  — E, J, AE, AI, AQ, AU
+- ❌ Missing: 1 (2%)   — AR (design tokens in production)
+- ❓ Unknown: 16 (29%) — G, R, V, W, AC, AG, AH, AM, AN, AO, AV + 5 external
+
+Developer-actionable findings (6, ~17h total):
+1. AE Change diff view (2h)
+2. J Dependency-aware controls (2h)
+3. AC Configuration drift detector (3h)
+4. AG Scheduled admin changes (4h)
+5. AH Safe presets (3h)
+6. AM Bulk action safety (3h)
+
+External-evidence items: AN, AO (browser/AT), plus alignment items
+G/R/V/W that need product owner direction.
+
+Design-side items (not app-repo changes): AQ, AR, AU.
+
+#### NEW — tests/Feature/Admin/AdminRequirementsAuditTest.php (7 tests, 30 assertions)
+Verifies the audit doc exists and that every claimed production
+artefact actually exists in the repo:
+- audit doc exists
+- covers all 55 requirement codes (regex against pipe-delimited table)
+- AR is marked ❌ (design tokens)
+- all referenced controllers exist
+- all referenced services + policies + middleware exist
+- all referenced admin models exist
+- summary totals to 55
+
+### Result
+- Full suite: 883 tests / 2390 assertions / 0 failures / 1 skipped
+  (was 876 / 2360 before L276)
+- +7 tests, +30 assertions
+- GAP-AUD-01 status: RESOLVED (audit documented + fact-checked)
+
+### Constitution Compliance
+- Additive only (no existing code or test modified)
+- No guessing — every status is anchored to a file path or test class
+- UNKNOWN != MISSING — 🟡/❓ items preserved, not deleted
+- No silent changes — AR marked ❌ explicitly
+- Evidence-based — 7 tests verify the audit against the repo
