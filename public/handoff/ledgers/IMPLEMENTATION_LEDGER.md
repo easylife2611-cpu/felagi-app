@@ -3235,3 +3235,72 @@ artefact actually exists in the repo:
 - UNKNOWN != MISSING — 🟡/❓ items preserved, not deleted
 - No silent changes — partial items explicitly flagged
 - Evidence-based — 6 tests verify the audit against the repo
+
+---
+
+## L278 — GAP-ADS-58 + Handoff Refresh
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Documentation (canonical artifacts + handoff refresh)
+
+### What Changed
+
+#### NEW — docs/reports/ADS_CANONICAL_ARTIFACTS_UPDATE_20261001.md (81 lines)
+Per ADS-58 (UPDATE ALL AFFECTED CANONICAL PACKAGE ARTIFACTS). Records
+production-side updates from L271-L278 and lists design-side artifacts
+that require design-owner coordination, respecting the boundary in
+`Developer_Handoff/START_HERE.md`.
+
+- 15 production-side artifacts updated (L271-L278)
+- 7 design-side artifacts pending design-owner coordination
+- Release gate alignment table (G01-G09)
+- Boundary statement: design package untouched
+
+#### REFRESHED — public/handoff/SOURCE_OF_TRUTH.md
+- App HEAD: bf1e270 → 54613d8 (L277)
+- Generated timestamp updated
+
+#### NEW — docs/reports/COMPLETION_MATRIX_20261001.md
+- Refreshed from 2026-09-30 snapshot
+- HEAD: 2295a55 → 54613d8
+- Addendum: L271-L277 work summary
+- Test suite growth: 842 → 889 (+47)
+- GAPs resolved today: 8
+- GAPs still open: admin-actionable (6), AI-actionable (5), external (5)
+
+#### REFRESHED — public/handoff/ledgers/INDEX.md
+- Added L271-L277 ledger entries
+- Added L271-L277 change log entries
+
+#### NEW — tests/Feature/Handoff/HandoffRefreshTest.php (6 tests, 17 assertions)
+- ADS-58 doc exists
+- ADS-58 doc lists production updates + design-owner boundary
+- SOURCE_OF_TRUTH HEAD is current or parent (accepts either, since
+  HEAD advances by 1 after the ledger commit lands)
+- COMPLETION_MATRIX_20261001.md exists
+- COMPLETION_MATRIX has L271-L277 addendum + 889 marker
+- INDEX lists L271-L277
+
+### Result
+- Full suite: 895 tests / 2421 assertions / 0 failures / 1 skipped
+  (was 889 / 2404 before L278)
+- +6 tests, +17 assertions
+- GAP-ADS-58 status: RESOLVED (production-side mapping + design-side list)
+- Handoff refresh status: COMPLETE
+
+### Constitution Compliance
+- Additive only (no production code changed)
+- No guessing — every path is real; every status anchored
+- Boundary respected — design package left untouched
+- UNKNOWN != MISSING — REQUIRES_EVIDENCE items preserved
+- No silent changes — ledger + change log updated
+
+### Notes
+- The `HandoffRefreshTest::test_source_of_truth_head_is_current_or_parent`
+  accepts current HEAD OR parent HEAD because SOURCE_OF_TRUTH is refreshed
+  just before the commit lands, so HEAD advances by one. This is a
+  chicken-and-egg constraint documented in the test.
+- Design package boundary: `~/felagi_extracted/Felagi_Design_Package/`
+  is design-owner territory. Production-side updates are recorded here;
+  no design files were modified.

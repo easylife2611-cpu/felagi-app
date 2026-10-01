@@ -1789,3 +1789,16 @@ Developer-actionable findings: 5 (~13h total, documented).
 
 Tests: 883 → 889 (+6). Assertions: 2390 → 2404. Failures: 0.
 
+
+## L278 — GAP-ADS-58 + Handoff Refresh — 2026-10-01
+
+NEW: docs/reports/ADS_CANONICAL_ARTIFACTS_UPDATE_20261001.md (81 lines).
+NEW: docs/reports/COMPLETION_MATRIX_20261001.md.
+NEW: tests/Feature/Handoff/HandoffRefreshTest.php (6 tests, 17 assertions).
+REFRESHED: public/handoff/SOURCE_OF_TRUTH.md (HEAD 54613d8).
+REFRESHED: public/handoff/ledgers/INDEX.md.
+
+GAP-ADS-58 OPEN → RESOLVED (production-side).
+
+Tests: 889 → 895 (+6). Assertions: 2404 → 2421. Failures: 0.
+
