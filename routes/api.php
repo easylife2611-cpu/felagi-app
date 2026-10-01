@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\V1\NeedController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\RatingController;
-use App\Http\Controllers\Api\V1\TwoFactorController;
+use App\Http\Controllers\V1\TwoFactorController;
 use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
 use App\Http\Controllers\Api\V1\Admin\AdminTelegramController;
 use App\Http\Controllers\Api\V1\Admin\AdminReadController;

@@ -4,94 +4,496 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('screenS001') }} — {{ __('brand') }}</title>
+    <title>{{ __('brand') }} — Ethiopia's need-first marketplace</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-            background: #F4F6F8; color: #192431; line-height: 1.6; min-height: 100vh;
+            background: #F4F6F8;
+            color: #192431;
+            line-height: 1.6;
+            min-height: 100vh;
         }
-        .welcome {
-            min-height: 100vh; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            padding: 32px 20px; text-align: center;
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
         }
-        .brand-lockup { max-width: 200px; height: auto; margin-bottom: 32px; }
-        .purpose { font-size: 18px; max-width: 480px; color: #586675; margin-bottom: 40px; }
-        .btn-primary {
-            display: inline-block; background: #003366; color: white;
-            padding: 14px 32px; border-radius: 8px; font-size: 16px;
-            font-weight: 600; text-decoration: none; border: none; cursor: pointer;
-            transition: background 0.2s ease; min-width: 240px; font-family: inherit;
+        .card {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
         }
+        .logo {
+            width: 120px;
+            height: auto;
+            margin: 0 auto 24px;
+            display: block;
+        }
+        .purpose {
+            font-size: 16px;
+            color: #586675;
+            margin-bottom: 36px;
+        }
+        .field {
+            display: block;
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #D1D5DB;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #fff;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            margin-bottom: 12px;
+        }
+        .field:focus {
+            outline: none;
+            border-color: #003366;
+            box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.15s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-primary { background: #003366; color: #fff; }
         .btn-primary:hover { background: #002a52; }
-        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
-        .btn-primary:focus-visible { outline: 2px solid #FF9933; outline-offset: 2px; }
-        #widget-container { min-height: 50px; margin-top: 16px; display: flex; align-items: center; justify-content: center; }
-        .status { margin-top: 16px; font-size: 14px; color: #586675; }
-        .errors {
-            margin-top: 20px; padding: 12px 16px; border-radius: 8px;
-            background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b;
-            font-size: 13px; max-width: 480px;
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-secondary {
+            background: #fff;
+            color: #003366;
+            border: 1px solid #D1D5DB;
         }
+        .btn-secondary:hover { background: #F9FAFB; border-color: #003366; }
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0;
+            color: #9CA3AF;
+            font-size: 13px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #E5E7EB;
+        }
+        .status {
+            margin-top: 12px;
+            font-size: 14px;
+            min-height: 20px;
+            color: #586675;
+        }
+        .status.error { color: #DC2626; }
+        .status.success { color: #16A34A; }
+        .terms {
+            margin-top: 32px;
+            font-size: 12px;
+            color: #9CA3AF;
+            line-height: 1.5;
+        }
+        .terms a { color: #6B7280; text-decoration: underline; }
+        .hidden { display: none !important; }
+
+        /* OTP section */
+        .otp-header {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .otp-subtitle {
+            font-size: 14px;
+            color: #586675;
+            margin-bottom: 28px;
+        }
+        .otp-subtitle strong { color: #192431; }
+        .otp-inputs {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .otp-inputs input {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            font-family: inherit;
+            background: #fff;
+            transition: border-color 0.15s;
+        }
+        .otp-inputs input:focus {
+            outline: none;
+            border-color: #003366;
+            background: #F9FAFB;
+        }
+        .otp-inputs input.filled {
+            border-color: #003366;
+            background: #EFF6FF;
+        }
+        .resend-row {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+        .resend-row button {
+            background: none;
+            border: none;
+            color: #003366;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: inherit;
+            text-decoration: underline;
+            padding: 0;
+        }
+        .resend-row button:disabled {
+            color: #9CA3AF;
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+        .back-link {
+            display: block;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #6B7280;
+            text-decoration: none;
+        }
+        .back-link:hover { color: #003366; }
     </style>
 </head>
 <body>
-    <main class="welcome">
-        <img src="/assets/brand/felagi-lockup.svg" alt="{{ __('brand') }}" class="brand-lockup">
-        <p class="purpose">{{ __('purpose') }}</p>
-        <button type="button" class="btn-primary" id="signin-btn" onclick="startTelegramSignIn()">
-            {{ __('signIn') }}
-        </button>
-        <div id="widget-container"></div>
-        <div id="status" class="status"></div>
+    <main class="page">
 
-        @if ($errors->any())
-            <div class="errors" role="alert">
-                @foreach ($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                @endforeach
+        {{-- ─── Step 1: Email entry ─── --}}
+        <div class="card" id="view-email">
+            <img src="/assets/brand/felagi-lockup.svg" alt="{{ __('brand') }}" class="logo">
+            <p class="purpose">Ethiopia's need-first marketplace</p>
+
+            <input
+                type="email"
+                id="email-input"
+                class="field"
+                placeholder="your@email.com"
+                autocomplete="email"
+                inputmode="email"
+            >
+            <button type="button" class="btn btn-primary" id="email-continue">
+                Continue with Email
+            </button>
+
+            <div class="divider">OR</div>
+
+            <button type="button" class="btn btn-secondary" id="telegram-continue">
+                ✈️ Continue with Telegram
+            </button>
+
+            <div id="telegram-widget-container" style="margin-top: 16px;"></div>
+            <div class="status" id="status"></div>
+
+            <p class="terms">
+                By continuing, you agree to our
+                <a href="/docs/privacy/TERMS_OF_SERVICE.md">Terms</a>
+                and
+                <a href="/docs/privacy/PRIVACY_POLICY.md">Privacy Policy</a>.
+            </p>
+        </div>
+
+        {{-- ─── Step 2: OTP code entry ─── --}}
+        <div class="card hidden" id="view-otp">
+            <h1 class="otp-header">Check your email</h1>
+            <p class="otp-subtitle">
+                We sent a 6-digit code to<br>
+                <strong id="otp-email-display"></strong>
+            </p>
+
+            <div class="otp-inputs" id="otp-inputs">
+                <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" data-index="0">
+                <input type="text" inputmode="numeric" maxlength="1" data-index="1">
+                <input type="text" inputmode="numeric" maxlength="1" data-index="2">
+                <input type="text" inputmode="numeric" maxlength="1" data-index="3">
+                <input type="text" inputmode="numeric" maxlength="1" data-index="4">
+                <input type="text" inputmode="numeric" maxlength="1" data-index="5">
             </div>
-        @endif
+
+            <button type="button" class="btn btn-primary" id="otp-verify" disabled>
+                Verify
+            </button>
+
+            <div class="status" id="otp-status"></div>
+
+            <div class="resend-row">
+                Didn't receive it?
+                <button type="button" id="resend-btn" disabled>
+                    Resend code
+                </button>
+                <span id="resend-timer"></span>
+            </div>
+
+            <a href="#" class="back-link" id="back-to-email">← Use a different email</a>
+        </div>
+
     </main>
 
     <script>
-        async function startTelegramSignIn() {
-            const btn = document.getElementById('signin-btn');
-            const container = document.getElementById('widget-container');
-            const status = document.getElementById('status');
-            const errorMsg = @json(__('signInError'));
+    (function() {
+        const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+        const $ = id => document.getElementById(id);
+
+        const views = {
+            email: $('view-email'),
+            otp:   $('view-otp'),
+        };
+
+        let currentEmail = '';
+        let resendCooldown = 0;
+
+        // ─── Email flow ───
+
+        $('email-continue').addEventListener('click', async () => {
+            const email = $('email-input').value.trim();
+            const status = $('status');
+
+            if (! email || ! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                status.textContent = 'Please enter a valid email address.';
+                status.className = 'status error';
+                return;
+            }
+
+            const btn = $('email-continue');
             btn.disabled = true;
-            status.textContent = '';
+            status.textContent = 'Sending code...';
+            status.className = 'status';
 
             try {
-                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
-                const res = await fetch('/api/v1/auth/telegram/widget/start', {
+                const res = await fetch('/api/v1/auth/email/request', {
                     method: 'POST',
-                    credentials: 'same-origin',
                     headers: {
-                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRF-TOKEN': csrfToken
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrf,
                     },
-                    body: JSON.stringify({ return_uri: window.location.origin + '/' })
+                    body: JSON.stringify({ email }),
                 });
 
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-
                 const data = await res.json();
-                const payload = data.data || data;
 
-                if (!payload.bot_username || !payload.callback_url) {
-                    throw new Error('Missing widget config');
+                if (! res.ok) {
+                    throw new Error(data.message || 'Failed to send code');
                 }
 
+                currentEmail = email;
+                status.textContent = '';
+                showOtpView(email);
+                startResendCooldown();
+
+            } catch (e) {
+                status.textContent = e.message;
+                status.className = 'status error';
+                btn.disabled = false;
+            }
+        });
+
+        // Enter key on email input
+        $('email-input').addEventListener('keydown', e => {
+            if (e.key === 'Enter') $('email-continue').click();
+        });
+
+        function showOtpView(email) {
+            views.email.classList.add('hidden');
+            views.otp.classList.remove('hidden');
+            $('otp-email-display').textContent = email;
+            $('otp-inputs').querySelectorAll('input').forEach(i => i.value = '');
+            $('otp-status').textContent = '';
+            $('otp-verify').disabled = true;
+            setTimeout(() => $('otp-inputs').querySelector('input[data-index="0"]').focus(), 100);
+        }
+
+        $('back-to-email').addEventListener('click', e => {
+            e.preventDefault();
+            views.otp.classList.add('hidden');
+            views.email.classList.remove('hidden');
+            $('email-continue').disabled = false;
+            $('email-input').focus();
+        });
+
+        // ─── OTP input handling ───
+
+        const otpInputs = [...$('otp-inputs').querySelectorAll('input')];
+
+        otpInputs.forEach((input, idx) => {
+            input.addEventListener('input', e => {
+                const v = e.target.value.replace(/\D/g, '');
+                e.target.value = v.slice(0, 1);
+                e.target.classList.toggle('filled', e.target.value !== '');
+
+                if (e.target.value && idx < 5) {
+                    otpInputs[idx + 1].focus();
+                }
+                updateVerifyButton();
+
+                if (getOtpCode().length === 6) {
+                    $('otp-verify').focus();
+                }
+            });
+
+            input.addEventListener('keydown', e => {
+                if (e.key === 'Backspace' && ! e.target.value && idx > 0) {
+                    otpInputs[idx - 1].focus();
+                }
+                if (e.key === 'ArrowLeft' && idx > 0) otpInputs[idx - 1].focus();
+                if (e.key === 'ArrowRight' && idx < 5) otpInputs[idx + 1].focus();
+                if (e.key === 'Enter' && ! $('otp-verify').disabled) $('otp-verify').click();
+            });
+
+            input.addEventListener('paste', e => {
+                e.preventDefault();
+                const paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+                paste.split('').forEach((c, i) => {
+                    if (otpInputs[i]) {
+                        otpInputs[i].value = c;
+                        otpInputs[i].classList.toggle('filled', c !== '');
+                    }
+                });
+                const nextEmpty = otpInputs.findIndex(i => ! i.value);
+                (nextEmpty >= 0 ? otpInputs[nextEmpty] : otpInputs[5]).focus();
+                updateVerifyButton();
+            });
+        });
+
+        function getOtpCode() {
+            return otpInputs.map(i => i.value).join('');
+        }
+
+        function updateVerifyButton() {
+            $('otp-verify').disabled = getOtpCode().length !== 6;
+        }
+
+        // ─── Verify OTP ───
+
+        $('otp-verify').addEventListener('click', () => {
+            const code = getOtpCode();
+            if (code.length !== 6) return;
+
+            // Submit as HTML form (creates web session)
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/auth/email/verify-web';
+            form.style.display = 'none';
+
+            const fields = {
+                _token: csrf,
+                email:  currentEmail,
+                code:   code,
+            };
+
+            for (const [k, v] of Object.entries(fields)) {
+                const input = document.createElement('input');
+                input.name = k;
+                input.value = v;
+                form.appendChild(input);
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        });
+
+        // ─── Resend ───
+
+        function startResendCooldown() {
+            resendCooldown = 30;
+            const btn = $('resend-btn');
+            const timer = $('resend-timer');
+            btn.disabled = true;
+            timer.textContent = '';
+
+            const interval = setInterval(() => {
+                resendCooldown--;
+                if (resendCooldown <= 0) {
+                    clearInterval(interval);
+                    btn.disabled = false;
+                    timer.textContent = '';
+                } else {
+                    timer.textContent = `(${resendCooldown}s)`;
+                }
+            }, 1000);
+        }
+
+        $('resend-btn').addEventListener('click', async () => {
+            if (resendCooldown > 0) return;
+
+            try {
+                const res = await fetch('/api/v1/auth/email/request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrf,
+                    },
+                    body: JSON.stringify({ email: currentEmail }),
+                });
+
+                if (! res.ok) throw new Error('Failed to resend');
+
+                startResendCooldown();
+                $('otp-status').textContent = 'New code sent.';
+                $('otp-status').className = 'status success';
+
+            } catch (e) {
+                $('otp-status').textContent = e.message;
+                $('otp-status').className = 'status error';
+            }
+        });
+
+        // ─── Telegram flow (secondary) ───
+
+        $('telegram-continue').addEventListener('click', async () => {
+            const status = $('status');
+            const btn = $('telegram-continue');
+            btn.disabled = true;
+            status.textContent = 'Connecting to Telegram...';
+            status.className = 'status';
+
+            try {
+                const res = await fetch('/api/v1/auth/telegram/widget/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrf,
+                    },
+                    body: JSON.stringify({ return_uri: window.location.origin + '/' }),
+                });
+
+                const data = await res.json();
+                if (! res.ok) throw new Error(data.message || 'Failed');
+
+                const payload = data.data || data;
+                if (! payload.bot_username) throw new Error('Missing widget config');
+
                 btn.style.display = 'none';
-                container.innerHTML = '';
 
                 window.__felagiState = new URL(payload.callback_url, window.location.origin)
                     .searchParams.get('state');
+
+                const container = $('telegram-widget-container');
+                container.innerHTML = '';
 
                 const script = document.createElement('script');
                 script.async = true;
@@ -100,64 +502,51 @@
                 script.setAttribute('data-size', 'large');
                 script.setAttribute('data-request-access', 'write');
                 script.setAttribute('data-userpic', 'true');
-                script.setAttribute('data-onauth', 'onTelegramAuth(user)');
+                script.setAttribute('data-onauth', 'onFelagiTelegramAuth(user)');
                 container.appendChild(script);
 
-                btn.disabled = false;
-            } catch (e) {
-                btn.disabled = false;
-                console.error('SignIn error:', e);
-                status.textContent = errorMsg;
-            }
-        }
+                status.textContent = '';
 
-        window.onTelegramAuth = async function(user) {
-            const status = document.getElementById('status');
+            } catch (e) {
+                status.textContent = e.message;
+                status.className = 'status error';
+                btn.disabled = false;
+            }
+        });
+
+        window.onFelagiTelegramAuth = async function(user) {
+            const status = $('status');
             status.textContent = 'Signing in...';
+            status.className = 'status';
 
             try {
                 const payload = Object.assign({}, user, { state: window.__felagiState });
 
-                const res = await fetch('/api/v1/auth/telegram/widget/callback?' + new URLSearchParams(payload).toString(), {
-                    method: 'GET',
-                    credentials: 'same-origin',
-                    headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
-                });
+                const res = await fetch(
+                    '/api/v1/auth/telegram/widget/callback?' + new URLSearchParams(payload).toString(),
+                    {
+                        method: 'GET',
+                        credentials: 'same-origin',
+                        headers: { 'Accept': 'application/json' },
+                    }
+                );
 
                 const data = await res.json();
-                if (data.success && data.data && data.data.redirect_url) {
+
+                if (data.success && data.data?.redirect_url) {
                     window.location.href = data.data.redirect_url;
-                } else if (res.ok) {
-                    window.location.href = '/browse';
+                } else if (res.ok && data.data?.handoff_code) {
+                    window.location.href = '/?handoff_code=' + encodeURIComponent(data.data.handoff_code);
                 } else {
                     status.textContent = 'Sign-in failed. Please try again.';
+                    status.className = 'status error';
                 }
             } catch (e) {
-                console.error('Callback error:', e);
                 status.textContent = 'Sign-in failed. Please try again.';
+                status.className = 'status error';
             }
         };
-    </script>
-
-    {{-- L294/L296 — Telegram widget iframe title (accessibility).
-         Telegram injects an iframe without a title. We observe it and
-         set an accessible name. Kept from L294. --}}
-    <script id="s002-widget-title-observer">
-        (function () {
-            function tagIframe() {
-                const iframes = document.querySelectorAll('iframe[id^="telegram-login-"]');
-                iframes.forEach(function (iframe) {
-                    if (!iframe.title) {
-                        iframe.title = 'Telegram sign-in';
-                        iframe.setAttribute('aria-label', 'Telegram sign-in');
-                    }
-                });
-            }
-            tagIframe();
-            const observer = new MutationObserver(tagIframe);
-            observer.observe(document.body, { childList: true, subtree: true });
-            setTimeout(function () { observer.disconnect(); }, 30000);
-        })();
+    })();
     </script>
 </body>
 </html>

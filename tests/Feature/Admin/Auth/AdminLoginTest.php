@@ -44,15 +44,15 @@ class AdminLoginTest extends TestCase
         $this->get('/admin/login')->assertStatus(200);
     }
 
-    public function test_login_page_renders_oidc_link_when_not_authenticated(): void
+    public function test_login_page_renders_telegram_widget_when_not_authenticated(): void
     {
-        // L291 — replaced the iframe Telegram Login Widget with an OIDC
-        // direct link. No iframe, no unsafe-eval, no frame-src.
+        // L302 — restored Telegram Widget per L296.
+        // OIDC is first-party only (owner); Widget is public.
         $res = $this->get('/admin/login');
         $res->assertStatus(200)
-            ->assertSee('/admin/login/oidc/start', false)
-            ->assertDontSee('telegram-widget.js', false)
-            ->assertDontSee('data-telegram-login', false);
+            ->assertSee('telegram-widget.js', false)
+            ->assertSee('data-telegram-login', false)
+            ->assertSee('tg-form', false);
     }
 
     public function test_oidc_routes_are_registered(): void

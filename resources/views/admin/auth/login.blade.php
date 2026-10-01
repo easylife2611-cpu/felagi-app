@@ -58,15 +58,50 @@
             <div class="alert alert-info">{{ __('admin.auth.already_signed_in') }}</div>
             <a href="/admin/dashboard" class="btn btn-telegram">{{ __('admin.auth.go_dashboard') }}</a>
         @else
-            {{-- L291 — OIDC direct link (replaces the iframe Telegram widget).
-                 No iframe, no unsafe-eval, no frame-src. --}}
-            <a href="{{ route('admin.login.oidc.start') }}"
-               class="btn btn-telegram"
-               aria-label="{{ __('admin.auth.sign_in_telegram') }}">
-                {{ __('admin.auth.sign_in_telegram') }}
-            </a>
+            {{-- Telegram Login Widget (L302 — restored per L296) --}}
+            <div id="tg-widget"></div>
+            <div id="status" style="margin-top:12px;color:#586675;font-size:14px;">{{ __('admin.auth.loading_telegram') }}</div>
 
-            <a href="/" class="btn btn-secondary">{{ __('common.back_home') }}</a>
+            <form id="tg-form" method="POST" action="{{ route('admin.login.telegram') }}" style="display:none">
+                @csrf
+                <input type="hidden" name="id" id="tg-id">
+                <input type="hidden" name="first_name" id="tg-first_name">
+                <input type="hidden" name="last_name" id="tg-last_name">
+                <input type="hidden" name="username" id="tg-username">
+                <input type="hidden" name="photo_url" id="tg-photo_url">
+                <input type="hidden" name="auth_date" id="tg-auth_date">
+                <input type="hidden" name="hash" id="tg-hash">
+            </form>
+
+            <script>
+                window.onTelegramAuth = function (user) {
+                    document.getElementById('status').textContent = 'Signing you in...';
+                    document.getElementById('tg-id').value         = user.id;
+                    document.getElementById('tg-first_name').value = user.first_name || '';
+                    document.getElementById('tg-last_name').value  = user.last_name || '';
+                    document.getElementById('tg-username').value   = user.username || '';
+                    document.getElementById('tg-photo_url').value  = user.photo_url || '';
+                    document.getElementById('tg-auth_date').value  = user.auth_date;
+                    document.getElementById('tg-hash').value       = user.hash;
+                    document.getElementById('tg-form').submit();
+                };
+            </script>
+            <script async
+                    src="https://telegram.org/js/telegram-widget.js?22"
+                    data-telegram-login="{{ config('services.telegram.bot_username', 'FelagiMarketBot') }}"
+                    data-size="large"
+                    data-request-access="write"
+                    data-userpic="true"
+                    data-onauth="onTelegramAuth(user)"></script>
+            <script>
+                setTimeout(() => {
+                    const s = document.getElementById('status');
+                    const w = document.getElementById('tg-widget');
+                    if (s && w && w.children.length > 0) s.style.display = 'none';
+                }, 1500);
+            </script>
+
+            <a href="/" class="btn btn-secondary" style="margin-top:16px;display:inline-block;">{{ __('common.back_home') }}</a>
         @endif
 
         <div class="foot">

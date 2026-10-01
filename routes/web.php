@@ -3,7 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 
-Route::get('/', function () {
+Route::get('/', function (\Illuminate\Http\Request $request) {
+    $handoff = $request->query('handoff_code');
+
+    if ($handoff) {
+        try {
+            $service = app(\App\Services\Auth\AuthAttemptService::class);
+            $result  = $service->consumeByHandoff($handoff);
+
+            if ($result && ! empty($result['user'])) {
+                \Auth::guard('web')->login($result['user']);
+                $request->session()->regenerate();
+                return redirect('/browse');
+            }
+        } catch (\Throwable $e) {
+            \Log::warning('Handoff consume failed', ['error' => $e->getMessage()]);
+        }
+    }
+
     return view('welcome');
 });
 
@@ -145,3 +162,18 @@ Route::prefix('admin')->group(function () {
         Route::get('/monetization/sponsored-ads', fn() => view('admin.sponsored-ads'));
     });
 });
+
+// 2FA profile page — L302
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/profile/2fa', [\App\Http\Controllers\V1\TwoFactorWebController::class, 'index'])
+        ->name('profile.2fa');
+});
+
+// Fallback login route (redirects to Telegram sign-in)
+Route::get('/login', function () {
+    return redirect('/auth/telegram');
+})->name('login');
+
+
+// L302 — Email OTP web verify (creates web session for browser flow)
+Route::post('/auth/email/verify-web', [\App\Http\Controllers\V1\EmailAuthController::class, 'verifyWeb'])->middleware('throttle:10,1')->name('auth.email.verify-web');

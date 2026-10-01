@@ -49,11 +49,16 @@ class EmailOtpService
             return null;
         }
 
+        $localPart = explode('@', $email)[0];
+
         return User::firstOrCreate(
             ['email' => $email],
             [
-                'name'   => explode('@', $email)[0],
-                'status' => User::STATUS_ACTIVE,
+                'name'              => $localPart,
+                'full_name'         => $localPart,
+                'status'            => User::STATUS_ACTIVE,
+                'telegram_subject'  => null,
+                'version'           => 1,
             ]
         );
     }

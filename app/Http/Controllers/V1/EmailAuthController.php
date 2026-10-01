@@ -76,4 +76,23 @@ class EmailAuthController extends Controller
         $header = $request->header('Accept-Language', 'en');
         return str_starts_with($header, 'am') ? 'am' : 'en';
     }
+
+    public function verifyWeb(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $data = $request->validate([
+            'email' => 'required|email|max:255',
+            'code'  => 'required|string|size:6',
+        ]);
+
+        $user = $this->otp->verify($data['email'], $data['code']);
+
+        if (! $user) {
+            return back()->withErrors(['code' => 'Invalid or expired code.']);
+        }
+
+        Auth::guard('web')->login($user);
+        $request->session()->regenerate();
+
+        return redirect('/browse');
+    }
 }
