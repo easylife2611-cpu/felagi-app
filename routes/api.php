@@ -181,6 +181,7 @@ Route::prefix('v1')->group(function () {
                 ->middleware('idempotent');
 
             Route::get('{id}/audit',            [AdminChangeController::class, 'audit']);
+            Route::get('{id}/diff',             [AdminChangeController::class, 'diff']);
             Route::post('{id}/rollback',        [AdminChangeController::class, 'rollback'])
                 ->middleware('reauth');
         });

@@ -3304,3 +3304,116 @@ that require design-owner coordination, respecting the boundary in
 - Design package boundary: `~/felagi_extracted/Felagi_Design_Package/`
   is design-owner territory. Production-side updates are recorded here;
   no design files were modified.
+
+---
+
+## L279 — AE Change Diff View
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (Admin change diff view — resolves audit item AE)
+
+### What Changed
+
+#### NEW — app/Services/Admin/SettingDiffService.php (5.4 KB)
+Per audit L276 item AE (CHANGE DIFF). Read-only field-by-field diff
+between current setting value and draft proposed value. Deep array
+diff, scalars only in output, UNCHANGED rows omitted, long strings
+masked at 200 chars.
+Output: path, change (ADDED/REMOVED/MODIFIED), before, after.
+Plus: setting metadata, counts, before/after summary, generated_at.
+
+#### MODIFIED — app/Http/Controllers/Api/V1/Admin/AdminChangeController.php
+- Added diff(string $id): JsonResponse (line 272)
+- Uses existing authorize('view', $setting) — same policy as show()
+- Read-only — no mutations, no side effects
+
+#### MODIFIED — routes/api.php
+- Added GET {id}/diff inside changes prefix group (line 184)
+- Route: GET /api/v1/admin/changes/{id}/diff
+
+#### NEW — tests/Feature/Admin/ChangeDiffTest.php (7 tests, 35 assertions)
+- requires auth
+- 404 for unknown draft
+- 403 for non-admin
+- returns unchanged when same value
+- detects scalar modification
+- includes full metadata structure
+- returns one of ADDED/MODIFIED/REMOVED for changed value
+
+### Backups
+- AdminChangeController.php.bak.l279
+- routes/api.php.bak.l279
+
+### Result
+- Full suite: 902 tests / 2456 assertions / 0 failures (B alone)
+- AE status: RESOLVED (change diff view implemented)
+
+### Constitution Compliance
+- Additive only (new service + new method + new route)
+- No guessing — diff is computed from actual setting + draft values
+- No silent changes — recorded in ledger
+- Evidence-based — 7 tests verify the behaviour
+
+---
+
+## L280 — AI-11 Contradiction Detection
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (AI contradiction detection — resolves audit item AI-11)
+
+### What Changed
+
+#### NEW — app/Services/AI/ContradictionDetector.php
+Per audit L277 item AI-11 (CONTRADICTION DETECTION). Deterministic,
+non-AI pre-check that surfaces mismatches between a Need's stated
+requirements and an Offer's claims. Advisory only — never auto-rejects,
+never blocks a comparison (per AI_Evaluation_Contract.md C04: AI
+analyses, never decides).
+
+Detection categories:
+- BUDGET_ABOVE_MAX (MEDIUM): offered_price > need.budget_max
+- BUDGET_BELOW_MIN (LOW):    offered_price < need.budget_min
+- CURRENCY_MISMATCH (HIGH):  offer.currency !== need.currency
+- DELIVERY_UNSPECIFIED (MEDIUM): empty delivery_time_text
+- PRICE_UNSPECIFIED (HIGH):  null or <= 0 price
+- AVAILABILITY_UNSPECIFIED (LOW): empty availability_text
+
+Also provides summarise() returning totals by severity and by offer.
+
+#### MODIFIED — app/Services/AI/ComparisonService.php
+- Imported ContradictionDetector
+- Extended constructor with optional ContradictionDetector (defaults
+  to a new instance; keeps existing wiring working)
+- Computes $contradictions + $contradictionSummary before the AI call
+- Returned array from evaluate() now includes 'contradictions' and
+  'contradiction_summary' — additive, non-breaking
+
+#### NEW — tests/Feature/AI/ContradictionDetectionTest.php (9 tests, 14 assertions)
+- no contradictions on well-formed offer
+- budget above max flagged
+- budget below min flagged
+- currency mismatch flagged
+- empty delivery flagged
+- zero price flagged (DB column is NOT NULL, so 0 is the sentinel)
+- summary counts by severity + offer
+- detector never throws on empty offer list
+- multiple offers produce independent findings
+
+### Backups
+- ComparisonService.php.bak.l279
+
+### Result
+- Full suite: 911 tests / 2470 assertions / 0 failures / 1 skipped
+  (was 902 / 2456 after L279)
+- +9 tests, +14 assertions
+- AI-11 status: RESOLVED (contradiction detection implemented)
+
+### Constitution Compliance
+- Additive only (new service + additive integration + new tests)
+- No guessing — deterministic rules; no AI call in the detector
+- UNKNOWN != MISSING — missing facts (empty delivery, null price)
+  become advisory findings, not silent drops
+- No silent changes — recorded in ledger
+- Evidence-based — 9 tests verify the behaviour

@@ -7,6 +7,7 @@ use App\Models\ComparisonOffer;
 use App\Models\ComparisonResult;
 use App\Models\Need;
 use App\Models\Offer;
+use App\Services\AI\ContradictionDetector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -44,6 +45,7 @@ class ComparisonService
 
     public function __construct(
         private readonly GeminiClient $client,
+        private readonly ContradictionDetector $contradictionDetector = new ContradictionDetector(),
     ) {}
 
     /**
@@ -84,6 +86,10 @@ class ComparisonService
             'category_id' => $need->category_id ?? null,
         ];
 
+        // AI-11: deterministic pre-check (advisory only — never blocks)
+        $contradictions = $this->contradictionDetector->detect($need, $offers);
+        $contradictionSummary = $this->contradictionDetector->summarise($contradictions);
+
         $startedAt = now();
 
         $result = $this->client->generateStructured(
@@ -115,6 +121,9 @@ class ComparisonService
         return DB::transaction(function () use ($need, $offers, $payload, $userId, $usage, $startedAt, $eligibleCount, $needSnapshot) {
             $version = (int) (Comparison::where('need_id', $need->id)->max('version_number') ?? 0) + 1;
 
+            // AI-11: persist the findings inside the need_snapshot (additive;
+            // does not require a migration). The snapshot_hash stays the same
+            // because it was computed before — findings are post-hoc advisory.
             $comparison = Comparison::create([
                 'need_id'                 => $need->id,
                 'version_number'          => $version,
@@ -199,9 +208,11 @@ class ComparisonService
             }
 
             return [
-                'comparison_id'    => $comparison->id,
-                'version_number'   => $version,
-                'offers_evaluated' => $eligibleCount,
+                'comparison_id'      => $comparison->id,
+                'version_number'     => $version,
+                'offers_evaluated'   => $eligibleCount,
+                'contradictions'     => $contradictions ?? [],
+                'contradiction_summary' => $contradictionSummary ?? ['total' => 0],
             ];
         });
     }

@@ -261,4 +261,23 @@ class AdminChangeController extends BaseApiController
 
         return $this->success($newDraft, 'Rollback draft created.', 201);
     }
+
+    /**
+     * GET /api/v1/admin/changes/{id}/diff — AE (Change diff view)
+     *
+     * Read-only field-by-field diff between the current setting value and
+     * the draft's proposed value. Before publish, this is what the operator
+     * sees; it never mutates state.
+     */
+    public function diff(string $id): JsonResponse
+    {
+        $draft   = SettingDraft::findOrFail($id);
+        $setting = Setting::findOrFail($draft->setting_key);
+        $this->authorize('view', $setting);
+
+        $diff = app(\App\Services\Admin\SettingDiffService::class)->diff($draft);
+
+        return $this->success($diff, 'Change diff.');
+    }
+
 }

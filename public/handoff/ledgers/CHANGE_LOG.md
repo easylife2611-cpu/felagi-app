@@ -1802,3 +1802,25 @@ GAP-ADS-58 OPEN → RESOLVED (production-side).
 
 Tests: 889 → 895 (+6). Assertions: 2404 → 2421. Failures: 0.
 
+
+## L279 — AE Change Diff View — 2026-10-01
+
+NEW: app/Services/Admin/SettingDiffService.php.
+NEW: tests/Feature/Admin/ChangeDiffTest.php (7 tests, 35 assertions).
+MODIFIED: AdminChangeController (diff() method).
+MODIFIED: routes/api.php (GET changes/{id}/diff).
+
+AE OPEN → RESOLVED.
+
+Tests: 895 → 902 (+7).
+
+## L280 — AI-11 Contradiction Detection — 2026-10-01
+
+NEW: app/Services/AI/ContradictionDetector.php.
+NEW: tests/Feature/AI/ContradictionDetectionTest.php (9 tests, 14 assertions).
+MODIFIED: ComparisonService (wired detector, extended return).
+
+AI-11 OPEN → RESOLVED.
+
+Tests: 902 → 911 (+9). Assertions: 2456 → 2470. Failures: 0.
+
