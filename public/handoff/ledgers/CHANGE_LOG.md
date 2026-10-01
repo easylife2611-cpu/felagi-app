@@ -1753,3 +1753,13 @@ ADS-58 remains NOT STARTED (external, design owner).
 
 Tests: 866 → 872 (+6). Assertions: 2088 → 2106. Failures: 0.
 
+
+## L275 — GAP-TEST-01: Screen Contract Test — 2026-10-01
+
+NEW: tests/Feature/Screens/ScreenContractTest.php (4 tests, 254 assertions).
+Cross-cutting contract for all 23 user screens.
+
+GAP-TEST-01 OPEN → RESOLVED.
+
+Tests: 872 → 876 (+4). Assertions: 2106 → 2360. Failures: 0.
+

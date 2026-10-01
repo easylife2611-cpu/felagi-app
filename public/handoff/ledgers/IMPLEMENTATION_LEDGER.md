@@ -3069,3 +3069,53 @@ Advertising subsystem:
 - No silent changes — partial/blocked rows explicitly marked
 - UNKNOWN != MISSING — D-097 items marked 🟡, not deleted
 - Evidence-based — 6 tests assert against the canonical docs
+
+---
+
+## L275 — GAP-TEST-01: Screen Contract Test (additive coverage)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Test expansion (cross-cutting contract tests)
+
+### What Changed
+
+#### NEW — tests/Feature/Screens/ScreenContractTest.php (4 tests, 254 assertions)
+Cross-cutting contract tests for all 23 user screens (S001-S023):
+1. `test_all_23_user_routes_are_registered` — verifies every S###
+   route is present in the Route collection (pattern-matched
+   against `{id}` placeholders)
+2. `test_no_user_screen_returns_server_error` — asserts each URL
+   does not 404 and returns < 500
+3. `test_all_screens_are_valid_html5_documents` — asserts each
+   200 response contains: <!DOCTYPE html>, <html lang=...>,
+   UTF-8 charset, viewport meta, <title>
+4. `test_no_screen_leaks_server_error_details` — asserts no
+   response contains "Whoops", "StackTrace", "APP_DEBUG",
+   "Stack trace"
+
+### Why additive (not modifying existing per-screen tests)
+Per GAP-TEST-01 the objective is expanded coverage. The existing
+23 per-screen tests focus on individual screen features. This new
+test provides cross-cutting structural guarantees that no
+per-screen test covers:
+- Route registration for ALL 23 screens in one place
+- HTML5 validity as a contract, not a feature
+- Debug-leak protection across the whole surface
+- HTTP health (no 5xx) across the whole surface
+
+No existing test file was modified.
+
+### Result
+- Full suite: 876 tests / 2360 assertions / 0 failures / 1 skipped
+  (was 872 / 2106 before L275)
+- +4 tests, +254 assertions
+- GAP-TEST-01 status: RESOLVED (additive cross-cutting coverage)
+
+### Constitution Compliance
+- Additive only (no existing test modified)
+- No guessing — the route list is derived from Route::getRoutes(),
+  which is authoritative
+- No silent changes — this entry records the additions
+- Evidence-based — all 4 assertions rely on HTTP responses and
+  route registration in the running app
