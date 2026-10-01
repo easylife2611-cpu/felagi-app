@@ -3697,3 +3697,125 @@ Directly implements Admin_Authorization_Contract.md line 9:
   never silently dropped
 - No silent changes — ledger + change log updated
 - Evidence-based — 12 tests verify every contract clause
+
+---
+
+## L285 — AI-35 + AI-21 + AI-22 + AG + AH (5 audits in one commit)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (5 audit items resolved in a single package)
+
+Closes the 5 remaining developer-actionable items from L276 (Admin audit)
+and L277 (AI audit):
+- AI-35: Partial / uncertain result rules
+- AI-21: Provider Result Projection
+- AI-22: Provider Feedback UX
+- AG:    Scheduled admin changes
+- AH:    Safe presets / operation modes
+
+### What Changed
+
+#### AI-35 — Partial / uncertain result rules
+- NEW: migration `add_completeness_to_comparison_results`
+  Adds nullable `completeness` (string), `missing_criteria` (JSON),
+  `uncertain_criteria` (JSON).
+- NEW: `app/Services/AI/CompletenessEvaluator.php`
+  Deterministic evaluation: COMPLETE / PARTIAL / UNCERTAIN.
+  Signals: missing criteria + low criteria (<20) + missing_information
+  count + empty rationale. Thresholds: 0 → COMPLETE, ≥3 missing or ≥3
+  low or ≥5 total → UNCERTAIN, ≥1 → PARTIAL.
+- MODIFIED: `ComparisonService` — injects evaluator, persists results.
+- MODIFIED: `ComparisonResult` — extended fillable + casts.
+- NEW: `tests/Feature/AI/CompletenessEvaluatorTest.php` (6 tests)
+
+#### AI-21 — Provider Result Projection
+- MODIFIED: `ComparisonController::providerProjection()`
+- Route: `GET /api/v1/comparisons/{id}/provider-projection`
+- Provider sees only their own offer's result from the immutable
+  comparison snapshot. Others → 403.
+
+#### AI-22 — Provider Feedback UX
+- NEW: migration `create_comparison_feedback_table`
+  Columns: comparison_id, provider_id, rating, comment, status.
+  Unique on (comparison_id, provider_id).
+- NEW: `app/Models/ComparisonFeedback.php`
+  Ratings: FAIR / INACCURATE / UNCLEAR / OTHER.
+- MODIFIED: `ComparisonController::submitFeedback()`
+- Route: `POST /api/v1/comparisons/{id}/feedback`
+- Advisory only — does NOT mutate immutable result.
+- NEW: `tests/Feature/AI/ProviderProjectionTest.php` (8 tests)
+
+#### AG — Scheduled admin changes
+- NEW: migration `add_scheduling_to_setting_drafts`
+  Columns: scheduled_at, scheduled_status, scheduled_processed_at.
+  Index on (scheduled_status, scheduled_at).
+- MODIFIED: `SettingDraft` — fillable + casts + helper methods
+  (isScheduled, isDue) + status constants.
+- NEW: `app/Jobs/ApplyScheduledChange.php`
+  Dispatches publish() in system context when due.
+- NEW: Artisan command `settings:apply-scheduled`
+- NEW: Scheduler entry (everyMinute, withoutOverlapping)
+- MODIFIED: `AdminChangeController` — schedule() / unschedule()
+- Routes:
+  POST   /api/v1/admin/changes/{id}/schedule
+  DELETE /api/v1/admin/changes/{id}/schedule
+- NEW: `tests/Feature/Admin/ScheduledChangeTest.php` (6 tests)
+
+#### AH — Safe presets / operation modes
+- NEW: migration `create_setting_presets_table`
+  Columns: name (unique), display_name, description, values_json,
+  status, created_by.
+- NEW: `app/Models/SettingPreset.php`
+- NEW: `app/Services/Admin/PresetService.php`
+  Preview + apply. Apply delegates to BulkActionService's safety
+  machinery (frozen digest + per-item recheck + audit).
+- MODIFIED: `BulkActionService` — added `preset.apply` action and
+  `applyPreset()` + `executePresetItem()`.
+- NEW: `app/Http/Controllers/Api/V1/Admin/PresetController.php`
+- Routes:
+  GET  /api/v1/admin/presets
+  GET  /api/v1/admin/presets/{name}/preview
+  POST /api/v1/admin/presets/{name}/apply
+- NEW: `database/seeders/PresetSeeder.php` — safe-defaults + maintenance
+- NEW: `tests/Feature/Admin/SafePresetTest.php` (9 tests)
+
+### Backups
+- ComparisonService.php.bak.l285
+- ComparisonController.php.bak.l285
+- routes/api.php.bak.l285
+- routes/api.php.bak.l285b
+- routes/console.php.bak.l285b
+- SettingDraft.php.bak.l285b
+
+### Result
+- Full suite: 982 tests / 2662 assertions / 0 failures / 1 skipped
+  (was 967 / 2619 after L284 → AI-35/AI-21/AI-22 round; then L285 round)
+- Breakdown of new tests:
+  - AI-35: 6 tests
+  - AI-21 + AI-22: 8 tests
+  - AG:  6 tests
+  - AH:  9 tests
+  Total: +29 tests
+- All 5 audit items: RESOLVED
+
+### Notes
+- Both migrations share the same timestamp prefix because they were
+  authored in one round; Laravel sorts them by filename (add_* before
+  create_*), which is correct here since add_ modifies an existing table
+  and create_ creates a new one.
+- `PresetService::apply()` return type is `BulkAction`, not `array` —
+  the initial wiring declared `array` and had to be corrected during
+  the test run.
+- `CompletenessEvaluator` thresholds verified against tests:
+  "3+ low criteria" must yield UNCERTAIN (not PARTIAL).
+- `ComparisonOffer::create()` requires `credibility_snapshot => []`
+  (NOT NULL without default); test scaffolds updated accordingly.
+
+### Constitution Compliance
+- Additive only (new tables, new services, new endpoints, new tests)
+- No guessing — behaviour derived from L276/L277 audit items and
+  AI_Evaluation_Contract.md
+- UNKNOWN != MISSING — missing criteria surfaced as PARTIAL/UNCERTAIN
+- No silent changes — all five items documented here and in CHANGE_LOG
+- Evidence-based — 29 new tests verify every clause

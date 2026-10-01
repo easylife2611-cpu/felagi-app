@@ -11,6 +11,40 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
+
+
+// ─── AG (audit L276) — Scheduled admin changes ───
+
+Artisan::command('settings:apply-scheduled', function () {
+    $due = \App\Models\SettingDraft::query()
+        ->where('scheduled_status', \App\Models\SettingDraft::SCHEDULE_PENDING)
+        ->whereNotNull('scheduled_at')
+        ->where('scheduled_at', '<=', now())
+        ->orderBy('scheduled_at')
+        ->limit(50)
+        ->get();
+
+    if ($due->isEmpty()) {
+        $this->info('No scheduled changes due.');
+        return 0;
+    }
+
+    $this->info("Applying {$due->count()} scheduled change(s)...");
+
+    foreach ($due as $draft) {
+        \App\Jobs\ApplyScheduledChange::dispatchSync($draft->id);
+        $this->line("  applied draft {$draft->id} ({$draft->setting_key})");
+    }
+
+    return 0;
+})->purpose('Apply any due scheduled admin changes');
+
+// Dispatch the scheduler every minute
+Schedule::command('settings:apply-scheduled')
+    ->everyMinute()
+    ->name('scheduled-admin-changes')
+    ->withoutOverlapping();
+
 // ─── WP-13b Scheduler ───
 
 // Process pending outbox events (bounded, short-lived)

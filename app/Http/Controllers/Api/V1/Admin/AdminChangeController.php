@@ -280,4 +280,56 @@ class AdminChangeController extends BaseApiController
         return $this->success($diff, 'Change diff.');
     }
 
+    /**
+     * POST /api/v1/admin/changes/{id}/schedule
+     *
+     * AG (audit L276) — schedule a validated draft for future application.
+     */
+    public function schedule(Request $request, string $id): JsonResponse
+    {
+        $draft   = SettingDraft::findOrFail($id);
+        $setting = Setting::findOrFail($draft->setting_key);
+        $this->authorize('publish', $setting);
+
+        if ($draft->status !== SettingDraft::STATUS_VALIDATED
+            && $draft->status !== SettingDraft::STATUS_DRAFT) {
+            return $this->error('STATE_CONFLICT', 'Only DRAFT or VALIDATED drafts can be scheduled.', 409);
+        }
+
+        $data = $request->validate([
+            'scheduled_at' => ['required', 'date', 'after:now'],
+        ]);
+
+        $draft->scheduled_at     = $data['scheduled_at'];
+        $draft->scheduled_status = SettingDraft::SCHEDULE_PENDING;
+        $draft->save();
+
+        return $this->success([
+            'draft_id'       => $draft->id,
+            'scheduled_at'   => $draft->scheduled_at->toIso8601String(),
+            'scheduled_status' => $draft->scheduled_status,
+        ], 'Change scheduled.', 202);
+    }
+
+    /**
+     * DELETE /api/v1/admin/changes/{id}/schedule
+     *
+     * AG — cancel a pending schedule.
+     */
+    public function unschedule(Request $request, string $id): JsonResponse
+    {
+        $draft   = SettingDraft::findOrFail($id);
+        $setting = Setting::findOrFail($draft->setting_key);
+        $this->authorize('publish', $setting);
+
+        if ($draft->scheduled_status !== SettingDraft::SCHEDULE_PENDING) {
+            return $this->error('STATE_CONFLICT', 'Draft is not scheduled.', 409);
+        }
+
+        $draft->scheduled_status       = SettingDraft::SCHEDULE_CANCELLED;
+        $draft->scheduled_processed_at = now();
+        $draft->save();
+
+        return $this->success($draft, 'Schedule cancelled.');
+    }
 }

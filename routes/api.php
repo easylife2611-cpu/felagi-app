@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\V1\Admin\AdminChangeController;
 use App\Http\Controllers\Api\V1\Admin\AdminTelegramController;
 use App\Http\Controllers\Api\V1\Admin\AdminReadController;
 use App\Http\Controllers\Api\V1\Admin\BulkActionController;
+use App\Http\Controllers\Api\V1\Admin\PresetController;
 use App\Http\Controllers\Api\V1\Admin\AdminAdsController;
 use Illuminate\Support\Facades\Route;
 
@@ -132,6 +133,8 @@ Route::prefix('v1')->group(function () {
         Route::get('needs/{needId}/comparisons', [ComparisonController::class, 'index']);
         Route::post('needs/{needId}/comparisons', [ComparisonController::class, 'store']);
         Route::get('comparisons/{id}', [ComparisonController::class, 'show']);
+    Route::get('/comparisons/{id}/provider-projection', [ComparisonController::class, 'providerProjection']);
+    Route::post('/comparisons/{id}/feedback', [ComparisonController::class, 'submitFeedback']);
 
     });
 
@@ -184,6 +187,10 @@ Route::prefix('v1')->group(function () {
             Route::get('{id}/audit',            [AdminChangeController::class, 'audit']);
             Route::get('{id}/diff',             [AdminChangeController::class, 'diff']);
             Route::post('{id}/rollback',        [AdminChangeController::class, 'rollback'])
+                ->middleware('reauth');
+            Route::post('{id}/schedule',        [AdminChangeController::class, 'schedule'])
+                ->middleware('reauth');
+            Route::delete('{id}/schedule',      [AdminChangeController::class, 'unschedule'])
                 ->middleware('reauth');
         });
 
@@ -244,6 +251,11 @@ Route::prefix('v1')->group(function () {
         Route::post('bulk/execute',              [BulkActionController::class, 'execute'])
             ->middleware(['reauth', 'idempotent']);
         Route::post('bulk/{id}/retry-failed',    [BulkActionController::class, 'retryFailed'])
+            ->middleware(['reauth', 'idempotent']);
+        // AH (audit L276) — safe presets
+        Route::get('presets',                    [PresetController::class, 'index']);
+        Route::get('presets/{name}/preview',     [PresetController::class, 'preview']);
+        Route::post('presets/{name}/apply',      [PresetController::class, 'apply'])
             ->middleware(['reauth', 'idempotent']);
         Route::get('security',      [AdminReadController::class, 'security']);
         Route::get('audit',         [AdminReadController::class, 'audit']);

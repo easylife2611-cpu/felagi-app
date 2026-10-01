@@ -1875,3 +1875,55 @@ AM OPEN → RESOLVED.
 
 Tests: 941 → 953 (+12). Assertions: 2548 → 2594. Failures: 0.
 
+
+## L285 — AI-35 + AI-21 + AI-22 + AG + AH — 2026-10-01
+
+NEW migrations:
+  - add_completeness_to_comparison_results
+  - create_comparison_feedback_table
+  - add_scheduling_to_setting_drafts
+  - create_setting_presets_table
+
+NEW services/models/controllers:
+  - app/Services/AI/CompletenessEvaluator.php
+  - app/Models/ComparisonFeedback.php
+  - app/Jobs/ApplyScheduledChange.php
+  - app/Models/SettingPreset.php
+  - app/Services/Admin/PresetService.php
+  - app/Http/Controllers/Api/V1/Admin/PresetController.php
+
+NEW seeder:
+  - database/seeders/PresetSeeder.php
+
+NEW tests (29 total):
+  - tests/Feature/AI/CompletenessEvaluatorTest.php (6)
+  - tests/Feature/AI/ProviderProjectionTest.php (8)
+  - tests/Feature/Admin/ScheduledChangeTest.php (6)
+  - tests/Feature/Admin/SafePresetTest.php (9)
+
+NEW routes:
+  GET    /api/v1/comparisons/{id}/provider-projection
+  POST   /api/v1/comparisons/{id}/feedback
+  POST   /api/v1/admin/changes/{id}/schedule
+  DELETE /api/v1/admin/changes/{id}/schedule
+  GET    /api/v1/admin/presets
+  GET    /api/v1/admin/presets/{name}/preview
+  POST   /api/v1/admin/presets/{name}/apply
+
+NEW command:
+  - settings:apply-scheduled (every-minute scheduled job)
+
+MODIFIED:
+  - ComparisonService (CompletenessEvaluator wiring)
+  - ComparisonResult (completeness fields)
+  - ComparisonController (providerProjection + submitFeedback)
+  - SettingDraft (scheduling fields + helpers)
+  - AdminChangeController (schedule + unschedule)
+  - BulkActionService (preset.apply action)
+  - routes/api.php
+  - routes/console.php
+
+AI-35, AI-21, AI-22, AG, AH → ALL RESOLVED.
+
+Tests: 953 → 982 (+29). Assertions: 2594 → 2662. Failures: 0.
+

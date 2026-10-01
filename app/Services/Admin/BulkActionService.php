@@ -29,10 +29,12 @@ class BulkActionService
 
     public const ACTION_SETTING_DISABLE = 'setting.disable';
     public const ACTION_TEST_NOOP       = 'test.noop';
+    public const ACTION_PRESET_APPLY    = 'preset.apply';
 
     public const SUPPORTED_ACTIONS = [
         self::ACTION_SETTING_DISABLE,
         self::ACTION_TEST_NOOP,
+        self::ACTION_PRESET_APPLY,
     ];
 
     public function __construct(
@@ -261,6 +263,7 @@ class BulkActionService
         match ($actionType) {
             self::ACTION_SETTING_DISABLE => $this->executeSettingDisable($actor, $id, $bulkId),
             self::ACTION_TEST_NOOP       => null,
+            self::ACTION_PRESET_APPLY    => $this->executePresetItem($actor, $id, $bulkId),
             default                      => throw new \RuntimeException("Unknown action: {$actionType}"),
         };
     }
@@ -345,5 +348,100 @@ class BulkActionService
     private function idempotencyKeyFor(string $bulkId, string $entityId): string
     {
         return 'bulk:' . $bulkId . ':' . hash('sha256', $entityId);
+    }
+
+    /**
+     * AH (audit L276) — apply a named preset by expanding it into a
+     * single bulk action. All safety machinery (frozen digest, per-item
+     * recheck, item-level outcome, audit) applies.
+     */
+    public function applyPreset(
+        User $actor,
+        string $presetName,
+        array $keys,
+        array $values,
+    ): BulkAction {
+        if (empty($keys)) {
+            throw new \InvalidArgumentException('Preset has no applicable keys.');
+        }
+
+        $ids = array_values(array_unique(array_map('strval', $keys)));
+        sort($ids);
+
+        $digest = $this->computeDigest(
+            self::ACTION_PRESET_APPLY,
+            'setting',
+            'preset:' . $presetName,
+            $ids,
+        );
+
+        return DB::transaction(function () use ($actor, $presetName, $ids, $digest, $values) {
+            $bulk = BulkAction::create([
+                'actor_id'         => $actor->id,
+                'action_type'      => self::ACTION_PRESET_APPLY,
+                'entity_type'      => 'setting',
+                'scope'            => 'preset:' . $presetName,
+                'selection_ids'    => $ids,
+                'selection_digest' => $digest,
+                'expected_count'   => count($ids),
+                'status'           => BulkAction::STATUS_PREVIEWED,
+                'items'            => [],
+                'created_at'       => now(),
+            ]);
+
+            // Stash preset values into the service's per-item context
+            $this->presetValues = $values;
+
+            return $this->runItems($actor, $bulk, $ids);
+        });
+    }
+
+    /** Per-call preset values (transient, cleared after each runItems) */
+    private array $presetValues = [];
+
+    private function executePresetItem(User $actor, string $key, string $bulkId): void
+    {
+        $setting = Setting::find($key);
+        if (! $setting) {
+            throw new \RuntimeException("Setting not found: {$key}");
+        }
+
+        $newValue = $this->presetValues[$key] ?? null;
+
+        $current = $setting->value_json['value'] ?? null;
+        if ($current === $newValue) {
+            return; // idempotent success
+        }
+
+        $newVersion = ((int) $setting->version_number) + 1;
+
+        SettingVersion::create([
+            'setting_key'    => $key,
+            'version_number' => $newVersion,
+            'value_json'     => ['value' => $newValue],
+            'published_by'   => $actor->id,
+            'published_at'   => now(),
+            'reason'         => "Preset apply via bulk_action {$bulkId}",
+        ]);
+
+        $setting->value_json     = ['value' => $newValue];
+        $setting->version_number = $newVersion;
+        $setting->updated_by     = $actor->id;
+        $setting->save();
+
+        $this->audit->write(
+            actor:        $actor,
+            action:       'setting.preset-apply.item',
+            entityType:   'setting',
+            entityId:     null,
+            reason:       "Preset apply via bulk_action {$bulkId}",
+            beforeState:  ['value' => $current],
+            afterState:   ['value' => $newValue],
+            safeMetadata: [
+                'setting_key' => $key,
+                'bulk_id'     => $bulkId,
+                'version'     => $newVersion,
+            ],
+        );
     }
 }

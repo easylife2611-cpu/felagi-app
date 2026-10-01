@@ -8,6 +8,7 @@ use App\Models\ComparisonResult;
 use App\Models\Need;
 use App\Models\Offer;
 use App\Services\AI\ContradictionDetector;
+use App\Services\AI\CompletenessEvaluator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -46,6 +47,7 @@ class ComparisonService
     public function __construct(
         private readonly GeminiClient $client,
         private readonly ContradictionDetector $contradictionDetector = new ContradictionDetector(),
+        private readonly CompletenessEvaluator $completenessEvaluator = new CompletenessEvaluator(),
     ) {}
 
     /**
@@ -192,6 +194,8 @@ class ComparisonService
                     'fit_explanation'     => $fitExplanation,
                 ];
 
+                $completeness = $this->completenessEvaluator->evaluate($scoreRow);
+
                 ComparisonResult::create([
                     'comparison_id'       => $comparison->id,
                     'comparison_offer_id' => $co->id,
@@ -202,6 +206,9 @@ class ComparisonService
                     'missing_information' => $resultPayload['missing_information'],
                     'risk_notes'          => $resultPayload['risk_notes'],
                     'fit_explanation'     => $resultPayload['fit_explanation'],
+                    'completeness'        => $completeness['completeness'],
+                    'missing_criteria'    => $completeness['missing_criteria'],
+                    'uncertain_criteria'  => $completeness['uncertain_criteria'],
                     'result_hash'         => hash('sha256', json_encode($resultPayload)),
                     'created_at'          => now(),
                 ]);

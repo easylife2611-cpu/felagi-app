@@ -22,6 +22,9 @@ class ComparisonResult extends Model
         'missing_information',
         'risk_notes',
         'fit_explanation',
+        'completeness',
+        'missing_criteria',
+        'uncertain_criteria',
         'result_hash',
         'created_at',
     ];
@@ -33,6 +36,8 @@ class ComparisonResult extends Model
         'weaknesses' => 'array',
         'missing_information' => 'array',
         'risk_notes' => 'array',
+        'missing_criteria' => 'array',
+        'uncertain_criteria' => 'array',
         'created_at' => 'datetime',
     ];
 

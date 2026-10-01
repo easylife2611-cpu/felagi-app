@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Comparison;
+use App\Models\ComparisonFeedback;
+use App\Models\ComparisonResult;
 use App\Models\Need;
 use App\Services\AI\ComparisonService;
 use Illuminate\Http\JsonResponse;
@@ -104,5 +106,111 @@ class ComparisonController extends BaseApiController
         }
 
         return $this->success($comparison, 'Comparison retrieved.');
+    }
+
+    /**
+     * GET /api/v1/comparisons/{id}/provider-projection
+     *
+     * AI-21 — Provider Result Projection.
+     * A provider sees ONLY their own offer's result from the immutable
+     * comparison snapshot. Other providers → 403.
+     */
+    public function providerProjection(Request $request, string $id): JsonResponse
+    {
+        $comparison = Comparison::find($id);
+        if (! $comparison) {
+            return $this->error('NOT_FOUND', 'Comparison not found.', 404);
+        }
+
+        $providerId = $request->user()->id;
+
+        // Find this provider's offer snapshot in the comparison
+        $offer = $comparison->comparisonOffers()
+            ->where('provider_id', $providerId)
+            ->first();
+
+        if (! $offer) {
+            return $this->error('FORBIDDEN', 'No projection available for this provider.', 403);
+        }
+
+        $result = ComparisonResult::where('comparison_id', $comparison->id)
+            ->where('comparison_offer_id', $offer->id)
+            ->first();
+
+        if (! $result) {
+            return $this->error('NOT_FOUND', 'Result not yet available.', 404);
+        }
+
+        return $this->success([
+            'comparison_id'    => $comparison->id,
+            'version_number'   => $comparison->version_number,
+            'status'           => $comparison->status,
+            'offer_index'      => $comparison->comparisonOffers()
+                                    ->orderBy('created_at')
+                                    ->pluck('id')
+                                    ->search($offer->id),
+            'score'            => (float) $result->score,
+            'criterion_scores' => $result->criterion_scores,
+            'completeness'     => $result->completeness,
+            'missing_criteria' => $result->missing_criteria,
+            'uncertain_criteria' => $result->uncertain_criteria,
+            'strengths'        => $result->strengths,
+            'weaknesses'       => $result->weaknesses,
+            'missing_information' => $result->missing_information,
+            'risk_notes'       => $result->risk_notes,
+            'fit_explanation'  => $result->fit_explanation,
+            'projected_at'     => now()->toIso8601String(),
+        ], 'Provider projection.');
+    }
+
+    /**
+     * POST /api/v1/comparisons/{id}/feedback
+     *
+     * AI-22 — Provider Feedback UX.
+     * A provider can submit one feedback per comparison. The feedback is
+     * advisory only; it does not mutate the immutable result.
+     */
+    public function submitFeedback(Request $request, string $id): JsonResponse
+    {
+        $comparison = Comparison::find($id);
+        if (! $comparison) {
+            return $this->error('NOT_FOUND', 'Comparison not found.', 404);
+        }
+
+        $providerId = $request->user()->id;
+
+        // Only providers who submitted an offer may leave feedback
+        $hasOffer = $comparison->comparisonOffers()
+            ->where('provider_id', $providerId)
+            ->exists();
+        if (! $hasOffer) {
+            return $this->error('FORBIDDEN', 'Only providers in this comparison may leave feedback.', 403);
+        }
+
+        $data = $request->validate([
+            'rating'  => ['required', 'string', 'in:' . implode(',', ComparisonFeedback::RATINGS)],
+            'comment' => ['nullable', 'string', 'max:1000'],
+        ]);
+
+        $existing = ComparisonFeedback::where('comparison_id', $comparison->id)
+            ->where('provider_id', $providerId)
+            ->first();
+        if ($existing) {
+            return $this->error(
+                'FEEDBACK_ALREADY_SUBMITTED',
+                'Feedback already recorded for this comparison.',
+                409,
+            );
+        }
+
+        $feedback = ComparisonFeedback::create([
+            'comparison_id' => $comparison->id,
+            'provider_id'   => $providerId,
+            'rating'        => $data['rating'],
+            'comment'       => $data['comment'] ?? null,
+            'status'        => 'SUBMITTED',
+        ]);
+
+        return $this->success($feedback, 'Feedback recorded.', 201);
     }
 }

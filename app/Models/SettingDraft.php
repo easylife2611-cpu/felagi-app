@@ -16,12 +16,15 @@ class SettingDraft extends Model
     protected $fillable = [
         'id', 'setting_key', 'proposed_value_json', 'proposed_by',
         'status', 'validation_report', 'impact_preview',
+        'scheduled_at', 'scheduled_status', 'scheduled_processed_at',
     ];
 
     protected $casts = [
         'proposed_value_json' => 'array',
         'validation_report'   => 'array',
         'impact_preview'      => 'array',
+        'scheduled_at'        => 'datetime',
+        'scheduled_processed_at' => 'datetime',
         'created_at'          => 'datetime',
         'updated_at'          => 'datetime',
     ];
@@ -44,5 +47,23 @@ class SettingDraft extends Model
     public function isEditable(): bool
     {
         return in_array($this->status, [self::STATUS_DRAFT, self::STATUS_VALIDATED], true);
+    }
+
+    public const SCHEDULE_NONE      = 'NONE';
+    public const SCHEDULE_PENDING   = 'PENDING';
+    public const SCHEDULE_APPLIED   = 'APPLIED';
+    public const SCHEDULE_CANCELLED = 'CANCELLED';
+    public const SCHEDULE_FAILED    = 'FAILED';
+
+    public function isScheduled(): bool
+    {
+        return $this->scheduled_status === self::SCHEDULE_PENDING
+            && $this->scheduled_at !== null;
+    }
+
+    public function isDue(): bool
+    {
+        return $this->isScheduled()
+            && $this->scheduled_at->lte(now());
     }
 }
