@@ -1,0 +1,49 @@
+########## USER SCREENS (S001-S023) ##########
+S001  | /                                             | HTTP 200 | size=12226  | d=Y l=Y v=Y c=Y t=Y | screenS001 — ፈላጊ
+S002  | /auth/telegram                                | HTTP 200 | size=12226  | d=Y l=Y v=Y c=Y t=Y | screenS001 — ፈላጊ
+S003  | /profile                                      | HTTP 200 | size=15030  | d=Y l=Y v=Y c=Y t=Y | Profile — ፈላጊ
+S004  | /browse                                       | HTTP 200 | size=8594   | d=Y l=Y v=Y c=Y t=Y | Browse Needs — ፈላጊ
+S005  | /needs/new                                    | HTTP 200 | size=13392  | d=Y l=Y v=Y c=Y t=Y | Create Need — ፈላጊ
+S006  | /needs/new/public-preview                     | HTTP 200 | size=9251   | d=Y l=Y v=Y c=Y t=Y | Public preview — ፈላጊ
+S007  | /needs/test-id/created                        | HTTP 200 | size=7262   | d=Y l=Y v=Y c=Y t=Y | Need published! — ፈላጊ
+S008  | /needs/test-id                                | HTTP 200 | size=14863  | d=Y l=Y v=Y c=Y t=Y | Need details — ፈላጊ
+S009  | /my/needs                                     | HTTP 200 | size=11789  | d=Y l=Y v=Y c=Y t=Y | My Needs — ፈላጊ
+S010  | /needs/test-id/offers                         | HTTP 200 | size=13976  | d=Y l=Y v=Y c=Y t=Y | Received Offers — ፈላጊ
+S011  | /needs/test-id/offers/new                     | HTTP 200 | size=15725  | d=Y l=Y v=Y c=Y t=Y | Submit offer — ፈላጊ
+S012  | /offers/test-id                               | HTTP 200 | size=17317  | d=Y l=Y v=Y c=Y t=Y | Offer Details — ፈላጊ
+S013  | /my/offers                                    | HTTP 200 | size=11466  | d=Y l=Y v=Y c=Y t=Y | My Offers — ፈላጊ
+S014  | /needs/test-id/compare                        | HTTP 200 | size=15014  | d=Y l=Y v=Y c=Y t=Y | Compare offers — ፈላጊ
+S015  | /comparisons/test-id                          | HTTP 200 | size=9557   | d=Y l=Y v=Y c=Y t=Y | Comparison result — ፈላጊ
+S016  | /needs/test-id/comparisons                    | HTTP 200 | size=8668   | d=Y l=Y v=Y c=Y t=Y | Comparison history — ፈላጊ
+S017  | /offers/test-id/messages                      | HTTP 200 | size=12714  | d=Y l=Y v=Y c=Y t=Y | Messages — ፈላጊ
+S018  | /notifications                                | HTTP 200 | size=13356  | d=Y l=Y v=Y c=Y t=Y | Alerts — ፈላጊ
+S019  | /needs/test-id/boost                          | HTTP 200 | size=9109   | d=Y l=Y v=Y c=Y t=Y | Boost need — ፈላጊ
+S020  | /needs/test-id/rating                         | HTTP 200 | size=12099  | d=Y l=Y v=Y c=Y t=Y | Rate participant — ፈላጊ
+S021  | /support/report                               | HTTP 200 | size=9429   | d=Y l=Y v=Y c=Y t=Y | Report a problem — ፈላጊ
+S022  | /needs/test-id/publications                   | HTTP 200 | size=11269  | d=Y l=Y v=Y c=Y t=Y | Telegram publications — ፈላጊ
+S023  | /needs/test-id/offers/unlock                  | HTTP 200 | size=9328   | d=Y l=Y v=Y c=Y t=Y | Unlock offer submission — ፈላጊ
+
+########## ADMIN SCREENS (A001-A023) ##########
+A001  | /admin/dashboard                              | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A002  | /admin/telegram                               | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A003  | /admin/health                                 | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A004  | /admin/features                               | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A005  | /admin/marketplace                            | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A006  | /admin/ai                                     | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A007  | /admin/payments                               | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A008  | /admin/users                                  | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A009  | /admin/content                                | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A010  | /admin/notifications                          | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A011  | /admin/files                                  | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A012  | /admin/jobs                                   | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A013  | /admin/backups                                | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A014  | /admin/integrity                              | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A015  | /admin/security                               | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A016  | /admin/audit                                  | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A017  | /admin/settings                               | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A018  | /admin/recovery                               | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A019  | /admin/safe-mode                              | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A020  | /admin/monetization                           | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A021  | /admin/maintenance                            | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A022  | /admin/reports                                | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
+A023  | /admin/monetization/sponsored-ads             | HTTP 200 | size=5225   | d=Y l=Y v=Y c=Y t=Y | Admin Sign In — ፈላጊ
