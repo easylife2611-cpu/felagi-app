@@ -292,3 +292,15 @@ Route::prefix('v1/auth/email')->group(function () {
     Route::post('/request', [\App\Http\Controllers\V1\EmailAuthController::class, 'requestCode']);
     Route::post('/verify',  [\App\Http\Controllers\V1\EmailAuthController::class, 'verifyCode']);
 });
+
+// Breach Notification — Proclamation 1321/2024, Art. 30 (admin only)
+Route::middleware(['auth:sanctum'])->prefix('v1/admin/breaches')->group(function () {
+    Route::get('/',                 [\App\Http\Controllers\V1\BreachController::class, 'index']);
+    Route::post('/',                [\App\Http\Controllers\V1\BreachController::class, 'store']);
+    Route::get('/overdue',          [\App\Http\Controllers\V1\BreachController::class, 'overdue']);
+    Route::get('/{incident}',       [\App\Http\Controllers\V1\BreachController::class, 'show']);
+    Route::post('/{incident}/contain',  [\App\Http\Controllers\V1\BreachController::class, 'contain']);
+    Route::post('/{incident}/notify-eca',   [\App\Http\Controllers\V1\BreachController::class, 'notifyEca']);
+    Route::post('/{incident}/notify-users', [\App\Http\Controllers\V1\BreachController::class, 'notifyUsers']);
+    Route::post('/{incident}/resolve',  [\App\Http\Controllers\V1\BreachController::class, 'resolve']);
+});
