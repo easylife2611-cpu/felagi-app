@@ -2959,3 +2959,53 @@ default locale is `am`).
 - No silent changes — root-cause note about 3-arg `__()` recorded above
 - Evidence-based — all 9 tests assert against the canonical doc and
   rendered A023 output
+
+---
+
+## L273 — GAP-FACT-01 verification (discovered ALREADY COMPLETE)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Documentation — status correction (no code)
+
+### Discovery
+
+While preparing to work on GAP-FACT-01 (documented in GAP_ANALYSIS_20260930.md
+as "more model factories", 2h effort), a full audit revealed the gap is
+**already closed**.
+
+### Audit evidence
+
+| Metric | Count |
+|---|---|
+| Models in app/Models/ | 34 |
+| Factories in database/factories/ | 34 |
+| Models with HasFactory trait | 34 |
+| Models with matching factory file | 34 |
+| Models WITHOUT HasFactory | 0 |
+| Models WITHOUT factory file | 0 |
+| Orphan factories (no model) | 0 |
+
+### Root cause of the discrepancy
+
+GAP-FACT-01 was marked open in GAP_ANALYSIS_20260930.md (L270), but the
+underlying work was completed earlier in:
+- L258 (commit 7581e3d) — "GAP-71c: Remaining factories (8 models)" — this
+  reached 29 factories / 29 models.
+- Subsequent adds (L266-L271 work on AdCreative, AdCampaign, AdDelivery,
+  AdEvent, Advertiser) brought the totals to 34/34 — 100%.
+
+The gap analysis document was not refreshed after those additions.
+
+### Correction
+
+GAP-FACT-01 status: OPEN → RESOLVED (verified 2026-10-01).
+
+### Constitution Compliance
+
+- No guessing — every count is a filesystem fact
+- No silent changes — status correction is explicitly logged
+- No hidden work — the audit commands are recorded
+- UNKNOWN != MISSING — GAP-FACT-01 was never MISSING; it was complete
+
+**Closed by:** L273 (this commit, documentation only)

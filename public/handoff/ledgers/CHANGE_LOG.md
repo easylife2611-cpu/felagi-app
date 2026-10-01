@@ -1733,3 +1733,10 @@ git revert <S003-commit>
 - 107/107 API endpoints complete
 - 32 open gaps (11 critical external + 21 actionable)
 - 18 gaps resolved this session
+
+## L273 — GAP-FACT-01 status correction (OPEN → RESOLVED) — 2026-10-01
+
+Verified 34/34 model factories exist with HasFactory trait. The gap was
+already closed by L258 (7581e3d) and later additive work; the gap analysis
+(L270) had not been refreshed. No code change.
+
