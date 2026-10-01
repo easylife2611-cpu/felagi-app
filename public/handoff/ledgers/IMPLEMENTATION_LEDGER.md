@@ -3178,3 +3178,60 @@ artefact actually exists in the repo:
 - UNKNOWN != MISSING — 🟡/❓ items preserved, not deleted
 - No silent changes — AR marked ❌ explicitly
 - Evidence-based — 7 tests verify the audit against the repo
+
+---
+
+## L277 — GAP-AUD-02: AI Requirements Audit (AI-1 .. AI-51)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Audit (documentation + verification tests)
+
+### What Changed
+
+#### NEW — docs/reports/AI_REQUIREMENTS_AUDIT_20261001.md (130 lines)
+Full audit of all 51 AI requirements (AI-1 .. AI-51) from
+`Design_Data/ai-requirement-coverage.json`, mapped to production
+evidence (service / model / controller / route / test / doc).
+
+Summary:
+- ✅ Verified: 27 (53%)
+- 🟡 Partial: 18 (35%)
+- ❌ Missing: 0
+- ❓ Unknown / external: 6 (12%)
+
+Developer-actionable findings (5, ~13h total):
+1. AI-11 Contradiction detection rule (3h)
+2. AI-21 Provider Result Projection endpoint (3h)
+3. AI-22 Provider Feedback UX (3h)
+4. AI-35 Partial / uncertain result rules (2h)
+5. AI-47 Fairness consistency test (2h)
+
+External-evidence items: AI-43 (browser/AT), plus live provider tests
+(T05-T08/T31 per GAP_ANALYSIS).
+
+Design-side: AI-31 / AI-32 / AI-33 remain backend-ready, UI partial
+per WP-05c placeholder pattern.
+
+#### NEW — tests/Feature/AI/AiRequirementsAuditTest.php (6 tests, 14 assertions)
+Verifies the audit doc exists and that every claimed production
+artefact actually exists in the repo:
+- audit doc exists
+- covers all 51 requirement codes (loop AI-1..AI-51)
+- all referenced AI services + controller exist
+- all referenced comparison models exist
+- audit references AI_Evaluation_Contract.md
+- summary totals to 51
+
+### Result
+- Full suite: 889 tests / 2404 assertions / 0 failures / 1 skipped
+  (was 883 / 2390 before L277)
+- +6 tests, +14 assertions
+- GAP-AUD-02 status: RESOLVED (audit documented + fact-checked)
+
+### Constitution Compliance
+- Additive only (no existing code or test modified)
+- No guessing — every status anchored to a file path or test class
+- UNKNOWN != MISSING — 🟡/❓ items preserved, not deleted
+- No silent changes — partial items explicitly flagged
+- Evidence-based — 6 tests verify the audit against the repo
