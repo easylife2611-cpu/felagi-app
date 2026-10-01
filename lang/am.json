@@ -542,5 +542,15 @@
     "admin.ads.privacy.tracking_pixels": "ከሶስተኛ ወገን የክትትል ፒክሰሎች ወይም ስክሪፕቶች የሉም",
     "admin.ads.privacy.tracking_identity": "ከአገልግሎት ወይም ከመተግበሪያ አቋራጭ ማንነት የለም",
     "admin.ads.privacy.tracking_payloads": "በማስታወቂያ ጭነት ውስጥ ጥሬ የገበያ መዝገቦች የሉም",
-    "admin.ads.privacy.doc_ref": "ቀኖናዊ: docs/privacy/SPONSORED_ADS_PRIVACY_CONSENT.md (ADS-55)"
+    "admin.ads.privacy.doc_ref": "ቀኖናዊ: docs/privacy/SPONSORED_ADS_PRIVACY_CONSENT.md (ADS-55)",
+    "login.code_sent": "የመግቢያ ኮድ ወደ ኢሜልዎ ተልኳል።",
+    "login.invalid_code": "ኮዱ ልክ አይደለም ወይም ጊዜው አልፎበታል።",
+    "login.success": "በተሳካ ሁኔታ ገብተዋል።",
+    "login.welcome": "እንኳን ደህና መጡ፣ :name!",
+    "privacy.access_granted": "የእርስዎ ውሂብ ተመልሷል።",
+    "privacy.erasure_requested": "የስረዛ ጥያቄ ተቀብሏል። የ7 ቀን ጊዜ ተሰጥቷል።",
+    "privacy.restricted": "ገደብ ተተግብሯል።",
+    "privacy.objection_received": "ተቃውሞ ተቀብሏል።",
+    "consent.granted": "ፈቃድ ተሰጥቷል።",
+    "consent.revoked": "ፈቃድ ተሰርዟል።"
 }

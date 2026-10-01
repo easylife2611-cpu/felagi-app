@@ -15,6 +15,9 @@ class User extends Authenticatable
     use HasApiTokens;
 
     protected $fillable = [
+        'name',
+        'username',
+        'email',
         'telegram_subject',
         'full_name',
         'phone_number',

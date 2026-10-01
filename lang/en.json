@@ -542,5 +542,15 @@
     "admin.ads.privacy.tracking_pixels": "No third-party tracking pixels or scripts",
     "admin.ads.privacy.tracking_identity": "No cross-service or cross-app identity",
     "admin.ads.privacy.tracking_payloads": "No raw marketplace records in ad payloads",
-    "admin.ads.privacy.doc_ref": "Canonical: docs/privacy/SPONSORED_ADS_PRIVACY_CONSENT.md (ADS-55)"
+    "admin.ads.privacy.doc_ref": "Canonical: docs/privacy/SPONSORED_ADS_PRIVACY_CONSENT.md (ADS-55)",
+    "login.code_sent": "Login code has been sent to your email.",
+    "login.invalid_code": "Invalid or expired code.",
+    "login.success": "Logged in successfully.",
+    "login.welcome": "Welcome back, :name!",
+    "privacy.access_granted": "Your data has been retrieved.",
+    "privacy.erasure_requested": "Erasure request received. 7-day grace period active.",
+    "privacy.restricted": "Restriction applied.",
+    "privacy.objection_received": "Objection received.",
+    "consent.granted": "Consent granted.",
+    "consent.revoked": "Consent revoked."
 }

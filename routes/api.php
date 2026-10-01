@@ -276,3 +276,19 @@ Route::middleware('auth:sanctum')->prefix('v1/consent')->group(function () {
     Route::post('/grant',  [\App\Http\Controllers\V1\ConsentController::class, 'grant']);
     Route::post('/revoke', [\App\Http\Controllers\V1\ConsentController::class, 'revoke']);
 });
+
+// Data Subject Rights API — Proclamation 1321/2024, Art. 34-39
+Route::middleware('auth:sanctum')->prefix('v1/privacy')->group(function () {
+    Route::get('/data',       [\App\Http\Controllers\V1\PrivacyController::class, 'show']);      // Art. 34
+    Route::patch('/data',     [\App\Http\Controllers\V1\PrivacyController::class, 'update']);    // Art. 35
+    Route::delete('/data',    [\App\Http\Controllers\V1\PrivacyController::class, 'destroy']);   // Art. 36
+    Route::post('/restrict',  [\App\Http\Controllers\V1\PrivacyController::class, 'restrict']);  // Art. 37
+    Route::get('/export',     [\App\Http\Controllers\V1\PrivacyController::class, 'export']);    // Art. 38
+    Route::post('/object',    [\App\Http\Controllers\V1\PrivacyController::class, 'object']);    // Art. 39
+});
+
+// Email OTP Authentication — Amharic + English
+Route::prefix('v1/auth/email')->group(function () {
+    Route::post('/request', [\App\Http\Controllers\V1\EmailAuthController::class, 'requestCode']);
+    Route::post('/verify',  [\App\Http\Controllers\V1\EmailAuthController::class, 'verifyCode']);
+});
