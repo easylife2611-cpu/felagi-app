@@ -132,6 +132,50 @@
         </p>
     </section>
 
+    {{-- Privacy & Consent (ADS-55) --}}
+    <section class="card" id="ads-privacy">
+        <h2>{{ __('admin.ads.privacy.title') }}</h2>
+        <p class="muted">{{ __('admin.ads.privacy.subtitle') }}</p>
+
+        <h3>{{ __('admin.ads.privacy.uses_heading') }}</h3>
+        <ul class="privacy-list">
+            <li>{{ __('admin.ads.privacy.uses_placement') }}</li>
+            <li>{{ __('admin.ads.privacy.uses_category') }}</li>
+            <li>{{ __('admin.ads.privacy.uses_region') }}</li>
+            <li>{{ __('admin.ads.privacy.uses_locale') }}</li>
+            <li>{{ __('admin.ads.privacy.uses_schedule') }}</li>
+        </ul>
+
+        <h3>{{ __('admin.ads.privacy.never_heading') }}</h3>
+        <ul class="privacy-list">
+            <li>{{ __('admin.ads.privacy.never_messages') }}</li>
+            <li>{{ __('admin.ads.privacy.never_contact') }}</li>
+            <li>{{ __('admin.ads.privacy.never_payments') }}</li>
+            <li>{{ __('admin.ads.privacy.never_provider') }}</li>
+            <li>{{ __('admin.ads.privacy.never_ai') }}</li>
+            <li>{{ __('admin.ads.privacy.never_reports') }}</li>
+            <li>{{ __('admin.ads.privacy.never_traits') }}</li>
+        </ul>
+
+        <h3>{{ __('admin.ads.privacy.retention_heading') }}</h3>
+        <ul class="privacy-list">
+            <li>{{ __('admin.ads.privacy.retention_raw') }}</li>
+            <li>{{ __('admin.ads.privacy.retention_agg') }}</li>
+            <li>{{ __('admin.ads.privacy.retention_audit') }}</li>
+        </ul>
+
+        <h3>{{ __('admin.ads.privacy.tracking_heading') }}</h3>
+        <ul class="privacy-list">
+            <li>{{ __('admin.ads.privacy.tracking_pixels') }}</li>
+            <li>{{ __('admin.ads.privacy.tracking_identity') }}</li>
+            <li>{{ __('admin.ads.privacy.tracking_payloads') }}</li>
+        </ul>
+
+        <p class="muted small">
+            {{ __('admin.ads.privacy.doc_ref') }}
+        </p>
+    </section>
+
     {{-- Diagnostics --}}
     <section class="card">
         <h2>{{ __('admin.ads.diagnostics', [], 'Diagnostics') }}</h2>
@@ -219,5 +263,8 @@
     .wizard-steps { counter-reset: step; list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .wizard-steps li { padding: 0.5rem 1rem; background: #f3f4f6; border-radius: 6px; font-size: 0.85rem; }
     .diagnostic-list { list-style: none; padding: 0; font-family: monospace; font-size: 0.9rem; }
+    .privacy-list { list-style: none; padding: 0; margin: 0.5rem 0 1rem; }
+    .privacy-list li { padding: 0.35rem 0 0.35rem 1.5rem; position: relative; font-size: 0.9rem; color: #374151; }
+    .privacy-list li::before { content: '•'; position: absolute; left: 0.5rem; color: #26c281; font-weight: 700; }
 </style>
 @endsection

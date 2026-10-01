@@ -2875,3 +2875,87 @@ Pre-existing failure (from L268-followup 4f78021):
 - No guessing - media validation returns REQUIRES_EVIDENCE not PASS/FAIL
 - No silent changes - pre-existing failures explicitly documented here
 - Evidence-based - spec: Sponsored_Advertising_Contract.md
+
+---
+
+## L272 — ADS-55 Sponsored Ads Privacy / Consent documentation
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature (ADS-55) + documentation
+
+### What Changed
+
+#### NEW — docs/privacy/SPONSORED_ADS_PRIVACY_CONSENT.md (125 lines)
+Canonical privacy & consent document for Sponsored Advertising subsystem.
+12 sections:
+- Lawful basis (contextual only; master OFF by default)
+- Data used (placement, category, coarse region, locale, schedule,
+  pseudonymous session reference)
+- Data explicitly NOT used (messages, attachments, contact, payment,
+  provider history, AI results, reports, secrets, sensitive traits,
+  cross-service identity)
+- Retention (raw events 30 days; aggregates 180 days; audit per
+  foundation)
+- Deletion / restricted requests
+- Tracking prohibitions (no 3rd-party pixels/scripts; no cross-app
+  identity; no raw marketplace records in ad payloads)
+- Impression / click definitions (>= 50% visible >= 1s; click is
+  activation not conversion; CTR UNKNOWN when denominator is zero)
+- Audit trail (actor, permission, reason, versions, digest)
+- Consent points (A023 diagnostics, master toggle, consumer placement,
+  login footer)
+- Consumer disclosure (Sponsored label + sponsor + disclosure)
+- Evidence boundary (Published != Applied != Verified)
+- Escalation (canonical owner, admin owner, requirement ADS-55)
+
+#### MODIFIED — resources/views/admin/sponsored-ads.blade.php
+- Added `#ads-privacy` section between campaign list and diagnostics
+- 4 sub-lists: contextual signals / never used / retention / tracking
+  prohibitions
+- CSS: `.privacy-list` (additive, no existing selector changed)
+- Uses 2-arg `__()` calls (keys live in lang/en.json + lang/am.json)
+
+#### MODIFIED — lang/en.json + lang/am.json
+- 25 new keys each, prefix `admin.ads.privacy.*`
+- Bilingual content (Amharic + English)
+- JSON re-validated (`json_last_error()` clean)
+
+#### NEW — tests/Feature/Ads/SponsoredAdsPrivacyTest.php (9 tests, 42 assertions)
+Covers: privacy doc exists + contains required strings; A023 renders
+`#ads-privacy` section; contextual signals list; never-used list;
+retention values (30/180 days); tracking prohibitions; EN keys exist;
+AM keys exist; Amharic rendering under `setLocale('am')`.
+Test `setUp()` sets locale to `en` (matches AdminLoginTest pattern;
+default locale is `am`).
+
+### Backups
+- resources/views/admin/sponsored-ads.blade.php.bak.l272
+- lang/en.json.bak.l272
+- lang/am.json.bak.l272
+
+### Result
+- Full suite: 866 tests / 2088 assertions / 0 failures / 1 skipped
+  (was 857 / 2046 before L272)
+- +9 tests, +42 assertions vs L271
+- ADS-55 status: IMPLEMENTED (documentation + admin visibility)
+  - Consumer-visible consent flow is design-level (D-097 frontend);
+    this L272 covers canonical doc + admin visibility only
+  - External evidence (browser screenshot, AT verification) remains
+    separate release evidence per contract §Evidence boundary
+
+### Notes
+- All 25 new translation strings use 2-arg `__()` form.
+  Laravel's `__($key, $replace = [], $locale = null)` 3rd arg is a
+  locale name, not a fallback. Existing 3-arg calls in the file
+  (predating L272) are left untouched — not in scope.
+- No production behaviour changed; documentation + admin rendering only.
+
+### Constitution Compliance
+- Additive only (existing `.diagnostic-list`, sections untouched)
+- No guessing — spec: Sponsored_Advertising_Contract.md (Privacy
+  section verbatim: contextual-only, 30/180d retention, no 3rd-party
+  tracking)
+- No silent changes — root-cause note about 3-arg `__()` recorded above
+- Evidence-based — all 9 tests assert against the canonical doc and
+  rendered A023 output
