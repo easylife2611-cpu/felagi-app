@@ -1,0 +1,60 @@
+═══════════════════════════════════════════
+🔍 G04B — ACCESSIBILITY HTML STRUCTURE
+═══════════════════════════════════════════
+
+########## USER SCREENS ##########
+S001  | /                                      | h1=0 h2=0 main=1 nav=0 hdr=0 ftr=0 aria=0 alt=1 lbl=0 img=1 skip=0 | am=32
+S003  | /profile                               | h1=1 h2=1 main=1 nav=0 hdr=1 ftr=0 aria=0 alt=1 lbl=3 img=1 skip=0 | am=6
+S004  | /browse                                | h1=0 h2=0 main=1 nav=1 hdr=1 ftr=0 aria=0 alt=0 lbl=1 img=0 skip=0 | am=6
+S005  | /needs/new                             | h1=0 h2=1 main=1 nav=0 hdr=1 ftr=0 aria=0 alt=0 lbl=9 img=0 skip=0 | am=6
+S008  | /needs/test-id                         | h1=1 h2=0 main=1 nav=0 hdr=1 ftr=0 aria=0 alt=1 lbl=0 img=1 skip=0 | am=6
+S010  | /needs/test-id/offers                  | h1=0 h2=0 main=1 nav=0 hdr=1 ftr=0 aria=0 alt=1 lbl=0 img=1 skip=0 | am=3
+S018  | /notifications                         | h1=0 h2=0 main=1 nav=1 hdr=1 ftr=0 aria=1 alt=0 lbl=0 img=0 skip=0 | am=3
+S021  | /support/report                        | h1=0 h2=3 main=1 nav=0 hdr=1 ftr=0 aria=0 alt=0 lbl=5 img=0 skip=0 | am=3
+
+########## ADMIN SCREENS (unauth → login) ##########
+A001  | /admin/dashboard                       | h1=1 h2=0 main=0 nav=0 hdr=0 ftr=0 aria=0 alt=0 lbl=0 img=0 skip=0 | am=6
+A023  | /admin/monetization/sponsored-ads      | h1=1 h2=0 main=0 nav=0 hdr=0 ftr=0 aria=0 alt=0 lbl=0 img=0 skip=0 | am=6
+
+═══════════════════════════════════════════
+🔍 G04C — SECURITY HEADERS
+═══════════════════════════════════════════
+
+--- / ---
+set-cookie: XSRF-TOKEN=eyJpdiI6IjZZd3dtMUl6T25xaVYwRXV2UkFxdWc9PSIsInZhbHVlIjoiTkxWUEl0WmZ5TlNpL1gzbXNjd1pGSlg4djNMaks5dE0veVJsQytOTHNZQ1RwTk1zdGhXQXU3MkhlKzdXdms4cEVJdVVSYjErTEgzK1RwVlZabm9UNDdueVZndjdjZ0lGeStLdkFFdE8rb3pCWE1HUEs3dCszeE0yT1J3Q2hoc0kiLCJtYWMiOiI5YjFkOTBkMzE1ODkwNjg0NTViMDYxMGI3OWI3YzJjOTQ3MjhmNzFlYzM3YzJhZDU2NjE1MjNkNmU0Y2UyMmViIiwidGFnIjoiIn0%3D; expires=Thu, 01 Oct 2026 08:30:14 GMT; Max-Age=7200; path=/; secure; samesite=lax
+set-cookie: laravel_session=eyJpdiI6InlCcWo1SGNGREFhY1hCTTlGUnFsSnc9PSIsInZhbHVlIjoiZGlBd1JNR1RHZXNiK2tIaWo4Wi9PRVRGRzdzdnpGRGRwNGgwUkQ4dVgzdzhOY0Y1ektnVXgxT1JNRTdpOEIyM2w1R3RQVElyU2xEaE5rV0xicGIzR3ByNjV6dkRpcktRZjhlRmNyRkMrWWptZlF6Q3UxUHRsSE8zZzJNZ1NiaEciLCJtYWMiOiI0OGJkYWVlNjQwNjQ0MzI1NTQyMDg4YzRhMzg3MjdiZjk0NzljMGExODc3ZjllMDM4YTNlZjQyNTFiYjc3YWMwIiwidGFnIjoiIn0%3D; expires=Thu, 01 Oct 2026 08:30:14 GMT; Max-Age=7200; path=/; secure; httponly; samesite=lax
+
+--- /admin/login ---
+set-cookie: XSRF-TOKEN=eyJpdiI6InR2ZmpQaW91bUc3OC9TUDNDV3J6V2c9PSIsInZhbHVlIjoiclBFVFVsQ2drbkpFcUdOalFBZDFzSUZac3MxWVJwME9uc29tMGRwQURiQlJ2YzdyZTlEUFkxdTRqU3Y4V3Z6dEFqaE5HUC9hRGVjYTh2M1hUcmxaSDdzWi8zV3lCN3I3OWN6TnF3YmZsakVVY3NGc05CTXJBTm5SUWV4VXJha2UiLCJtYWMiOiJjODI2ZTUwZWEwMDY1OWJmN2U4MjU3YzY3YWJkOTU5NmY2MGVlMmViYmVhY2ZkOTk2NjQ1NzRiMjVhNGU5NTRjIiwidGFnIjoiIn0%3D; expires=Thu, 01 Oct 2026 08:30:14 GMT; Max-Age=7200; path=/; secure; samesite=lax
+set-cookie: laravel_session=eyJpdiI6InNra21ZczJrQ21lTmNDckUwY1RnUVE9PSIsInZhbHVlIjoiZFpyRllkMDZ5M2hPS2NDRlhKeXpLMXk3SE45L1phQXdJdkJMNnNKS2doRnRMNGZYdkVwZ3o0aWxCbUhjMkZYTi9TeU12OEVzenZ3TmcyM0VmNFZVbzRrNTZidS9HTGcrK0ZMTTBMbWlzR2NlRHFEMnNzN2xZcVVkLzFualdqSUIiLCJtYWMiOiJiNGVjYjE3ZmYwZjAxNGI0MjQxNTQ1MjE1OGY3NmQ1ZDM0ZTAwZWRhZDQxMDVmNWI2OTA1Mjk3MzIyNmUyNzI1IiwidGFnIjoiIn0%3D; expires=Thu, 01 Oct 2026 08:30:14 GMT; Max-Age=7200; path=/; secure; httponly; samesite=lax
+
+--- /api/health ---
+  (no security headers found)
+
+═══════════════════════════════════════════
+🔍 G06C — API ENDPOINT SMOKE TEST
+═══════════════════════════════════════════
+
+########## PUBLIC (expect 200) ##########
+GET    | /api/health                                             | HTTP 200
+GET    | /api/v1/categories                                      | HTTP 200
+GET    | /api/v1/needs                                           | HTTP 200
+
+########## AUTH-REQUIRED (expect 401) ##########
+GET    | /api/v1/auth/me                                         | HTTP 401
+GET    | /api/v1/my/needs                                        | HTTP 401
+GET    | /api/v1/my/offers                                       | HTTP 401
+GET    | /api/v1/notifications                                   | HTTP 401
+
+########## ADMIN (expect 401/403) ##########
+GET    | /api/v1/admin/ads                                       | HTTP 401
+GET    | /api/v1/admin/dashboard                                 | HTTP 401
+GET    | /api/v1/admin/integrity/drift                           | HTTP 401
+GET    | /api/v1/admin/presets                                   | HTTP 401
+
+########## NOT-FOUND (expect 404) ##########
+GET    | /api/v1/does-not-exist                                  | HTTP 404
+
+═══════════════════════════════════════════
+✅ G04B + G04C + G06C PROBE COMPLETE
+═══════════════════════════════════════════

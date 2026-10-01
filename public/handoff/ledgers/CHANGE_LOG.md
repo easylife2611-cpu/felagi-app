@@ -1940,3 +1940,17 @@ G06 (Telegram + Gemini): VERIFIED
 
 No test changes. Suite still 982 / 2662 / 0.
 
+
+## L289 — G04B + G04C + G06C + Security Headers — 2026-10-01
+
+NEW: docs/reports/qa/G04B_RAW_OUTPUT_20261001.txt
+NEW: docs/reports/qa/G04B_G04C_G06C_EVIDENCE_20261001.md
+NEW: app/Http/Middleware/SecurityHeaders.php
+NEW: tests/Feature/SecurityHeadersTest.php (5 tests, 8 assertions)
+MODIFIED: bootstrap/app.php (register SecurityHeaders globally)
+
+G04C — security headers gap: RESOLVED
+G04B + G04C + G06C: evidence recorded
+
+Tests: 982 → 987 (+5). Assertions: 2662 → 2670. Failures: 0.
+

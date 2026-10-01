@@ -3881,3 +3881,75 @@ and L277 (AI audit):
   not silently normalised
 - No silent changes — recommendation recorded, not applied
 - Evidence-based — every claim anchored to a curl call
+
+---
+
+## L289 — G04B + G04C + G06C external probes + Security Headers middleware
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** External QA evidence + actionable fix (security headers)
+
+### What Changed
+
+#### External QA evidence (documentation)
+
+- NEW: docs/reports/qa/G04B_RAW_OUTPUT_20261001.txt (60 lines)
+- NEW: docs/reports/qa/G04B_G04C_G06C_EVIDENCE_20261001.md (148 lines)
+
+Three probes via curl 7.61.1 to zagcreativity.com:
+
+**G04B — Accessibility HTML structure** (10 screens sampled)
+- main landmark present on 8/8 user screens
+- header landmark present on 7/8
+- form labels present on S003 (3), S005 (9), S021 (5)
+- Amharic script present on all sampled screens
+- Admin login has h1=1
+- Recommendations recorded (not defects): 6 screens missing h1,
+  no footer landmark, no skip link, minimal ARIA
+
+**G04C — Security headers**
+- Cookies: secure ✅, httponly (session) ✅, samesite=lax ✅
+- Missing at probe time: HSTS, CSP, X-Frame-Options,
+  X-Content-Type-Options, Referrer-Policy
+
+**G06C — API endpoint smoke test** (12 endpoints)
+- Public (3): 200 ✅
+- Auth-required (4): 401 ✅
+- Admin (4): 401 ✅
+- Not-found (1): 404 ✅
+
+#### Actionable fix — Security Headers middleware
+
+- NEW: app/Http/Middleware/SecurityHeaders.php
+  Adds 5 headers globally:
+  - Strict-Transport-Security (HTTPS only)
+  - Content-Security-Policy (allows 'self' + Telegram + Gemini)
+  - X-Frame-Options: DENY
+  - X-Content-Type-Options: nosniff
+  - Referrer-Policy: strict-origin-when-cross-origin
+- MODIFIED: bootstrap/app.php — registers middleware globally via
+  $middleware->append(...)
+- NEW: tests/Feature/SecurityHeadersTest.php (5 tests, 8 assertions)
+
+### Result
+- Full suite: 987 tests / 2670 assertions / 0 failures / 1 skipped
+  (was 982 / 2662 before L289)
+- +5 tests, +8 assertions
+- G04C security headers gap: RESOLVED
+- G04B + G04C + G06C: evidence recorded
+
+### Constitution Compliance
+- Additive only (new middleware + new test + new evidence doc)
+- No guessing — every claim anchored to a curl call or a test
+- UNKNOWN != MISSING — accessibility gaps documented as
+  improvements, not silently normalised
+- No silent changes — recommendation in G06B documented, not applied;
+  security headers applied as a focused, tested change
+- Evidence-based — 5 new tests + 3 live probes
+
+### Note
+The CSP allows 'unsafe-inline' for script-src and style-src to keep
+the existing inline scripts in Blade views working. A future
+hardening iteration could move these to nonces/hashes. Not in scope
+for this ledger.
