@@ -1927,3 +1927,16 @@ AI-35, AI-21, AI-22, AG, AH → ALL RESOLVED.
 
 Tests: 953 → 982 (+29). Assertions: 2594 → 2662. Failures: 0.
 
+
+## L286 + L287 + L288 — QA Evidence — 2026-10-01
+
+NEW: docs/reports/qa/G06A_TELEGRAM_LIVE_20261001.md
+NEW: docs/reports/qa/G06B_GEMINI_LIVE_20261001.md
+NEW: docs/reports/qa/G04_HTTP_SCREEN_STRUCTURE_20261001.md
+NEW: docs/reports/qa/G04_HTTP_RAW_OUTPUT_20261001.txt
+
+G04 (HTTP portion): VERIFIED
+G06 (Telegram + Gemini): VERIFIED
+
+No test changes. Suite still 982 / 2662 / 0.
+

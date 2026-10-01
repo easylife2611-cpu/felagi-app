@@ -3819,3 +3819,65 @@ and L277 (AI audit):
 - UNKNOWN != MISSING — missing criteria surfaced as PARTIAL/UNCERTAIN
 - No silent changes — all five items documented here and in CHANGE_LOG
 - Evidence-based — 29 new tests verify every clause
+
+---
+
+## L286 + L287 + L288 — Live-service + HTTP structure QA evidence
+
+**Date:** 2026-10-01
+**Commit:** e2748b3
+**Type:** External QA evidence (G06 Telegram, G06 Gemini, G04 HTTP)
+
+### What Changed
+
+#### L286 — G06A Telegram live probe (external evidence)
+- NEW: docs/reports/qa/G06A_TELEGRAM_LIVE_20261001.md
+- Real HTTPS calls: getMe, OIDC discovery, getWebhookInfo, getMyCommands
+- Findings: bot LIVE (@FelagiMarketBot), OIDC discovery valid,
+  no webhook (not required for OIDC flow), no commands (enhancement)
+
+#### L287 — G06B Gemini live probe (external evidence)
+- NEW: docs/reports/qa/G06B_GEMINI_LIVE_20261001.md
+- Real HTTPS calls: list models (50 returned), Amharic generation,
+  JSON schema gate
+- Findings: API key valid; **Amharic works** ("ሰላም (Selam).");
+  JSON schema gate PASS (score=75 + rationale); model
+  gemini-flash-lite-latest is the working model
+- Recommendation (not applied): the .env default gemini-flash-latest
+  was overloaded at probe time — the operator may wish to add a
+  fallback list to config/ai.php. Documented, not changed.
+
+#### L288 — G04-HTTP 46-screen structure analysis
+- NEW: docs/reports/qa/G04_HTTP_SCREEN_STRUCTURE_20261001.md (154 lines)
+- NEW: docs/reports/qa/G04_HTTP_RAW_OUTPUT_20261001.txt (49 lines)
+- Real HTTPS GET x46 to zagcreativity.com
+- Findings: 46/46 HTTP 200; all HTML5 checks pass
+  (doctype, lang, viewport, UTF-8 charset, non-empty title)
+- Observation S002 (/auth/telegram): returns welcome view
+  (consistent with L268-followup Widget embedding)
+- Observation admin screens: all return "Admin Sign In" page when
+  unauthenticated — expected security behaviour, verified by
+  AdminLoginTest (L271)
+
+### Result
+- Full suite: unchanged at 982 / 2662 / 0 failures / 1 skipped
+- G04 (HTTP portion): VERIFIED (external evidence recorded)
+- G06 (Telegram + Gemini): VERIFIED (external evidence recorded)
+
+### What this does NOT cover (still REQUIRES_EVIDENCE)
+- Real browser rendering
+- Responsive breakpoints
+- Keyboard navigation
+- Screen reader (AT)
+- Text-scaling / zoom
+- Amharic glyph rendering
+- Theme switching
+- Reduced motion
+
+### Constitution Compliance
+- Additive only (new evidence documents)
+- No guessing — real HTTPS calls, responses recorded verbatim
+- UNKNOWN != MISSING — S002 welcome observation documented,
+  not silently normalised
+- No silent changes — recommendation recorded, not applied
+- Evidence-based — every claim anchored to a curl call
