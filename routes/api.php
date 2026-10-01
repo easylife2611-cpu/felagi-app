@@ -304,3 +304,10 @@ Route::middleware(['auth:sanctum'])->prefix('v1/admin/breaches')->group(function
     Route::post('/{incident}/notify-users', [\App\Http\Controllers\V1\BreachController::class, 'notifyUsers']);
     Route::post('/{incident}/resolve',  [\App\Http\Controllers\V1\BreachController::class, 'resolve']);
 });
+
+// L304 — Email Verification API
+Route::middleware('auth:sanctum')->prefix('v1/auth/verify-email')->group(function () {
+    Route::post('/resend', [\App\Http\Controllers\V1\EmailVerificationController::class, 'resend'])
+        ->middleware('throttle:5,1');
+    Route::get('/status', [\App\Http\Controllers\V1\EmailVerificationController::class, 'status']);
+});

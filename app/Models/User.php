@@ -18,6 +18,8 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
+        'email_verified_at',
+        'password',
         'telegram_subject',
         'full_name',
         'phone_number',
@@ -35,6 +37,7 @@ class User extends Authenticatable
 
     protected $hidden = [
         'remember_token',
+        'password',
         'phone_number',
     ];
 

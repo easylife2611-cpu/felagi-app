@@ -177,3 +177,22 @@ Route::get('/login', function () {
 
 // L302 — Email OTP web verify (creates web session for browser flow)
 Route::post('/auth/email/verify-web', [\App\Http\Controllers\V1\EmailAuthController::class, 'verifyWeb'])->middleware('throttle:10,1')->name('auth.email.verify-web');
+
+// L304 — Email Verification + Password Reset
+Route::get('/verify-email/{token}', [\App\Http\Controllers\V1\EmailVerificationController::class, 'verify'])
+    ->where('token', '[A-Za-z0-9_-]+')
+    ->name('email.verify');
+
+Route::get('/forgot-password', [\App\Http\Controllers\V1\PasswordResetController::class, 'showForgotForm'])
+    ->name('password.request');
+
+Route::post('/forgot-password', [\App\Http\Controllers\V1\PasswordResetController::class, 'sendLink'])
+    ->middleware('throttle:5,1')
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', [\App\Http\Controllers\V1\PasswordResetController::class, 'showResetForm'])
+    ->name('password.reset');
+
+Route::post('/reset-password', [\App\Http\Controllers\V1\PasswordResetController::class, 'reset'])
+    ->middleware('throttle:5,1')
+    ->name('password.update');
