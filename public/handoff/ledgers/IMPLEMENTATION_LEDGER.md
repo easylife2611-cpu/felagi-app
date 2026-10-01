@@ -2734,3 +2734,69 @@ Admin login needed own Widget -> session flow.
 - No guessing
 - Additive
 - No silent changes
+
+---
+
+## L270 — Gap Analysis (Design Package vs Production)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Documentation (analysis, no code)
+
+**What Changed:**
+
+### NEW — docs/reports/GAP_ANALYSIS_20260930.md (404 lines)
+- Part 1: Capability Inventory (design spec vs production)
+- Part 2: Screen-by-screen comparison (S001-S023, A001-A023, placements)
+- Part 3: Controls & Requirements coverage
+  - 55 controls (100%)
+  - 55 admin requirements (10 verified, 45 audit-pending)
+  - 62 ads requirements (41 implemented, 21 pending)
+  - 51 AI requirements (~35 implemented)
+  - 44 complete requirements (42 covered)
+- Part 4: THE GAP LIST
+  - 11 CRITICAL (external)
+  - 10 HIGH (actionable)
+  - 8 MEDIUM
+  - 3 LOW
+  - 18 RESOLVED this session
+- Part 5: Overall Coverage
+- Part 6: Conclusion
+
+### UPDATED — public/handoff/SOURCE_OF_TRUTH.md
+- HEAD refresh to bf1e270
+- Timestamp refresh
+- Gap Analysis reference section added
+
+**Key Findings:**
+
+| Metric | Coverage |
+|---|---|
+| User Screens | 23/23 (100%) |
+| Admin Screens | 23/23 (100%) |
+| Controls | 55/55 (100%) |
+| API Endpoints | 107/107 (100%) |
+| Tests | 845/845 (100%) |
+| Ads Requirements | 41/62 (66%) |
+| AI Requirements | ~35/51 (~69%) |
+| Complete Requirements | 42/44 (95%) |
+
+**Critical Blockers (11):**
+1. Frontend UI (D-097) — 2 items
+2. GitHub push (credentials) — 1 item
+3. Product ops decisions — 2 items
+4. Release approval — 1 item
+5. External infrastructure — 5 items
+
+**Actionable Gaps (21):**
+- Docs, audits, tests, validations — can be done without external resources
+
+**Result:**
+- No code change
+- 845 tests / 1,991 assertions / 0 failures (unchanged)
+
+**Constitution compliance:**
+- No guessing (evidence-based from design package)
+- UNKNOWN != MISSING (11 blockers documented)
+- No silent changes
+- No hidden work

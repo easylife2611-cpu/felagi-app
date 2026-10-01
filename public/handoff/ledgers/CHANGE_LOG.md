@@ -1703,3 +1703,33 @@ git revert <S003-commit>
 - Live at https://zagcreativity.com/admin/login
 - BotFather domain: zagcreativity.com
 - Login flow works (Telegram Widget -> session)
+
+---
+
+## B41 — Gap Analysis: Design Package vs Production
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Ref:** L270
+
+### Added
+- docs/reports/GAP_ANALYSIS_20260930.md (404 lines)
+  - Part 1: Capability inventory
+  - Part 2: Screen-by-screen comparison (46 screens)
+  - Part 3: Controls (55) + Requirements (212)
+  - Part 4: THE GAP LIST (32 open + 18 resolved)
+  - Part 5: Overall coverage
+  - Part 6: Conclusion
+
+### Changed
+- public/handoff/SOURCE_OF_TRUTH.md (HEAD + timestamp + gap reference)
+
+### Tests
+- No change (845 / 1991 / 0 failures)
+
+### Analysis
+- 46/46 screens complete
+- 55/55 controls complete
+- 107/107 API endpoints complete
+- 32 open gaps (11 critical external + 21 actionable)
+- 18 gaps resolved this session

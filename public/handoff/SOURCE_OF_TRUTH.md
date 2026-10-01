@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
-**Generated:** 2026-09-30 15:23:03
-**App HEAD:** `2295a55`
+**Generated:** 2026-10-01 03:42:30
+**App HEAD:** `bf1e270`
 **Design HEAD:** `27edd9d`
 
 ## Summary
@@ -122,3 +122,51 @@ Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
 | A021 | GET /api/v1/admin/maintenance, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
 | A022 | GET /api/v1/admin/reports, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
 | A023 | GET /api/v1/admin/ads, POST /api/v1/admin/ads/advertisers, POST /api/v1/admin/ads/campaigns, GET /api/v1/admin/ads/campaigns/{id}, PATCH /api/v1/admin/ads/campaigns/{id}, POST /api/v1/admin/ads/campaigns/{id}/validate, POST /api/v1/admin/ads/campaigns/{id}/preview, POST /api/v1/admin/ads/campaigns/{id}/publish, POST /api/v1/admin/ads/campaigns/{id}/pause, POST /api/v1/admin/ads/campaigns/{id}/resume, POST /api/v1/admin/ads/campaigns/{id}/cancel-schedule, POST /api/v1/admin/ads/campaigns/{id}/archive, POST /api/v1/admin/ads/campaigns/{id}/rollback, GET /api/v1/admin/ads/campaigns/{id}/reports, GET /api/v1/admin/ads/campaigns/{id}/audit, POST /api/v1/admin/ads/destinations/validate |
+
+---
+
+## 📊 GAP ANALYSIS REFERENCE
+
+**Latest Gap Analysis:** `docs/reports/GAP_ANALYSIS_20260930.md` (404 lines)
+
+**Summary:**
+- **Total Spec Capabilities:** 46 screens + 55 controls + 212 requirements
+- **Complete:** 46/46 screens, 55/55 controls, 107/107 endpoints
+- **Open Gaps:** 32 (11 critical external + 10 high actionable + 8 medium + 3 low)
+- **Resolved This Session:** 18 gaps
+
+**By Category:**
+- User Screens: 23/23 (100%)
+- Admin Screens: 23/23 (100%, 13 full backend + 10 placeholder)
+- Controls: 55/55 (100%)
+- API Endpoints: 107/107 (100%)
+- Tests: 845 (100% pass)
+- Ads Requirements: 41/62 (66%)
+- AI Requirements: ~35/51 (~69%)
+- Complete Requirements: 42/44 (95%)
+
+**11 Critical External Blockers:**
+1. WP-13c Frontend UI (D-097)
+2. WP-10 Frontend (D-097)
+3. GitHub push (creds)
+4. GAP-08 Positive-fee (product ops)
+5. GAP-09 Production PASS (release owner)
+6. N06-N10 QA (browser/AT/SDK)
+7. T05-T31 integration (live sandbox)
+8. Ads media scanning (AV scanner)
+9. SSRF live probe (infra)
+10. Real analytics (telemetry)
+11. GAP-26 cPanel doc root (hosting)
+
+**21 Actionable Gaps (no external resource):**
+- Documentation updates (ADS-55, ADS-58)
+- Full audits (A-CC 55, AI 51)
+- Test expansions
+- Creative validation
+- Traceability updates
+
+**Full details:** `docs/reports/GAP_ANALYSIS_20260930.md`
+
+---
+
+**End of Source of Truth.**
