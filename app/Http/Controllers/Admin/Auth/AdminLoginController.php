@@ -8,6 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Auth\TelegramWidgetService;
+use App\Services\Auth\AuthAttemptService;
+use App\Services\Auth\TelegramOidcService;
+use Illuminate\Support\Facades\Log;
 use App\Exceptions\OidcExchangeException;
 use Illuminate\View\View;
 
@@ -96,6 +99,86 @@ class AdminLoginController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended("/admin/dashboard");
+    }
+
+    /**
+     * GET /admin/login/oidc/start
+     *
+     * L291 — OIDC direct flow (replaces the Telegram iframe widget).
+     *
+     * Creates an auth attempt with return_uri = admin OIDC callback,
+     * then redirects to Telegram's authorization endpoint with PKCE.
+     */
+    public function oidcStart(Request $request, AuthAttemptService $attempts): RedirectResponse
+    {
+        $returnUri = url('/admin/login/oidc/callback');
+
+        // Return host must be in the allow-list (configured in config/auth.php)
+        $allowedHosts = config('auth.telegram_allowed_hosts', []);
+        $returnHost = parse_url($returnUri, PHP_URL_HOST);
+        if (!empty($allowedHosts) && !in_array($returnHost, $allowedHosts, true)) {
+            Log::error('admin.oidc_start: return host not in allow-list', [
+                'return_host' => $returnHost,
+                'allowed'     => $allowedHosts,
+            ]);
+            return redirect('/admin/login')->withErrors([
+                'telegram' => 'Configuration error: admin callback host not allowed.',
+            ]);
+        }
+
+        $created = $attempts->create($returnUri);
+
+        $authUrl = config('services.telegram.oidc.authorization_url') . '?' . http_build_query([
+            'client_id'             => config('services.telegram.client_id', ''),
+            'bot_id'                => config('services.telegram.bot_id', config('services.telegram.client_id', '')),
+            'origin'                => parse_url(config('app.url'), PHP_URL_HOST) ?: 'zagcreativity.com',
+            'redirect_uri'          => config('services.telegram.redirect_uri', ''),
+            'response_type'         => 'code',
+            'scope'                 => 'openid profile',
+            'state'                 => $created['state'],
+            'nonce'                 => $created['nonce'],
+            'code_challenge'        => $created['code_challenge'],
+            'code_challenge_method' => $created['code_challenge_method'],
+        ]);
+
+        return redirect()->away($authUrl);
+    }
+
+    /**
+     * GET /admin/login/oidc/callback
+     *
+     * L291 — receives handoff_code from the API's OIDC callback,
+     * verifies the user has an active admin role, creates a web session.
+     */
+    public function oidcCallback(Request $request, AuthAttemptService $attempts): RedirectResponse
+    {
+        $handoffCode = $request->query('handoff_code');
+
+        if (!$handoffCode) {
+            return redirect('/admin/login')->withErrors([
+                'telegram' => 'Missing handoff code from Telegram.',
+            ]);
+        }
+
+        $result = $attempts->consumeByHandoff($handoffCode);
+        if (!$result || empty($result['user'])) {
+            return redirect('/admin/login')->withErrors([
+                'telegram' => 'Invalid or expired sign-in link. Please try again.',
+            ]);
+        }
+
+        $user = $result['user'];
+
+        if (!$this->hasAdminRole($user)) {
+            return redirect('/admin/login')->withErrors([
+                'telegram' => __('admin.auth.no_admin_role_hint'),
+            ]);
+        }
+
+        Auth::login($user, false);
+        $request->session()->regenerate();
+
+        return redirect()->intended('/admin/dashboard');
     }
 
 }

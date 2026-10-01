@@ -32,7 +32,7 @@ main{max-width:720px;margin:0 auto;padding:16px}
 .badge.failed{background:#ffebee;color:#b71c1c}
 .badge.cancelled{background:#f5f5f5;color:#616161}
 .comp-card .action{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:8px}
-.arrow{color:#8a95a3;font-size:20px}
+.arrow{color:#586675;font-size:20px}
 .btn{padding:12px 20px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;border:none;font-family:inherit;text-decoration:none;text-align:center;display:inline-block;background:#003366;color:#fff;transition:background .15s}
 .btn:hover:not(:disabled){background:#002a52}
 .btn.sec{background:#eef1f4;color:#192431}

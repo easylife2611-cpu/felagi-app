@@ -15,7 +15,7 @@ header .title{font-size:16px;font-weight:600;flex:1;overflow:hidden;text-overflo
 header .count{background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600}
 main{max-width:960px;margin:0 auto;padding:16px}
 .need-banner{background:#fff;border-radius:10px;padding:14px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.need-banner .lbl{font-size:11px;color:#8a95a3;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:4px}
+.need-banner .lbl{font-size:11px;color:#586675;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:4px}
 .need-banner .title{font-size:15px;font-weight:600;color:#192431;line-height:1.3}
 .need-banner .meta{font-size:12px;color:#586675;margin-top:4px}
 .compare-bar{background:#e8eef4;border-radius:10px;padding:12px 14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}

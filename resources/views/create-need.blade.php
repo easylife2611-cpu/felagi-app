@@ -19,14 +19,14 @@ h2{font-size:22px;margin-bottom:6px;color:#003366}
 .form-group{margin-bottom:18px}
 label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#192431}
 label .req{color:#c62828}
-label .opt{color:#8a95a3;font-weight:400;font-size:12px;margin-left:4px}
+label .opt{color:#586675;font-weight:400;font-size:12px;margin-left:4px}
 input[type=text],input[type=number],input[type=datetime-local],input[type=file],select,textarea{width:100%;padding:11px 13px;border:1px solid #d0d7de;border-radius:8px;font-family:inherit;font-size:15px;background:#fff;transition:border .15s,box-shadow .15s}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,102,.1)}
 textarea{min-height:120px;resize:vertical;line-height:1.5}
 select{cursor:pointer}
 .row{display:flex;gap:12px;flex-wrap:wrap}
 .row .col{flex:1;min-width:140px}
-.hint{font-size:12px;color:#8a95a3;margin-top:4px}
+.hint{font-size:12px;color:#586675;margin-top:4px}
 .err{color:#c62828;font-size:12px;margin-top:4px;display:none}
 .err.on{display:block}
 .checkbox-row{display:flex;gap:10px;align-items:flex-start;padding:14px;background:#fff8e1;border:1px solid #ffe082;border-radius:8px;margin-bottom:18px}
@@ -102,7 +102,7 @@ select{cursor:pointer}
 <input type="number" id="budget_max" name="budget_max" min="0" step="0.01" placeholder="{{ __('budgetMax') }}">
 </div>
 <div class="col" style="max-width:120px">
-<select id="currency" name="currency">
+<select id="currency" name="currency" aria-label="Currency">
 <option value="ETB">ETB</option>
 <option value="USD">USD</option>
 </select>

@@ -34,7 +34,7 @@ main{max-width:960px;margin:0 auto;padding:16px}
 .card .price{color:#1b5e20;font-weight:700;font-size:18px}
 .card .price .cur{font-size:12px;font-weight:600;margin-right:2px}
 .card .msg{font-size:13px;color:#586675;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card .meta{font-size:12px;color:#8a95a3;margin-top:auto;padding-top:8px;border-top:1px solid #eef1f4;display:flex;justify-content:space-between}
+.card .meta{font-size:12px;color:#586675;margin-top:auto;padding-top:8px;border-top:1px solid #eef1f4;display:flex;justify-content:space-between}
 .state{padding:60px 20px;text-align:center;color:#586675}
 .state h3{color:#003366;font-size:18px;margin:0 0 8px}
 .state p{margin:0 0 16px}

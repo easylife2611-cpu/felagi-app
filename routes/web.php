@@ -109,6 +109,12 @@ Route::prefix('admin')->group(function () {
         ->middleware('throttle:10,1')
         ->name('admin.login.telegram');
 
+        // L291 — OIDC direct flow (replaces the iframe widget)
+        Route::get('/login/oidc/start',    [\App\Http\Controllers\Admin\Auth\AdminLoginController::class, 'oidcStart'])
+            ->name('admin.login.oidc.start');
+        Route::get('/login/oidc/callback', [\App\Http\Controllers\Admin\Auth\AdminLoginController::class, 'oidcCallback'])
+            ->name('admin.login.oidc.callback');
+
     // Protected: logout + admin panel (auth + admin role)
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'logout'])

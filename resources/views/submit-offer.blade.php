@@ -17,13 +17,13 @@ main{max-width:720px;margin:0 auto;padding:16px 16px 100px}
 h2{font-size:22px;margin-bottom:6px;color:#003366}
 .subtitle{color:#586675;font-size:14px;margin-bottom:16px}
 .need-preview{background:#fff;border-radius:10px;padding:14px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.need-preview .lbl{font-size:11px;color:#8a95a3;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:4px}
+.need-preview .lbl{font-size:11px;color:#586675;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:4px}
 .need-preview .title{font-size:16px;font-weight:600;color:#192431;line-height:1.3}
 .need-preview .meta{font-size:12px;color:#586675;margin-top:6px}
 .form-group{margin-bottom:18px}
 label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#192431}
 label .req{color:#c62828}
-label .opt{color:#8a95a3;font-weight:400;font-size:12px;margin-left:4px}
+label .opt{color:#586675;font-weight:400;font-size:12px;margin-left:4px}
 input[type=text],input[type=number],select,textarea{width:100%;padding:11px 13px;border:1px solid #d0d7de;border-radius:8px;font-family:inherit;font-size:15px;background:#fff;transition:border .15s,box-shadow .15s}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,102,.1)}
 textarea{min-height:120px;resize:vertical;line-height:1.5}
@@ -31,7 +31,7 @@ select{cursor:pointer}
 .row{display:flex;gap:12px;flex-wrap:wrap}
 .row .col{flex:1;min-width:140px}
 .row .col-currency{flex:0 0 110px}
-.hint{font-size:12px;color:#8a95a3;margin-top:4px}
+.hint{font-size:12px;color:#586675;margin-top:4px}
 .err{color:#c62828;font-size:12px;margin-top:4px;display:none}
 .err.on{display:block}
 .form-actions{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eef1f4;padding:12px 16px;display:flex;gap:12px;max-width:720px;margin:0 auto;z-index:20;box-shadow:0 -1px 3px rgba(0,0,0,.04)}

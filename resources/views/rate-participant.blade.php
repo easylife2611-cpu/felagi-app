@@ -26,7 +26,7 @@ main{max-width:560px;margin:0 auto;padding:16px}
 label{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:#192431}
 textarea{width:100%;padding:12px 14px;border:1px solid #d0d7de;border-radius:8px;font-family:inherit;font-size:15px;resize:vertical;min-height:120px;line-height:1.5}
 textarea:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,102,.1)}
-.hint{font-size:12px;color:#8a95a3;margin-top:4px}
+.hint{font-size:12px;color:#586675;margin-top:4px}
 .actions{display:flex;flex-direction:column;gap:10px;margin-top:8px}
 .btn{padding:14px 20px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;font-family:inherit;text-decoration:none;text-align:center;display:block;transition:background .15s}
 .btn.primary{background:#003366;color:#fff}

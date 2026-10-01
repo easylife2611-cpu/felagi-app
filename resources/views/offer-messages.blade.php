@@ -24,7 +24,7 @@ main{flex:1;overflow-y:auto;padding:16px;max-width:720px;width:100%;margin:0 aut
 .msg .bubble .meta{font-size:10px;opacity:.6;margin-top:4px;display:block}
 .msg .bubble .sender{font-size:11px;font-weight:600;margin-bottom:4px;display:block;color:#003366}
 .msg.mine .bubble .sender{color:rgba(255,255,255,.85)}
-.day-sep{text-align:center;font-size:11px;color:#8a95a3;margin:16px 0;font-weight:600}
+.day-sep{text-align:center;font-size:11px;color:#586675;margin:16px 0;font-weight:600}
 .state{padding:60px 20px;text-align:center;color:#586675;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .state h3{color:#003366;font-size:18px;margin:0 0 8px}
 .state p{margin:0 0 16px}
@@ -81,7 +81,7 @@ main{flex:1;overflow-y:auto;padding:16px;max-width:720px;width:100%;margin:0 aut
 <main id="state-list" hidden>
 <div id="messages-container"></div>
 <div id="empty-hint" class="state" hidden style="padding:40px 20px">
-<p style="color:#8a95a3">{{ __('noMessagesYet') }}</p>
+<p style="color:#586675">{{ __('noMessagesYet') }}</p>
 </div>
 </main>
 

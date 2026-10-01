@@ -1954,3 +1954,33 @@ G04B + G04C + G06C: evidence recorded
 
 Tests: 982 → 987 (+5). Assertions: 2662 → 2670. Failures: 0.
 
+
+## L290 + L291 — Browser audit + OIDC direct admin login — 2026-10-01
+
+L290:
+  NEW: docs/reports/qa/browser_audit_20261001.json
+  NEW: docs/reports/qa/G04_BROWSER_AUDIT_FINAL_20261001.md
+  MODIFIED: 20 view files (#8a95a3 → #586675)
+  MODIFIED: resources/views/browse.blade.php (#sort aria-label)
+  MODIFIED: resources/views/create-need.blade.php (#currency aria-label)
+  MODIFIED: resources/views/need-preview.blade.php (.draft-badge color)
+  MODIFIED: resources/views/admin/auth/login.blade.php (iframe title observer)
+  MODIFIED: app/Http/Middleware/SecurityHeaders.php (CSP fixes)
+
+L291:
+  MODIFIED: app/Http/Controllers/Admin/Auth/AdminLoginController.php
+            (+ oidcStart, oidcCallback)
+  MODIFIED: routes/web.php (+ 2 OIDC routes)
+  MODIFIED: resources/views/admin/auth/login.blade.php
+            (iframe widget → OIDC direct link)
+  MODIFIED: app/Http/Middleware/SecurityHeaders.php
+            (− unsafe-eval, − frame-src)
+  MODIFIED: lang/en.json, lang/am.json (+ sign_in_telegram)
+  MODIFIED: tests/Feature/Admin/Auth/AdminLoginTest.php
+  MODIFIED: tests/Feature/Screens/AdminScreensTest.php
+
+Final state:
+  Full suite: 988 tests / 2672 assertions / 0 failures / 1 skipped
+  Live /admin/login: 0 axe violations, 0 console errors
+  CSP: no 'unsafe-eval', no frame-src
+

@@ -36,9 +36,9 @@ main{padding:24px;flex:1;max-width:1400px}
 .pending strong{display:block;margin-bottom:3px}
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:14px}
 .stat{background:#fff;border:1px solid #eef2f6;border-radius:10px;padding:16px}
-.stat .lbl{font-size:11px;color:#8a95a3;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:6px}
+.stat .lbl{font-size:11px;color:#586675;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:6px}
 .stat .val{font-size:24px;font-weight:700;color:#0a2540;line-height:1.1}
-.stat .hint{font-size:11px;color:#8a95a3;margin-top:4px}
+.stat .hint{font-size:11px;color:#586675;margin-top:4px}
 .stat.ok{border-left:3px solid #26c281}
 .stat.warn{border-left:3px solid #f5a623}
 .stat.err{border-left:3px solid #e74c3c}

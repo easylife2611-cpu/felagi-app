@@ -102,9 +102,10 @@ class AdminScreensTest extends TestCase
                 $adminRoutes[] = $uri;
             }
         }
-        // 23 admin panel screens + login + login/telegram + logout = 26
-        // (L268-followup 4f78021 added POST admin/login/telegram.)
-        $this->assertCount(26, $adminRoutes);
+        // 23 admin panel screens + login + login/telegram + logout
+        // + login/oidc/start + login/oidc/callback = 28
+        // (L291 added the OIDC direct flow, replacing the iframe widget.)
+        $this->assertCount(28, $adminRoutes);
     }
 
     public function test_admin_layout_is_extended_by_all_views(): void

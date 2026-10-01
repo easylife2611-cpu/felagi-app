@@ -11,7 +11,7 @@
 <table class="table">
 <thead><tr><th>{{ __('adminWhen') }}</th><th>{{ __('adminWho') }}</th><th>{{ __('adminAction') }}</th><th>{{ __('adminTarget') }}</th></tr></thead>
 <tbody>
-<tr><td colspan="4" style="text-align:center;color:#8a95a3;padding:24px">{{ __('adminNoAuditEntries') }}</td></tr>
+<tr><td colspan="4" style="text-align:center;color:#586675;padding:24px">{{ __('adminNoAuditEntries') }}</td></tr>
 </tbody>
 </table>
 </div>

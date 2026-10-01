@@ -37,7 +37,7 @@ main{max-width:720px;margin:0 auto;padding:16px}
 .rating{color:#f5a623;font-weight:600}
 .need-link{display:block;padding:14px;background:#f6f8fa;border-radius:8px;text-decoration:none;color:inherit;transition:background .15s}
 .need-link:hover{background:#eef1f4}
-.need-link .lbl{font-size:11px;color:#8a95a3;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:4px}
+.need-link .lbl{font-size:11px;color:#586675;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:4px}
 .need-link .title{font-size:15px;font-weight:600;color:#192431}
 .need-link .meta{font-size:12px;color:#586675;margin-top:2px}
 .actions{display:flex;flex-direction:column;gap:10px}

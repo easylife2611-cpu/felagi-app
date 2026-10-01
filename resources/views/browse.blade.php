@@ -28,7 +28,7 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 .card h3{margin:0;font-size:16px;font-weight:600}
 .card p{margin:0;color:#586675;font-size:13px}
 .card .budget{color:#1b5e20;font-weight:600;font-size:14px;margin-top:auto}
-.adslot{margin:16px 0;padding:12px;background:#fafbfc;border:1px dashed #d0d7de;border-radius:8px;text-align:center;font-size:12px;color:#8a95a3;min-height:60px}
+.adslot{margin:16px 0;padding:12px;background:#fafbfc;border:1px dashed #d0d7de;border-radius:8px;text-align:center;font-size:12px;color:#586675;min-height:60px}
 .fab{position:fixed;right:20px;bottom:80px;width:56px;height:56px;border-radius:50%;background:#003366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 12px rgba(0,51,102,.35);z-index:25}
 .bn{position:fixed;bottom:0;left:0;right:0;height:64px;background:#fff;border-top:1px solid #eef1f4;display:flex;z-index:20}
 .bn a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;color:#586675;font-size:11px;gap:2px}
@@ -55,7 +55,7 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 <div class="chips" id="chips"></div>
 <div class="filters">
 <label>{{ __('sortBy') }}:</label>
-<select id="sort">
+<select id="sort" aria-label="Sort needs by">
 <option value="newest">{{ __('sortNewest') }}</option>
 <option value="budget_low">{{ __('sortBudgetLow') }}</option>
 <option value="budget_high">{{ __('sortBudgetHigh') }}</option>

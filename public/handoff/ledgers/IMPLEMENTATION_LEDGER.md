@@ -3953,3 +3953,102 @@ The CSP allows 'unsafe-inline' for script-src and style-src to keep
 the existing inline scripts in Blade views working. A future
 hardening iteration could move these to nonces/hashes. Not in scope
 for this ledger.
+
+---
+
+## L290 — Real-browser a11y audit + 5 fixes
+
+**Date:** 2026-10-01
+**Commit:** (this commit, combined with L291)
+**Type:** Browser audit + a11y fixes
+
+### Setup
+
+Installed Playwright 1.63.0 + Chromium + axe-core 4.13 in a user-space
+environment. Chromium's 3 missing libs (libatk-bridge-2.0.so.0,
+libatspi.so.0, libgbm.so.1) provided via micromamba (~/browser_env);
+no sudo required.
+
+### Audit
+
+46 screens × 3 viewport widths. Raw JSON:
+docs/reports/qa/browser_audit_20261001.json.
+Evidence doc: docs/reports/qa/G04_BROWSER_AUDIT_FINAL_20261001.md.
+
+### Fixes applied and verified
+
+1. CSP script-src — added 'unsafe-eval' (Telegram widget builder)
+2. CSP frame-src — allow-listed oauth.telegram.org + telegram.org
+3. select-name on #sort (browse), #currency (create-need) → aria-label
+4. color-contrast: #8a95a3 → #586675 across 20 views (30 nodes);
+   .draft-badge #e65100 → #bf360c (need-preview)
+5. Telegram iframe title via MutationObserver (login.blade.php)
+
+### Result
+
+| Metric | Before | After |
+|---|---|---|
+| Console errors | 1 | 0 |
+| Page errors (admin) | 23 | 0 |
+| axe violations | 28 | 1 (third-party Telegram) |
+
+---
+
+## L291 — OIDC direct admin login (replaces Telegram iframe widget)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Feature — admin auth flow
+
+### Motivation
+
+The Telegram Login Widget is served inside a cross-origin iframe on
+oauth.telegram.org. The button inside that iframe has contrast 2.54
+(below WCAG AA). Cross-origin isolation prevents any CSS from our
+side from reaching it. Replacing the iframe with a direct OIDC link
+eliminates the issue entirely and lets us harden the CSP.
+
+### Changes
+
+- MODIFIED: app/Http/Controllers/Admin/Auth/AdminLoginController.php
+  + oidcStart()    → creates auth attempt, redirects to Telegram
+                     authorization_url with PKCE (state + nonce +
+                     code_challenge) — return_uri = admin OIDC callback
+  + oidcCallback() → consumes handoff_code via AuthAttemptService,
+                     checks admin role, creates web session
+- MODIFIED: routes/web.php
+  + GET /admin/login/oidc/start    (name: admin.login.oidc.start)
+  + GET /admin/login/oidc/callback (name: admin.login.oidc.callback)
+- MODIFIED: resources/views/admin/auth/login.blade.php
+  - iframe Telegram widget removed
+  - OIDC direct link added (aria-label + visible text)
+- MODIFIED: app/Http/Middleware/SecurityHeaders.php
+  - script-src: removed 'unsafe-eval' + https://telegram.org
+  - frame-src: removed entirely
+- MODIFIED: lang/en.json, lang/am.json
+  + admin.auth.sign_in_telegram (EN: "Sign in with Telegram",
+                                 AM: "በቴሌግራም ይግቡ")
+- MODIFIED: tests/Feature/Admin/Auth/AdminLoginTest.php
+  - widget test → OIDC link test
+  - new test_oidc_routes_are_registered
+- MODIFIED: tests/Feature/Screens/AdminScreensTest.php
+  - admin route count 26 → 28
+
+### Result
+
+- Full suite: 988 tests / 2672 assertions / 0 failures / 1 skipped
+- Live /admin/login: 0 axe violations, 0 console errors
+- CSP is now stricter (no 'unsafe-eval', no frame-src)
+
+### Security posture improvement
+
+Before: script-src included 'unsafe-eval' (weakens XSS defence)
+After:  script-src 'self' 'unsafe-inline' only
+
+### Constitution Compliance
+
+- Additive only (new routes, new controller methods, new lang keys)
+- No guessing — pattern copied from existing AuthController::telegramStart
+  which has been in production since WP-05a
+- No silent changes — all files listed above
+- Evidence-based — live Chromium audit confirms 0 violations

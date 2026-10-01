@@ -29,7 +29,7 @@ main{max-width:720px;margin:0 auto;padding:0 16px}
 .notif .body{flex:1;min-width:0}
 .notif .title{font-weight:600;font-size:14px;color:#192431;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .notif .msg{font-size:13px;color:#586675;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.notif .time{font-size:11px;color:#8a95a3;margin-top:4px}
+.notif .time{font-size:11px;color:#586675;margin-top:4px}
 .notif .dot{width:8px;height:8px;background:#ff5252;border-radius:50%;flex:0 0 auto;margin-top:6px}
 .state{padding:60px 20px;text-align:center;color:#586675}
 .state h3{color:#003366;font-size:18px;margin:0 0 8px}

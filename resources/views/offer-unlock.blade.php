@@ -24,7 +24,7 @@ main{max-width:560px;margin:0 auto;padding:16px}
 .info-row .val{font-weight:600;text-align:right;max-width:60%;word-break:break-word}
 .price-big{font-size:26px;font-weight:700;color:#1b5e20;text-align:center;margin:16px 0 6px}
 .price-big .cur{font-size:16px;font-weight:600;margin-right:4px}
-.price-sub{text-align:center;font-size:12px;color:#8a95a3;margin-bottom:8px}
+.price-sub{text-align:center;font-size:12px;color:#586675;margin-bottom:8px}
 .notice-warn{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00;padding:14px 16px;border-radius:10px;font-size:13px;line-height:1.5;margin-bottom:16px;display:none}
 .notice-warn.on{display:block}
 .state{padding:60px 20px;text-align:center;color:#586675}

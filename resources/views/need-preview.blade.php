@@ -20,7 +20,7 @@ main{max-width:640px;margin:0 auto;padding:16px}
 .need-desc{font-size:14px;color:#3a4a5a;line-height:1.6;white-space:pre-wrap;margin-bottom:14px}
 .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .meta-item{background:#f6f8fa;padding:10px 12px;border-radius:8px}
-.meta-item .lbl{font-size:10px;color:#8a95a3;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:2px}
+.meta-item .lbl{font-size:10px;color:#586675;text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:2px}
 .meta-item .val{font-size:14px;font-weight:600;color:#192431;word-break:break-word}
 .meta-item.full{grid-column:1/-1}
 .meta-item .budget{color:#1b5e20}
@@ -33,7 +33,7 @@ main{max-width:640px;margin:0 auto;padding:16px}
 .state{padding:80px 20px;text-align:center;color:#586675}
 .state h3{color:#003366;font-size:18px;margin:0 0 8px}
 .state p{margin:0 0 16px}
-.draft-badge{background:#fff3e0;color:#e65100;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.draft-badge{background:#fff3e0;color:#bf360c;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
 </style>
 </head>
 <body>

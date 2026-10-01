@@ -44,16 +44,23 @@ class AdminLoginTest extends TestCase
         $this->get('/admin/login')->assertStatus(200);
     }
 
-    public function test_login_page_renders_telegram_widget_when_not_authenticated(): void
+    public function test_login_page_renders_oidc_link_when_not_authenticated(): void
     {
-        // L268-followup (4f78021) replaced the /auth/telegram link with an
-        // embedded Telegram Login Widget. Test updated by L271 to match the
-        // current Login blade (resources/views/admin/auth/login.blade.php).
+        // L291 — replaced the iframe Telegram Login Widget with an OIDC
+        // direct link. No iframe, no unsafe-eval, no frame-src.
         $res = $this->get('/admin/login');
         $res->assertStatus(200)
-            ->assertSee('telegram-widget.js', false)
-            ->assertSee('data-telegram-login', false)
-            ->assertSee('/admin/login/telegram', false);
+            ->assertSee('/admin/login/oidc/start', false)
+            ->assertDontSee('telegram-widget.js', false)
+            ->assertDontSee('data-telegram-login', false);
+    }
+
+    public function test_oidc_routes_are_registered(): void
+    {
+        $routes = \Illuminate\Support\Facades\Route::getRoutes();
+        $uris = array_map(fn ($r) => $r->uri(), iterator_to_array($routes));
+        $this->assertContains('admin/login/oidc/start', $uris);
+        $this->assertContains('admin/login/oidc/callback', $uris);
     }
 
     // ─── Protected routes — unauthenticated ───

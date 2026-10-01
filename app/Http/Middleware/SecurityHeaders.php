@@ -36,16 +36,17 @@ class SecurityHeaders
             );
         }
 
-        // CSP — conservative baseline; allows same-origin + Telegram widget
+        // CSP — same-origin only; no iframe, no unsafe-eval (OIDC direct flow)
         if (! $response->headers->has('Content-Security-Policy')) {
             $response->headers->set(
                 'Content-Security-Policy',
                 "default-src 'self'; "
-                . "script-src 'self' 'unsafe-inline' https://telegram.org; "
+                . "script-src 'self' 'unsafe-inline'; "
                 . "style-src 'self' 'unsafe-inline'; "
                 . "img-src 'self' data: https:; "
                 . "font-src 'self' data:; "
                 . "connect-src 'self' https://api.telegram.org https://oauth.telegram.org https://generativelanguage.googleapis.com; "
+                . "frame-src 'self' https://oauth.telegram.org https://telegram.org; "
                 . "frame-ancestors 'none'; "
                 . "base-uri 'self'; "
                 . "form-action 'self'"

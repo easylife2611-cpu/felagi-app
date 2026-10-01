@@ -18,13 +18,13 @@ main{max-width:640px;margin:0 auto;padding:16px}
 .card h2{font-size:15px;font-weight:600;color:#003366;margin-bottom:14px}
 label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#192431}
 label .req{color:#c62828}
-label .opt{color:#8a95a3;font-weight:400;font-size:12px;margin-left:4px}
+label .opt{color:#586675;font-weight:400;font-size:12px;margin-left:4px}
 select,textarea,input[type=text]{width:100%;padding:12px 13px;border:1px solid #d0d7de;border-radius:8px;font-family:inherit;font-size:15px;background:#fff;transition:border .15s,box-shadow .15s}
 select:focus,textarea:focus,input:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,102,.1)}
 textarea{min-height:140px;resize:vertical;line-height:1.5}
 .form-group{margin-bottom:18px}
 .form-group:last-child{margin-bottom:0}
-.hint{font-size:12px;color:#8a95a3;margin-top:4px}
+.hint{font-size:12px;color:#586675;margin-top:4px}
 .err{color:#c62828;font-size:12px;margin-top:4px;display:none}
 .err.on{display:block}
 .actions{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eef1f4;padding:12px 16px;display:flex;gap:10px;max-width:640px;margin:0 auto;z-index:20;box-shadow:0 -1px 3px rgba(0,0,0,.04)}
