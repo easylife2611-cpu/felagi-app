@@ -599,5 +599,10 @@
     "adminLoading": "በመጫን ላይ...",
     "admin.auth.loading_telegram": "Telegram በመጫን ላይ...",
     "admin.auth.no_admin_access": "የአስተዳዳሪ ፈቃድ የለም",
-    "admin.auth.no_admin_body": "አካውንትዎ ንቁ የአስተዳዳሪ ሚና የለውም። ዋና አስተዳዳሪውን ያግኙ።"
+    "admin.auth.no_admin_body": "አካውንትዎ ንቁ የአስተዳዳሪ ሚና የለውም። ዋና አስተዳዳሪውን ያግኙ።",
+    "adminTotalBackups": "ጠቅላላ ባክአፖች",
+    "adminTotalSize": "ጠቅላላ መጠን",
+    "adminLastBackup": "የመጨረሻ ባክአፕ",
+    "adminMessage": "መልእክት",
+    "adminNoFailedJobs": "ያልተሳኩ ስራዎች የሉም።"
 }

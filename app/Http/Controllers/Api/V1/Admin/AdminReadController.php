@@ -14,6 +14,9 @@ use App\Models\User;
 use App\Policies\AdminReadPolicy;
 use App\Services\Admin\ControlDependencyService;
 use App\Services\Admin\ConfigDriftDetector;
+use App\Services\Admin\AdminJobsService;
+use App\Services\Admin\AdminBackupsService;
+use App\Services\Admin\AdminIntegrityService;
 use App\Services\Admin\AdminMetricsService;
 use App\Services\Admin\AdminHealthService;
 use Illuminate\Http\JsonResponse;
@@ -311,6 +314,72 @@ class AdminReadController extends BaseApiController
      *
      * AC (audit L276) — configuration drift report.
      */
+    // ─────────────────────────────────────────────────────────
+    // L306 — Real data for A012/A013/A014 (additive)
+    // ─────────────────────────────────────────────────────────
+
+    public function jobsStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'jobs');
+        if (! $allowed) {
+            $this->auditDenied('A012', 'jobs');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $status = app(AdminJobsService::class)->status();
+
+        return $this->success(
+            data: $status,
+            message: 'Jobs status.',
+            status: 200,
+            meta: [
+                'screen' => 'A012', 'area' => 'jobs', 'source' => 'live',
+                'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1,
+            ]
+        );
+    }
+
+    public function backupsStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'backups');
+        if (! $allowed) {
+            $this->auditDenied('A013', 'backups');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $status = app(AdminBackupsService::class)->status();
+
+        return $this->success(
+            data: $status,
+            message: 'Backups status.',
+            status: 200,
+            meta: [
+                'screen' => 'A013', 'area' => 'backups', 'source' => 'live',
+                'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1,
+            ]
+        );
+    }
+
+    public function integrityStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'integrity');
+        if (! $allowed) {
+            $this->auditDenied('A014', 'integrity');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $status = app(AdminIntegrityService::class)->status();
+
+        return $this->success(
+            data: $status,
+            message: 'Integrity status.',
+            status: 200,
+            meta: [
+                'screen' => 'A014', 'area' => 'integrity', 'source' => 'live',
+                'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1,
+            ]
+        );
+    }
     public function configDrift(): JsonResponse
     {
         $allowed = (new AdminReadPolicy())->viewAny(request()->user(), 'integrity');

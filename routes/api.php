@@ -236,6 +236,10 @@ Route::prefix('v1')->group(function () {
         // L305 — additive: real metrics + health status (do not alter A001/A003 handle())
         Route::get('dashboard-metrics', [AdminReadController::class, 'dashboardMetrics']);
         Route::get('health-status',     [AdminReadController::class, 'healthStatus']);
+        // L306 — additive: A012/A013/A014 real status
+        Route::get('jobs-status',      [AdminReadController::class, 'jobsStatus']);
+        Route::get('backups-status',   [AdminReadController::class, 'backupsStatus']);
+        Route::get('integrity-status', [AdminReadController::class, 'integrityStatus']);
         Route::get('features',      [AdminReadController::class, 'features']);
         Route::get('marketplace',   [AdminReadController::class, 'marketplace']);
         Route::get('ai',            [AdminReadController::class, 'ai']);
