@@ -4122,3 +4122,107 @@ Contexts with `reducedMotion: 'reduce'`:
 - No guessing — actual Chromium metrics
 - UNKNOWN != MISSING — physical-device screen-reader remains open
 - No silent changes — raw JSON preserved
+
+---
+
+## L296 — Revert L295 OIDC; restore Widget (BotFather domain verified)
+
+**Date:** 2026-10-01
+**Commit:** (this commit)
+**Type:** Revert + fix (login restored)
+
+### Why L295 was wrong
+
+L295 migrated S002 (regular user) login from the Telegram Login Widget
+to the OIDC redirect flow, under the assumption that both were
+interchangeable. That assumption was incorrect:
+
+**Telegram OIDC (oauth.telegram.org) is only available to first-party
+Telegram applications.** Third-party bots — like @FelagiMarketBot —
+receive `"bot_id required"` from Telegram's OIDC endpoint because
+they are not registered as OIDC apps.
+
+The **only** supported third-party login mechanism is the Telegram
+Login Widget, which requires `/setdomain` in BotFather (verified
+present: "Web login is currently available on zagcreativity.com for
+@FelagiMarketBot").
+
+### What was reverted
+
+- RESTORED: resources/views/welcome.blade.php
+  - Widget button + startTelegramSignIn()
+  - widget-container + onTelegramAuth callback
+  - data-onauth script loader (telegram-widget.js?22)
+  - Iframe title observer (kept from L294)
+
+- RESTORED: app/Http/Middleware/SecurityHeaders.php
+  - script-src: 'self' 'unsafe-inline' 'unsafe-eval' https://telegram.org
+  - frame-src: 'self' https://oauth.telegram.org https://telegram.org
+  (both required by the widget)
+
+- RESTORED: tests/Feature/Screens/S001WelcomeTest.php
+  - Asserts widget button, container, telegram-widget.js loader,
+    data-onauth, iframe title observer
+  - Asserts OIDC link is NOT present
+
+- REMOVED: app/Http/Controllers/WebAuthController.php
+- REMOVED: routes/web.php — OIDC routes for S002
+  (admin OIDC in L291 remains; that flow is separate and works)
+
+### Verification (Playwright, production)
+
+S002 /auth/telegram:
+
+    Button visible: true
+    Telegram iframe: FOUND
+      id: telegram-login-FelagiMarketBot
+      title: Telegram sign-in
+      aria-label: Telegram sign-in
+      src: https://oauth.telegram.org/embed/FelagiMarketBot?...
+    Console errors: NONE
+
+    API calls:
+      200 /api/v1/auth/telegram/widget/start
+      200 https://telegram.org/js/telegram-widget.js?22
+      200 https://oauth.telegram.org/embed/FelagiMarketBot...
+
+CSP:
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://telegram.org
+    frame-src 'self' https://oauth.telegram.org https://telegram.org
+
+Full suite: 990 tests / 2678 assertions / 0 failures / 1 skipped.
+
+### Manual verification needed from user
+
+The actual sign-in (click the Telegram button inside the widget)
+requires a real Telegram account. The user confirmed the widget
+now renders and produces no console errors. Final click-through
+verification is the user's responsibility.
+
+### Backups
+
+- resources/views/welcome.blade.php.bak.l296
+- app/Http/Middleware/SecurityHeaders.php.bak.l296
+- routes/web.php.bak.l296
+- tests/Feature/Screens/S001WelcomeTest.php.bak.l296
+- app/Http/Controllers/WebAuthController.php.bak.l296
+
+### Constitution Compliance
+
+- Corrective revert — L295 assumption was wrong; L296 restores
+  the working state
+- No guessing — the OIDC limitation is documented by Telegram
+- UNKNOWN != MISSING — BotFather domain was already present;
+  verified by screenshot
+- No silent changes — full before/after recorded
+- Evidence-based — Playwright confirms widget loads and renders
+
+### Lesson
+
+Telegram OIDC is first-party only. Third-party bots must use the
+Telegram Login Widget. BotFather `/setdomain` is mandatory for
+the widget. The admin login flow uses OIDC only because it relies
+on the same widget callback (via /admin/login/telegram) — actually
+the admin flow uses the Widget POST to /admin/login/telegram, not
+OIDC (see AdminLoginController::telegramCallback). No OIDC app
+is required anywhere in this codebase.

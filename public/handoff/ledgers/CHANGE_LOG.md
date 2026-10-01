@@ -1997,3 +1997,18 @@ G amharic:   6 Ethiopic fonts available, consistent 65px glyph width
 
 G04 keyboard + motion + zoom + Amharic: VERIFIED.
 
+
+## L296 — Revert L295 OIDC; restore Widget — 2026-10-01
+
+RESTORED: resources/views/welcome.blade.php (widget + title observer)
+RESTORED: app/Http/Middleware/SecurityHeaders.php
+          (unsafe-eval + frame-src restored)
+RESTORED: tests/Feature/Screens/S001WelcomeTest.php
+REMOVED: app/Http/Controllers/WebAuthController.php
+REMOVED: routes/web.php (S002 OIDC routes)
+
+S002 login restored: widget loads, iframe renders with title,
+no console errors. BotFather domain verified present.
+
+Full suite: 990 / 2678 / 0 failures / 1 skipped.
+
