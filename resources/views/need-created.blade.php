@@ -111,7 +111,7 @@ main{max-width:640px;margin:0 auto;padding:16px}
 'use strict';
 var LS_TOKEN='felagi_token';
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getNeedId(){
@@ -145,10 +145,10 @@ function loadNeed(){
   var nid=getNeedId();
   if(!nid){showOnly('error');return;}
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   fetch('/api/v1/needs/'+encodeURIComponent(nid),{
-    headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+    credentials:'same-origin',headers:{'Accept':'application/json'}
   })
   .then(function(r){
     if(r.status===404)throw new Error('notfound');

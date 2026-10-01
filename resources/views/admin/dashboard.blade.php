@@ -40,7 +40,7 @@
             });
             if (!res.ok) return;
             const data = await res.json();
-            const stats = data?.data || {};
+            const stats = data?.data?.stats || data?.stats || {};
             setVal('stat-users',   stats.users);
             setVal('stat-needs',   stats.needs);
             setVal('stat-offers',  stats.offers);

@@ -132,7 +132,7 @@ var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
 var LS_TOKEN='felagi_token';
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 
 function showStatus(type,msg){
   var el=$('status');
@@ -172,7 +172,7 @@ function submitReport(e){
   }
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var btn=$('submit-btn');
   btn.disabled=true;
@@ -192,7 +192,6 @@ function submitReport(e){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify(payload)

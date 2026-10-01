@@ -153,7 +153,7 @@ var DRAFT_KEY='felagi_draft_s005';
 var FIELDS=['title','category_id','description','location_text','budget_min','budget_max','currency','quantity','deadline_at','offer_deadline_at'];
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function showStatus(type,msg){
@@ -183,7 +183,7 @@ function showValidationErrors(errors){
 }
 
 function loadCategories(){
-  fetch('/api/v1/categories',{headers:{'Accept':'application/json'}})
+  fetch('/api/v1/categories',{credentials:'same-origin',headers:{'Accept':'application/json'}})
     .then(function(r){return r.ok?r.json():{data:[]};})
     .then(function(j){
       var sel=$('category_id');
@@ -281,7 +281,7 @@ function submitForm(e){
     return;
   }
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var btn=$('submit-btn');
   btn.disabled=true;
@@ -293,7 +293,6 @@ function submitForm(e){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify(payload)

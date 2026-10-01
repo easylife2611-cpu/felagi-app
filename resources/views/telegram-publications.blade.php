@@ -104,7 +104,7 @@ var needId='';
 var publications=[];
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getNeedId(){
@@ -178,7 +178,7 @@ function renderPublications(){
 function stopPublication(id){
   if(!confirm('{{ __('confirmStop') }}'))return;
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var btn=document.querySelector('[data-id="'+id+'"]');
   if(btn){btn.disabled=true;btn.textContent='{{ __('stopping') }}...';}
@@ -188,7 +188,6 @@ function stopPublication(id){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify({publication_id:id})
@@ -220,7 +219,7 @@ function loadPublications(){
   needId=getNeedId();
   if(!needId){showOnly('error');return;}
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var backHref='/needs/'+encodeURIComponent(needId);
   $('back-btn').href=backHref;
@@ -229,7 +228,7 @@ function loadPublications(){
   showOnly('loading');
 
   fetch('/api/v1/needs/'+encodeURIComponent(needId)+'/telegram-publications',{
-    headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+    credentials:'same-origin',headers:{'Accept':'application/json'}
   })
   .then(function(r){
     if(r.status===404)throw new Error('notfound');

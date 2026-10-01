@@ -119,7 +119,7 @@ var LS_TOKEN='felagi_token';
 var state={status:'',page:1,perPage:20,hasMore:false,items:[],loading:false};
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d — cookie auth */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function showOnly(name){
@@ -193,13 +193,13 @@ function loadNeeds(){
   state.loading=true;
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  if(false){/* cookie auth - always has session */}
 
   if(state.page===1&&state.items.length===0)showOnly('loading');
   var feed=$('state-content'); if(feed)feed.setAttribute('aria-busy','true');
 
   fetch('/api/v1/my/needs?'+buildQuery(),{
-    headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+    credentials:'same-origin',headers:{'Accept':'application/json'}
   })
   .then(function(r){
     if(r.status===401){localStorage.removeItem(LS_TOKEN);localStorage.removeItem('felagi_user');window.location.href='/';return null;}

@@ -180,7 +180,7 @@ var isOwner=false;
 var pendingAction=null;
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getOfferId(){
@@ -335,11 +335,11 @@ function loadOffer(){
   if(!offerId){showOnly('error');return;}
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   showOnly('loading');
 
-  var h={'Accept':'application/json','Authorization':'Bearer '+token};
+  var h={'Accept':'application/json'}/* L305d */;
   fetch('/api/v1/offers/'+encodeURIComponent(offerId),{headers:h})
     .then(function(r){
       if(r.status===404)throw new Error('notfound');
@@ -391,7 +391,7 @@ function closeModal(){
 
 function callAction(endpoint,onSuccess){
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
   var btn=null;
   if(endpoint.indexOf('accept')!==-1)btn=$('btn-accept');
   else if(endpoint.indexOf('reject')!==-1)btn=$('btn-reject');
@@ -402,7 +402,6 @@ function callAction(endpoint,onSuccess){
     method:'POST',
     headers:{
       'Accept':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     }
   })

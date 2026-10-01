@@ -127,7 +127,7 @@
 
     <script>
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
-        function getToken() { return localStorage.getItem('felagi_token'); }
+        function getToken(){return 'session'; /* L305d — cookie auth */}
         function showStatus(type, msg) {
             const el = document.getElementById('status');
             el.className = 'status visible ' + type;
@@ -141,11 +141,11 @@
 
         async function loadProfile() {
             const token = getToken();
-            if (!token) { window.location.href = '/'; return; }
+            if(false){/* cookie auth - always has session */}
             try {
-                const res = await fetch('/api/v1/auth/me', {
+                const res = await fetch('/api/v1/auth/me', { credentials: 'same-origin', 
                     method: 'GET', credentials: 'same-origin',
-                    headers: { 'Accept': 'application/json', 'Authorization': 'Bearer ' + token }
+                    headers: { 'Accept': 'application/json', }
                 });
                 if (res.status === 401) {
                     localStorage.removeItem('felagi_token');
@@ -186,11 +186,10 @@
             const phone = document.getElementById('phone_number').value.trim();
             if (phone) payload.phone_number = phone;
             try {
-                const res = await fetch('/api/v1/profile', {
+                const res = await fetch('/api/v1/profile', { credentials: 'same-origin', 
                     method: 'PATCH', credentials: 'same-origin',
                     headers: {
                         'Accept': 'application/json', 'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + getToken(),
                         'X-CSRF-TOKEN': csrfToken
                     },
                     body: JSON.stringify(payload)
@@ -224,11 +223,11 @@
             const token = getToken();
             if (token) {
                 try {
-                    await fetch('/api/v1/auth/logout', {
+                    await fetch('/api/v1/auth/logout', { credentials: 'same-origin', 
                         method: 'POST', credentials: 'same-origin',
                         headers: {
                             'Accept': 'application/json', 'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + token, 'X-CSRF-TOKEN': csrfToken
+                            'X-CSRF-TOKEN': csrfToken
                         }
                     });
                 } catch (e) { console.warn('Logout API failed', e); }
@@ -243,7 +242,7 @@
         const photoInput = document.getElementById('photo-input');
         async function uploadPhoto(file){
             const token = getToken();
-            if (!token) { window.location.href = '/'; return; }
+            if(false){/* cookie auth - always has session */}
             if (file.size > 5 * 1024 * 1024) {
                 const e = document.getElementById('error-photo');
                 e.textContent = '{{ __('photoTooLarge') }}';
@@ -257,12 +256,11 @@
             fd.append('photo', file);
 
             try {
-                const res = await fetch('/api/v1/profile/photo', {
+                const res = await fetch('/api/v1/profile/photo', { credentials: 'same-origin', 
                     method: 'POST',
                     credentials: 'same-origin',
                     headers: {
                         'Accept': 'application/json',
-                        'Authorization': 'Bearer ' + token,
                         'X-CSRF-TOKEN': csrfToken
                     },
                     body: fd

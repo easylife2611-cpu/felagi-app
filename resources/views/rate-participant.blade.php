@@ -117,7 +117,7 @@ var score=0;
 var submitting=false;
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getNeedId(){
@@ -193,12 +193,12 @@ function loadNeed(){
   needId=getNeedId();
   if(!needId){showOnly('error');return;}
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   try{var u=JSON.parse(localStorage.getItem('felagi_user')||'null');if(u&&u.id)meId=u.id;}catch(e){}
 
   fetch('/api/v1/needs/'+encodeURIComponent(needId),{
-    headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+    credentials:'same-origin',headers:{'Accept':'application/json'}
   })
   .then(function(r){
     if(r.status===404)throw new Error('notfound');
@@ -225,7 +225,7 @@ function loadNeed(){
       var prov=need.requester||{};
       // We don't have provider data here directly; use S010 API to find accepted offer
       fetch('/api/v1/needs/'+encodeURIComponent(need.id)+'/offers',{
-        headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+        credentials:'same-origin',headers:{'Accept':'application/json'}
       }).then(function(r){return r.ok?r.json():null;})
         .then(function(j2){
           var offers=(j2&&j2.data)?j2.data:[];
@@ -259,7 +259,7 @@ function submitRating(e){
   if(!toUserId){toast('{{ __('cannotRateBody') }}');return;}
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   submitting=true;
   var btn=$('submit-btn');
@@ -275,7 +275,6 @@ function submitRating(e){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify(payload)

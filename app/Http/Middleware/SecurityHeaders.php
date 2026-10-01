@@ -41,12 +41,12 @@ class SecurityHeaders
             $response->headers->set(
                 'Content-Security-Policy',
                 "default-src 'self'; "
-                . "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://telegram.org; "
+                . "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://telegram.org https://zagcreativity.com https://www.zagcreativity.com; "
                 . "style-src 'self' 'unsafe-inline'; "
-                . "img-src 'self' data: https:; "
+                . "img-src 'self' data: https: https://zagcreativity.com https://www.zagcreativity.com; "
                 . "font-src 'self' data:; "
-                . "connect-src 'self' https://api.telegram.org https://oauth.telegram.org https://generativelanguage.googleapis.com; "
-                . "frame-src 'self' https://oauth.telegram.org https://telegram.org; "
+                . "connect-src 'self' https://zagcreativity.com https://www.zagcreativity.com https://api.telegram.org https://oauth.telegram.org https://generativelanguage.googleapis.com; "
+                . "frame-src 'self' https://oauth.telegram.org https://telegram.org https://zagcreativity.com https://www.zagcreativity.com; "
                 . " "
                 . "frame-ancestors 'none'; "
                 . "base-uri 'self'; "

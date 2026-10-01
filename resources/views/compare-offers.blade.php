@@ -131,7 +131,7 @@ var MIN_SELECT=2;
 var MAX_SELECT=10;
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getNeedId(){
@@ -226,12 +226,12 @@ function loadOffers(){
   if(!needId){showOnly('error');return;}
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   showOnly('loading');
 
   fetch('/api/v1/needs/'+encodeURIComponent(needId)+'/offers',{
-    headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+    credentials:'same-origin',headers:{'Accept':'application/json'}
   })
   .then(function(r){
     if(r.status===404)throw new Error('notfound');
@@ -249,7 +249,7 @@ function loadOffers(){
     var token2=getToken();
     if(token2){
       fetch('/api/v1/needs/'+encodeURIComponent(needId),{
-        headers:{'Accept':'application/json','Authorization':'Bearer '+token2}
+        headers:{'Accept':'application/json'2}
       }).then(function(r){return r.ok?r.json():null;})
         .then(function(j2){
           var need=(j2&&j2.data)?j2.data:j2;
@@ -281,7 +281,7 @@ function submitComparison(){
   if(ids.length<MIN_SELECT){toast('{{ __('minSelect2') }}');return;}
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   submitting=true;
   var btn=$('evaluate-btn');
@@ -293,7 +293,6 @@ function submitComparison(){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify({offer_ids:ids})

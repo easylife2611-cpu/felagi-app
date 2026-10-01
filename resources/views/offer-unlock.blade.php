@@ -116,7 +116,7 @@ var needId='';
 var unlockInfo=null;
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getNeedId(){
@@ -161,7 +161,7 @@ function loadUnlock(){
   needId=getNeedId();
   if(!needId){showOnly('error');return;}
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var backHref='/needs/'+encodeURIComponent(needId);
   $('back-btn').href=backHref;
@@ -171,7 +171,7 @@ function loadUnlock(){
 
   // Best-effort: try to fetch need to show details
   fetch('/api/v1/needs/'+encodeURIComponent(needId),{
-    headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+    credentials:'same-origin',headers:{'Accept':'application/json'}
   })
   .then(function(r){
     if(r.status===401)throw new Error('auth');

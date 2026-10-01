@@ -52,7 +52,7 @@
                 return;
             }
             const data = await res.json();
-            const comps = data?.data || {};
+            const comps = data?.data?.components || data?.components || {};
             tbody.innerHTML = '';
             Object.entries(comps).forEach(([name, info]) => {
                 if (name === 'computed_at') return;

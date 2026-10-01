@@ -149,7 +149,7 @@ var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
 var LS_TOKEN='felagi_token';
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function toast(msg,ms){ms=ms||2500;var el=$('toast');el.textContent=msg;el.className='toast on';setTimeout(function(){el.className='toast';},ms);}
 function getNeedId(){
@@ -271,9 +271,9 @@ function loadNeed(){
     $('offline-banner').className='offline-banner on';
   }
 
-  var h={'Accept':'application/json'};
+  var h={'Accept':'application/json'}/* L305d */;
   var t=getToken();
-  if(t)h['Authorization']='Bearer '+t;
+  if(t)/* L305d: cookie auth */
 
   fetch('/api/v1/needs/'+encodeURIComponent(nid),{headers:h})
     .then(function(r){
@@ -304,7 +304,7 @@ function doComplete(){
   b.disabled=true;
   fetch('/api/v1/needs/'+encodeURIComponent(getNeedId())+'/complete',{
     method:'POST',
-    headers:{'Accept':'application/json','Authorization':'Bearer '+t,'X-CSRF-TOKEN':csrf}
+    headers:{'Accept':'application/json','X-CSRF-TOKEN':csrf}
   }).then(function(r){return r.json().then(function(j){return {s:r.status,b:j};});})
     .then(function(res){
       if(res.s===200){toast('{{ __('needCompleted') }}');setTimeout(loadNeed,800);}
@@ -323,7 +323,7 @@ function doCancel(){
   b.disabled=true;
   fetch('/api/v1/needs/'+encodeURIComponent(getNeedId())+'/cancel',{
     method:'POST',
-    headers:{'Accept':'application/json','Authorization':'Bearer '+t,'X-CSRF-TOKEN':csrf}
+    headers:{'Accept':'application/json','X-CSRF-TOKEN':csrf}
   }).then(function(r){return r.json().then(function(j){return {s:r.status,b:j};});})
     .then(function(res){
       if(res.s===200){toast('{{ __('needCancelled') }}');setTimeout(loadNeed,800);}

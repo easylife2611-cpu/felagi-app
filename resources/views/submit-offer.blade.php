@@ -151,7 +151,7 @@ var needId='';
 var needData=null;
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getNeedId(){
@@ -266,9 +266,9 @@ function loadNeed(){
   if(!needId){showOnly('need-error');return;}
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
-  var h={'Accept':'application/json','Authorization':'Bearer '+token};
+  var h={'Accept':'application/json'}/* L305d */;
   fetch('/api/v1/needs/'+encodeURIComponent(needId),{headers:h})
     .then(function(r){
       if(r.status===404)throw new Error('notfound');
@@ -334,7 +334,7 @@ function submitForm(e){
     return;
   }
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var btn=$('submit-btn');
   btn.disabled=true;
@@ -346,7 +346,6 @@ function submitForm(e){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify(payload)

@@ -87,15 +87,9 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 var S={keyword:'',cat:null,sort:'newest',items:[]};
 function $(id){return document.getElementById(id);}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-window.felagiLogout=function(){
-  var t=localStorage.getItem('felagi_token');
-  if(t){fetch('/api/v1/auth/logout',{method:'POST',headers:{'Accept':'application/json','Authorization':'Bearer '+t}}).catch(function(){});}
-  localStorage.removeItem('felagi_token');
-  localStorage.removeItem('felagi_user');
-  location.href='/';
-};
+window.felagiLogout=function(){/* L305d cookie session */var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';fetch('/api/v1/auth/logout',{method:'POST',credentials:'same-origin',headers:{'Accept':'application/json','X-CSRF-TOKEN':csrf}}).catch(function(){});setTimeout(function(){window.location.href='/';},200)};
 function loadCats(){
-  fetch('/api/v1/categories',{headers:{'Accept':'application/json'}})
+  fetch('/api/v1/categories',{credentials:'same-origin',headers:{'Accept':'application/json'}})
     .then(function(r){return r.ok?r.json():{data:[]};})
     .then(function(j){
       var c=j.data||[];
@@ -116,10 +110,9 @@ function load(){
   if(S.keyword)q.set('keyword',S.keyword);
   if(S.cat)q.set('category_id',S.cat);
   if(S.sort)q.set('sort',S.sort);
-  var tok=localStorage.getItem('felagi_token');
-  var h={'Accept':'application/json'};
-  if(tok)h['Authorization']='Bearer '+tok;
-  fetch('/api/v1/needs?'+q.toString(),{headers:h})
+  var h={'Accept':'application/json'}/* L305d */;
+  if(tok)/* L305d: cookie auth */
+  fetch('/api/v1/needs?'+q.toString(),{credentials:'same-origin',headers:h})
     .then(function(r){
       if(r.status===429)throw new Error('rate-limited');
       if(!r.ok)throw new Error('HTTP '+r.status);

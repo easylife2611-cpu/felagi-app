@@ -105,7 +105,7 @@ var pollTimer=null;
 var DRAFT_KEY='';
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function getOfferId(){
@@ -184,9 +184,9 @@ function renderMessages(){
 function loadMessages(silent){
   if(!silent)showOnly('loading');
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
-  var h={'Accept':'application/json','Authorization':'Bearer '+token};
+  var h={'Accept':'application/json'}/* L305d */;
   fetch('/api/v1/offers/'+encodeURIComponent(offerId)+'/messages?per_page=100',{headers:h})
     .then(function(r){
       if(r.status===404)throw new Error('notfound');
@@ -216,7 +216,7 @@ function loadOfferMeta(){
   var token=getToken();
   if(!token)return;
   fetch('/api/v1/offers/'+encodeURIComponent(offerId),{
-    headers:{'Accept':'application/json','Authorization':'Bearer '+token}
+    credentials:'same-origin',headers:{'Accept':'application/json'}
   })
   .then(function(r){return r.ok?r.json():null;})
   .then(function(j){
@@ -236,7 +236,7 @@ function sendMessage(){
   if(content.length>5000){toast('{{ __('messageTooLong') }}');return;}
 
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var btn=$('send-btn');
   btn.disabled=true;
@@ -247,7 +247,6 @@ function sendMessage(){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify({content:content})

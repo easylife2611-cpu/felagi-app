@@ -90,7 +90,7 @@ var DRAFT_KEY='felagi_draft_s005';
 var draft=null;
 
 function $(id){return document.getElementById(id);}
-function getToken(){return localStorage.getItem(LS_TOKEN);}
+function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 
 function toast(msg,ms){ms=ms||2400;var el=$('toast');el.textContent=msg;el.style.opacity='1';setTimeout(function(){el.style.opacity='0';},ms);}
@@ -137,7 +137,7 @@ function render(){
   // Look up category name if possible (best-effort via API)
   var token=getToken();
   if(token&&draft.category_id){
-    fetch('/api/v1/categories',{headers:{'Accept':'application/json'}})
+    fetch('/api/v1/categories',{credentials:'same-origin',headers:{'Accept':'application/json'}})
       .then(function(r){return r.ok?r.json():null;})
       .then(function(j){
         if(j&&j.data){
@@ -166,7 +166,7 @@ function render(){
 function publish(){
   if(!draft)return;
   var token=getToken();
-  if(!token){window.location.href='/';return;}
+  /* L305d */
 
   var btn=$('btn-publish');
   btn.disabled=true;
@@ -191,7 +191,6 @@ function publish(){
     headers:{
       'Accept':'application/json',
       'Content-Type':'application/json',
-      'Authorization':'Bearer '+token,
       'X-CSRF-TOKEN':csrf
     },
     body:JSON.stringify(payload)
