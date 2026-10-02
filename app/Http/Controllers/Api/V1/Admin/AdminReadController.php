@@ -20,6 +20,7 @@ use App\Services\Admin\AdminSafeModeService;
 use App\Services\Admin\AdminSettingsStatusService;
 use App\Services\Admin\AdminMaintenanceService;
 use App\Services\Admin\AdminFeaturesService;
+use App\Services\Admin\AdminMonetizationService;
 use App\Services\Admin\AdminJobsService;
 use App\Services\Admin\AdminBackupsService;
 use App\Services\Admin\AdminIntegrityService;
@@ -502,6 +503,28 @@ class AdminReadController extends BaseApiController
             message: 'Features status.',
             status: 200,
             meta: ['screen' => 'A004', 'area' => 'features', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
+        );
+    }
+
+
+    // ─────────────────────────────────────────────────────────
+    // L311 — Real data for A020 (additive)
+    // ─────────────────────────────────────────────────────────
+
+    public function monetizationStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'monetization');
+        if (! $allowed) {
+            $this->auditDenied('A020', 'monetization');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminMonetizationService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'Monetization status.',
+            status: 200,
+            meta: ['screen' => 'A020', 'area' => 'monetization', 'source' => 'live',
                    'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
         );
     }

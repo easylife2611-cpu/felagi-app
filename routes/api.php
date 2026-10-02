@@ -247,6 +247,7 @@ Route::prefix('v1')->group(function () {
         Route::get('settings-status', [AdminReadController::class, 'settingsStatus']);
         Route::get('maintenance-status', [AdminReadController::class, 'maintenanceStatus']);
         Route::get('features-status', [AdminReadController::class, 'featuresStatus']);
+        Route::get('monetization-status', [AdminReadController::class, 'monetizationStatus']);
         Route::get('features',      [AdminReadController::class, 'features']);
         Route::get('marketplace',   [AdminReadController::class, 'marketplace']);
         Route::get('ai',            [AdminReadController::class, 'ai']);

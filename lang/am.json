@@ -616,5 +616,13 @@
   "adminFeatureAiCompare": "AI ንጽጽር",
   "adminFeatureStatus": "ሁኔታ",
   "adminDependencies": "ጥገኞች",
-  "adminVersion": "ስሪት"
+  "adminVersion": "ስሪት",
+  "adminBoost": "ማስተዋወቅ",
+  "adminOfferUnlock": "የቅርበት መክፈቻ",
+  "adminOfferFee": "የቅርበት ክፍያ",
+  "adminOfferCurrency": "ምንዛሬ",
+  "adminBoostPackages": "የማስተዋወቅ ጥቅሎች",
+  "adminPaymentsMaster": "የክፍያ ዋና",
+  "adminActivePackages": "ንቁ ጥቅሎች",
+  "adminNoPackages": "ምንም ጥቅሎች አልተዋቀሩም"
 }

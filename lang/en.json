@@ -616,5 +616,13 @@
   "adminFeatureAiCompare": "AI Comparison",
   "adminFeatureStatus": "Status",
   "adminDependencies": "Dependencies",
-  "adminVersion": "Version"
+  "adminVersion": "Version",
+  "adminBoost": "Boost",
+  "adminOfferUnlock": "Offer Unlock",
+  "adminOfferFee": "Offer Fee",
+  "adminOfferCurrency": "Currency",
+  "adminBoostPackages": "Boost Packages",
+  "adminPaymentsMaster": "Payments Master",
+  "adminActivePackages": "Active Packages",
+  "adminNoPackages": "No packages configured"
 }
