@@ -662,5 +662,6 @@
   "adminNotificationNoRecent": "የቅርብ ጊዜ ማሳወቂያዎች የሉም",
   "adminNotificationDelivery": "የማድረስ ሁኔታ",
   "adminNotificationByChannel": "በሰርጥ",
-  "adminNotificationByStatus": "በሁኔታ"
+  "adminNotificationByStatus": "በሁኔታ",
+  "adminProposeChange": "ለውጥ ያቅርቡ"
 }

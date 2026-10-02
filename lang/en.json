@@ -662,5 +662,6 @@
   "adminNotificationNoRecent": "No recent notifications",
   "adminNotificationDelivery": "Delivery Status",
   "adminNotificationByChannel": "By Channel",
-  "adminNotificationByStatus": "By Status"
+  "adminNotificationByStatus": "By Status",
+  "adminProposeChange": "Propose Change"
 }

@@ -45,10 +45,20 @@
 </div>
 
 <div class="card">
-    <h2>{{ __('adminBoostPackages') }}</h2>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px;">
+        <h2 style="margin:0;">{{ __('adminBoostPackages') }}</h2>
+        <button type="button" class="btn sm sec" id="boost-packages-propose"
+                title="Editable via A017 Settings — WP-13 change lifecycle (draft → validate → preview → publish)">
+            {{ __('adminProposeChange') }}
+        </button>
+    </div>
     <div id="mon-packages">
         <div class="empty"><p>{{ __('adminLoading') }}</p></div>
     </div>
+    <p style="color:#586675;font-size:12px;margin-top:10px;line-height:1.5;">
+        Setting key: <code>boostPackages</code> · Risk: HIGH · Editable via A017 Settings
+        using the WP-13 change lifecycle (reauth + confirmation required).
+    </p>
 </div>
 
 <script>
@@ -108,6 +118,12 @@
                 '</tbody></table>';
         } catch (e) { console.warn('monetization load failed', e); }
     }
+    document.getElementById('boost-packages-propose')?.addEventListener('click', function(){
+        alert('Boost packages are edited via A017 Settings using the WP-13 change lifecycle.\n\n' +
+              'Setting key: boostPackages\n' +
+              'Risk: HIGH (reauth + confirmation required)\n' +
+              'Endpoint: POST /api/v1/admin/changes with setting_key="boostPackages"');
+    });
     load();
 })();
 </script>
