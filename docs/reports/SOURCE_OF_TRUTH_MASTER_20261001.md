@@ -315,7 +315,7 @@ Felagi is Ethiopia's need-first marketplace with:
 
 | Bundle | HEAD | Tests |
 |---|---|---|
-| Felagi_App_v1.4.2_20261001-1502_L332_FINAL.bundle | 4a4f048 | 1031 |
+| Felagi_App_v1.4.2_20261001-1502_L332_FINAL.bundle | 4a4f048 | 1218 |
 
 **SHA256:** 5d200a690dd11737fffaed1a6a0047fa87a8c805e2d1028bc968ae527c76a352
 
