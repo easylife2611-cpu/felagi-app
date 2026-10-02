@@ -59,7 +59,7 @@ main{padding:24px;flex:1;max-width:1400px;min-width:0}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
 .badge.ok{background:#e8f5e9;color:#1b5e20}
-.badge.warn{background:#fff3e0;color:#e65100}
+.badge.warn{background:#fff3e0;color:#bf360c}
 .badge.err{background:#ffebee;color:#b71c1c}
 .badge.info{background:#e3f2fd;color:#0d47a1}
 .table{width:100%;border-collapse:collapse;font-size:13px}

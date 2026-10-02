@@ -15,7 +15,7 @@
     </header>
 
     {{-- Master Status --}}
-    <section class="card">
+    <section class="card" tabindex="0">
         <div class="card-header">
             <h2>{{ __('admin.ads.master_status', [], 'Master Status') }}</h2>
             <span class="badge badge-off" id="master-badge">OFF</span>
@@ -32,7 +32,7 @@
     </section>
 
     {{-- Placement Switches --}}
-    <section class="card">
+    <section class="card" tabindex="0">
         <h2>{{ __('admin.ads.placements', [], 'Placement-Level Switches') }}</h2>
         <ul class="placement-list">
             <li>
@@ -57,7 +57,7 @@
     </section>
 
     {{-- Campaign Counts --}}
-    <section class="card">
+    <section class="card" tabindex="0">
         <h2>{{ __('admin.ads.campaigns', [], 'Campaigns') }}</h2>
         <div class="stat-grid">
             <div class="stat">
@@ -90,7 +90,7 @@
     </section>
 
     {{-- Today --}}
-    <section class="card">
+    <section class="card" tabindex="0">
         <h2>{{ __('admin.ads.today', [], 'Today') }}</h2>
         <div class="stat-grid">
             <div class="stat">
@@ -107,7 +107,7 @@
     </section>
 
     {{-- Campaign List --}}
-    <section class="card">
+    <section class="card" tabindex="0"  role="region" aria-label="{{ __('admin.ads.campaign_list', [], 'All Campaigns') }}">
         <h2>{{ __('admin.ads.campaign_list', [], 'All Campaigns') }}</h2>
         <div id="campaign-list" class="campaign-list">
             <p class="muted">{{ __('admin.ads.loading', [], 'Loading campaigns...') }}</p>
@@ -115,7 +115,7 @@
     </section>
 
     {{-- Create Campaign Wizard (hidden by default) --}}
-    <section class="card" id="wizard" style="display:none">
+    <section class="card" tabindex="0" id="wizard" style="display:none">
         <h2>{{ __('admin.ads.wizard.title', [], 'Create Campaign') }}</h2>
         <ol class="wizard-steps">
             <li>{{ __('admin.ads.wizard.step1', [], 'Sponsor') }}</li>
@@ -133,7 +133,7 @@
     </section>
 
     {{-- Privacy & Consent (ADS-55) --}}
-    <section class="card" id="ads-privacy">
+    <section class="card" tabindex="0" id="ads-privacy"  role="region" aria-label="{{ __('admin.ads.privacy.title') }}">
         <h2>{{ __('admin.ads.privacy.title') }}</h2>
         <p class="muted">{{ __('admin.ads.privacy.subtitle') }}</p>
 
@@ -177,7 +177,7 @@
     </section>
 
     {{-- Diagnostics --}}
-    <section class="card">
+    <section class="card" tabindex="0">
         <h2>{{ __('admin.ads.diagnostics', [], 'Diagnostics') }}</h2>
         <ul class="diagnostic-list">
             <li><strong>master_enabled:</strong> <span id="diag-master">false</span></li>
@@ -238,33 +238,112 @@
 </script>
 
 <style>
-    .admin-shell { padding: 2rem; max-width: 1200px; margin: 0 auto; }
-    .admin-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
-    .muted { color: #666; }
-    .small { font-size: 0.85rem; }
-    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
-    .card h2 { margin-top: 0; }
-    .card-header { display: flex; justify-content: space-between; align-items: center; }
-    .badge { padding: 0.25rem 0.75rem; border-radius: 4px; font-weight: 600; }
-    .badge-off { background: #fee2e2; color: #991b1b; }
-    .row { display: flex; align-items: center; gap: 1rem; margin-top: 0.75rem; }
-    .switch { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
-    .placement-list { list-style: none; padding: 0; }
+    /* ── Responsive overrides — L319 ── */
+    /* Prevent narrow-viewport overflow; wrap long text; constrain to parent. */
+    .admin-shell {
+        display: block;  /* override layout .admin-shell display:flex */
+        padding: 0.5rem;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .admin-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .admin-header > div { min-width: 0; flex: 1 1 auto; }
+    .admin-header h1 { font-size: 1.25rem; margin: 0 0 0.25rem 0; word-break: break-word; overflow-wrap: anywhere; }
+    .admin-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-sizing: border-box;
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+        overflow-x: auto;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+    .card h2 {
+        margin-top: 0;
+        font-size: 1rem;
+        min-width: 0;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+    .card h3 { font-size: 0.9rem; word-break: break-word; overflow-wrap: anywhere; }
+
+    .card-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 0.75rem; }
+
+    .switch {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        max-width: 100%;
+        min-width: 0;
+    }
+    .switch span { word-break: break-word; overflow-wrap: anywhere; min-width: 0; }
+
+    .placement-list { list-style: none; padding: 0; margin: 0; }
     .placement-list li { padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6; }
-    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1rem 0; }
-    .stat { display: flex; flex-direction: column; padding: 1rem; background: #f9fafb; border-radius: 6px; }
-    .stat-label { font-size: 0.85rem; color: #666; }
+
+    .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+        gap: 0.75rem;
+        margin: 1rem 0;
+    }
+    .stat {
+        display: flex;
+        flex-direction: column;
+        padding: 0.75rem;
+        background: #f9fafb;
+        border-radius: 6px;
+        min-width: 0;
+    }
+    .stat-label { font-size: 0.85rem; color: #666; word-break: break-word; }
     .stat-value { font-size: 1.5rem; font-weight: 700; }
-    .actions { margin-top: 1rem; }
-    .btn { padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; border: none; cursor: pointer; }
+
+    .actions { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .btn { padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; border: none; cursor: pointer; word-break: keep-all; }
     .btn-primary { background: #2563eb; color: #fff; }
     .btn-secondary { background: #e5e7eb; color: #111827; }
+
     .campaign-list { margin-top: 1rem; }
     .wizard-steps { counter-reset: step; list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .wizard-steps li { padding: 0.5rem 1rem; background: #f3f4f6; border-radius: 6px; font-size: 0.85rem; }
-    .diagnostic-list { list-style: none; padding: 0; font-family: monospace; font-size: 0.9rem; }
+
+    .diagnostic-list { list-style: none; padding: 0; font-family: monospace; font-size: 0.9rem; word-break: break-all; }
     .privacy-list { list-style: none; padding: 0; margin: 0.5rem 0 1rem; }
-    .privacy-list li { padding: 0.35rem 0 0.35rem 1.5rem; position: relative; font-size: 0.9rem; color: #374151; }
+    .privacy-list li { padding: 0.35rem 0 0.35rem 1.5rem; position: relative; font-size: 0.9rem; color: #374151; word-break: break-word; overflow-wrap: anywhere; }
     .privacy-list li::before { content: '•'; position: absolute; left: 0.5rem; color: #26c281; font-weight: 700; }
+
+    .muted { color: #666; }
+    .small { font-size: 0.85rem; }
+    .badge { padding: 0.25rem 0.75rem; border-radius: 4px; font-weight: 600; }
+    .badge-off { background: #fee2e2; color: #991b1b; }
+
+    .card:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
 </style>
 @endsection

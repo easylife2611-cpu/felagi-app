@@ -82,7 +82,7 @@
             align-items: center;
             gap: 12px;
             margin: 24px 0;
-            color: #9CA3AF;
+            color: #586675;
             font-size: 13px;
         }
         .divider::before, .divider::after {
@@ -102,10 +102,10 @@
         .terms {
             margin-top: 32px;
             font-size: 12px;
-            color: #9CA3AF;
+            color: #586675;
             line-height: 1.5;
         }
-        .terms a { color: #6B7280; text-decoration: underline; }
+        .terms a { color: #586675; text-decoration: underline; }
         .hidden { display: none !important; }
 
         /* OTP section */
@@ -150,7 +150,7 @@
         .resend-row {
             margin-top: 20px;
             font-size: 13px;
-            color: #9CA3AF;
+            color: #586675;
         }
         .resend-row button {
             background: none;
@@ -164,7 +164,7 @@
             padding: 0;
         }
         .resend-row button:disabled {
-            color: #9CA3AF;
+            color: #586675;
             cursor: not-allowed;
             text-decoration: none;
         }
@@ -172,7 +172,7 @@
             display: block;
             margin-top: 24px;
             font-size: 13px;
-            color: #6B7280;
+            color: #586675;
             text-decoration: none;
         }
         .back-link:hover { color: #003366; }

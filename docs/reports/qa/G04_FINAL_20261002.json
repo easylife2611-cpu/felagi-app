@@ -1,0 +1,2357 @@
+[
+  {
+    "id": "S001",
+    "path": "/",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/",
+    "title": "ፈላጊ — Ethiopia's need-first marketplace",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 4
+        }
+      ],
+      "passes": 14
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S002",
+    "path": "/auth/telegram",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/auth/telegram",
+    "title": "ፈላጊ — Ethiopia's need-first marketplace",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 4
+        }
+      ],
+      "passes": 14
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S003",
+    "path": "/profile",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/profile",
+    "title": "Profile — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 403 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 14
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 3
+  },
+  {
+    "id": "S004",
+    "path": "/browse",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/browse",
+    "title": "Browse Needs — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [
+      "ReferenceError: tok is not defined"
+    ],
+    "axe": {
+      "violations": [],
+      "passes": 18
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 3
+  },
+  {
+    "id": "S005",
+    "path": "/needs/new",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/new",
+    "title": "Create Need — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 19
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 3
+  },
+  {
+    "id": "S006",
+    "path": "/needs/new/public-preview",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/new/public-preview",
+    "title": "Public preview — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S007",
+    "path": "/needs/test-id/created",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/created",
+    "title": "Need published! — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 8
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 3
+  },
+  {
+    "id": "S008",
+    "path": "/needs/test-id",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id",
+    "title": "Need details — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S009",
+    "path": "/my/needs",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/my/needs",
+    "title": "My Needs — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 15
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S010",
+    "path": "/needs/test-id/offers",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/offers",
+    "title": "Received Offers — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [
+      "SyntaxError: Unexpected number"
+    ],
+    "axe": {
+      "violations": [],
+      "passes": 8
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S011",
+    "path": "/needs/test-id/offers/new",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/offers/new",
+    "title": "Submit offer — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 3
+  },
+  {
+    "id": "S012",
+    "path": "/offers/test-id",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/offers/test-id",
+    "title": "Offer Details — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S013",
+    "path": "/my/offers",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/my/offers",
+    "title": "My Offers — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S014",
+    "path": "/needs/test-id/compare",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/compare",
+    "title": "Compare offers — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [
+      "SyntaxError: Unexpected number"
+    ],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S015",
+    "path": "/comparisons/test-id",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/comparisons/test-id",
+    "title": "Comparison result — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 8
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S016",
+    "path": "/needs/test-id/comparisons",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/comparisons",
+    "title": "Comparison history — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S017",
+    "path": "/offers/test-id/messages",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/offers/test-id/messages",
+    "title": "Messages — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 12
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S018",
+    "path": "/notifications",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/notifications",
+    "title": "Alerts — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S019",
+    "path": "/needs/test-id/boost",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/boost",
+    "title": "Boost need — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S020",
+    "path": "/needs/test-id/rating",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/rating",
+    "title": "Rate participant — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 9
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S021",
+    "path": "/support/report",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/support/report",
+    "title": "Report a problem — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 14
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S022",
+    "path": "/needs/test-id/publications",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/publications",
+    "title": "Telegram publications — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "S023",
+    "path": "/needs/test-id/offers/unlock",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/needs/test-id/offers/unlock",
+    "title": "Unlock offer submission — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 10
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  },
+  {
+    "id": "A001",
+    "path": "/admin/dashboard",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/dashboard",
+    "title": "Dashboard — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/dashboard-metrics",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A002",
+    "path": "/admin/telegram",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/telegram",
+    "title": "Telegram — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A003",
+    "path": "/admin/health",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/health",
+    "title": "Health — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/health-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [
+      "NAV: Error: browserContext.newPage: Target crashed \n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+    ],
+    "axe": null,
+    "viewports": [],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A004",
+    "path": "/admin/features",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/features",
+    "title": "Features — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/features-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A005",
+    "path": "/admin/marketplace",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/marketplace",
+    "title": "Marketplace — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/marketplace-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A006",
+    "path": "/admin/ai",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/ai",
+    "title": "AI Configuration — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/ai-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A007",
+    "path": "/admin/payments",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/payments",
+    "title": "Payments — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A008",
+    "path": "/admin/users",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/users",
+    "title": "Users — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A009",
+    "path": "/admin/content",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/content",
+    "title": "Content — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A010",
+    "path": "/admin/notifications",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/notifications",
+    "title": "Notifications — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/notifications-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A011",
+    "path": "/admin/files",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/files",
+    "title": "Files — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A012",
+    "path": "/admin/jobs",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/jobs",
+    "title": "Jobs — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/jobs-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A013",
+    "path": "/admin/backups",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/backups",
+    "title": "Backups — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/backups-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A014",
+    "path": "/admin/integrity",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/integrity",
+    "title": "Integrity — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/integrity-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A015",
+    "path": "/admin/security",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/security",
+    "title": "Security — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/security-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A016",
+    "path": "/admin/audit",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/audit",
+    "title": "Audit Log — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A017",
+    "path": "/admin/settings",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/settings",
+    "title": "Settings — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/settings-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A018",
+    "path": "/admin/recovery",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/recovery",
+    "title": "Recovery — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/recovery-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 15
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A019",
+    "path": "/admin/safe-mode",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/safe-mode",
+    "title": "Safe Mode — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/safe-mode-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A020",
+    "path": "/admin/monetization",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/monetization",
+    "title": "Monetization — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/monetization-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A021",
+    "path": "/admin/maintenance",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/maintenance",
+    "title": "Maintenance — ፈላጊ",
+    "live_fetch": true,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/maintenance-status",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A022",
+    "path": "/admin/reports",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/reports",
+    "title": "Reports — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false,
+        "sw": 320,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": false,
+        "sw": 600,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A023",
+    "path": "/admin/monetization/sponsored-ads",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/monetization/sponsored-ads",
+    "title": "admin.ads.title — ፈላጊ",
+    "live_fetch": false,
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/ads",
+        "status": 200
+      }
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": 4
+        }
+      ],
+      "passes": 15
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": true,
+        "sw": 782,
+        "cw": 320
+      },
+      {
+        "name": "600",
+        "overflow": true,
+        "sw": 782,
+        "cw": 600
+      },
+      {
+        "name": "840",
+        "overflow": false,
+        "sw": 840,
+        "cw": 840
+      },
+      {
+        "name": "1200",
+        "overflow": false,
+        "sw": 1200,
+        "cw": 1200
+      },
+      {
+        "name": "1600",
+        "overflow": false,
+        "sw": 1600,
+        "cw": 1600
+      }
+    ],
+    "has_pending": false,
+    "amharic": 0
+  }
+]
