@@ -14,6 +14,9 @@ use App\Models\User;
 use App\Policies\AdminReadPolicy;
 use App\Services\Admin\ControlDependencyService;
 use App\Services\Admin\ConfigDriftDetector;
+use App\Services\Admin\AdminSecurityService;
+use App\Services\Admin\AdminRecoveryService;
+use App\Services\Admin\AdminSafeModeService;
 use App\Services\Admin\AdminJobsService;
 use App\Services\Admin\AdminBackupsService;
 use App\Services\Admin\AdminIntegrityService;
@@ -378,6 +381,60 @@ class AdminReadController extends BaseApiController
                 'screen' => 'A014', 'area' => 'integrity', 'source' => 'live',
                 'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1,
             ]
+        );
+    }
+    // ─────────────────────────────────────────────────────────
+    // L307 — Real data for A015/A018/A019 (additive)
+    // ─────────────────────────────────────────────────────────
+
+    public function securityStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'security');
+        if (! $allowed) {
+            $this->auditDenied('A015', 'security');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminSecurityService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'Security status.',
+            status: 200,
+            meta: ['screen' => 'A015', 'area' => 'security', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
+        );
+    }
+
+    public function recoveryStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'recovery');
+        if (! $allowed) {
+            $this->auditDenied('A018', 'recovery');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminRecoveryService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'Recovery status.',
+            status: 200,
+            meta: ['screen' => 'A018', 'area' => 'recovery', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
+        );
+    }
+
+    public function safeModeStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'safe-mode');
+        if (! $allowed) {
+            $this->auditDenied('A019', 'safe-mode');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminSafeModeService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'Safe mode status.',
+            status: 200,
+            meta: ['screen' => 'A019', 'area' => 'safe-mode', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
         );
     }
     public function configDrift(): JsonResponse

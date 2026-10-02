@@ -240,6 +240,10 @@ Route::prefix('v1')->group(function () {
         Route::get('jobs-status',      [AdminReadController::class, 'jobsStatus']);
         Route::get('backups-status',   [AdminReadController::class, 'backupsStatus']);
         Route::get('integrity-status', [AdminReadController::class, 'integrityStatus']);
+        // L307 — additive: A015/A018/A019 real status
+        Route::get('security-status',  [AdminReadController::class, 'securityStatus']);
+        Route::get('recovery-status',  [AdminReadController::class, 'recoveryStatus']);
+        Route::get('safe-mode-status', [AdminReadController::class, 'safeModeStatus']);
         Route::get('features',      [AdminReadController::class, 'features']);
         Route::get('marketplace',   [AdminReadController::class, 'marketplace']);
         Route::get('ai',            [AdminReadController::class, 'ai']);
