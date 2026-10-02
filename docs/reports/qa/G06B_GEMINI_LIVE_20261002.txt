@@ -1,0 +1,25 @@
+=== G06B Gemini Live Probe (corrected) ===
+Date: 2026-10-02T07:54:17Z
+Server: s3145.fra1.stableserver.net
+
+--- 1. Model availability matrix ---
+Testing: gemini-flash-latest, gemini-flash-lite-latest, gemini-2.5-flash, gemini-3-flash-preview
+
+  HTTP 503  gemini-flash-latest
+  HTTP 200  gemini-flash-lite-latest
+  HTTP 404  gemini-2.5-flash
+  HTTP 200  gemini-3-flash-preview
+
+--- 2. Amharic generation (gemini-flash-lite-latest) ---
+Response: እንኳን ደህና መጡ! 
+
+እንደምን አደሩ/ዋሉ? ሰላምዎ ይብዛ!
+✅ Amharic works
+
+--- 3. JSON schema gate (gemini-flash-lite-latest) ---
+Parsed JSON: {'score': 50, 'rationale': 'The offer cannot be adequately evaluated without context regarding what goods or services are provided for the price and duration.'}
+✅ JSON schema gate PASS
+
+--- 4. Model version confirmed ---
+modelVersion: gemini-3.5-flash-lite
+

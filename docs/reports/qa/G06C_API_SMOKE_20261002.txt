@@ -1,0 +1,27 @@
+=== G06C API Smoke Test (corrected) ===
+Date: 2026-10-02T07:54:04Z
+Base: https://zagcreativity.com
+
+--- Public endpoints (expect 200) ---
+  200  /api/health
+  200  /api/v1/categories
+  200  /api/v1/needs
+  200  /api/v1/boost-packages
+
+--- Auth-required (expect 401) ---
+  401  /api/v1/auth/me
+  401  /api/v1/my/needs
+  401  /api/v1/my/offers
+  401  /api/v1/notifications
+
+--- Admin (expect 401) ---
+  401  /api/v1/admin/dashboard
+  401  /api/v1/admin/settings-status
+  401  /api/v1/admin/features-status
+  401  /api/v1/admin/ai-status
+
+--- Not-found (expect 404) ---
+  404  /api/v1/nonexistent-xyz
+
+--- Web health (expect 200) ---
+  302  /admin/health  (redirects to login if unauth)
