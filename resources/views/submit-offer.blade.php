@@ -186,7 +186,7 @@ function showValidationErrors(errors){
 
 function showOnly(name){
   ['state-loading','state-need-error','state-form'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
   var fa=$('form-actions');
   if(fa)fa.hidden=(name!=='form');

@@ -199,7 +199,7 @@ function toast(msg,ms){
 
 function showOnly(name){
   ['state-loading','state-denied','state-error','content'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
 }
 
@@ -353,21 +353,23 @@ function loadOffer(){
       offer=(j&&j.data)?j.data:j;
       if(!offer||!offer.id){showOnly('error');return;}
 
-      var token2=getToken();
-      var currentUser=null;
-      try{currentUser=JSON.parse(localStorage.getItem('felagi_user')||'null');}catch(e){}
-      var uid=currentUser&&currentUser.id?currentUser.id:null;
+      // L332 — fetch current user from server (cookie session); localStorage 'felagi_user' is dead
+      fetch('/api/v1/auth/me', {credentials:'same-origin', headers:{'Accept':'application/json'}})
+        .then(function(r){return r.ok?r.json():{data:null};})
+        .then(function(me){
+          var uid = (me && me.data && me.data.id) ? me.data.id : null;
 
-      isProvider=!!(uid&&offer.provider_id===uid);
-      var ownerId=offer.need&&offer.need.requester_id?offer.need.requester_id:null;
-      isOwner=!!(uid&&ownerId===uid);
+          isProvider=!!(uid&&offer.provider_id===uid);
+          var ownerId=offer.need&&offer.need.requester_id?offer.need.requester_id:null;
+          isOwner=!!(uid&&ownerId===uid);
 
-      // If neither, backend would have 404'd; safety net
-      if(!isProvider&&!isOwner){showOnly('denied');return;}
+          if(!isProvider&&!isOwner){showOnly('denied');return;}
 
-      $('back-btn').href=ownerId?('/needs/'+encodeURIComponent(offer.need_id||offer.need.id)):'/my/offers';
+          $('back-btn').href=ownerId?('/needs/'+encodeURIComponent(offer.need_id||offer.need.id)):'/my/offers';
 
-      renderOffer();
+          renderOffer();
+        })
+        .catch(function(){showOnly('error');});
     })
     .catch(function(e){
       var m=String(e.message||e);

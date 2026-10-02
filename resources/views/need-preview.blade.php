@@ -97,7 +97,7 @@ function toast(msg,ms){ms=ms||2400;var el=$('toast');el.textContent=msg;el.style
 
 function showOnly(name){
   ['state-loading','state-empty','content'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
   var a=$('actions'); if(a)a.hidden=(name!=='content');
 }

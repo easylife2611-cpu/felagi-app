@@ -105,7 +105,7 @@ function toast(msg,ms){ms=ms||2400;var el=$('toast');el.textContent=msg;el.class
 
 function showOnly(name){
   ['state-loading','state-empty','state-error','list'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
   var ba=$('bottom-actions');
   if(ba)ba.hidden=(name!=='list');

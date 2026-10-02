@@ -127,7 +127,7 @@ function toast(msg,ms){ms=ms||2200;var el=$('toast');el.textContent=msg;el.class
 
 function showOnly(name){
   ['state-loading','state-list','state-empty','state-error'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
 }
 

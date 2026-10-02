@@ -145,7 +145,7 @@ function toast(msg,ms){
 
 function showOnly(name){
   ['state-loading','state-denied','state-error','state-empty','content'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
 }
 

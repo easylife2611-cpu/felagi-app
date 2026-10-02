@@ -129,7 +129,7 @@ function toast(msg,ms){ms=ms||2400;var el=$('toast');el.textContent=msg;el.class
 
 function showOnly(name){
   ['state-loading','state-error','content'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
 }
 
@@ -195,11 +195,16 @@ function loadNeed(){
   var token=getToken();
   /* L305d */
 
-  try{var u=JSON.parse(localStorage.getItem('felagi_user')||'null');if(u&&u.id)meId=u.id;}catch(e){}
-
-  fetch('/api/v1/needs/'+encodeURIComponent(needId),{
-    credentials:'same-origin',headers:{'Accept':'application/json'}
-  })
+  // L332 — fetch current user from server (cookie session); localStorage 'felagi_user' is dead
+  fetch('/api/v1/auth/me', {credentials:'same-origin', headers:{'Accept':'application/json'}})
+    .then(function(r){return r.ok?r.json():{data:null};})
+    .then(function(me){
+      if(me && me.data && me.data.id) meId = me.data.id;
+    })
+    .catch(function(){})
+    .then(function(){ return fetch('/api/v1/needs/'+encodeURIComponent(needId),{
+      credentials:'same-origin',headers:{'Accept':'application/json'}
+    }); })
   .then(function(r){
     if(r.status===404)throw new Error('notfound');
     if(r.status===401)throw new Error('auth');

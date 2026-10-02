@@ -118,7 +118,7 @@ function toast(msg,ms){ms=ms||2200;var el=$('toast');el.textContent=msg;el.class
 
 function showOnly(name){
   ['state-loading','state-denied','state-error','state-list'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!=='state-'+name);
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
   });
   var composer=$('composer');
   if(composer)composer.hidden=(name!=='list');
@@ -297,11 +297,18 @@ offerId=getOfferId();
 if(!offerId){showOnly('error');return;}
 DRAFT_KEY='felagi_draft_msg_'+offerId;
 
-try{var u=JSON.parse(localStorage.getItem('felagi_user')||'null');if(u&&u.id)meId=u.id;}catch(e){}
-
-loadOfferMeta();
-loadMessages();
-loadDraft();
+// L332 — fetch current user from server (cookie session); localStorage 'felagi_user' is dead
+fetch('/api/v1/auth/me', {credentials:'same-origin', headers:{'Accept':'application/json'}})
+  .then(function(r){return r.ok?r.json():{data:null};})
+  .then(function(me){
+    if(me && me.data && me.data.id) meId = me.data.id;
+  })
+  .catch(function(){})
+  .then(function(){
+    loadOfferMeta();
+    loadMessages();
+    loadDraft();
+  });
 
 $('send-btn').addEventListener('click',sendMessage);
 $('content').addEventListener('input',function(){saveDraft();autoGrow();});

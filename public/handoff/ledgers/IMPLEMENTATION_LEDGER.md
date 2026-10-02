@@ -5513,3 +5513,52 @@ DFM-FDS-1.4 §8.2 item #25 + control-registry.json:
 | L330 | boostPackages Setting + sync | admin-editable, +13 tests |
 
 **Final suite at L330:** 1218 passed / 1 skipped / 0 failures
+---
+
+## L332 - showOnly content state fix + auth/me migration
+
+**Date:** 2026-10-02
+**Type:** Frontend bug fix (critical - user-visible)
+
+### Problem 1 - showOnly(name=content) broken in 13 views
+
+showOnly(name) iterated [state-loading,state-content,state-empty,state-error]
+and computed id!==state-+name. When name===content, it looked for
+state-content - but 13 views have id=content (no state- prefix).
+Result: content never displayed; screens appeared blank.
+
+Affected views (13):
+boost-need, compare-offers, comparison-history, comparison-result,
+my-needs, my-offers, need-created, need-preview, notifications,
+offer-unlock, received-offers, submit-offer, telegram-publications
+
+### Problem 2 - localStorage felagi_user dead since L305d
+
+L305d migrated auth from localStorage token to cookie session.
+3 views still read localStorage.getItem(felagi_user) - always null;
+user identity (isProvider/isOwner/meId) was never resolved.
+
+Affected views (3):
+offer-detail, offer-messages, rate-participant
+
+### Fix 1 - showOnly() canonical pattern
+
+Before: var el=$(id); if(el)el.hidden=(id!==state-+name);
+After:  var el=$(id); if(el)el.hidden=(id!==((name===content)?content:state-+name));
+
+### Fix 2 - fetch current user from server
+
+Replaced localStorage read with:
+fetch(/api/v1/auth/me, {credentials:same-origin})
+
+### Evidence
+
+- Full suite: 1218 passed / 1 skipped / 0 failed (3443 assertions)
+- Changed files: 16 (git diff --stat)
+- PHP syntax: clean on all 16 views (php -l)
+- L332 comment markers: 3 files
+
+### Constitution
+
+- Additive, no silent changes, evidence-based
+- No guessing - root cause traced to L305d migration
