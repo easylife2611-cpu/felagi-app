@@ -1,0 +1,6 @@
+Analyzing design_system_g05...                                  
+
+   info • 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre. Try replacing the use of the deprecated member with the replacement • example/lib/main.dart:25:43 • deprecated_member_use
+   info • 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre. Try replacing the use of the deprecated member with the replacement • example/lib/main.dart:27:43 • deprecated_member_use
+
+2 issues found. (ran in 18.2s)

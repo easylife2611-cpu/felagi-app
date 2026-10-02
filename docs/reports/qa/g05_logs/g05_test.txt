@@ -1,0 +1,15 @@
+00:00 +0: loading /home/zagcreht/design_system_g05/test/design_system_test.dart
+00:00 +0: primary target is at least56 and loading prevents dispatch
+00:00 +1: canonical screen IDs unique and both locale keysets agree
+00:00 +1 -1: canonical screen IDs unique and both locale keysets agree [E]
+  Expected: <40>
+    Actual: <46>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/design_system_test.dart 13:5                   main.<fn>
+  
+00:00 +1 -1: Some tests failed.
+
+Failing tests:
+  /home/zagcreht/design_system_g05/test/design_system_test.dart: canonical screen IDs unique and both locale keysets agree
