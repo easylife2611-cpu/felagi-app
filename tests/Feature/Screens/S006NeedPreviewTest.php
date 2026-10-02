@@ -29,4 +29,31 @@ class S006NeedPreviewTest extends TestCase
         $res = $this->get('/needs/new/public-preview');
         $res->assertSee('class="draft-badge"', false);
     }
+
+    public function test_page_has_empty_state(): void
+    {
+        $res = $this->get('/needs/new/public-preview');
+        $res->assertSee('id="state-empty"', false);
+    }
+
+    public function test_page_has_meta_grid_and_back_button(): void
+    {
+        $res = $this->get('/needs/new/public-preview');
+        $res->assertSee('id="need-meta"', false);
+        $res->assertSee('id="back-btn"', false);
+    }
+
+    public function test_page_has_actions_hidden_by_default(): void
+    {
+        $res = $this->get('/needs/new/public-preview');
+        // The actions bar is only shown once a draft is loaded from
+        // localStorage; the server-rendered HTML has it hidden.
+        $res->assertSee('id="actions" hidden', false);
+    }
+
+    public function test_page_has_toast_element(): void
+    {
+        $res = $this->get('/needs/new/public-preview');
+        $res->assertSee('id="toast"', false);
+    }
 }

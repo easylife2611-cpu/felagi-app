@@ -59,4 +59,42 @@ class S020RatingTest extends TestCase
             ]);
         $res->assertStatus(422);
     }
+
+    public function test_page_has_all_five_star_values(): void
+    {
+        $res = $this->get('/needs/abc-123/rating');
+        foreach (['1', '2', '3', '4', '5'] as $v) {
+            $res->assertSee('data-value="'.$v.'"', false);
+        }
+    }
+
+    public function test_page_has_stars_and_form_containers(): void
+    {
+        $res = $this->get('/needs/abc-123/rating');
+        $res->assertSee('id="stars"', false);
+        $res->assertSee('id="rate-form"', false);
+        $res->assertSee('id="submit-btn"', false);
+    }
+
+    public function test_rating_rejects_unknown_need(): void
+    {
+        $user = User::factory()->create();
+        $res = $this->actingAs($user, 'sanctum')
+            ->postJson('/api/v1/needs/00000000-0000-0000-0000-000000000000/ratings', [
+                'to_user_id' => $user->id, 'score' => 5,
+            ]);
+        $res->assertStatus(404);
+    }
+
+    public function test_rating_route_is_registered(): void
+    {
+        $owner = User::factory()->create();
+        $need = $this->makeNeed($owner);
+        // The store() method runs first, so any POST to the route
+        // proves the route exists. 401 (no auth) is the expected response.
+        $res = $this->postJson('/api/v1/needs/'.$need->id.'/ratings', [
+            'to_user_id' => $owner->id, 'score' => 5,
+        ]);
+        $res->assertStatus(401);
+    }
 }
