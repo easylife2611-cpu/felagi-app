@@ -17,6 +17,7 @@ use App\Services\Admin\ConfigDriftDetector;
 use App\Services\Admin\AdminSecurityService;
 use App\Services\Admin\AdminRecoveryService;
 use App\Services\Admin\AdminSafeModeService;
+use App\Services\Admin\AdminSettingsStatusService;
 use App\Services\Admin\AdminJobsService;
 use App\Services\Admin\AdminBackupsService;
 use App\Services\Admin\AdminIntegrityService;
@@ -437,6 +438,28 @@ class AdminReadController extends BaseApiController
                    'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
         );
     }
+
+    // ─────────────────────────────────────────────────────────
+    // L308 — Real data for A017 (additive)
+    // ─────────────────────────────────────────────────────────
+
+    public function settingsStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'settings');
+        if (! $allowed) {
+            $this->auditDenied('A017', 'settings');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminSettingsStatusService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'Settings status.',
+            status: 200,
+            meta: ['screen' => 'A017', 'area' => 'settings', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
+        );
+    }
+
     public function configDrift(): JsonResponse
     {
         $allowed = (new AdminReadPolicy())->viewAny(request()->user(), 'integrity');
