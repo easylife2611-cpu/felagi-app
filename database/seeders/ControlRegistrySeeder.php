@@ -54,6 +54,17 @@ class ControlRegistrySeeder extends Seeder
             ['exports.max_rows',  'CONFIG', 'INTEGER', 10000,   'MEDIUM', false],
 
             // ── Content (LOW) ──
+            // ── BoostPackages (multi-row JSON, from control-registry) ──
+            // Per DFM-FDS-1.4 §8.2 #25: durations 1/3/7 days, prices are
+            // Admin-published (seed values are illustrative, not final).
+            // The actual seeding of value_json is done by a dedicated
+            // migration to keep the JSON shape explicit.
+            ['boostPackages', 'CONFIG', 'JSON', [
+                ['duration_days' => 1, 'amount_minor' => 2500, 'currency' => 'ETB'],
+                ['duration_days' => 3, 'amount_minor' => 4900, 'currency' => 'ETB'],
+                ['duration_days' => 7, 'amount_minor' => 9900, 'currency' => 'ETB'],
+            ], 'HIGH', false],
+
             ['content.welcome_am', 'CONTENT', 'STRING', null, 'LOW', false],
             ['content.welcome_en', 'CONTENT', 'STRING', null, 'LOW', false],
 

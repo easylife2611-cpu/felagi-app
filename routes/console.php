@@ -67,6 +67,17 @@ Schedule::job(new CleanupExpiredIdempotencyKeys())
     ->hourly()
     ->name('idempotency-cleanup');
 
+// ─── L330 — Boost packages sync (Setting -> table) ───
+
+// The canonical source of truth for boost packages is the
+// `boostPackages` Setting (A020-editable via WP-13). This
+// command syncs the `boost_packages` table (FK integrity) from
+// that Setting. Rows are never deleted (soft-deactivate only).
+Schedule::command('boost-packages:sync')
+    ->everyMinute()
+    ->name('boost-packages-sync')
+    ->withoutOverlapping();
+
 // ─── AC (audit L276) — Config drift detection ───
 
 Artisan::command('config:drift {--json}', function () {
