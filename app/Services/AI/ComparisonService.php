@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
  * WP-10 — AI-powered offer comparison.
  *
  * 4 canonical criteria (from AI_Evaluation_Contract.md):
- *   price (0.30), delivery_time (0.25), quality (0.30), reliability (0.15)
+ *   price (0.25), delivery_time (0.25), quality (0.25), reliability (0.25)
  *
  * Rule C04: AI analyzes, never decides.
  * Rule C20: AI failure creates no fake result.
@@ -38,10 +38,10 @@ class ComparisonService
 
     /** Canonical criteria — LOCKED by AI_Evaluation_Contract.md */
     public const CRITERIA = [
-        'price'         => ['weight' => 0.30, 'label' => 'Price'],
+        'price'         => ['weight' => 0.25, 'label' => 'Price'],
         'delivery_time' => ['weight' => 0.25, 'label' => 'Delivery time'],
-        'quality'       => ['weight' => 0.30, 'label' => 'Quality'],
-        'reliability'   => ['weight' => 0.15, 'label' => 'Reliability'],
+        'quality'       => ['weight' => 0.25, 'label' => 'Quality'],
+        'reliability'   => ['weight' => 0.25, 'label' => 'Reliability'],
     ];
 
     public function __construct(
@@ -269,7 +269,7 @@ class ComparisonService
             . 'Rules: (1) You MUST analyze — you MUST NOT decide; output is advisory only. '
             . '(2) Score each offer on four criteria: price, delivery_time, quality, reliability. '
             . '(3) Each criterion score is 0-100 (higher = better for requester). '
-            . '(4) total_score = price*0.30 + delivery_time*0.25 + quality*0.30 + reliability*0.15. '
+            . '(4) total_score = price*0.25 + delivery_time*0.25 + quality*0.25 + reliability*0.25. '
             . '(5) If a fact is unknown, state so in missing_information — do NOT invent facts. '
             . '(6) Never reference competitor identity; use offer_index only. '
             . '(7) Respond ONLY in the JSON schema. No prose, no markdown. '

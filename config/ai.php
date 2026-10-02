@@ -53,10 +53,10 @@ return [
         'max_offers' => (int) env('AI_MAX_OFFERS', 20),
         // 4 canonical criteria (from AI_Evaluation_Contract.md)
         'criteria' => [
-            'price' => ['weight' => 0.30],
+            'price' => ['weight' => 0.25],
             'delivery_time' => ['weight' => 0.25],
-            'quality' => ['weight' => 0.30],
-            'reliability' => ['weight' => 0.15],
+            'quality' => ['weight' => 0.25],
+            'reliability' => ['weight' => 0.25],
         ],
         // Score range
         'score_min' => 0,

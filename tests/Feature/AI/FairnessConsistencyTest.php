@@ -194,9 +194,11 @@ class FairnessConsistencyTest extends TestCase
         app(ComparisonService::class)->evaluate($need, $owner->id);
 
         $body = $captured['body'] ?? '';
-        $this->assertStringContainsString('0.30', $body);
-        $this->assertStringContainsString('0.25', $body);
-        $this->assertStringContainsString('0.15', $body);
+        // LOCKED: AI_Evaluation_Contract.md §11 — canonical weights 25% each
+        $this->assertStringContainsString(
+            'price*0.25 + delivery_time*0.25 + quality*0.25 + reliability*0.25',
+            $body
+        );
     }
 
     // ─── Schema gate ───
