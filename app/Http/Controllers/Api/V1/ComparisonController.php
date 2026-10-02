@@ -213,4 +213,85 @@ class ComparisonController extends BaseApiController
 
         return $this->success($feedback, 'Feedback recorded.', 201);
     }
+
+    /**
+     * GET /api/v1/comparisons/{id}/results
+     * Requester: full projection. Provider: own result only.
+     */
+    public function results(Request $request, string $id): JsonResponse
+    {
+        $comparison = Comparison::find($id);
+        if (! $comparison) {
+            return $this->error('NOT_FOUND', 'Comparison not found.', 404);
+        }
+
+        $user = $request->user();
+        $need = $comparison->need;
+        $isOwner = $need && $need->requester_id === $user->id;
+
+        $results = ComparisonResult::where('comparison_id', $comparison->id)->get();
+
+        if (! $isOwner) {
+            $ownOfferIds = $need
+                ? $need->offers()->where('provider_id', $user->id)->pluck('id')
+                : collect();
+            $results = $results->whereIn('comparison_offer_id', $ownOfferIds)->values();
+        }
+
+        return $this->success([
+            'comparison_id' => $comparison->id,
+            'status'        => $comparison->status,
+            'projection'    => $isOwner
+                ? 'REQUESTER_COMPARISON_VIEW'
+                : 'PROVIDER_OWN_RESULT_VIEW',
+            'results'       => $results,
+        ], 'Comparison results.');
+    }
+
+    /**
+     * POST /api/v1/comparisons/{id}/retry
+     */
+    public function retry(Request $request, string $id): JsonResponse
+    {
+        $comparison = Comparison::find($id);
+        if (! $comparison) {
+            return $this->error('NOT_FOUND', 'Comparison not found.', 404);
+        }
+
+        $need = $comparison->need;
+        if (! $need || $need->requester_id !== $request->user()->id) {
+            return $this->error('FORBIDDEN', 'Owner only.', 403);
+        }
+
+        if ($comparison->status !== Comparison::STATUS_FAILED) {
+            return $this->error('STATE_CONFLICT', 'Only failed comparisons may retry.', 409);
+        }
+
+        try {
+            $service = app(ComparisonService::class);
+            $result = $service->evaluate($need, $request->user()->id);
+            return $this->success($result, 'Comparison retried.', 201);
+        } catch (\RuntimeException $e) {
+            return $this->error('AI_COMPARISON_FAILED', $e->getMessage(), 503);
+        }
+    }
+
+    /**
+     * GET /api/v1/my/comparisons
+     * Provider's own participation history (read-only).
+     */
+    public function myComparisons(Request $request): JsonResponse
+    {
+        $user = $request->user();
+
+        $comparisons = Comparison::whereHas('need.offers', function ($q) use ($user) {
+            $q->where('provider_id', $user->id);
+        })
+            ->orderByDesc('created_at')
+            ->limit(50)
+            ->get(['id', 'need_id', 'status', 'version_number', 'created_at']);
+
+        return $this->success($comparisons, 'My comparison participation.');
+    }
+
 }

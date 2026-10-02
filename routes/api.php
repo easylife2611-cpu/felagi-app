@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\V1\AdsEventController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\ComparisonController;
+use App\Http\Controllers\Api\V1\ExportController;
+use App\Http\Controllers\Api\V1\AttachmentController;
 use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\NeedController;
 use App\Http\Controllers\Api\V1\NotificationController;
@@ -95,6 +97,7 @@ Route::prefix('v1')->group(function () {
         // Profile
         Route::patch('profile', [AuthController::class, 'updateProfile']);
         Route::post('profile/photo', [AuthController::class, 'uploadProfilePhoto']);
+        Route::post('attachments', [AttachmentController::class, 'store']);
 
         // Needs
         Route::post('needs', [NeedController::class, 'store'])
@@ -133,6 +136,12 @@ Route::prefix('v1')->group(function () {
         Route::get('needs/{needId}/comparisons', [ComparisonController::class, 'index']);
         Route::post('needs/{needId}/comparisons', [ComparisonController::class, 'store']);
         Route::get('comparisons/{id}', [ComparisonController::class, 'show']);
+        Route::get('comparisons/{id}/results', [ComparisonController::class, 'results']);
+        Route::post('comparisons/{id}/retry', [ComparisonController::class, 'retry']);
+        Route::post('comparisons/{id}/exports', [ExportController::class, 'store']);
+        Route::get('my/comparisons', [ComparisonController::class, 'myComparisons']);
+        Route::get('exports/{id}', [ExportController::class, 'show']);
+        Route::get('exports/{id}/download', [ExportController::class, 'download']);
     Route::get('/comparisons/{id}/provider-projection', [ComparisonController::class, 'providerProjection']);
     Route::post('/comparisons/{id}/feedback', [ComparisonController::class, 'submitFeedback']);
 
@@ -164,6 +173,11 @@ Route::prefix('v1')->group(function () {
         ->middleware('auth:sanctum');
 
     Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
+
+        // T3 (2026-10-02) — cross-cutting meta endpoints
+        Route::get('control-registry', [AdminReadController::class, 'controlRegistry']);
+        Route::post('operations', [AdminChangeController::class, 'operations'])
+            ->middleware('idempotent');
 
         Route::prefix('changes')->group(function () {
             // Draft lifecycle (WP-13)
@@ -232,6 +246,7 @@ Route::prefix('v1')->group(function () {
         // WP-05c: Admin read endpoints (L262)
         Route::get('dashboard',     [AdminReadController::class, 'dashboard']);
         Route::get('telegram-overview', [AdminReadController::class, 'telegram']);
+        Route::get('telegram', [AdminReadController::class, 'telegram']); // T3 alias for design path /admin/telegram
         Route::get('health',        [AdminReadController::class, 'health']);
         // L305 — additive: real metrics + health status (do not alter A001/A003 handle())
         Route::get('dashboard-metrics', [AdminReadController::class, 'dashboardMetrics']);

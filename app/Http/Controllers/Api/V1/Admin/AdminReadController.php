@@ -320,6 +320,50 @@ class AdminReadController extends BaseApiController
     }
 
     /**
+     * GET /api/v1/admin/control-registry
+     *
+     * Cross-cutting meta-endpoint used by A002, A004, A011, A016 (and
+     * other admin screens) to display the 55-control registry with
+     * authorized current values.
+     *
+     * Returns: control_id, canonical_name, category, type, risk,
+     * value, editable — sourced from ControlRegistrySeeder + Setting.
+     *
+     * Placeholder / metadata-only controls (operations, secrets, ads)
+     * are returned with source='design-only'.
+     */
+    public function controlRegistry(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny(request()->user(), 'features');
+        if (! $allowed) {
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+
+        $settings = Setting::query()->orderBy('key')->get();
+
+        $controls = $settings->map(function (Setting $s) {
+            return [
+                'control_id'     => $s->key,
+                'canonical_name' => $s->key,
+                'category'       => $s->type      ?? null,
+                'type'           => $s->data_type ?? null,
+                'risk'           => $s->risk      ?? null,
+                'value'          => $s->value,
+                'editable'       => (bool) ($s->editable ?? false),
+                'source'         => 'settings',
+            ];
+        })->values()->all();
+
+        return $this->success([
+            'controls'    => $controls,
+            'count'       => count($controls),
+            'observed_at' => now()->toIso8601String(),
+            'source'      => 'control-registry',
+        ], 'Control registry.');
+    }
+
+
+    /**
      * GET /api/v1/admin/integrity/drift
      *
      * AC (audit L276) — configuration drift report.

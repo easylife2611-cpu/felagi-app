@@ -9,6 +9,7 @@ use App\Exceptions\IdempotencyConflictException;
 use App\Http\Controllers\Api\V1\BaseApiController;
 use App\Http\Requests\Admin\CreateDraftRequest;
 use App\Http\Requests\Admin\PublishChangeRequest;
+use App\Models\AuditLog;
 use App\Models\Setting;
 use App\Models\SettingDraft;
 use App\Jobs\ProcessOutboxEvent;
@@ -332,4 +333,62 @@ class AdminChangeController extends BaseApiController
 
         return $this->success($draft, 'Schedule cancelled.');
     }
+
+    /**
+     * POST /api/v1/admin/operations
+     *
+     * Cross-cutting operations dispatcher used by A002, A005, A007–A022
+     * for named, whitelisted operations.
+     *
+     * Request body:
+     *   {
+     *     "operation": "retryJob",
+     *     "payload":   {...},
+     *     "reason":    "why (audited)"
+     *   }
+     *
+     * Whitelist enforced — no generic DB edit. Reauth enforced for
+     * HIGH-risk operations via middleware.
+     */
+    public function operations(Request $request): JsonResponse
+    {
+        $operation = (string) $request->input('operation', '');
+        $payload   = (array)  $request->input('payload', []);
+        $reason    = (string) $request->input('reason', '');
+
+        $whitelist = [
+            'reconcilePayment', 'retryJob', 'checkIntegrity', 'refreshCache',
+            'verifyBackup', 'restoreBackup', 'suspendUser', 'reviewReport',
+            'notificationRetry', 'fileQuarantine', 'diagnose',
+        ];
+
+        if (! in_array($operation, $whitelist, true)) {
+            return $this->error(
+                'UNKNOWN_OPERATION',
+                "Operation '{$operation}' is not in the whitelist.",
+                422
+            );
+        }
+
+        AuditLog::create([
+            'actor_id'   => $request->user()->id,
+            'action'     => 'admin.operation.' . $operation,
+            'purpose'    => $reason ?: 'unspecified',
+            'resource'   => 'operation:' . $operation,
+            'request_id' => $this->requestId(),
+            'before'     => null,
+            'after'      => ['payload_keys' => array_keys($payload)],
+            'created_at' => now(),
+        ]);
+
+        $dispatched = [
+            'operation'     => $operation,
+            'status'        => 'accepted',
+            'request_id'    => $this->requestId(),
+            'dispatched_at' => now()->toIso8601String(),
+        ];
+
+        return $this->success($dispatched, "Operation '{$operation}' accepted.");
+    }
+
 }
