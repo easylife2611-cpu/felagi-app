@@ -1,0 +1,442 @@
+[
+  {
+    "id": "A015",
+    "path": "/admin/security",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/security",
+    "title": "Security — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/security-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A017",
+    "path": "/admin/settings",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/settings",
+    "title": "Settings — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/settings-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 11
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A018",
+    "path": "/admin/recovery",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/recovery",
+    "title": "Recovery — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/recovery-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 15
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A019",
+    "path": "/admin/safe-mode",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/safe-mode",
+    "title": "Safe Mode — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/safe-mode-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A020",
+    "path": "/admin/monetization",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/monetization",
+    "title": "Monetization — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/monetization-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A021",
+    "path": "/admin/maintenance",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/maintenance",
+    "title": "Maintenance — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/maintenance-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A004",
+    "path": "/admin/features",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/features",
+    "title": "Features — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/features-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A005",
+    "path": "/admin/marketplace",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/marketplace",
+    "title": "Marketplace — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/marketplace-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A006",
+    "path": "/admin/ai",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/ai",
+    "title": "AI Configuration — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/ai-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  },
+  {
+    "id": "A010",
+    "path": "/admin/notifications",
+    "http": 200,
+    "final_url": "https://zagcreativity.com/admin/notifications",
+    "title": "Notifications — ፈላጊ",
+    "fetch_calls": [
+      {
+        "url": "https://zagcreativity.com/api/v1/admin/notifications-status",
+        "status": 200
+      }
+    ],
+    "fetch_ok": true,
+    "console_errors": [],
+    "page_errors": [],
+    "axe": {
+      "violations": [],
+      "passes": 13
+    },
+    "viewports": [
+      {
+        "name": "320",
+        "overflow": false
+      },
+      {
+        "name": "600",
+        "overflow": false
+      },
+      {
+        "name": "840",
+        "overflow": false
+      },
+      {
+        "name": "1200",
+        "overflow": false
+      },
+      {
+        "name": "1600",
+        "overflow": false
+      }
+    ],
+    "has_pending": true,
+    "amharic": 0
+  }
+]

@@ -18,21 +18,21 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#19
 .sidebar nav a:hover{background:rgba(255,255,255,.05);color:#fff}
 .sidebar nav a.active{background:rgba(38,194,129,.1);color:#fff;border-left-color:#26c281}
 .sidebar nav a .ic{width:16px;text-align:center;font-size:14px;opacity:.85}
-.content{flex:1;margin-left:240px;display:flex;flex-direction:column;min-height:100vh}
+.content{flex:1;margin-left:240px;display:flex;flex-direction:column;min-height:100vh;min-width:0}
 .topbar{background:#fff;border-bottom:1px solid #e5eaef;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:15;box-shadow:0 1px 2px rgba(0,0,0,.02)}
 .topbar .page-title{font-size:16px;font-weight:600;color:#0a2540}
 .topbar .right{display:flex;gap:12px;align-items:center;font-size:13px;color:#5a738e}
 .topbar .right .who{display:flex;gap:6px;align-items:center}
 .topbar .btn-logout{padding:7px 14px;background:#eef2f6;color:#192431;border:1px solid #d8dee5;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit}
 .topbar .btn-logout:hover{background:#e0e6ec}
-main{padding:24px;flex:1;max-width:1400px}
+main{padding:24px;flex:1;max-width:1400px;min-width:0}
 .hamburger{display:none;background:transparent;border:none;font-size:20px;cursor:pointer;padding:4px 8px}
-.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #eef2f6}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #eef2f6;overflow-x:auto}
 .card h2{font-size:15px;font-weight:600;color:#0a2540;margin-bottom:12px}
 .card h3{font-size:13px;font-weight:600;color:#0a2540;margin-bottom:8px;margin-top:16px}
 .card h3:first-child{margin-top:0}
 .card p{color:#586675;font-size:14px;line-height:1.6;margin-bottom:10px}
-.pending{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00;padding:12px 14px;border-radius:8px;font-size:13px;line-height:1.5;margin-bottom:14px}
+.pending{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00;padding:12px 14px;border-radius:8px;font-size:13px;line-height:1.5;margin-bottom:14px;overflow-wrap:anywhere}
 .pending strong{display:block;margin-bottom:3px}
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:14px}
 .stat{background:#fff;border:1px solid #eef2f6;border-radius:10px;padding:16px}
