@@ -609,5 +609,12 @@
   "adminMaintenanceMessage": "Maintenance Message",
   "adminRefreshCache": "Refresh Cache",
   "adminMaintenanceStatus": "Maintenance Status",
-  "adminNoSettings": "No settings configured"
+  "adminNoSettings": "No settings configured",
+  "adminFeatureNeeds": "Needs",
+  "adminFeatureOffers": "Offers",
+  "adminFeatureMessaging": "Messaging",
+  "adminFeatureAiCompare": "AI Comparison",
+  "adminFeatureStatus": "Status",
+  "adminDependencies": "Dependencies",
+  "adminVersion": "Version"
 }

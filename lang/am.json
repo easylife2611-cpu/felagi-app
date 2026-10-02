@@ -609,5 +609,12 @@
   "adminMaintenanceMessage": "የጥገና መልእክት",
   "adminRefreshCache": "ማህደረ ትውስታ አድስ",
   "adminMaintenanceStatus": "የጥገና ደረጃ",
-  "adminNoSettings": "ምንም ቅንብሮች አልተዋቀሩም"
+  "adminNoSettings": "ምንም ቅንብሮች አልተዋቀሩም",
+  "adminFeatureNeeds": "ፍላጎቶች",
+  "adminFeatureOffers": "ቅርቦቶች",
+  "adminFeatureMessaging": "መልእክት",
+  "adminFeatureAiCompare": "AI ንጽጽር",
+  "adminFeatureStatus": "ሁኔታ",
+  "adminDependencies": "ጥገኞች",
+  "adminVersion": "ስሪት"
 }

@@ -19,6 +19,7 @@ use App\Services\Admin\AdminRecoveryService;
 use App\Services\Admin\AdminSafeModeService;
 use App\Services\Admin\AdminSettingsStatusService;
 use App\Services\Admin\AdminMaintenanceService;
+use App\Services\Admin\AdminFeaturesService;
 use App\Services\Admin\AdminJobsService;
 use App\Services\Admin\AdminBackupsService;
 use App\Services\Admin\AdminIntegrityService;
@@ -479,6 +480,28 @@ class AdminReadController extends BaseApiController
             message: 'Maintenance status.',
             status: 200,
             meta: ['screen' => 'A021', 'area' => 'maintenance', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
+        );
+    }
+
+
+    // ─────────────────────────────────────────────────────────
+    // L310 — Real data for A004 (additive)
+    // ─────────────────────────────────────────────────────────
+
+    public function featuresStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'features');
+        if (! $allowed) {
+            $this->auditDenied('A004', 'features');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminFeaturesService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'Features status.',
+            status: 200,
+            meta: ['screen' => 'A004', 'area' => 'features', 'source' => 'live',
                    'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
         );
     }
