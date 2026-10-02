@@ -651,5 +651,16 @@
   "adminAITotalTokens": "ጠቅላላ ቶከኖች",
   "adminAITotalCost": "ጠቅላላ ወጪ",
   "adminAIRecentFailures": "የቅርብ ጊዜ ውድቀቶች",
-  "adminAINoFailures": "የቅርብ ጊዜ ውድቀቶች የሉም"
+  "adminAINoFailures": "የቅርብ ጊዜ ውድቀቶች የሉም",
+  "adminNotificationPending": "በመጠባበቅ",
+  "adminNotificationSent": "የተላከ",
+  "adminNotificationFailed": "ያልተሳካ",
+  "adminNotificationSkipped": "የተዘለለ",
+  "adminNotificationChannel": "ሰርጥ",
+  "adminNotificationType": "ዓይነት",
+  "adminNotificationRecent": "የቅርብ ጊዜ ማሳወቂያዎች",
+  "adminNotificationNoRecent": "የቅርብ ጊዜ ማሳወቂያዎች የሉም",
+  "adminNotificationDelivery": "የማድረስ ሁኔታ",
+  "adminNotificationByChannel": "በሰርጥ",
+  "adminNotificationByStatus": "በሁኔታ"
 }

@@ -651,5 +651,16 @@
   "adminAITotalTokens": "Total Tokens",
   "adminAITotalCost": "Total Cost",
   "adminAIRecentFailures": "Recent Failures",
-  "adminAINoFailures": "No recent failures"
+  "adminAINoFailures": "No recent failures",
+  "adminNotificationPending": "Pending",
+  "adminNotificationSent": "Sent",
+  "adminNotificationFailed": "Failed",
+  "adminNotificationSkipped": "Skipped",
+  "adminNotificationChannel": "Channel",
+  "adminNotificationType": "Type",
+  "adminNotificationRecent": "Recent Notifications",
+  "adminNotificationNoRecent": "No recent notifications",
+  "adminNotificationDelivery": "Delivery Status",
+  "adminNotificationByChannel": "By Channel",
+  "adminNotificationByStatus": "By Status"
 }
