@@ -1,7 +1,7 @@
 # Felagi — Master Source of Truth (2026-10-01)
 
-**Generated:** 2026-10-01 (after L332)
-**HEAD:** `4e34ccf` (L332)
+**Generated:** 2026-10-02 (after L332)
+**HEAD:** `71db7fb` (L332)
 **Test suite:** 1218 passed / 1 skipped / 0 failures
 **Legal framework:** Ethiopian Proclamation 1321/2024
 **Active bundle:** Felagi_App_v1.4.2_20261001-1502_L332_FINAL.bundle
@@ -514,7 +514,7 @@ Logs:
 **End of Source of Truth**
 
 **Version:** 1.0 (post-L332)
-**Generated:** 2026-10-01
+**Generated:** 2026-10-02
 **Next review:** After L303
 
 
@@ -700,7 +700,7 @@ Company must initiate:
 | Item | Value |
 |---|---|
 | HEAD | 953ac3d |
-| Tests | 1054 passed / 0 failures |
+| Tests | 1218 passed / 1 skipped / 0 failures |
 | New tests | +23 (12 EmailVerify + 11 PasswordReset) |
 | Bundle | ..._L304_FINAL.bundle |
 
