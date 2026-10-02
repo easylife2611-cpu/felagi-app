@@ -245,6 +245,7 @@ Route::prefix('v1')->group(function () {
         Route::get('recovery-status',  [AdminReadController::class, 'recoveryStatus']);
         Route::get('safe-mode-status', [AdminReadController::class, 'safeModeStatus']);
         Route::get('settings-status', [AdminReadController::class, 'settingsStatus']);
+        Route::get('maintenance-status', [AdminReadController::class, 'maintenanceStatus']);
         Route::get('features',      [AdminReadController::class, 'features']);
         Route::get('marketplace',   [AdminReadController::class, 'marketplace']);
         Route::get('ai',            [AdminReadController::class, 'ai']);
