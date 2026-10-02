@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Log;
  * Docs: https://ai.google.dev/api/generate-content
  *
  * No external SDK — Laravel HTTP client only.
+ *
+ * L319 — Fallback model support (additive):
+ *   When the primary model returns 503 (UNAVAILABLE — demand spike) or
+ *   404 (NOT_FOUND — deprecated alias), rotate to the next model in
+ *   config('ai.gemini.fallback_models'). Verified working on 2026-10-02
+ *   (see docs/reports/qa/G06B_GEMINI_LIVE_20261002.txt).
+ *
+ *   Return shape from post() is unchanged: [json, raw, usage, error].
+ *   Callers must not depend on which model answered.
  */
 class GeminiClient
 {
@@ -54,9 +63,70 @@ class GeminiClient
         return $this->post($payload);
     }
 
+    /**
+     * Try primary model first, then rotate through fallback_models on
+     * transient / deprecated-model errors.
+     */
     public function post(array $payload): array
     {
-        $url = $this->url() . '?key=' . $this->key();
+        $models = $this->resolveModels();
+        $lastError = null;
+
+        foreach ($models as $model) {
+            $result = $this->postToModel($model, $payload);
+
+            if ($result['error'] === null) {
+                return $result;
+            }
+
+            $lastError = $result['error'];
+
+            // Only rotate on 503 (demand spike) or 404 (deprecated alias).
+            // All other errors (400, 401, 429, schema, safety) are
+            // returned immediately — they are not model-specific.
+            if (! $this->shouldFallback($result['error'])) {
+                return $result;
+            }
+
+            Log::info('Gemini: rotating to fallback model', [
+                'failed_model' => $model,
+                'error' => substr($result['error'], 0, 200),
+            ]);
+        }
+
+        return ['json' => null, 'raw' => '', 'usage' => [], 'error' => $lastError];
+    }
+
+    /**
+     * @return string[]  [primary, fallback1, fallback2, ...]
+     */
+    private function resolveModels(): array
+    {
+        $primary = $this->model ?? config('ai.gemini.model');
+        $fallbacks = config('ai.gemini.fallback_models', []);
+
+        if (! is_array($fallbacks)) {
+            $fallbacks = [];
+        }
+
+        $models = array_merge([$primary], $fallbacks);
+
+        return array_values(array_filter(array_unique($models)));
+    }
+
+    private function shouldFallback(string $error): bool
+    {
+        return (bool) preg_match('/^HTTP (503|404):/', $error);
+    }
+
+    /**
+     * Single-model POST with exponential-backoff retries on transient
+     * HTTP statuses (429/5xx). 404 short-circuits (no point retrying
+     * a deprecated alias).
+     */
+    private function postToModel(string $model, array $payload): array
+    {
+        $url = $this->url($model) . '?key=' . $this->key();
         $maxRetries = (int) config('ai.gemini.max_retries', 3);
         $baseDelay = (int) config('ai.gemini.retry_delay_ms', 1000);
 
@@ -76,16 +146,22 @@ class GeminiClient
             $status = $response->status();
             $lastError = "HTTP {$status}: " . substr($response->body(), 0, 500);
 
+            // 404 = deprecated model — no point retrying the same model.
+            if ($status === 404) {
+                break;
+            }
+
             $shouldRetry = in_array($status, [429, 500, 502, 503, 504], true);
 
             Log::warning('Gemini API call failed', [
+                'model' => $model,
                 'status' => $status,
                 'attempt' => $attempt,
                 'max_retries' => $maxRetries,
                 'retry' => $shouldRetry && $attempt <= $maxRetries,
             ]);
 
-            if (!$shouldRetry || $attempt > $maxRetries) {
+            if (! $shouldRetry || $attempt > $maxRetries) {
                 break;
             }
 
@@ -99,7 +175,7 @@ class GeminiClient
     {
         $candidate = $body['candidates'][0] ?? null;
 
-        if (!$candidate) {
+        if (! $candidate) {
             $blockReason = $body['promptFeedback']['blockReason'] ?? null;
             return [
                 'json' => null,
@@ -151,10 +227,9 @@ class GeminiClient
             ->asJson();
     }
 
-    private function url(): string
+    private function url(string $model): string
     {
         $base = rtrim($this->baseUrl ?? config('ai.gemini.base_url'), '/');
-        $model = $this->model ?? config('ai.gemini.model');
         return "{$base}/models/{$model}:generateContent";
     }
 
