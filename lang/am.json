@@ -663,5 +663,9 @@
   "adminNotificationDelivery": "የማድረስ ሁኔታ",
   "adminNotificationByChannel": "በሰርጥ",
   "adminNotificationByStatus": "በሁኔታ",
-  "adminProposeChange": "ለውጥ ያቅርቡ"
+  "adminProposeChange": "ለውጥ ያቅርቡ",
+  "adminSettingTotal": "ጠቅላላ ቅንብሮች",
+  "adminSettingFreeze": "የቀዘቀዘ",
+  "adminSettingRisk": "የአደጋ ደረጃ",
+  "adminSettingVersion": "ስሪት"
 }

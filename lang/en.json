@@ -663,5 +663,9 @@
   "adminNotificationDelivery": "Delivery Status",
   "adminNotificationByChannel": "By Channel",
   "adminNotificationByStatus": "By Status",
-  "adminProposeChange": "Propose Change"
+  "adminProposeChange": "Propose Change",
+  "adminSettingTotal": "Total settings",
+  "adminSettingFreeze": "Frozen",
+  "adminSettingRisk": "Risk level",
+  "adminSettingVersion": "Version"
 }
