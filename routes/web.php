@@ -29,6 +29,11 @@ Route::get('/auth/telegram', function () {
     return view('welcome');
 });
 
+// S001 Welcome alias (design path: /welcome; canonical route is /)
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 Route::get('/profile', function () {
     return view('profile');
 });
