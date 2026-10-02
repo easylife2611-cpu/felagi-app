@@ -1,0 +1,126 @@
+[
+  {
+    "id": "S008-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299",
+        "status": 200
+      }
+    ],
+    "body_has_title": true
+  },
+  {
+    "id": "S010-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/offers",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/offers",
+        "status": 200
+      },
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299",
+        "status": 200
+      }
+    ],
+    "body_has_title": false
+  },
+  {
+    "id": "S011-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/offers/new",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299",
+        "status": 200
+      },
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299",
+        "status": 200
+      }
+    ],
+    "body_has_title": true
+  },
+  {
+    "id": "S014-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/compare",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/offers",
+        "status": 200
+      },
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299",
+        "status": 200
+      }
+    ],
+    "body_has_title": false
+  },
+  {
+    "id": "S016-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/comparisons",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/comparisons",
+        "status": 200
+      }
+    ],
+    "body_has_title": false
+  },
+  {
+    "id": "S019-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/boost",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/boost-packages",
+        "status": 200
+      }
+    ],
+    "body_has_title": false
+  },
+  {
+    "id": "S020-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/rating",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299",
+        "status": 200
+      }
+    ],
+    "body_has_title": false
+  },
+  {
+    "id": "S022-real",
+    "path": "/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/publications",
+    "http": 200,
+    "console_errors": [],
+    "page_errors": [],
+    "api_calls": [
+      {
+        "url": "/api/v1/needs/01a0fc3d-2632-714f-87e4-4b3ce5220299/telegram-publications",
+        "status": 200
+      }
+    ],
+    "body_has_title": false
+  }
+]

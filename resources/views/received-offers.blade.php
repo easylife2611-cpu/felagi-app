@@ -286,7 +286,7 @@ function loadOffers(){
       var token2=getToken();
       if(token2){
         fetch('/api/v1/needs/'+encodeURIComponent(needId),{
-          headers:{'Accept':'application/json'2}
+          headers:{'Accept':'application/json'}
         }).then(function(r){return r.ok?r.json():null;})
           .then(function(j2){
             var need=(j2&&j2.data)?j2.data:j2;

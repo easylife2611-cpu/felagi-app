@@ -1,0 +1,743 @@
+{
+  "timestamp": "2026-10-02T10:49:57.470Z",
+  "summary": {
+    "total": 46,
+    "ok200": 46,
+    "noRedirect": 46,
+    "noErr": 46,
+    "noCon": 34,
+    "findings": 12
+  },
+  "findings": [
+    {
+      "sev": "MEDIUM",
+      "id": "S007",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S008",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S010",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S011",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S012",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S014",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S015",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S016",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S017",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S020",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S022",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "sev": "MEDIUM",
+      "id": "S023",
+      "msg": "Console: Failed to load resource: the server responded with a status of 404 ()"
+    }
+  ],
+  "results": [
+    {
+      "id": "S001",
+      "path": "/",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "S002",
+      "path": "/auth/telegram",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/auth/telegram",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "S003",
+      "path": "/profile",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/profile",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/auth/me",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "S004",
+      "path": "/browse",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/browse",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/categories",
+          "status": 200
+        },
+        {
+          "url": "/api/v1/needs?sort=newest",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "S005",
+      "path": "/needs/new",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/new",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "S006",
+      "path": "/needs/new/public-preview",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/new/public-preview",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "S007",
+      "path": "/needs/test-id/created",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/created",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S008",
+      "path": "/needs/test-id",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S009",
+      "path": "/my/needs",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/my/needs",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/my/needs?page=1&per_page=20",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "S010",
+      "path": "/needs/test-id/offers",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/offers",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id/offers",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S011",
+      "path": "/needs/test-id/offers/new",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/offers/new",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S012",
+      "path": "/offers/test-id",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/offers/test-id",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/offers/test-id",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S013",
+      "path": "/my/offers",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/my/offers",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/my/offers?page=1&per_page=20",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "S014",
+      "path": "/needs/test-id/compare",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/compare",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id/offers",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S015",
+      "path": "/comparisons/test-id",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/comparisons/test-id",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/comparisons/test-id",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S016",
+      "path": "/needs/test-id/comparisons",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/comparisons",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id/comparisons",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S017",
+      "path": "/offers/test-id/messages",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/offers/test-id/messages",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()",
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/offers/test-id",
+          "status": 404
+        },
+        {
+          "url": "/api/v1/offers/test-id/messages?per_page=100",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S018",
+      "path": "/notifications",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/notifications",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/notifications?page=1&per_page=20",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "S019",
+      "path": "/needs/test-id/boost",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/boost",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/boost-packages",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "S020",
+      "path": "/needs/test-id/rating",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/rating",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S021",
+      "path": "/support/report",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/support/report",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "S022",
+      "path": "/needs/test-id/publications",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/publications",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id/telegram-publications",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "S023",
+      "path": "/needs/test-id/offers/unlock",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/test-id/offers/unlock",
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 ()"
+      ],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/needs/test-id",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "A001",
+      "path": "/admin/dashboard",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/dashboard",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/dashboard-metrics",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A002",
+      "path": "/admin/telegram",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/telegram",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "A003",
+      "path": "/admin/health",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/health",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/health-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A004",
+      "path": "/admin/features",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/features",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/features-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A005",
+      "path": "/admin/marketplace",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/marketplace",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/marketplace-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A006",
+      "path": "/admin/ai",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/ai",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/ai-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A007",
+      "path": "/admin/payments",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/payments",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "A008",
+      "path": "/admin/users",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/users",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "A009",
+      "path": "/admin/content",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/content",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "A010",
+      "path": "/admin/notifications",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/notifications",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/notifications-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A011",
+      "path": "/admin/files",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/files",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "A012",
+      "path": "/admin/jobs",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/jobs",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/jobs-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A013",
+      "path": "/admin/backups",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/backups",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/backups-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A014",
+      "path": "/admin/integrity",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/integrity",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/integrity-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A015",
+      "path": "/admin/security",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/security",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/security-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A016",
+      "path": "/admin/audit",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/audit",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "A017",
+      "path": "/admin/settings",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/settings",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/settings-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A018",
+      "path": "/admin/recovery",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/recovery",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/recovery-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A019",
+      "path": "/admin/safe-mode",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/safe-mode",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/safe-mode-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A020",
+      "path": "/admin/monetization",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/monetization",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/monetization-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A021",
+      "path": "/admin/maintenance",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/maintenance",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/maintenance-status",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "A022",
+      "path": "/admin/reports",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/reports",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": []
+    },
+    {
+      "id": "A023",
+      "path": "/admin/monetization/sponsored-ads",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/monetization/sponsored-ads",
+      "console_errors": [],
+      "page_errors": [],
+      "redirected_to_login": false,
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/ads",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

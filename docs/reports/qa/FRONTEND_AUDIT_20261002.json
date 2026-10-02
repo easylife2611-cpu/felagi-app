@@ -1,0 +1,302 @@
+{
+  "timestamp": "2026-10-02T10:37:05.748Z",
+  "pages": [
+    {
+      "id": "S001",
+      "path": "/",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/",
+      "title": "ፈላጊ — Ethiopia's need-first marketplace",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [],
+      "assertions": [
+        {
+          "name": "telegram-widget-ready",
+          "ok": true
+        },
+        {
+          "name": "telegram-widget-container",
+          "ok": true
+        },
+        {
+          "name": "email-input",
+          "ok": true
+        },
+        {
+          "name": "csrf-meta",
+          "ok": true
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_S001.png"
+      ]
+    },
+    {
+      "id": "S004",
+      "path": "/browse",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/browse",
+      "title": "Browse Needs — ፈላጊ",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [
+        {
+          "url": "/api/v1/categories",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "/api/v1/needs?sort=newest",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "category-chips",
+          "value": 9,
+          "ok": true
+        },
+        {
+          "name": "need-cards",
+          "value": 0,
+          "ok": true
+        },
+        {
+          "name": "empty-state-presence",
+          "value": 0
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_S004.png"
+      ]
+    },
+    {
+      "id": "S005",
+      "path": "/needs/new",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/new",
+      "title": "Create Need — ፈላጊ",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [
+        {
+          "url": "/api/v1/categories",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "category-dropdown-options",
+          "value": 9,
+          "ok": true
+        },
+        {
+          "name": "title-input",
+          "ok": true
+        },
+        {
+          "name": "description-input",
+          "ok": true
+        },
+        {
+          "name": "title-fillable",
+          "value": "Test need from audit",
+          "ok": true
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_S005.png"
+      ]
+    },
+    {
+      "id": "S003",
+      "path": "/profile",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/profile",
+      "title": "Profile — ፈላጊ",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [
+        {
+          "url": "/api/v1/auth/me",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "shows-user-name",
+          "value": "So",
+          "ok": true
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_S003.png"
+      ]
+    },
+    {
+      "id": "S019",
+      "path": "/needs/00000000-0000-0000-0000-000000000000/boost",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/needs/00000000-0000-0000-0000-000000000000/boost",
+      "title": "Boost need — ፈላጊ",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [
+        {
+          "url": "/api/v1/boost-packages",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "boost-package-cards",
+          "value": 4,
+          "ok": true
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_S019.png"
+      ]
+    },
+    {
+      "id": "S009",
+      "path": "/my/needs",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/my/needs",
+      "title": "My Needs — ፈላጊ",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [
+        {
+          "url": "/api/v1/my/needs?page=1&per_page=20",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "empty-state-visible",
+          "ok": true
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_S009.png"
+      ]
+    },
+    {
+      "id": "A001",
+      "path": "/admin/dashboard",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/dashboard",
+      "title": "Dashboard — ፈላጊ",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/dashboard-metrics",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "admin-stat-cards",
+          "value": 4,
+          "ok": true
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_A001.png"
+      ]
+    },
+    {
+      "id": "A020",
+      "path": "/admin/monetization",
+      "http": 200,
+      "final_url": "https://zagcreativity.com/admin/monetization",
+      "title": "Monetization — ፈላጊ",
+      "console_errors": [],
+      "page_errors": [],
+      "api_calls": [
+        {
+          "url": "/api/v1/admin/monetization-status",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "page-loaded",
+          "ok": true
+        }
+      ],
+      "screenshots": [
+        "/tmp/frontend_audit_A020.png"
+      ]
+    }
+  ],
+  "api_calls": [
+    {
+      "url": "/api/v1/categories",
+      "status": 200,
+      "method": "GET",
+      "page_id": "S004"
+    },
+    {
+      "url": "/api/v1/needs?sort=newest",
+      "status": 200,
+      "method": "GET",
+      "page_id": "S004"
+    },
+    {
+      "url": "/api/v1/categories",
+      "status": 200,
+      "method": "GET",
+      "page_id": "S005"
+    },
+    {
+      "url": "/api/v1/auth/me",
+      "status": 200,
+      "method": "GET",
+      "page_id": "S003"
+    },
+    {
+      "url": "/api/v1/boost-packages",
+      "status": 200,
+      "method": "GET",
+      "page_id": "S019"
+    },
+    {
+      "url": "/api/v1/my/needs?page=1&per_page=20",
+      "status": 200,
+      "method": "GET",
+      "page_id": "S009"
+    },
+    {
+      "url": "/api/v1/admin/dashboard-metrics",
+      "status": 200,
+      "method": "GET",
+      "page_id": "A001"
+    },
+    {
+      "url": "/api/v1/admin/monetization-status",
+      "status": 200,
+      "method": "GET",
+      "page_id": "A020"
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "total_pages": 8,
+    "total_api_calls": 8,
+    "total_findings": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0
+  }
+}

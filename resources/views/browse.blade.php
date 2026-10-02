@@ -111,7 +111,7 @@ function load(){
   if(S.cat)q.set('category_id',S.cat);
   if(S.sort)q.set('sort',S.sort);
   var h={'Accept':'application/json'}/* L305d */;
-  if(tok)/* L305d: cookie auth */
+  /* L305d: cookie auth — tok guard removed (L327) */
   fetch('/api/v1/needs?'+q.toString(),{credentials:'same-origin',headers:h})
     .then(function(r){
       if(r.status===429)throw new Error('rate-limited');
