@@ -1,0 +1,332 @@
+{
+  "_comment": "Design control_id -> App implementation location",
+  "_generated": "2026-10-02",
+  "_design_source": "Felagi_Design_Package/Design_Data/control-registry.json",
+  "_total_design_controls": 55,
+  "mappings": {
+    "feature": {
+      "allowNeeds": {
+        "app_key": "feature.needs",
+        "storage": "db",
+        "type": "boolean"
+      },
+      "allowOffers": {
+        "app_key": "feature.offers",
+        "storage": "db",
+        "type": "boolean"
+      },
+      "messaging": {
+        "app_key": "feature.messaging",
+        "storage": "db",
+        "type": "boolean"
+      },
+      "aiCompare": {
+        "app_key": "feature.ai_compare",
+        "storage": "db",
+        "type": "boolean"
+      }
+    },
+    "payments": {
+      "payments": {
+        "app_key": "feature.payments",
+        "storage": "db",
+        "type": "boolean"
+      },
+      "boost": {
+        "app_key": "feature.boosts",
+        "storage": "db",
+        "type": "boolean"
+      },
+      "boostPackages": {
+        "app_key": "boostPackages",
+        "storage": "db",
+        "type": "json"
+      },
+      "offerUnlock": {
+        "app_key": null,
+        "storage": "db",
+        "type": "boolean",
+        "status": "UNKNOWN — needs DB key"
+      },
+      "offerFee": {
+        "app_key": null,
+        "storage": "db",
+        "type": "number",
+        "status": "UNKNOWN"
+      },
+      "offerCurrency": {
+        "app_key": null,
+        "storage": "db",
+        "type": "string",
+        "status": "UNKNOWN"
+      }
+    },
+    "ai": {
+      "aiModel": {
+        "app_key": "ai.model_id",
+        "storage": "db",
+        "type": "string"
+      },
+      "aiTimeout": {
+        "app_key": "ai.timeout_seconds",
+        "storage": "db",
+        "type": "number"
+      },
+      "aiCriteriaVersion": {
+        "app_key": "ai.criteria_version",
+        "storage": "db",
+        "type": "string"
+      },
+      "aiPromptVersion": {
+        "app_key": "ai.prompt_version",
+        "storage": "db",
+        "type": "string"
+      },
+      "aiMaxOffers": {
+        "app_key": "marketplace.max_offers_per_comparison",
+        "storage": "db",
+        "type": "number"
+      },
+      "aiRetryLimit": {
+        "app_key": "ai.max_attempts",
+        "storage": "db",
+        "type": "number"
+      },
+      "aiDailyLimit": {
+        "app_key": "ai.need_daily_cap",
+        "storage": "db",
+        "type": "number"
+      }
+    },
+    "telegram": {
+      "telegram": {
+        "app_key": "feature.telegram_publication",
+        "storage": "db",
+        "type": "boolean"
+      },
+      "telegramDestination": {
+        "app_key": "telegram.max_destinations_per_need",
+        "storage": "db",
+        "type": "number"
+      }
+    },
+    "marketplace": {
+      "maxOffers": {
+        "app_key": "marketplace.max_offers_per_comparison",
+        "storage": "db",
+        "type": "number"
+      }
+    },
+    "system": {
+      "safeMode": {
+        "app_key": "system.safe_mode",
+        "storage": "db",
+        "type": "boolean"
+      },
+      "maintenance": {
+        "app_key": null,
+        "storage": "db",
+        "type": "boolean",
+        "status": "UNKNOWN"
+      },
+      "freeze": {
+        "app_key": null,
+        "storage": "db",
+        "type": "boolean",
+        "status": "UNKNOWN"
+      }
+    },
+    "content": {
+      "welcomeText": {
+        "app_key": "content.welcome_am + content.welcome_en",
+        "storage": "db",
+        "type": "string_pair"
+      },
+      "supportText": {
+        "app_key": null,
+        "storage": "db",
+        "type": "string",
+        "status": "UNKNOWN"
+      },
+      "helpText": {
+        "app_key": null,
+        "storage": "db",
+        "type": "string",
+        "status": "UNKNOWN"
+      },
+      "policyText": {
+        "app_key": null,
+        "storage": "db",
+        "type": "string",
+        "status": "UNKNOWN"
+      },
+      "noticeText": {
+        "app_key": null,
+        "storage": "db",
+        "type": "string",
+        "status": "UNKNOWN"
+      },
+      "maintenanceText": {
+        "app_key": null,
+        "storage": "db",
+        "type": "string",
+        "status": "UNKNOWN"
+      }
+    },
+    "jobs": {
+      "retryLimit": {
+        "app_key": null,
+        "storage": "config",
+        "type": "number",
+        "status": "config/jobs.php"
+      },
+      "queueConcurrency": {
+        "app_key": null,
+        "storage": "config",
+        "type": "number",
+        "status": "config/queue.php"
+      }
+    },
+    "operations": {
+      "_comment": "These are Admin OPERATIONS (not settings) — triggered via /admin/operations",
+      "reconcilePayment": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "retryJob": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "checkIntegrity": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "refreshCache": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "verifyBackup": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "restoreBackup": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "suspendUser": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "reviewReport": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "notificationRetry": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "fileQuarantine": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      },
+      "diagnose": {
+        "app_key": null,
+        "storage": "operation",
+        "endpoint": "/admin/operations"
+      }
+    },
+    "secrets": {
+      "_comment": "Stored in .env (never in DB or code)",
+      "paymentSecret": {
+        "app_key": null,
+        "storage": "env",
+        "env_var": "PAYMENT_SECRET"
+      },
+      "aiSecret": {
+        "app_key": null,
+        "storage": "env",
+        "env_var": "GEMINI_API_KEY"
+      },
+      "telegramSecret": {
+        "app_key": null,
+        "storage": "env",
+        "env_var": "TELEGRAM_BOT_TOKEN"
+      }
+    },
+    "ads": {
+      "_comment": "Ads subsystem (L267) — controls via ads_* settings + AdCampaign table",
+      "adsEnabled": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "boolean",
+        "status": "L267 implemented"
+      },
+      "adsBrowse": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "boolean",
+        "status": "L267"
+      },
+      "adsSearch": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "boolean",
+        "status": "L267"
+      },
+      "adsNeedDetail": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "boolean",
+        "status": "L267"
+      },
+      "adsSeparation": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "string",
+        "status": "L267"
+      },
+      "adsSessionCap": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "number",
+        "status": "L267"
+      },
+      "adsCampaignPublish": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "boolean",
+        "status": "L267"
+      },
+      "adsCampaignPause": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "boolean",
+        "status": "L267"
+      },
+      "adsDestination": {
+        "app_key": null,
+        "storage": "ads",
+        "type": "string",
+        "status": "L267"
+      }
+    },
+    "rate_limit": {
+      "rateLimit": {
+        "app_key": null,
+        "storage": "config",
+        "type": "number",
+        "status": "config/rate-limiting"
+      }
+    }
+  }
+}
