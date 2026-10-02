@@ -1,7 +1,7 @@
 # Felagi — Master Source of Truth (2026-10-01)
 
 **Generated:** 2026-10-01 (after L302)
-**HEAD:** 4a4f048
+**HEAD:** 4a1f968 (L332)
 **Test suite:** 1031 passed / 1 skipped / 0 failures
 **Legal framework:** Ethiopian Proclamation 1321/2024
 **Active bundle:** Felagi_App_v1.4.2_20261001-1502_L302_FINAL.bundle
