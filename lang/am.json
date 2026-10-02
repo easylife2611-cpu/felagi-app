@@ -634,5 +634,22 @@
   "adminReportOpen": "ክፍት",
   "adminReportInReview": "በግምገማ",
   "adminReportResolved": "የተፈታ",
-  "adminReportStatus": "ሁኔታ"
+  "adminReportStatus": "ሁኔታ",
+  "adminAIModel": "የAI ሞዴል",
+  "adminAITimeout": "ጊዜ ገደብ (ሰከንዶች)",
+  "adminAICriteriaVersion": "የመስፈርት ስሪት",
+  "adminAIPromptVersion": "የፕሮምፕት ስሪት",
+  "adminAIMaxAttempts": "ከፍተኛ ሙከራዎች",
+  "adminAIUserDailyCap": "የተጠቃሚ ዕለታዊ ገደብ",
+  "adminAINeedDailyCap": "የፍላጎት ዕለታዊ ገደብ",
+  "adminAIMaxInputTokens": "ከፍተኛ የግቤት ቶከኖች",
+  "adminAIMaxOutputTokens": "ከፍተኛ የውጤት ቶከኖች",
+  "adminAITotalComparisons": "ጠቅላላ ንጽጽሮች",
+  "adminAICompleted": "የተጠናቀቁ",
+  "adminAIFailed": "ያልተሳኩ",
+  "adminAIProcessing": "በሂደት",
+  "adminAITotalTokens": "ጠቅላላ ቶከኖች",
+  "adminAITotalCost": "ጠቅላላ ወጪ",
+  "adminAIRecentFailures": "የቅርብ ጊዜ ውድቀቶች",
+  "adminAINoFailures": "የቅርብ ጊዜ ውድቀቶች የሉም"
 }

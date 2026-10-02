@@ -249,6 +249,7 @@ Route::prefix('v1')->group(function () {
         Route::get('features-status', [AdminReadController::class, 'featuresStatus']);
         Route::get('monetization-status', [AdminReadController::class, 'monetizationStatus']);
         Route::get('marketplace-status', [AdminReadController::class, 'marketplaceStatus']);
+        Route::get('ai-status', [AdminReadController::class, 'aiStatus']);
         Route::get('features',      [AdminReadController::class, 'features']);
         Route::get('marketplace',   [AdminReadController::class, 'marketplace']);
         Route::get('ai',            [AdminReadController::class, 'ai']);

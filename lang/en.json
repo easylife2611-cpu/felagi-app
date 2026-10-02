@@ -634,5 +634,22 @@
   "adminReportOpen": "Open",
   "adminReportInReview": "In Review",
   "adminReportResolved": "Resolved",
-  "adminReportStatus": "Status"
+  "adminReportStatus": "Status",
+  "adminAIModel": "AI Model",
+  "adminAITimeout": "Timeout (seconds)",
+  "adminAICriteriaVersion": "Criteria Version",
+  "adminAIPromptVersion": "Prompt Version",
+  "adminAIMaxAttempts": "Max Attempts",
+  "adminAIUserDailyCap": "User Daily Cap",
+  "adminAINeedDailyCap": "Need Daily Cap",
+  "adminAIMaxInputTokens": "Max Input Tokens",
+  "adminAIMaxOutputTokens": "Max Output Tokens",
+  "adminAITotalComparisons": "Total Comparisons",
+  "adminAICompleted": "Completed",
+  "adminAIFailed": "Failed",
+  "adminAIProcessing": "Processing",
+  "adminAITotalTokens": "Total Tokens",
+  "adminAITotalCost": "Total Cost",
+  "adminAIRecentFailures": "Recent Failures",
+  "adminAINoFailures": "No recent failures"
 }

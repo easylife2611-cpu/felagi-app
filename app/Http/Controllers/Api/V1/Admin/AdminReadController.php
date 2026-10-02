@@ -22,6 +22,7 @@ use App\Services\Admin\AdminMaintenanceService;
 use App\Services\Admin\AdminFeaturesService;
 use App\Services\Admin\AdminMonetizationService;
 use App\Services\Admin\AdminMarketplaceService;
+use App\Services\Admin\AdminAiService;
 use App\Services\Admin\AdminJobsService;
 use App\Services\Admin\AdminBackupsService;
 use App\Services\Admin\AdminIntegrityService;
@@ -548,6 +549,28 @@ class AdminReadController extends BaseApiController
             message: 'Marketplace status.',
             status: 200,
             meta: ['screen' => 'A005', 'area' => 'marketplace', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
+        );
+    }
+
+
+    // ─────────────────────────────────────────────────────────
+    // L313 — Real data for A006 (additive)
+    // ─────────────────────────────────────────────────────────
+
+    public function aiStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'ai');
+        if (! $allowed) {
+            $this->auditDenied('A006', 'ai');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminAiService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'AI status.',
+            status: 200,
+            meta: ['screen' => 'A006', 'area' => 'ai', 'source' => 'live',
                    'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
         );
     }
