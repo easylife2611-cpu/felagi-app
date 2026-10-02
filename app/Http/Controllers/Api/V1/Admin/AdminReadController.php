@@ -21,6 +21,7 @@ use App\Services\Admin\AdminSettingsStatusService;
 use App\Services\Admin\AdminMaintenanceService;
 use App\Services\Admin\AdminFeaturesService;
 use App\Services\Admin\AdminMonetizationService;
+use App\Services\Admin\AdminMarketplaceService;
 use App\Services\Admin\AdminJobsService;
 use App\Services\Admin\AdminBackupsService;
 use App\Services\Admin\AdminIntegrityService;
@@ -525,6 +526,28 @@ class AdminReadController extends BaseApiController
             message: 'Monetization status.',
             status: 200,
             meta: ['screen' => 'A020', 'area' => 'monetization', 'source' => 'live',
+                   'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
+        );
+    }
+
+
+    // ─────────────────────────────────────────────────────────
+    // L312 — Real data for A005 (additive)
+    // ─────────────────────────────────────────────────────────
+
+    public function marketplaceStatus(AdminListRequest $r): JsonResponse
+    {
+        $allowed = (new AdminReadPolicy())->viewAny($r->user(), 'marketplace');
+        if (! $allowed) {
+            $this->auditDenied('A005', 'marketplace');
+            return $this->error('FORBIDDEN', 'Insufficient capability.', 403);
+        }
+        $status = app(AdminMarketplaceService::class)->status();
+        return $this->success(
+            data: $status,
+            message: 'Marketplace status.',
+            status: 200,
+            meta: ['screen' => 'A005', 'area' => 'marketplace', 'source' => 'live',
                    'total' => 0, 'page' => 1, 'per_page' => 20, 'last_page' => 1]
         );
     }

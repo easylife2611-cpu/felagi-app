@@ -624,5 +624,15 @@
   "adminBoostPackages": "የማስተዋወቅ ጥቅሎች",
   "adminPaymentsMaster": "የክፍያ ዋና",
   "adminActivePackages": "ንቁ ጥቅሎች",
-  "adminNoPackages": "ምንም ጥቅሎች አልተዋቀሩም"
+  "adminNoPackages": "ምንም ጥቅሎች አልተዋቀሩም",
+  "adminMaxOffers": "ከፍተኛ ቅርቦቶች በንጽጽር",
+  "adminMaxOpenNeeds": "ከፍተኛ ክፍት ፍላጎቶች በተጠቃሚ",
+  "adminOfferDeadlineMaxDays": "የቅርበት የመጨረሻ ቀን (ከፍተኛ ቀናት)",
+  "adminReportType": "የሪፖርት ዓይነት",
+  "adminReportAssigned": "የተመደበ",
+  "adminReportResolution": "መፍትሔ",
+  "adminReportOpen": "ክፍት",
+  "adminReportInReview": "በግምገማ",
+  "adminReportResolved": "የተፈታ",
+  "adminReportStatus": "ሁኔታ"
 }

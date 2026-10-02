@@ -624,5 +624,15 @@
   "adminBoostPackages": "Boost Packages",
   "adminPaymentsMaster": "Payments Master",
   "adminActivePackages": "Active Packages",
-  "adminNoPackages": "No packages configured"
+  "adminNoPackages": "No packages configured",
+  "adminMaxOffers": "Max Offers per Comparison",
+  "adminMaxOpenNeeds": "Max Open Needs per User",
+  "adminOfferDeadlineMaxDays": "Offer Deadline (max days)",
+  "adminReportType": "Report Type",
+  "adminReportAssigned": "Assigned To",
+  "adminReportResolution": "Resolution",
+  "adminReportOpen": "Open",
+  "adminReportInReview": "In Review",
+  "adminReportResolved": "Resolved",
+  "adminReportStatus": "Status"
 }
