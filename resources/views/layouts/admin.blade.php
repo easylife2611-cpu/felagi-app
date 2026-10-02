@@ -13,7 +13,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#19
 .sidebar .brand{padding:18px 20px;font-size:17px;font-weight:700;color:#fff;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:8px}
 .sidebar .brand .dot{width:8px;height:8px;background:#26c281;border-radius:50%}
 .sidebar nav{padding:12px 0}
-.sidebar nav .group{padding:10px 20px 4px;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#5a738e;font-weight:700}
+.sidebar nav .group{padding:10px 20px 4px;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#94a3b8;font-weight:700}
 .sidebar nav a{display:flex;align-items:center;gap:10px;padding:9px 20px;color:#b8c5d1;text-decoration:none;font-size:13px;transition:background .12s,color .12s;border-left:3px solid transparent}
 .sidebar nav a:hover{background:rgba(255,255,255,.05);color:#fff}
 .sidebar nav a.active{background:rgba(38,194,129,.1);color:#fff;border-left-color:#26c281}
