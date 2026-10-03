@@ -375,3 +375,32 @@ Closes B18 items 5/6 (extended non-admin + Model unit tests).
 **Base HEAD at SOURCE refresh:** `8042e2f`
 
 **Test delta:** 1620 → **1693 passed** / 1 skipped / 0 failed
+
+---
+
+## L347-G — S023 Offer Submission Unlock (Spec Compliance) (2026-10-03)
+
+Full S023 spec implementation per Monetization_Payment_Specification.md:
+9 states, idempotency, draft retention, free/paid policy branches.
+
+### G1 — Schema + Model (commit `4e54624`)
+
+- Migration: +11 fields, +2 uniques, drops old `status`
+- Model: 9 canonical states
+- Factory: 7 state helpers
+- Test: +8 (23 vs 15)
+
+### G2 — Service + Controller (this commit)
+
+- `OfferSubmissionService` (free/paid policy branches, idempotency)
+- Config `payments.unlock` (feature_enabled, amount_minor, policy_version)
+- Exceptions: `PolicyUnknownException`, `IdempotencyConflictException`
+- Controller rewritten with strict validation + error mapping
+- Tests: +20 service + 8 API
+
+**Production default:** `feature_enabled=false`, `amount_minor=0` -> FREE.
+
+**Out of scope (REQUIRES_EVIDENCE):** paid path intent creation,
+payment provider integration, refund flow (WP-11 BLOCKED).
+
+**Base HEAD at SOURCE refresh:** `4e54624`
