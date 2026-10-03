@@ -1,0 +1,11 @@
+L347-A Bundle — Final SHA256
+=============================
+Bundle file:    Felagi_App_L347A_20261003.bundle
+SHA256:         04a00e6cf556f983ffe67c57cb82907a6ff19366ce62ce984632a463a6ca6f6b
+Size:           2.1 MB
+Final HEAD:     3118fbc1ac1aee1311ba8ff2bfccbe7ff3800a10
+Created:        2026-10-03 08:50
+
+Note: L347A_FINAL_20261003.md contains a2b88f... (bundle created
+before the summary doc commit). This file is authoritative for the
+final L347-A bundle.
