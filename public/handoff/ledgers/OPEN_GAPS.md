@@ -530,3 +530,23 @@ duplicated in earlier tables — this section is the authoritative status).
 | Fix | `SetLocale` middleware + config default `'am'` |
 | Evidence | LocaleSwitchTest 9/9, Localization QA 10/10, Localization Deep 6/6 |
 | Closed by | L338 (commit e74dcaa) |
+
+---
+
+## GAP-L338-FIREFOX — BLOCKED (2026-10-03, L338 Block B)
+
+| Field | Value |
+|-------|-------|
+| Item | Firefox cross-browser QA (46 screens) |
+| Status | BLOCKED — hosting restriction |
+| Root cause | `CanCreateUserNamespace() clone() failure: ENOSPC` |
+| Detail | Firefox requires user namespaces; shared cPanel forbids them |
+| Attempted fixes | `security.sandbox.content.level: 0` (no effect) |
+| Attempted fixes | `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1` (validation bypassed; runtime crash) |
+| Alternative | GTK 3 installed (57 packages); Firefox still needs namespaces |
+| Resolution | Deferred — requires hosting sysctl / privileged container |
+| Impact | LOW — Chromium matrix sufficient for G04 (Release_Gates) |
+| Owner | Hosting / infrastructure |
+| Evidence | Firefox SIGSEGV after Juggler pipe; Chromium works normally |
+
+**Recorded:** 2026-10-03. **NOT a regression** — Chromium L337+L338 intact.
