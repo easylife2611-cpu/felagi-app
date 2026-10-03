@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('needDetails') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS008') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:80px}
@@ -66,15 +66,19 @@ main{max-width:720px;margin:0 auto;padding:16px}
 .adslot{margin:16px 0;padding:12px;background:#fafbfc;border:1px dashed #d0d7de;border-radius:8px;text-align:center;font-size:12px;color:#586675;min-height:60px;display:flex;align-items:center;justify-content:center}
 .dl{color:#586675;font-weight:400;font-size:13px}
 @media(min-width:600px){main{padding:20px}}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
 <header>
 <a href="/browse" title="{{ __('back') }}">&#8592;</a>
-<span class="title" id="page-title">{{ __('needDetails') }}</span>
+<span class="title" id="page-title" tabindex="-1" role="heading" aria-level="1">{{ __('needDetails') }}</span>
 </header>
 
-<main>
+<main role="main" aria-labelledby="page-title">
 <div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>
 
 <div id="state-loading" class="state">

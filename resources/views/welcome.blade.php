@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('brand') }} — {{ __('purpose') }}</title>
+    <title>{{ __('screenS001') }} — {{ __('purpose') }}</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
@@ -176,10 +176,14 @@
             text-decoration: none;
         }
         .back-link:hover { color: #003366; }
-    </style>
+    
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
 </head>
 <body>
-    <main class="page">
+    <main class="page" role="main" aria-labelledby="page-title">
 
         {{-- ─── Step 1: Email entry ─── --}}
         <div class="card" id="view-email">
@@ -217,7 +221,7 @@
 
         {{-- ─── Step 2: OTP code entry ─── --}}
         <div class="card hidden" id="view-otp">
-            <h1 class="otp-header">{{ __('checkEmail') }}</h1>
+            <h1 class="otp-header" id="page-title" tabindex="-1">{{ __('checkEmail') }}</h1>
             <p class="otp-subtitle">
                 We sent a 6-digit code to<br>
                 <strong id="otp-email-display"></strong>

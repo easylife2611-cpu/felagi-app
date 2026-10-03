@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('comparisonResultTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS015') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:80px}
@@ -44,6 +44,10 @@ main{max-width:720px;margin:0 auto;padding:16px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 .spinner{display:inline-block;width:20px;height:20px;border:3px solid #e0e0e0;border-top-color:#003366;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -52,7 +56,7 @@ main{max-width:720px;margin:0 auto;padding:16px}
 <span class="title">{{ __('comparisonResultTitle') }}</span>
 </header>
 
-<main>
+<main role="main" aria-labelledby="page-title">
 <div id="state-loading" class="state" style="padding:80px 20px">
 <div class="spinner"></div>
 <p style="margin-top:12px">{{ __('loading') }}...</p>
@@ -67,7 +71,7 @@ main{max-width:720px;margin:0 auto;padding:16px}
 <div id="content" hidden>
 <div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<h2 style="margin:0">{{ __('comparisonVersion') }} <span id="version-number">#</span></h2>
+<h2 style="margin:0" id="page-title" tabindex="-1">{{ __('comparisonVersion') }} <span id="version-number">#</span></h2>
 <span class="status-pill" id="status-pill"></span>
 </div>
 <div id="info-rows"></div>

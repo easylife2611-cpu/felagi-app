@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('browseNeeds') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS004') }} — {{ __('brand') }}</title>
 <style>
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;margin:0;padding-bottom:70px}
 header{background:#003366;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30}
@@ -43,6 +43,10 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 .skeleton div:nth-child(1){width:40%}
 .skeleton div:nth-child(2){width:90%}
 .skeleton div:nth-child(3){width:70%}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -54,7 +58,8 @@ main{padding:16px;max-width:1200px;margin:0 auto}
   <a href="/lang/en" style="color:#fff;text-decoration:{{ app()->getLocale()==='en'?'underline':'none' }}">EN</a>
 </span>
 </header>
-<main>
+<main role="main" aria-labelledby="page-title">
+<h1 id="page-title" tabindex="-1" class="sr-only">{{ __('screenS004') }}</h1>
 <input type="search" id="keyword" placeholder="{{ __('searchPlaceholder') }}" maxlength="255" autocomplete="off">
 <div class="chips" id="chips"></div>
 <div class="filters">

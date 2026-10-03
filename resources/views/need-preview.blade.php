@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('previewTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS006') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:100px}
@@ -34,6 +34,10 @@ main{max-width:640px;margin:0 auto;padding:16px}
 .state h3{color:#003366;font-size:18px;margin:0 0 8px}
 .state p{margin:0 0 16px}
 .draft-badge{background:#fff3e0;color:#bf360c;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -43,7 +47,7 @@ main{max-width:640px;margin:0 auto;padding:16px}
 <span class="draft-badge">{{ __('draft') }}</span>
 </header>
 
-<main>
+<main role="main" aria-labelledby="page-title">
 <div class="notice">
 <strong>{{ __('previewNoticeTitle') }}</strong><br>
 {{ __('previewNoticeBody') }}
@@ -68,7 +72,7 @@ main{max-width:640px;margin:0 auto;padding:16px}
 </div>
 
 <div class="card">
-<h2>{{ __('howItLooks') }}</h2>
+<h2 id="page-title" tabindex="-1">{{ __('howItLooks') }}</h2>
 <p style="font-size:13px;color:#586675;line-height:1.6">{{ __('howItLooksBody') }}</p>
 </div>
 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', __('admin.ads.title', [], 'Sponsored Ads'))
+@section('title', __('screenA022'))
 
 @section('content')
 <div class="admin-shell">

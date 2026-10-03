@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __('adminContent'))
+@section('title', __('screenA009'))
 @section('page-title', __('adminContent'))
 @section('content')
 <div class="pending">

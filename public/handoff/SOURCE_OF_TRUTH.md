@@ -494,3 +494,41 @@ HEAD      = `3e8db6acf15b41942e136273ba13147bfec02b28` (`3e8db6a`)
 Bundle    = ~/Felagi_App_L347J_20261003.bundle
 Tests     = 1782 passed / 4 incomplete / 1 skipped / 0 failed
 Repo root = /home/zagcreht/felagi_app
+
+---
+
+# L347-L — All-Screens a11y + i18n + Acceptance (2026-10-03)
+
+**Tests:** 2101 passed / 9 incomplete / 1 skipped / 0 failed (7217 assertions)
+**Δ ከ L347-K:** +288 tests / +1772 assertions
+
+## Scope — All 41 remaining screens
+
+| Batch | ስራ | ውጤት |
+|---|---|---|
+| A | Locale keys | +42 keys → 794 total |
+| B | Admin layout | role=main + admin-page-title + focus-visible |
+| C | 19 user views | title key + main landmark + tabindex + focus-visible |
+| D1 | 22 admin views | title section → screenAXXX |
+| D2 | AllScreensAcceptanceTest | 288 tests (data-driven) |
+
+## Coverage
+
+- 19 user views (S001, S003–S010, S012–S021) — title + a11y
+- 22 admin views (A001–A022) — title + layout inheritance
+- Shared admin layout — main landmark + focusable heading
+- All 41 screens verified in both locales (en + am)
+- All used translation keys exist in both locale files
+- No duplication with S011/S022/S023 dedicated acceptance tests
+
+## REQUIRES_EVIDENCE (Blocked)
+
+- Browser/AT recordings → L347-H
+- S022 5 additional states (queued/retry/uncertain/skipped/paused) → WP pending
+
+## Continuity
+
+HEAD      = (commit በኋላ)
+Bundle    = ~/Felagi_App_L347L_20261003.bundle
+Tests     = 2101 passed / 9 incomplete / 1 skipped / 0 failed
+Repo root = /home/zagcreht/felagi_app

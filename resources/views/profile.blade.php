@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('profile') }} — {{ __('brand') }}</title>
+    <title>{{ __('screenS003') }} — {{ __('brand') }}</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -73,15 +73,19 @@
 .photo-wrap .photo-edit:hover{background:#002a52}
 .photo-hint{font-size:11px;color:#586675;margin-top:6px;text-align:center}
 
-    </style>
+    
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
 </head>
 <body>
     <header>
-        <h1>{{ __('brand') }}</h1>
+        <h1 id="page-title" tabindex="-1">{{ __('brand') }}</h1>
         <button class="logout-btn" onclick="felagiLogout()">{{ __('logout') }}</button>
     </header>
 
-    <main>
+    <main role="main" aria-labelledby="page-title">
         <div class="card">
             <h2>{{ __('profile') }}</h2>
             <p class="subtitle">{{ __('profileSubtitle') }}</p>

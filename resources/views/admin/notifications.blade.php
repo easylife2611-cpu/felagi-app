@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __('adminNotifications'))
+@section('title', __('screenA010'))
 @section('page-title', __('adminNotifications'))
 @section('content')
 

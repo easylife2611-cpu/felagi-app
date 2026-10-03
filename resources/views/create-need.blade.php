@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('createNeed') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS005') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh}
@@ -47,6 +47,10 @@ select{cursor:pointer}
 @keyframes spin{to{transform:rotate(360deg)}}
 .offline-banner{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
 .offline-banner.on{display:block}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -56,8 +60,8 @@ select{cursor:pointer}
 <span class="draft" id="draft-indicator"></span>
 </header>
 
-<main>
-<h2>{{ __('createNeed') }}</h2>
+<main role="main" aria-labelledby="page-title">
+<h2 id="page-title" tabindex="-1">{{ __('createNeed') }}</h2>
 <p class="subtitle">{{ __('createNeedSubtitle') }}</p>
 
 <div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>

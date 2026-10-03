@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('receivedOffersTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS010') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:80px}
@@ -61,6 +61,10 @@ main{max-width:960px;margin:0 auto;padding:16px}
 .offline-banner.on{display:block}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#192431;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw}
 .toast.on{opacity:1}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -70,7 +74,8 @@ main{max-width:960px;margin:0 auto;padding:16px}
 <span class="count" id="offer-count" hidden>0</span>
 </header>
 
-<main>
+<main role="main" aria-labelledby="page-title">
+<h1 id="page-title" tabindex="-1" class="sr-only">{{ __('screenS010') }}</h1>
 <div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>
 
 <div id="state-loading" class="feed">

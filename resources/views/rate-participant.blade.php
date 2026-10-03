@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('rateTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS020') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:80px}
@@ -42,6 +42,10 @@ textarea:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,
 @keyframes spin{to{transform:rotate(360deg)}}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#192431;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
 .toast.on{opacity:1}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -50,7 +54,7 @@ textarea:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,
 <span class="title">{{ __('rateTitle') }}</span>
 </header>
 
-<main>
+<main role="main" aria-labelledby="page-title">
 <div id="state-loading" class="state" style="padding:80px 20px">
 <div class="spinner"></div>
 <p style="margin-top:12px">{{ __('loading') }}...</p>
@@ -66,7 +70,7 @@ textarea:focus{outline:none;border-color:#003366;box-shadow:0 0 0 3px rgba(0,51,
 <div id="content" hidden>
 <form id="rate-form">
 <div class="card">
-<h2>{{ __('whoToRate') }}</h2>
+<h2 id="page-title" tabindex="-1">{{ __('whoToRate') }}</h2>
 <div class="provider">
 <div class="avatar" id="to-avatar"></div>
 <div>

@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('telegramTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS022') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:80px}
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#page-title:focus{outline:none}
 header{background:#003366;color:#fff;height:64px;padding:0 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30}
 header a{color:#fff;text-decoration:none;font-size:20px;padding:8px;border-radius:6px;line-height:1}
 header .title{font-size:16px;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -54,16 +57,17 @@ main{max-width:720px;margin:0 auto;padding:16px}
 <body>
 <header>
 <a href="#" id="back-btn" title="{{ __('back') }}">&#8592;</a>
-<span class="title">{{ __('telegramTitle') }}</span>
+<span class="title">{{ __('screenS022') }}</span>
 </header>
 
-<main>
+<main role="main" aria-labelledby="page-title">
+<h2 id="page-title" tabindex="-1" class="sr-only">{{ __('screenS022') }}</h2>
 <div class="intro">
 <strong>{{ __('telegramIntroTitle') }}</strong>
 {{ __('telegramIntroBody') }}
 </div>
 
-<div class="notice-warn" id="api-warn">
+<div class="notice-warn" id="api-warn" role="alert">
 <strong>{{ __('featurePendingTitle') }}</strong><br>
 {{ __('featurePendingBody') }}
 </div>
@@ -93,7 +97,7 @@ main{max-width:720px;margin:0 auto;padding:16px}
 </div>
 </main>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -262,6 +266,9 @@ window.addEventListener('offline',function(){$('offline-banner').className='offl
 window.addEventListener('online',function(){$('offline-banner').className='offline-banner';loadPublications();});
 
 if(navigator.onLine===false){$('offline-banner').className='offline-banner on';}
+
+var h=document.getElementById('page-title');
+if(h){try{h.focus();}catch(e){}}
 
 loadPublications();
 })();

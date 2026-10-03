@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __('adminMonetization'))
+@section('title', __('screenA020'))
 @section('page-title', __('adminMonetization'))
 @section('content')
 

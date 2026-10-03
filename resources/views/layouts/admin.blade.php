@@ -74,6 +74,8 @@ main{padding:24px;flex:1;max-width:1400px;min-width:0}
   .content{margin-left:0}
   .hamburger{display:block}
 }
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#admin-page-title:focus{outline:none}
 </style>
 @stack('head')
 </head>
@@ -122,7 +124,7 @@ main{padding:24px;flex:1;max-width:1400px;min-width:0}
     <header class="topbar">
       <div style="display:flex;align-items:center;gap:12px">
         <button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
-        <span class="page-title">@yield('page-title', __('adminPanel'))</span>
+        <span class="page-title" id="admin-page-title" tabindex="-1">@yield('page-title', __('adminPanel'))</span>
       </div>
       <div class="right">
         <span class="who" id="admin-who">
@@ -135,7 +137,7 @@ main{padding:24px;flex:1;max-width:1400px;min-width:0}
       </div>
     </header>
 
-    <main>
+    <main role="main" aria-labelledby="admin-page-title">
       @yield('content')
     </main>
   </div>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('offerDetailsTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS012') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:80px}
@@ -70,6 +70,10 @@ main{max-width:720px;margin:0 auto;padding:16px}
 .modal p{font-size:14px;color:#586675;margin-bottom:20px;line-height:1.5}
 .modal .actions{flex-direction:row;justify-content:flex-end;gap:8px}
 .modal .btn{flex:0 0 auto;padding:10px 18px}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -78,7 +82,8 @@ main{max-width:720px;margin:0 auto;padding:16px}
 <span class="title">{{ __('offerDetailsTitle') }}</span>
 </header>
 
-<main>
+<main role="main" aria-labelledby="page-title">
+<h1 id="page-title" tabindex="-1" class="sr-only">{{ __('screenS012') }}</h1>
 <div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>
 
 <div id="state-loading" class="state">

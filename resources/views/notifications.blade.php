@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('navNotifications') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS018') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:80px}
@@ -57,6 +57,10 @@ main{max-width:720px;margin:0 auto;padding:0 16px}
 .offline-banner.on{display:block}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#192431;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw}
 .toast.on{opacity:1}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -73,7 +77,8 @@ main{max-width:720px;margin:0 auto;padding:0 16px}
 <button type="button" class="chip" data-unread="1">{{ __('filterUnread') }}</button>
 </div>
 
-<main>
+<main role="main" aria-labelledby="page-title">
+<h1 id="page-title" tabindex="-1" class="sr-only">{{ __('screenS018') }}</h1>
 <div id="state-loading">
 <div class="skeleton-card"><div class="sk-avatar"></div><div class="sk-lines"><div class="sk-line w40"></div><div class="sk-line w90"></div></div></div>
 <div class="skeleton-card"><div class="sk-avatar"></div><div class="sk-lines"><div class="sk-line w40"></div><div class="sk-line w90"></div></div></div>

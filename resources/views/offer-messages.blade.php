@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('messagesTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS017') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -47,13 +47,17 @@ main{flex:1;overflow-y:auto;padding:16px;max-width:720px;width:100%;margin:0 aut
 .offline-banner.on{display:block}
 .toast{position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:#192431;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw}
 .toast.on{opacity:1}
+
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
 <header>
 <a href="#" id="back-btn" title="{{ __('back') }}">&#8592;</a>
 <div style="flex:1;min-width:0">
-<div class="title" id="page-title">{{ __('messagesTitle') }}</div>
+<div class="title" id="page-title" tabindex="-1" role="heading" aria-level="1">{{ __('messagesTitle') }}</div>
 <div class="sub" id="page-sub"></div>
 </div>
 </header>
@@ -78,7 +82,7 @@ main{flex:1;overflow-y:auto;padding:16px;max-width:720px;width:100%;margin:0 aut
 <button type="button" class="btn" onclick="loadMessages()">{{ __('retry') }}</button>
 </div>
 
-<main id="state-list" hidden>
+<main id="state-list" hidden role="main" aria-labelledby="page-title">
 <div id="messages-container"></div>
 <div id="empty-hint" class="state" hidden style="padding:40px 20px">
 <p style="color:#586675">{{ __('noMessagesYet') }}</p>
