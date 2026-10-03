@@ -748,5 +748,6 @@
   "s023ToastRefundInProgress": "ተመላሽ ገንዘብ በሂደት ላይ።",
   "s023ToastResumeFailed": "መቀጠል አልተሳካም።",
   "s023ToastNetworkError": "የአውታረ መረብ ስህተት።",
-  "s023ToastResumedOk": "ተቀጥሏል።"
+  "s023ToastResumedOk": "ተቀጥሏል።",
+  "screenS011": "ቅናሽ አስገባ"
 }

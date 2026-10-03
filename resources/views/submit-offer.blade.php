@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('submitOffer') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS011') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh}
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
+#page-title:focus{outline:none}
 header{background:#003366;color:#fff;height:64px;padding:0 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30}
 header a{color:#fff;text-decoration:none;font-size:20px;padding:8px;border-radius:6px;line-height:1}
 header a:hover{background:rgba(255,255,255,.12)}
@@ -63,12 +65,12 @@ select{cursor:pointer}
 <span class="draft" id="draft-indicator"></span>
 </header>
 
-<main>
-<h2>{{ __('submitOffer') }}</h2>
+<main role="main" aria-labelledby="page-title">
+<h2 id="page-title" tabindex="-1">{{ __('screenS011') }}</h2>
 <p class="subtitle">{{ __('submitOfferSubtitle') }}</p>
 
 <div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>
-<div class="status" id="status"></div>
+<div class="status" id="status" role="status" aria-live="polite"></div>
 
 <div id="state-loading" class="state">
 <div class="spinner" style="border-color:#d0d7de;border-top-color:#003366;width:24px;height:24px;border-width:3px"></div>
@@ -179,12 +181,16 @@ function hideStatus(){var el=$('status');el.className='status';el.textContent=''
 
 function clearErrors(){
   Array.prototype.forEach.call(document.querySelectorAll('.err'),function(e){e.className='err';e.textContent='';});
+  Array.prototype.forEach.call(document.querySelectorAll('input,select,textarea'),function(e){e.removeAttribute('aria-invalid');e.removeAttribute('aria-describedby');});
 }
 function showErr(field,msg){
   var el=$('err-'+field);
   if(!el)return;
   el.textContent=msg;
   el.className='err on';
+  el.setAttribute('role','alert');
+  var inp=$(field);
+  if(inp){inp.setAttribute('aria-invalid','true');inp.setAttribute('aria-describedby','err-'+field);}
 }
 function showValidationErrors(errors){
   clearErrors();
@@ -302,8 +308,8 @@ function renderNeedPreview(need){
     var mn=need.budget_min!=null?Number(need.budget_min):null;
     var mx=need.budget_max!=null?Number(need.budget_max):null;
     var b='';
-    if(mn!=null&&mx!=null&&mn!==mx)b=cur+' '+mn+' - '+mx;
-    else b=cur+' '+(mn!=null?mn:mx);
+    if(mn!=null&&mx!=null&&mn!==mx)b='<bdi>'+cur+' '+mn+' - '+mx+'</bdi>';
+    else b='<bdi>'+cur+' '+(mn!=null?mn:mx)+'</bdi>';
     meta.push(b);
   }
   $('need-meta').innerHTML=meta.join(' · ');
@@ -350,6 +356,8 @@ function loadNeed(){
       updateMsgCount();
 
       showOnly('form');
+      var h=document.getElementById('page-title');
+      if(h){try{h.focus();}catch(e){}}
     })
     .catch(function(e){
       var m=String(e.message||e);

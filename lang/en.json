@@ -748,5 +748,6 @@
   "s023ToastRefundInProgress": "Refund in progress.",
   "s023ToastResumeFailed": "Resume failed.",
   "s023ToastNetworkError": "Network error.",
-  "s023ToastResumedOk": "Resumed."
+  "s023ToastResumedOk": "Resumed.",
+  "screenS011": "Submit Offer"
 }

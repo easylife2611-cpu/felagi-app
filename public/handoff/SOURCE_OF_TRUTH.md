@@ -452,7 +452,45 @@ S011 -> /offer-submissions + S023 state machine UI.
 
 ## Continuity
 
-HEAD      = (commit በኋላ)
+HEAD      = `f4145e68198a70fb0de903ffd4b7f27fd0ab898c` (`f4145e6`)
 Bundle    = ~/Felagi_App_L347I_20261003.bundle
 Tests     = 1749 passed / 4 incomplete / 1 skipped / 0 failed
+Repo root = /home/zagcreht/felagi_app
+
+---
+
+# L347-J — SCREEN-S011 Acceptance (2026-10-03)
+
+**Tests:** 1782 passed / 4 incomplete / 1 skipped / 0 failed (5340 assertions)
+**Δ ከ L347-I:** +33 tests / +121 assertions
+
+## የተለወጡ ፋይሎች
+
+- `resources/views/submit-offer.blade.php` — a11y + i18n (517 መስመር)
+- `lang/en.json`, `lang/am.json` — +1 S023 key `screenS011` (750 → 751)
+- `tests/Feature/Screens/S011AcceptanceTest.php` — **አዲስ** (48 tests)
+
+## Coverage (SCREEN-S011)
+
+- Canonical route + authorized actor ✅
+- Both locales (en + am), title key `screenS011` ✅
+- All 6 form fields per spec ✅
+- a11y: `aria-live="polite"`, `<bdi>`, `tabindex=-1`, `:focus-visible`, `role="main"`, `aria-invalid` ✅
+- Responsive max-width:720px + viewport ✅
+- Recovery markers: 401/404/409/422/503 ✅
+- 9 business states per Traceability ✅
+- Idempotency + draft fields present ✅
+- No ads ✅
+
+## Non-duplication
+
+- `S011SubmitOfferTest.php` (16 tests, API behavior) — አልተነካም
+- `S023AcceptanceTest.php` (42 tests, S023) — አልተነካም
+- `S011AcceptanceTest.php` (48 tests, acceptance + a11y + i18n) — አዲስ
+
+## Continuity
+
+HEAD      = (commit በኋላ)
+Bundle    = ~/Felagi_App_L347J_20261003.bundle
+Tests     = 1782 passed / 4 incomplete / 1 skipped / 0 failed
 Repo root = /home/zagcreht/felagi_app
