@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('brand') }} — Ethiopia's need-first marketplace</title>
+    <title>{{ __('brand') }} — {{ __('purpose') }}</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
@@ -184,7 +184,7 @@
         {{-- ─── Step 1: Email entry ─── --}}
         <div class="card" id="view-email">
             <img src="/assets/brand/felagi-lockup.svg" alt="{{ __('brand') }}" class="logo">
-            <p class="purpose">Ethiopia's need-first marketplace</p>
+            <p class="purpose">{{ __('purpose') }}</p>
 
             <input
                 type="email"

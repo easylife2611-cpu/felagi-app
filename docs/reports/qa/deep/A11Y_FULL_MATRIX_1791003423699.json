@@ -1,0 +1,1579 @@
+{
+  "generated": "2026-10-03T04:56:28.258Z",
+  "screens": {
+    "S001": {
+      "route": "/",
+      "keyboard": {
+        "total": 17,
+        "visible": 17,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": false
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S002": {
+      "route": "/auth/telegram",
+      "keyboard": {
+        "total": 17,
+        "visible": 17,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": false
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S003": {
+      "route": "/profile",
+      "keyboard": {
+        "total": 10,
+        "visible": 10,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S004": {
+      "route": "/browse",
+      "keyboard": {
+        "total": 18,
+        "visible": 18,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S005": {
+      "route": "/needs/new",
+      "keyboard": {
+        "total": 20,
+        "visible": 19,
+        "pass": false
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S006": {
+      "route": "/needs/new/public-preview",
+      "keyboard": {
+        "total": 16,
+        "visible": 16,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S007": {
+      "route": "/needs/test-id/created",
+      "keyboard": {
+        "total": 0,
+        "visible": 0,
+        "pass": false
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S008": {
+      "route": "/needs/test-id",
+      "keyboard": {
+        "total": 11,
+        "visible": 11,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S009": {
+      "route": "/my/needs",
+      "keyboard": {
+        "total": 18,
+        "visible": 18,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S010": {
+      "route": "/needs/test-id/offers",
+      "keyboard": {
+        "total": 10,
+        "visible": 10,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S011": {
+      "route": "/needs/test-id/offers/new",
+      "keyboard": {
+        "total": 16,
+        "visible": 16,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S012": {
+      "route": "/offers/test-id",
+      "keyboard": {
+        "total": 13,
+        "visible": 13,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S013": {
+      "route": "/my/offers",
+      "keyboard": {
+        "total": 18,
+        "visible": 18,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S014": {
+      "route": "/needs/test-id/compare",
+      "keyboard": {
+        "total": 15,
+        "visible": 15,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S015": {
+      "route": "/comparisons/test-id",
+      "keyboard": {
+        "total": 10,
+        "visible": 10,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S016": {
+      "route": "/needs/test-id/comparisons",
+      "keyboard": {
+        "total": 16,
+        "visible": 16,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S017": {
+      "route": "/offers/test-id/messages",
+      "keyboard": {
+        "total": 17,
+        "visible": 14,
+        "pass": false
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S018": {
+      "route": "/notifications",
+      "keyboard": {
+        "total": 15,
+        "visible": 15,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S019": {
+      "route": "/needs/test-id/boost",
+      "keyboard": {
+        "total": 14,
+        "visible": 14,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S020": {
+      "route": "/needs/test-id/rating",
+      "keyboard": {
+        "total": 10,
+        "visible": 10,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S021": {
+      "route": "/support/report",
+      "keyboard": {
+        "total": 18,
+        "visible": 18,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S022": {
+      "route": "/needs/test-id/publications",
+      "keyboard": {
+        "total": 12,
+        "visible": 12,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "S023": {
+      "route": "/needs/test-id/offers/unlock",
+      "keyboard": {
+        "total": 15,
+        "visible": 15,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 1,
+        "pass": false
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A001": {
+      "route": "/admin/dashboard",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A002": {
+      "route": "/admin/telegram",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A003": {
+      "route": "/admin/health",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A004": {
+      "route": "/admin/features",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A005": {
+      "route": "/admin/marketplace",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A006": {
+      "route": "/admin/ai",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A007": {
+      "route": "/admin/payments",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A008": {
+      "route": "/admin/users",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A009": {
+      "route": "/admin/content",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A010": {
+      "route": "/admin/notifications",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A011": {
+      "route": "/admin/files",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A012": {
+      "route": "/admin/jobs",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A013": {
+      "route": "/admin/backups",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A014": {
+      "route": "/admin/integrity",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A015": {
+      "route": "/admin/security",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A016": {
+      "route": "/admin/audit",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A017": {
+      "route": "/admin/settings",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A018": {
+      "route": "/admin/recovery",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A019": {
+      "route": "/admin/safe-mode",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A020": {
+      "route": "/admin/monetization",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A021": {
+      "route": "/admin/maintenance",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A022": {
+      "route": "/admin/reports",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    },
+    "A023": {
+      "route": "/admin/monetization/sponsored-ads",
+      "keyboard": {
+        "total": 20,
+        "visible": 20,
+        "pass": true
+      },
+      "zoom200": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "zoom400": {
+        "scroll": 1200,
+        "client": 1200,
+        "pass": true
+      },
+      "amharic": {
+        "hasEthiopic": true
+      },
+      "reducedMotion": {
+        "animated": 0,
+        "pass": true
+      },
+      "darkMode": {
+        "bodyBg": "rgb(244, 246, 248)",
+        "pass": true
+      },
+      "landscape": {
+        "scroll": 800,
+        "client": 800,
+        "pass": true
+      }
+    }
+  },
+  "summary": {
+    "total": 46,
+    "keyboardPass": 43,
+    "reducedMotionPass": 35,
+    "zoom200Pass": 46,
+    "zoom400Pass": 46,
+    "darkModePass": 46,
+    "landscapePass": 46,
+    "amharicPass": 44
+  }
+}

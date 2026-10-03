@@ -30,7 +30,7 @@ main{flex:1;overflow-y:auto;padding:16px;max-width:720px;width:100%;margin:0 aut
 .state p{margin:0 0 16px}
 .composer{background:#fff;border-top:1px solid #eef1f4;padding:12px 16px;display:flex;gap:8px;align-items:flex-end;max-width:720px;width:100%;margin:0 auto;flex:0 0 auto;position:sticky;bottom:0;box-shadow:0 -1px 3px rgba(0,0,0,.04)}
 .composer textarea{flex:1;padding:10px 12px;border:1px solid #d0d7de;border-radius:20px;font-family:inherit;font-size:15px;resize:none;max-height:120px;min-height:42px;line-height:1.4;background:#f6f8fa}
-.composer textarea:focus{outline:none;border-color:#003366;background:#fff}
+.composer textarea:focus{outline:none;border-color:#003366;background:#fff;box-shadow:0 0 0 3px rgba(0,51,102,.18)}
 .composer button{background:#003366;color:#fff;border:none;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;transition:background .15s}
 .composer button:hover:not(:disabled){background:#002a52}
 .composer button:disabled{opacity:.5;cursor:not-allowed}
