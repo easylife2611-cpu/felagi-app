@@ -2027,3 +2027,9 @@ Design compliance: Localization/README.md — "Amharic is default".
 5 journeys × 3 steps = 15 steps, all pass.
 Read-only (no writes).
 See IMPLEMENTATION_LEDGER L341.
+
+## L342 — i18n Completion — 2026-10-03
+
+Locale switcher + category locale + 31 hardcoded strings.
+43 new keys, EN/AM parity: 712/712.
+See IMPLEMENTATION_LEDGER L342.
