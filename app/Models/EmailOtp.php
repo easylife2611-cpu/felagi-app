@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
 class EmailOtp extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'email', 'code_hash', 'attempts',
         'expires_at', 'consumed_at', 'ip_address',
