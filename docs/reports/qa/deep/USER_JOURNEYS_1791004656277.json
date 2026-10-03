@@ -1,0 +1,304 @@
+{
+  "generated": "2026-10-03T05:17:36.277Z",
+  "base": "https://zagcreativity.com",
+  "mode": "read-only",
+  "journeys": [
+    {
+      "id": "J1",
+      "name": "Public discovery",
+      "steps": [
+        {
+          "stepIndex": 0,
+          "screen": "S001",
+          "route": "/",
+          "verify": [
+            "felagi-lockup",
+            "id=\"email-input\""
+          ],
+          "verified": [
+            "felagi-lockup",
+            "id=\"email-input\""
+          ],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/",
+          "title": "ፈላጊ — የኢትዮጵያ ፍላጎት-ቀዳሚ የገበያ ቦታ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J1-1-S001.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 1,
+          "screen": "S004",
+          "route": "/browse",
+          "verify": [
+            "id=\"keyword\""
+          ],
+          "verified": [
+            "id=\"keyword\""
+          ],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/browse",
+          "title": "ፍላጎቶችን ያስሱ — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J1-2-S004.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 2,
+          "screen": "S008",
+          "route": "/needs/test-id",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/needs/test-id",
+          "title": "የፍላጎት ዝርዝር — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J1-3-S008.png",
+          "fieldsFilled": []
+        }
+      ],
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "id": "J2",
+      "name": "Auth flow",
+      "steps": [
+        {
+          "stepIndex": 0,
+          "screen": "S001",
+          "route": "/",
+          "verify": [
+            "felagi-lockup"
+          ],
+          "verified": [
+            "felagi-lockup"
+          ],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/",
+          "title": "ፈላጊ — የኢትዮጵያ ፍላጎት-ቀዳሚ የገበያ ቦታ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J2-1-S001.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 1,
+          "screen": "S003",
+          "route": "/profile",
+          "verify": [
+            "full_name",
+            "phone_number"
+          ],
+          "verified": [
+            "full_name",
+            "phone_number"
+          ],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/profile",
+          "title": "መገለጫ — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J2-2-S003.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 2,
+          "screen": "S009",
+          "route": "/my/needs",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/my/needs",
+          "title": "የኔ ፍላጎቶች — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J2-3-S009.png",
+          "fieldsFilled": []
+        }
+      ],
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "id": "J3",
+      "name": "Create flow (read-only — no submit)",
+      "steps": [
+        {
+          "stepIndex": 0,
+          "screen": "S004",
+          "route": "/browse",
+          "verify": [
+            "id=\"keyword\""
+          ],
+          "verified": [
+            "id=\"keyword\""
+          ],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/browse",
+          "title": "ፍላጎቶችን ያስሱ — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J3-1-S004.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 1,
+          "screen": "S005",
+          "route": "/needs/new",
+          "verify": [
+            "id=\"title\"",
+            "id=\"description\"",
+            "id=\"category_id\""
+          ],
+          "verified": [
+            "id=\"title\"",
+            "id=\"description\"",
+            "id=\"category_id\""
+          ],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/needs/new",
+          "title": "ፍላጎት ፍጠር — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J3-2-S005.png",
+          "fieldsFilled": [
+            "title",
+            "description"
+          ],
+          "titleLength": 28
+        },
+        {
+          "stepIndex": 2,
+          "screen": "S006",
+          "route": "/needs/new/public-preview",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/needs/new/public-preview",
+          "title": "የህዝብ ቅድመ-እይታ — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J3-3-S006.png",
+          "fieldsFilled": []
+        }
+      ],
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "id": "J4",
+      "name": "Offer viewing",
+      "steps": [
+        {
+          "stepIndex": 0,
+          "screen": "S008",
+          "route": "/needs/test-id",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/needs/test-id",
+          "title": "የፍላጎት ዝርዝር — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J4-1-S008.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 1,
+          "screen": "S010",
+          "route": "/needs/test-id/offers",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/needs/test-id/offers",
+          "title": "የተቀበሉ አቅርቦቶች — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J4-2-S010.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 2,
+          "screen": "S012",
+          "route": "/offers/test-id",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/offers/test-id",
+          "title": "የቅናሽ ዝርዝር — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J4-3-S012.png",
+          "fieldsFilled": []
+        }
+      ],
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "id": "J5",
+      "name": "Admin flow",
+      "steps": [
+        {
+          "stepIndex": 0,
+          "screen": "A001",
+          "route": "/admin/dashboard",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/admin/dashboard",
+          "title": "ዳሽቦርድ — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J5-1-A001.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 1,
+          "screen": "A017",
+          "route": "/admin/settings",
+          "verify": [],
+          "verified": [],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/admin/settings",
+          "title": "ቅንብሮች — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J5-2-A017.png",
+          "fieldsFilled": []
+        },
+        {
+          "stepIndex": 2,
+          "screen": "A023",
+          "route": "/admin/monetization/sponsored-ads",
+          "verify": [
+            "id=\"ads-privacy\""
+          ],
+          "verified": [
+            "id=\"ads-privacy\""
+          ],
+          "http": 200,
+          "finalUrl": "https://zagcreativity.com/admin/monetization/sponsored-ads",
+          "title": "admin.ads.title — ፈላጊ",
+          "ok": true,
+          "error": null,
+          "screenshot": "docs/reports/qa/deep/screenshots/journeys/J5-3-A023.png",
+          "fieldsFilled": []
+        }
+      ],
+      "passed": 3,
+      "failed": 0
+    }
+  ],
+  "summary": {
+    "journeys": 5,
+    "steps": 15,
+    "passed": 15,
+    "failed": 0,
+    "passRate": "100.00%"
+  }
+}
