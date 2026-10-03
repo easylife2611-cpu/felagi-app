@@ -2021,3 +2021,9 @@ See IMPLEMENTATION_LEDGER L337. Commit: 4042543.
 
 See IMPLEMENTATION_LEDGER L338. Commit: e74dcaa.
 Design compliance: Localization/README.md — "Amharic is default".
+
+## L341 — Block F: Read-only User Journeys — 2026-10-03
+
+5 journeys × 3 steps = 15 steps, all pass.
+Read-only (no writes).
+See IMPLEMENTATION_LEDGER L341.
