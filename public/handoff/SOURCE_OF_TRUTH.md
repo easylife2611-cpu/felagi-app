@@ -532,3 +532,36 @@ HEAD      = `edb2f9110b4ada61ab92a22ba6f971a23eb941e6` (`edb2f91`)
 Bundle    = ~/Felagi_App_L347L_20261003.bundle
 Tests     = 2101 passed / 9 incomplete / 1 skipped / 0 failed
 Repo root = /home/zagcreht/felagi_app
+
+---
+
+# L347-M — API Reference Acceptance (2026-10-03)
+
+**Tests:** 2325 passed / 9 incomplete / 1 skipped / 0 failed
+**Δ ከ L347-L:** +224 tests
+
+## Scope
+
+Cross-screen test that every endpoint declared in `Design_Data/api-mappings.json`
+(api.S001–S023 + api.A001–A023) is registered in the application route table.
+
+## Coverage
+
+- 46 screen mappings verified (S001–S023 + A001–A023)
+- ~218 declared API references checked against `routes/api.php`
+- Local-only screens (S001, S006) confirmed
+- All references use `/api/v1/` prefix
+- offer-submissions endpoints explicitly asserted
+
+## Non-duplication
+
+- `S011SubmitOfferTest.php` — HTTP behavior (auth/status/validation)
+- `AllScreensAcceptanceTest.php` — view structure
+- `ApiReferenceAcceptanceTest.php` — registry ↔ routes parity
+
+## Continuity
+
+HEAD      = (commit በኋላ)
+Bundle    = ~/Felagi_App_L347M_20261003.bundle
+Tests     = 2325 passed / 9 incomplete / 1 skipped / 0 failed
+Repo root = /home/zagcreht/felagi_app
