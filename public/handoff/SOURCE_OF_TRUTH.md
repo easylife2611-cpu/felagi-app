@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
-**Generated:** 2026-10-03 (L344-E)
-**App HEAD:** `9bd96b0`
+**Generated:** 2026-10-03 (L344-F)
+**App HEAD:** `10cc153`
 **Design HEAD:** `e3e1fb0`
 
 ## Summary
@@ -190,3 +190,29 @@ All previously-blocked external gates are now closed in-repo.
 Full suite: 1313 passed / 1 skipped / 0 failed (3642 assertions).
 
 See IMPLEMENTATION_LEDGER.md L343 for full file list.
+
+---
+
+## L344 — Model Coverage Completion (2026-10-03)
+
+**Scope:** Fill remaining model-test coverage gaps.
+
+| Sub | Domain | New tests | Commit |
+|-----|--------|-----------|--------|
+| L344-A | Ads (Advertiser, AdCampaign, AdCreative) | 42 | 320d3fc |
+| L344-B | Privacy (BreachIncident) | 17 | afe6c23 |
+| L344-C | Auth (EmailOtp, EmailVerificationToken) | 35 | bcd4f2a |
+| L344-D | Admin (BulkAction, SettingPreset) | 33 | 9bd96b0 |
+| L344-E | Marketplace (Export, OfferSubmission, ComparisonFeedback) | 47 | 10cc153 |
+| **Total** | **12 models** | **+174** | |
+
+**Test delta:** 1313 → 1487 passed / 1 skipped / 0 failed
+**Assertions:** 3642 → 3955
+
+**New factories (8):**
+Advertiser, AdCampaign, AdCreative, BreachIncident,
+EmailOtp, EmailVerificationToken, Export, ComparisonFeedback
++ states added to OfferSubmission.
+
+**HasFactory added to (4 models):**
+BreachIncident, EmailOtp, EmailVerificationToken, Export.

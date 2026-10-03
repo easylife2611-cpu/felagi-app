@@ -2053,3 +2053,30 @@ MODIFIED: public/handoff/ledgers/OPEN_GAPS.md (GAP-L338-FIREFOX)
 
 Gates closed: G05, G06, G07, G09, GAP-L338-FIREFOX
 Full suite: 1271 -> 1313 passed / 1 skipped / 0 failures
+
+## L344 — Model Coverage Completion — 2026-10-03
+
+NEW: database/factories/{Advertiser,AdCampaign,AdCreative}Factory.php
+NEW: database/factories/BreachIncidentFactory.php
+NEW: database/factories/{EmailOtp,EmailVerificationToken}Factory.php
+NEW: database/factories/{BulkAction,SettingPreset}Factory.php
+NEW: database/factories/ExportFactory.php
+NEW: database/factories/ComparisonFeedbackFactory.php
+NEW: tests/Feature/Models/{Advertiser,AdCampaign,AdCreative}Test.php
+NEW: tests/Feature/Models/BreachIncidentTest.php
+NEW: tests/Feature/Models/{EmailOtp,EmailVerificationToken}Test.php
+NEW: tests/Feature/Models/{BulkAction,SettingPreset}Test.php
+NEW: tests/Feature/Models/{Export,OfferSubmission,ComparisonFeedback}Test.php
+
+MODIFIED: app/Models/BreachIncident.php (+ HasFactory)
+MODIFIED: app/Models/EmailOtp.php (+ HasFactory)
+MODIFIED: app/Models/EmailVerificationToken.php (+ HasFactory)
+MODIFIED: app/Models/Export.php (+ HasFactory + FORMAT_* constants)
+MODIFIED: database/factories/OfferSubmissionFactory.php (+ 4 states)
+MODIFIED: public/handoff/SOURCE_OF_TRUTH.md (HEAD + L344 summary)
+
+Coverage: 12 models newly tested, 8 new factories
+Test delta: 1313 -> 1487 passed / 1 skipped / 0 failed
+Assertions: 3642 -> 3955
+
+Commits: 320d3fc, afe6c23, bcd4f2a, 9bd96b0, 10cc153
