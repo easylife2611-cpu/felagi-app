@@ -738,3 +738,28 @@ Read: L253-L257, OPEN_GAPS, HANDOFF_STATE
 - No guessing
 - UNKNOWN != MISSING
 
+
+---
+## L337 + L338 — QA session fix + Locale resolution (2026-10-03)
+
+### L337 — QA session
+
+- `/_qa/login` env-gated route (via QA_LOGIN_ENABLED)
+- Supersedes `public/qa-login.php` (physical file approach)
+
+### L338 — Locale
+
+- Default locale: `en` → `am` (design compliance)
+- New `SetLocale` middleware (session > Accept-Language > keep current)
+- Test fixes for Symfony's injected `en-us` header
+
+### Frontend Deep QA — Evidence
+
+- Admin: 138/138 (23 screens × 6 viewports)
+- User: 138/138 (23 screens × 6 viewports)
+- Localization: 10/10
+- Screenshots: `docs/reports/qa/deep/screenshots/` (276 PNG, gitignored)
+
+### Full Suite
+
+- 1269 passed / 1 skipped / 1 pre-existing failure

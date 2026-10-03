@@ -2012,3 +2012,12 @@ no console errors. BotFather domain verified present.
 
 Full suite: 990 / 2678 / 0 failures / 1 skipped.
 
+
+## L337 — L336 blocker fix (env-gated QA login) — 2026-10-03
+
+See IMPLEMENTATION_LEDGER L337. Commit: 4042543.
+
+## L338 — Locale resolution + Amharic default — 2026-10-03
+
+See IMPLEMENTATION_LEDGER L338. Commit: e74dcaa.
+Design compliance: Localization/README.md — "Amharic is default".

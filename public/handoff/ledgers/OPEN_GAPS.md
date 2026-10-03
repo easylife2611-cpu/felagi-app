@@ -518,3 +518,15 @@ duplicated in earlier tables — this section is the authoritative status).
 
 **Note:** GAP-L336 blocks completion of G04 admin screen matrix.
 
+
+---
+
+## GAP-LOCALE-01 — RESOLVED (2026-10-03, L338)
+
+| Field | Value |
+|-------|-------|
+| Original | Accept-Language ignored; UI always English |
+| Severity | HIGH (design violation — Localization/README.md) |
+| Fix | `SetLocale` middleware + config default `'am'` |
+| Evidence | LocaleSwitchTest 9/9, Localization QA 10/10, Localization Deep 6/6 |
+| Closed by | L338 (commit e74dcaa) |
