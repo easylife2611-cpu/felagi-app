@@ -29,11 +29,19 @@ class DataExportService
         ];
     }
 
+    /** Column map — single source of truth for user-ownership columns. */
+    private const USER_COLUMN = [
+        'needs'        => 'requester_id',
+        'offers'       => 'provider_id',
+        'consent_logs' => 'user_id',
+    ];
+
     private function safeQuery(string $table, string $userId): array
     {
         try {
+            $column = self::USER_COLUMN[$table] ?? 'user_id';
             return DB::table($table)
-                ->where('user_id', $userId)
+                ->where($column, $userId)
                 ->limit(1000)
                 ->get()
                 ->map(fn($row) => (array) $row)

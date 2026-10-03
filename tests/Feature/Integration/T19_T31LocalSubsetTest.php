@@ -228,14 +228,6 @@ class T19_T31LocalSubsetTest extends TestCase
         $this->assertNotContains('stopped_at', $fillable);
     }
 
-    public function test_t30_stop_controller_writes_to_nonexistent_columns(): void
-    {
-        // EVIDENCE-ONLY: controller writes 'status' and 'stopped_at' but
-        // the model uses 'state' and has no 'stopped_at'. This test
-        // documents the known bug without fixing it (L346-A scope = tests).
-        // Reported: docs/reports/L346A_FINDINGS_20261003.md
-        $this->assertTrue(true);
-    }
 
     // ─────────────────────────────────────────
     // T31 — Distribution/boost don't change snapshot

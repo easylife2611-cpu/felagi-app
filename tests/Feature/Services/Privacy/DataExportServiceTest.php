@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Services\Privacy;
 
+use App\Models\Category;
 use App\Models\ConsentLog;
+use App\Models\Need;
+use App\Models\Offer;
 use App\Models\User;
 use App\Services\Privacy\DataExportService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 final class DataExportServiceTest extends TestCase
@@ -100,22 +104,65 @@ final class DataExportServiceTest extends TestCase
         $this->assertSame(ConsentLog::TYPE_MARKETING, $result['consents'][0]['consent_type']);
     }
 
-    public function test_needs_returns_empty_due_to_schema_mismatch(): void
+    public function test_needs_returns_users_own_needs(): void
     {
-        // FINDING (documented, not fixed in L346-B2 scope):
-        // DataExportService::safeQuery('needs', ...) uses `user_id` but
-        // the needs table has `requester_id`. Column-not-found is caught
-        // by the try/catch, so needs[] is always empty.
-        // See: docs/reports/L346B2_FINDINGS_20261003.md
         $user = User::factory()->create();
-        $this->assertSame([], $this->service->build($user)['needs']);
+        $category = Category::create([
+            'id' => (string) Str::uuid(), 'slug' => 'export-needs-cat',
+            'name_am' => 'ሙከራ', 'name_en' => 'Test',
+            'active' => true, 'sort_order' => 1,
+        ]);
+        Need::create([
+            'id' => (string) Str::uuid(),
+            'requester_id' => $user->id,
+            'category_id'  => $category->id,
+            'title'        => 'Exported need',
+            'description'  => 'Should appear in export.',
+            'status'       => Need::STATUS_OPEN,
+            'version'      => 1,
+        ]);
+
+        $result = $this->service->build($user);
+
+        $this->assertCount(1, $result['needs']);
+        $this->assertSame($user->id, $result['needs'][0]['requester_id']);
     }
 
-    public function test_offers_returns_empty_due_to_schema_mismatch(): void
+    public function test_offers_returns_users_own_offers(): void
     {
-        // Same root cause: offers has `provider_id`, not `user_id`.
         $user = User::factory()->create();
-        $this->assertSame([], $this->service->build($user)['offers']);
+        $host = User::factory()->create();
+        $category = Category::create([
+            'id' => (string) Str::uuid(), 'slug' => 'export-offers-cat',
+            'name_am' => 'ሙከራ', 'name_en' => 'Test',
+            'active' => true, 'sort_order' => 1,
+        ]);
+        $need = Need::create([
+            'id' => (string) Str::uuid(),
+            'requester_id' => $host->id,
+            'category_id'  => $category->id,
+            'title'        => 'Host need',
+            'description'  => 'Host.',
+            'status'       => Need::STATUS_OPEN,
+            'version'      => 1,
+        ]);
+        Offer::create([
+            'id' => (string) Str::uuid(),
+            'need_id' => $need->id,
+            'provider_id' => $user->id,
+            'offered_price' => 1000,
+            'currency' => 'ETB',
+            'proposal_message' => 'Export test offer.',
+            'delivery_time_text' => '2 days',
+            'availability_text' => 'Now',
+            'status' => Offer::STATUS_PENDING,
+            'version' => 1,
+        ]);
+
+        $result = $this->service->build($user);
+
+        $this->assertCount(1, $result['offers']);
+        $this->assertSame($user->id, $result['offers'][0]['provider_id']);
     }
 
     public function test_build_is_idempotent(): void

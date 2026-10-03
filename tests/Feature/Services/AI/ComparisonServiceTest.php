@@ -284,15 +284,9 @@ final class ComparisonServiceTest extends TestCase
         $this->assertArrayHasKey('contradictions', $result);
         $this->assertArrayHasKey('contradiction_summary', $result);
 
-        // KNOWN BUG (documented, not fixed in L346-B scope):
-        // ComparisonService::evaluate() closes over $contradictions and
-        // $contradictionSummary OUTSIDE the DB::transaction closure but
-        // does NOT include them in the `use (...)` list. Inside the
-        // closure they are null, so `?? []` / `?? ['total'=>0]` produce
-        // empty summary. Total is always 0 despite real contradictions.
-        // See: docs/reports/L346B_FINDINGS_20261003.md
-        $this->assertSame(0, $result['contradiction_summary']['total']);
-        $this->assertSame([], $result['contradictions']);
+        // Real contradiction (price 99999 > budget_max 5000) must reach caller
+        $this->assertGreaterThan(0, $result['contradiction_summary']['total']);
+        $this->assertNotEmpty($result['contradictions']);
     }
 
     public function test_evaluate_stores_result_hash(): void

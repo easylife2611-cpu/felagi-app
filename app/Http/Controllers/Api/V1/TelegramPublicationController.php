@@ -60,9 +60,12 @@ class TelegramPublicationController extends BaseApiController
         }
 
         foreach ($publications as $pub) {
-            if (in_array($pub->status, ['SENT', 'PENDING'])) {
-                $pub->status = 'STOPPED';
-                $pub->stopped_at = now();
+            if (in_array($pub->state, [
+                TelegramPublication::STATE_QUEUED,
+                TelegramPublication::STATE_SENDING,
+                TelegramPublication::STATE_RETRY,
+            ], true)) {
+                $pub->state = TelegramPublication::STATE_REMOVAL_PENDING;
                 $pub->save();
             }
         }

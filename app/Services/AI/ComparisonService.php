@@ -120,7 +120,7 @@ class ComparisonService
 
         $usage = $result['usage'];
 
-        return DB::transaction(function () use ($need, $offers, $payload, $userId, $usage, $startedAt, $eligibleCount, $needSnapshot) {
+        return DB::transaction(function () use ($need, $offers, $payload, $userId, $usage, $startedAt, $eligibleCount, $needSnapshot, $contradictions, $contradictionSummary) {
             $version = (int) (Comparison::where('need_id', $need->id)->max('version_number') ?? 0) + 1;
 
             // AI-11: persist the findings inside the need_snapshot (additive;
