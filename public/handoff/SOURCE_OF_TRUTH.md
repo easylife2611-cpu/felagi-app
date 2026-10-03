@@ -328,3 +328,22 @@ Frontend `doUnlock()` now POSTs to `/api/v1/offer-submissions` with `need_id` + 
 **Test delta:** +8 (S023OfferUnlockUiTest) → **1610 passed** / 1 skipped / 0 failed
 
 **Base HEAD at SOURCE refresh:** `a9f74e5`
+
+---
+
+## L347-C — 2FA A11y Improvements (2026-10-03)
+
+6 WCAG AA improvements on /profile/2fa (from L346-E findings).
+
+| # | Fix |
+|---|-----|
+| 1 | Badge role=status aria-live=polite |
+| 2 | Enroll/disable messages live regions |
+| 3 | OTP inputs autocomplete=one-time-code |
+| 4 | Inputs have label for= |
+| 5 | prefers-color-scheme dark mode |
+| 6 | .text-xs #9ca3af -> #4b5563 |
+
+**Base HEAD at SOURCE refresh:** `248f175`
+
+**Test delta:** +10 (Profile2faA11yTest) -> **1620 passed** / 1 skipped / 0 failed

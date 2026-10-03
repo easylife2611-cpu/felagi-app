@@ -27,7 +27,7 @@
         code { background: #f3f4f6; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
         ul#recovery-list { list-style: none; padding: 12px; margin: 12px 0; background: #f9fafb; border-radius: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: monospace; font-size: 13px; }
         .text-sm { font-size: 14px; color: #6b7280; margin-top: 6px; }
-        .text-xs { font-size: 12px; color: #9ca3af; }
+        .text-xs { font-size: 12px; color: #4b5563; }
         .mt-3 { margin-top: 12px; }
         .mt-6 { margin-top: 24px; }
         .border-t { border-top: 1px solid #e5e7eb; padding-top: 16px; margin-top: 16px; }
@@ -35,6 +35,15 @@
         .msg { font-size: 14px; margin-top: 8px; }
         .msg.err { color: #dc2626; }
         .msg.ok { color: #16a34a; }
+        @media (prefers-color-scheme: dark) {
+            body { background: #1a1a1a; color: #e5e5e5; }
+            .card { background: #2a2a2a; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+            code { background: #3a3a3a; color: #e5e5e5; }
+            ul#recovery-list { background: #2a2a2a; }
+            .text-sm { color: #9ca3af; }
+            .text-xs { color: #a3a3a3; }
+            input[type="text"] { background: #2a2a2a; border-color: #4a4a4a; color: #e5e5e5; }
+        }
     </style>
 </head>
 <body>
@@ -56,7 +65,7 @@
                     <p class="text-xs">{{ __('2fa.recovery_left', ['count' => $status['codes_left']]) }}</p>
                 @endif
             </div>
-            <span class="badge {{ $status['enabled'] ? 'on' : 'off' }}">
+            <span class="badge {{ $status['enabled'] ? 'on' : 'off' }}" role="status" aria-live="polite">
                 {{ $status['enabled'] ? __('2fa.status_on') : __('2fa.status_off') }}
             </span>
         </div>
@@ -74,10 +83,10 @@
             </p>
 
             <div class="mt-6">
-                <label style="display:block;font-size:14px;font-weight:600;margin-bottom:8px;">{{ __('2fa.enter_code') }}</label>
-                <input id="enroll-code" type="text" inputmode="numeric" maxlength="6" />
+                <label for="enroll-code" style="display:block;font-size:14px;font-weight:600;margin-bottom:8px;">{{ __('2fa.enter_code') }}</label>
+                <input id="enroll-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" />
                 <button id="btn-verify" class="btn btn-green" style="margin-left:8px;">{{ __('2fa.verify_button') }}</button>
-                <p id="enroll-msg" class="msg"></p>
+                <p id="enroll-msg" class="msg" role="status" aria-live="polite"></p>
             </div>
         </div>
 
@@ -92,9 +101,10 @@
     <div class="card {{ $status['enabled'] ? '' : 'hidden' }}" id="disable-section">
         <h2 style="font-size:18px;margin:0 0 16px;color:#b91c1c;">{{ __('2fa.disable_heading') }}</h2>
         <p class="text-sm">{{ __('2fa.disable_hint') }}</p>
-        <input id="disable-code" type="text" inputmode="numeric" maxlength="6" />
+        <label for="disable-code" style="display:block;font-size:14px;font-weight:600;margin-bottom:8px;">{{ __('2fa.enter_code') }}</label>
+        <input id="disable-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" />
         <button id="btn-disable" class="btn btn-red" style="margin-left:8px;">{{ __('2fa.disable_button') }}</button>
-        <p id="disable-msg" class="msg"></p>
+        <p id="disable-msg" class="msg" role="status" aria-live="polite"></p>
     </div>
 </div>
 
