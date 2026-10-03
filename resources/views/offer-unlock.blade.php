@@ -182,7 +182,7 @@ function loadUnlock(){
   .then(function(j){
     var need=(j&&j.data)?j.data:j;
 
-    // No unlock API exists yet — show placeholder with pending notice
+    // L347-B: unlock via POST /api/v1/offer-submissions
     unlockInfo=need.unlock_info||null;
     renderUnlock();
     $('api-warn').className='notice-warn on';
@@ -196,7 +196,33 @@ function loadUnlock(){
 }
 
 function doUnlock(){
-  toast('{{ __('featurePendingBody') }}', 4000);
+  var btn=$('unlock-btn');
+  if(!needId){toast('{{ __('loadErrorBody') }}');return;}
+  btn.disabled=true;
+  fetch('/api/v1/offer-submissions',{
+    method:'POST',
+    credentials:'same-origin',
+    headers:{
+      'Accept':'application/json',
+      'Content-Type':'application/json',
+      'X-CSRF-TOKEN':csrf
+    },
+    body:JSON.stringify({need_id:needId})
+  })
+  .then(function(r){return r.json().then(function(j){return {status:r.status,body:j};});})
+  .then(function(resp){
+    btn.disabled=false;
+    if(resp.status>=200&&resp.status<300){
+      toast('{{ __('featurePendingBody') }}',5000);
+    }else{
+      var msg=(resp.body&&resp.body.error&&resp.body.error.message)||'{{ __('loadErrorBody') }}';
+      toast(msg,4000);
+    }
+  })
+  .catch(function(){
+    btn.disabled=false;
+    toast('{{ __('loadErrorBody') }}',4000);
+  });
 }
 
 $('unlock-btn').addEventListener('click',doUnlock);

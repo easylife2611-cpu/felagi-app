@@ -298,3 +298,33 @@ See `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md`.
 - No silent changes — 3 findings documented with evidence
 - Don't duplicate — L346-D cites existing GAP-53 proposal
 - Don't break existing — view/controller/service untouched
+
+---
+
+## L347-A — Fix 3 L346 Findings (2026-10-03)
+
+3 production bugs fixed. Base HEAD: `a9f74e5`.
+
+| GAP | Fix |
+|-----|-----|
+| `GAP-L346A-TG-STOP` | `state → REMOVAL_PENDING` on QUEUED/SENDING/RETRY |
+| `GAP-L346B-CS-CONTRADICTION` | closure now captures `$contradictions` + `$contradictionSummary` |
+| `GAP-L346B2-EXPORT-COLUMNS` | per-table `USER_COLUMN` map (`requester_id`, `provider_id`) |
+
+**Commits:** `8268307` (fix) → `9a161cb` (findings FIXED) → `3118fbc` (summary) → `a9f74e5` (SHA256)
+
+**Test delta:** 1603 → **1602 passed** / 1 skipped / 0 failed (4958 assertions)
+
+---
+
+## L347-B — S023 Offer Unlock Reconnected (2026-10-03)
+
+Frontend `doUnlock()` now POSTs to `/api/v1/offer-submissions` with `need_id` + CSRF. Backend `OfferUnlockController@store` was already implemented; view was not wired to it.
+
+**Out of scope (documented, not fixed):**
+- `unlock_info` missing from `NeedController@show`
+- Payment flow after `PENDING_PAYMENT` missing
+
+**Test delta:** +8 (S023OfferUnlockUiTest) → **1610 passed** / 1 skipped / 0 failed
+
+**Base HEAD at SOURCE refresh:** `a9f74e5`
