@@ -15,10 +15,10 @@
 </div>
 
 <div class="card">
-    <h2>Auth Attempts (24h)</h2>
+    <h2>{{ __('adminAuthAttempts24h') }}</h2>
     <p style="color:#586675;font-size:14px;">Total: <strong id="stat-sec-24h">—</strong></p>
     <table class="table">
-        <thead><tr><th>ID</th><th>Return URI</th><th>Consumed</th><th>Expired</th><th>Created</th></tr></thead>
+        <thead><tr><th>{{ __('adminJobsTableId') }}</th><th>{{ __('adminReturnUriCol') }}</th><th>{{ __('adminConsumedCol') }}</th><th>{{ __('adminExpiredCol') }}</th><th>{{ __('adminCreatedCol') }}</th></tr></thead>
         <tbody id="sec-attempts"><tr><td colspan="5">Loading...</td></tr></tbody>
     </table>
 </div>

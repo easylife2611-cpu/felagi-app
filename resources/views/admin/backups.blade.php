@@ -51,7 +51,7 @@
             if (recent.length === 0) {
                 list.innerHTML = '<div class="empty"><h3>{{ __('adminNoBackups') }}</h3><p>{{ __('adminBackupsIntro') }}</p></div>';
             } else {
-                list.innerHTML = '<table class="table"><thead><tr><th>Name</th><th>Size</th><th>Date</th></tr></thead><tbody>' +
+                list.innerHTML = '<table class="table"><thead><tr><th>{{ __("adminNameCol") }}</th><th>{{ __("adminSizeCol") }}</th><th>{{ __("adminDateCol") }}</th></tr></thead><tbody>' +
                     recent.map(b => '<tr><td>' + b.name + '</td><td>' + formatBytes(b.size) + '</td><td>' + b.date + '</td></tr>').join('') +
                     '</tbody></table>';
             }

@@ -56,15 +56,15 @@
                 });
                 const data = await res.json();
                 if (!res.ok) {
-                    status.textContent = data.message || 'Error';
+                    status.textContent = data.message || '{{ __("errorLabel") }}';
                     status.className = 'status err';
                     return;
                 }
-                status.textContent = data.message || 'Password reset';
+                status.textContent = data.message || '{{ __("passwordResetDone") }}';
                 status.className = 'status ok';
                 setTimeout(() => window.location.href = '/', 1200);
             } catch (err) {
-                status.textContent = 'Error. Please try again.';
+                status.textContent = '{{ __("errorTryAgain") }}';
                 status.className = 'status err';
             }
         });

@@ -209,7 +209,7 @@
 
             <p class="terms">
                 By continuing, you agree to our
-                <a href="/docs/privacy/TERMS_OF_SERVICE.md">Terms</a>
+                <a href="/docs/privacy/TERMS_OF_SERVICE.md">{{ __('terms') }}</a>
                 and
                 <a href="/docs/privacy/PRIVACY_POLICY.md">Privacy Policy</a>.
             </p>
@@ -217,7 +217,7 @@
 
         {{-- ─── Step 2: OTP code entry ─── --}}
         <div class="card hidden" id="view-otp">
-            <h1 class="otp-header">Check your email</h1>
+            <h1 class="otp-header">{{ __('checkEmail') }}</h1>
             <p class="otp-subtitle">
                 We sent a 6-digit code to<br>
                 <strong id="otp-email-display"></strong>
@@ -271,14 +271,14 @@
             const status = $('status');
 
             if (! email || ! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                status.textContent = 'Please enter a valid email address.';
+                status.textContent = '{{ __("emailInvalid") }}';
                 status.className = 'status error';
                 return;
             }
 
             const btn = $('email-continue');
             btn.disabled = true;
-            status.textContent = 'Sending code...';
+            status.textContent = '{{ __("sendingCode") }}';
             status.className = 'status';
 
             try {
@@ -452,7 +452,7 @@
                 if (! res.ok) throw new Error('Failed to resend');
 
                 startResendCooldown();
-                $('otp-status').textContent = 'New code sent.';
+                $('otp-status').textContent = '{{ __("newCodeSent") }}';
                 $('otp-status').className = 'status success';
 
             } catch (e) {
@@ -467,7 +467,7 @@
             const status = $('status');
             const btn = $('telegram-continue');
             btn.disabled = true;
-            status.textContent = 'Connecting to Telegram...';
+            status.textContent = '{{ __("connectingTelegram") }}';
             status.className = 'status';
 
             try {
@@ -516,7 +516,7 @@
 
         window.onFelagiTelegramAuth = async function(user) {
             const status = $('status');
-            status.textContent = 'Signing in...';
+            status.textContent = '{{ __("signingIn") }}';
             status.className = 'status';
 
             try {
@@ -538,11 +538,11 @@
                 } else if (res.ok && data.data?.handoff_code) {
                     window.location.href = '/?handoff_code=' + encodeURIComponent(data.data.handoff_code);
                 } else {
-                    status.textContent = 'Sign-in failed. Please try again.';
+                    status.textContent = '{{ __("signInFailed") }}';
                     status.className = 'status error';
                 }
             } catch (e) {
-                status.textContent = 'Sign-in failed. Please try again.';
+                status.textContent = '{{ __("signInFailed") }}';
                 status.className = 'status error';
             }
         };

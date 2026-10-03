@@ -222,3 +222,12 @@ if (env('QA_LOGIN_ENABLED', false) === true) {
         ]);
     })->middleware(['web']);
 }
+
+// ─── L342: Locale switcher ───
+Route::get('/lang/{locale}', function (string $locale) {
+    if (! in_array($locale, ['am', 'en'], true)) {
+        abort(404);
+    }
+    session(['locale' => $locale]);
+    return redirect()->back();
+})->name('lang.switch');

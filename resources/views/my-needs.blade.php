@@ -113,6 +113,15 @@ main{max-width:960px;margin:0 auto;padding:16px}
 <a href="/profile"><span class="ic">&#128100;</span><span>{{ __('navProfile') }}</span></a>
 </nav>
 <script>
+// L342: locale-aware category name (respects app locale)
+function felagiLocalizedName(obj) {
+  if (!obj) return '';
+  var am = document.documentElement.lang === 'am';
+  return am
+    ? (obj.name_am || obj.name_en || obj.slug || '')
+    : (obj.name_en || obj.name_am || obj.slug || '');
+}
+
 (function(){
 'use strict';
 var LS_TOKEN='felagi_token';
@@ -158,7 +167,7 @@ function renderItems(){
   if(!state.items.length){wrap.innerHTML='';return;}
   wrap.innerHTML=state.items.map(function(it){
     var cat=it.category||{};
-    var catName=cat.name_en||cat.name_am||cat.slug||'';
+    var catName=felagiLocalizedName(cat);
     var catHtml=catName?'<span class="need-cat">'+esc(catName)+'</span>':'';
     var badge='<span class="badge '+esc(String(it.status||'').toLowerCase())+'">'+esc(statusLabel(it.status))+'</span>';
     var desc=esc((it.description||'').slice(0,120));

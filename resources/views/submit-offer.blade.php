@@ -141,6 +141,15 @@ select{cursor:pointer}
 <button type="submit" form="offer-form" class="btn primary" id="submit-btn">{{ __('submit') }}</button>
 </div>
 <script>
+// L342: locale-aware category name (respects app locale)
+function felagiLocalizedName(obj) {
+  if (!obj) return '';
+  var am = document.documentElement.lang === 'am';
+  return am
+    ? (obj.name_am || obj.name_en || obj.slug || '')
+    : (obj.name_en || obj.name_am || obj.slug || '');
+}
+
 (function(){
 'use strict';
 var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
@@ -245,7 +254,7 @@ function renderNeedPreview(need){
   $('need-preview').hidden=false;
   $('need-title').textContent=need.title||'';
   var cat=need.category||{};
-  var catName=cat.name_en||cat.name_am||cat.slug||'';
+  var catName=felagiLocalizedName(cat);
   var meta=[];
   if(catName)meta.push(catName);
   if(need.location_text)meta.push('&#128205; '+esc(need.location_text));

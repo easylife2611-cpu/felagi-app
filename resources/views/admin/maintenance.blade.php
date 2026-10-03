@@ -57,7 +57,7 @@
                 ['last_refresh',     c.last_refresh || '—'],
             ];
             $('cache-status').innerHTML =
-                '<table class="table"><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody>' +
+                '<table class="table"><thead><tr><th>{{ __("adminKeyCol") }}</th><th>{{ __("adminValueCol") }}</th></tr></thead><tbody>' +
                 rows.map(([k, v]) => '<tr><td><code>' + esc(k) + '</code></td><td>' + esc(v) + '</td></tr>').join('') +
                 '</tbody></table>';
         } catch (e) { console.warn('maintenance load failed', e); }

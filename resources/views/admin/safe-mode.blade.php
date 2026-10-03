@@ -8,24 +8,24 @@
 </div>
 
 <div class="card">
-    <h2>Safe Mode Status</h2>
+    <h2>{{ __('adminSafeModeStatus') }}</h2>
     <p>Status: <span id="sm-status" class="badge">—</span></p>
     <p style="color:#586675;font-size:14px;" id="sm-reason"></p>
     <p style="color:#586675;font-size:12px;" id="sm-since"></p>
 </div>
 
 <div class="card">
-    <h2>System Checklist</h2>
+    <h2>{{ __('adminSystemChecklist') }}</h2>
     <table class="table">
-        <thead><tr><th>Item</th><th>Status</th></tr></thead>
+        <thead><tr><th>{{ __('adminItemCol') }}</th><th>{{ __('adminStatusCol') }}</th></tr></thead>
         <tbody id="sm-checklist"><tr><td colspan="2">Loading...</td></tr></tbody>
     </table>
 </div>
 
 <div class="card">
-    <h2>Affected Features</h2>
+    <h2>{{ __('adminAffectedFeatures') }}</h2>
     <table class="table">
-        <thead><tr><th>Feature</th><th>Blocked</th></tr></thead>
+        <thead><tr><th>{{ __('adminFeatureCol') }}</th><th>{{ __('adminBlockedCol') }}</th></tr></thead>
         <tbody id="sm-affected"><tr><td colspan="2">Loading...</td></tr></tbody>
     </table>
 </div>
@@ -52,10 +52,10 @@
             const d = (await res.json())?.data || {};
             const enabled = !!d.enabled;
             const el = $('sm-status');
-            el.textContent = enabled ? 'ENABLED' : 'DISABLED';
+            el.textContent = enabled ? '{{ __("adminSafeModeEnabled") }}' : '{{ __("adminSafeModeDisabled") }}';
             el.className = 'badge ' + (enabled ? 'fail' : 'ok');
-            if (d.reason) $('sm-reason').textContent = 'Reason: ' + d.reason;
-            if (d.since)  $('sm-since').textContent = 'Since: ' + d.since;
+            if (d.reason) $('sm-reason').textContent = '{{ __("adminSafeModeReason") }}: ' + d.reason;
+            if (d.since)  $('sm-since').textContent = '{{ __("adminSafeModeSince") }}: ' + d.since;
 
             const cl = d.checklist || [];
             $('sm-checklist').innerHTML = cl.map(c =>

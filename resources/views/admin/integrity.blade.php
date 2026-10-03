@@ -18,9 +18,9 @@
 </div>
 
 <div class="card">
-    <h2>Storage Directories</h2>
+    <h2>{{ __('adminStorageDirectories') }}</h2>
     <table class="table">
-        <thead><tr><th>Path</th><th>Status</th><th>Writable</th></tr></thead>
+        <thead><tr><th>{{ __('adminPathCol') }}</th><th>{{ __('adminStatusCol') }}</th><th>{{ __('adminWritableCol') }}</th></tr></thead>
         <tbody id="integrity-storage"></tbody>
     </table>
 </div>

@@ -52,10 +52,10 @@
                     body: new FormData(form)
                 });
                 const data = await res.json();
-                status.textContent = data.message || 'Sent.';
+                status.textContent = data.message || '{{ __("sentLabel") }}';
                 status.className = 'status ok';
             } catch (err) {
-                status.textContent = 'Error. Please try again.';
+                status.textContent = '{{ __("errorTryAgain") }}';
                 status.className = 'status err';
             }
         });

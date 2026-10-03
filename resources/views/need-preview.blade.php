@@ -82,6 +82,15 @@ main{max-width:640px;margin:0 auto;padding:16px}
 <div class="toast" id="toast" style="position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:#192431;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw"></div>
 
 <script>
+// L342: locale-aware category name (respects app locale)
+function felagiLocalizedName(obj) {
+  if (!obj) return '';
+  var am = document.documentElement.lang === 'am';
+  return am
+    ? (obj.name_am || obj.name_en || obj.slug || '')
+    : (obj.name_en || obj.name_am || obj.slug || '');
+}
+
 (function(){
 'use strict';
 var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
@@ -142,7 +151,7 @@ function render(){
       .then(function(j){
         if(j&&j.data){
           var c=j.data.find(function(x){return x.id===draft.category_id;});
-          if(c)$('need-cat').textContent=c.name_en||c.name_am||c.slug;
+          if(c)$('need-cat').textContent=felagiLocalizedName(c);
         }
       })
       .catch(function(){});

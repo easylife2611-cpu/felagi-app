@@ -75,7 +75,7 @@
 
             <script>
                 window.onTelegramAuth = function (user) {
-                    document.getElementById('status').textContent = 'Signing you in...';
+                    document.getElementById('status').textContent = '{{ __("adminSigningYouIn") }}';
                     document.getElementById('tg-id').value         = user.id;
                     document.getElementById('tg-first_name').value = user.first_name || '';
                     document.getElementById('tg-last_name').value  = user.last_name || '';

@@ -145,6 +145,15 @@ select{cursor:pointer}
 <button type="submit" form="need-form" class="btn primary" id="submit-btn">{{ __('continue') }}</button>
 </div>
 <script>
+// L342: locale-aware category name (respects app locale)
+function felagiLocalizedName(obj) {
+  if (!obj) return '';
+  var am = document.documentElement.lang === 'am';
+  return am
+    ? (obj.name_am || obj.name_en || obj.slug || '')
+    : (obj.name_en || obj.name_am || obj.slug || '');
+}
+
 (function(){
 'use strict';
 var csrf = (document.querySelector('meta[name="csrf-token"]')||{}).content||'';
@@ -190,7 +199,7 @@ function loadCategories(){
       var cats=(j.data||[]);
       var html='<option value="">'+sel.options[0].text+'</option>';
       cats.forEach(function(c){
-        html+='<option value="'+esc(c.id)+'">'+esc(c.name_en||c.name_am||c.slug)+'</option>';
+        html+='<option value="'+esc(c.id)+'">'+esc(felagiLocalizedName(c))+'</option>';
       });
       sel.innerHTML=html;
     })
@@ -245,7 +254,7 @@ function clearDraft(){
 
 function updateDraftIndicator(show){
   var el=$('draft-indicator');
-  if(el)el.textContent=show?'Draft saved':'';
+  if(el)el.textContent=show?'{{ __("draftSaved") }}':'';
 }
 
 function updateDescCount(){

@@ -36,14 +36,14 @@
             $('stat-jobs-pending').textContent   = d.pending ?? '—';
             $('stat-jobs-processed').textContent = d.processed ?? '—';
             $('stat-jobs-failed').textContent    = d.failed ?? '—';
-            $('jobs-driver').textContent = 'Driver: ' + (d.driver || 'unknown');
+            $('jobs-driver').textContent = '{{ __("adminJobsDriverLabel") }}: ' + (d.driver || '{{ __("adminJobsUnknown") }}');
 
             const list = $('jobs-failed-list');
             const failed = d.recent_failed || [];
             if (failed.length === 0) {
                 list.innerHTML = '<div class="empty"><p>{{ __('adminNoFailedJobs') }}</p></div>';
             } else {
-                list.innerHTML = '<table class="table"><thead><tr><th>ID</th><th>Queue</th><th>Failed at</th></tr></thead><tbody>' +
+                list.innerHTML = '<table class="table"><thead><tr><th>{{ __("adminJobsTableId") }}</th><th>{{ __("adminJobsTableQueue") }}</th><th>{{ __("adminJobsTableFailedAt") }}</th></tr></thead><tbody>' +
                     failed.map(j => '<tr><td>' + j.id + '</td><td>' + (j.queue || '—') + '</td><td>' + (j.failed_at || '—') + '</td></tr>').join('') +
                     '</tbody></table>';
             }

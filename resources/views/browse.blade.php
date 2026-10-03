@@ -49,13 +49,17 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 <header>
 <span class="brand">{{ __('brand') }}</span>
 <a href="#" onclick="felagiLogout();return false;">{{ __('logout') }}</a>
+<span class="lang-switch" style="margin-left:12px;font-size:13px">
+  <a href="/lang/am" style="color:#fff;text-decoration:{{ app()->getLocale()==='am'?'underline':'none' }};margin-right:6px">አማ</a>
+  <a href="/lang/en" style="color:#fff;text-decoration:{{ app()->getLocale()==='en'?'underline':'none' }}">EN</a>
+</span>
 </header>
 <main>
 <input type="search" id="keyword" placeholder="{{ __('searchPlaceholder') }}" maxlength="255" autocomplete="off">
 <div class="chips" id="chips"></div>
 <div class="filters">
 <label>{{ __('sortBy') }}:</label>
-<select id="sort" aria-label="Sort needs by">
+<select id="sort" aria-label="{{ __('sortBy') }}">
 <option value="newest">{{ __('sortNewest') }}</option>
 <option value="budget_low">{{ __('sortBudgetLow') }}</option>
 <option value="budget_high">{{ __('sortBudgetHigh') }}</option>
@@ -82,6 +86,17 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 <a href="/profile"><span class="ic">&#128100;</span><span>{{ __('navProfile') }}</span></a>
 </nav>
 <script>
+// L342: locale-aware category name (respects app locale)
+function felagiLocalizedName(obj) {
+  if (!obj) return '';
+  var am = document.documentElement.lang === 'am';
+  return am
+    ? (obj.name_am || obj.name_en || obj.slug || '')
+    : (obj.name_en || obj.name_am || obj.slug || '');
+}
+var ALL_CATEGORIES_LABEL = '{{ __("allCategories") }}';
+
+
 (function(){
 'use strict';
 var S={keyword:'',cat:null,sort:'newest',items:[]};
@@ -93,7 +108,7 @@ function loadCats(){
     .then(function(r){return r.ok?r.json():{data:[]};})
     .then(function(j){
       var c=j.data||[];
-      $('chips').innerHTML='<button class="chip active" data-id="">All</button>'+c.map(function(x){return '<button class="chip" data-id="'+esc(x.id)+'">'+esc(x.name_en||x.slug)+'</button>';}).join('');
+      $('chips').innerHTML='<button class="chip active" data-id="">' + ALL_CATEGORIES_LABEL + '</button>'+c.map(function(x){return '<button class="chip" data-id="'+esc(x.id)+'">'+esc(felagiLocalizedName(x))+'</button>';}).join('');
       var btns=$('chips').querySelectorAll('.chip');
       Array.prototype.forEach.call(btns,function(b){
         b.onclick=function(){

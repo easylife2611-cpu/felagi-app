@@ -13,14 +13,14 @@
 </div>
 
 <div class="card">
-    <h2>Recovery Steps</h2>
+    <h2>{{ __('adminRecoverySteps') }}</h2>
     <ol id="rec-steps" style="padding-left:20px;line-height:2;"></ol>
 </div>
 
 <div class="card">
-    <h2>Recent Restore Points</h2>
+    <h2>{{ __('adminRecentRestorePoints') }}</h2>
     <table class="table">
-        <thead><tr><th>Name</th><th>Size</th><th>Date</th></tr></thead>
+        <thead><tr><th>{{ __('adminNameCol') }}</th><th>{{ __('adminSizeCol') }}</th><th>{{ __('adminDateCol') }}</th></tr></thead>
         <tbody id="rec-list"><tr><td colspan="3">Loading...</td></tr></tbody>
     </table>
 </div>

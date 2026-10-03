@@ -143,6 +143,15 @@ main{max-width:720px;margin:0 auto;padding:16px}
 
 <div class="toast" id="toast"></div>
 <script>
+// L342: locale-aware category name (respects app locale)
+function felagiLocalizedName(obj) {
+  if (!obj) return '';
+  var am = document.documentElement.lang === 'am';
+  return am
+    ? (obj.name_am || obj.name_en || obj.slug || '')
+    : (obj.name_en || obj.name_am || obj.slug || '');
+}
+
 (function(){
 'use strict';
 var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
@@ -249,7 +258,7 @@ function renderNeed(need){
   $('need-desc').textContent=need.description||'';
 
   var cat=need.category||{};
-  var catName=cat.name_en||cat.name_am||cat.slug||'';
+  var catName=felagiLocalizedName(cat);
   if(catName){$('need-cat').textContent=catName;$('need-cat').style.display='inline-block';}
   else{$('need-cat').style.display='none';}
 
