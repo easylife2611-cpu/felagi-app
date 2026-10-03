@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
-**Generated:** 2026-10-03 (L346-E)
-**App HEAD:** `1c3fa3d`
+**Generated:** 2026-10-03 (L346-F)
+**App HEAD:** `bb0d383`
 **Design HEAD:** `e3e1fb0`
 
 ## Summary
@@ -254,3 +254,47 @@ request on file. Not MISSING. Awaiting design owner on 6 questions.
 **No code behavior changed.** Interface is a naming anchor only.
 
 **See also:** `docs/reports/GAP-53_DESIGN_PROPOSAL_20261002.md`
+
+---
+
+## L346 — Integration + Service + Migration Coverage (2026-10-03)
+
+Six commits (A–E) expanding coverage + one spec request filed.
+
+| Sub | Deliverable | Tests |
+|-----|-------------|-------|
+| L346-A | T19-T31 local integration subset | 22 |
+| L346-B1 | AI service unit tests | 48 |
+| L346-B2 | Privacy service unit tests | 27 |
+| L346-C | Migration integrity audit | 11 |
+| L346-D | REQ-WP13C-004 spec request + marker | 0 |
+| L346-E | 2FA UI structure tests | 14 |
+| **Total** | | **+122** |
+
+**Test delta:** 1487 → **1603 passed** / 1 skipped / 0 failed
+**Assertions:** 3955 → **4957** (+1002)
+
+### Findings filed (not fixed — L346 scope is tests)
+
+| GAP | Severity | Fix effort |
+|-----|----------|------------|
+| `GAP-L346A-TG-STOP` (Telegram stop is no-op) | HIGH | TRIVIAL |
+| `GAP-L346B-CS-CONTRADICTION` (closure drops data) | MEDIUM | TRIVIAL |
+| `GAP-L346B2-EXPORT-COLUMNS` (wrong column in export) | HIGH | TRIVIAL |
+| `GAP-L346E-2FA-A11Y` (6 a11y gaps) | LOW | SMALL |
+
+### REQ-WP13C-004
+
+Formal spec request filed. Status remains **UNKNOWN** — awaiting
+design owner on 6 open questions. Marker interface
+`LostFactorRecoveryInterface` declares only `gapReference()`.
+See `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md`.
+
+### Constitution compliance
+
+- Do not guess — spec request, not implementation
+- UNKNOWN != MISSING — REQ-WP13C-004 preserved as UNKNOWN
+- Append-only — original ledger entries preserved
+- No silent changes — 3 findings documented with evidence
+- Don't duplicate — L346-D cites existing GAP-53 proposal
+- Don't break existing — view/controller/service untouched

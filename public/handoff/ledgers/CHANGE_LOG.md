@@ -2080,3 +2080,37 @@ Test delta: 1313 -> 1487 passed / 1 skipped / 0 failed
 Assertions: 3642 -> 3955
 
 Commits: 320d3fc, afe6c23, bcd4f2a, 9bd96b0, 10cc153
+
+## L346 — Integration + Service + Migration Coverage — 2026-10-03
+
+NEW: tests/Feature/Integration/T19_T31LocalSubsetTest.php        (22)
+NEW: tests/Feature/Services/AI/ContradictionDetectorTest.php    (15)
+NEW: tests/Feature/Services/AI/CompletenessEvaluatorTest.php    (14)
+NEW: tests/Feature/Services/AI/ComparisonServiceTest.php        (19)
+NEW: tests/Feature/Services/Privacy/DataExportServiceTest.php   (12)
+NEW: tests/Feature/Services/Privacy/DataRightsServiceTest.php   (15)
+NEW: tests/Feature/Migration/MigrationIntegrityTest.php         (11)
+NEW: tests/Feature/Screens/Profile2faUiTest.php                 (14)
+NEW: docs/reports/L346A_FINDINGS_20261003.md
+NEW: docs/reports/L346B_FINDINGS_20261003.md
+NEW: docs/reports/L346B2_FINDINGS_20261003.md
+NEW: docs/reports/L346E_FINDINGS_20261003.md
+NEW: docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md
+NEW: app/Contracts/LostFactorRecoveryInterface.php (marker only)
+
+MODIFIED: public/handoff/SOURCE_OF_TRUTH.md (HEAD bb0d383, + L346 sections)
+MODIFIED: public/handoff/ledgers/IMPLEMENTATION_LEDGER.md (L346 A-F)
+MODIFIED: public/handoff/ledgers/OPEN_GAPS.md (GAP-53 spec request note)
+MODIFIED: public/handoff/ledgers/REQUIREMENT_REGISTRY.md (L346-D)
+MODIFIED: public/handoff/ledgers/WORK_PACKAGES.md (L346-D)
+
+FINDINGS (documented, not fixed):
+  GAP-L346A-TG-STOP        — stop() writes nonexistent columns
+  GAP-L346B-CS-CONTRADICTION — closure drops contradiction data
+  GAP-L346B2-EXPORT-COLUMNS — wrong user_id column in export
+  GAP-L346E-2FA-A11Y       — 6 a11y gaps in /profile/2fa
+
+Test delta: 1487 -> 1603 passed / 1 skipped / 0 failed
+Assertions: 3955 -> 4957
+
+Commits: 66082a0, dea89b4, 79ebce0, 556b502, 1c3fa3d, bb0d383
