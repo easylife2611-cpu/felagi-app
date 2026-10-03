@@ -20,11 +20,24 @@ class S001WelcomeTest extends TestCase
         $this->get('/')->assertStatus(200);
     }
 
-    public function test_welcome_has_brand_and_purpose(): void
+    public function test_welcome_has_brand_and_purpose_amharic(): void
     {
-        $this->get('/')
+        // L339 — locale default 'am' (design compliance)
+        $this->withHeader('Accept-Language', 'am-ET,am;q=0.9')
+            ->get('/')
             ->assertSee('felagi-lockup', false)
-            ->assertSee("Ethiopia's need-first marketplace", false);
+            ->assertSee('የኢትዮጵያ ፍላጎት-ቀዳሚ የገበያ ቦታ', false);
+    }
+
+    public function test_welcome_has_brand_and_purpose_english(): void
+    {
+        // L339 — Accept-Language: en switches to English
+        // NOTE: {{ __('purpose') }} escapes the apostrophe to &#039;,
+        // so assertSee must use default escape=true (or &#039;).
+        $this->withHeader('Accept-Language', 'en-US,en;q=0.9')
+            ->get('/')
+            ->assertSee('felagi-lockup', false)
+            ->assertSee("Ethiopia's need-first marketplace");   // escape=true (default)
     }
 
     public function test_welcome_has_email_input(): void
