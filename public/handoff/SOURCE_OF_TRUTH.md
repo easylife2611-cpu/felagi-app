@@ -347,3 +347,31 @@ Frontend `doUnlock()` now POSTs to `/api/v1/offer-submissions` with `need_id` + 
 **Base HEAD at SOURCE refresh:** `248f175`
 
 **Test delta:** +10 (Profile2faA11yTest) -> **1620 passed** / 1 skipped / 0 failed
+
+---
+
+## L347-D — HANDOFF_STATE Refresh (2026-10-03)
+
+Documentation-only. Synced HANDOFF_STATE.md with L347-A/B/C work.
+Added Bundle History (A/B/C SHA256). Updated Next Priorities.
+
+**Base HEAD at SOURCE refresh:** `8042e2f`
+
+---
+
+## L347-F — Model Unit Tests (2026-10-03)
+
+4 new Model unit tests: Need, Offer, Message, TelegramPublication.
+Closes B18 items 5/6 (extended non-admin + Model unit tests).
+
+| Test File | Tests |
+|-----------|-------|
+| `NeedTest.php` | 20 |
+| `OfferTest.php` | 20 |
+| `MessageTest.php` | 15 |
+| `TelegramPublicationTest.php` | 18 |
+| **Total** | **+73** |
+
+**Base HEAD at SOURCE refresh:** `8042e2f`
+
+**Test delta:** 1620 → **1693 passed** / 1 skipped / 0 failed
