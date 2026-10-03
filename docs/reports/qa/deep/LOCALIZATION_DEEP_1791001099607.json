@@ -1,0 +1,85 @@
+{
+  "generated": "2026-10-03T04:18:19.607Z",
+  "total": 6,
+  "passed": 3,
+  "failed": 3,
+  "results": [
+    {
+      "locale": "am",
+      "screen": "S004",
+      "expected": [
+        "ፍላጎቶች",
+        "ፈልግ",
+        "ምድብ"
+      ],
+      "found": [],
+      "ok": false
+    },
+    {
+      "locale": "am",
+      "screen": "S005",
+      "expected": [
+        "ፍላጎት",
+        "አዲስ",
+        "ርዕስ"
+      ],
+      "found": [],
+      "ok": false
+    },
+    {
+      "locale": "am",
+      "screen": "S018",
+      "expected": [
+        "ማሳወቂያ",
+        "አንብብ",
+        "ሁሉም"
+      ],
+      "found": [],
+      "ok": false
+    },
+    {
+      "locale": "en",
+      "screen": "S004",
+      "expected": [
+        "Browse",
+        "Search",
+        "Category"
+      ],
+      "found": [
+        "Browse",
+        "Search"
+      ],
+      "ok": true
+    },
+    {
+      "locale": "en",
+      "screen": "S005",
+      "expected": [
+        "Need",
+        "Create",
+        "Title"
+      ],
+      "found": [
+        "Need",
+        "Create",
+        "Title"
+      ],
+      "ok": true
+    },
+    {
+      "locale": "en",
+      "screen": "S018",
+      "expected": [
+        "Alert",
+        "Read",
+        "All"
+      ],
+      "found": [
+        "Alert",
+        "Read",
+        "All"
+      ],
+      "ok": true
+    }
+  ]
+}

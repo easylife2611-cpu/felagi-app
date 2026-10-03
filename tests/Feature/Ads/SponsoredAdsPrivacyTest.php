@@ -43,6 +43,7 @@ class SponsoredAdsPrivacyTest extends TestCase
     {
         $admin = $this->admin();
         $res = $this->actingAs($admin, 'web')
+            ->withHeader('Accept-Language', 'en-US,en;q=0.9')
             ->get('/admin/monetization/sponsored-ads');
 
         $res->assertStatus(200)
@@ -137,6 +138,7 @@ class SponsoredAdsPrivacyTest extends TestCase
         app()->setLocale('am');
 
         $res = $this->actingAs($admin, 'web')
+            ->withHeader('Accept-Language', 'am-ET,am;q=0.9')
             ->get('/admin/monetization/sponsored-ads');
 
         $res->assertStatus(200)

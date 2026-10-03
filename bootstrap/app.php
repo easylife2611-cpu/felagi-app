@@ -17,6 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
         // G04C — security headers on every response
         $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
 
+        // L338 — locale resolution (Amharic default per design)
+        $middleware->web(append: [
+            \App\Http\Middleware\SetLocale::class,
+        ]);
+
         $middleware->api(prepend: [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \App\Http\Middleware\RequestId::class,

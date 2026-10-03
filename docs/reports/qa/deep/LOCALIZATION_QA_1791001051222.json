@@ -1,0 +1,98 @@
+{
+  "generated": "2026-10-03T04:17:31.222Z",
+  "total": 10,
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "locale": "am",
+      "screen": "S001",
+      "route": "/",
+      "title": "ፈላጊ — Ethiopia's need-first marketplace",
+      "ethiopic": 6,
+      "latin": 8285,
+      "ok": true
+    },
+    {
+      "locale": "am",
+      "screen": "S003",
+      "route": "/profile",
+      "title": "Profile — ፈላጊ",
+      "ethiopic": 6,
+      "latin": 7318,
+      "ok": true
+    },
+    {
+      "locale": "am",
+      "screen": "S004",
+      "route": "/browse",
+      "title": "Browse Needs — ፈላጊ",
+      "ethiopic": 6,
+      "latin": 5550,
+      "ok": true
+    },
+    {
+      "locale": "am",
+      "screen": "S005",
+      "route": "/needs/new",
+      "title": "Create Need — ፈላጊ",
+      "ethiopic": 6,
+      "latin": 8747,
+      "ok": true
+    },
+    {
+      "locale": "am",
+      "screen": "S018",
+      "route": "/notifications",
+      "title": "Alerts — ፈላጊ",
+      "ethiopic": 3,
+      "latin": 8555,
+      "ok": true
+    },
+    {
+      "locale": "en",
+      "screen": "S001",
+      "route": "/",
+      "title": "ፈላጊ — Ethiopia's need-first marketplace",
+      "ethiopic": 6,
+      "latin": 8290,
+      "ok": true
+    },
+    {
+      "locale": "en",
+      "screen": "S003",
+      "route": "/profile",
+      "title": "Profile — ፈላጊ",
+      "ethiopic": 6,
+      "latin": 7323,
+      "ok": true
+    },
+    {
+      "locale": "en",
+      "screen": "S004",
+      "route": "/browse",
+      "title": "Browse Needs — ፈላጊ",
+      "ethiopic": 6,
+      "latin": 5555,
+      "ok": true
+    },
+    {
+      "locale": "en",
+      "screen": "S005",
+      "route": "/needs/new",
+      "title": "Create Need — ፈላጊ",
+      "ethiopic": 6,
+      "latin": 8752,
+      "ok": true
+    },
+    {
+      "locale": "en",
+      "screen": "S018",
+      "route": "/notifications",
+      "title": "Alerts — ፈላጊ",
+      "ethiopic": 3,
+      "latin": 8560,
+      "ok": true
+    }
+  ]
+}

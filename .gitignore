@@ -37,3 +37,8 @@ error_log
 .env.bak.*
 .env.broken
 .env.broken.*
+public/qa-login.php
+
+# L338 — QA deep evidence
+qa_tools/node_modules/
+docs/reports/qa/deep/screenshots/
