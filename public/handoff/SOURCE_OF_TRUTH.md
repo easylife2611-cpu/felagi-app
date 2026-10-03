@@ -404,3 +404,19 @@ Full S023 spec implementation per Monetization_Payment_Specification.md:
 payment provider integration, refund flow (WP-11 BLOCKED).
 
 **Base HEAD at SOURCE refresh:** `4e54624`
+
+---
+
+## L347-G (G3) — S023 Frontend Wire-Up (2026-10-03)
+
+S011 -> /offer-submissions + S023 state machine UI.
+
+- S011: POST /api/v1/offer-submissions with idempotency_key,
+  draft_id/version/hash (SubtleCrypto SHA-256)
+- S023: reads ?submission_id, GET /offer-submissions/{id}, renders
+  9 states, POST /resume for recovery
+- Translations: +4 keys (paymentRequired, policyUnknown,
+  duplicateSubmission, refresh)
+- Tests: S023OfferUnlockUiTest rewritten (12)
+
+**Base HEAD at SOURCE refresh:** `d6e4ec4`
