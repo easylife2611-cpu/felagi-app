@@ -420,3 +420,39 @@ S011 -> /offer-submissions + S023 state machine UI.
 - Tests: S023OfferUnlockUiTest rewritten (12)
 
 **Base HEAD at SOURCE refresh:** `d6e4ec4`
+
+---
+
+# L347-I — SCREEN-S023 Acceptance + a11y + i18n (2026-10-03)
+
+**Tests:** 1749 passed / 4 incomplete / 1 skipped / 0 failed (5219 assertions)
+**Δ ከ L347-G:** +21 tests / +31 assertions
+
+## የተለወጡ ፋይሎች
+
+- `lang/en.json`, `lang/am.json` — +34 S023 keys (716 → 750)
+- `resources/views/offer-unlock.blade.php` — a11y + i18n + responsive
+- `tests/Feature/Screens/S023AcceptanceTest.php` — **አዲስ** (42 tests)
+
+## Coverage
+
+- Canonical route + auth actor ✅
+- Locales (en + am), title key `screenS023` ✅
+- 9 business states ✅
+- POL-01..04, 08, 09 ✅
+- a11y: aria-live polite, bdi, tabindex=-1, :focus-visible, role=main ✅
+- Responsive max-width:720px + viewport ✅
+- i18n JSON_UNESCAPED_UNICODE payload ✅
+
+## REQUIRES_EVIDENCE (Blocked)
+
+- POL-05, 06, 07, 11 → WP-11 (Stripe)
+- L347-H (Browser/AT) → External
+- L347-E (WP-24) → Live services
+
+## Continuity
+
+HEAD      = (commit በኋላ)
+Bundle    = ~/Felagi_App_L347I_20261003.bundle
+Tests     = 1749 passed / 4 incomplete / 1 skipped / 0 failed
+Repo root = /home/zagcreht/felagi_app

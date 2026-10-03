@@ -1,21 +1,61 @@
+@php
+$s023 = [
+    'labels' => [
+        'state'    => __('s023LabelState'),
+        'amount'   => __('s023LabelAmount'),
+        'policy'   => __('s023LabelPolicy'),
+        'offerId'  => __('s023LabelOfferId'),
+        'created'  => __('s023LabelCreated'),
+        'missing'  => __('s023ToastPaymentMissing'),
+        'refund'   => __('s023ToastRefundInProgress'),
+        'failed'   => __('s023ToastResumeFailed'),
+        'network'  => __('s023ToastNetworkError'),
+        'ok'       => __('s023ToastResumedOk'),
+    ],
+    'states' => [
+        'free'                => ['title' => __('s023StateFree'),          'desc' => __('s023StateFreeDesc')],
+        'payment-required'    => ['title' => __('s023StatePaymentRequired'), 'desc' => __('s023StatePaymentRequiredDesc')],
+        'pending'             => ['title' => __('s023StatePending'),       'desc' => __('s023StatePendingDesc')],
+        'payment-verified'    => ['title' => __('s023StatePaymentVerified'), 'desc' => __('s023StatePaymentVerifiedDesc')],
+        'submission-recovery' => ['title' => __('s023StateRecovery'),      'desc' => __('s023StateRecoveryDesc')],
+        'submitted'           => ['title' => __('s023StateSubmitted'),     'desc' => __('s023StateSubmittedDesc')],
+        'refund-pending'      => ['title' => __('s023StateRefund'),        'desc' => __('s023StateRefundDesc')],
+        'failed'              => ['title' => __('s023StateFailed'),        'desc' => __('s023StateFailedDesc')],
+        'unknown'             => ['title' => __('s023StateUnknown'),       'desc' => __('s023StateUnknownDesc')],
+    ],
+    'actions' => [
+        'free'                => __('refresh'),
+        'payment-required'    => __('s023ActionPay'),
+        'pending'             => __('refresh'),
+        'payment-verified'    => __('s023ActionResume'),
+        'submission-recovery' => __('s023ActionResume'),
+        'submitted'           => __('s023ActionViewOffer'),
+        'refund-pending'      => __('s023ActionViewRefund'),
+        'failed'              => __('s023ActionRetrySupport'),
+        'unknown'             => __('refresh'),
+    ],
+];
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ __('unlockTitle') }} — {{ __('brand') }}</title>
+<title>{{ __('screenS023') }} — {{ __('brand') }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F4F6F8;color:#192431;line-height:1.5;min-height:100vh;padding-bottom:100px}
 header{background:#003366;color:#fff;height:64px;padding:0 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30}
 header a{color:#fff;text-decoration:none;font-size:20px;padding:8px;border-radius:6px;line-height:1}
 header .title{font-size:16px;font-weight:600;flex:1}
-main{max-width:560px;margin:0 auto;padding:16px}
+main{max-width:720px;margin:0 auto;padding:16px}
 .hero{text-align:center;padding:32px 16px}
 .hero .icon{width:88px;height:88px;border-radius:50%;background:#e3f2fd;color:#0d47a1;display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 20px}
 .hero h1{font-size:22px;font-weight:700;color:#003366;margin-bottom:10px}
+.hero h1:focus{outline:none}
 .hero p{color:#586675;font-size:14px;line-height:1.5;max-width:400px;margin:0 auto}
+:focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
 .card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .card h2{font-size:15px;font-weight:600;color:#003366;margin-bottom:12px}
 .info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eef1f4;font-size:14px}
@@ -30,7 +70,7 @@ main{max-width:560px;margin:0 auto;padding:16px}
 .state{padding:60px 20px;text-align:center;color:#586675}
 .state h3{color:#003366;font-size:18px;margin:0 0 8px}
 .state p{margin:0 0 16px}
-.actions{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eef1f4;padding:12px 16px;display:flex;gap:10px;max-width:560px;margin:0 auto;z-index:20;box-shadow:0 -1px 3px rgba(0,0,0,.04)}
+.actions{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eef1f4;padding:12px 16px;display:flex;gap:10px;max-width:720px;margin:0 auto;z-index:20;box-shadow:0 -1px 3px rgba(0,0,0,.04)}
 .btn{flex:1;padding:14px 20px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;border:none;font-family:inherit;text-decoration:none;text-align:center;display:block;transition:background .15s}
 .btn.primary{background:#003366;color:#fff}
 .btn.primary:hover:not(:disabled){background:#002a52}
@@ -62,22 +102,22 @@ main{max-width:560px;margin:0 auto;padding:16px}
 <span class="title">{{ __('unlockTitle') }}</span>
 </header>
 
-<main>
+<main aria-labelledby="page-title">
 <div class="hero">
-<div class="icon">&#128275;</div>
-<h1>{{ __('unlockHeroTitle') }}</h1>
+<div class="icon" aria-hidden="true">&#128275;</div>
+<h1 id="page-title" tabindex="-1">{{ __('unlockHeroTitle') }}</h1>
 <p>{{ __('unlockHeroBody') }}</p>
 </div>
 
-<div class="notice-warn" id="api-warn"></div>
-<div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>
+<div class="notice-warn" id="api-warn" role="alert"></div>
+<div class="offline-banner" id="offline-banner" role="status">{{ __('offlineBody') }}</div>
 
-<div id="state-loading" class="state" hidden>
-<div class="spinner"></div>
+<div id="state-loading" class="state" hidden aria-busy="true">
+<div class="spinner" aria-hidden="true"></div>
 <p style="margin-top:12px">{{ __('loading') }}...</p>
 </div>
 
-<div id="state-error" class="state" hidden>
+<div id="state-error" class="state" hidden role="alert">
 <h3>{{ __('loadErrorTitle') }}</h3>
 <p>{{ __('loadErrorBody') }}</p>
 <button type="button" class="btn sec" onclick="window.load()" style="display:inline-block;max-width:180px;margin-top:12px">{{ __('retry') }}</button>
@@ -93,12 +133,12 @@ main{max-width:560px;margin:0 auto;padding:16px}
 <div class="card">
 <span class="state-badge" id="state-badge"></span>
 <h2 id="state-title"></h2>
-<p id="state-desc"></p>
+<p id="state-desc" aria-live="polite"></p>
 </div>
 
 <div class="card" id="price-card" hidden>
 <h2>{{ __('unlockCost') }}</h2>
-<div class="price-big"><span class="cur" id="unlock-currency">ETB</span><span id="unlock-price">—</span></div>
+<div class="price-big"><bdi><span class="cur" id="unlock-currency">ETB</span><span id="unlock-price">—</span></bdi></div>
 <div class="price-sub">{{ __('unlockCostSub') }}</div>
 </div>
 
@@ -114,15 +154,20 @@ main{max-width:560px;margin:0 auto;padding:16px}
 <button type="button" class="btn success" id="unlock-btn">{{ __('refresh') }}</button>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
+var S023 = {!! json_encode($s023, JSON_UNESCAPED_UNICODE) !!};
 (function(){
 'use strict';
+
+var L        = S023.labels;
+var STATES   = S023.states;
+var ACTIONS  = S023.actions;
+
 var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
 var needId='';
 var submissionId='';
-var submission=null;
 
 function $(id){return document.getElementById(id);}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -147,27 +192,14 @@ function fmtMinor(minor){
   return (Number(minor)/100).toFixed(2);
 }
 
-var STATE_META={
-  'free':{title:'Free submission',desc:'This submission is free. No payment required.'},
-  'payment-required':{title:'Payment required',desc:'Complete payment to unlock your offer submission.'},
-  'pending':{title:'Payment pending',desc:'Waiting for payment confirmation. Do not start another submission.'},
-  'payment-verified':{title:'Payment verified',desc:'Payment confirmed. Resuming submission now.'},
-  'submission-recovery':{title:'Submission recovery',desc:'Your submission was interrupted. Resume to complete without additional charge.'},
-  'submitted':{title:'Offer submitted',desc:'Your offer has been submitted successfully.'},
-  'refund-pending':{title:'Refund pending',desc:'A refund is being processed. This may take time.'},
-  'failed':{title:'Submission failed',desc:'Something went wrong. Retry or contact support.'},
-  'unknown':{title:'Unknown state',desc:'Refresh to check the current status.'}
-};
-
 function renderSubmission(s){
-  submission=s;
   var state=s.state||'unknown';
 
   var badge=$('state-badge');
   badge.textContent=state;
   badge.className='state-badge '+state;
 
-  var meta=STATE_META[state]||STATE_META['unknown'];
+  var meta=STATES[state]||STATES['unknown'];
   $('state-title').textContent=meta.title;
   $('state-desc').textContent=meta.desc;
 
@@ -180,29 +212,25 @@ function renderSubmission(s){
   }
 
   var rows='';
-  rows+='<div class="info-row"><span class="lbl">State</span><span class="val">'+esc(state)+'</span></div>';
-  rows+='<div class="info-row"><span class="lbl">Amount</span><span class="val">'+esc(s.currency||'ETB')+' '+fmtMinor(s.amount_minor)+'</span></div>';
-  if(s.policy_version)rows+='<div class="info-row"><span class="lbl">Policy</span><span class="val">'+esc(s.policy_version)+'</span></div>';
-  if(s.offer_id)rows+='<div class="info-row"><span class="lbl">Offer ID</span><span class="val">'+esc(s.offer_id)+'</span></div>';
-  if(s.created_at)rows+='<div class="info-row"><span class="lbl">Created</span><span class="val">'+esc(s.created_at)+'</span></div>';
+  rows+='<div class="info-row"><span class="lbl">'+esc(L.state)+'</span><span class="val">'+esc(state)+'</span></div>';
+  rows+='<div class="info-row"><span class="lbl">'+esc(L.amount)+'</span><span class="val"><bdi>'+esc(s.currency||'ETB')+' '+fmtMinor(s.amount_minor)+'</bdi></span></div>';
+  if(s.policy_version)rows+='<div class="info-row"><span class="lbl">'+esc(L.policy)+'</span><span class="val">'+esc(s.policy_version)+'</span></div>';
+  if(s.offer_id)rows+='<div class="info-row"><span class="lbl">'+esc(L.offerId)+'</span><span class="val">'+esc(s.offer_id)+'</span></div>';
+  if(s.created_at)rows+='<div class="info-row"><span class="lbl">'+esc(L.created)+'</span><span class="val">'+esc(s.created_at)+'</span></div>';
   $('unlock-rows').innerHTML=rows;
 
   var btn=$('unlock-btn');
-  var handlers={
-    'free':{label:'Refresh',fn:load},
-    'payment-required':{label:'Pay & Continue',fn:function(){toast('Payment provider not configured (WP-11).',4000);}},
-    'pending':{label:'Check Status',fn:load},
-    'payment-verified':{label:'Resume Submission',fn:resume},
-    'submission-recovery':{label:'Resume Submission',fn:resume},
-    'submitted':{label:'View Offer',fn:function(){window.location.href='/offers/'+encodeURIComponent(s.offer_id);}},
-    'refund-pending':{label:'View Refund Status',fn:function(){toast('Refund in progress.',4000);}},
-    'failed':{label:'Retry / Support',fn:function(){window.location.href='/support/report';}},
-    'unknown':{label:'Refresh',fn:load}
+  var handlerFns={
+    'payment-required': function(){toast(L.missing,4000);},
+    'submitted':        function(){window.location.href='/offers/'+encodeURIComponent(s.offer_id);},
+    'refund-pending':   function(){toast(L.refund,4000);},
+    'failed':           function(){window.location.href='/support/report';}
   };
-  var h=handlers[state]||handlers['unknown'];
-  btn.textContent=h.label;
+  var fn=handlerFns[state]||load;
+  if(state==='payment-verified'||state==='submission-recovery'){fn=resume;}
+  btn.textContent=ACTIONS[state]||ACTIONS['unknown'];
   btn.disabled=false;
-  btn.onclick=h.fn;
+  btn.onclick=fn;
 }
 
 function resume(){
@@ -220,12 +248,12 @@ function resume(){
     if(res.status>=200&&res.status<300){
       var d=(res.body&&res.body.data)?res.body.data:res.body;
       renderSubmission(d);
-      toast('Resumed.',3000);
+      toast(L.ok,3000);
     }else{
-      toast((res.body&&res.body.error&&res.body.error.message)||'Resume failed.',4000);
+      toast((res.body&&res.body.error&&res.body.error.message)||L.failed,4000);
     }
   })
-  .catch(function(){btn.disabled=false;toast('Network error.',4000);});
+  .catch(function(){btn.disabled=false;toast(L.network,4000);});
 }
 
 function load(){
@@ -265,6 +293,10 @@ window.load=load;
 window.addEventListener('online',function(){$('offline-banner').className='offline-banner';load();});
 window.addEventListener('offline',function(){$('offline-banner').className='offline-banner on';});
 if(navigator.onLine===false){$('offline-banner').className='offline-banner on';}
+
+var h=document.getElementById('page-title');
+if(h){try{h.focus();}catch(e){}}
+
 load();
 })();
 </script>
