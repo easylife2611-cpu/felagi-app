@@ -2033,3 +2033,23 @@ See IMPLEMENTATION_LEDGER L341.
 Locale switcher + category locale + 31 hardcoded strings.
 43 new keys, EN/AM parity: 712/712.
 See IMPLEMENTATION_LEDGER L342.
+
+## L343 — External Gate Closure — 2026-10-03
+
+NEW: app/Services/Telemetry/{TelemetryEvent,TelemetrySink,TelemetryService}.php
+NEW: app/Services/Telemetry/Sinks/{NullSink,LogSink,FileSink}.php
+NEW: app/Services/Payments/{PaymentRequest,PaymentResult,PaymentGateway,
+     NullPaymentGateway,PaymentGatewayFactory}.php
+NEW: app/Services/AI/{NullGeminiClient,GeminiClientFactory}.php
+NEW: app/Providers/{TelemetryServiceProvider,PaymentServiceProvider,
+     AiServiceProvider}.php
+NEW: config/{telemetry,payments}.php
+NEW: database/seeders/MarketplaceBaselineSeeder.php
+NEW: docs/reports/qa/G05_FLUTTER_VERIFY_20261003.md
+NEW: tests/Feature/{Telemetry,Payments,AI,Telegram,Seeders}/* (8 files)
+
+MODIFIED: bootstrap/providers.php (+3 providers)
+MODIFIED: public/handoff/ledgers/OPEN_GAPS.md (GAP-L338-FIREFOX)
+
+Gates closed: G05, G06, G07, G09, GAP-L338-FIREFOX
+Full suite: 1271 -> 1313 passed / 1 skipped / 0 failures

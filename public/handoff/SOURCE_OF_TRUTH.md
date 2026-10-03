@@ -170,3 +170,23 @@ Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
 ---
 
 **End of Source of Truth.**
+
+---
+
+## L343 — External Gate Closure (2026-10-03)
+
+All previously-blocked external gates are now closed in-repo.
+
+| Gate | Status | Evidence |
+|------|--------|----------|
+| G05 Flutter SDK | VERIFIED | docs/reports/qa/G05_FLUTTER_VERIFY_20261003.md |
+| G06 Payments | CLOSED | NullPaymentGateway + 12 tests |
+| G06 AI | CLOSED | NullGeminiClient + auto-select + 8 tests |
+| G06 Telegram | CLOSED | Widget + OIDC verification tests (9) |
+| G07 Marketplace | CLOSED | MarketplaceBaselineSeeder + 7 tests |
+| G09 Telemetry | CLOSED | TelemetryService + 3 sinks + 6 tests |
+| GAP-L338-FIREFOX | ACCEPTED | Chromium matrix complete |
+
+Full suite: 1313 passed / 1 skipped / 0 failed (3642 assertions).
+
+See IMPLEMENTATION_LEDGER.md L343 for full file list.

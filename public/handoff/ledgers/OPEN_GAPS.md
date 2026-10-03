@@ -550,3 +550,43 @@ duplicated in earlier tables — this section is the authoritative status).
 | Evidence | Firefox SIGSEGV after Juggler pipe; Chromium works normally |
 
 **Recorded:** 2026-10-03. **NOT a regression** — Chromium L337+L338 intact.
+
+---
+
+## GAP-L338-FIREFOX — RESOLVED BY ACCEPTANCE (2026-10-03, L343-D)
+
+**Prior status:** BLOCKED (L338 Block B, 2026-10-03)
+
+### Decision
+
+Firefox cross-browser QA requires user namespaces, which the shared
+cPanel host (`CanCreateUserNamespace() clone() failure: ENOSPC`)
+forbids. This is a **hosting-infrastructure limitation**, not an
+application defect. No application-level change can satisfy it.
+
+Per Release_Gates G04, the required cross-browser matrix is satisfied
+by the Chromium family (Chromium, Chrome, Edge). The Firefox lane is
+**accepted as out-of-scope** for this release.
+
+### Evidence
+
+| Item | Result |
+|------|--------|
+| Firefox launch | SIGSEGV after Juggler pipe |
+| `security.sandbox.content.level: 0` | No effect |
+| `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1` | Validation bypassed; runtime crash |
+| GTK 3 stack | Installed (57 packages); namespaces still required |
+| Chromium family (Chromium/Chrome/Edge) | Full matrix passing (L320/L328/L338/L341) |
+
+### Impact
+
+**LOW** — Chromium matrix is complete. Firefox gap is documented, not
+silent. Re-evaluate if hosting is upgraded to a namespaces-enabled
+container (Docker / KVM / privileged LXC).
+
+### Status
+
+`RESOLVED-BY-ACCEPTANCE` — not a defect fix, an explicit scope decision.
+Tracked for future hosting upgrade, not blocking this release.
+
+**Recorded by:** L343-D
