@@ -354,3 +354,30 @@ Two additional packages landed after the L283 snapshot:
 | G09 | operations | telemetry |
 | ADS-58 design-side | design owner | design package |
 | 11 CRITICAL | various | frontend, GitHub, ops, infra |
+
+---
+
+## L320 + L337 + L338 Update — 2026-10-03
+
+### Gate Status Changes
+
+| Gate | Before | After |
+|------|--------|-------|
+| G04 Browser/responsive/AT | BLOCKED | **MET** |
+| G08 Localization/usability | SOURCE MET / RUNTIME PENDING | **MET** |
+
+### Evidence Summary
+
+| Evidence | File |
+|----------|------|
+| 46-screen audit | docs/reports/qa/G04_FINAL_20261002.md |
+| Admin deep QA | docs/reports/qa/deep/ADMIN_DEEP_QA_*.json |
+| User deep QA | docs/reports/qa/deep/USER_DEEP_QA_*.json |
+| Localization QA | docs/reports/qa/deep/LOCALIZATION_QA_*.json |
+| Localization deep | docs/reports/qa/deep/LOCALIZATION_DEEP_*.json |
+| Screenshots | docs/reports/qa/deep/screenshots/ (276 PNG) |
+
+### Test Suite
+
+- 1270 passed / 1 skipped / 0 failures
+

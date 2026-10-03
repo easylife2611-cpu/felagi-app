@@ -1,5 +1,5 @@
 # RELEASE STATUS — Felagi v1.4.2
-Last Updated: 2026-09-29
+Last Updated: 2026-10-03 (L338)
 
 ## Current State
 | Field | Value |
@@ -340,3 +340,73 @@ A competent developer can resume from:
 ---
 
 **End of B25–B28 + GAP-70 + GAP-71b RELEASE_STATUS update.**
+
+---
+## L320 + L337 + L338 Update — 2026-10-03
+
+### Gate Changes
+
+| Gate | Before | After | Evidence |
+|------|--------|-------|----------|
+| G04 Browser/responsive/AT | BLOCKED | **MET** | L320 (46 screens, 0 axe, 0 overflow), L293 (keyboard/motion/zoom/Amharic), L337+L338 (Admin 138/138 + User 138/138 × 6 viewports) |
+| G08 Localization/usability | SOURCE MET / RUNTIME PENDING | **MET** | L293 (Amharic glyphs 6 fonts), L338 (SetLocale + Amharic default), Localization QA 10/10 + Deep 6/6, LocaleSwitchTest 9/9 |
+
+### L320 — G04 final 46-screen audit
+
+- 46/46 screens HTTP 200
+- 0 axe violations
+- 0 overflow (5 viewports)
+
+### L337 — L336 blocker fix
+
+- `/_qa/login` env-gated route (`QA_LOGIN_ENABLED=true`)
+- Supersedes `public/qa-login.php` physical file approach
+- Commit: `4042543`
+
+### L338 — Locale resolution + Amharic default
+
+- `config/app.php`: locale + fallback `'en'` → `'am'`
+- New `app/Http/Middleware/SetLocale.php` (session > Accept-Language > keep current)
+- Commit: `e74dcaa`
+
+### Frontend Deep QA Evidence
+
+| Suite | Screens | Viewports | Result |
+|-------|---------|-----------|--------|
+| Admin Deep QA | 23 | 6 | 138/138 (100%) |
+| User Deep QA | 23 | 6 | 138/138 (100%) |
+| Localization QA | 5 | 2 locales | 10/10 |
+| Localization Deep | 3 | 2 locales | 6/6 |
+
+Screenshots: `docs/reports/qa/deep/screenshots/` (276 PNG, 9.3 MB)
+
+### Full Suite
+
+- **1270 passed / 1 skipped / 0 failures**
+
+### Bundle Artifacts (latest)
+
+- `~/Felagi_App_v1.4.2_20261003-0445_L338_FINAL.bundle` (2.0M)
+- `~/FELAGI-FULL-20261003-0445-L338.tar.gz` (48M)
+- SHA256: `357244e6761c08ed2bec74540315b120d57a8328a5a7b49454abc520edfff92e`
+
+### Complete Gate Status (post-L338)
+
+| Gate | Status |
+|------|--------|
+| G01 Source consistency | MET |
+| G02 Design completeness | MET |
+| G03 Brand source | MET |
+| **G04 Browser/responsive/AT** | **MET** |
+| G05 Flutter | BLOCKED (SDK unavailable) |
+| G06 Service/security | PARTIAL+ |
+| G07 Monetization | REQUIRES_EVIDENCE |
+| **G08 Localization/usability** | **MET** |
+| G09 Observability | REQUIRES_EVIDENCE |
+
+**Totals:** 5/9 MET · 1/9 PARTIAL+ · 3/9 BLOCKED or REQUIRES_EVIDENCE
+
+### Production PASS Criteria
+
+**Currently: STILL NOT SATISFIED** — G05, G06, G07, G09 pending.
+
