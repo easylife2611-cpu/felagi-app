@@ -594,7 +594,7 @@ rejects unauthenticated requests with 401 before any controller logic.
 
 ## Continuity
 
-HEAD      = (commit በኋላ)
+HEAD      = `` (``)
 Bundle    = ~/Felagi_App_L347N_20261003.bundle
 Tests     = 2330 passed / 9 incomplete / 1 skipped / 0 failed
 Repo root = /home/zagcreht/felagi_app
