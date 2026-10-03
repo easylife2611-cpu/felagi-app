@@ -561,7 +561,7 @@ Cross-screen test that every endpoint declared in `Design_Data/api-mappings.json
 
 ## Continuity
 
-HEAD      = `<L347-M-hash>` (`<short>`)
+HEAD      = `be2ad149fe4a716c56f0486204c802405482cfa9` (`be2ad14`)
 Bundle    = ~/Felagi_App_L347M_20261003.bundle
 Tests     = 2325 passed / 9 incomplete / 1 skipped / 0 failed
 Repo root = /home/zagcreht/felagi_app
