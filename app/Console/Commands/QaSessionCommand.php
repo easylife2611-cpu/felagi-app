@@ -47,11 +47,11 @@ class QaSessionCommand extends Command
             'last_activity' => time(),
         ]);
 
-        // EncryptCookies parity: prefix + value, then encrypt(serialize=true)
+        // EncryptCookies parity (Laravel 12): prefix + session_id, encrypt(serialize=true) — verified L336
         $cookieName = config('session.cookie');   // 'felagi_session'
         $key = app('encrypter')->getKey();  // decoded 32-byte key (NOT raw config)
         $prefix = CookieValuePrefix::create($cookieName, $key);
-        $cookieValue = Crypt::encryptString($prefix . $sessionId);
+        $cookieValue = Crypt::encrypt($prefix . $sessionId);  // serialize=true (verified by L336 test)
 
         $this->info('SESSION_ID=' . $sessionId);
         $this->info('COOKIE_VALUE=' . $cookieValue);
