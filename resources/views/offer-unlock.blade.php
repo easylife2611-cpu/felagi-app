@@ -39,13 +39,21 @@ main{max-width:560px;margin:0 auto;padding:16px}
 .btn.sec:hover{background:#e0e4e8}
 .btn.success{background:#1b5e20;color:#fff}
 .btn.success:hover:not(:disabled){background:#154a19}
+.btn.success:disabled{opacity:.5;cursor:not-allowed}
 .spinner{display:inline-block;width:20px;height:20px;border:3px solid #e0e0e0;border-top-color:#003366;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .offline-banner{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
 .offline-banner.on{display:block}
 .toast{position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:#192431;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
 .toast.on{opacity:1}
-.unlock-badge{display:inline-block;padding:4px 12px;border-radius:999px;background:#e8f5e9;color:#1b5e20;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.state-badge{display:inline-block;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;background:#eef1f4;color:#192431}
+.state-badge.free{background:#e8f5e9;color:#1b5e20}
+.state-badge.submitted{background:#d1fae5;color:#065f46}
+.state-badge.pending{background:#fff8e1;color:#8a6d00}
+.state-badge.payment-required{background:#ffebee;color:#b91c1c}
+.state-badge.failed{background:#ffebee;color:#b91c1c}
+#state-title{font-size:18px;color:#003366;margin:0 0 8px}
+#state-desc{color:#586675;font-size:14px;line-height:1.5}
 </style>
 </head>
 <body>
@@ -61,14 +69,10 @@ main{max-width:560px;margin:0 auto;padding:16px}
 <p>{{ __('unlockHeroBody') }}</p>
 </div>
 
-<div class="notice-warn" id="api-warn">
-<strong>{{ __('featurePendingTitle') }}</strong><br>
-{{ __('featurePendingBody') }}
-</div>
-
+<div class="notice-warn" id="api-warn"></div>
 <div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>
 
-<div id="state-loading" class="state" style="padding:60px 20px">
+<div id="state-loading" class="state" hidden>
 <div class="spinner"></div>
 <p style="margin-top:12px">{{ __('loading') }}...</p>
 </div>
@@ -76,33 +80,38 @@ main{max-width:560px;margin:0 auto;padding:16px}
 <div id="state-error" class="state" hidden>
 <h3>{{ __('loadErrorTitle') }}</h3>
 <p>{{ __('loadErrorBody') }}</p>
-<button type="button" class="btn sec" onclick="loadUnlock()" style="display:inline-block;max-width:180px;margin-top:12px">{{ __('retry') }}</button>
+<button type="button" class="btn sec" onclick="window.load()" style="display:inline-block;max-width:180px;margin-top:12px">{{ __('retry') }}</button>
+</div>
+
+<div id="state-empty" class="state" hidden>
+<h3>{{ __('unlockHeroTitle') }}</h3>
+<p>{{ __('unlockHeroBody') }}</p>
+<a href="#" id="empty-back" class="btn primary" style="display:inline-block;max-width:220px;margin-top:12px">{{ __('back') }}</a>
 </div>
 
 <div id="content" hidden>
 <div class="card">
+<span class="state-badge" id="state-badge"></span>
+<h2 id="state-title"></h2>
+<p id="state-desc"></p>
+</div>
+
+<div class="card" id="price-card" hidden>
 <h2>{{ __('unlockCost') }}</h2>
 <div class="price-big"><span class="cur" id="unlock-currency">ETB</span><span id="unlock-price">—</span></div>
-<div class="price-sub" id="unlock-cost-sub">{{ __('unlockCostSub') }}</div>
+<div class="price-sub">{{ __('unlockCostSub') }}</div>
 </div>
 
 <div class="card">
 <h2>{{ __('unlockDetails') }}</h2>
 <div id="unlock-rows"></div>
 </div>
-
-<div class="card">
-<h2>{{ __('unlockWhatYouGet') }}</h2>
-<div class="info-row"><span class="lbl">{{ __('unlockBenefit1') }}</span><span class="val">&#10003;</span></div>
-<div class="info-row"><span class="lbl">{{ __('unlockBenefit2') }}</span><span class="val">&#10003;</span></div>
-<div class="info-row"><span class="lbl">{{ __('unlockBenefit3') }}</span><span class="val">&#10003;</span></div>
-</div>
 </div>
 </main>
 
 <div class="actions" id="actions" hidden>
-<a href="#" id="cancel-btn" class="btn sec">{{ __('cancel') }}</a>
-<button type="button" class="btn success" id="unlock-btn">{{ __('unlockNow') }}</button>
+<a href="#" id="cancel-btn" class="btn sec">{{ __('back') }}</a>
+<button type="button" class="btn success" id="unlock-btn">{{ __('refresh') }}</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -111,67 +120,129 @@ main{max-width:560px;margin:0 auto;padding:16px}
 (function(){
 'use strict';
 var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
-var LS_TOKEN='felagi_token';
 var needId='';
-var unlockInfo=null;
+var submissionId='';
+var submission=null;
 
 function $(id){return document.getElementById(id);}
-function getToken(){return 'session'; /* L305d */}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function toast(msg,ms){ms=ms||2800;var el=$('toast');el.textContent=msg;el.className='toast on';setTimeout(function(){el.className='toast';},ms);}
 
 function getNeedId(){
   var parts=window.location.pathname.split('/').filter(Boolean);
   return parts.length>=2?parts[1]:'';
 }
-
-function toast(msg,ms){ms=ms||2800;var el=$('toast');el.textContent=msg;el.className='toast on';setTimeout(function(){el.className='toast';},ms);}
-
-function showOnly(name){
-  ['state-loading','state-error','content'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
-  });
-  var a=$('actions');
-  if(a)a.hidden=(name!=='content');
+function getSubmissionId(){
+  try{return new URLSearchParams(window.location.search).get('submission_id')||'';}catch(e){return '';}
+}
+function showState(name){
+  $('state-loading').hidden=(name!=='loading');
+  $('state-error').hidden=(name!=='error');
+  $('state-empty').hidden=(name!=='empty');
+  $('content').hidden=(name!=='content');
+  $('actions').hidden=(name!=='content');
+}
+function fmtMinor(minor){
+  if(minor==null)return '—';
+  return (Number(minor)/100).toFixed(2);
 }
 
-function fmtDate(iso){
-  if(!iso)return '—';
-  var d=new Date(iso);
-  if(isNaN(d))return '—';
-  return d.toLocaleDateString();
-}
+var STATE_META={
+  'free':{title:'Free submission',desc:'This submission is free. No payment required.'},
+  'payment-required':{title:'Payment required',desc:'Complete payment to unlock your offer submission.'},
+  'pending':{title:'Payment pending',desc:'Waiting for payment confirmation. Do not start another submission.'},
+  'payment-verified':{title:'Payment verified',desc:'Payment confirmed. Resuming submission now.'},
+  'submission-recovery':{title:'Submission recovery',desc:'Your submission was interrupted. Resume to complete without additional charge.'},
+  'submitted':{title:'Offer submitted',desc:'Your offer has been submitted successfully.'},
+  'refund-pending':{title:'Refund pending',desc:'A refund is being processed. This may take time.'},
+  'failed':{title:'Submission failed',desc:'Something went wrong. Retry or contact support.'},
+  'unknown':{title:'Unknown state',desc:'Refresh to check the current status.'}
+};
 
-function renderUnlock(){
-  if(!unlockInfo){
-    $('unlock-price').textContent='—';
-    return;
+function renderSubmission(s){
+  submission=s;
+  var state=s.state||'unknown';
+
+  var badge=$('state-badge');
+  badge.textContent=state;
+  badge.className='state-badge '+state;
+
+  var meta=STATE_META[state]||STATE_META['unknown'];
+  $('state-title').textContent=meta.title;
+  $('state-desc').textContent=meta.desc;
+
+  if(s.amount_minor!=null&&s.amount_minor>0){
+    $('price-card').hidden=false;
+    $('unlock-currency').textContent=s.currency||'ETB';
+    $('unlock-price').textContent=fmtMinor(s.amount_minor);
+  }else{
+    $('price-card').hidden=true;
   }
-  $('unlock-currency').textContent=unlockInfo.currency||'ETB';
-  $('unlock-price').textContent=unlockInfo.price!=null?Number(unlockInfo.price).toFixed(2):'—';
 
   var rows='';
-  if(unlockInfo.expires_at)rows+='<div class="info-row"><span class="lbl">{{ __('expiresAt') }}</span><span class="val">'+esc(fmtDate(unlockInfo.expires_at))+'</span></div>';
-  if(unlockInfo.unlocked_until)rows+='<div class="info-row"><span class="lbl">{{ __('unlockedUntil') }}</span><span class="val">'+esc(fmtDate(unlockInfo.unlocked_until))+'</span></div>';
-  if(unlockInfo.description)rows+='<div class="info-row"><span class="lbl">{{ __('description') }}</span><span class="val">'+esc(unlockInfo.description)+'</span></div>';
-  if(!rows)rows='<div class="info-row"><span class="lbl">{{ __('noAdditionalDetails') }}</span></div>';
+  rows+='<div class="info-row"><span class="lbl">State</span><span class="val">'+esc(state)+'</span></div>';
+  rows+='<div class="info-row"><span class="lbl">Amount</span><span class="val">'+esc(s.currency||'ETB')+' '+fmtMinor(s.amount_minor)+'</span></div>';
+  if(s.policy_version)rows+='<div class="info-row"><span class="lbl">Policy</span><span class="val">'+esc(s.policy_version)+'</span></div>';
+  if(s.offer_id)rows+='<div class="info-row"><span class="lbl">Offer ID</span><span class="val">'+esc(s.offer_id)+'</span></div>';
+  if(s.created_at)rows+='<div class="info-row"><span class="lbl">Created</span><span class="val">'+esc(s.created_at)+'</span></div>';
   $('unlock-rows').innerHTML=rows;
+
+  var btn=$('unlock-btn');
+  var handlers={
+    'free':{label:'Refresh',fn:load},
+    'payment-required':{label:'Pay & Continue',fn:function(){toast('Payment provider not configured (WP-11).',4000);}},
+    'pending':{label:'Check Status',fn:load},
+    'payment-verified':{label:'Resume Submission',fn:resume},
+    'submission-recovery':{label:'Resume Submission',fn:resume},
+    'submitted':{label:'View Offer',fn:function(){window.location.href='/offers/'+encodeURIComponent(s.offer_id);}},
+    'refund-pending':{label:'View Refund Status',fn:function(){toast('Refund in progress.',4000);}},
+    'failed':{label:'Retry / Support',fn:function(){window.location.href='/support/report';}},
+    'unknown':{label:'Refresh',fn:load}
+  };
+  var h=handlers[state]||handlers['unknown'];
+  btn.textContent=h.label;
+  btn.disabled=false;
+  btn.onclick=h.fn;
 }
 
-function loadUnlock(){
+function resume(){
+  var btn=$('unlock-btn');
+  btn.disabled=true;
+  fetch('/api/v1/offer-submissions/'+encodeURIComponent(submissionId)+'/resume',{
+    method:'POST',
+    credentials:'same-origin',
+    headers:{'Accept':'application/json','Content-Type':'application/json','X-CSRF-TOKEN':csrf},
+    body:JSON.stringify({})
+  })
+  .then(function(r){return r.json().then(function(j){return {status:r.status,body:j};});})
+  .then(function(res){
+    btn.disabled=false;
+    if(res.status>=200&&res.status<300){
+      var d=(res.body&&res.body.data)?res.body.data:res.body;
+      renderSubmission(d);
+      toast('Resumed.',3000);
+    }else{
+      toast((res.body&&res.body.error&&res.body.error.message)||'Resume failed.',4000);
+    }
+  })
+  .catch(function(){btn.disabled=false;toast('Network error.',4000);});
+}
+
+function load(){
   needId=getNeedId();
-  if(!needId){showOnly('error');return;}
-  var token=getToken();
-  /* L305d */
+  submissionId=getSubmissionId();
 
   var backHref='/needs/'+encodeURIComponent(needId);
   $('back-btn').href=backHref;
   $('cancel-btn').href=backHref;
+  $('empty-back').href=backHref;
 
-  showOnly('loading');
+  if(!submissionId){showState('empty');return;}
 
-  // Best-effort: try to fetch need to show details
-  fetch('/api/v1/needs/'+encodeURIComponent(needId),{
-    credentials:'same-origin',headers:{'Accept':'application/json'}
+  showState('loading');
+  fetch('/api/v1/offer-submissions/'+encodeURIComponent(submissionId),{
+    credentials:'same-origin',
+    headers:{'Accept':'application/json'}
   })
   .then(function(r){
     if(r.status===401)throw new Error('auth');
@@ -180,60 +251,21 @@ function loadUnlock(){
     return r.json();
   })
   .then(function(j){
-    var need=(j&&j.data)?j.data:j;
-
-    // L347-B: unlock via POST /api/v1/offer-submissions
-    unlockInfo=need.unlock_info||null;
-    renderUnlock();
-    $('api-warn').className='notice-warn on';
-    showOnly('content');
+    var sub=(j&&j.data)?j.data:j;
+    renderSubmission(sub);
+    showState('content');
   })
   .catch(function(e){
-    var m=String(e.message||e);
-    if(m==='auth'){localStorage.removeItem(LS_TOKEN);window.location.href='/';return;}
-    showOnly('error');
+    if(String(e.message||e)==='auth'){window.location.href='/';return;}
+    showState('error');
   });
 }
 
-function doUnlock(){
-  var btn=$('unlock-btn');
-  if(!needId){toast('{{ __('loadErrorBody') }}');return;}
-  btn.disabled=true;
-  fetch('/api/v1/offer-submissions',{
-    method:'POST',
-    credentials:'same-origin',
-    headers:{
-      'Accept':'application/json',
-      'Content-Type':'application/json',
-      'X-CSRF-TOKEN':csrf
-    },
-    body:JSON.stringify({need_id:needId})
-  })
-  .then(function(r){return r.json().then(function(j){return {status:r.status,body:j};});})
-  .then(function(resp){
-    btn.disabled=false;
-    if(resp.status>=200&&resp.status<300){
-      toast('{{ __('featurePendingBody') }}',5000);
-    }else{
-      var msg=(resp.body&&resp.body.error&&resp.body.error.message)||'{{ __('loadErrorBody') }}';
-      toast(msg,4000);
-    }
-  })
-  .catch(function(){
-    btn.disabled=false;
-    toast('{{ __('loadErrorBody') }}',4000);
-  });
-}
-
-$('unlock-btn').addEventListener('click',doUnlock);
-
+window.load=load;
+window.addEventListener('online',function(){$('offline-banner').className='offline-banner';load();});
 window.addEventListener('offline',function(){$('offline-banner').className='offline-banner on';});
-window.addEventListener('online',function(){$('offline-banner').className='offline-banner';loadUnlock();});
-
 if(navigator.onLine===false){$('offline-banner').className='offline-banner on';}
-
-window.loadUnlock=loadUnlock;
-loadUnlock();
+load();
 })();
 </script>
 </body>

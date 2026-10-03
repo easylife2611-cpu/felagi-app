@@ -155,6 +155,7 @@ function felagiLocalizedName(obj) {
 var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
 var LS_TOKEN='felagi_token';
 var DRAFT_PREFIX='felagi_draft_s011_';
+var META_PREFIX='felagi_meta_s011_';
 var FIELDS=['offered_price','currency','proposal_message','delivery_time_text','availability_text','additional_notes'];
 var needId='';
 var needData=null;
@@ -206,6 +207,44 @@ function updateDraftIndicator(show){
   if(el)el.textContent=show?'{{ __('draftSaved') }}':'';
 }
 
+function uuidv4(){
+  if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){
+    var r=Math.random()*16|0,v=c==='x'?r:(r&0x3|0x8);
+    return v.toString(16);
+  });
+}
+
+async function sha256Hex(text){
+  if(window.crypto&&crypto.subtle&&crypto.subtle.digest){
+    var buf=new TextEncoder().encode(text);
+    var h=await crypto.subtle.digest('SHA-256',buf);
+    return Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+  }
+  var h=0; for(var i=0;i<text.length;i++){h=((h<<5)-h)+text.charCodeAt(i);h|=0;}
+  return ('00000000'+Math.abs(h).toString(16)).slice(-8).repeat(8);
+}
+
+function loadDraftMeta(){
+  try{
+    var raw=localStorage.getItem(META_PREFIX+needId);
+    if(!raw)return {};
+    return JSON.parse(raw)||{};
+  }catch(e){return {};}
+}
+
+function saveDraftMeta(meta){
+  try{
+    var cur=loadDraftMeta();
+    for(var k in meta){cur[k]=meta[k];}
+    localStorage.setItem(META_PREFIX+needId,JSON.stringify(cur));
+  }catch(e){}
+}
+
+function clearDraftMeta(){
+  try{localStorage.removeItem(META_PREFIX+needId);}catch(e){}
+}
+
 function collectForm(){
   var data={};
   FIELDS.forEach(function(f){
@@ -242,7 +281,7 @@ function loadDraft(){
 }
 
 function clearDraft(){
-  try{localStorage.removeItem(DRAFT_PREFIX+needId);updateDraftIndicator(false);}catch(e){}
+  try{localStorage.removeItem(DRAFT_PREFIX+needId);clearDraftMeta();updateDraftIndicator(false);}catch(e){}
 }
 
 function updateMsgCount(){
@@ -335,7 +374,7 @@ function clientValidate(){
   return ok;
 }
 
-function submitForm(e){
+async function submitForm(e){
   e.preventDefault();
   hideStatus();
   if(!clientValidate()){
@@ -349,8 +388,23 @@ function submitForm(e){
   btn.disabled=true;
   btn.innerHTML='<span class="spinner"></span>{{ __('saving') }}';
 
+  var meta=loadDraftMeta();
+  var draftId=meta.draft_id||uuidv4();
+  var idemKey=meta.idempotency_key||uuidv4();
+  var version=(meta.draft_version||0)+1;
+  saveDraftMeta({draft_id:draftId,draft_version:version,idempotency_key:idemKey});
+
   var payload=collectForm();
-  fetch('/api/v1/needs/'+encodeURIComponent(needId)+'/offers',{
+  payload.need_id=needId;
+  payload.idempotency_key=idemKey;
+  payload.draft_id=draftId;
+  payload.draft_version=version;
+
+  var hash='';
+  try{hash=await sha256Hex(JSON.stringify(payload));}catch(e){}
+  payload.draft_hash=hash;
+
+  fetch('/api/v1/offer-submissions',{
     method:'POST',
     headers:{
       'Accept':'application/json',
@@ -361,13 +415,26 @@ function submitForm(e){
   })
   .then(function(r){return r.json().then(function(j){return {status:r.status,body:j};});})
   .then(function(res){
-    if(res.status===201||res.status===200){
+    if(res.status===201){
       clearDraft();
       showStatus('success','{{ __('offerSubmitted') }}');
-      var offerId=(res.body.data&&res.body.data.id)||(res.body.id);
+      var offerId=res.body.data&&res.body.data.offer_id;
       setTimeout(function(){
         window.location.href=offerId?('/offers/'+offerId):('/needs/'+needId);
-      },900);
+      },700);
+      return;
+    }
+    if(res.status===202){
+      var sid=res.body.data&&res.body.data.id;
+      saveDraftMeta({draft_id:draftId,draft_version:version,idempotency_key:idemKey,submission_id:sid});
+      showStatus('success','{{ __('paymentRequired') }}');
+      setTimeout(function(){
+        window.location.href='/needs/'+encodeURIComponent(needId)+'/offers/unlock?submission_id='+encodeURIComponent(sid||'');
+      },700);
+      return;
+    }
+    if(res.status===503){
+      showStatus('error','{{ __('policyUnknown') }}');
       return;
     }
     if(res.status===422){
@@ -414,7 +481,7 @@ function submitForm(e){
     console.error('[S011] submit',err);
     showStatus('error','{{ __('saveFailed') }}');
   })
-  .then(function(){
+  .finally(function(){
     btn.disabled=false;
     btn.textContent='{{ __('submit') }}';
   });
