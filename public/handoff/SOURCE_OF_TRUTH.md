@@ -565,3 +565,36 @@ HEAD      = `f2977f64631fc4abcfa361bd802a684161768667` (`f2977f6`)
 Bundle    = ~/Felagi_App_L347M_20261003.bundle
 Tests     = 2325 passed / 9 incomplete / 1 skipped / 0 failed
 Repo root = /home/zagcreht/felagi_app
+
+---
+
+# L347-N — Guest Access Contract (2026-10-03)
+
+**Tests:** 2330 passed / 9 incomplete / 1 skipped / 0 failed
+**Δ ከ L347-M:** +5 tests / +18 assertions
+
+## Scope
+
+Cross-cutting regression net: every route wrapped in `auth` (sanctum)
+rejects unauthenticated requests with 401 before any controller logic.
+
+## Coverage
+
+- ~50+ authenticated routes → all return 401 for guests
+- Public route whitelist asserted (12 routes)
+- Sample public endpoints return 200 (health, categories, needs)
+- Authenticated user reaches /api/v1/auth/me → 200
+- Route count sanity check (>50)
+
+## Non-duplication
+
+- Per-feature behavioral tests (S011SubmitOfferTest, BoostControllerTest, etc.) — untouched
+- L347-M (ApiReferenceAcceptanceTest) — registry parity
+- L347-N — middleware wiring contract only
+
+## Continuity
+
+HEAD      = (commit በኋላ)
+Bundle    = ~/Felagi_App_L347N_20261003.bundle
+Tests     = 2330 passed / 9 incomplete / 1 skipped / 0 failed
+Repo root = /home/zagcreht/felagi_app
