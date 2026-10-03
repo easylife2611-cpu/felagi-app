@@ -458,3 +458,63 @@ Backend has no file upload endpoint.
 - ✅ GAP-S021-REPORT-API — RESOLVED via L255
 - ✅ GAP-S022-TELEGRAM-API — RESOLVED via L256
 - ✅ GAP-S023-UNLOCK-API — RESOLVED via L257
+
+---
+
+## GAP Reconciliation — 2026-10-03
+
+After L336, the following GAPs are confirmed RESOLVED (some appear
+duplicated in earlier tables — this section is the authoritative status).
+
+### ✅ RESOLVED (evidence-anchored)
+
+| GAP | Status | Evidence |
+|---|---|---|
+| GAP-07 | OPEN (blocked) | No telemetry env |
+| GAP-31 | RESOLVED | Telegram OIDC credentials configured |
+| GAP-38 | SUPERSEDED | → GAP-54 |
+| GAP-42 | RESOLVED | WP-05a auth_attempts |
+| GAP-43 | RESOLVED | WP-13 UserFactory patch (7b97c36) |
+| GAP-45 | RESOLVED | WP-13b ReauthValidator |
+| GAP-46 | RESOLVED | WP-13b TotpService (RFC 6238) |
+| GAP-47 | RESOLVED | WP-13b IdempotencyRegistry |
+| GAP-48 | RESOLVED | WP-13b ProcessOutboxEvent + VerifySettingChange |
+| GAP-54 | RESOLVED | 2026-09-29 config cached |
+| GAP-57 | DONE | Sanctum UUID migration applied |
+| GAP-60 | RESOLVED | WP-13 OutboxEvent model |
+| GAP-61 | RESOLVED | downloads/index.html (HTTP 200) |
+| GAP-62 | RESOLVED | B15 S001 Welcome deployed |
+
+### 🔴 Still OPEN
+
+| GAP | Blocker |
+|---|---|
+| GAP-01 | Browser/device/AT testing (partial — see L320/L293) |
+| GAP-02 | Flutter compilation (SDK required) |
+| GAP-03 | Live services (payment, AI, Telegram) |
+| GAP-04 | Amharic runtime (native reviewer) |
+| GAP-05 | Marketplace baseline data |
+| GAP-06 | Ads live serving (infra) |
+| GAP-07 | Observability (telemetry env) |
+| GAP-08 | Positive-fee activation (product ops) |
+| GAP-09 | Production PASS (release owner) |
+| GAP-12 | Ads media scanning (AV) |
+| GAP-13 | SSRF validation (infra) |
+| GAP-14 | Ads analytics (telemetry) |
+| GAP-20 | Font glyph coverage (license) |
+| GAP-21 | Amharic QA (native reviewer) |
+| GAP-26 | cPanel doc root (hosting admin) |
+| GAP-30 | Webhook signature (sandbox) |
+| GAP-32 | cron PHP path (host access) |
+| GAP-50/51/52 | TOTP UI (WP-13c, design unclear) |
+| GAP-53 | Recovery flow (design: "controlled process") |
+| GAP-56 | Live OIDC E2E (manual test) |
+
+### 🔴 NEW (from L336)
+
+| GAP | Description | Severity |
+|---|---|---|
+| GAP-L336 | Admin screen deep QA blocked — Playwright session auth | MEDIUM |
+
+**Note:** GAP-L336 blocks completion of G04 admin screen matrix.
+

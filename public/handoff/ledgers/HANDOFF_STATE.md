@@ -701,3 +701,40 @@ Read: L252, HANDOFF_STATE
 
 ### Continuity
 Read: L253-L257, OPEN_GAPS, HANDOFF_STATE
+
+---
+## L336 — QA Session Auth Investigation (🔴 BLOCKED) — 2026-10-02
+
+**Status:** WORK STOPPED HERE
+
+**Objective:** Deep QA for 23 admin screens via Playwright authenticated session.
+
+**Findings (evidence-based):**
+- Bearer token works for /api/v1/* (verified)
+- Cookie name: `felagi_session` (config-verified)
+- Cookie format: `Crypt::encrypt(prefix + session_id, serialize=true)`
+- Playwright `addCookies` does NOT send cookie header
+- `extraHTTPHeaders Cookie` sends header but admin routes still redirect
+
+**Uncommitted at block:**
+- QaSessionCommand.php (Crypt::encrypt fix untested)
+- public/qa-login.php (temporary bootstrap)
+- qa_tools/deep/ + qa_tools/qa_helpers.js
+
+**Invalid evidence:**
+- docs/reports/qa/deep/DOM_STRUCTURE_20261002.json
+  (23/23 admin screens redirected — marked INVALID)
+
+**Next session starting point:**
+- HEAD = `573a33c`
+- Only docs commits after L336 (81e986c, 573a33c)
+- L336 fix uncommitted
+
+**Blocker:**
+- UNKNOWN: Playwright session cookie acceptance mechanism
+
+**Constitution:**
+- No silent changes
+- No guessing
+- UNKNOWN != MISSING
+
