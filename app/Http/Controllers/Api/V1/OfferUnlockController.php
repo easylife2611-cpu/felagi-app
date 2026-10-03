@@ -49,7 +49,7 @@ class OfferUnlockController extends BaseApiController
             'id' => (string) Str::uuid(),
             'need_id' => $need->id,
             'provider_id' => $user->id,
-            'status' => 'PENDING_PAYMENT',
+            'state'  => OfferSubmission::STATE_PENDING,
         ]);
 
         return $this->success($submission, 'Offer submission created. Complete payment to unlock.', 201);
