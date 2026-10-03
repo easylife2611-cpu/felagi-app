@@ -201,3 +201,24 @@ Route::get('/reset-password/{token}', [\App\Http\Controllers\V1\PasswordResetCon
 Route::post('/reset-password', [\App\Http\Controllers\V1\PasswordResetController::class, 'reset'])
     ->middleware('throttle:5,1')
     ->name('password.update');
+
+// ─── QA Login Route (env-gated, production-safe) ───
+// Enables automated deep QA via Playwright authenticated sessions.
+// SECURITY: only active when QA_LOGIN_ENABLED=true (default: false).
+// Never enable in production.
+if (env('QA_LOGIN_ENABLED', false) === true) {
+    Route::get('/_qa/login', function (\Illuminate\Http\Request $request) {
+        $userName = (string) $request->query('user', 'So');
+        $user = \App\Models\User::where('full_name', $userName)->firstOrFail();
+
+        \Illuminate\Support\Facades\Auth::guard('web')->login($user);
+
+        return response()->json([
+            'success'    => true,
+            'user'       => $user->full_name,
+            'user_id'    => $user->id,
+            'session_id' => session()->getId(),
+            'cookie'     => config('session.cookie'),
+        ]);
+    })->middleware(['web']);
+}
