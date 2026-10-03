@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
-**Generated:** 2026-10-03 (L344-F)
-**App HEAD:** `10cc153`
+**Generated:** 2026-10-03 (L345)
+**App HEAD:** `e9a52fe`
 **Design HEAD:** `e3e1fb0`
 
 ## Summary
@@ -216,3 +216,22 @@ EmailOtp, EmailVerificationToken, Export, ComparisonFeedback
 
 **HasFactory added to (4 models):**
 BreachIncident, EmailOtp, EmailVerificationToken, Export.
+
+---
+
+## L345 — Ledger Reconciliation (2026-10-03)
+
+Re-measurement revealed ledger drift from L338 (2026-09-29). Corrected
+via append-only sections in:
+
+| File | Correction |
+|------|------------|
+| TEST_VERIFICATION.md | T01-T31 evidence update (13 verified) |
+| WORK_PACKAGES.md | WP-24 → PARTIAL; WP-13c → DONE (001-003) |
+| DECISION_LOG.md | D-096-RESOLVED, D-097-RESOLVED |
+| REQUIREMENT_REGISTRY.md | REQ-WP13C-001..003 COVERED |
+
+**No code changes.** Test suite unchanged: 1487 passed / 1 skipped / 0 failed.
+
+**Remaining UNKNOWN:** REQ-WP13C-004 (lost-factor recovery) requires
+stakeholder design decision.

@@ -185,3 +185,57 @@ Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
 | S022-TELEGRAM | Telegram Publications (full) | DONE | IMPLEMENTATION_LEDGER |
 | S023-UNLOCK | Offer Unlock (full) | DONE | IMPLEMENTATION_LEDGER |
 | A001-A023 | Admin Screens (23, placeholders) | DONE | IMPLEMENTATION_LEDGER L252 |
+
+---
+
+## L345 Reconciliation — WP-24 + WP-13c Status (2026-10-03)
+
+**Supersedes:**
+- L39 (`WP-24 | BLOCKED | Felagi routes needed`)
+- L44 (`WP-13c | DEFERRED | design unclear`)
+
+### WP-24 — T01-T18 Integration Tests
+
+| Field | Before | After |
+|-------|--------|-------|
+| Status | BLOCKED | **PARTIAL** |
+| Reason | "Felagi routes needed" | Routes exist (47 API routes) |
+
+**Evidence:**
+- Routes: 47 registered under `/api/v1` (verified via `route:list`)
+- T01-T31 matrix: `DFM-FDS-1.4.md` §13
+- Local subset test: `tests/Feature/Integration/T01_T26LocalSubsetTest.php`
+- **13 tests PASS** (T01, T02, T03, T04, T07, T09, T10, T13, T14, T17, T23, T26)
+- 18 tests remain REQUIRES_EVIDENCE (external services)
+
+**Remaining (blocked on external):**
+T05, T06, T08, T11, T12, T15, T18, T19, T20, T21, T22, T24, T25, T27-T31
+
+### WP-13c — 2FA Enrollment UI
+
+| Field | Before | After |
+|-------|--------|-------|
+| Status | DEFERRED | **DONE (001-003), UNKNOWN (004)** |
+| Reason | "design unclear" | Stack decided: Blade + vanilla JS |
+
+**Evidence:**
+- 8 API routes registered (`/api/v1/auth/2fa/*`)
+- 1 web route: `/profile/2fa`
+- Controllers: `TwoFactorController`, `TwoFactorWebController`
+- Service: `app/Services/Auth/TwoFactorService.php`
+- View: `resources/views/profile/2fa.blade.php` (TOTP + QR + recovery + disable)
+- **28 tests PASS** (`tests/Feature/Auth/TwoFactorTest.php`)
+
+**REQ Status:**
+
+| Req | Description | Status |
+|-----|-------------|--------|
+| REQ-WP13C-001 | TOTP enrollment UI | ✅ COVERED |
+| REQ-WP13C-002 | Recovery codes display UI | ✅ COVERED |
+| REQ-WP13C-003 | Self-service 2FA disable | ✅ COVERED |
+| REQ-WP13C-004 | Lost-factor recovery flow | 🔴 UNKNOWN |
+
+**Remaining:** REQ-WP13C-004 requires stakeholder design decision (no
+current spec). Marked UNKNOWN per "UNKNOWN != MISSING".
+
+**Recorded by:** L345

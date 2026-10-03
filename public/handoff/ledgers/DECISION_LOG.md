@@ -677,3 +677,75 @@ for stakeholder resolution. No implementation attempted without spec.
 - D-054 AUDIT BEFORE ACTION -> audit preceded code
 - IMPLEMENTED != VERIFIED -> 162 tests run before commit
 - UNKNOWN != MISSING -> spec requests registered
+
+---
+
+## D-096-RESOLVED — T01-T31 Definitions EVIDENCE_AVAILABLE (2026-10-03)
+
+**Supersedes:** D-096 (BLOCKED_ON_UNKNOWN → EVIDENCE_AVAILABLE)
+
+**Resolution path:**
+1. T01-T31 matrix found in `DFM-FDS-1.4.md` §13
+2. Extracted: `docs/reports/T01-T18_DEFINITIONS_20260930.md`
+3. Local subset test written: `tests/Feature/Integration/T01_T26LocalSubsetTest.php`
+4. **13 tests PASS** (T01, T02, T03, T04, T07, T09, T10, T13, T14, T17, T23, T26)
+
+**Current status:**
+
+| Category | Count | Status |
+|----------|-------|--------|
+| Locally verified | 13 | ✅ PASS |
+| External-dependent | 18 | REQUIRES_EVIDENCE |
+
+**Note:** Original D-096 text referred to "T01-T18" — the matrix actually
+extends to T31. Original 18 are a subset; T19-T31 are additional.
+
+**Constitution:** UNKNOWN != MISSING → now EVIDENCE_AVAILABLE.
+
+**Closed by:** L345
+
+---
+
+## D-097-RESOLVED — WP-13c Frontend Stack DECIDED (2026-10-03)
+
+**Supersedes:** D-097 (DEFERRED → PARTIALLY DONE)
+
+**Resolution path:**
+1. Frontend stack: Blade + vanilla JS (no framework)
+2. Design source: existing admin patterns + DFM-FDS-1.4 §218
+3. Implemented in prior commits (routes + controller + view)
+4. **28 tests PASS**
+
+**REQ Status:**
+
+| Req | Status |
+|-----|--------|
+| REQ-WP13C-001 (TOTP enrollment UI) | ✅ COVERED |
+| REQ-WP13C-002 (Recovery codes display UI) | ✅ COVERED |
+| REQ-WP13C-003 (Self-service 2FA disable) | ✅ COVERED |
+| REQ-WP13C-004 (Lost-factor recovery flow) | 🔴 UNKNOWN |
+
+**Remaining UNKNOWN:** REQ-WP13C-004 requires stakeholder design
+decision — no current spec. Marked UNKNOWN per "UNKNOWN != MISSING".
+
+**Closed by:** L345 (partial — 004 deferred)
+
+---
+
+## L345 — Ledger Reconciliation Summary (2026-10-03)
+
+**Objective:** Correct ledger drift discovered by re-measurement.
+
+**Files reconciled:**
+- TEST_VERIFICATION.md (L43-44 stale → L345 section appended)
+- WORK_PACKAGES.md (L39 WP-24, L44 WP-13c → L345 section appended)
+- DECISION_LOG.md (D-096, D-097 → resolutions appended)
+- REQUIREMENT_REGISTRY.md (REQ-WP13C-001..003 → status updated)
+
+**No code changes.** All corrections are append-only per audit trail
+discipline. Original entries preserved.
+
+**Discovery method:** Re-measurement per "measure before acting"
+(not assuming prior ledger entries are current).
+
+**Recorded by:** L345

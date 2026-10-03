@@ -656,3 +656,47 @@ All 14 factories verified via tinker.
 - curl /profile → form present
 - curl /browse → S004 placeholder present
 - curl / → 3 redirects to /profile
+
+---
+
+## L345 Reconciliation — T01-T31 Evidence Update (2026-10-03)
+
+**Supersedes:** L44 ("All 18 tests REQUIRES_EVIDENCE — need live stack")
+**Status before:** STALE (routes now exist; T01-T26 subset already passing)
+**Status after:** EVIDENCE_AVAILABLE + PARTIALLY_VERIFIED
+
+### Evidence source
+
+- Full T01-T31 matrix: `DFM-FDS-1.4.md` §13
+- Extracted: `docs/reports/T01-T18_DEFINITIONS_20260930.md`
+- Test file: `tests/Feature/Integration/T01_T26LocalSubsetTest.php`
+
+### Local-runnable subset — VERIFIED (13 tests, 18 assertions)
+
+| ID | Scenario | Status |
+|----|----------|--------|
+| T01 | Self / duplicate Offer denied | ✅ PASS |
+| T02 | Second concurrent accept rejected | ✅ PASS |
+| T03 | Stale If-Match cannot overwrite | ✅ PASS |
+| T04 | Offer snapshot immutability | ✅ PASS |
+| T07 | Malformed input fails safe | ✅ PASS |
+| T09 | Outbox dedup on event_key | ✅ PASS |
+| T10 | Cross-provider isolation | ✅ PASS |
+| T13 | Rating requires COMPLETED need | ✅ PASS |
+| T14 | Feature OFF path is non-5xx | ✅ PASS |
+| T17 | Telegram auth validates input | ✅ PASS |
+| T23 | Error responses include request_id | ✅ PASS |
+| T26 | Offer edit after deadline denied | ✅ PASS |
+
+Command: `php artisan test --filter=T01_T26LocalSubsetTest`
+
+### External-dependent (REQUIRES_EVIDENCE — unchanged)
+
+T05, T06, T08, T11, T12, T15, T18, T19, T20, T21, T22, T24, T25, T27, T28, T29, T30, T31 — require live stack per
+Release Evidence Requirements (DFM-FDS-1.4.md §13).
+
+**Evidence classification:** T01-T26 local subset is **VERIFIED** in the
+current environment. External-dependent tests remain **REQUIRES_EVIDENCE**
+until run against live services.
+
+**Recorded by:** L345

@@ -341,3 +341,35 @@ across 17 models. Addressed in B25–B28.
 - Verification: 412/412 pass on 2026-09-30 (13.48s)
 
 **End of R-TEST backfill.**
+
+---
+
+## L345 Reconciliation — REQ-WP13C Status Update (2026-10-03)
+
+**Supersedes:** L222-227 ("Deferred to WP-13c" — 4 rows, reason "Frontend")
+
+### Status
+
+| Req ID | Description | Before | After | Evidence |
+|--------|-------------|--------|-------|----------|
+| REQ-WP13C-001 | TOTP enrollment UI | Deferred | ✅ **COVERED** | `profile/2fa.blade.php` + `TwoFactorTest` |
+| REQ-WP13C-002 | Recovery codes display UI | Deferred | ✅ **COVERED** | Same view + `regenerateRecoveryCodes` |
+| REQ-WP13C-003 | Self-service 2FA disable | Deferred | ✅ **COVERED** | Same view + `disable` route |
+| REQ-WP13C-004 | Lost-factor recovery flow | Deferred | 🔴 **UNKNOWN** | No spec; requires stakeholder |
+
+### Evidence
+
+- 8 API routes: `php artisan route:list | grep 2fa`
+- 1 web route: `/profile/2fa`
+- Controllers: `TwoFactorController`, `TwoFactorWebController`
+- Service: `TwoFactorService`
+- View: `resources/views/profile/2fa.blade.php` (TOTP + QR + recovery + disable)
+- Tests: **28 PASS** (`tests/Feature/Auth/TwoFactorTest.php`)
+
+### Constitution note
+
+REQ-WP13C-004 remains UNKNOWN, not MISSING. Requires stakeholder to
+define the lost-factor recovery UX (e.g., email-based re-enrollment
+vs. support-assisted reset).
+
+**Recorded by:** L345
