@@ -598,3 +598,40 @@ HEAD      = `8b4ec481588b557d7b051bc4023462ddbaf8cbfd` (`8b4ec48`)
 Bundle    = ~/Felagi_App_L347N_20261003.bundle
 Tests     = 2330 passed / 9 incomplete / 1 skipped / 0 failed
 Repo root = /home/zagcreht/felagi_app
+
+---
+
+# L347-O/P/Q — Final Audit (2026-10-03)
+
+**Tests:** 2432 passed / 9 incomplete / 1 skipped / 0 failed (7903 assertions)
+**Δ ከ L347-N:** +102 tests / +178 assertions
+
+## Scope
+
+- **O — Traceability**: 44 screens → view + title key + acceptance test
+- **P — Localization**: en/am parity, screen key integrity, UTF-8
+- **Q — Security**: throttle on auth routes, 2FA tight-throttle, guest 401
+
+## Coverage
+
+- 19 user + 22 admin screens: view + title key in both locales
+- en/am key parity (794 = 794, no diff either direction)
+- All screenSXXX/screenAXXX keys non-empty
+- am.json valid UTF-8
+- >5 throttled auth routes; 2FA routes tight-throttle verified
+- Guest 401 on 5 high-value endpoints
+- ScreenContractTest covers S001–S023
+
+## Non-duplication
+
+- AllScreensAcceptanceTest — per-screen structure
+- ApiReferenceAcceptanceTest — registry ↔ routes
+- ApiGuestContractTest — guest 401 contract
+- FinalAuditAcceptanceTest — cross-cutting audit
+
+## Continuity
+
+HEAD      = (commit በኋላ)
+Bundle    = ~/Felagi_App_L347OPQ_20261003.bundle
+Tests     = 2432 passed / 9 incomplete / 1 skipped / 0 failed
+Repo root = /home/zagcreht/felagi_app
