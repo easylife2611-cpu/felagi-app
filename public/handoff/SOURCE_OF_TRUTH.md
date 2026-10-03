@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
-**Generated:** 2026-10-03 (L346-C)
-**App HEAD:** `79ebce0`
+**Generated:** 2026-10-03 (L346-D)
+**App HEAD:** `556b502`
 **Design HEAD:** `e3e1fb0`
 
 ## Summary
@@ -235,3 +235,22 @@ via append-only sections in:
 
 **Remaining UNKNOWN:** REQ-WP13C-004 (lost-factor recovery) requires
 stakeholder design decision.
+
+---
+
+## L346-D — REQ-WP13C-004 Spec Request Filed (2026-10-03)
+
+Formal spec request filed for the last open REQ in WP-13c.
+
+| Artifact | Purpose |
+|----------|---------|
+| `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md` | 6-question spec request |
+| `app/Contracts/LostFactorRecoveryInterface.php` | Empty marker (no methods) |
+| Ledger cross-refs | REQUIREMENT_REGISTRY, OPEN_GAPS, WORK_PACKAGES |
+
+**Status:** REQ-WP13C-004 remains UNKNOWN — now with formal spec
+request on file. Not MISSING. Awaiting design owner on 6 questions.
+
+**No code behavior changed.** Interface is a naming anchor only.
+
+**See also:** `docs/reports/GAP-53_DESIGN_PROPOSAL_20261002.md`

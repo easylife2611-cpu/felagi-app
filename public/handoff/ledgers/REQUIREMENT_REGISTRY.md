@@ -373,3 +373,41 @@ define the lost-factor recovery UX (e.g., email-based re-enrollment
 vs. support-assisted reset).
 
 **Recorded by:** L345
+
+---
+
+## L346-D — REQ-WP13C-004 Spec Request Filed (2026-10-03)
+
+**Action:** Formal spec request created for the last open item in WP-13c.
+
+**New artifact:**
+- `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md`
+- `app/Contracts/LostFactorRecoveryInterface.php` (empty marker, no methods)
+
+**Cross-references:**
+| Reference | Location |
+|-----------|----------|
+| Design proposal (existing) | `docs/reports/GAP-53_DESIGN_PROPOSAL_20261002.md` |
+| Stakeholder decisions (existing) | `docs/reports/STAKEHOLDER_DECISIONS_20261002.md` §Decision 4.2 |
+| GAP entry | `OPEN_GAPS.md` (GAP-53) |
+| Contract marker | `app/Contracts/LostFactorRecoveryInterface.php` |
+
+**REQ-WP13C-004 status:**
+- Before L346-D: UNKNOWN (design unclear)
+- After L346-D:  UNKNOWN (formal spec request filed)
+- Still UNKNOWN — not MISSING — awaiting design owner on 6 open questions
+
+**6 open questions filed:**
+1. Main Admin self-recovery allowed?
+2. Second admin required (dual control)?
+3. Time window between request and approval?
+4. Recovery codes reset all or keep remaining?
+5. Lost recovery codes + lost TOTP — same flow?
+6. Support channel: S021 only or dedicated route?
+
+**Implementation gate:** No backend work begins until design owner
+issues LOCKED spec (Constitution: "do not guess missing requirements").
+
+**No code changes to existing behavior.** Interface is a marker only.
+
+**Recorded by:** L346-D

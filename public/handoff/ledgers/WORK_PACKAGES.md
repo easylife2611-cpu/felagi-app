@@ -239,3 +239,54 @@ T05, T06, T08, T11, T12, T15, T18, T19, T20, T21, T22, T24, T25, T27-T31
 current spec). Marked UNKNOWN per "UNKNOWN != MISSING".
 
 **Recorded by:** L345
+
+---
+
+## L346-D — WP-13c Spec Request Filed (2026-10-03)
+
+**Supersedes:** Prior "REQ-WP13C-004 UNKNOWN" note in the L345 section.
+
+### Status update
+
+| Req | Before L346-D | After L346-D |
+|-----|---------------|--------------|
+| REQ-WP13C-001 | COVERED | COVERED |
+| REQ-WP13C-002 | COVERED | COVERED |
+| REQ-WP13C-003 | COVERED | COVERED |
+| REQ-WP13C-004 | UNKNOWN | **UNKNOWN (spec request filed)** |
+
+Status for 004 is intentionally unchanged: it is still UNKNOWN, but
+a formal request now exists on the path to resolution.
+
+### What L346-D delivered
+
+| Artifact | Purpose |
+|----------|---------|
+| `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md` | Formal 6-question spec request |
+| `app/Contracts/LostFactorRecoveryInterface.php` | Empty marker interface (no methods) |
+| Ledger cross-references | REQUIREMENT_REGISTRY + OPEN_GAPS updated |
+
+### What L346-D did NOT deliver
+
+- No backend implementation
+- No method signatures on the interface
+- No changes to existing 2FA / audit / outbox behavior
+
+### Blocked components (unchanged by L346-D)
+
+| Component | Status | Gate |
+|-----------|--------|------|
+| RecoveryTicket model | NOT STARTED | Design owner (Q1, Q2, Q3) |
+| Admin recovery endpoint | NOT STARTED | Design owner (Q2, Q6) |
+| TOTP reset service | PARTIAL | Design owner (Q4, Q5) |
+| Notification flow | EXISTS (OutboxEvent) | — |
+| Audit chain | EXISTS (AuditLog) | — |
+| User recovery UI | NOT STARTED | D-097 (stack) |
+
+### Next action
+
+Design owner reviews `GAP-53_DESIGN_PROPOSAL_20261002.md` and the
+new spec request; answers the 6 questions; issues LOCKED spec.
+Developer implements backend only after LOCKED spec.
+
+**Recorded by:** L346-D

@@ -590,3 +590,49 @@ container (Docker / KVM / privileged LXC).
 Tracked for future hosting upgrade, not blocking this release.
 
 **Recorded by:** L343-D
+
+---
+
+## GAP-53 — Spec Request Filed (2026-10-03, L346-D)
+
+**Prior status:** OPEN (HIGH severity, design unclear)
+**Current status:** OPEN — awaiting design owner (unchanged)
+**Action:** Formal spec request filed
+
+### What L346-D added
+
+| Artifact | Location |
+|----------|----------|
+| Formal spec request | `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md` |
+| Marker interface (empty) | `app/Contracts/LostFactorRecoveryInterface.php` |
+| Requirement registry entry | `REQUIREMENT_REGISTRY.md` §L346-D |
+
+### What L346-D did NOT do
+
+- Did NOT implement the recovery flow (constitution: no guessing)
+- Did NOT add method signatures (would imply a design decision)
+- Did NOT change any existing behavior
+
+### Context preserved
+
+The design proposal (`GAP-53_DESIGN_PROPOSAL_20261002.md`) remains
+untouched. It proposed a controlled, admin-mediated recovery flow
+with 6 open questions. L346-D formalizes those questions as a
+spec request routed to the design owner.
+
+### 6 questions pending design owner
+
+1. Main Admin self-recovery allowed?
+2. Second admin required (dual control)?
+3. Time window between request and approval?
+4. Recovery codes reset all or keep remaining?
+5. Lost recovery codes + lost TOTP — same flow?
+6. Support channel: S021 only or dedicated route?
+
+### Constitution
+
+- UNKNOWN != MISSING — GAP-53 remains OPEN, not silently closed
+- Do not guess — no implementation until spec locked
+- Append-only — original GAP-53 entries preserved
+
+**Recorded by:** L346-D
