@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
 **Generated:** 2026-10-04 (L347-S)
-**App HEAD:** `TBD` (fills after commit)
+**App HEAD:** `79771bc5481ae2206786dccac476302353a65b46` (`79771bc`) (fills after commit)
 **Design HEAD:** `e3e1fb0`
 
 ---
@@ -467,7 +467,7 @@ Replaced hide-only media query with responsive rail/sidebar:
 - Tests unaffected: 2432 passed
 
 ### Continuity
-- HEAD = (commit በኋላ)
+- HEAD = `79771bc5481ae2206786dccac476302353a65b46` (`79771bc`)
 - Bundle = ~/Felagi_App_L347S_20261003.bundle
 - Tests = 2432 passed / 9 incomplete / 1 skipped / 0 failed
 
