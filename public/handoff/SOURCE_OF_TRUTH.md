@@ -1,7 +1,7 @@
 # Felagi — Source of Truth (Live Audit)
 
 **Generated:** 2026-10-04 (L347-S)
-**App HEAD:** `b890b4df25f3c60c43b2313d264c22b77b10cf83` (`b890b4d`)
+**App HEAD:** `68cc1963f73afbaa9124937c8a3526e85dc8463b` (`68cc196`)
 **Design HEAD:** `e3e1fb0`
 
 ---
@@ -467,7 +467,7 @@ Replaced hide-only media query with responsive rail/sidebar:
 - Tests unaffected: 2432 passed
 
 ### Continuity
-- HEAD = `b890b4df25f3c60c43b2313d264c22b77b10cf83` (`b890b4d`)
+- HEAD = `68cc1963f73afbaa9124937c8a3526e85dc8463b` (`68cc196`)
 - Bundle = ~/Felagi_App_L347S_20261003.bundle
 - Tests = 2432 passed / 9 incomplete / 1 skipped / 0 failed
 
