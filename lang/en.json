@@ -792,5 +792,10 @@
   "screenA019": "Safe Mode",
   "screenA020": "Monetization",
   "screenA021": "Reports",
-  "screenA022": "Sponsored Ads"
+  "screenA022": "Sponsored Ads",
+  "validation.after": "Must be after :date",
+  "validation.before": "Must be before :date",
+  "deadlineFuture": "Deadline must be a future date and time",
+  "offerDeadlineFuture": "Offer deadline must be a future date and time",
+  "offerDeadlineBefore": "Offer deadline must be before the main deadline"
 }

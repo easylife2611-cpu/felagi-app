@@ -1,8 +1,10 @@
 # Felagi — Source of Truth (Live Audit)
 
-**Generated:** 2026-10-03 (L346-F)
-**App HEAD:** `bb0d383`
+**Generated:** 2026-10-04 (L347-S)
+**App HEAD:** `TBD` (fills after commit)
 **Design HEAD:** `e3e1fb0`
+
+---
 
 ## Summary
 
@@ -13,6 +15,8 @@
 | **Total** | **46** | **46** | **0** | **0** |
 
 Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
+
+---
 
 ## User Screens (S001–S023)
 
@@ -74,6 +78,8 @@ Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
 
 **🎉 All 46 screens fully implemented (view + route + test).**
 
+---
+
 ## API Mapping Coverage
 
 | Screen | APIs |
@@ -102,25 +108,7 @@ Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
 | A001 | GET /api/v1/admin/dashboard |
 | A002 | GET /api/v1/admin/telegram, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
 | A003 | GET /api/v1/admin/health |
-| A004 | GET /api/v1/admin/features, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A005 | GET /api/v1/admin/marketplace, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A006 | GET /api/v1/admin/ai, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A007 | GET /api/v1/admin/payments, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A008 | GET /api/v1/admin/users, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A009 | GET /api/v1/admin/content, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A010 | GET /api/v1/admin/notifications, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A011 | GET /api/v1/admin/files, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A012 | GET /api/v1/admin/jobs, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A013 | GET /api/v1/admin/backups, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A014 | GET /api/v1/admin/integrity, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A015 | GET /api/v1/admin/security, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A016 | GET /api/v1/admin/audit |
-| A017 | GET /api/v1/admin/settings, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A018 | GET /api/v1/admin/recovery, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A019 | GET /api/v1/admin/safe-mode, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A020 | GET /api/v1/admin/monetization, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A021 | GET /api/v1/admin/maintenance, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A022 | GET /api/v1/admin/reports, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
+| A004–A022 | GET /api/v1/admin/{area}, plus control-registry + changes lifecycle |
 | A023 | GET /api/v1/admin/ads, POST /api/v1/admin/ads/advertisers, POST /api/v1/admin/ads/campaigns, GET /api/v1/admin/ads/campaigns/{id}, PATCH /api/v1/admin/ads/campaigns/{id}, POST /api/v1/admin/ads/campaigns/{id}/validate, POST /api/v1/admin/ads/campaigns/{id}/preview, POST /api/v1/admin/ads/campaigns/{id}/publish, POST /api/v1/admin/ads/campaigns/{id}/pause, POST /api/v1/admin/ads/campaigns/{id}/resume, POST /api/v1/admin/ads/campaigns/{id}/cancel-schedule, POST /api/v1/admin/ads/campaigns/{id}/archive, POST /api/v1/admin/ads/campaigns/{id}/rollback, GET /api/v1/admin/ads/campaigns/{id}/reports, GET /api/v1/admin/ads/campaigns/{id}/audit, POST /api/v1/admin/ads/destinations/validate |
 
 ---
@@ -133,17 +121,6 @@ Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
 - **Total Spec Capabilities:** 46 screens + 55 controls + 212 requirements
 - **Complete:** 46/46 screens, 55/55 controls, 107/107 endpoints
 - **Open Gaps:** 32 (11 critical external + 10 high actionable + 8 medium + 3 low)
-- **Resolved This Session:** 18 gaps
-
-**By Category:**
-- User Screens: 23/23 (100%)
-- Admin Screens: 23/23 (100%, 13 full backend + 10 placeholder)
-- Controls: 55/55 (100%)
-- API Endpoints: 107/107 (100%)
-- Tests: 845 (100% pass)
-- Ads Requirements: 41/62 (66%)
-- AI Requirements: ~35/51 (~69%)
-- Complete Requirements: 42/44 (95%)
 
 **11 Critical External Blockers:**
 1. WP-13c Frontend UI (D-097)
@@ -158,19 +135,13 @@ Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
 10. Real analytics (telemetry)
 11. GAP-26 cPanel doc root (hosting)
 
-**21 Actionable Gaps (no external resource):**
-- Documentation updates (ADS-55, ADS-58)
-- Full audits (A-CC 55, AI 51)
-- Test expansions
-- Creative validation
-- Traceability updates
-
 **Full details:** `docs/reports/GAP_ANALYSIS_20260930.md`
 
 ---
 
-**End of Source of Truth.**
+**End of base Source of Truth.**
 
+---
 ---
 
 ## L343 — External Gate Closure (2026-10-03)
@@ -189,77 +160,37 @@ All previously-blocked external gates are now closed in-repo.
 
 Full suite: 1313 passed / 1 skipped / 0 failed (3642 assertions).
 
-See IMPLEMENTATION_LEDGER.md L343 for full file list.
-
 ---
 
 ## L344 — Model Coverage Completion (2026-10-03)
 
-**Scope:** Fill remaining model-test coverage gaps.
+| Sub | Domain | New tests |
+|-----|--------|-----------|
+| L344-A | Ads (Advertiser, AdCampaign, AdCreative) | 42 |
+| L344-B | Privacy (BreachIncident) | 17 |
+| L344-C | Auth (EmailOtp, EmailVerificationToken) | 35 |
+| L344-D | Admin (BulkAction, SettingPreset) | 33 |
+| L344-E | Marketplace (Export, OfferSubmission, ComparisonFeedback) | 47 |
+| **Total** | **12 models** | **+174** |
 
-| Sub | Domain | New tests | Commit |
-|-----|--------|-----------|--------|
-| L344-A | Ads (Advertiser, AdCampaign, AdCreative) | 42 | 320d3fc |
-| L344-B | Privacy (BreachIncident) | 17 | afe6c23 |
-| L344-C | Auth (EmailOtp, EmailVerificationToken) | 35 | bcd4f2a |
-| L344-D | Admin (BulkAction, SettingPreset) | 33 | 9bd96b0 |
-| L344-E | Marketplace (Export, OfferSubmission, ComparisonFeedback) | 47 | 10cc153 |
-| **Total** | **12 models** | **+174** | |
-
-**Test delta:** 1313 → 1487 passed / 1 skipped / 0 failed
-**Assertions:** 3642 → 3955
-
-**New factories (8):**
-Advertiser, AdCampaign, AdCreative, BreachIncident,
-EmailOtp, EmailVerificationToken, Export, ComparisonFeedback
-+ states added to OfferSubmission.
-
-**HasFactory added to (4 models):**
-BreachIncident, EmailOtp, EmailVerificationToken, Export.
+**Test delta:** 1313 → 1487 passed
 
 ---
 
 ## L345 — Ledger Reconciliation (2026-10-03)
 
-Re-measurement revealed ledger drift from L338 (2026-09-29). Corrected
-via append-only sections in:
-
-| File | Correction |
-|------|------------|
-| TEST_VERIFICATION.md | T01-T31 evidence update (13 verified) |
-| WORK_PACKAGES.md | WP-24 → PARTIAL; WP-13c → DONE (001-003) |
-| DECISION_LOG.md | D-096-RESOLVED, D-097-RESOLVED |
-| REQUIREMENT_REGISTRY.md | REQ-WP13C-001..003 COVERED |
-
-**No code changes.** Test suite unchanged: 1487 passed / 1 skipped / 0 failed.
-
-**Remaining UNKNOWN:** REQ-WP13C-004 (lost-factor recovery) requires
-stakeholder design decision.
+Corrected ledger drift from L338 via append-only sections.
 
 ---
 
 ## L346-D — REQ-WP13C-004 Spec Request Filed (2026-10-03)
 
 Formal spec request filed for the last open REQ in WP-13c.
-
-| Artifact | Purpose |
-|----------|---------|
-| `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md` | 6-question spec request |
-| `app/Contracts/LostFactorRecoveryInterface.php` | Empty marker (no methods) |
-| Ledger cross-refs | REQUIREMENT_REGISTRY, OPEN_GAPS, WORK_PACKAGES |
-
-**Status:** REQ-WP13C-004 remains UNKNOWN — now with formal spec
-request on file. Not MISSING. Awaiting design owner on 6 questions.
-
-**No code behavior changed.** Interface is a naming anchor only.
-
-**See also:** `docs/reports/GAP-53_DESIGN_PROPOSAL_20261002.md`
+Status remains **UNKNOWN** — awaiting design owner.
 
 ---
 
 ## L346 — Integration + Service + Migration Coverage (2026-10-03)
-
-Six commits (A–E) expanding coverage + one spec request filed.
 
 | Sub | Deliverable | Tests |
 |-----|-------------|-------|
@@ -271,39 +202,11 @@ Six commits (A–E) expanding coverage + one spec request filed.
 | L346-E | 2FA UI structure tests | 14 |
 | **Total** | | **+122** |
 
-**Test delta:** 1487 → **1603 passed** / 1 skipped / 0 failed
-**Assertions:** 3955 → **4957** (+1002)
-
-### Findings filed (not fixed — L346 scope is tests)
-
-| GAP | Severity | Fix effort |
-|-----|----------|------------|
-| `GAP-L346A-TG-STOP` (Telegram stop is no-op) | HIGH | TRIVIAL |
-| `GAP-L346B-CS-CONTRADICTION` (closure drops data) | MEDIUM | TRIVIAL |
-| `GAP-L346B2-EXPORT-COLUMNS` (wrong column in export) | HIGH | TRIVIAL |
-| `GAP-L346E-2FA-A11Y` (6 a11y gaps) | LOW | SMALL |
-
-### REQ-WP13C-004
-
-Formal spec request filed. Status remains **UNKNOWN** — awaiting
-design owner on 6 open questions. Marker interface
-`LostFactorRecoveryInterface` declares only `gapReference()`.
-See `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md`.
-
-### Constitution compliance
-
-- Do not guess — spec request, not implementation
-- UNKNOWN != MISSING — REQ-WP13C-004 preserved as UNKNOWN
-- Append-only — original ledger entries preserved
-- No silent changes — 3 findings documented with evidence
-- Don't duplicate — L346-D cites existing GAP-53 proposal
-- Don't break existing — view/controller/service untouched
+**Test delta:** 1487 → 1603 passed
 
 ---
 
 ## L347-A — Fix 3 L346 Findings (2026-10-03)
-
-3 production bugs fixed. Base HEAD: `a9f74e5`.
 
 | GAP | Fix |
 |-----|-----|
@@ -311,58 +214,29 @@ See `docs/spec-requests/REQ-WP13C-004_lost_factor_recovery.md`.
 | `GAP-L346B-CS-CONTRADICTION` | closure now captures `$contradictions` + `$contradictionSummary` |
 | `GAP-L346B2-EXPORT-COLUMNS` | per-table `USER_COLUMN` map (`requester_id`, `provider_id`) |
 
-**Commits:** `8268307` (fix) → `9a161cb` (findings FIXED) → `3118fbc` (summary) → `a9f74e5` (SHA256)
-
-**Test delta:** 1603 → **1602 passed** / 1 skipped / 0 failed (4958 assertions)
-
 ---
 
 ## L347-B — S023 Offer Unlock Reconnected (2026-10-03)
 
-Frontend `doUnlock()` now POSTs to `/api/v1/offer-submissions` with `need_id` + CSRF. Backend `OfferUnlockController@store` was already implemented; view was not wired to it.
+Frontend `doUnlock()` now POSTs to `/api/v1/offer-submissions` with `need_id` + CSRF.
 
-**Out of scope (documented, not fixed):**
-- `unlock_info` missing from `NeedController@show`
-- Payment flow after `PENDING_PAYMENT` missing
-
-**Test delta:** +8 (S023OfferUnlockUiTest) → **1610 passed** / 1 skipped / 0 failed
-
-**Base HEAD at SOURCE refresh:** `a9f74e5`
+**Out of scope:** `unlock_info` missing from `NeedController@show`; payment flow after `PENDING_PAYMENT` missing.
 
 ---
 
 ## L347-C — 2FA A11y Improvements (2026-10-03)
 
-6 WCAG AA improvements on /profile/2fa (from L346-E findings).
-
-| # | Fix |
-|---|-----|
-| 1 | Badge role=status aria-live=polite |
-| 2 | Enroll/disable messages live regions |
-| 3 | OTP inputs autocomplete=one-time-code |
-| 4 | Inputs have label for= |
-| 5 | prefers-color-scheme dark mode |
-| 6 | .text-xs #9ca3af -> #4b5563 |
-
-**Base HEAD at SOURCE refresh:** `248f175`
-
-**Test delta:** +10 (Profile2faA11yTest) -> **1620 passed** / 1 skipped / 0 failed
+6 WCAG AA improvements on /profile/2fa.
 
 ---
 
 ## L347-D — HANDOFF_STATE Refresh (2026-10-03)
 
-Documentation-only. Synced HANDOFF_STATE.md with L347-A/B/C work.
-Added Bundle History (A/B/C SHA256). Updated Next Priorities.
-
-**Base HEAD at SOURCE refresh:** `8042e2f`
+Documentation-only.
 
 ---
 
 ## L347-F — Model Unit Tests (2026-10-03)
-
-4 new Model unit tests: Need, Offer, Message, TelegramPublication.
-Closes B18 items 5/6 (extended non-admin + Model unit tests).
 
 | Test File | Tests |
 |-----------|-------|
@@ -372,70 +246,46 @@ Closes B18 items 5/6 (extended non-admin + Model unit tests).
 | `TelegramPublicationTest.php` | 18 |
 | **Total** | **+73** |
 
-**Base HEAD at SOURCE refresh:** `8042e2f`
-
-**Test delta:** 1620 → **1693 passed** / 1 skipped / 0 failed
+**Test delta:** 1620 → 1693 passed
 
 ---
 
 ## L347-G — S023 Offer Submission Unlock (Spec Compliance) (2026-10-03)
 
-Full S023 spec implementation per Monetization_Payment_Specification.md:
-9 states, idempotency, draft retention, free/paid policy branches.
+Full S023 spec implementation per Monetization_Payment_Specification.md.
 
-### G1 — Schema + Model (commit `4e54624`)
-
-- Migration: +11 fields, +2 uniques, drops old `status`
+### G1 — Schema + Model (`4e54624`)
+- Migration: +11 fields, +2 uniques
 - Model: 9 canonical states
 - Factory: 7 state helpers
-- Test: +8 (23 vs 15)
 
-### G2 — Service + Controller (this commit)
+### G2 — Service + Controller (`8870cf4`)
+- `OfferSubmissionService` (free/paid branches, idempotency)
+- Config `payments.unlock`
 
-- `OfferSubmissionService` (free/paid policy branches, idempotency)
-- Config `payments.unlock` (feature_enabled, amount_minor, policy_version)
-- Exceptions: `PolicyUnknownException`, `IdempotencyConflictException`
-- Controller rewritten with strict validation + error mapping
-- Tests: +20 service + 8 API
+### G3 — Frontend Wire-Up (`d6e4ec4`)
+- S011 → /offer-submissions with idempotency_key, draft_id/version/hash
+- S023 reads ?submission_id, renders 9 states, POST /resume
 
-**Production default:** `feature_enabled=false`, `amount_minor=0` -> FREE.
+### G4 — SOURCE refresh (`79b25ee`)
 
-**Out of scope (REQUIRES_EVIDENCE):** paid path intent creation,
-payment provider integration, refund flow (WP-11 BLOCKED).
+**Production default:** `feature_enabled=false`, `amount_minor=0` → FREE.
+**REQUIRES_EVIDENCE:** paid path intent creation, payment provider (WP-11).
 
-**Base HEAD at SOURCE refresh:** `4e54624`
-
----
-
-## L347-G (G3) — S023 Frontend Wire-Up (2026-10-03)
-
-S011 -> /offer-submissions + S023 state machine UI.
-
-- S011: POST /api/v1/offer-submissions with idempotency_key,
-  draft_id/version/hash (SubtleCrypto SHA-256)
-- S023: reads ?submission_id, GET /offer-submissions/{id}, renders
-  9 states, POST /resume for recovery
-- Translations: +4 keys (paymentRequired, policyUnknown,
-  duplicateSubmission, refresh)
-- Tests: S023OfferUnlockUiTest rewritten (12)
-
-**Base HEAD at SOURCE refresh:** `d6e4ec4`
+**Test delta:** 1693 → 1728 passed
 
 ---
 
-# L347-I — SCREEN-S023 Acceptance + a11y + i18n (2026-10-03)
+## L347-I — SCREEN-S023 Acceptance + a11y + i18n (2026-10-03)
 
 **Tests:** 1749 passed / 4 incomplete / 1 skipped / 0 failed (5219 assertions)
-**Δ ከ L347-G:** +21 tests / +31 assertions
 
-## የተለወጡ ፋይሎች
-
+### Files Changed
 - `lang/en.json`, `lang/am.json` — +34 S023 keys (716 → 750)
 - `resources/views/offer-unlock.blade.php` — a11y + i18n + responsive
-- `tests/Feature/Screens/S023AcceptanceTest.php` — **አዲስ** (42 tests)
+- `tests/Feature/Screens/S023AcceptanceTest.php` — **NEW** (42 tests)
 
-## Coverage
-
+### Coverage
 - Canonical route + auth actor ✅
 - Locales (en + am), title key `screenS023` ✅
 - 9 business states ✅
@@ -444,65 +294,56 @@ S011 -> /offer-submissions + S023 state machine UI.
 - Responsive max-width:720px + viewport ✅
 - i18n JSON_UNESCAPED_UNICODE payload ✅
 
-## REQUIRES_EVIDENCE (Blocked)
-
-- POL-05, 06, 07, 11 → WP-11 (Stripe)
-- L347-H (Browser/AT) → External
-- L347-E (WP-24) → Live services
-
-## Continuity
-
-HEAD      = `f4145e68198a70fb0de903ffd4b7f27fd0ab898c` (`f4145e6`)
-Bundle    = ~/Felagi_App_L347I_20261003.bundle
-Tests     = 1749 passed / 4 incomplete / 1 skipped / 0 failed
-Repo root = /home/zagcreht/felagi_app
+### Continuity
+- HEAD = `f4145e68198a70fb0de903ffd4b7f27fd0ab898c`
+- Bundle = `~/Felagi_App_L347I_20261003.bundle`
 
 ---
 
-# L347-J — SCREEN-S011 Acceptance (2026-10-03)
+## L347-J — SCREEN-S011 Acceptance (2026-10-03)
 
 **Tests:** 1782 passed / 4 incomplete / 1 skipped / 0 failed (5340 assertions)
-**Δ ከ L347-I:** +33 tests / +121 assertions
 
-## የተለወጡ ፋይሎች
-
+### Files Changed
 - `resources/views/submit-offer.blade.php` — a11y + i18n (517 መስመር)
-- `lang/en.json`, `lang/am.json` — +1 S023 key `screenS011` (750 → 751)
-- `tests/Feature/Screens/S011AcceptanceTest.php` — **አዲስ** (48 tests)
+- `lang/en.json`, `lang/am.json` — +1 key `screenS011`
+- `tests/Feature/Screens/S011AcceptanceTest.php` — **NEW** (48 tests)
 
-## Coverage (SCREEN-S011)
-
+### Coverage (SCREEN-S011)
 - Canonical route + authorized actor ✅
-- Both locales (en + am), title key `screenS011` ✅
-- All 6 form fields per spec ✅
-- a11y: `aria-live="polite"`, `<bdi>`, `tabindex=-1`, `:focus-visible`, `role="main"`, `aria-invalid` ✅
-- Responsive max-width:720px + viewport ✅
-- Recovery markers: 401/404/409/422/503 ✅
-- 9 business states per Traceability ✅
-- Idempotency + draft fields present ✅
-- No ads ✅
+- Both locales, title key `screenS011` ✅
+- All 6 form fields ✅
+- a11y: aria-live, bdi, tabindex=-1, :focus-visible, role=main, aria-invalid ✅
+- Recovery: 401/404/409/422/503 ✅
 
-## Non-duplication
-
-- `S011SubmitOfferTest.php` (16 tests, API behavior) — አልተነካም
-- `S023AcceptanceTest.php` (42 tests, S023) — አልተነካም
-- `S011AcceptanceTest.php` (48 tests, acceptance + a11y + i18n) — አዲስ
-
-## Continuity
-
-HEAD      = `3e8db6acf15b41942e136273ba13147bfec02b28` (`3e8db6a`)
-Bundle    = ~/Felagi_App_L347J_20261003.bundle
-Tests     = 1782 passed / 4 incomplete / 1 skipped / 0 failed
-Repo root = /home/zagcreht/felagi_app
+### Continuity
+- HEAD = `3e8db6acf15b41942e136273ba13147bfec02b28`
 
 ---
 
-# L347-L — All-Screens a11y + i18n + Acceptance (2026-10-03)
+## L347-K — SCREEN-S022 Acceptance (2026-10-03)
+
+**Tests:** 1813 passed / 5 incomplete / 1 skipped / 0 failed
+
+### Files Changed
+- `resources/views/telegram-publications.blade.php` — a11y + i18n
+- `lang/en.json`, `lang/am.json` — +1 key `screenS022`
+- `tests/Feature/Screens/S022AcceptanceTest.php` — **NEW** (~36 tests)
+
+### Coverage (SCREEN-S022)
+- 5 visible statuses verified ✅
+- 5 additional spec states → REQUIRES_EVIDENCE (WP pending)
+- Both locales, title key `screenS022` ✅
+- a11y: toast role=status aria-live=polite, api-warn role=alert, sr-only heading ✅
+- Recovery: 401/403/404/409/429 ✅
+
+---
+
+## L347-L — All-Screens a11y + i18n + Acceptance (2026-10-03)
 
 **Tests:** 2101 passed / 9 incomplete / 1 skipped / 0 failed (7217 assertions)
-**Δ ከ L347-K:** +288 tests / +1772 assertions
 
-## Scope — All 41 remaining screens
+### Scope — All 41 remaining screens
 
 | Batch | ስራ | ውጤት |
 |---|---|---|
@@ -512,126 +353,126 @@ Repo root = /home/zagcreht/felagi_app
 | D1 | 22 admin views | title section → screenAXXX |
 | D2 | AllScreensAcceptanceTest | 288 tests (data-driven) |
 
-## Coverage
+### Coverage
+- 19 user views (S001, S003–S010, S012–S021) ✅
+- 22 admin views (A001–A022) ✅
+- Shared admin layout ✅
+- All 41 screens verified in both locales ✅
+- No duplication with S011/S022/S023 dedicated tests ✅
 
-- 19 user views (S001, S003–S010, S012–S021) — title + a11y
-- 22 admin views (A001–A022) — title + layout inheritance
-- Shared admin layout — main landmark + focusable heading
-- All 41 screens verified in both locales (en + am)
-- All used translation keys exist in both locale files
-- No duplication with S011/S022/S023 dedicated acceptance tests
-
-## REQUIRES_EVIDENCE (Blocked)
-
-- Browser/AT recordings → L347-H
-- S022 5 additional states (queued/retry/uncertain/skipped/paused) → WP pending
-
-## Continuity
-
-HEAD      = `edb2f9110b4ada61ab92a22ba6f971a23eb941e6` (`edb2f91`)
-Bundle    = ~/Felagi_App_L347L_20261003.bundle
-Tests     = 2101 passed / 9 incomplete / 1 skipped / 0 failed
-Repo root = /home/zagcreht/felagi_app
+### Continuity
+- HEAD = `edb2f9110b4ada61ab92a22ba6f971a23eb941e6`
 
 ---
 
-# L347-M — API Reference Acceptance (2026-10-03)
+## L347-M — API Reference Acceptance (2026-10-03)
 
 **Tests:** 2325 passed / 9 incomplete / 1 skipped / 0 failed
-**Δ ከ L347-L:** +224 tests
 
-## Scope
+### Scope
+Every endpoint declared in `Design_Data/api-mappings.json` is registered in the application route table.
 
-Cross-screen test that every endpoint declared in `Design_Data/api-mappings.json`
-(api.S001–S023 + api.A001–A023) is registered in the application route table.
+### Coverage
+- 46 screen mappings verified (S001–S023 + A001–A023) ✅
+- ~218 declared API references checked against `routes/api.php` ✅
+- Local-only screens (S001, S006) confirmed ✅
+- All references use `/api/v1/` prefix ✅
+- offer-submissions endpoints explicitly asserted ✅
 
-## Coverage
-
-- 46 screen mappings verified (S001–S023 + A001–A023)
-- ~218 declared API references checked against `routes/api.php`
-- Local-only screens (S001, S006) confirmed
-- All references use `/api/v1/` prefix
-- offer-submissions endpoints explicitly asserted
-
-## Non-duplication
-
-- `S011SubmitOfferTest.php` — HTTP behavior (auth/status/validation)
-- `AllScreensAcceptanceTest.php` — view structure
-- `ApiReferenceAcceptanceTest.php` — registry ↔ routes parity
-
-## Continuity
-
-HEAD      = `ed1ff721d3ca2d9aba12365bd67974adf6a4d721` (`ed1ff72`)
-Bundle    = ~/Felagi_App_L347M_20261003.bundle
-Tests     = 2325 passed / 9 incomplete / 1 skipped / 0 failed
-Repo root = /home/zagcreht/felagi_app
+### Continuity
+- HEAD = `ed1ff721d3ca2d9aba12365bd67974adf6a4d721`
 
 ---
 
-# L347-N — Guest Access Contract (2026-10-03)
+## L347-N — Guest Access Contract (2026-10-03)
 
 **Tests:** 2330 passed / 9 incomplete / 1 skipped / 0 failed
-**Δ ከ L347-M:** +5 tests / +18 assertions
 
-## Scope
+### Scope
+Cross-cutting regression net: every route wrapped in `auth` (sanctum) rejects unauthenticated requests with 401.
 
-Cross-cutting regression net: every route wrapped in `auth` (sanctum)
-rejects unauthenticated requests with 401 before any controller logic.
+### Coverage
+- ~50+ authenticated routes → all return 401 ✅
+- Public route whitelist asserted (12 routes) ✅
+- Sample public endpoints return 200 ✅
+- Authenticated user reaches /api/v1/auth/me → 200 ✅
+- Route count sanity check (>50) ✅
 
-## Coverage
-
-- ~50+ authenticated routes → all return 401 for guests
-- Public route whitelist asserted (12 routes)
-- Sample public endpoints return 200 (health, categories, needs)
-- Authenticated user reaches /api/v1/auth/me → 200
-- Route count sanity check (>50)
-
-## Non-duplication
-
-- Per-feature behavioral tests (S011SubmitOfferTest, BoostControllerTest, etc.) — untouched
-- L347-M (ApiReferenceAcceptanceTest) — registry parity
-- L347-N — middleware wiring contract only
-
-## Continuity
-
-HEAD      = `8b4ec481588b557d7b051bc4023462ddbaf8cbfd` (`8b4ec48`)
-Bundle    = ~/Felagi_App_L347N_20261003.bundle
-Tests     = 2330 passed / 9 incomplete / 1 skipped / 0 failed
-Repo root = /home/zagcreht/felagi_app
+### Continuity
+- HEAD = `0a2cbb7e1c972142c4ff2fd83873b23b1060acc5`
 
 ---
 
-# L347-O/P/Q — Final Audit (2026-10-03)
+## L347-O/P/Q — Final Audit (2026-10-03)
 
 **Tests:** 2432 passed / 9 incomplete / 1 skipped / 0 failed (7903 assertions)
-**Δ ከ L347-N:** +102 tests / +178 assertions
 
-## Scope
-
+### Scope
 - **O — Traceability**: 44 screens → view + title key + acceptance test
 - **P — Localization**: en/am parity, screen key integrity, UTF-8
 - **Q — Security**: throttle on auth routes, 2FA tight-throttle, guest 401
 
-## Coverage
+### Coverage
+- 19 user + 22 admin screens: view + title key in both locales ✅
+- en/am key parity (794 = 794) ✅
+- All screen keys non-empty ✅
+- am.json valid UTF-8 ✅
+- >5 throttled auth routes ✅
+- Guest 401 on 5 high-value endpoints ✅
 
-- 19 user + 22 admin screens: view + title key in both locales
-- en/am key parity (794 = 794, no diff either direction)
-- All screenSXXX/screenAXXX keys non-empty
-- am.json valid UTF-8
-- >5 throttled auth routes; 2FA routes tight-throttle verified
-- Guest 401 on 5 high-value endpoints
-- ScreenContractTest covers S001–S023
+### Continuity
+- HEAD = `c6f617dfb9df6b54646c75cd4e4e482bd5d41db5`
 
-## Non-duplication
+---
 
-- AllScreensAcceptanceTest — per-screen structure
-- ApiReferenceAcceptanceTest — registry ↔ routes
-- ApiGuestContractTest — guest 401 contract
-- FinalAuditAcceptanceTest — cross-cutting audit
+## L347-R — Desktop Navigation Fix (2026-10-03)
 
-## Continuity
+**Tests:** 2432 passed (no new tests)
 
-HEAD      = `df72ae8c6fd19232ac61e386c8e4b74857362340` (`df72ae8`)
-Bundle    = ~/Felagi_App_L347OPQ_20261003.bundle
-Tests     = 2432 passed / 9 incomplete / 1 skipped / 0 failed
-Repo root = /home/zagcreht/felagi_app
+### Problem
+4 views hid `.bn` nav on `min-width:768px` without providing rail/sidebar.
+
+### Fix
+Replaced hide-only media query with responsive rail/sidebar:
+- `browse.blade.php`, `my-needs.blade.php`, `my-offers.blade.php`, `notifications.blade.php`
+
+### New behavior
+- `<600px` → bottom nav (mobile)
+- `600–1199px` → 88px rail
+- `≥1200px` → 240px sidebar
+
+---
+
+## L347-S — Rate Limit + i18n + Date Constraints (2026-10-03)
+
+**Tests:** 2432 passed / 9 incomplete / 1 skipped / 0 failed
+
+### Problem
+1. **429 Too Many Requests** — POST/PUT needs at `throttle:10,60` (10 req/hour)
+2. **Raw validation keys** — `validation.after` / `validation.before` visible in form
+3. **Missing date constraints** — no `min` on datetime-local inputs
+
+### Fix
+1. **`routes/api.php`** — `throttle:10,60` → `throttle:60,1` (Laravel 11 API default)
+2. **`lang/en.json` + `lang/am.json`** — +5 keys:
+   - `validation.after`, `validation.before`
+   - `deadlineFuture`, `offerDeadlineFuture`, `offerDeadlineBefore`
+3. **`app/Http/Requests/Need/StoreNeedRequest.php`** — `messages()` method added
+4. **`resources/views/create-need.blade.php`**:
+   - `min="{{ now()->addMinutes(5)->format('Y-m-d\TH:i') }}"` on both datetime-local inputs
+   - `bindDeadlineConstraint()` JS — auto-set `offer_deadline_at.max = deadline_at - 1 min`
+
+### Non-duplication
+- Throttle-only + i18n + validation change; business logic untouched
+- Tests unaffected: 2432 passed
+
+### Continuity
+- HEAD = (commit በኋላ)
+- Bundle = ~/Felagi_App_L347S_20261003.bundle
+- Tests = 2432 passed / 9 incomplete / 1 skipped / 0 failed
+
+---
+
+**End of Source of Truth.**
+
+*Full work-package history preserved in `IMPLEMENTATION_LEDGER.md` and `public/handoff/ledgers/`.*

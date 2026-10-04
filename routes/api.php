@@ -101,7 +101,7 @@ Route::prefix('v1')->group(function () {
 
         // Needs
         Route::post('needs', [NeedController::class, 'store'])
-            ->middleware('throttle:10,60');
+            ->middleware('throttle:60,1');
         Route::put('needs/{id}', [NeedController::class, 'update']);
         Route::post('needs/{id}/cancel', [NeedController::class, 'cancel']);
         Route::post('needs/{id}/complete', [NeedController::class, 'complete']);
@@ -113,7 +113,7 @@ Route::prefix('v1')->group(function () {
         // Offers
         Route::get('needs/{needId}/offers', [OfferController::class, 'index']);
         Route::post('needs/{needId}/offers', [OfferController::class, 'store'])
-            ->middleware('throttle:10,60');
+            ->middleware('throttle:60,1');
         Route::get('offers/{id}', [OfferController::class, 'show']);
         Route::put('offers/{id}', [OfferController::class, 'update']);
         Route::post('offers/{id}/withdraw', [OfferController::class, 'withdraw']);

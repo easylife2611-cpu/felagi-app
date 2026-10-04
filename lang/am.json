@@ -792,5 +792,10 @@
   "screenA019": "አስተማማኝ ሁነታ",
   "screenA020": "ገቢ ማስገኛ",
   "screenA021": "ሪፖርቶች",
-  "screenA022": "የተደገፉ ማስታወቂያዎች"
+  "screenA022": "የተደገፉ ማስታወቂያዎች",
+  "validation.after": "ከ:date በኋላ መሆን አለበት",
+  "validation.before": "ከ:date በፊት መሆን አለበት",
+  "deadlineFuture": "መጨረሻ ቀን ከአሁን በኋላ መሆን አለበት",
+  "offerDeadlineFuture": "የቅናሽ መጨረሻ ከአሁን በኋላ መሆን አለበት",
+  "offerDeadlineBefore": "የቅናሽ መጨረሻ ከዋናው መጨረሻ ቀን በፊት መሆን አለበት"
 }

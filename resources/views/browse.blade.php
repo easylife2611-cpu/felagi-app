@@ -34,7 +34,20 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 .bn a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;color:#586675;font-size:11px;gap:2px}
 .bn a.active{color:#003366;font-weight:600}
 .bn .ic{font-size:20px;line-height:1}
-@media(min-width:768px){.bn{display:none}.fab{bottom:24px}body{padding-bottom:24px}}
+@media(min-width:600px){
+.bn{position:fixed;left:0;top:0;bottom:0;right:auto;width:88px;height:100vh;flex-direction:column;border-top:none;border-right:1px solid #eef1f4;padding:80px 0 16px;box-shadow:1px 0 3px rgba(0,0,0,.04);z-index:25;background:#fff}
+.bn a{padding:14px 4px;font-size:10px;gap:4px}
+body{padding-left:88px;padding-bottom:16px}
+header{margin-left:-88px;padding-left:calc(88px + 16px)}
+.fab{bottom:24px;right:24px}
+}
+@media(min-width:1200px){
+.bn{width:240px;padding-top:96px}
+.bn a{flex-direction:row;justify-content:flex-start;padding:14px 24px;font-size:14px;gap:14px}
+.bn .ic{font-size:22px}
+body{padding-left:240px}
+header{margin-left:-240px;padding-left:calc(240px + 16px)}
+}
 .state{padding:60px 20px;text-align:center;color:#586675}
 .state h3{color:#003366;font-size:18px;margin:0 0 8px}
 .btn{padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:inherit;text-decoration:none;display:inline-block;background:#003366;color:#fff}

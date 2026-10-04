@@ -124,13 +124,13 @@ select{cursor:pointer}
 
 <div class="form-group">
 <label for="deadline_at">{{ __('deadline') }} <span class="opt">{{ __('optional') }}</span></label>
-<input type="datetime-local" id="deadline_at" name="deadline_at">
+<input type="datetime-local" id="deadline_at" name="deadline_at" min="{{ now()->addMinutes(5)->format('Y-m-d\TH:i') }}">
 <div class="err" id="err-deadline_at"></div>
 </div>
 
 <div class="form-group">
 <label for="offer_deadline_at">{{ __('offerDeadline') }} <span class="opt">{{ __('optional') }}</span></label>
-<input type="datetime-local" id="offer_deadline_at" name="offer_deadline_at">
+<input type="datetime-local" id="offer_deadline_at" name="offer_deadline_at" min="{{ now()->addMinutes(5)->format('Y-m-d\TH:i') }}">
 <div class="hint">{{ __('offerDeadlineHint') }}</div>
 <div class="err" id="err-offer_deadline_at"></div>
 </div>
@@ -357,6 +357,34 @@ FIELDS.forEach(function(f){
   if(el)el.addEventListener('input',function(){saveDraft();});
   if(el)el.addEventListener('change',function(){saveDraft();});
 });
+
+// L347-U: keep offer_deadline_at strictly before deadline_at
+function bindDeadlineConstraint(){
+  var dl = $('deadline_at');
+  var od = $('offer_deadline_at');
+  if(!dl || !od) return;
+
+  function sync(){
+    if(dl.value){
+      // offer deadline must be <= (deadline - 1 min)
+      var d = new Date(dl.value);
+      d.setMinutes(d.getMinutes() - 1);
+      var pad = function(n){return String(n).padStart(2,'0');};
+      var max = d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes());
+      od.setAttribute('max', max);
+    } else {
+      od.removeAttribute('max');
+    }
+    // Also update offer_deadline_at min to be after now
+    var now = new Date();
+    var pad2 = function(n){return String(n).padStart(2,'0');};
+    var min = now.getFullYear()+'-'+pad2(now.getMonth()+1)+'-'+pad2(now.getDate())+'T'+pad2(now.getHours())+':'+pad2(now.getMinutes());
+    od.setAttribute('min', min);
+  }
+  dl.addEventListener('change', sync);
+  sync();
+}
+bindDeadlineConstraint();
 $('telegram_ack').addEventListener('change',saveDraft);
 $('description').addEventListener('input',updateDescCount);
 

@@ -52,7 +52,20 @@ main{max-width:720px;margin:0 auto;padding:0 16px}
 .bn .ic{font-size:20px;line-height:1}
 .bn .badge-dot{position:absolute;top:8px;right:calc(50% - 14px);width:8px;height:8px;background:#ff5252;border-radius:50%;display:none}
 .bn .badge-dot.on{display:block}
-@media(min-width:768px){.bn{display:none}body{padding-bottom:24px}}
+@media(min-width:600px){
+.bn{position:fixed;left:0;top:0;bottom:0;right:auto;width:88px;height:100vh;flex-direction:column;border-top:none;border-right:1px solid #eef1f4;padding:80px 0 16px;box-shadow:1px 0 3px rgba(0,0,0,.04);z-index:25;background:#fff}
+.bn a{padding:14px 4px;font-size:10px;gap:4px}
+body{padding-left:88px;padding-bottom:16px}
+header{margin-left:-88px;padding-left:calc(88px + 16px)}
+.fab{bottom:24px;right:24px}
+}
+@media(min-width:1200px){
+.bn{width:240px;padding-top:96px}
+.bn a{flex-direction:row;justify-content:flex-start;padding:14px 24px;font-size:14px;gap:14px}
+.bn .ic{font-size:22px}
+body{padding-left:240px}
+header{margin-left:-240px;padding-left:calc(240px + 16px)}
+}
 .offline-banner{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;display:none;max-width:720px;margin:12px auto 0}
 .offline-banner.on{display:block}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#192431;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw}

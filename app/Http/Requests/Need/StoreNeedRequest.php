@@ -27,4 +27,13 @@ class StoreNeedRequest extends FormRequest
             'telegram_publication_acknowledged' => ['required', 'accepted'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'deadline_at.after'         => __('deadlineFuture'),
+            'offer_deadline_at.after'   => __('offerDeadlineFuture'),
+            'offer_deadline_at.before'  => __('offerDeadlineBefore'),
+        ];
+    }
 }
