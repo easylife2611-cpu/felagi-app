@@ -29,7 +29,8 @@ main{padding:16px;max-width:1200px;margin:0 auto}
 .card p{margin:0;color:#586675;font-size:13px}
 .card .budget{color:#1b5e20;font-weight:600;font-size:14px;margin-top:auto}
 .adslot{margin:16px 0;padding:12px;background:#fafbfc;border:1px dashed #d0d7de;border-radius:8px;text-align:center;font-size:12px;color:#586675;min-height:60px}
-.fab{position:fixed;right:20px;bottom:80px;width:56px;height:56px;border-radius:50%;background:#003366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 12px rgba(0,51,102,.35);z-index:25}
+.fab{position:fixed;right:16px;bottom:calc(80px + env(safe-area-inset-bottom));width:56px;height:56px;border-radius:50%;background:#003366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 12px rgba(0,51,102,.35);z-index:25}
+main{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
 .bn{position:fixed;bottom:0;left:0;right:0;height:64px;background:#fff;border-top:1px solid #eef1f4;display:flex;z-index:20}
 .bn a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;color:#586675;font-size:11px;gap:2px}
 .bn a.active{color:#003366;font-weight:600}
@@ -60,7 +61,8 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
 :focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
 #page-title:focus{outline:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-</style>
+.bn .fab .ic{background:#FF9933;color:#003366;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700}.bn .fab{position:static;right:auto;bottom:auto;width:auto;height:auto;border-radius:0;background:transparent;box-shadow:none;font-size:inherit;display:flex}</style>
+@include('partials.felagi-polish')
 </head>
 <body>
 <header>
@@ -95,9 +97,9 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
 <div id="error" class="state" hidden><h3>{{ __('loadErrorTitle') }}</h3><p>{{ __('loadErrorBody') }}</p><p><button class="btn" onclick="load()">{{ __('retry') }}</button></p></div>
 <div class="adslot" data-ad-slot="AD_SEARCH_RESULTS_INLINE_01"></div>
 </main>
-<a href="/needs/new" class="fab" title="{{ __('createNeed') }}">+</a>
 <nav class="bn">
 <a href="/browse" class="active"><span class="ic">&#128269;</span><span>{{ __('navBrowse') }}</span></a>
+<a href="/needs/new" class="fab" title="{{ __("createNeed") }}"><span class="ic">+</span><span>{{ __("createNeed") }}</span></a>
 <a href="/my/needs"><span class="ic">&#128203;</span><span>{{ __('navMyNeeds') }}</span></a>
 <a href="/my/offers"><span class="ic">&#127991;</span><span>{{ __('navMyOffers') }}</span></a>
 <a href="/notifications"><span class="ic">&#128276;</span><span>{{ __('navNotifications') }}</span></a>

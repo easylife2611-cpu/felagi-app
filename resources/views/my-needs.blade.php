@@ -48,7 +48,8 @@ main{max-width:960px;margin:0 auto;padding:16px}
 .sk-line{height:12px;background:#eef1f4;border-radius:4px;margin-bottom:10px}
 .sk-line.w40{width:40%}.sk-line.w70{width:70%}.sk-line.w90{width:90%}.sk-line.w100{width:100%}
 .load-more-wrap{text-align:center;padding:24px 0}
-.fab{position:fixed;right:20px;bottom:88px;width:56px;height:56px;border-radius:50%;background:#003366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 12px rgba(0,51,102,.35);z-index:25}
+.fab{position:fixed;right:16px;bottom:calc(80px + env(safe-area-inset-bottom));width:56px;height:56px;border-radius:50%;background:#003366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 12px rgba(0,51,102,.35);z-index:25}
+main{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
 .fab:hover{background:#002a52}
 .bn{position:fixed;bottom:0;left:0;right:0;height:64px;background:#fff;border-top:1px solid #eef1f4;display:flex;z-index:20;box-shadow:0 -1px 3px rgba(0,0,0,.04)}
 .bn a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;color:#586675;font-size:11px}
@@ -75,7 +76,7 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
 :focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
 #page-title:focus{outline:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-</style>
+.bn .fab .ic{background:#FF9933;color:#003366;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700}.bn .fab{position:static;right:auto;bottom:auto;width:auto;height:auto;border-radius:0;background:transparent;box-shadow:none;font-size:inherit;display:flex}</style>
 </head>
 <body>
 <header>
@@ -121,10 +122,10 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
 </div>
 </main>
 
-<a href="/needs/new" class="fab" title="{{ __('createNeed') }}">+</a>
 
 <nav class="bn" role="navigation">
 <a href="/browse"><span class="ic">&#128269;</span><span>{{ __('navBrowse') }}</span></a>
+<a href="/needs/new" class="fab" title="{{ __("createNeed") }}"><span class="ic">+</span><span>{{ __("createNeed") }}</span></a>
 <a href="/my/needs" class="active" aria-current="page"><span class="ic">&#128203;</span><span>{{ __('navMyNeeds') }}</span></a>
 <a href="/my/offers"><span class="ic">&#127991;</span><span>{{ __('navMyOffers') }}</span></a>
 <a href="/notifications"><span class="ic">&#128276;</span><span>{{ __('navNotifications') }}</span></a>
@@ -151,7 +152,10 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 
 function showOnly(name){
   ['state-loading','state-content','state-empty','state-error'].forEach(function(id){
-    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'state-content':'state-'+name));
+  var loading=$("state-loading");
+  if(name!=="loading" && loading){ loading.hidden=true; loading.replaceChildren(); }
+
   });
 }
 
