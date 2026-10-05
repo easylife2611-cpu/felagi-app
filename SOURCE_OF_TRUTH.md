@@ -1,3 +1,180 @@
+# FELAGI — MASTER SOURCE OF TRUTH v1.5
+
+**Generated:** 2026-10-05 (post-L353)
+**HEAD:** 30c1083
+**Branch:** feature/ai-guided-need-creation
+
+## 🎯 QUICK FACTS
+
+| Item | Value |
+|------|-------|
+| Version | v1.4.2 + L352 + L353 |
+| HEAD | 30c1083 |
+| Design Score | 97.5/100 |
+| Backend tests | 2461 ✅ |
+| Flutter tests | 15 ✅ |
+| Design System tests | 2 ✅ |
+| Total tests | 2478 |
+| Canonical screens | 46 (23+23) |
+| Real screens | 6 user |
+| Placeholder screens | 39 |
+| Production PASS | BLOCKED (G05, G07, G09) |
+
+---
+
+## 🎯 SECTION A — COMPLETED (DO NOT REBUILD)
+
+### A.1 Design (L348-L351c) ✅
+
+- 23 user screens UI (S001-S023)
+- Premium prototype: https://zagcreativity.com/felagi-premium.html
+- Design Score: 97.5/100
+- WCAG 2.1 AA
+- Custom Felagi logo (21 placements)
+- Bold Amharic (800-900)
+- Bundles: L348, L350, L351b, L351c
+
+### A.2 Backend (Laravel 12) ✅
+
+- Auth (Telegram OIDC + Sanctum)
+- Needs CRUD + Boost + Payment webhook (L352)
+- Chapa gateway
+- 2461 tests pass
+- Ledgers: L001-L353
+
+**Key files (L352):**
+- app/Services/Payments/BoostPurchaseService.php
+- app/Services/Payments/BoostPaymentFulfillmentService.php
+- app/Http/Controllers/Api/V1/ChapaWebhookController.php
+- app/Models/PaymentEvent.php
+- tests/Feature/Payments/ChapaWebhookTest.php
+
+---
+
+### A.3 Mobile (Flutter) — PHASE 2 DONE (L353) 🟡
+
+**6 real screens:**
+
+| ID | Screen | Path | Backend |
+|---|---|---|---|
+| S001 | Welcome | /welcome | — |
+| S002 | Telegram sign-in | /auth/telegram | POST /auth/telegram/start + exchange |
+| S003 | Profile | /profile | GET /auth/me |
+| S004 | Browse Needs | /browse | GET /needs |
+| S005 | Create/Edit Need | /needs/new | POST /needs |
+| S008 | Need Detail | /needs/:id | GET /needs/{id} |
+| S019 | Boost | /needs/:id/boost | POST /needs/{id}/boosts |
+
+**Flutter infrastructure:**
+- mobile/app/lib/api/ — 7 API files + 6 models
+- mobile/app/lib/state/auth_state.dart — ChangeNotifier
+- mobile/app/lib/app_scope.dart — InheritedWidget DI
+- mobile/app/lib/router/app_router.dart — 46 routes
+- mobile/app/test/widget_test.dart — 15 tests
+
+Tests: 15/15 · Analyze: 0
+
+---
+
+## 🔴 SECTION B — REMAINING WORK
+
+### B.1 User Screens (17 remaining)
+
+**HIGH priority:**
+- S006 Public-post preview (/needs/new/public-preview)
+- S007 Need-created confirmation (/needs/:id/created)
+- S009 My Needs (/my/needs → GET /my/needs)
+- S010 Received Offers (/needs/:id/offers → GET /needs/{id}/offers)
+
+**MED priority:**
+- S011 Submit/Edit Offer · S012 Offer Details · S013 My Offers
+- S014 Compare · S015 AI Comparison · S017 Messages · S018 Notifications
+
+**LOW priority:**
+- S016 Comparison history · S020 Rating · S021 Report
+- S022 Telegram status · S023 Offer Unlock
+
+### B.2 Admin Screens (23 remaining)
+
+**HIGH priority:** A001 Dashboard · A002 Telegram · A003 Health · A007 Payments
+**MED:** A005 Marketplace · A006 AI · A008 Users · A012 Jobs · A015 Security · A016 Audit · A017 Settings · A020 Monetization · A022 Reports
+**LOW:** A004 Features · A009 Content · A010 Notifications · A011 Files · A013 Backups · A014 Integrity · A018 Recovery · A019 Safe Mode · A021 Maintenance · A023 Sponsored Ads
+
+---
+
+### B.3 Production Gates
+
+| Gate | Status | Blocker |
+|---|---|---|
+| G01 Source consistency | ✅ MET | — |
+| G02 Design completeness | ✅ MET | — |
+| G03 Brand source | ✅ MET | — |
+| G04 Browser/responsive | ✅ MET | — |
+| G05 Flutter | 🔴 BLOCKED | Android SDK |
+| G06 Service/security | 🟡 PARTIAL+ | — |
+| G07 Monetization | 🟡 REQUIRES_EVIDENCE | Chapa live |
+| G08 Localization | ✅ MET | — |
+| G09 Observability | 🟡 REQUIRES_EVIDENCE | Sentry/Bugsnag |
+
+Met: 5/9 · Partial: 3/9 · Blocked: 1/9
+
+### B.4 Credentials Needed
+
+- 🔴 Chapa: CHAPA_SECRET_KEY, CHAPA_PUBLIC_KEY, CHAPA_WEBHOOK_SECRET
+- 🔴 Telegram: TELEGRAM_CLIENT_ID, TELEGRAM_CLIENT_SECRET, TELEGRAM_BOT_TOKEN
+- 🔴 AI: GEMINI_API_KEY
+- 🟡 Observability: SENTRY_DSN
+
+---
+
+## 📋 SECTION D — NEXT DEV GUIDE
+
+### D.1 To Continue (L354)
+
+- Pick next 4 screens: S006, S007, S009, S010
+- Add needs_api: myNeeds(), receivedOffers()
+- Create offers_api.dart (NEW)
+- Create 4 screens in mobile/app/lib/screens/
+- Wire routes in app_router.dart
+- Add tests (with _wrapWith* helpers)
+- flutter analyze && flutter test
+- Update IMPLEMENTATION_LEDGER (L354) + CHANGE_LOG
+- Bundle + git commit
+
+### D.2 Flutter Rules
+
+- AppScope.of(context) — DI
+- MockClient in tests — no network
+- _FakeTokenStore in tests — no platform channels
+- pumpAndSettle for timers
+- Safe substring: s.length >= 8 ? s.substring(0, 8) : s
+- flutter analyze = 0, flutter test all pass
+
+### D.3 API Envelope
+
+Success: {success, data, message, request_id, meta}
+Error: {success: false, error: {code, message, details}, request_id}
+
+### D.4 Error Codes
+
+UNAUTHORIZED · FORBIDDEN · NOT_FOUND · VALIDATION_FAILED · STATE_CONFLICT · IDEMPOTENCY_CONFLICT · BOOST_ACTIVE · PAYMENTS_DISABLED · RATE_LIMITED
+
+---
+
+## 🏆 SECTION E — COMMITS + BUNDLES
+
+```
+30c1083 (HEAD) L353: Flutter production app (Phase 2)
+cd522d4        L352: Boost webhook + frontend wire
+d718518        Refresh source of truth
+```
+
+Bundles: L352 (99KB) · L353 (320KB, sha: ef89f461)
+
+---
+
+## 📜 ORIGINAL v1.4.2 CONTENT BELOW
+
 # FELAGI v1.4.2 — MASTER SOURCE OF TRUTH
 **Consolidated:** 2026-09-29
 **HEAD:** 48217b2 (B23)

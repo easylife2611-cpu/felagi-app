@@ -1,967 +1,762 @@
-# 🎉 FELAGI — MASTER HANDOFF
+# FELAGI — MASTER SOURCE OF TRUTH v1.5
 
-**Generated:** 2026-09-30 11:17:13
-**App HEAD:** `1ca40b8`
-**Design HEAD:** `27edd9d`
-**Bundle:** `Felagi_App_v1.4.2_20260930-1117_FULL-46-COMPLETE.bundle`
+**Generated:** 2026-10-05 (post-L353)
+**HEAD:** 30c1083
+**Branch:** feature/ai-guided-need-creation
 
----
+## 🎯 QUICK FACTS
 
-## 📊 FINAL STATUS
-
-| Metric | Value |
-|---|---|
-| **Total Screens** | **46** (23 user + 23 admin) |
-| **All Screens Complete** | **46/46 ✅** |
-| **Tests** | 699 |
-| **Assertions** | ~1,400 |
-| **Web Routes** | 46 |
-| **API Routes** | 40+ |
-| **Lang Keys** | ~475 (en + am) |
-| **GAPs Resolved** | 5 |
-| **Failures** | 0 |
-
-**🎉 All 46 canonical screens: view + route + test = ✅**
+| Item | Value |
+|------|-------|
+| Version | v1.4.2 + L352 + L353 |
+| HEAD | 30c1083 |
+| Design Score | 97.5/100 |
+| Backend tests | 2461 ✅ |
+| Flutter tests | 15 ✅ |
+| Design System tests | 2 ✅ |
+| Total tests | 2478 |
+| Canonical screens | 46 (23+23) |
+| Real screens | 6 user |
+| Placeholder screens | 39 |
+| Production PASS | BLOCKED (G05, G07, G09) |
 
 ---
 
-# 📄 SOURCE OF TRUTH (Live Audit)
+## 🎯 SECTION A — COMPLETED (DO NOT REBUILD)
 
-# Felagi — Source of Truth (Live Audit)
+### A.1 Design (L348-L351c) ✅
 
-**Generated:** 2026-09-30 11:15:56
-**App HEAD:** `5a1c801`
-**Design HEAD:** `27edd9d`
+- 23 user screens UI (S001-S023)
+- Premium prototype: https://zagcreativity.com/felagi-premium.html
+- Design Score: 97.5/100
+- WCAG 2.1 AA
+- Custom Felagi logo (21 placements)
+- Bold Amharic (800-900)
+- Bundles: L348, L350, L351b, L351c
 
-## Summary
+### A.2 Backend (Laravel 12) ✅
 
-| Category | Total | ✅ Full | ⚠️ Partial | ❌ Missing |
-|---|---|---|---|---|
-| User Screens (S001–S023) | 23 | 23 | 0 | 0 |
-| Admin Screens (A001–A023) | 23 | 23 | 0 | 0 |
-| **Total** | **46** | **46** | **0** | **0** |
+- Auth (Telegram OIDC + Sanctum)
+- Needs CRUD + Boost + Payment webhook (L352)
+- Chapa gateway
+- 2461 tests pass
+- Ledgers: L001-L353
 
-Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
-
-## User Screens (S001–S023)
-
-| ID | Name | Path | View | Route | Test | Status |
-|---|---|---|---|---|---|---|
-| S001 | Welcome | `/welcome` | ✅ | ✅ | ✅ | ✅ |
-| S002 | Telegram sign-in | `/auth/telegram` | ✅ | ✅ | ✅ | ✅ |
-| S003 | Profile | `/profile` | ✅ | ✅ | ✅ | ✅ |
-| S004 | Browse Needs | `/browse` | ✅ | ✅ | ✅ | ✅ |
-| S005 | Create/Edit Need | `/needs/new` | ✅ | ✅ | ✅ | ✅ |
-| S006 | Public-post preview | `/needs/new/public-preview` | ✅ | ✅ | ✅ | ✅ |
-| S007 | Need-created confirmation | `/needs/:id/created` | ✅ | ✅ | ✅ | ✅ |
-| S008 | Need details | `/needs/:id` | ✅ | ✅ | ✅ | ✅ |
-| S009 | My Needs | `/my/needs` | ✅ | ✅ | ✅ | ✅ |
-| S010 | Received Offers | `/needs/:id/offers` | ✅ | ✅ | ✅ | ✅ |
-| S011 | Submit/Edit Offer | `/needs/:id/offers/new` | ✅ | ✅ | ✅ | ✅ |
-| S012 | Offer details | `/offers/:id` | ✅ | ✅ | ✅ | ✅ |
-| S013 | My Offers | `/my/offers` | ✅ | ✅ | ✅ | ✅ |
-| S014 | Compare confirmation | `/needs/:id/compare` | ✅ | ✅ | ✅ | ✅ |
-| S015 | AI comparison result | `/comparisons/:id` | ✅ | ✅ | ✅ | ✅ |
-| S016 | Comparison history/export | `/needs/:id/comparisons` | ✅ | ✅ | ✅ | ✅ |
-| S017 | Messages | `/offers/:id/messages` | ✅ | ✅ | ✅ | ✅ |
-| S018 | Notifications | `/notifications` | ✅ | ✅ | ✅ | ✅ |
-| S019 | Boost/Payments | `/needs/:id/boost` | ✅ | ✅ | ✅ | ✅ |
-| S020 | Rating | `/needs/:id/rating` | ✅ | ✅ | ✅ | ✅ |
-| S021 | Report/Support | `/support/report` | ✅ | ✅ | ✅ | ✅ |
-| S022 | Telegram status/stop | `/needs/:id/publications` | ✅ | ✅ | ✅ | ✅ |
-| S023 | Offer Submission Unlock | `/needs/:id/offers/unlock` | ✅ | ✅ | ✅ | ✅ |
-
-## Admin Screens (A001–A023)
-
-| ID | Name | Path | View | Route | Test | Status |
-|---|---|---|---|---|---|---|
-| A001 | Dashboard | `/admin/dashboard` | ✅ | ✅ | ✅ | ✅ |
-| A002 | Telegram Distribution | `/admin/telegram` | ✅ | ✅ | ✅ | ✅ |
-| A003 | Health | `/admin/health` | ✅ | ✅ | ✅ | ✅ |
-| A004 | Features | `/admin/features` | ✅ | ✅ | ✅ | ✅ |
-| A005 | Marketplace | `/admin/marketplace` | ✅ | ✅ | ✅ | ✅ |
-| A006 | AI | `/admin/ai` | ✅ | ✅ | ✅ | ✅ |
-| A007 | Payments | `/admin/payments` | ✅ | ✅ | ✅ | ✅ |
-| A008 | Users | `/admin/users` | ✅ | ✅ | ✅ | ✅ |
-| A009 | Content | `/admin/content` | ✅ | ✅ | ✅ | ✅ |
-| A010 | Notifications | `/admin/notifications` | ✅ | ✅ | ✅ | ✅ |
-| A011 | Files | `/admin/files` | ✅ | ✅ | ✅ | ✅ |
-| A012 | Jobs | `/admin/jobs` | ✅ | ✅ | ✅ | ✅ |
-| A013 | Backups | `/admin/backups` | ✅ | ✅ | ✅ | ✅ |
-| A014 | Integrity | `/admin/integrity` | ✅ | ✅ | ✅ | ✅ |
-| A015 | Security | `/admin/security` | ✅ | ✅ | ✅ | ✅ |
-| A016 | Audit | `/admin/audit` | ✅ | ✅ | ✅ | ✅ |
-| A017 | Settings | `/admin/settings` | ✅ | ✅ | ✅ | ✅ |
-| A018 | Recovery | `/admin/recovery` | ✅ | ✅ | ✅ | ✅ |
-| A019 | Safe Mode | `/admin/safe-mode` | ✅ | ✅ | ✅ | ✅ |
-| A020 | Monetization | `/admin/monetization` | ✅ | ✅ | ✅ | ✅ |
-| A021 | Maintenance | `/admin/maintenance` | ✅ | ✅ | ✅ | ✅ |
-| A022 | Reports | `/admin/reports` | ✅ | ✅ | ✅ | ✅ |
-| A023 | Sponsored Ads | `/admin/monetization/sponsored-ads` | ✅ | ✅ | ✅ | ✅ |
-
-## Action List — Remaining Work
-
-**🎉 All 46 screens fully implemented (view + route + test).**
-
-## API Mapping Coverage
-
-| Screen | APIs |
-|---|---|
-| S002 | POST /api/v1/auth/telegram/start, GET /api/v1/auth/telegram/callback, POST /api/v1/auth/telegram/exchange |
-| S003 | GET /api/v1/auth/me, PATCH /api/v1/profile |
-| S004 | GET /api/v1/categories, GET /api/v1/needs |
-| S005 | POST /api/v1/needs, PUT /api/v1/needs/{id}, POST /api/v1/attachments |
-| S007 | POST /api/v1/needs |
-| S008 | GET /api/v1/needs/{id}, POST /api/v1/needs/{id}/cancel, POST /api/v1/needs/{id}/complete |
-| S009 | GET /api/v1/my/needs |
-| S010 | GET /api/v1/needs/{id}/offers |
-| S011 | POST /api/v1/offer-submissions, PUT /api/v1/offers/{id} |
-| S012 | GET /api/v1/offers/{id}, POST /api/v1/offers/{id}/accept, POST /api/v1/offers/{id}/reject, POST /api/v1/offers/{id}/withdraw |
-| S013 | GET /api/v1/my/offers |
-| S014 | GET /api/v1/needs/{id}/offers, POST /api/v1/needs/{id}/comparisons |
-| S015 | GET /api/v1/comparisons/{id}, GET /api/v1/comparisons/{id}/results, POST /api/v1/comparisons/{id}/retry |
-| S016 | GET /api/v1/needs/{id}/comparisons, POST /api/v1/comparisons/{id}/exports, GET /api/v1/exports/{id}, GET /api/v1/exports/{id}/download, GET /api/v1/my/comparisons |
-| S017 | GET /api/v1/offers/{id}/messages, POST /api/v1/offers/{id}/messages |
-| S018 | GET /api/v1/notifications, POST /api/v1/notifications/{id}/read |
-| S019 | GET /api/v1/boost-packages, POST /api/v1/needs/{id}/boosts, GET /api/v1/payments/{id} |
-| S020 | POST /api/v1/needs/{id}/ratings |
-| S021 | POST /api/v1/reports |
-| S022 | GET /api/v1/needs/{id}/telegram-publications, POST /api/v1/needs/{id}/telegram-publication/stop |
-| S023 | POST /api/v1/offer-submissions, GET /api/v1/offer-submissions/{id}, POST /api/v1/offer-submissions/{id}/resume |
-| A001 | GET /api/v1/admin/dashboard |
-| A002 | GET /api/v1/admin/telegram, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A003 | GET /api/v1/admin/health |
-| A004 | GET /api/v1/admin/features, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A005 | GET /api/v1/admin/marketplace, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A006 | GET /api/v1/admin/ai, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A007 | GET /api/v1/admin/payments, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A008 | GET /api/v1/admin/users, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A009 | GET /api/v1/admin/content, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A010 | GET /api/v1/admin/notifications, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A011 | GET /api/v1/admin/files, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A012 | GET /api/v1/admin/jobs, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A013 | GET /api/v1/admin/backups, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A014 | GET /api/v1/admin/integrity, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A015 | GET /api/v1/admin/security, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A016 | GET /api/v1/admin/audit |
-| A017 | GET /api/v1/admin/settings, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A018 | GET /api/v1/admin/recovery, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A019 | GET /api/v1/admin/safe-mode, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A020 | GET /api/v1/admin/monetization, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A021 | GET /api/v1/admin/maintenance, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A022 | GET /api/v1/admin/reports, GET /api/v1/admin/control-registry, POST /api/v1/admin/changes, POST /api/v1/admin/changes/{id}/validate, POST /api/v1/admin/changes/{id}/simulate, POST /api/v1/admin/changes/{id}/publish, GET /api/v1/admin/changes/{id}, POST /api/v1/admin/operations |
-| A023 | GET /api/v1/admin/ads, POST /api/v1/admin/ads/advertisers, POST /api/v1/admin/ads/campaigns, GET /api/v1/admin/ads/campaigns/{id}, PATCH /api/v1/admin/ads/campaigns/{id}, POST /api/v1/admin/ads/campaigns/{id}/validate, POST /api/v1/admin/ads/campaigns/{id}/preview, POST /api/v1/admin/ads/campaigns/{id}/publish, POST /api/v1/admin/ads/campaigns/{id}/pause, POST /api/v1/admin/ads/campaigns/{id}/resume, POST /api/v1/admin/ads/campaigns/{id}/cancel-schedule, POST /api/v1/admin/ads/campaigns/{id}/archive, POST /api/v1/admin/ads/campaigns/{id}/rollback, GET /api/v1/admin/ads/campaigns/{id}/reports, GET /api/v1/admin/ads/campaigns/{id}/audit, POST /api/v1/admin/ads/destinations/validate |
+**Key files (L352):**
+- app/Services/Payments/BoostPurchaseService.php
+- app/Services/Payments/BoostPaymentFulfillmentService.php
+- app/Http/Controllers/Api/V1/ChapaWebhookController.php
+- app/Models/PaymentEvent.php
+- tests/Feature/Payments/ChapaWebhookTest.php
 
 ---
 
-# 📋 IMPLEMENTATION LEDGER — Last 150 Lines
+### A.3 Mobile (Flutter) — PHASE 2 DONE (L353) 🟡
 
-```
-  - A006 ai.blade.php (25)
-  - A007 payments.blade.php (21)
-  - A008 users.blade.php (17)
-  - A009 content.blade.php (17)
-  - A010 notifications.blade.php (17)
-  - A011 files.blade.php (17)
-  - A012 jobs.blade.php (21)
-  - A013 backups.blade.php (20)
-  - A014 integrity.blade.php (22)
-  - A015 security.blade.php (22)
-  - A016 audit.blade.php (18)
-  - A017 settings.blade.php (21)
-  - A018 recovery.blade.php (18)
-  - A019 safe-mode.blade.php (18)
-  - A020 monetization.blade.php (21)
-  - A021 maintenance.blade.php (18)
-  - A022 reports.blade.php (18)
-  - A023 sponsored-ads.blade.php (18)
-- UPD: routes/web.php — 23 admin routes (prefix admin)
-- UPD: lang/en.json + lang/am.json — +139 keys each (469 total)
-- NEW: tests/Feature/Screens/AdminScreensTest.php (72 tests, 211 assertions)
+**6 real screens:**
 
-### Coverage
-- Every admin screen renders 200 + layout shell + sidebar + pending notice
-- All 23 routes registered
-- All 23 views extend layouts.admin
-- Layout compiles (>5000 chars)
+| ID | Screen | Path | Backend |
+|---|---|---|---|
+| S001 | Welcome | /welcome | — |
+| S002 | Telegram sign-in | /auth/telegram | POST /auth/telegram/start + exchange |
+| S003 | Profile | /profile | GET /auth/me |
+| S004 | Browse Needs | /browse | GET /needs |
+| S005 | Create/Edit Need | /needs/new | POST /needs |
+| S008 | Need Detail | /needs/:id | GET /needs/{id} |
+| S019 | Boost | /needs/:id/boost | POST /needs/{id}/boosts |
 
-### Backend Status
-- ALL admin screens are PLACEHOLDER pending backend integration
-- AdminChangeController + AdminTelegramController exist (from WP-13)
-- No read endpoints for stats (WP-05c BLOCKED_ON_UNKNOWN)
-- Pending notices make this explicit to users
+**Flutter infrastructure:**
+- mobile/app/lib/api/ — 7 API files + 6 models
+- mobile/app/lib/state/auth_state.dart — ChangeNotifier
+- mobile/app/lib/app_scope.dart — InheritedWidget DI
+- mobile/app/lib/router/app_router.dart — 46 routes
+- mobile/app/test/widget_test.dart — 15 tests
 
-### Test Results
-- AdminScreensTest: 72 tests, 211 assertions (3 PHPUnit deprecations - @dataProvider)
-- Full suite: 588 -> 660 tests, 0 failures
-
-### Constitution
-- Additive (24 new files + 23 routes)
-- Placeholders explicit (no silent fake data)
-- UNKNOWN != MISSING (pending notices)
-- Design-compliant (matches admin-screen-manifest.json structure)
-
-## L253 — Backend: Profile Photo Upload (GAP-S003-PHOTO RESOLVED) — 2026-09-30
-
-**Type:** Feature (backend + frontend)
-
-### Changes
-- NEW: app/Http/Requests/Profile/UpdatePhotoRequest.php (27 lines)
-- UPD: app/Http/Controllers/Api/V1/AuthController.php — uploadProfilePhoto()
-- UPD: routes/api.php — POST /api/v1/profile/photo
-- UPD: resources/views/profile.blade.php — photo upload UI + JS
-- UPD: lang/en.json + lang/am.json — +6 keys each
-- NEW: tests/Feature/Profile/ProfilePhotoUploadTest.php (5 tests)
-- NEW: migrations:
-  - 2026_09_30_105931_add_profile_photo_path_to_users.php
-
-### API
-- POST /api/v1/profile/photo (multipart, auth:sanctum)
-- Validation: image, mimes jpg/png/webp, max 5MB, min 100×100
-- Replaces existing photo (deletes old file)
-
-### GAP-S003-PHOTO Status: RESOLVED ✅
+Tests: 15/15 · Analyze: 0
 
 ---
 
-## L254 — Backend: Boost & Payments (GAP-S019-BOOST-API RESOLVED) — 2026-09-30
+## 🔴 SECTION B — REMAINING WORK
 
-**Type:** Feature (backend)
+### B.1 User Screens (17 remaining)
 
-### Changes
-- NEW: app/Http/Controllers/Api/V1/BoostController.php (96 lines)
-- UPD: routes/api.php — 3 routes
-- UPD: app/Http/Controllers/Api/V1/BoostController.php — status='PENDING'
-- NEW: migration 2026_09_30_110109_make_boost_payment_id_nullable.php
-- NEW: tests/Feature/Boost/BoostControllerTest.php (5 tests)
+**HIGH priority:**
+- S006 Public-post preview (/needs/new/public-preview)
+- S007 Need-created confirmation (/needs/:id/created)
+- S009 My Needs (/my/needs → GET /my/needs)
+- S010 Received Offers (/needs/:id/offers → GET /needs/{id}/offers)
 
-### API
-- GET /api/v1/boost-packages (public)
-- POST /api/v1/needs/{needId}/boosts (owner + OPEN need)
-- GET /api/v1/payments/{id} (owner)
+**MED priority:**
+- S011 Submit/Edit Offer · S012 Offer Details · S013 My Offers
+- S014 Compare · S015 AI Comparison · S017 Messages · S018 Notifications
 
-### GAP-S019-BOOST-API Status: RESOLVED ✅
+**LOW priority:**
+- S016 Comparison history · S020 Rating · S021 Report
+- S022 Telegram status · S023 Offer Unlock
 
----
+### B.2 Admin Screens (23 remaining)
 
-## L255 — Backend: Reports (GAP-S021-REPORT-API RESOLVED) — 2026-09-30
-
-**Type:** Feature (backend)
-
-### Changes
-- NEW: app/Http/Controllers/Api/V1/ReportController.php (39 lines)
-- UPD: routes/api.php — POST /api/v1/reports
-- UPD: resources/views/report-support.blade.php — payload fix (reason_code/details/entity_id UUID)
-- UPD: lang/en.json + lang/am.json — +1 key (invalidUuid)
-- NEW: tests/Feature/Report/ReportControllerTest.php (6 tests)
-
-### API
-- POST /api/v1/reports (auth)
-- Validation: reason_code enum, entity_type enum (UPPERCASE), entity_id UUID, details 20-5000
-
-### GAP-S021-REPORT-API Status: RESOLVED ✅
+**HIGH priority:** A001 Dashboard · A002 Telegram · A003 Health · A007 Payments
+**MED:** A005 Marketplace · A006 AI · A008 Users · A012 Jobs · A015 Security · A016 Audit · A017 Settings · A020 Monetization · A022 Reports
+**LOW:** A004 Features · A009 Content · A010 Notifications · A011 Files · A013 Backups · A014 Integrity · A018 Recovery · A019 Safe Mode · A021 Maintenance · A023 Sponsored Ads
 
 ---
 
-## L256 — Backend: Telegram Publications (GAP-S022-TELEGRAM-API RESOLVED) — 2026-09-30
+### B.3 Production Gates
 
-**Type:** Feature (backend)
-
-### Changes
-- NEW: app/Http/Controllers/Api/V1/TelegramPublicationController.php (72 lines)
-- UPD: routes/api.php — 2 routes
-- NEW: tests/Feature/Telegram/TelegramPublicationTest.php (5 tests)
-
-### API
-- GET /api/v1/needs/{needId}/telegram-publications (owner only)
-- POST /api/v1/needs/{needId}/telegram-publication/stop (owner only)
-
-### GAP-S022-TELEGRAM-API Status: RESOLVED ✅
-
----
-
-## L257 — Backend: Offer Submission Unlock (GAP-S023-UNLOCK-API RESOLVED) — 2026-09-30
-
-**Type:** Feature (backend)
-
-### Changes
-- NEW: app/Models/OfferSubmission.php (45 lines)
-- NEW: migration 2026_09_30_105335_create_offer_submissions_table.php
-- NEW: database/factories/OfferSubmissionFactory.php
-- NEW: app/Http/Controllers/Api/V1/OfferUnlockController.php (89 lines)
-- UPD: routes/api.php — 3 routes
-- NEW: tests/Feature/Offer/OfferUnlockTest.php (5 tests)
-
-### API
-- POST /api/v1/offer-submissions (create)
-- GET /api/v1/offer-submissions/{id}
-- POST /api/v1/offer-submissions/{id}/resume
-
-### GAP-S023-UNLOCK-API Status: RESOLVED ✅
-
----
-
-## L253-L257 Summary
-- 4 new controllers, 1 new model, 1 new factory, 4 new migrations
-- 9 new API endpoints
-- 27 new tests (across 5 test files)
-- 5 GAPs RESOLVED
-- Full suite: 660 -> 690 tests, 0 failures
-```
-
----
-
-# 🚧 OPEN GAPS
-
-# OPEN GAPS — Felagi v1.4.2
-Last Updated: 2026-09-29
-
-## Critical Blockers
-| ID | Gap | Severity | Owner |
-|----|-----|----------|-------|
-| GAP-08 | Positive-fee activation | CRITICAL | product ops |
-| GAP-09 | Production PASS | CRITICAL | release owner |
-| GAP-26 | cPanel doc root capability | CRITICAL | hosting admin |
-
-## High Severity
-| ID | Gap | Blocker |
-|----|-----|---------|
-| GAP-01 | Browser/device/AT | No browser |
-| GAP-02 | Flutter compilation | No SDK |
-| GAP-03 | Live services | No creds |
-| GAP-05 | Marketplace baseline | No data |
-| GAP-07 | Observability | No telemetry |
-| GAP-10 | AI live | No provider |
-| GAP-11 | Payment live | No provider |
-| GAP-22 | Responsive 46-screen | No browser |
-| GAP-23 | A11y 46-screen | No AT |
-| GAP-24 | Runtime states | No stack |
-| GAP-25 | Error recovery | No stack |
-| GAP-27 | PHP/MySQL extensions | No host access |
-| GAP-28 | Queue throughput | No host |
-| GAP-29 | Backup RPO/RTO drill | No backup target |
-| GAP-30 | Webhook signature | No sandbox |
-| GAP-31 | Telegram OIDC creds | No Telegram app |
-
-## Medium Severity
-| ID | Gap | Blocker |
-|----|-----|---------|
-| GAP-04 | Amharic runtime | No reviewer |
-| GAP-06 | Ads live serving | No infra |
-| GAP-12 | Ads media scanning | No scan |
-| GAP-13 | SSRF validation | No infra |
-| GAP-14 | Ads analytics | No analytics |
-| GAP-20 | Font glyph coverage | No license/device |
-| GAP-21 | Amharic QA | No reviewer |
-| GAP-32 | cron PHP path | No host access |
-
-## Findings (N06-N10)
-| ID | Severity | Status | Owner |
-|----|----------|--------|-------|
-| N06 | HIGH | BLOCKED | frontend/a11y QA |
-| N07 | HIGH | BLOCKED | Flutter team |
-| N08 | HIGH | REQUIRES_EVIDENCE | backend/security QA |
-| N09 | MEDIUM | PARTIAL | Amharic/UX reviewers |
-| N10 | HIGH | REQUIRES_EVIDENCE | product operations |
-
-## Environment Findings (ENV-01 to ENV-05)
-| ID | Gap | Impact |
-|----|-----|--------|
-| ENV-01 | Python 3.6.8 too old | Tools/*.py fail |
-| ENV-02 | Node.js missing | Tools/*.js fail |
-| ENV-03 | No local Flutter/Dart | WP-04 blocked |
-| ENV-04 | No local browser | WP-03 blocked |
-| ENV-05 | cPanel doc root not verified | WP-21 unknown |
-
-## UNKNOWN Items: ~85 total
-
-## WP-13 Updates (2026-09-29)
-
-### Resolved in WP-13
-
-| ID | Description | Resolution |
-|----|-------------|------------|
-| GAP-60 | OutboxEvent model missing | ✅ RESOLVED — created (app/Models/OutboxEvent.php) |
-| GAP-34 | .env.testing missing (phpunit used production DB) | ✅ RESOLVED — MySQL test DB created (zagcreht_felagi_test) |
-| GAP-36 | UserFactory schema mismatch (name/email/password) | ✅ RESOLVED — aligned to telegram_subject/full_name |
-| GAP-40 | Missing directories (7) | ✅ RESOLVED — app/Exceptions, app/Services/Admin, app/Policies, etc. |
-| GAP-44 | authorize() broken (empty Controller base) | ✅ RESOLVED — AuthorizesRequests trait added to BaseApiController |
-
-### New GAPs (from WP-13)
-
-| ID | Gap | Severity | Owner | Blocker |
-|----|-----|----------|-------|---------|
-| GAP-45 | Reauth (5-min window) not implemented | HIGH | WP-13b | users.recently_authenticated_at column missing |
-| GAP-46 | Second factor (CRITICAL) not implemented | HIGH | WP-13b | 2FA infrastructure missing |
-| GAP-47 | Idempotency-Key header ignored | MEDIUM | WP-13b | Storage strategy TBD |
-| GAP-48 | Apply/Verify workflow not implemented | MEDIUM | WP-13b | Requires runtime version service |
-| GAP-49 | Rollback E2E test not written | LOW | WP-13 | Test only; impl complete |
-
-### Pre-existing GAPs still open (not WP-13 scope)
-
-| ID | Description | Severity |
-|----|-------------|----------|
-| GAP-01 | Browser/device/AT testing | HIGH |
-| GAP-02 | Flutter compilation | HIGH |
-| GAP-03 | Live services (payment, AI, Telegram) | HIGH |
-| GAP-05 | Marketplace baseline data | HIGH |
-| GAP-08 | Positive-fee activation | CRITICAL |
-| GAP-09 | Production PASS | CRITICAL |
-| GAP-26 | cPanel doc root capability | CRITICAL |
-| GAP-38 | APP_DEBUG=true in production | CRITICAL |
-| GAP-42 | auth_attempts table missing | ✅ RESOLVED 2026-09-29 (WP-05a) | — | Full PKCE flow |
-| GAP-43 | DatabaseSeeder schema mismatch | HIGH |
-
-## WP-13b Updates (2026-09-29)
-
-### Resolved in WP-13b
-
-| ID | Description | Resolution |
-|----|-------------|------------|
-| GAP-45 | Reauth (5-min window) not implemented | ✅ RESOLVED — ReauthValidator + users.recently_authenticated_at |
-| GAP-46 | Second factor (CRITICAL) not implemented | ✅ RESOLVED — TotpService (RFC 6238) + requireFor() |
-| GAP-47 | Idempotency-Key header ignored | ✅ RESOLVED — IdempotencyRegistry + middleware |
-| GAP-48 | Apply/Verify workflow not implemented | ✅ RESOLVED — ProcessOutboxEvent + VerifySettingChange jobs |
-
-### New GAPs (from WP-13b)
-
-| ID | Gap | Severity | Owner | Blocker |
-|----|-----|----------|-------|---------|
-| GAP-50 | TOTP enrollment UI (QR + verify) | MEDIUM | WP-13c | Frontend not implemented |
-| GAP-51 | Recovery codes display UI | MEDIUM | WP-13c | Frontend not implemented |
-| GAP-52 | Self-service 2FA disable | MEDIUM | WP-13c | Frontend + audit flow |
-| GAP-53 | Recovery flow (lost factor) | HIGH | WP-13c | Design: "controlled, audited process" |
-| GAP-54 | APP_DEBUG=true in production | ✅ RESOLVED 2026-09-29 | — | Config cached + verified |
-
-### Notes
-
-**GAP-50, GAP-51, GAP-52** — 2FA infrastructure አለ (TOTP service + recovery codes). ሆኖም ተጠቃሚ UI የለም — Flutter/Admin frontend ያስፈልጋል. WP-13c ይሸፍናል።
-
-**GAP-53** — Auth Contract §449: "lost-factor recovery is a controlled, audited process, not a secret bypass." ሂደቱ ግን በ design አልተገለጸም።
-
-## WP-27 Updates (2026-09-29)
-
-### Resolved in WP-27
-
-| ID | Description | Resolution |
-|----|-------------|------------|
-| GAP-31 | Telegram OIDC credentials missing | ✅ RESOLVED — credentials configured |
-
-### New GAPs (from WP-27)
-
-| ID | Gap | Severity | Owner | Blocker |
-|----|-----|----------|-------|---------|
-| GAP-56 | Live OIDC end-to-end test with real Telegram user | MEDIUM | QA | manual test required |
-| GAP-57 | Sanctum UUID migration in production | ✅ DONE | — | applied |
-
-## WP-27b Updates (2026-09-29)
-
-### Resolved in WP-27b
-
-| ID | Description | Resolution |
-|----|-------------|------------|
-| D-091 | Race condition in telegramExchange | ✅ RESOLVED — HMAC-signed handoff |
-
-## B13 Updates (2026-09-29)
-
-### Resolved in B13
-| ID | Gap | Status | Evidence |
-|----|-----|--------|----------|
-| GAP-61 | downloads/ directory listing 403 | ✅ RESOLVED — static index.html added | HTTP/2 200 verified 2026-09-29 |
-
-**Note:** Originally misidentified in B10 CHANGE_LOG as "GAP-56". Real GAP-56 is the separate OIDC E2E test gap (still open). Downloads listing was never formally registered until B13.
-
-## B14 Updates (2026-09-29)
-
-### New UNKNOWN
-| ID | Gap | Severity | Owner | Notes |
-|----|-----|----------|-------|-------|
-| GAP-62 | Production root (zagcreativity.com/) shows Laravel default | UNKNOWN | design owner | LOCKED design for production landing page does not exist. Per Constitution: UNKNOWN ≠ MISSING. Awaiting design owner direction. |
-
-**Note:** This issue was mislabeled as "GAP-57" in B10 CHANGE_LOG. Real GAP-57 = Sanctum UUID migration (DONE). Never formally registered until B14.
-
-## B15 Updates (2026-09-29)
-
-### Resolved in B15
-| ID | Gap | Status | Evidence |
-|----|-----|--------|----------|
-| GAP-62 | Production root (zagcreativity.com/) shows Laravel default | ✅ RESOLVED — S001 Welcome deployed | HTTP/2 200 · `<title>መግቢያ — ፈላጊ</title>` verified 2026-09-29 |
-
----
-## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
-
-### GAP State Reconciliation
-
-The following GAP clarifications are documented here in append-only form.
-Original GAP entries above are preserved (no silent edits).
-
-### GAP-38 — SUPERSEDED by GAP-54
-
-| Field | Value |
-|-------|-------|
-| GAP-38 | APP_DEBUG=true in production (originally CRITICAL) |
-| GAP-54 | Same issue — RESOLVED 2026-09-29 |
-| **Status** | ✅ **SUPERSEDED** — GAP-38 duplicates GAP-54 |
-| **Action** | GAP-38 should be considered closed via GAP-54 |
-
-### GAP-07 vs GAP-60 — Clarification
-
-| GAP | Issue | Status |
-|-----|-------|--------|
-| GAP-07 | Observability (no telemetry) | OPEN (blocked on telemetry env) |
-| GAP-60 | OutboxEvent model missing | ✅ RESOLVED (WP-13, app/Models/OutboxEvent.php) |
-
-**Note:** B10 CHANGE_LOG incorrectly described a "GAP-07 → GAP-60 rename".
-These are **two distinct GAPs** with different issues. No rename occurred.
-
-### GAP-42 — Resolved but Listed in Open Section
-
-| Field | Value |
-|-------|-------|
-| GAP-42 | auth_attempts table missing |
-| Resolution | ✅ RESOLVED 2026-09-29 (WP-05a — Full PKCE flow) |
-| **Current Location** | Listed in "Pre-existing GAPs still open" table |
-| **Action** | Marked RESOLVED in-place; no longer an active blocker |
-
-### Summary of B17 GAP Status
-
-| Status | Count | GAPs |
-|--------|-------|------|
-| SUPERSEDED | 1 | GAP-38 (→ GAP-54) |
-| RESOLVED | 3 | GAP-42, GAP-54, GAP-60 |
-| OPEN (clarified) | 1 | GAP-07 (Observability) |
-
-### Constitution Compliance
-
-- No silent changes — all 5 GAPs documented here
-- No duplicate ownership — GAP-38/GAP-54 clarified
-- UNKNOWN ≠ MISSING — GAP-07 remains OPEN (blocked, not deleted)
-
----
-
-## GAP-70 — Ledger Drift: B17-B24 not recorded in canonical ledgers
-
-**Type:** Documentation integrity / Constitution compliance
-**Severity:** HIGH (affects handoff state, not production code)
-**Opened:** 2026-09-30
-
-**Evidence of drift:**
-
-| Ledger | Last Entry | HEAD (143a756=B24) |
+| Gate | Status | Blocker |
 |---|---|---|
-| IMPLEMENTATION_LEDGER | L216 (B16) | B24 → gap B17-B24 |
-| WORK_PACKAGES (B-blocks) | B17 | B24 → gap B18-B24 |
-| CHANGE_LOG | B21 | B24 → gap B22-B24 |
-| TEST_VERIFICATION | B21 | B24 → gap B22-B24 |
-| HANDOFF_STATE | B22 | B24 → gap B23-B24 |
+| G01 Source consistency | ✅ MET | — |
+| G02 Design completeness | ✅ MET | — |
+| G03 Brand source | ✅ MET | — |
+| G04 Browser/responsive | ✅ MET | — |
+| G05 Flutter | 🔴 BLOCKED | Android SDK |
+| G06 Service/security | 🟡 PARTIAL+ | — |
+| G07 Monetization | 🟡 REQUIRES_EVIDENCE | Chapa live |
+| G08 Localization | ✅ MET | — |
+| G09 Observability | 🟡 REQUIRES_EVIDENCE | Sentry/Bugsnag |
 
-**Cause:** B17-B24 code was committed to git but ledger entries were not appended. Partial documentation exists in HANDOFF_STATE (B18, B20, B22 bundle refresh entries).
+Met: 5/9 · Partial: 3/9 · Blocked: 1/9
 
-**Required action (next session):**
+### B.4 Credentials Needed
 
-1. `git log --oneline 143a756 ^6ea8a97` → list B17-B24 commits
-2. For each commit, extract changes → IMPLEMENTATION_LEDGER L217-L224
-3. Update WORK_PACKAGES B-blocks table (B18-B24)
-4. Backfill CHANGE_LOG + TEST_VERIFICATION
-5. Produce bundle refresh at B25_DONE
-
-**Do NOT guess** entries. Each must be traceable to a git commit + evidence.
-
-**Constitution reference:**
-- Art. "Maintain one canonical project ledger"
-- Art. "No hidden work"
-- Art. "No silent changes"
-
-**Status:** OPEN — deferred to next session
+- 🔴 Chapa: CHAPA_SECRET_KEY, CHAPA_PUBLIC_KEY, CHAPA_WEBHOOK_SECRET
+- 🔴 Telegram: TELEGRAM_CLIENT_ID, TELEGRAM_CLIENT_SECRET, TELEGRAM_BOT_TOKEN
+- 🔴 AI: GEMINI_API_KEY
+- 🟡 Observability: SENTRY_DSN
 
 ---
 
-## GAP-71 — Production Bug: Attachment::isClean() name collision
+## 📋 SECTION D — NEXT DEV GUIDE
 
-**Type:** Production bug (pre-existing)
-**Severity:** HIGH (blocks B27 tests; method unusable)
-**Opened:** 2026-09-30
+### D.1 To Continue (L354)
 
-**Evidence:**
+- Pick next 4 screens: S006, S007, S009, S010
+- Add needs_api: myNeeds(), receivedOffers()
+- Create offers_api.dart (NEW)
+- Create 4 screens in mobile/app/lib/screens/
+- Wire routes in app_router.dart
+- Add tests (with _wrapWith* helpers)
+- flutter analyze && flutter test
+- Update IMPLEMENTATION_LEDGER (L354) + CHANGE_LOG
+- Bundle + git commit
 
-Attachment.php line 74 declares `public function isClean(): bool`.
-Laravel's base `Model` class declares `public function isClean($attributes = null)`.
-PHP raises TypeError: "Declaration of Attachment::isClean(): bool must be
-compatible with Model::isClean($attributes = null)".
+### D.2 Flutter Rules
 
-**Impact:**
-- Every Attachment instantiation triggers TypeError.
-- isClean() cannot be called.
-- Latent because no Attachment tests existed until B27.
+- AppScope.of(context) — DI
+- MockClient in tests — no network
+- _FakeTokenStore in tests — no platform channels
+- pumpAndSettle for timers
+- Safe substring: s.length >= 8 ? s.substring(0, 8) : s
+- flutter analyze = 0, flutter test all pass
 
-**Required action (with explicit approval — BREAKING change):**
+### D.3 API Envelope
 
-Rename Attachment::isClean() to Attachment::isScanClean():
+Success: {success, data, message, request_id, meta}
+Error: {success: false, error: {code, message, details}, request_id}
 
-1. Update app/Models/Attachment.php (line 74).
-2. Add CHANGE_LOG entry (public API change).
-3. Update any callers (grep currently: none).
-4. Re-run tests.
+### D.4 Error Codes
 
-**Constitution reference:**
-- Art. "Do not perform destructive, security-sensitive, breaking or
-  architecture-changing work without explicit approval".
-- This IS a breaking change -> requires approval.
-
-**Status:** RESOLVED — fixed in B27 (2026-09-30)
-**Closed by:** B27 — see CHANGE_LOG + L219
+UNAUTHORIZED · FORBIDDEN · NOT_FOUND · VALIDATION_FAILED · STATE_CONFLICT · IDEMPOTENCY_CONFLICT · BOOST_ACTIVE · PAYMENTS_DISABLED · RATE_LIMITED
 
 ---
 
-## GAP-70 — RESOLVED (2026-09-30) — Ledger Drift: B17-B24
+## 🏆 SECTION E — COMMITS + BUNDLES
 
-**Type:** Documentation integrity / Constitution compliance
-**Opened:** 2026-09-30
-**Status:** RESOLVED (2026-09-30)
+```
+30c1083 (HEAD) L353: Flutter production app (Phase 2)
+cd522d4        L352: Boost webhook + frontend wire
+d718518        Refresh source of truth
+```
 
-**Original issue:**
-B17–B24 code existed in git but was not recorded in canonical ledgers
-(IMPLEMENTATION_LEDGER, TEST_VERIFICATION, CHANGE_LOG, WORK_PACKAGES).
-
-**Resolution:**
-- IMPLEMENTATION_LEDGER: L221–L227 appended (B18–B24)
-- TEST_VERIFICATION: B18/B20/B22/B23/B24 "no test changes" note
-  (B19 + B21 already documented in original location)
-- CHANGE_LOG: B18/B20/B22/B23/B24 entries appended
-  (B19 + B21 already documented in original location)
-- HANDOFF_STATE: B18–B24 backfill summary added
-- WORK_PACKAGES: B18-B24 marked DONE (was DEFERRED)
-
-**Evidence:**
-Git log range 6ea8a97..143a756 (10 commits) now fully documented in
-canonical ledgers.
-
-**Constitution compliance:**
-- Art. "Maintain one canonical project ledger" — restored
-- Art. "No hidden work" — B18-B24 now visible
-- Art. "No silent changes" — backfill explicitly marked
-- Art. "No duplicate ownership" — existing B19/B21 entries preserved
-
-**Closed by:** Backfill commit (this commit)
+Bundles: L352 (99KB) · L353 (320KB, sha: ef89f461)
 
 ---
 
-## GAP-71b — RESOLVED (2026-09-30) — Attachment factory infrastructure
+## 📜 ORIGINAL v1.4.2 CONTENT BELOW
 
-**Type:** Infrastructure gap (deferred from B27)
-**Opened:** 2026-09-30 (noted during B27)
-**Status:** RESOLVED (2026-09-30)
+# FELAGI v1.4.2 — MASTER SOURCE OF TRUTH
+**Consolidated:** 2026-09-29
+**HEAD:** 48217b2 (B23)
+**Purpose:** Single-file consolidation of all source-of-truth documents
 
-**Issue:** AttachmentTest used `::create()` directly. No factory existed
-for future tests that might want factory-style setup.
+## QUICK FACTS
 
-**Resolution:**
-- NEW database/factories/AttachmentFactory.php
-- HasFactory trait added to Attachment model
-- States: clean(), rejected(), publicVisibility(), forNeed()
-- Smoke tested via tinker
-- Existing tests unchanged (still use ::create())
+| Item | Value |
+|------|-------|
+| HEAD | 48217b2 |
+| Tests | 162 passed (320 assertions) |
+| B-Blocks DONE | 14 (B10-B23) |
+| WP DONE | 10 |
+| Ledgers | 14 canonical |
+| Bundles | 4 (B21_DONE) |
+| Production PASS | BLOCKED (3/9 gates MET) |
 
-**Closed by:** GAP-71b commit (this commit)
+## SECTION 1 — COMPLETE PROJECT STATUS
+**Source:** FELAGI_STATUS_REPORT.md
 
----
+# FELAGI v1.4.2 — STATUS REPORT
+**Generated:** 2026-09-29
+**HEAD:** 1a17a7c (B22)
 
-## GAP-WP-05c — Admin Read Endpoints Spec (BLOCKED_ON_UNKNOWN)
+## Executive Summary
 
-**Type:** Spec gap (UNKNOWN, not MISSING)
-**Severity:** MEDIUM (blocks WP-05c only)
-**Opened:** 2026-09-30
+| Field | Value |
+|-------|-------|
+| Design contract version | 1.4.1 |
+| Handoff release version | 1.4.2 |
+| App HEAD | 1a17a7c (B22) |
+| Design HEAD | 27edd9d (B11) |
+| Production release | BLOCKED (6/9 gates pending) |
 
-**Issue:**
-- Spec request exists: `docs/spec-requests/WP-05c_admin_read_endpoints.md`
-- Status: PENDING STAKEHOLDER
-- 6 UNKNOWN questions (see spec request)
-- WP not registered in WORK_PACKAGES.md until 2026-09-30
+## Numbers at a Glance
 
-**Constitution constraint:**
-- Art. "Do not guess missing requirements" — no implementation without LOCKED spec
-- Art. "UNKNOWN != MISSING" — registered as UNKNOWN
-
-**Action required:**
-Stakeholder to answer 6 questions + provide LOCKED spec.
-
-**Status:** OPEN — BLOCKED_ON_UNKNOWN
-
----
-
-## GAP-71c — RESOLVED (2026-09-30) — Remaining factories
-
-**Type:** Infrastructure gap
-**Opened:** 2026-09-30
-**Status:** RESOLVED
-
-**Issue:** Only UserFactory + AttachmentFactory existed.
-
-**Resolution:**
-- 14 new factories: Category, Need, Payment, Boost, BoostPackage,
-  PaymentEvent, Offer, Comparison, ComparisonOffer, ComparisonResult,
-  ComparisonAttempt, NeedAward, Report, Setting, SettingDraft, UserRole
-- HasFactory trait added to 16 models
-- Smoke tested all 14 factories
-
-**Deferred (no tests yet):**
-AuditLog, AuthAttempt, Message, Notification, OutboxEvent, Rating,
-SettingVersion, TelegramDestination, TelegramPublication, TelegramPublicationEvent
-
-**Closed by:** GAP-71c commit
-
+| Metric | Count |
+|--------|-------|
+| WP DONE | 10 |
+| WP VERIFIED | 1 |
+| WP PARTIAL | 1 |
+| WP BLOCKED | 16 |
+| WP DEFERRED | 1 |
+| B-Blocks DONE | 13 (B10-B22) |
+| Tests passing | 162 |
+| Assertions | 320 |
+| Test files | 19 |
+| Model test files | 6 |
+| Ledger files | 14 |
+| Bundle artifacts | 4 (B21_DONE) |
+| Docs (audits+specs) | 3 |
 
 ---
 
-## GAP-64-REOPENED — RESOLVED (2026-09-30) — OIDC not available
+## Source of Truth — Canonical Ledgers (14)
 
-**Type:** Production bug (B24 fix incomplete)
-**Opened:** 2026-09-30 (user report)
-**Status:** RESOLVED via Widget flow
+Location: `~/felagi_app/public/handoff/ledgers/`
 
-**Issue:**
-B24 fix added bot_id but client_id remained numeric bot ID.
-Telegram served Widget page instead of OIDC. Callback failed with
-"Missing state or code".
+| # | File | Purpose | Updated |
+|---|------|---------|---------|
+| 1 | MASTER_BASELINE.md | Locked baseline + extensions | B17 |
+| 2 | REQUIREMENT_REGISTRY.md | ~1,700 reqs + 42 new IDs | B17 |
+| 3 | ARCHITECTURE_MAP.md | Layers 0-11 | B17 |
+| 4 | WORK_PACKAGES.md | 28 WPs + 13 B-Blocks | B17 |
+| 5 | IMPLEMENTATION_LEDGER.md | L001 -> L216 | B17 |
+| 6 | TEST_VERIFICATION.md | 396 lines full trail | B21 |
+| 7 | OPEN_GAPS.md | 223 lines all GAPs | B17 |
+| 8 | CHANGE_LOG.md | 989 lines B10-B21 | B21 |
+| 9 | DECISION_LOG.md | 679 lines D-001-D-115 | B21 |
+| 10 | RELEASE_STATUS.md | 188 lines gates | B17 |
+| 11 | HANDOFF_STATE.md | 252 lines bundle paths | B22 |
+| 12 | PRIORITY_PLAN.md | 137 lines TIER 0-6 | B17 |
+| 13 | ENVIRONMENT_CHECKLIST.md | 146 lines env state | B17 |
+| 14 | B17_ROLLBACK.md | 83 lines rollback | B17 |
 
-**Evidence:**
-- BotFather: "Web login is currently unavailable for Felagi @FelagiMarketBot"
-- Only Login Widget available
+---
 
-**Resolution:**
-- Telegram Widget flow (HMAC verification)
-- 12 tests added
-- Full suite: 424 tests
+## Source of Truth — Specification Documents (3)
 
-**Preserved:**
-- OIDC code path kept (DEFERRED)
+Location: `~/felagi_app/docs/`
 
-**Closed by:** WIDGET-FLOW commit
+| # | File | Lines | Purpose |
+|---|------|-------|---------|
+| 1 | audits/MIGRATION_INTEGRITY_B21.md | 69 | Read-only migration audit |
+| 2 | spec-requests/WP-05c_admin_read_endpoints.md | 64 | Stakeholder spec request |
+| 3 | spec-requests/T01-T18_integration_tests.md | 86 | Stakeholder spec request |
+
+## Source of Truth — Bundle Artifacts (4)
+
+Location: `~/`
+
+| # | File | Size | HEAD |
+|---|------|------|------|
+| 1 | Felagi_App_v1.4.2_20260929-1551_B21_DONE.bundle | 999K | c64fa28 |
+| 2 | Felagi_Design_v1.4.2_20260929-1551_B21_DONE.bundle | 3.5M | 27edd9d |
+| 3 | Felagi_v1.4.2_20260929-1551_B21_DONE_full.tar.gz | 45M | c64fa28 |
+| 4 | Felagi_v1.4.2_20260929-1551_B21_DONE_FULL_with_vendor.tar.gz | 76M | c64fa28 |
+
+## Source of Truth — Backup Archives
+
+| Path | Purpose |
+|------|---------|
+| ~/B17_backups/20260929_144348/ | 26+ pre-B17/B21/B22 snapshots |
+| ~/archives/Felagi_bundles_archive/ | Pre-B17 bundles |
+
+---
+
+## Completed — Work Packages DONE (10)
+
+| WP | Scope | Evidence |
+|----|-------|----------|
+| WP-01 | Foundation Registry | PACKAGE_MANIFEST |
+| WP-05 | Backend (38 tables, 20 models, 9 controllers) | Ledger L082-L141 |
+| WP-05a | Auth Attempts + PKCE | AuthAttemptTest (14) |
+| WP-05b | Telegram Foundation | TelegramFoundationTest (12) |
+| WP-13 | Admin Change Lifecycle | ChangeLifecycleTest (8) |
+| WP-13b | Reauth + TOTP 2FA + Idempotency | 36 tests |
+| WP-21 | Laravel/cPanel Deployment | HTTPS live |
+| WP-22 | DB Queue + Cron | queue:work + scheduler |
+| WP-27 | Telegram OIDC Full Flow | TelegramOidcTest (20) |
+| WP-27b | HMAC-Signed User Binding | 6 tests |
+
+## Completed — Work Packages VERIFIED (1)
+
+| WP | Scope | Evidence |
+|----|-------|----------|
+| WP-02 | Static Verification Re-run | 7,810+ PASS, 66 contrast, 140 semantic |
+
+---
+
+## Completed — B-Blocks DONE (13)
+
+| Block | Title | Commit |
+|-------|-------|--------|
+| B10 | Constitution Compliance (8 fixes) | (prior) |
+| B11 | Main Admin Verification | 27edd9d |
+| B12 | Bundle refresh | (prior) |
+| B13 | /downloads/ deployed (GAP-61) | (prior) |
+| B14 | GAP-62 registered + B10 mislabel fix | (prior) |
+| B15 | S001 Welcome live (GAP-62 closed) | (prior) |
+| B16 | Non-admin tests (+16) + cleanup | 64a8c27 |
+| B17 | Ledger Integrity Sweep (12 fixes) | 6ea8a97 |
+| B18 | Bundle Refresh (B17_DONE) | dbc689c |
+| B19 | Model Unit Tests (3 files, 25 tests) | b451224 |
+| B20 | Bundle Refresh (B19_DONE) | 6c6bcb6 |
+| B21 | Extended Tests + Audit + Specs (31 tests) | c64fa28 |
+| B22 | Bundle Refresh (B21_DONE) | 1a17a7c |
+
+---
+
+## Test Coverage — Test Files (19)
+
+### Model Unit Tests (6) — B19 + B21
+
+| File | Tests |
+|------|-------|
+| AuditLogTest.php | 8 |
+| SettingVersionTest.php | 8 |
+| OutboxEventTest.php | 9 |
+| NotificationTest.php | 11 |
+| RatingTest.php | 10 |
+| UserTest.php | 10 |
+
+### Test Trait (1)
+
+| File | Purpose |
+|------|---------|
+| Concerns/CreatesTestCategory.php | DRY Category factory |
+
+### Admin Feature Tests (6) — prior
+
+| File | Tests |
+|------|-------|
+| AuthAttemptTest.php | 14 |
+| ChangeLifecycleTest.php | 8 |
+| IdempotencyTest.php | 8 |
+| ReauthTest.php | 9 |
+| TelegramFoundationTest.php | 12 |
+| TelegramOidcTest.php | 26 |
+
+### User Feature Tests (3) — B16
+
+| File | Tests |
+|------|-------|
+| NeedFlowTest.php | 6 |
+| OfferFlowTest.php | 6 |
+| MessageFlowTest.php | 4 |
+
+---
+
+## Test Coverage — By Model
+
+| Model | Tests | Status |
+|-------|-------|--------|
+| User | 10 unit + 12 feature | GOOD |
+| Notification | 11 | GOOD |
+| Rating | 10 | GOOD |
+| AuditLog | 8 | GOOD |
+| SettingVersion | 8 | GOOD |
+| OutboxEvent | 9 | GOOD |
+| TelegramDestination | 12 feature | GOOD |
+| TelegramPublication | 12 feature | GOOD |
+| TelegramPublicationEvent | 12 feature | GOOD |
+| Need | 6 feature | PARTIAL |
+| Offer | 6 feature | PARTIAL |
+| Message | 4 feature | PARTIAL |
+| Setting | 4 feature | PARTIAL |
+| Category | 0 | MISSING |
+| Payment | 0 | MISSING |
+| PaymentEvent | 0 | MISSING |
+| Boost | 0 | MISSING |
+| BoostPackage | 0 | MISSING |
+| Attachment | 0 | MISSING |
+| Report | 0 | MISSING |
+| Comparison* | 0 | MISSING |
+| UserRole | 0 unit | MISSING |
+| NeedAward | 0 unit | MISSING |
+| SettingDraft | 0 unit | MISSING |
+
+## Decisions Logged (115 total)
+
+| Range | Count | Purpose |
+|-------|-------|---------|
+| D-001 -> D-101 | 101 | Prior work + WP-13/13b/05a/b/27/27b |
+| D-102 -> D-110 | 9 | B17 Ledger Integrity |
+| D-111 -> D-112 | 2 | B19 Model Tests |
+| D-113 -> D-115 | 3 | B21 Extended Tests + Specs |
+
+---
+
+## GAPs Status
+
+### Critical Blockers (3)
+
+| GAP | Issue | Owner |
+|-----|-------|-------|
+| GAP-08 | Positive-fee activation | product ops |
+| GAP-09 | Production PASS | release owner |
+| GAP-26 | cPanel doc root capability | hosting admin |
+
+### High Severity (16)
+
+| GAP | Issue |
+|-----|-------|
+| GAP-01 | Browser/AT testing |
+| GAP-02 | Flutter compilation |
+| GAP-03 | Live services |
+| GAP-05 | Marketplace baseline |
+| GAP-07 | Observability |
+| GAP-10 | AI live |
+| GAP-11 | Payment live |
+| GAP-22 | Responsive 46-screen |
+| GAP-23 | A11y 46-screen |
+| GAP-24 | Runtime states |
+| GAP-25 | Error recovery |
+| GAP-27 | PHP/MySQL extensions |
+| GAP-28 | Queue throughput |
+| GAP-29 | Backup RPO/RTO drill |
+| GAP-30 | Webhook signature |
+| GAP-31 | Telegram OIDC creds (PARTIAL) |
+
+### Medium Severity (8)
+
+GAP-04, GAP-06, GAP-12, GAP-13, GAP-14, GAP-20, GAP-21, GAP-32
+
+### Resolved (B17 reconciliation + prior)
+
+| GAP | Issue | Resolution |
+|-----|-------|------------|
+| GAP-38 | APP_DEBUG CRITICAL | SUPERSEDED by GAP-54 |
+| GAP-42 | auth_attempts missing | RESOLVED (WP-05a) |
+| GAP-45 | Reauth not implemented | RESOLVED (WP-13b) |
+| GAP-46 | 2FA not implemented | RESOLVED (WP-13b) |
+| GAP-47 | Idempotency-Key ignored | RESOLVED (WP-13b) |
+| GAP-48 | Apply/Verify workflow | RESOLVED (WP-13b) |
+| GAP-54 | APP_DEBUG=true in prod | RESOLVED (D-075) |
+| GAP-60 | OutboxEvent model missing | RESOLVED (WP-13) |
+| GAP-61 | downloads/ 403 | RESOLVED (B13) |
+| GAP-62 | Production root | RESOLVED (B15, S001) |
+
+### Still Open (from prior)
+
+| GAP | Issue | Type |
+|-----|-------|------|
+| GAP-49 | Rollback E2E test | Test only |
+| GAP-56 | OIDC E2E manual test | Manual QA |
+
+---
+
+## Live URLs
+
+| URL | Status |
+|-----|--------|
+| https://zagcreativity.com/ | HTTP 200 (S001 Welcome) |
+| https://zagcreativity.com/downloads/ | HTTP 200 |
+| https://zagcreativity.com/handoff/ | HTTP 200 |
+| https://zagcreativity.com/up | HTTP 200 |
+
+## Database State
+
+| Item | Count |
+|------|-------|
+| Production tables | 41 (36 app + 5 Laravel) |
+| MySQL database | zagcreht_felagi |
+| Test database | zagcreht_felagi_test (isolated) |
+| Migration files | 36 |
+| Eloquent models | 28 |
+
+---
+
+## Production Gates (G01-G09)
+
+| Gate | Status | Blocker | Action Required |
+|------|--------|---------|-----------------|
+| G01 Source consistency | MET | — | — |
+| G02 Design completeness | MET | — | — |
+| G03 Brand source | MET | — | — |
+| G04 Browser/responsive/AT | BLOCKED | No Chromium | Install browser + device |
+| G05 Flutter | BLOCKED | No Flutter SDK | Install Flutter SDK |
+| G06 Service/security | PARTIAL+ | Payment/AI/Telegram live | Provider credentials |
+| G07 Monetization health | REQUIRES_EVIDENCE | No data | Measure baseline |
+| G08 Localization/usability | SOURCE MET / RUNTIME PENDING | No device | Amharic QA |
+| G09 Observability | REQUIRES_EVIDENCE | No telemetry | Setup metrics |
+
+**Production PASS permitted ONLY when:** all 9 gates passed + no BLOCKER/CRITICAL finding remains.
+**Currently:** 3/9 MET, 6 pending — NOT SATISFIED.
+
+---
+
+## Remaining Work — WP BLOCKED (16)
+
+| WP | Scope | Blocker | Category |
+|----|-------|---------|----------|
+| WP-03 | Browser/A11y Render | Chromium/device | Tooling |
+| WP-04 | Flutter Compile | Flutter/Dart SDK | Tooling |
+| WP-06 | Amharic Runtime | Native reviewer | Human |
+| WP-07 | Marketplace Baseline | Measured data | Data |
+| WP-08 | Observability | Telemetry env | Infra |
+| WP-09 | Production Gates | WP-03..08 | Meta |
+| WP-10 | AI Evaluation Live | AI provider key | Credentials |
+| WP-11 | Payment Live | Payment provider | Credentials |
+| WP-12 | Sponsored Ads Serving | Ads infra | Infra |
+| WP-14 | Telegram Delivery | Bot token | Credentials |
+| WP-15 | Font Glyph Coverage | Licensed font | Legal |
+| WP-16 | Amharic Linguistic QA | Native reviewers | Human |
+| WP-17 | Responsive 46-Screen | Real browsers | Tooling |
+| WP-18 | A11y 46-Screen | AT + browser | Tooling |
+| WP-19 | Runtime State Live | Full stack | Infra |
+| WP-20 | Error Recovery Live | Fault injection | Tooling |
+
+## Remaining Work — WP BLOCKED-ON-UNKNOWN (2)
+
+| WP | Issue | Reference |
+|----|-------|-----------|
+| WP-24 | T01-T18 integration test definitions | D-096, spec-request doc |
+| WP-13c | 2FA enrollment UI | D-097, frontend stack undefined |
+
+## Remaining Work — WP PARTIAL / DEFERRED
+
+| WP | Status | Remaining |
+|----|--------|-----------|
+| WP-06 | PARTIAL | Native reviewer validation |
+| WP-13c | DEFERRED | Frontend stack decision |
+
+## Remaining Work — Additional Referenced WPs
+
+| WP | Issue | Status |
+|----|-------|--------|
+| WP-05c | Admin Read Endpoints | UNKNOWN (spec-request doc created) |
+| WP-23 | Backup Restore Drill | BLOCKED (no target) |
+| WP-25 | Webhook Signature | BLOCKED (no sandbox) |
+| WP-26 | File Malware Scanning | BLOCKED (no host AV) |
+| WP-28 | Safe Mode Drills | BLOCKED (no full stack) |
+
+## Test Coverage Gaps — 20 Models Without Tests
+
+| Category | Models | Tests Needed |
+|----------|--------|--------------|
+| Payments | Payment, PaymentEvent, Boost, BoostPackage | 30-40 |
+| AI | Comparison, ComparisonOffer, ComparisonResult, ComparisonAttempt | 30-40 |
+| Safety | Attachment, Report | 15-20 |
+| Settings | Setting, SettingDraft | 10-15 |
+| Marketplace | Category, NeedAward | 10-15 |
+| Communication | Message (extend) | 5-10 |
+| Admin | UserRole | 5-8 |
+| Total | 20 models | ~100-150 tests |
+
+---
+
+## Estimated Work to Production PASS
+
+| Category | WPs | Effort | Blocker Type |
+|----------|-----|--------|--------------|
+| External Credentials | WP-10, WP-11, WP-14, WP-25 | 2-4 weeks | Non-technical |
+| Tooling/Environment | WP-03, WP-04, WP-17, WP-18, WP-19, WP-20 | 3-4 weeks | Install SDKs |
+| Human Review | WP-06, WP-15, WP-16 | 2-3 weeks | Native speakers |
+| Data/Infra | WP-07, WP-08, WP-12, WP-23 | 2-3 weeks | Setup |
+| Test Expansion | B23+ (100+ tests) | 4-6 weeks | Development |
+| Spec Resolution | WP-05c, WP-13c, WP-24 | TBD | Stakeholder |
+| Production Gates | WP-09 | 1 week | After above |
+
+**Optimistic:** 8-10 weeks
+**Realistic:** 12-16 weeks
+**Parallel:** 6-8 weeks with multiple developers
+
+## Critical Path (Blocking Production PASS)
+
+External Credentials (WP-10/11/14/25)
+    |
+    v
+G06 (Service/security) --+
+                          |
+Tooling (WP-03/04/17/18) -+--> WP-09 (Production Gates)
+                          |     = Production PASS
+Human Review (WP-06/16) --+
+                          |
+Data/Infra (WP-07/08) ----+
+
+## Immediate Safe Work (No External Deps)
+
+| Task | Effort | Value |
+|------|--------|-------|
+| B23: Payment model tests | 1 session | HIGH |
+| B23: AI model tests | 1 session | HIGH |
+| B23: Category + NeedAward tests | 1 session | MED |
+| B23: Attachment + Report tests | 1 session | MED |
+| B23: Bundle refresh (B22_DONE) | Short | HIGH |
+
+---
+
+## Continuity for Next Developer
+
+### How to Take Over
+
+1. Read `~/felagi_app/public/handoff/ledgers/HANDOFF_STATE.md`
+2. Read this report (`FELAGI_STATUS_REPORT.md`)
+3. Clone: `git clone ~/Felagi_App_v1.4.2_20260929-1551_B21_DONE.bundle`
+4. Run tests: `APP_ENV=testing php artisan test`
+5. Review `DECISION_LOG.md` D-001 -> D-115
+
+### What NOT to Do
+
+- Do NOT modify LOCKED baseline
+- Do NOT guess UNKNOWN requirements
+- Do NOT add schema changes without approval
+- Do NOT change GAP status without evidence
+- Do NOT commit without ledger updates
+
+### Recommended Next Sequence
+
+1. Resolve stakeholder UNKNOWNs (WP-05c, T01-T18, WP-13c)
+2. Extend test coverage (Category, Payment, AI, Attachment)
+3. Install missing SDKs (Flutter, Chromium, Node.js)
+4. Obtain credentials (AI, Payment, Telegram)
+5. Measure marketplace baseline (G07)
+6. Setup observability (G09)
+7. Amharic QA (G08)
+8. Run production gates (WP-09)
+
+## Evidence Chain
+
+| Layer | Location | Status |
+|-------|----------|--------|
+| Git commits | ~/felagi_app/.git | 55 commits |
+| Ledger files | public/handoff/ledgers/ | 14 files |
+| Backups | ~/B17_backups/20260929_144348/ | 26+ snapshots |
+| Bundles | ~/Felagi_*_B21_DONE* | 4 verified |
+| Docs | docs/audits/, docs/spec-requests/ | 3 files |
+| Design | ~/felagi_extracted/.git | 15 commits |
+
+---
+
+## Constitution Compliance
+
+### 40 Locked Invariants: HONORED
+
+UNKNOWN != ZERO | PARTIAL != COMPLETE | IMPLEMENTED != VERIFIED
+Designed != Implemented != Verified | Preview != Production proof
+Published != Applied != Verified | No hidden work
+No hidden assumptions | No silent changes
+No duplicate ownership | DONE = verified + documented + evidenced
+
+### Process Rules: HONORED
+
+- D-054 AUDIT BEFORE ACTION
+- No hidden work
+- No hidden assumptions
+- No silent changes
+- No duplicate ownership (fixed at B17)
+- UNKNOWN != MISSING
+
+### Violations Documented & Resolved
+
+| Violation | Resolution | Rule |
+|-----------|------------|------|
+| WP-05b pipe failures | Amendment + D-085 | LOCKED |
+| WP-27b pipe failures | Amendment + D-095 | LOCKED |
+| Config cache prod DB | migrate-test.sh + D-076 | LOCKED |
+| L188-L192 duplicates | Renumbered L212-L216 | D-102 |
+| HANDOFF_STATE stale | Full rewrite | D-103 |
+
+---
+
+## Final Checklist for Production PASS
+
+### Ready
+
+- [x] 14 canonical ledgers
+- [x] 162 tests passing (320 assertions)
+- [x] 4 verified bundles
+- [x] HTTPS live
+- [x] 38 app tables
+- [x] Cron + queue
+- [x] Audit trail D-001 -> D-115
+- [x] Rollback procedure
+- [x] Handoff current
+
+### Missing (Production PASS)
+
+- [ ] G04: Browser/AT
+- [ ] G05: Flutter compilation
+- [ ] G06: Payment/AI/Telegram live
+- [ ] G07: Marketplace baseline
+- [ ] G08: Amharic runtime
+- [ ] G09: Observability
+- [ ] WP-09: Final gates
+
+### Unknown (Stakeholder)
+
+- [ ] WP-05c: Admin read endpoints spec
+- [ ] T01-T18: Integration test definitions
+- [ ] WP-13c: Frontend stack decision
+- [ ] U-21: B-Blocks vs WPs formalization
+- [ ] GAP-56: OIDC E2E manual test
+
+---
+
+# END OF REPORT
+
+**Report ID:** FELAGI_STATUS_REPORT_B22
+**Generated:** 2026-09-29
+**HEAD:** 1a17a7c
+**Status:** COMPREHENSIVE / TRACEABLE / ACTIONABLE
+
+---
+
+## B24 — S001 SignIn Fix (2026-09-29)
+
+### Chained GAPs Resolved (4)
+
+| GAP | Issue | Fix |
+|-----|-------|-----|
+| GAP-63 | JS response nesting | `data.data.auth_url` |
+| GAP-64 | bot_id parameter | `bot_id` added |
+| GAP-65 | CSRF token | meta + header |
+| GAP-66 | origin parameter | `origin` added |
+
+### Files Changed (3)
+
+- resources/views/welcome.blade.php (CSRF + fetch)
+- app/Http/Controllers/Api/V1/AuthController.php (origin + bot_id)
+- config/services.php (bot_id mapping)
+
+### BotFather Setup
+
+- Bot: FelagiMarketBot (8629327448)
+- Domain: zagcreativity.com
+
+### Live URLs (SOT)
+
+| URL | Purpose |
+|-----|---------|
+| https://zagcreativity.com/handoff/SOURCE_OF_TRUTH.md | Reading |
+| https://zagcreativity.com/handoff/FELAGI_STATUS_REPORT.md | Reading |
+| https://zagcreativity.com/downloads/SOURCE_OF_TRUTH.md | Download |
+| https://zagcreativity.com/downloads/FELAGI_STATUS_REPORT.md | Download |
 
 
 ---
 
-## GAP-S003-PHOTO — DEFERRED — profile_photo upload
-
-**Type:** UNKNOWN (design spec requires, backend missing)
-**Opened:** 2026-09-30
-**Status:** DEFERRED
-
-**Issue:** S003 spec requires `profile_photo` file upload (0–server-bound).
-Backend has no file upload endpoint.
-
-**Design ref:** Product_Design/Final_Screen_by_Screen_Specifications.md → S003 Fields
-
-**Resolution path:**
-- Backend: add POST /api/v1/profile/photo (multipart)
-- Storage: filesystem disk
-- Frontend: file input + preview
-
-**Not guessed — explicitly deferred.**
-
-## GAP Resolutions (2026-09-30)
-
-- ✅ GAP-S003-PHOTO — RESOLVED via L253
-- ✅ GAP-S019-BOOST-API — RESOLVED via L254
-- ✅ GAP-S021-REPORT-API — RESOLVED via L255
-- ✅ GAP-S022-TELEGRAM-API — RESOLVED via L256
-- ✅ GAP-S023-UNLOCK-API — RESOLVED via L257
-
----
-
-# 🎯 WORK PACKAGES
-
-# WORK PACKAGES — Felagi v1.4.2
-Last Updated: 2026-09-29 (WP-27b DONE)
-
-## Status Legend
-NOT_STARTED / READY / IN_PROGRESS / BLOCKED / IMPLEMENTED / INTEGRATED / TESTED / VERIFIED / DONE / DEFERRED / N/A
-
-## Package List
-
-| WP | Scope | Status | Blocker |
-|----|-------|--------|---------|
-| WP-01 | Foundation Registry | **DONE** | — |
-| WP-02 | Static Verification Re-run | **VERIFIED** (7,810+ PASS) | — |
-| WP-03 | Browser/A11y Render (G04) | **BLOCKED** | Chromium/device |
-| WP-04 | Flutter Compile (G05) | **BLOCKED** | Flutter/Dart SDK |
-| **WP-05** | **Backend Services** | **✅ DONE** | **COMPLETE** |
-| WP-06 | Amharic Runtime (G08) | **PARTIAL** | Native reviewer |
-| WP-07 | Marketplace Baseline (G07) | **BLOCKED** | Measured data |
-| WP-08 | Observability (G09) | **BLOCKED** | Telemetry env |
-| WP-09 | Production Gates | **BLOCKED** | WP-03..08 |
-| WP-10 | AI Evaluation Live | **BLOCKED** | AI provider |
-| WP-11 | Payment Live | **BLOCKED** | Payment provider |
-| WP-12 | Sponsored Ads Serving | **BLOCKED** | Ads infra |
-| WP-13 | Admin Change Lifecycle | **DONE** ✅ | — |
-| WP-13b | Reauth + TOTP 2FA + Idempotency | **DONE** ✅ | — |
-| WP-05a | Auth Attempts (auth_attempts + PKCE) | **DONE** ✅ | — |
-| WP-05b | Telegram Foundation (3 models + read endpoints) | **DONE** ✅ | — |
-| WP-27 | Telegram OIDC Full Flow | **DONE** ✅ | — |
-| WP-27b | HMAC-Signed User Binding (D-091 fix) | **DONE** ✅ | — |
-| WP-14 | Telegram Delivery | **BLOCKED** | Bot token |
-| WP-15 | Font Glyph Coverage | **BLOCKED** | Licensed font |
-| WP-16 | Amharic Linguistic QA | **BLOCKED** | Native reviewers |
-| WP-17 | Responsive 46-Screen | **BLOCKED** | Real browsers |
-| WP-18 | A11y 46-Screen | **BLOCKED** | AT + browser |
-| WP-19 | Runtime State Live | **BLOCKED** | Full stack |
-| WP-20 | Error Recovery Live | **BLOCKED** | Fault injection |
-| **WP-21** | **Laravel/cPanel Deployment** | **✅ DONE** | **COMPLETE** |
-| **WP-22** | **DB Queue + Cron Setup** | **✅ DONE** | **COMPLETE** |
-| WP-23 | Backup Restore Drill | **BLOCKED** | Backup target |
-| WP-24 | T01-T18 Integration Tests | **BLOCKED** | Felagi routes needed |
-| WP-25 | Webhook Signature | **BLOCKED** | Provider sandbox |
-| WP-26 | File Malware Scanning | **BLOCKED** | Host AV |
-| WP-28 | Safe Mode Drills | **BLOCKED** | Full stack |
-
-| WP-13c | 2FA Enrollment UI | **DEFERRED** | design unclear |
-## Statistics
-- DONE: 10 (WP-01, WP-05, WP-05a, WP-05b, WP-13, WP-13b, WP-21, WP-22, WP-27, WP-27b)
-- VERIFIED: 1 (WP-02)
-- PARTIAL: 1 (WP-06)
-- BLOCKED: 20
-
-## WP-21 Completion Details
-**Date:** 2026-09-29
-**Deliverables:**
-- Laravel 11.56.1 at `~/felagi_app/`
-- MySQL DB `zagcreht_felagi` (9 tables)
-- HTTPS live: https://zagcreativity.com
-- Cron: 1-min scheduler
-- Bundle: `Felagi_v1.4.2_20260929-0903.bundle`
-
-## WP-13 Completion Details
-**Date:** 2026-09-29
-**Status:** ✅ DONE
-
-**Files:** 14 new + 3 patched
-**Routes:** 10 admin routes registered
-**Tests:** 8 passed (15 assertions)
-**Evidence:** tests/Feature/Admin/ChangeLifecycleTest.php
-
-**Patches:**
-- BaseApiController — added AuthorizesRequests trait
-- UserFactory — schema-aligned (telegram_subject, full_name)
-- routes/api.php — admin changes block
-
-**Related:**
-- WP-13b (follow-up): Reauth + Idempotency + Second Factor
-- GAP-45, GAP-46, GAP-47 — deferred to WP-13b
-
----
-## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
-Original WP table (WP-01 → WP-28) preserved above.
-B-Blocks are a separate tracking category (see D-110, U-21).
-
-## B-Blocks — Documentation/Quality Blocks
-
-| Block | Scope | Status | Evidence |
-|-------|-------|--------|----------|
-| B10 | Constitution Compliance Block (8 fixes) | DONE | IMPLEMENTATION_LEDGER L212 |
-| B11 | Main Admin Foundation verification (14/14 artifacts) | DONE | — |
-| B12 | Bundle refresh @ 1343_B12_DONE | DONE | Bundle artifact |
-| B13 | /downloads/ index (GAP-61 closed) | DONE | HTTP 200 verified |
-| B14 | GAP-62 registration + B10 mislabel fix | DONE | OPEN_GAPS |
-| B15 | S001 Welcome at production root (GAP-62 closed) | DONE | HTTP 200 + title |
-| B16 | Non-admin tests (+16) + .bak cleanup | DONE | 106 tests total |
-| B17 | Ledger Integrity Sweep | DONE | This entry |
-
-## B-Blocks vs Work Packages — Formal Relationship (UNKNOWN U-21)
-
-The relationship between "B-blocks" and "Work Packages" is not formally
-defined. Evidence suggests B-blocks are:
-- Documentation/quality improvements
-- Cross-cutting fixes (not feature work)
-- Tracked in IMPLEMENTATION_LEDGER with L-IDs (L212-L216)
-
-They do NOT appear in the WP statistics table above.
-This may be intentional (separate tracking) or a gap.
-
-**Decision required from stakeholder:** Should B-blocks be:
-(a) Formalized as WPs (renumber to WP-29+)?
-(b) Kept as a separate "blocks" category?
-(c) Merged into existing WPs?
-
-For now: documented as-is. Do not guess (per D-096/D-097 pattern).
-
-## B17 Statistics Update
-
-WP totals remain: 10 DONE, 1 VERIFIED, 1 PARTIAL, 16 BLOCKED, 1 DEFERRED.
-B-Blocks totals: **8 DONE** (B10, B11, B12, B13, B14, B15, B16, B17).
-
-B-Blocks are NOT counted in WP totals (see U-21).
-| B18-B24 | Ledger drift backfill | DONE | IMPLEMENTATION_LEDGER L221-L227 |
-| B25 | Payment domain tests (+54) | DONE | IMPLEMENTATION_LEDGER L217 |
-| B26 | AI/Comparison domain tests (+68) | DONE | IMPLEMENTATION_LEDGER L218 |
-| B27 | Safety/Marketplace tests (+66) + GAP-71 fix | DONE | IMPLEMENTATION_LEDGER L219 |
-| B28 | Settings/Role tests (+62) | DONE | IMPLEMENTATION_LEDGER L220 |
-| GAP-71b | Attachment factory + HasFactory | DONE | IMPLEMENTATION_LEDGER L228 |
-
----
-
-## WP-05c — Admin Read Endpoints (BLOCKED_ON_UNKNOWN)
-
-**Registered:** 2026-09-30 (discovered during Phase D audit)
-**Status:** BLOCKED_ON_UNKNOWN
-**Spec request:** docs/spec-requests/WP-05c_admin_read_endpoints.md
-
-### Why BLOCKED_ON_UNKNOWN
-
-- Spec request document exists but marked "PENDING STAKEHOLDER"
-- 6 UNKNOWN items (per spec request):
-  1. Which admin resources need read endpoints? (Users? Needs? Offers? Payments? Audit logs?)
-  2. What fields per resource?
-  3. Pagination strategy? (cursor vs offset)
-  4. Filter/sort/search requirements?
-  5. Field-level authorization?
-  6. Response envelope?
-- Constitution Art. "Do not guess missing requirements" — no implementation without LOCKED spec
-- Constitution Art. "UNKNOWN != MISSING" — registered as UNKNOWN, not MISSING
-
-### What We Know
-
-- Admin WRITE endpoints exist: /api/v1/admin/changes/* (16 routes)
-- 2 controllers: AdminChangeController, AdminTelegramController
-- Authorization pattern: SettingPolicy (extensible)
-- Estimated work after spec: 3-5 controllers, 5-10 routes, 20-30 tests
-
-### Required Action
-
-Stakeholder to provide LOCKED spec. Then WP-05c can be unblocked.
-
-### Escalation
-
-- Product Owner: (UNKNOWN — to be filled)
-- Design Owner: (UNKNOWN — to be filled)
-- Release Owner: (UNKNOWN — to be filled)
-| GAP-71c | 14 additional factories + HasFactory | DONE | IMPLEMENTATION_LEDGER L229 |
-| WIDGET-FLOW | OIDC -> Widget pivot | DONE | IMPLEMENTATION_LEDGER L230 |
-| S003-PROFILE | Post-login Profile screen | DONE | IMPLEMENTATION_LEDGER L231 |
-| S004-BROWSE | Browse Needs (full) | DONE | IMPLEMENTATION_LEDGER L232 |
-| S005-CREATE | Create Need (full) | DONE | IMPLEMENTATION_LEDGER L233 |
-| S008-DETAIL | Need Details (full) | DONE | IMPLEMENTATION_LEDGER L234 |
-| S009-MY-NEEDS | My Needs (full) | DONE | IMPLEMENTATION_LEDGER L235 |
-| S011-SUBMIT-OFFER | Submit Offer (full) | DONE | IMPLEMENTATION_LEDGER L236 |
-| S010-RECEIVED-OFFERS | Received Offers (full) | DONE | IMPLEMENTATION_LEDGER L237 |
-| S012-OFFER-DETAIL | Offer Detail (full) | DONE | IMPLEMENTATION_LEDGER L238 |
-| S013-MY-OFFERS | My Offers (full) | DONE | IMPLEMENTATION_LEDGER |
-| S018-NOTIFICATIONS | Notifications (full) | DONE | IMPLEMENTATION_LEDGER |
-| S017-MESSAGES | Messages (full) | DONE | IMPLEMENTATION_LEDGER |
-| S014-COMPARE | Compare Confirmation (full) | DONE | IMPLEMENTATION_LEDGER |
-| S006-PUBLIC-PREVIEW | Public Preview (full) | DONE | IMPLEMENTATION_LEDGER |
-| S007-CREATED | Need-Created (full) | DONE | IMPLEMENTATION_LEDGER |
-| S015-COMPARISON-RESULT | AI Comparison Result (full) | DONE | IMPLEMENTATION_LEDGER |
-| S016-COMPARISON-HISTORY | Comparison History (full) | DONE | IMPLEMENTATION_LEDGER |
-| S019-BOOST | Boost (full) | DONE | IMPLEMENTATION_LEDGER |
-| S020-RATING | Rating (full) | DONE | IMPLEMENTATION_LEDGER |
-| S021-REPORT | Report/Support (full) | DONE | IMPLEMENTATION_LEDGER |
-| S022-TELEGRAM | Telegram Publications (full) | DONE | IMPLEMENTATION_LEDGER |
-| S023-UNLOCK | Offer Unlock (full) | DONE | IMPLEMENTATION_LEDGER |
-| A001-A023 | Admin Screens (23, placeholders) | DONE | IMPLEMENTATION_LEDGER L252 |
-
----
-
-# 📖 HANDOFF STATE
+## SECTION 2 — CURRENT STATE
+**Source:** HANDOFF_STATE.md
 
 # HANDOFF STATE — Felagi v1.4.2
 Last Updated: 2026-09-29 (B17 — Ledger Integrity Sweep)
@@ -1217,512 +1012,1088 @@ All 4 artifacts in ~/ (supersede B19 bundles):
 - Both repos CLEAN
 
 ---
-## B25 — Payment Domain Test Suite (WP-B25 / R-TEST-01) — 2026-09-30
 
-### What Changed
+## SECTION 3 — DECISION LOG
+**Source:** DECISION_LOG.md
+
+# DECISION LOG — Felagi v1.4.2
+Last Updated: 2026-09-29
+
+| ID | Decision | Basis | Date |
+|----|----------|-------|------|
+| D-001 | Treat v1.4.2 as locked baseline | User + START_HERE | 2026-09-29 |
+| D-002 | No architecture changes | Constitution | 2026-09-29 |
+| D-003 | No file modification without approval | User directive | 2026-09-29 |
+| D-004 | Audit before implementation | Constitution | 2026-09-29 |
+| D-005 | v1.4.2 = doc-only over v1.4.1 | Handoff_Cleanup | 2026-09-29 |
+| D-006 | Historical findings retained | Final_Gap_Audit | 2026-09-29 |
+| D-007 | Source PASS ≠ production PASS | Release_Gates | 2026-09-29 |
+| D-008 | Positive-fee activation BLOCKED | N10 | 2026-09-29 |
+| D-009 | Ads master remains OFF | N13 + A023 | 2026-09-29 |
+| D-010 | 18 vs 23 admin = IA vs inventory | Final_IA + Inventory | 2026-09-29 |
+| D-011 | No implementation without approval | Constitution | 2026-09-29 |
+| D-012 | Continue with canonical ledgers only | User request | 2026-09-29 |
+| D-013 | Chat interruption mitigated via ledgers | User concern | 2026-09-29 |
+| D-014 | Server (PHP/MySQL/Composer) verified | env check | 2026-09-29 |
+| D-015 | Local toolchain missing (Flutter/Node/Python3.10+) | env check | 2026-09-29 |
+| D-016 | Python 3.6.8 insufficient for Tools/*.py | env check | 2026-09-29 |
+| D-017 | WP-21 can start pending approval | env check | 2026-09-29 |
+| D-018 | WP-02 cannot re-run without Python3.10+ + Node | env check | 2026-09-29 |
+| D-019 | BEHAQ archived, not deleted | safety | 2026-09-29 |
+| D-020 | Google API key names removed | security | 2026-09-29 |
+| D-021 | 0-byte files cleaned (333) | cleanup | 2026-09-29 |
+| D-022 | Felagi stays at `~/felagi_extracted/` | user choice | 2026-09-29 |
+| D-023 | Laravel app goes to `~/felagi_app/` | convention | 2026-09-29 |
+| D-024 | Awaiting WP-21 install approval | Constitution | 2026-09-29 |
+
+## WP-21 Deployment Decisions (2026-09-29)
+
+| ID | Decision | Basis | Date |
+|----|----------|-------|------|
+| D-025 | User approved "a b" — full WP-21 | User explicit | 2026-09-29 |
+| D-026 | MySQL `zagcreht_felagi` (with prefix) | cPanel required | 2026-09-29 |
+| D-027 | MySQL user `zagcreht_felagi_user` | cPanel required | 2026-09-29 |
+| D-028 | `.my.cnf` auto password | User request | 2026-09-29 |
+| D-029 | DB_PASSWORD quoted in .env | `#` special char | 2026-09-29 |
+| D-030 | Laravel 11 (not 10) | Latest stable | 2026-09-29 |
+| D-031 | public_html symlink (not move) | Reversible | 2026-09-29 |
+| D-032 | Cron runs every 1 minute | Laravel scheduler | 2026-09-29 |
+| D-033 | Vite not built (Node.js missing) | Environment limit | 2026-09-29 |
+| D-034 | Keep Laravel welcome page temporarily | Felagi views pending | 2026-09-29 |
+
+## WP-05 Migration Decisions (2026-09-29)
+
+| ID | Decision | Basis | Date |
+|----|----------|-------|------|
+| D-035 | Users use UUID primary key | DFM §3.2 | 2026-09-29 |
+| D-036 | user_roles uses composite PK (user_id, role) | DFM §3.2 | 2026-09-29 |
+| D-037 | Fix telegram_publication_consent_at: useCurrent() | MySQL strict mode | 2026-09-29 |
+| D-038 | Composite unique index order: (id, comparison_id) | MySQL FK requirement | 2026-09-29 |
+| D-039 | ratings uses CHECK constraints | DFM §3.2 | 2026-09-29 |
+| D-040 | payments.need_id NOT NULL | DFM §3.2 (both purposes) | 2026-09-29 |
+
+## WP-05 Phase 6-9 Decisions (2026-09-29)
+
+| ID | Decision | Basis | Date |
+|----|----------|-------|------|
+| D-041 | audit_logs uses append-only + hash chain | DFM §3.2 | 2026-09-29 |
+| D-042 | settings.key is PRIMARY (not UUID) | DFM §3.2 | 2026-09-29 |
+| D-043 | idempotency_keys uses composite PK | DFM §3.2 | 2026-09-29 |
+| D-044 | telegram_publications has 3-column unique | DFM §3.2 | 2026-09-29 |
+| D-045 | scheduled_settings is Phase 4 only | DFM §3.2 | 2026-09-29 |
+| D-046 | All 38 tables now in production DB | WP-05 | 2026-09-29 |
+
+## WP-05 Phase 11 Decisions (2026-09-29)
+
+| ID | Decision | Basis | Date |
+|----|----------|-------|------|
+| D-047 | Use Sanctum for API auth (not Passport) | DFM §5.1 | 2026-09-29 |
+| D-048 | Sanctum guard added to config/auth.php | Required for auth:sanctum | 2026-09-29 |
+| D-049 | API middleware group configured | bootstrap/app.php | 2026-09-29 |
+| D-050 | Need accept uses FOR UPDATE lock | DFM §4 | 2026-09-29 |
+| D-051 | Rating recomputes user stats atomically | DFM §4 | 2026-09-29 |
+| D-052 | Comparison controller is stub (WP-10 will complete) | AI needs provider | 2026-09-29 |
+| D-053 | Personal access tokens table created | Sanctum auto-publish | 2026-09-29 |
+
+## WP-13 Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-054 | **AUDIT BEFORE ACTION** — no write without prior verification | WP-13 first failure | LOCKED |
+| D-055 | aggregate_id = setting_versions.id | Design: UUID types | ACCEPTED |
+| D-056 | Idempotency-Key from HTTP header (optional) | Pragmatic MVP | ACCEPTED |
+| D-057 | Reauth (5-min) deferred to WP-13b | users.recently_authenticated_at missing | ACCEPTED |
+| D-058 | Test DB via .env.testing | Isolation from production | ACCEPTED |
+| D-059 | UserFactory schema alignment | users table has telegram_subject not name/email | ACCEPTED |
+| D-060 | Notification.php:53 fixed via OutboxEvent model creation | Same file needed anyway | ACCEPTED |
+| D-061 | APP_DEBUG=true in production → separate WP | Out of WP-13 scope | DEFERRED |
+| D-062 | AdminChangeController uses existing BaseApiController envelope | Consistency | ACCEPTED |
+| D-063 | Add AuthorizesRequests trait to BaseApiController | authorize() was broken | ACCEPTED |
+| D-064 | auth_attempts missing → GAP for WP-27 | Not WP-13 concern | DOCUMENTED |
+| D-065 | DatabaseSeeder broken → GAP for WP-05 | Not WP-13 concern | DOCUMENTED |
+| D-066 | WP-13 = narrow scope (Change Lifecycle only) | Constitution: complete but bounded | LOCKED |
+| D-067 | MySQL test DB (not SQLite) | WP-05 offers migration incompatible with SQLite | ACCEPTED |
 
-- 4 new test files under tests/Feature/Models/
-- 54 new tests, 83 new assertions
-- Full suite: 162 → 216 tests (320 → 403 assertions)
-- R-TEST-01 (Payment/AI model tests MISSING) → COVERED
+### Rationale Notes
 
-### State
+**D-054 (LOCKED):** First WP-13 attempt failed because code was written without
+verifying folder existence, table schema, or column names. 5 audit rounds
+established the pattern: Audit → Registry → Plan → Approval → Implement → Verify.
 
-- App HEAD (before commit): 143a756 (B24)
-- B25 code commit: 202716b
-- B25 docs HEAD: git rev-parse HEAD (rolling — not pinned)
-- B25 commit chain: 202716b (code) → docs-only commits to HEAD
-- Design HEAD: 27edd9d (B11)
-- Tests: 216 passed (403 assertions)
-- Evidence: evidence/WP-B25_evidence.md
+**D-055:** `outbox_events.aggregate_id` is UUID type. `settings.key` is VARCHAR.
+Use `setting_versions.id` (UUID) as aggregate_id; setting key goes in payload_json.
 
-### Blocked / Pending
+**D-067:** SQLite cannot `ALTER TABLE ... ADD UNIQUE` in the same way MySQL can.
+WP-05 migration `create_offers_table.php:35` uses MySQL-specific syntax. Chose
+isolated MySQL test DB over fixing migration (which would be architecture change).
 
-- **VERIFIED status:** requires second reviewer (Constitution Art. DONE definition)
-- **B17-B24 ledger backfill:** PENDING (see OPEN_GAPS GAP-70)
-- **Bundle refresh at B25_DONE:** not yet created
+## WP-13b Decisions (2026-09-29)
 
-### Continuity
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-068 | Second factor = **TOTP** (RFC 6238) | User said "OTP" | ACCEPTED |
+| D-069 | Reauth proof = `users.recently_authenticated_at` | Design: "recent reauth proof" | ACCEPTED |
+| D-070 | Idempotency TTL = **24h** | Design: expires_at exists | ACCEPTED |
+| D-071 | Reauth storage = 4 users columns | Design column requirements | ACCEPTED |
+| D-072 | Apply/Verify = outbox consumer jobs | Design: "server jobs" | ACCEPTED |
+| D-073 | Queue:work cron added (bounded, 50s) | DFM §461 | ACCEPTED |
+| D-074 | Test DB APP_KEY = valid 32-byte | PHPUnit encryption | ACCEPTED |
 
-Next developer reading this + IMPLEMENTATION_LEDGER L217 + TEST_VERIFICATION B25
-can resume without chat reconstruction.
-
----
-## B26 — AI/Comparison Domain Test Suite (WP-B26 / R-TEST-02) — 2026-09-30
+### Rationale
 
-### What Changed
-
-- 4 new test files under tests/Feature/Models/ (Comparison domain)
-- 68 new tests, 93 new assertions
-- Full suite: 216 → 284 tests (403 → 496 assertions)
-- R-TEST-02 (AI/Comparison model tests MISSING) → COVERED
-
-### State
-
-- App HEAD (before commit): ce47d24 (B25 final)
-- App HEAD (after commit): (set after commit)
-- Design HEAD: 27edd9d (B11)
-- Tests: 284 passed (496 assertions)
-- Evidence: evidence/WP-B26_evidence.md
+**D-068 (TOTP):** User explicitly said "OTP". No SMS gateway, no SMTP, works offline, standard library (pragmarx/google2fa-laravel).
 
-### Blocked / Pending
-
-- **VERIFIED status:** requires second reviewer
-- **B17-B24 ledger backfill:** PENDING (see OPEN_GAPS GAP-70)
-- **Bundle refresh at B26_DONE:** not yet created
-
-### Continuity
-
-Next developer reading this + IMPLEMENTATION_LEDGER L218 + TEST_VERIFICATION B26
-can resume without chat reconstruction.
-
----
-## B27 — Safety/Marketplace Domain Test Suite — 2026-09-30
-
-### What Changed
-- 4 test files (Category, NeedAward, Attachment, Report): +66 tests
-- Production fix: Attachment::isClean -> isScanClean (GAP-71, approved)
-- Full suite: 284 -> 350 tests (496 -> 595 assertions)
-- R-TEST-03/04/05 -> COVERED
-- GAP-71 -> RESOLVED
-
-### State
-- App HEAD (before commit): 861fd6e (B26)
-- Design HEAD: 27edd9d (B11)
-- Tests: 350 passed (595 assertions)
-- Evidence: evidence/WP-B27_evidence.md
-
-### Blocked / Pending
-- VERIFIED status: requires second reviewer
-- GAP-70 (B17-B24 backfill): PENDING
-- Bundle refresh at B27_DONE: not yet created
-
-### Breaking Change Disclosure
-Attachment::isClean -> isScanClean — user approved, zero callers, in CHANGE_LOG.
-
-### Continuity
-Next developer: L219 + TEST_VERIFICATION B27 + CHANGE_LOG.
-
----
-## B28 — Settings/Role Domain Test Suite — 2026-09-30
-
-### What Changed
-- 3 test files (Setting, SettingDraft, UserRole): +62 tests
-- Full suite: 350 -> 412 tests (595 -> 691 assertions)
-- R-TEST-06 (Setting+SettingDraft): PARTIAL -> COVERED
-- R-TEST-07 (UserRole): 0 -> COVERED
-
-### State
-- App HEAD (before commit): 6db0e86 (B27)
-- Design HEAD: 27edd9d (B11)
-- Tests: 412 passed (691 assertions)
-- Evidence: evidence/WP-B28_evidence.md
-
-### Blocked / Pending
-- VERIFIED status: requires second reviewer
-- GAP-70 (B17-B24 backfill): PENDING
-- Bundle refresh at B28_DONE: not yet created
-
-### R-TEST coverage -- COMPLETE
-All 7 R-TEST items now COVERED:
-- R-TEST-01 (B25), R-TEST-02 (B26), R-TEST-03/04/05 (B27), R-TEST-06/07 (B28)
-
-### Continuity
-Next developer: L220 + TEST_VERIFICATION B28 + CHANGE_LOG.
-
----
-## B18–B24 — Backfill Summary (GAP-70 resolved 2026-09-30)
-
-The B18–B24 commits (2026-09-29) were previously unrecorded in canonical
-ledgers. Backfilled from git history on 2026-09-30. Full details in
-IMPLEMENTATION_LEDGER L221–L227, TEST_VERIFICATION backfill section,
-CHANGE_LOG backfill section.
-
-### Timeline
-| Block | Commit | Scope | Tests Δ |
-|---|---|---|---|
-| B18 | dbc689c | Bundle refresh @ B17_DONE | 0 |
-| B19 | b451224 | Model tests: AuditLog+OutboxEvent+SettingVersion (+25) | 106→131 |
-| B20 | 6c6bcb6 | Bundle refresh @ B19_DONE | 0 |
-| B21 | c64fa28 | Model tests: Notification+Rating+User (+31) + audit + specs | 131→162 |
-| B22 | 1a17a7c + 6bc49c8 + 7a0d21e | STATUS_REPORT + SOURCE_OF_TRUTH + bundle | 0 |
-| B23 | 48217b2 | Public publication to /handoff + /downloads | 0 |
-| B24 | 3e7236c + 143a756 | S001 signIn fix (GAP-63/64/65/66) | 0 |
-
-### Milestone
-- Test suite: 106 → 162 tests (220 → 320 assertions)
-- SOURCE_OF_TRUTH.md consolidated (1927 lines)
-- 4 public URLs published (HTTP 200)
-- Telegram bot configured (FelagiMarketBot: 8629327448)
-
-### State before B25
-- App HEAD: 143a756 (B24)
-- Design HEAD: 27edd9d (B11)
-- Tests: 162 (320 assertions)
-
-
----
-## S003 Profile — Handoff — 2026-09-30
-
-### What Changed
-- Post-login flow: S002 → S003 (/profile) → S004 (/browse)
-- NEW views: profile.blade.php, browse.blade.php
-- NEW routes: /profile, /browse
-
-### Next Steps (Priority Order)
-1. **S004 Browse** (full implementation — design spec available)
-2. **S005-S023** (23 user screens — design spec available)
-3. **A001-A023** (23 admin screens — design spec available)
-4. **GAP-S003-PHOTO** (profile photo upload backend + frontend)
-
-### Design References
-- Product_Design/Final_Screen_by_Screen_Specifications.md
-- Design_Data/screen-manifest.json (46 screens)
-- Design_Data/routes.json (all routes)
-- Design_Data/api-mappings.json (API bindings)
-
-### Continuity
-Read: L231, CHANGE_LOG S003, design spec S004-S023
-
----
-## S004 Browse — Handoff — 2026-09-30
-
-### What Changed
-- Full browse screen implementation (S004 spec)
-- browse.blade.php: 62 → 159 lines (S004 full)
-- lang/en.json + lang/am.json: +30 keys each (47 total)
-- NeedController@index: +validation (keyword/sort/per_page/category_id)
-
-### Test Results
-- S004BrowseTest: 15 tests (41 assertions)
-- Full suite: 439 tests (771 assertions), 0 failures
-
-### Next Steps (Priority Order)
-1. **S005 Create Need** (/needs/new) — form + POST /api/v1/needs
-2. **S008 Need Detail** (/needs/:id)
-3. **S011 Submit Offer** (/needs/:id/offers/new)
-4. **GAP-S003-PHOTO** (profile photo upload)
-5. **A001-A023** (23 admin screens)
-
-### Design References
-- Product_Design/Final_Screen_by_Screen_Specifications.md → S004 (done)
-- Design_Data/screen-manifest.json
-- Design_Data/api-mappings.json
-
-### Continuity
-Read: L232, CHANGE_LOG S004, spec S005
-
----
-## S005 Create Need — Handoff — 2026-09-30
-
-### What Changed
-- Full create-need screen (S005 spec)
-- NEW: resources/views/create-need.blade.php (362 lines)
-- NEW: routes/web.php — GET /needs/new
-- lang/en.json + lang/am.json: +26 keys each (73 total)
-
-### Test Results
-- S005CreateNeedTest: 14 tests (44 assertions)
-- Full suite: 453 tests, 0 failures
-
-### Next Steps (Priority Order)
-1. **S008 Need Detail** (/needs/:id) — view + GET /api/v1/needs/{id}
-2. **S006 Public Preview** (/needs/new/public-preview) — local preview
-3. **S007 Created Success** (/needs/:id/created) — confirmation screen
-4. **S011 Submit Offer** (/needs/:id/offers/new)
-5. **S009 My Needs** (/my/needs)
-6. **GAP-S003-PHOTO** (profile photo upload)
-
-### Continuity
-Read: L233, CHANGE_LOG S005, spec S008
-
----
-## S008 Need Details — Handoff — 2026-09-30
-
-### What Changed
-- Full need-details screen (S008 spec)
-- NEW: resources/views/show-need.blade.php (348 lines)
-- NEW: routes/web.php — GET /needs/{id}
-- lang/en.json + lang/am.json: +18 keys each (91 total)
-
-### Test Results
-- S008NeedDetailTest: 16 tests (28 assertions)
-- Full suite: 469 tests, 0 failures
-
-### Next Steps (Priority Order)
-1. **S009 My Needs** (/my/needs) — GET /api/v1/my/needs
-2. **S010 Need Offers** (/needs/:id/offers) — owner-only offers list
-3. **S011 Submit Offer** (/needs/:id/offers/new)
-4. **S018 Notifications** (/notifications)
-5. **GAP-S003-PHOTO** (profile photo upload)
-
-### Continuity
-Read: L234, CHANGE_LOG S008, spec S009
-
----
-## S009 My Needs — Handoff — 2026-09-30
-
-### What Changed
-- Full my-needs screen (S009 spec)
-- NEW: resources/views/my-needs.blade.php (268 lines)
-- NEW: routes/web.php — GET /my/needs
-- lang/en.json + lang/am.json: +8 keys each (99 total)
-
-### Test Results
-- S009MyNeedsTest: 13 tests (55 assertions)
-- Full suite: 482 tests, 0 failures
-
-### Next Steps (Priority Order)
-1. **S010 Need Offers** (/needs/:id/offers) — owner-only offers list
-2. **S011 Submit Offer** (/needs/:id/offers/new)
-3. **S018 Notifications** (/notifications)
-4. **S007 Created Success** (/needs/:id/created)
-5. **GAP-S003-PHOTO** (profile photo upload)
-
-### Continuity
-Read: L235, CHANGE_LOG S009, spec S010
-
----
-## S011 Submit Offer — Handoff — 2026-09-30
-
-### What Changed
-- Full submit-offer screen (S011 spec)
-- NEW: resources/views/submit-offer.blade.php (434 lines)
-- NEW: routes/web.php — GET /needs/{id}/offers/new
-- lang/en.json + lang/am.json: +20 keys each (119 total)
-
-### Test Results
-- S011SubmitOfferTest: 15 tests (34 assertions)
-- Full suite: 497 tests, 0 failures
-
-### Next Steps (Priority Order)
-1. **S010 Received Offers** (/needs/:id/offers) — owner-only offers list
-2. **S012 Offer Detail** (/offers/:id)
-3. **S018 Notifications** (/notifications)
-4. **S007 Created Success** (/needs/:id/created)
-5. **GAP-S003-PHOTO** (profile photo upload)
-
-### Continuity
-Read: L236, CHANGE_LOG S011, spec S010
-
----
-## S010 Received Offers — Handoff — 2026-09-30
-
-### What Changed
-- Full received-offers screen (S010 spec)
-- NEW: resources/views/received-offers.blade.php (336 lines)
-- NEW: routes/web.php — GET /needs/{id}/offers
-- lang/en.json + lang/am.json: +13 keys each (132 total)
-
-### Test Results
-- S010ReceivedOffersTest: 12 tests (32 assertions)
-- Full suite: 509 tests, 0 failures
-
-### Next Steps (Priority Order)
-1. **S012 Offer Detail** (/offers/:id) — accept/reject flow
-2. **S014 Compare Offers** (/needs/:id/compare)
-3. **S013 My Offers** (/my/offers) — provider list
-4. **S018 Notifications** (/notifications)
-5. **S007 Created Success** (/needs/:id/created)
-6. **GAP-S003-PHOTO** (profile photo upload)
-
-### Continuity
-Read: L237, CHANGE_LOG S010, spec S012
-
----
-## S012 Offer Detail — Handoff — 2026-09-30
-
-### What Changed
-- Full offer-detail screen (S012 spec)
-- NEW: resources/views/offer-detail.blade.php (476 lines)
-- NEW: routes/web.php — GET /offers/{id}
-- lang/en.json + lang/am.json: +22 keys each (154 total)
-
-### Test Results
-- S012OfferDetailTest: 16 tests (27 assertions)
-- Full suite: 525 tests, 0 failures
-
-### Next Steps (Priority Order)
-1. **S013 My Offers** (/my/offers) — provider list
-2. **S018 Notifications** (/notifications)
-3. **S014 Compare Offers** (/needs/:id/compare)
-4. **S007 Created Success** (/needs/:id/created)
-5. **S017 Messages** (/offers/:id/messages)
-6. **GAP-S003-PHOTO** (profile photo upload)
-
-### Continuity
-Read: L238, CHANGE_LOG S012, spec S013
-
----
-## S013 + S018 + S017 + S014 — Handoff — 2026-09-30
-
-### What Changed
-- NEW: my-offers.blade.php (257 lines)
-- NEW: notifications.blade.php (322 lines)
-- NEW: offer-messages.blade.php (328 lines)
-- NEW: compare-offers.blade.php (375 lines)
-- UPD: routes/web.php — 4 new routes
-- UPD: lang/en.json + lang/am.json — +31 keys each (185 total)
-- NEW: NotificationFactory + MessageFactory
-- UPD: Notification + Message models — HasFactory trait
-
-### Test Results
-- 4 new test files: 29 tests, 54 assertions
-- Full suite: 554 tests, 0 failures
-
-### Next Steps
-1. **S007 Created Success** (/needs/:id/created)
-2. **S006 Public Preview** (/needs/new/public-preview)
-3. **S015/S016 Comparison Result** (requires WP-10)
-4. **S019-S023** (remaining user screens)
-5. **GAP-S003-PHOTO** (profile photo upload)
-6. **A001-A023** (23 admin screens)
-
-### Continuity
-Read: L239-L242, spec S007
-
----
-## S006+S007+S015+S016+S019+S020+S021+S022+S023 — Handoff — 2026-09-30
-
-### What Changed
-- 9 new views (2,148 lines total)
-- 9 new web routes
-- 9 new test files (34 tests, 78 assertions)
-- lang: 185 -> 330 (both en/am)
-- Full suite: 554 -> 588 tests, 0 failures
-
-### GAPs Registered
-- GAP-S019-BOOST-API, GAP-S021-REPORT-API
-- GAP-S022-TELEGRAM-API, GAP-S023-UNLOCK-API
-
-### What's Left (User Screens)
-All user screens (S001-S023) now implemented (some pending backend).
-
-### Next Steps
-1. GAP-S003-PHOTO (profile photo upload)
-2. A001-A023 (23 admin screens)
-3. Backend for S019/S021/S022/S023 (register as WPs)
-
-### Continuity
-Read: L243-L251, HANDOFF_STATE
-
----
-## A001-A023 Admin Screens — Handoff — 2026-09-30
-
-### What Changed
-- NEW: layouts/admin.blade.php (184 lines) — shared admin layout
-- NEW: 23 admin views (admin/*.blade.php)
-- NEW: 23 admin routes (prefix /admin)
-- lang: +139 keys each (469 total)
-- Tests: AdminScreensTest (72 tests, 211 assertions)
-- Full suite: 660 tests, 0 failures
-
-### Backend Status
-- All 23 admin screens are PLACEHOLDERS
-- AdminChangeController + AdminTelegramController exist (WP-13)
-- Read endpoints blocked (WP-05c BLOCKED_ON_UNKNOWN)
-- Pending notices shown to user
-
-### All Screens Complete
-- S001-S023 (23 user screens) ✅
-- A001-A023 (23 admin screens) ✅ (placeholders)
-
-### GAPs Registered (previously)
-- GAP-S019-BOOST-API, GAP-S021-REPORT-API
-- GAP-S022-TELEGRAM-API, GAP-S023-UNLOCK-API
-- WP-05c (admin read endpoints BLOCKED_ON_UNKNOWN)
-- GAP-S003-PHOTO (profile photo upload)
-
-### Next Steps
-1. GAP-S003-PHOTO (2-3h)
-2. Backend GAPs (S019/S021/S022/S023) — register as new WPs
-3. WP-05c admin read endpoints (needs LOCKED spec)
-
-### Continuity
-Read: L252, HANDOFF_STATE
-
----
-## Backend GAPs Resolved (L253-L257) — 2026-09-30
-
-### What Changed
-- GAP-S003-PHOTO RESOLVED (profile photo upload endpoint + UI)
-- GAP-S019-BOOST-API RESOLVED (BoostController + 3 routes)
-- GAP-S021-REPORT-API RESOLVED (ReportController + payload fix)
-- GAP-S022-TELEGRAM-API RESOLVED (TelegramPublicationController)
-- GAP-S023-UNLOCK-API RESOLVED (OfferSubmission model + OfferUnlockController)
-
-### Migrations
-- add_profile_photo_path_to_users
-- make_boost_payment_id_nullable
-- create_offer_submissions_table
-
-### Test Results
-- 5 new test files, 30 tests
-- Full suite: 690 tests, 0 failures
-
-### Remaining GAPs
-- WP-05c (admin read endpoints — BLOCKED_ON_UNKNOWN)
-- WP-10 (AI provider — BLOCKED)
-
-### Continuity
-Read: L253-L257, OPEN_GAPS, HANDOFF_STATE
+**D-069 (Session timestamp):** Design says "recent re-authentication proof" — session-based, cookie-session admin flow (DFM §216), 5-minute window LOCKED.
+
+**D-070 (TTL 24h):** Standard retry window; cleanup job runs hourly.
+
+**D-071 (4 columns):** recently_authenticated_at, totp_secret (encrypted), totp_enabled_at, totp_recovery_codes (encrypted:array). All nullable.
+
+**D-072 (Outbox jobs):** Design: "Apply and verification are server jobs, never browser assertions."
+
+**D-073 (cron):** max-time=50 < 60s interval = non-overlap.
+
+**D-074 (APP_KEY):** Old test key was invalid (33 bytes). Replaced with valid 32-byte key.
+
+### Deferred to WP-13c
+
+| Req | Reason |
+|-----|--------|
+| TOTP enrollment UI | Frontend (Flutter/Admin UI) — WP-13c |
+| Recovery codes display UI | Frontend — WP-13c |
+| Self-service disable 2FA | Frontend — WP-13c |
+
+## GAP-54 Decision (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-075 | APP_DEBUG=false in production + log rotation | Security best practice + DFM §449 (audit) | ACCEPTED |
+
+### Rationale
+
+Production stack traces expose internal paths, DB queries, library versions. Laravel default when APP_ENV=production is APP_DEBUG=false; but .env explicitly set true. Fix: change .env to false, rebuild config cache, archive existing log.
+
+Rollback: .env.production.bak.20260929_112618.
+
+### Verification
+
+- config('app.debug') = false
+- HTTP /up = 200
+- HTTP / = 200
+- HTTP 404 test = no stack trace
+- Laravel log = archived (944 lines)
+
+## Config Cache Incident (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-076 | Test migration MUST clear config cache first | Incident RCA | LOCKED |
+
+### Incident
+
+During WP-05a (auth_attempts migration), ran "php artisan migrate --env=testing".
+
+Expected: migrate on zagcreht_felagi_test (test DB)
+Actual: migrated on zagcreht_felagi (PRODUCTION)
+
+### Root Cause
+
+- bootstrap/cache/config.php existed (cached)
+- Cached config pointed to production DB
+- --env=testing changes APP_ENV but cache wins before .env.testing is read
+- Laravel 11 loads cached config before environment-specific .env.*
+
+### Impact
+
+- Production auth_attempts table created (0 rows, harmless)
+- Production users.recently_authenticated_at already existed (WP-13b)
+- No data modification; no user-visible impact
+- HTTP endpoints continued 200
+
+### Resolution (D-076 LOCKED)
+
+Every test DB migration MUST:
+1. php artisan config:clear  -- remove cached config first
+2. APP_ENV=testing php artisan migrate  -- use env var, not flag
+
+Tooling: bin/migrate-test.sh created (always clears cache).
+
+Rollback available:
+- .env.production.bak.20260929_112618
+- Production auth_attempts retained (additive; needed for WP-27)
+- Production users.recently_authenticated_at retained (nullable)
+
+### Prevention
+
+Before: php artisan migrate --env=testing
+After:  php artisan config:clear && APP_ENV=testing php artisan migrate
+
+Assumption Before: --env loads .env.testing
+Fact: --env only changes APP_ENV
+
+Constitution compliance: RULE #1 (Audit Before Action) violation documented; not repeated.
+
+## WP-05a Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-077 | 64-char PKCE verifier | RFC 7636 (43-128 range) | ACCEPTED |
+| D-078 | Encrypted pkce_verifier at rest | Laravel encrypted cast | ACCEPTED |
+| D-079 | handoff_hash SHA-256 single-use | DFM §218 | ACCEPTED |
+| D-080 | telegramExchange stays 501 | WP-27 credentials needed | ACCEPTED |
+| D-081 | Carbon 3.x: use abs() for time diffs | Laravel 11 migration | ACCEPTED |
+
+### Rationale
+
+**D-077:** 64 chars is within RFC 7636 range and gives 384 bits entropy.
+
+**D-078:** DFM §218 says "encrypted PKCE verifier". Laravel `encrypted` cast handles this transparently.
+
+**D-079:** Handoff code returned once; only hash stored. Single-use enforced via `consumed_at`.
+
+**D-080:** Full OIDC exchange requires Telegram client_id/secret + JWKS endpoint. Deferred to WP-27.
+
+**D-081:** Carbon 3.x in Laravel 11 changed `diffInMinutes()` to return signed values. Test assertions must use `abs()`.
+
+## WP-05b Decision (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-082 | WP-05b read-only foundation only | Write endpoints need bot token (WP-27) | LOCKED |
+| D-083 | Append-only TelegramPublicationEvent (no timestamps) | Audit trail for publication events | ACCEPTED |
+| D-084 | 9 publication states as constants | DFM telegram_publications migration | ACCEPTED |
+
+## WP-05b Process Failure (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-085 | Test scripts MUST abort on test FAIL before commit | Incident RCA | LOCKED |
+
+### Incident
+
+During WP-05b script 4/4, test command was piped:
+
+    APP_ENV=testing php artisan test ... 2>&1 | tail -20
+
+Then unconditionally:
+
+    git commit -m "feat: WP-05b ..."
+
+Root cause: The "| tail" pipe swallowed PHPUnit exit code. "set -e" does not catch pipe failures by default (needs pipefail). Commit was created despite 5 FAILED tests.
+
+### Impact
+
+- Commit e0cea05 made with 5 failing tests
+- Ledgers claimed DONE before verification
+- Constitution RULE #1 (Audit Before Action) violated
+- IMPLEMENTED != VERIFIED violated
+
+### Detection
+
+User ran ledger audit. 5 test failures surfaced. Root cause identified:
+1. TYPE constants wrong ("CHANNEL" vs "OWNED_CHANNEL")
+2. telegram_chat_id passed as string, schema requires bigint
+3. permission_evidence NOT NULL, was not provided
+
+### Resolution
+
+- Amended commit e0cea05 -> da31d49 with corrected model + test
+- 12/12 tests PASS after fix
+- Full suite: 62 PASS (127 assertions)
+- D-085 LOCKED prevents recurrence
+
+### Prevention (LOCKED)
+
+Before (failed):
+    php artisan test ... | tail -20
+    git commit ...
+
+After (required):
+    php artisan test ... || { echo "TESTS FAILED — ABORT"; exit 1; }
+    git commit ...
+
+Or:
+    set -o pipefail
+    php artisan test ... | tail -20
+
+### Rules
+
+1. Test output MUST NOT be piped through tail/head before commit without pipefail
+2. OR explicit "|| { echo FAILED; exit 1; }" after each test command
+3. Ledgers MUST claim DONE only after verified PASS
+4. Constitution compliance: violation documented; rule LOCKED
+
+## WP-27 Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-086 | firebase/php-jwt for JWT verification | Well-tested, Laravel-agnostic | ACCEPTED |
+| D-087 | JWKS cached 1h to avoid rate limits | DFM §218 (JWKS) + perf | ACCEPTED |
+| D-088 | 60s clock skew tolerance | Production-grade JWT | ACCEPTED |
+| D-089 | TelegramOidcService returns completeLogin() | Atomic flow | ACCEPTED |
+| D-090 | Sanctum UUID migration in production | personal_access_tokens.tokenable_id fix | ACCEPTED |
+| D-091 | telegramExchange finds user via recently_authenticated_at | Simpler than storing subject on attempt | PARTIAL_REVIEW |
+
+### Rationale
+
+**D-086:** `firebase/php-jwt` v7.2.1 is the de-facto JWT library for PHP. Security advisory noted but package actively maintained. Alternative `lcobucci/jwt` more complex; not needed for RS256 verification.
+
+**D-087:** JWKS from Telegram rarely changes. Caching 1h reduces external calls; falls through on cache miss.
+
+**D-088:** 60-second leeway is industry standard for distributed auth.
+
+**D-089:** Atomic completeLogin() = single transaction through exchange → validate → upsert → markReauth. Simplifies controller.
+
+**D-090:** Sanctum's default `bigint` tokenable_id incompatible with our UUID User model. Fix applied to test + production. Production table was empty → no data loss risk.
+
+**D-091:** Telegram's ID token `sub` claim is the user identifier, but we don't store it on the auth_attempt. Instead, we find the user who most recently authenticated (last 5 minutes) — which is the one who just completed OIDC. **Trade-off:** Race condition possible if multiple users log in within 5 minutes. **Mitigation:** handoff code expires in 60 seconds (per D-077). **Future:** store user_id on auth_attempt during callback (WP-27b).
+
+## WP-27b Decisions (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-092 | HMAC-signed handoff (no schema change) | DFM §218 preserved | LOCKED |
+| D-093 | HMAC-SHA256 with APP_KEY | Standard, secure | ACCEPTED |
+| D-094 | D-091 RESOLVED — race condition fixed | T25 test verifies | RESOLVED |
+
+### Rationale
+
+**D-092:** Adding user_id column to auth_attempts would deviate from DFM §218 (LOCKED schema). Instead, embed user_id in HMAC-signed handoff code. No schema change → no architecture change → no explicit approval required.
+
+**D-093:** HMAC-SHA256 is NIST-approved, and Laravel's app.key (base64 32 bytes) is a secure signing key. Same primitive as Sanctum.
+
+**D-094:** telegramExchange() no longer queries `recently_authenticated_at`. User is extracted from HMAC-verified payload. T25 confirms correct user in multi-user race.
+
+### Trade-off Analysis
+
+| Criterion | D-092 (HMAC) | Alternative (user_id column) |
+|-----------|--------------|------------------------------|
+| DFM §218 preserved | ✅ | ❌ |
+| Approval required | No | Yes |
+| Handoff length | ~180 chars | ~64 chars |
+| Security | HMAC-SHA256 | DB lookup |
+| Race-free | ✅ | ✅ |
+
+## D-095 — Test Pipe Process Failure (LOCKED)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-095 | Test scripts MUST redirect to file (not pipe) before exit check | 2nd RCA | LOCKED |
+
+### Incident (Second Occurrence)
+
+Same root cause as D-085, replicated in WP-27b script:
+
+    APP_ENV=testing php artisan test ... 2>&1 | tail -35 || { exit 1; }
+
+The pipe swallowed PHPUnit exit code. Despite the || guard, the pipe consumed the exit status; commit made with 2 FAILED tests.
+
+### Detection
+
+State-check after script interruption surfaced:
+- AuthAttemptTest: 1 failed
+- TelegramOidcTest: 1 failed
+
+Root cause: old tests (WP-05a T08, WP-27 T20) not updated for WP-27b interface changes:
+- consumeByHandoff now returns array{attempt, user} (was ?AuthAttempt)
+- generateHandoff needs optional ?User $user for HMAC binding
+
+### Resolution
+
+- Amended commit cebbaf2 -> eea83e8 with corrected tests
+- All 88 tests PASS (188 assertions)
+- D-095 LOCKED to prevent third occurrence
+
+### Prevention (LOCKED)
+
+FORBIDDEN:
+    php artisan test ... | tail -N || { exit 1; }
+    (pipe consumes exit code — D-085 rule was necessary but insufficient)
+
+REQUIRED:
+    php artisan test ... > /tmp/test_out.txt 2>&1
+    STATUS=$?
+    tail -N /tmp/test_out.txt
+    [ $STATUS -eq 0 ] || { echo "TESTS FAILED"; exit 1; }
+
+OR:
+    set -euo pipefail
+    php artisan test ... | tail -N
+
+### Rules (Stricter than D-085)
+
+1. D-085 (pipefail) — necessary but NOT sufficient
+2. D-095 — file redirect + $? capture is MANDATORY
+3. NEVER pipe test output before exit check without pipefail
+4. ALL test runs MUST verify exit code
+
+Constitution compliance: 2nd violation documented; LOCKED rule stricter.
+
+## D-096 — T01-T18 Integration Test Definitions UNKNOWN — 2026-09-29
+
+**Context:** WP-24 (T01-T18 Integration Tests) registered as BLOCKED
+("Felagi routes needed"). Routes blocker now RESOLVED (47 API routes at
+WP-27b), yet T01-T18 test definitions remain undocumented.
+
+**Evidence:**
+- TEST_VERIFICATION.md L43: "All 18 tests REQUIRES_EVIDENCE — need live stack"
+- No assertions, no acceptance criteria, no test matrix
+- WORK_PACKAGES.md L39 + PRIORITY_PLAN.md L57 refer to T01-T18 without definition
+
+**Decision:** Mark WP-24 as BLOCKED-ON-UNKNOWN. Do not guess test scope.
+
+**Constitution:** UNKNOWN ≠ MISSING.
+
+**Resolution:** Stakeholder provides T01-T18 spec (test names, behaviors, criteria).
 
 ---
 
-# 🚀 HOW TO CONTINUE
+## D-097 — WP-13c Frontend Stack UNKNOWN — 2026-09-29
 
-## 1. Restore from bundle
-```bash
-git clone ~/Felagi_App_v1.4.2_YYYYMMDD-HHMM_FULL-46-COMPLETE.bundle felagi_app
-cd felagi_app
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --force
-```
+**Context:** WP-13c (2FA Enrollment UI) has 4 requirements in
+REQUIREMENT_REGISTRY.md (REQ-WP13C-001..004) but was absent from
+WORK_PACKAGES.md prior to CCB.
 
-## 2. Run tests
-```bash
-vendor/bin/phpunit
-# Expected: OK (699 tests, ~1400 assertions)
-```
+**Evidence:**
+- REQUIREMENT_REGISTRY.md L222-227: 4 requirements, reason "Frontend"
+- REQ-WP13C-004 reason is literally "Design unclear"
+- ARCHITECTURE_MAP.md L42: "Flutter starter (18 classes) — COMPILE BLOCKED"
+- Admin web frontend stack undefined
 
-## 3. Read the audit
-```bash
-cat public/handoff/SOURCE_OF_TRUTH.md
-```
+**Decision:** Register WP-13c as DEFERRED. Do not implement without stack decision.
 
-## 4. Check remaining gaps
-```bash
-cat public/handoff/ledgers/OPEN_GAPS.md
-```
+**Constitution:** Do not guess missing requirements.
 
-## 5. Environment requirements
-- PHP 8.2+
-- MySQL 8+ (database: `zagcreht_felagi`)
-- Laravel 11.x
-- Composer 2.x
+**Resolution:** Stakeholder defines (1) admin frontend stack, (2) design spec,
+(3) lost-factor recovery flow.
+
+## D-098 — Production Root LOCKED Design UNKNOWN — 2026-09-29
+
+**Context:** Production root `https://zagcreativity.com/` shows Laravel default
+welcome page. Previously referenced in B10 CHANGE_LOG as "GAP-57" (mislabel).
+Real GAP-57 = Sanctum UUID migration (DONE).
+
+**Evidence (B14 baseline audit):**
+- Live body: `<title>Laravel</title>` + Laravel starter template
+- routes/web.php: only `Route::get('/')` → view('welcome')
+- resources/views/: only welcome.blade.php (Laravel default)
+- Document root: `public_html` → `felagi_app/public` (correct)
+- LOCKED design search in `~/felagi_extracted/Felagi_Design_Package/`:
+  * Final_Information_Architecture.md — no root/landing route
+  * Final_Navigation_Route_Map.md — no root/landing route
+  * Product_Design/ + UI_Handoff/ — only 1 unrelated match (ui-preview/data.js)
+
+**Decision:** Register GAP-62 as UNKNOWN. Do not create new design.
+Do not implement without LOCKED source.
+
+**Constitution:** Do not redesign/reinterpret. UNKNOWN ≠ MISSING.
+
+**Resolution:** Design owner must either:
+  (a) provide LOCKED production landing page design, or
+  (b) explicitly approve keeping Laravel default root.
+
+**Mislabel correction:** B10 CHANGE_LOG L685 corrected in B14.
+
+## D-099 — S001 Selected for Production Root — 2026-09-29
+
+**Context:** GAP-62 (production root = Laravel default). No LOCKED design
+found in B14 audit.
+
+**New evidence (B15):** Comprehensive search found LOCKED S001 in:
+- UI_Handoff/ui-preview/app.js:144 (reference impl)
+- Localization/app_am.arb (screenS001, purpose, signIn)
+- DFM-FDS-1.4.md §443: "Welcome → login → Home"
+
+**Decision:** S001 Welcome is the LOCKED production entry screen.
+Deploy S001 at `/` with 3 elements only.
+
+**Constitution:** No new design. LOCKED content adapted for web.
+Sign-in target: existing `/api/v1/auth/telegram/start` (WP-27).
+
+**Closes:** GAP-62
+
+## D-100 — API Resources Layer Deferred (design improvement) — 2026-09-29
+
+**Context:** Audit found `app/Http/Resources/` does not exist.
+47 routes return raw model JSON via `$model->toArray()`.
+
+**Assessment:** Not a bug. Current responses work. Improvements would be:
+consistent field filtering, centralized PII protection, versioning.
+
+**Decision:** Defer until LOCKED design specifies the Resources contract.
+Constitution: "Do not guess missing requirements."
+
+**Recorded as design improvement (not critical bug).**
+
+## D-101 — Policy Expansion Deferred (best practice) — 2026-09-29
+
+**Context:** Only `SettingPolicy` exists. Non-admin authz is inline in
+controllers (14 FORBIDDEN returns).
+
+**Assessment:** Not a bug. SettingPolicy auto-discovery verified via tinker
+(`Gate resolves Setting → App\Policies\SettingPolicy`). Inline checks
+correctly return 403/404 — verified by B16 tests.
+
+**Decision:** Defer centralized Policy layer until LOCKED design specifies
+policy-per-model structure. Inline authz is sufficient and tested.
+
+**Recorded as best-practice improvement (not critical).**
+
+---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-102 | L188-L192 → L212-L216 renumbering | No duplicate ownership violated | LOCKED |
+| D-103 | HANDOFF_STATE.md full rewrite | Stale content (WP-05 wrong, tables wrong, stats wrong) | ACCEPTED |
+| D-104 | MASTER_BASELINE extended (append-only) | Last Updated claim was false; append-only preserves history | ACCEPTED |
+
+### Rationale
+
+**D-102:** No duplicate ownership is a locked invariant. L188-L192 appeared
+twice in IMPLEMENTATION_LEDGER. The first occurrence (WP-05b models) is
+correct. The second set (B10-B16) was renumbered to L212-L216 so both
+sets remain traceable.
+
+**D-103:** HANDOFF_STATE contained 3 critical errors:
+- "WP-05: Felagi routes not yet implemented" (WP-05 = DONE)
+- "MySQL DB: 9 tables" (actual = 38 tables)
+- "28 WPs (2 DONE, 1 VERIFIED, 2 PARTIAL, 2 READY, 21 BLOCKED)"
+  (actual = 10 DONE, 1 VERIFIED, 1 PARTIAL, 16 BLOCKED, 1 DEFERRED)
+
+Full rewrite required. Historical record preserved via git.
+
+**D-104:** MASTER_BASELINE "Last Updated: 2026-09-29" but WP-27, WP-05a/b,
+B10-B16 were all completed that day and missing. Append-only preserves the
+original LOCKED baseline while documenting evolution.
+
+| D-105 | REQUIREMENT_REGISTRY append-only for WP-05a/b/27/27b | Full traceability required | ACCEPTED |
+| D-106 | ARCHITECTURE_MAP Layer 8 + Layer 9 added | WP-27/27b/05a/05b and B10-B17 missing from map | ACCEPTED |
+| D-107 | GAP-38 merged into GAP-54 | Same issue (APP_DEBUG), duplicate entry | ACCEPTED |
+
+### Rationale (continued)
+
+**D-105:** 42 new REQ IDs were added for WP-05a (7), WP-05b (6), WP-27 (10),
+WP-27b (7), and B10-B17 (12). Full traceability requires each requirement
+to have a unique ID and clear verification link.
+
+**D-106:** Layer 8 covers Extended Backend (WP-05a/b/27/27b). Layer 9 covers
+Ledger Governance Blocks (B10-B17). Original map ended at Layer 7 (WP-13b).
+
+**D-107:** GAP-38 (APP_DEBUG CRITICAL) and GAP-54 (APP_DEBUG resolved) are
+the same issue. GAP-38 was registered before the fix; GAP-54 after. Merged
+by marking GAP-38 as SUPERSEDED by GAP-54.
+
+| D-108 | GAP-07 marked renumbered to GAP-60 | Duplicate resolution | ACCEPTED |
+| D-109 | GAP-42 removed from open list | Resolved in WP-05a; still listed as open | ACCEPTED |
+| D-110 | Table count 25 → 38 documented | WP-05 expanded; baseline unchanged | ACCEPTED |
+
+### Rationale (continued)
+
+**D-108:** GAP-07 (Observability) was renumbered to GAP-60 in B10. The
+original GAP-07 entry remained, creating double-booking. Marked as
+renumbered.
+
+**D-109:** GAP-42 (auth_attempts table missing) was resolved in WP-05a
+(2026-09-29). It remained in the "Pre-existing GAPs still open" list.
+Removed to eliminate ambiguity.
+
+**D-110:** Original baseline declared 25 tables. WP-05 delivered 38. This
+is documented per D-046 ("All 38 tables now in production DB"). B17 adds
+this reconciliation to MASTER_BASELINE for consistency without modifying
+the original LOCKED content.
+
+### Constitution Compliance
+
+- No duplicate ownership → D-102 fixes 5 violations
+- DONE = implemented + integrated + tested + verified + documented + evidenced
+  → D-103 restores HANDOFF_STATE accuracy
+- No hidden work → D-104 through D-110 all documented
+- UNKNOWN ≠ MISSING → B-blocks vs WPs documented as U-21
+
+### Rollback
+
+All B17 changes: git revert <B17-commit> (see B17_ROLLBACK.md)
+
+---
+## B19 — Model Unit Tests (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-111 | Model tests placed in Feature/Models (not Unit) | RefreshDatabase requires Laravel bootstrap | ACCEPTED |
+| D-112 | NOT NULL schema columns made explicit in tests (not schema change) | D-054 AUDIT BEFORE ACTION; no architecture change without approval | ACCEPTED |
+
+### Rationale
+
+**D-111:** The 3 new test files (AuditLogTest, SettingVersionTest, OutboxEventTest) all use RefreshDatabase trait. This requires full Laravel bootstrap (DB, migrations, container). Placing them under tests/Feature/Models (rather than tests/Unit) is consistent with existing pattern and required for DB isolation (D-067 MySQL test DB).
+
+**D-112:** B19 audit uncovered two NOT NULL columns without DB defaults:
+- setting_versions.reason
+- audit_logs.request_id
+
+Two options were available:
+(a) Modify migrations to add defaults -> architecture change, requires approval
+(b) Make the columns explicit in test payloads -> no schema change
+
+Option (b) chosen. This preserves the LOCKED schema and documents the required columns via tests. It also surfaces the NOT NULL constraint as a de-facto contract.
+
+This is consistent with D-100/D-101 (deferred design improvements) - do not silently alter schema.
+
+### Test Results (verified)
+
+- Command: APP_ENV=testing php artisan test
+- Result: 131 passed (266 assertions)
+- Failures: 0
+- Duration: 7.61s
+
+### Constitution Compliance
+
+- No hidden work -> both decisions documented
+- No silent changes -> no schema touched
+- D-054 AUDIT BEFORE ACTION -> audit preceded all code
+- IMPLEMENTED != VERIFIED -> tests run before commit
+
+---
+## B21 — Extended Model Tests + Spec Requests (2026-09-29)
+
+| ID | Decision | Basis | Status |
+|----|----------|-------|--------|
+| D-113 | CreatesTestCategory trait for DRY test setup | Multiple tests need Category | ACCEPTED |
+| D-114 | Distinct providers per rating in scopeValid test | UNIQUE(need_id, from_user_id, to_user_id) constraint | ACCEPTED |
+| D-115 | Spec request docs for WP-05c and T01-T18 | Constitution: UNKNOWN != MISSING | ACCEPTED |
+
+### Rationale
+
+**D-113:** Multiple test files need a Category to create a valid Need
+(category_id NOT NULL). Rather than duplicate Category::create() in each
+test, a trait (CreatesTestCategory) provides makeCategory() helper. This
+follows DRY and matches the B19 pattern of inline helpers.
+
+**D-114:** ratings table has UNIQUE(need_id, from_user_id, to_user_id).
+The scopeValid test needs 5 ratings with scores 1-5 for the same need.
+Using distinct providers per rating satisfies the constraint while still
+testing the 1-5 score range.
+
+**D-115:** Two spec requests were documented:
+- WP-05c: admin read endpoints (undefined scope)
+- T01-T18: integration test definitions (undefined behaviors)
+
+Both are UNKNOWN (not MISSING). Docs provide the questions and constraints
+for stakeholder resolution. No implementation attempted without spec.
+
+### Test Results (verified)
+
+- Command: APP_ENV=testing php artisan test
+- Result: 162 passed (320 assertions)
+- Failures: 0
+- Duration: 8.52s
+
+### Constitution Compliance
+
+- No hidden work -> all decisions documented
+- No silent changes -> no schema touched
+- D-054 AUDIT BEFORE ACTION -> audit preceded code
+- IMPLEMENTED != VERIFIED -> 162 tests run before commit
+- UNKNOWN != MISSING -> spec requests registered
 
 ---
 
-# 🏁 FINAL DECLARATION
+## SECTION 4 — TEST VERIFICATION
+**Source:** TEST_VERIFICATION.md
 
-**All 46 canonical screens are implemented and tested.**
+# TEST VERIFICATION — Felagi v1.4.2
+Last Updated: 2026-09-29
 
-- ✅ S001–S023 (23 user screens)
-- ✅ A001–A023 (23 admin screens)
-- ✅ 5 GAPs resolved
-- ✅ 0 failures
-- ✅ Bundle + SHA256 preserved
+## Source-Level Tests (All PASS)
 
-**No chat history reconstruction required.**
+| Tool | Result | Evidence |
+|------|--------|----------|
+| `generate_runtime.py` | PASS | 246 tokens + 46 screens |
+| `verify_package.py` | 61/61 PASS | + 66 contrast pairs |
+| `verify_foundation.py` | 324/324 PASS | — |
+| `verify_ai_ux.py` | 17/17 PASS | — |
+| `verify_completion.py` | 26/26 PASS | — |
+| `policy_tests.js` | 21/21 PASS | — |
+| `comparison_tests.js` | 36/36 PASS | — |
+| `ads_tests.js` | 55/55 PASS | — |
+| `preview_logic_probe.js` | 5,024 transitions PASS | DOM shim only |
+| Semantic verification | 140/140 PASS | — |
+| Contrast pairs | 66/66 PASS | — |
 
-**A competent developer can resume from:**
-- `public/handoff/SOURCE_OF_TRUTH.md`
-- `public/handoff/ledgers/*.md` (canonical ledgers)
-- Latest bundle (FULL-46-COMPLETE)
-- This document
+**Total: 7,810+ checks PASS (source-level)**
+
+## Runtime Tests (All PENDING)
+
+| Test | Status | Blocker |
+|------|--------|---------|
+| Browser render | BLOCKED | No Chromium |
+| Amharic glyph @200% | BLOCKED | No device |
+| 400% zoom | BLOCKED | No device |
+| Keyboard/AT nav | BLOCKED | No screen reader |
+| Flutter analyze | BLOCKED | No SDK |
+| Flutter test | BLOCKED | No SDK |
+| Flutter build | BLOCKED | No SDK |
+| Device glyph/layout | BLOCKED | No device |
+| Authenticated payment | BLOCKED | No creds |
+| AI provider live | BLOCKED | No creds |
+| Telegram delivery | BLOCKED | No bot token |
+| Admin actions live | BLOCKED | No backend |
+| Ads serving | BLOCKED | No ad server |
+| Concurrency | BLOCKED | No load env |
+| Media/SSRF scan | BLOCKED | No scan infra |
+| Telemetry | BLOCKED | No metrics env |
+
+## Integration Tests (T01-T18)
+All 18 tests REQUIRES_EVIDENCE — need live stack.
+
+## Evidence Boundary
+`Designed ≠ Implemented ≠ Verified`
+`Preview ≠ Production proof`
+`Published ≠ Applied ≠ Verified`
+
+## WP-13 Runtime Tests (2026-09-29)
+
+### ChangeLifecycleTest — 8 PASS
+
+| Test | Status | Duration |
+|------|--------|----------|
+| test_can_create_draft | ✅ PASS | 2.38s |
+| test_validate_rejects_type_mismatch | ✅ PASS | 0.08s |
+| test_publish_creates_new_version | ✅ PASS | 0.09s |
+| test_publish_with_stale_version_returns_409 | ✅ PASS | 0.07s |
+| test_dependency_blocks_boosts_on | ✅ PASS | 0.08s |
+| test_publish_writes_audit_log | ✅ PASS | 0.07s |
+| test_publish_writes_outbox_event | ✅ PASS | 0.09s |
+| test_unauthorized_returns_403 | ✅ PASS | 0.07s |
+
+**Total:** 8 passed (15 assertions)
+**Duration:** 3.00s
+**Test DB:** MySQL isolated (`zagcreht_felagi_test`)
+**Command:** `php artisan test --filter=ChangeLifecycleTest`
+
+### Evidence Chain
+
+| Layer | Evidence | Status |
+|-------|----------|--------|
+| Implementation | 14 new files + 3 patches | ✅ |
+| Integration | 10 admin routes registered | ✅ |
+| Verification | 8 tests, 15 assertions | ✅ |
+| Production isolation | Prod DB untouched (settings=31, users=0) | ✅ |
+| Documentation | Ledgers updated | ✅ |
+
+### Assertion Coverage
+
+| Requirement | Test | Assertions |
+|-------------|------|------------|
+| REQ-WP13-001 | test_can_create_draft | status=201, success=true, data.status=DRAFT |
+| REQ-WP13-003 | test_validate_rejects_type_mismatch | status=200, errors not empty |
+| REQ-WP13-006 | test_publish_creates_new_version | status=200, DB has v=2 |
+| REQ-WP13-009 | test_publish_with_stale_version_returns_409 | status=409, error.code |
+| REQ-WP13-010 | test_dependency_blocks_boosts_on | errors not empty |
+| REQ-WP13-007 | test_publish_writes_audit_log | DB has audit_logs row |
+| REQ-WP13-011 | test_publish_writes_outbox_event | DB has outbox_events row |
+| REQ-WP13-012 | test_unauthorized_returns_403 | status=403 |
+
+### Runtime Tests Still PENDING (WP-13 scope)
+
+| Test | Status | Blocker |
+|------|--------|---------|
+| Rollback E2E | PARTIAL | Test not yet written (impl complete) |
+| Apply/Verify workflow | BLOCKED | Requires runtime service (WP-13b) |
+| Reauth 5-min window | BLOCKED | users.recently_authenticated_at missing |
+| Second factor (CRITICAL) | BLOCKED | 2FA infra missing |
+| Idempotency-Key from header | BLOCKED | Storage strategy TBD |
+
+### Evidence Boundary
+
+- `Designed ≠ Implemented` — ✅ all implemented
+- `Implemented ≠ Verified` — ✅ 8 tests pass
+- `Verified ≠ Deployed` — deploy is separate step
+- `Production PASS` — not claimed (WP-13 scope only)
+
+## WP-13b Runtime Tests (2026-09-29)
+
+### Summary
+
+**Tests: 36 passed (63 assertions)**
+**Duration: 4.98s**
+**DB: zagcreht_felagi_test (isolated)**
+
+### ChangeLifecycleTest — 8 PASS
+
+| Test | Status |
+|------|--------|
+| test_can_create_draft | ✅ PASS |
+| test_validate_rejects_type_mismatch | ✅ PASS |
+| test_publish_creates_new_version | ✅ PASS |
+| test_publish_with_stale_version_returns_409 | ✅ PASS |
+| test_dependency_blocks_boosts_on | ✅ PASS |
+| test_publish_writes_audit_log | ✅ PASS |
+| test_publish_writes_outbox_event | ✅ PASS |
+| test_unauthorized_returns_403 | ✅ PASS |
+
+### ReauthTest — 9 PASS
+
+| Test | Status |
+|------|--------|
+| is_fresh_false_when_never_authenticated | ✅ PASS |
+| is_fresh_true_when_within_window | ✅ PASS |
+| is_fresh_false_when_stale | ✅ PASS |
+| mark_updates_timestamp | ✅ PASS |
+| require_passes_for_low_risk | ✅ PASS |
+| require_throws_for_high_risk_stale | ✅ PASS |
+| publish_high_setting_without_fresh_auth_returns_401 | ✅ PASS |
+| publish_high_setting_with_fresh_auth_passes_middleware | ✅ PASS |
+| publish_low_setting_without_fresh_auth_passes | ✅ PASS |
+
+### TwoFactorTest — 11 PASS
+
+| Test | Status |
+|------|--------|
+| generate_secret_returns_base32 | ✅ PASS |
+| verify_accepts_current_code | ✅ PASS |
+| verify_rejects_invalid_code | ✅ PASS |
+| verify_rejects_malformed | ✅ PASS |
+| verify_detects_replay | ✅ PASS |
+| generate_recovery_codes | ✅ PASS |
+| consume_recovery_code | ✅ PASS |
+| consume_recovery_code_rejects_unknown | ✅ PASS |
+| require_for_passes_for_high | ✅ PASS |
+| require_for_throws_for_critical_without_2fa | ✅ PASS |
+| require_for_passes_for_critical_with_2fa | ✅ PASS |
+
+### IdempotencyTest — 8 PASS
+
+| Test | Status |
+|------|--------|
+| request_hash_is_order_independent | ✅ PASS |
+| request_hash_differs_on_body | ✅ PASS |
+| begin_without_header_returns_new | ✅ PASS |
+| begin_first_time_returns_new | ✅ PASS |
+| begin_replay_after_complete | ✅ PASS |
+| begin_conflicts_on_different_body | ✅ PASS |
+| begin_progress_for_in_flight | ✅ PASS |
+| cleanup_removes_expired | ✅ PASS |
+
+### Evidence Boundary
+
+- `Implemented ≠ Verified` — ✅ verified (36/36)
+- `Verified ≠ Deployed` — deploy separate
+- `Production PASS` — not claimed (WP-13b scope only)
 
 ---
+## APPEND-ONLY EXTENSIONS (B17 — 2026-09-29)
+Original test evidence preserved above. New tests appended for traceability.
 
-*End of Master Handoff — Felagi v1.4.2*
+## Test Count Evolution — Full Trail
+
+The test suite grew from 8 (WP-13) to 106 (B16). Chronological record:
+
+| Stage | Date | New | Cumulative | Evidence |
+|-------|------|-----|------------|----------|
+| WP-13 | 2026-09-29 | 8 | 8 | ChangeLifecycleTest |
+| WP-13b | 2026-09-29 | 28 | 36 | Reauth + 2FA + Idempotency |
+| WP-05a | 2026-09-29 | 14 | 50 | AuthAttemptTest |
+| WP-05b | 2026-09-29 | 12 | 62 | TelegramFoundationTest |
+| WP-27 | 2026-09-29 | 22 | 84 | TelegramOidcTest (+2 reconciliation) |
+| WP-27b | 2026-09-29 | 4 | 88 | HMAC tests (net of refactor) |
+| (interim) | 2026-09-29 | 2 | 90 | UNKNOWN reconciliation |
+| B16 | 2026-09-29 | 16 | 106 | NeedFlow + OfferFlow + MessageFlow |
+| **Final** | — | — | **106** | **220 assertions** |
+
+### UNKNOWN Reconciliation (documented, not blocking)
+
+The following transitions have unclear deltas:
+- 62 → 84: +22 (WP-27 claimed 20 tests → +2 unaccounted)
+- 84 → 88: +4 (WP-27b claimed 6 tests → -2 unaccounted)
+- 88 → 90: +2 (no documented source)
+
+**Impact:** None. The final count (106) is verified via B16 full-suite run.
+**Action:** Documented as UNKNOWN. No further reconciliation unless a
+verification discrepancy emerges.
+
+## WP-05a Test Evidence — AuthAttemptTest
+
+| Test | Status | Assertions |
+|------|--------|------------|
+| PKCE verifier generation (64 chars) | PASS | — |
+| S256 challenge derivation | PASS | — |
+| auth_attempts row creation | PASS | — |
+| Encrypted PKCE cast | PASS | — |
+| handoff_hash SHA-256 | PASS | — |
+| Single-use enforcement | PASS | — |
+| (plus 8 more) | PASS | — |
+| **Total** | **14 PASS** | **34 assertions** |
+
+## WP-05b Test Evidence — TelegramFoundationTest
+
+| Test | Status |
+|------|--------|
+| TelegramDestination model (scopeActive) | PASS |
+| TelegramDestination canPublish | PASS |
+| TelegramPublication (9 states) | PASS |
+| TelegramPublication scopePending | PASS |
+| TelegramPublicationEvent append-only | PASS |
+| AdminTelegramController destinations.index | PASS |
+| AdminTelegramController destinations.show | PASS |
+| AdminTelegramController publications.index | PASS |
+| AdminTelegramController publications.show | PASS |
+| Authorization (admin only) | PASS |
+| Route registration | PASS |
+| Model relationships | PASS |
+| **Total** | **12 PASS** |
+
+## WP-27 Test Evidence — TelegramOidcTest
+
+| Category | Tests | Status |
+|----------|-------|--------|
+| OIDC exchange (code → token) | 4 | PASS |
+| ID token validation (7-step) | 5 | PASS |
+| JWKS caching | 2 | PASS |
+| Clock skew tolerance | 1 | PASS |
+| User upsert | 3 | PASS |
+| Handoff generation | 3 | PASS |
+| Sanctum token issuance | 2 | PASS |
+| **Total** | **20 PASS** | **43 assertions** |
+
+## WP-27b Test Evidence — HMAC Tests (T21-T26)
+
+| Test | Status |
+|------|--------|
+| T21 — HMAC signature validity | PASS |
+| T22 — Invalid signature rejected | PASS |
+| T23 — Expired handoff rejected | PASS |
+| T24 — User ID embedded correctly | PASS |
+| T25 — Multi-user race: correct user selected | PASS |
+| T26 — DFM §218 compliance (no schema change) | PASS |
+| **Total** | **6 PASS** |
+
+## B16 Test Evidence — Flow Tests
+
+### NeedFlowTest (6 tests)
+- test_can_create_need
+- test_can_list_needs
+- test_can_show_need
+- test_can_update_own_need
+- test_cannot_update_other_need
+- test_unauthorized_returns_401
+
+### OfferFlowTest (6 tests)
+- test_can_create_offer
+- test_can_list_offers
+- test_can_show_offer
+- test_can_update_own_offer
+- test_cannot_update_other_offer
+- test_unauthorized_returns_401
+
+### MessageFlowTest (4 tests)
+- test_can_send_message
+- test_can_list_messages
+- test_cannot_message_without_offer
+- test_unauthorized_returns_401
+
+**B16 Total:** 16 tests · 30 assertions
+
+## B17 Verification — No Tests Run
+
+B17 is documentation-only. No code, schema, or route changes.
+No tests added, modified, or run.
+
+The full test suite remains: **106 tests · 220 assertions**.
+
+## Evidence Boundary (unchanged)
+
+- `Designed ≠ Implemented ≠ Verified`
+- `Implemented ≠ Verified`
+- `Verified ≠ Deployed`
+- `Production PASS` — NOT claimed (6/9 gates pending)
+
+---
+## B19 — Model Unit Tests (2026-09-29)
+
+### New Test Files (3)
+
+| File | Tests | Purpose |
+|------|-------|---------|
+| AuditLogTest.php | 8 | Hash chain, scopes, casts, actor |
+| SettingVersionTest.php | 8 | Immutability, casts, relations |
+| OutboxEventTest.php | 9 | Statuses, scopes, markDone/markFailed |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B19 | 106 | 220 |
+| B19 | +25 | +46 |
+| **Post-B19** | **131** | **266** |
+
+### B19 Test Run
+
+Command: APP_ENV=testing php artisan test
+Result: 131 passed (266 assertions)
+Duration: 7.61s
+Test DB: zagcreht_felagi_test (isolated)
+
+### Test Coverage Expansion
+
+| Model | Before B19 | After B19 |
+|-------|------------|-----------|
+| AuditLog | 0 | 8 |
+| SettingVersion | 0 | 8 |
+| OutboxEvent | 0 | 9 |
+
+### Schema Findings (B19 audit)
+
+Two NOT NULL columns without defaults were discovered:
+- setting_versions.reason (NOT NULL)
+- audit_logs.request_id (NOT NULL)
+
+Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED).
+
+---
+## B21 — Extended Model Tests + Audit + Spec Requests (2026-09-29)
+
+### New Test Files (3)
+
+| File | Tests | Focus |
+|------|-------|-------|
+| NotificationTest.php | 11 | Statuses, scopes, read lifecycle |
+| RatingTest.php | 9 | Relations, valid scope, uniqueness |
+| UserTest.php | 11 | SoftDeletes, scopes, encrypted casts |
+
+### Test Suite Growth
+
+| Stage | Tests | Assertions |
+|-------|-------|------------|
+| Pre-B21 | 131 | 266 |
+| B21 | +31 | +54 |
+| **Post-B21** | **162** | **320** |
+
+### Coverage Expansion
+
+| Model | Before B21 | After B21 |
+|-------|------------|-----------|
+| Notification | 0 | 11 |
+| Rating | 0 | 9 |
+| User | 12 (feature) | 11 (unit) |
+
+### New Artifacts (docs/)
+
+| Path | Lines | Purpose |
+|------|-------|---------|
+| docs/audits/MIGRATION_INTEGRITY_B21.md | 69 | Migration audit (read-only) |
+| docs/spec-requests/WP-05c_admin_read_endpoints.md | 64 | Stakeholder spec request |
+| docs/spec-requests/T01-T18_integration_tests.md | 86 | Stakeholder spec request |
+
+### Schema Findings
+
+- needs.category_id NOT NULL (resolved via CreatesTestCategory trait)
+- offers.offered_price + proposal_message NOT NULL (explicit in tests)
+- ratings UNIQUE(need_id, from_user_id, to_user_id) (distinct providers)
+
+### Test Run
+
+- Command: APP_ENV=testing php artisan test
+- Result: 162 passed (320 assertions)
+- Failures: 0
+- Duration: 8.52s
