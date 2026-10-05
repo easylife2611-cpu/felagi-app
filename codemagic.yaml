@@ -1,0 +1,53 @@
+workflows:
+  felagi-android-debug:
+    name: Felagi Android Debug APK
+    max_build_duration: 30
+    instance_type: mac_mini_m2
+
+    environment:
+      flutter: stable
+      java: 17
+
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - $HOME/Library/Caches/Codemagic
+
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'feature/ai-guided-need-creation'
+          include: true
+          source: true
+        - pattern: 'main'
+          include: true
+          source: true
+
+    scripts:
+      - name: Flutter version
+        script: |
+          flutter --version
+
+      - name: Get packages
+        script: |
+          cd mobile/app
+          flutter pub get
+
+      - name: Analyze
+        script: |
+          cd mobile/app
+          flutter analyze
+
+      - name: Test
+        script: |
+          cd mobile/app
+          flutter test --reporter expanded
+
+      - name: Build debug APK
+        script: |
+          cd mobile/app
+          flutter build apk --debug
+
+    artifacts:
+      - mobile/app/build/app/outputs/flutter-apk/*.apk
