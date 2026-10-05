@@ -1,23 +1,23 @@
-# FELAGI — MASTER SOURCE OF TRUTH v1.5
+# FELAGI — MASTER SOURCE OF TRUTH v1.6
 
-**Generated:** 2026-10-05 (post-L353)
-**HEAD:** 30c1083
+**Generated:** 2026-10-05 (post-L354)
+**HEAD:** 0e270aa
 **Branch:** feature/ai-guided-need-creation
 
 ## 🎯 QUICK FACTS
 
 | Item | Value |
 |------|-------|
-| Version | v1.4.2 + L352 + L353 |
-| HEAD | 30c1083 |
+| Version | v1.4.2 + L352 + L353 + L354 |
+| HEAD | 0e270aa |
 | Design Score | 97.5/100 |
 | Backend tests | 2461 ✅ |
-| Flutter tests | 15 ✅ |
+| Flutter tests | 23 ✅ |
 | Design System tests | 2 ✅ |
-| Total tests | 2478 |
+| Total tests | 2486 |
 | Canonical screens | 46 (23+23) |
-| Real screens | 6 user |
-| Placeholder screens | 39 |
+| Real screens | 10 user |
+| Placeholder screens | 36 |
 | Production PASS | BLOCKED (G05, G07, G09) |
 
 ---
@@ -76,15 +76,21 @@ Tests: 15/15 · Analyze: 0
 
 ---
 
+### A.4 Mobile (Flutter) — L354 EXPANSION ✅
+
+- 4 new user screens added: **S006 · S007 · S009 · S010**
+- NEW: `offers_api.dart` + `offer.dart` model
+- `api_config.dart`: +7 endpoints (myNeeds, myOffers, needOffers, offerShow/Accept/Reject/Withdraw)
+- `needs_api.dart`: +`listMyNeeds()` for GET /my/needs (paginated)
+- `app_scope.dart` + `main.dart`: +`offersApi` DI field
+- Router: 4 new routes wired (S006, S007, S009, S010) + 11 real-screen excludes
+- Tests: 15 → **23** (+8 testWidgets · 2 new wrappers: `_wrapWithMyNeeds`, `_wrapWithOffers`)
+- Gates: `flutter analyze=0` · `flutter test=23/23`
+- Commit: `0e270aa`
+
 ## 🔴 SECTION B — REMAINING WORK
 
-### B.1 User Screens (17 remaining)
-
-**HIGH priority:**
-- S006 Public-post preview (/needs/new/public-preview)
-- S007 Need-created confirmation (/needs/:id/created)
-- S009 My Needs (/my/needs → GET /my/needs)
-- S010 Received Offers (/needs/:id/offers → GET /needs/{id}/offers)
+### B.1 User Screens (13 remaining)
 
 **MED priority:**
 - S011 Submit/Edit Offer · S012 Offer Details · S013 My Offers
@@ -93,6 +99,8 @@ Tests: 15/15 · Analyze: 0
 **LOW priority:**
 - S016 Comparison history · S020 Rating · S021 Report
 - S022 Telegram status · S023 Offer Unlock
+
+_✅ Done in L354: S006 · S007 · S009 · S010_
 
 ### B.2 Admin Screens (23 remaining)
 
@@ -129,16 +137,19 @@ Met: 5/9 · Partial: 3/9 · Blocked: 1/9
 
 ## 📋 SECTION D — NEXT DEV GUIDE
 
-### D.1 To Continue (L354)
+### D.1 To Continue (L355)
 
-- Pick next 4 screens: S006, S007, S009, S010
-- Add needs_api: myNeeds(), receivedOffers()
-- Create offers_api.dart (NEW)
-- Create 4 screens in mobile/app/lib/screens/
-- Wire routes in app_router.dart
-- Add tests (with _wrapWith* helpers)
-- flutter analyze && flutter test
-- Update IMPLEMENTATION_LEDGER (L354) + CHANGE_LOG
+- Pick next 4 user screens (suggested): **S011, S012, S013, S014**
+  - S011 Submit/Edit Offer — POST /needs/{needId}/offers
+  - S012 Offer Details — GET /offers/{id} (owner or provider)
+  - S013 My Offers — GET /my/offers (paginated)
+  - S014 Compare confirmation — POST /needs/{needId}/comparisons
+- Extend `offers_api.dart`: `store()`, `update()`, `withdraw()`
+- Create 4 screens in `mobile/app/lib/screens/`
+- Wire routes in `app_router.dart` (specific→generic order)
+- Add tests (with `_wrapWith*` helpers)
+- `flutter analyze && flutter test`
+- Update IMPLEMENTATION_LEDGER (L355) + CHANGE_LOG
 - Bundle + git commit
 
 ### D.2 Flutter Rules
@@ -164,12 +175,23 @@ UNAUTHORIZED · FORBIDDEN · NOT_FOUND · VALIDATION_FAILED · STATE_CONFLICT ·
 ## 🏆 SECTION E — COMMITS + BUNDLES
 
 ```
-30c1083 (HEAD) L353: Flutter production app (Phase 2)
+0e270aa (HEAD) L354: Add S006/S007/S009/S010 + Offers API (23 tests)
+409156c        L354-prep: Add Logout + Boost debug tests
+b858702        L354-prep: AI-guided need creation (backend)
+1b308c7        L350+L352: Fix logout + Chapa payment driver
+62f1cc3        L348-L351c: Web UI polish + ledger reorganization
+c01e84d        L354-prep: .gitignore for dev artifacts
+958beb8        L353-docs: master SOT + handoff (v1.5)
+30c1083        L353: Flutter production app (Phase 2)
 cd522d4        L352: Boost webhook + frontend wire
 d718518        Refresh source of truth
 ```
 
-Bundles: L352 (99KB) · L353 (320KB, sha: ef89f461)
+Bundles:
+- L352 (99KB)
+- L353 (320KB, sha: ef89f461)
+- L353-docs (136KB, sha: 69671135)
+- **L354 (pending — created in Phase F6)**
 
 ---
 
