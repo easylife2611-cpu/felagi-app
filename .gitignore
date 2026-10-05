@@ -42,3 +42,32 @@ public/qa-login.php
 # L338 — QA deep evidence
 qa_tools/node_modules/
 docs/reports/qa/deep/screenshots/
+
+# ── L354-prep: local dev artifacts (2026-10-05) ──
+# Patch files (dev handoffs — not source)
+*.patch
+
+# Git bundles (safety backups only)
+*.bundle
+
+# Pre-edit source backups
+*.before-*
+SOURCE_OF_TRUTH.md.pre-*
+
+# Environment file variations
+.env.before-*
+.env.production.incident-*
+.env.production.*
+
+# Local debug/test scripts (never commit)
+test-chapa-*.php
+verify-chapa.php
+
+# DB backup snapshots
+storage/backup-test-db-*.sql
+
+# Views backup folders
+resources/views.before-*/
+
+# Duplicate numbered views
+*.blade(1).php
