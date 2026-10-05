@@ -1,15 +1,15 @@
-# FELAGI — MASTER SOURCE OF TRUTH v1.6
+# FELAGI — MASTER SOURCE OF TRUTH v1.7
 
-**Generated:** 2026-10-05 (post-L354)
-**HEAD:** 0e270aa
+**Generated:** 2026-10-05 (post-L354 + G05-CI)
+**HEAD:** 4e58ef7
 **Branch:** feature/ai-guided-need-creation
 
 ## 🎯 QUICK FACTS
 
 | Item | Value |
 |------|-------|
-| Version | v1.4.2 + L352 + L353 + L354 |
-| HEAD | 0e270aa |
+| Version | v1.4.2 + L352 + L353 + L354 + G05-CI |
+| HEAD | 4e58ef7 |
 | Design Score | 97.5/100 |
 | Backend tests | 2461 ✅ |
 | Flutter tests | 23 ✅ |
@@ -18,7 +18,7 @@
 | Canonical screens | 46 (23+23) |
 | Real screens | 10 user |
 | Placeholder screens | 36 |
-| Production PASS | BLOCKED (G05, G07, G09) |
+| Production PASS | G05 IN-PROGRESS (G07, G09 blocked) |
 
 ---
 
@@ -87,6 +87,22 @@ Tests: 15/15 · Analyze: 0
 - Tests: 15 → **23** (+8 testWidgets · 2 new wrappers: `_wrapWithMyNeeds`, `_wrapWithOffers`)
 - Gates: `flutter analyze=0` · `flutter test=23/23`
 - Commit: `0e270aa`
+
+### A.5 CI/CD — G05 (L354 + G05-CI) ✅
+
+- **NEW:** `.github/workflows/build-apk.yml` (121 lines)
+  - Triggers: PR/branch (debug), tag v* (signed release), manual
+  - Java 17 + Flutter 3.47.6
+  - Gates: `flutter analyze` (0) + `flutter test` (23/23)
+  - Signing: keystore decode + key.properties from secrets
+  - Artifacts: debug (30d) / release (90d) + GitHub Release
+- **NEW:** `scripts/ci/generate-keystore.sh` (121 lines)
+- **NEW:** `docs/ci-cd/` (4 files: README, SECRETS, SIGNING, RELEASE)
+- **Modified:** `.gitignore` (+11 defense-in-depth patterns)
+- **Modified:** `mobile/app/android/app/build.gradle.kts` (+27/-3 signing)
+- **Repo:** https://github.com/easylife2611-cpu/felagi-app
+- **Note:** First APK build pending — Repo public, workflow queued
+- **Commit:** `4e58ef7`
 
 ## 🔴 SECTION B — REMAINING WORK
 
@@ -175,7 +191,9 @@ UNAUTHORIZED · FORBIDDEN · NOT_FOUND · VALIDATION_FAILED · STATE_CONFLICT ·
 ## 🏆 SECTION E — COMMITS + BUNDLES
 
 ```
-0e270aa (HEAD) L354: Add S006/S007/S009/S010 + Offers API (23 tests)
+4e58ef7 (HEAD) G05-CI: Add GitHub Actions CI/CD for signed APK builds
+a117b8f        L354-docs: Update master SOT + handoff (v1.6)
+0e270aa        L354: Add S006/S007/S009/S010 + Offers API (23 tests)
 409156c        L354-prep: Add Logout + Boost debug tests
 b858702        L354-prep: AI-guided need creation (backend)
 1b308c7        L350+L352: Fix logout + Chapa payment driver
@@ -191,7 +209,9 @@ Bundles:
 - L352 (99KB)
 - L353 (320KB, sha: ef89f461)
 - L353-docs (136KB, sha: 69671135)
-- **L354 (pending — created in Phase F6)**
+- L354 (176KB, sha: 3ce2245a)
+- **L354+G05-docs (pending — created in this session)**
+- **APK v1.4.3-L354 (pending — pending workflow success)**
 
 ---
 
