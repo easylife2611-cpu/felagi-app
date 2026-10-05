@@ -71,3 +71,14 @@ resources/views.before-*/
 
 # Duplicate numbered views
 *.blade(1).php
+
+# ── CI/CD — Android signing (defense in depth) ──
+# Local keystore files (never commit)
+*.jks
+*.keystore
+key.properties
+
+# CI/CD generated helper files
+keystore-base64.txt
+keystore-credentials.txt
+upload-keystore.jks
