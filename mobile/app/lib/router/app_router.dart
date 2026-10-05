@@ -8,6 +8,10 @@ import '../screens/browse_needs_screen.dart';
 import '../screens/need_detail_screen.dart';
 import '../screens/create_edit_need_screen.dart';
 import '../screens/boost_screen.dart';
+import '../screens/public_preview_screen.dart';
+import '../screens/need_created_screen.dart';
+import '../screens/my_needs_screen.dart';
+import '../screens/received_offers_screen.dart';
 import '../screens/placeholder_screen.dart';
 
 /// Central route map for all 46 canonical Felagi screens.
@@ -115,8 +119,31 @@ class AppRouter {
           ),
         ),
         GoRoute(
+          path: '/needs/new/public-preview',
+          builder: (context, state) => PublicPreviewScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+          ),
+        ),
+        GoRoute(
           path: '/needs/:id/boost',
           builder: (context, state) => BoostScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+            needId: state.pathParameters['id'] ?? '',
+          ),
+        ),
+        GoRoute(
+          path: '/needs/:id/created',
+          builder: (context, state) => NeedCreatedScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+            needId: state.pathParameters['id'] ?? '',
+          ),
+        ),
+        GoRoute(
+          path: '/needs/:id/offers',
+          builder: (context, state) => ReceivedOffersScreen(
             localeCode: localeCode,
             onLocaleChange: onLocaleChange,
             needId: state.pathParameters['id'] ?? '',
@@ -130,6 +157,13 @@ class AppRouter {
             needId: state.pathParameters['id'] ?? '',
           ),
         ),
+        GoRoute(
+          path: '/my/needs',
+          builder: (context, state) => MyNeedsScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+          ),
+        ),
         for (final s in screens.where(
             (s) =>
                 s.id != 'S001' &&
@@ -137,7 +171,11 @@ class AppRouter {
                 s.id != 'S003' &&
                 s.id != 'S004' &&
                 s.id != 'S005' &&
+                s.id != 'S006' &&
+                s.id != 'S007' &&
                 s.id != 'S008' &&
+                s.id != 'S009' &&
+                s.id != 'S010' &&
                 s.id != 'S019'))
           GoRoute(
             path: s.path,

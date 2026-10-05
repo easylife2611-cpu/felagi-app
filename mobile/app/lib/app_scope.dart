@@ -4,6 +4,7 @@ import 'api/api_client.dart';
 import 'api/auth_api.dart';
 import 'api/needs_api.dart';
 import 'api/boost_api.dart';
+import 'api/offers_api.dart';
 import 'state/auth_state.dart';
 
 /// Lightweight DI container — no external package.
@@ -14,6 +15,7 @@ class AppScope extends InheritedWidget {
     required this.authApi,
     required this.needsApi,
     required this.boostApi,
+    required this.offersApi,
     required this.authState,
     required super.child,
   });
@@ -22,6 +24,7 @@ class AppScope extends InheritedWidget {
   final AuthApi authApi;
   final NeedsApi needsApi;
   final BoostApi boostApi;
+  final OffersApi offersApi;
   final AuthState authState;
 
   /// Fetch nearest scope.
@@ -40,5 +43,6 @@ class AppScope extends InheritedWidget {
       authApi != oldWidget.authApi ||
       needsApi != oldWidget.needsApi ||
       boostApi != oldWidget.boostApi ||
+      offersApi != oldWidget.offersApi ||
       client != oldWidget.client;
 }

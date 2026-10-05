@@ -46,6 +46,17 @@ class ApiConfig {
   static String needBoosts(String needId) => '/needs/$needId/boosts';
   static String paymentShow(String id) => '/payments/$id';
 
+  // ── My resources (auth) — L354 ──
+  static const String myNeeds = '/my/needs';
+  static const String myOffers = '/my/offers';
+
+  // ── Offers (auth) — L354 ──
+  static String needOffers(String needId) => '/needs/$needId/offers';
+  static String offerShow(String id) => '/offers/$id';
+  static String offerAccept(String id) => '/offers/$id/accept';
+  static String offerReject(String id) => '/offers/$id/reject';
+  static String offerWithdraw(String id) => '/offers/$id/withdraw';
+
   // ── Profile ──
   static const String profileUpdate = '/profile';
 

@@ -52,6 +52,32 @@ class NeedsApi {
     );
   }
 
+  /// GET /my/needs (auth) — paginated list of needs owned by current user.
+  ///
+  /// Query: status (optional), page, per_page.
+  /// Response: {data: [Need], meta: {page, per_page, total}}.
+  Future<Paginated<Need>> listMyNeeds({
+    String? status,
+    int page = 1,
+    int perPage = 20,
+  }) async {
+    final envelope = await _client.getEnvelope(
+      ApiConfig.myNeeds,
+      query: {
+        if (status != null && status.isNotEmpty) 'status': status,
+        'page': page.toString(),
+        'per_page': perPage.toString(),
+      },
+    );
+    final data = (envelope[ApiConfig.kData] as List?) ?? const [];
+    final meta = (envelope[ApiConfig.kMeta] as Map?)?.cast<String, dynamic>();
+    return Paginated<Need>.fromEnvelope(
+      data: data,
+      meta: meta,
+      itemFromJson: Need.fromJson,
+    );
+  }
+
   /// GET /needs/{id}
   Future<Need> showNeed(String id) async {
     final data = await _client.get(

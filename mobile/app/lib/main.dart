@@ -6,6 +6,7 @@ import 'api/api_client.dart';
 import 'api/auth_api.dart';
 import 'api/needs_api.dart';
 import 'api/boost_api.dart';
+import 'api/offers_api.dart';
 import 'api/token_store.dart';
 import 'app_scope.dart';
 import 'router/app_router.dart';
@@ -26,6 +27,7 @@ class _FelagiAppState extends State<FelagiApp> {
   late final AuthApi _authApi;
   late final NeedsApi _needsApi;
   late final BoostApi _boostApi;
+  late final OffersApi _offersApi;
   late final AuthState _authState;
 
   String _localeCode = 'am';
@@ -38,6 +40,7 @@ class _FelagiAppState extends State<FelagiApp> {
     _authApi = AuthApi(_client);
     _needsApi = NeedsApi(_client);
     _boostApi = BoostApi(_client);
+    _offersApi = OffersApi(_client);
     _authState = AuthState(api: _authApi, tokenStore: _client.tokenStore);
 
     // Bootstrap: read token + /auth/me (async — UI shows loading)
@@ -60,6 +63,7 @@ class _FelagiAppState extends State<FelagiApp> {
       authApi: _authApi,
       needsApi: _needsApi,
       boostApi: _boostApi,
+      offersApi: _offersApi,
       authState: _authState,
       child: AnimatedBuilder(
         animation: _authState,

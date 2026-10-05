@@ -10,6 +10,7 @@ import 'package:felagi_app/api/token_store.dart';
 import 'package:felagi_app/api/auth_api.dart';
 import 'package:felagi_app/api/needs_api.dart';
 import 'package:felagi_app/api/boost_api.dart';
+import 'package:felagi_app/api/offers_api.dart';
 import 'package:felagi_app/app_scope.dart';
 import 'package:felagi_app/state/auth_state.dart';
 import 'package:felagi_app/main.dart';
@@ -20,6 +21,10 @@ import 'package:felagi_app/screens/browse_needs_screen.dart';
 import 'package:felagi_app/screens/need_detail_screen.dart';
 import 'package:felagi_app/screens/create_edit_need_screen.dart';
 import 'package:felagi_app/screens/boost_screen.dart';
+import 'package:felagi_app/screens/public_preview_screen.dart';
+import 'package:felagi_app/screens/need_created_screen.dart';
+import 'package:felagi_app/screens/my_needs_screen.dart';
+import 'package:felagi_app/screens/received_offers_screen.dart';
 import 'package:felagi_app/router/app_router.dart';
 
 
@@ -334,6 +339,209 @@ void main() {
       expect(find.text(fgText('am', 'cancelNeed')), findsOneWidget);
     });
   });
+
+  group('S006 Public Preview', () {
+    testWidgets('renders preview screen + consent checkbox', (tester) async {
+      await tester.pumpWidget(_wrapWithScope(
+        const PublicPreviewScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+        ),
+      ));
+      await tester.pumpAndSettle();
+
+      expect(find.text(fgText('am', 'screenS006')), findsWidgets);
+      expect(find.byType(CheckboxListTile), findsOneWidget);
+      expect(find.text(fgText('am', 'consent')), findsOneWidget);
+      expect(find.text(fgText('am', 'publicHelp')), findsOneWidget);
+    });
+
+    testWidgets('renders consent checkbox (unchecked by default)', (tester) async {
+      // Use a taller surface so the checkbox renders on-screen.
+      tester.view.physicalSize = const Size(1200, 2400);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
+      await tester.pumpWidget(_wrapWithScope(
+        const PublicPreviewScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+        ),
+      ));
+      await tester.pumpAndSettle();
+
+      // Continue button label is present.
+      expect(find.text(fgText('am', 'continue')), findsOneWidget);
+
+      // Consent checkbox present and initially unchecked.
+      final checkbox = find.byType(CheckboxListTile);
+      expect(checkbox, findsOneWidget);
+      expect(tester.widget<CheckboxListTile>(checkbox).value, isFalse);
+
+      // Scroll into view + tap to toggle.
+      await tester.ensureVisible(checkbox);
+      await tester.pumpAndSettle();
+      await tester.tap(checkbox);
+      await tester.pumpAndSettle();
+
+      // Checkbox is now checked.
+      expect(tester.widget<CheckboxListTile>(checkbox).value, isTrue);
+    });
+  });
+
+  group('S007 Need Created', () {
+    testWidgets('renders success + action buttons', (tester) async {
+      await tester.pumpWidget(_wrapWithScope(
+        const NeedCreatedScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: 'n-test-123',
+        ),
+      ));
+      await tester.pumpAndSettle();
+
+      expect(find.text(fgText('am', 'screenS007')), findsWidgets);
+      expect(find.text(fgText('am', 'needSuccessNext')), findsOneWidget);
+      expect(find.text(fgText('am', 'viewNeed')), findsOneWidget);
+      expect(find.text(fgText('am', 'createNeed')), findsOneWidget);
+      expect(find.text('n-test-123'), findsOneWidget);
+    });
+
+    testWidgets('view button disabled when needId empty', (tester) async {
+      await tester.pumpWidget(_wrapWithScope(
+        const NeedCreatedScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: '',
+        ),
+      ));
+      await tester.pumpAndSettle();
+
+      final viewBtn = find.widgetWithText(
+        OutlinedButton,
+        fgText('am', 'viewNeed'),
+      );
+      expect(viewBtn, findsOneWidget);
+      expect(tester.widget<OutlinedButton>(viewBtn).onPressed, isNull);
+    });
+  });
+
+  group('S009 My Needs', () {
+    testWidgets('renders list from API', (tester) async {
+      await tester.pumpWidget(_wrapWithMyNeeds(
+        const MyNeedsScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+        ),
+        [
+          {
+            'id': 'n-001',
+            'title': 'My Need One',
+            'description': 'First',
+            'status': 'OPEN',
+            'currency': 'ETB',
+            'offer_count': 2,
+          },
+          {
+            'id': 'n-002',
+            'title': 'My Need Two',
+            'description': 'Second',
+            'status': 'IN_PROGRESS',
+            'currency': 'ETB',
+            'offer_count': 0,
+          },
+        ],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+
+      expect(find.text(fgText('am', 'screenS009')), findsOneWidget);
+      expect(find.text('My Need One'), findsOneWidget);
+      expect(find.text('My Need Two'), findsOneWidget);
+    });
+
+    testWidgets('shows empty state when API returns []', (tester) async {
+      await tester.pumpWidget(_wrapWithMyNeeds(
+        const MyNeedsScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+        ),
+        const [],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+
+      expect(find.text(fgText('am', 'stateEmpty')), findsAtLeastNWidgets(1));
+    });
+  });
+
+  group('S010 Received Offers', () {
+    testWidgets('renders offers list from API', (tester) async {
+      await tester.pumpWidget(_wrapWithOffers(
+        const ReceivedOffersScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: 'n-001',
+        ),
+        [
+          {
+            'id': 'o-001',
+            'need_id': 'n-001',
+            'provider_id': 'u-001',
+            'offered_price': '1500.00',
+            'currency': 'ETB',
+            'status': 'PENDING',
+            'proposal_message': 'I can deliver fast',
+            'provider': {
+              'id': 'u-001',
+              'full_name': 'Abebe Provider',
+            },
+          },
+          {
+            'id': 'o-002',
+            'need_id': 'n-001',
+            'provider_id': 'u-002',
+            'offered_price': '2000.00',
+            'currency': 'ETB',
+            'status': 'PENDING',
+            'provider': {
+              'id': 'u-002',
+              'full_name': 'Sara Provider',
+            },
+          },
+        ],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+
+      expect(find.text(fgText('am', 'screenS010')), findsOneWidget);
+      expect(find.text('Abebe Provider'), findsOneWidget);
+      expect(find.text('Sara Provider'), findsOneWidget);
+    });
+
+    testWidgets('shows empty state when no offers', (tester) async {
+      await tester.pumpWidget(_wrapWithOffers(
+        const ReceivedOffersScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: 'n-001',
+        ),
+        const [],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text(fgText('am', 'stateEmptyOffers')),
+        findsAtLeastNWidgets(1),
+      );
+    });
+  });
 }
 
 void _noop(String _) {}
@@ -354,6 +562,7 @@ Widget _wrapWithScope(Widget child) {
   final authApi = AuthApi(apiClient);
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -362,6 +571,7 @@ Widget _wrapWithScope(Widget child) {
       authApi: authApi,
       needsApi: needsApi,
       boostApi: boostApi,
+      offersApi: offersApi,
       authState: authState,
       child: child,
     ),
@@ -397,6 +607,7 @@ Widget _wrapWithNeeds(Widget child, List<Map<String, dynamic>> needs) {
   final authApi = AuthApi(apiClient);
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -405,6 +616,7 @@ Widget _wrapWithNeeds(Widget child, List<Map<String, dynamic>> needs) {
       authApi: authApi,
       needsApi: needsApi,
       boostApi: boostApi,
+      offersApi: offersApi,
       authState: authState,
       child: child,
     ),
@@ -436,6 +648,7 @@ Widget _wrapWithNeed(Widget child, Map<String, dynamic> need) {
   final authApi = AuthApi(apiClient);
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -444,6 +657,7 @@ Widget _wrapWithNeed(Widget child, Map<String, dynamic> need) {
       authApi: authApi,
       needsApi: needsApi,
       boostApi: boostApi,
+      offersApi: offersApi,
       authState: authState,
       child: child,
     ),
@@ -494,6 +708,7 @@ Widget _wrapWithBoost(
   final authApi = AuthApi(apiClient);
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
 
   return MaterialApp(
@@ -503,6 +718,7 @@ Widget _wrapWithBoost(
       authApi: authApi,
       needsApi: needsApi,
       boostApi: boostApi,
+      offersApi: offersApi,
       authState: authState,
       child: child,
     ),
@@ -539,6 +755,7 @@ Widget _wrapWithCategories(Widget child) {
   final authApi = AuthApi(apiClient);
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
 
   return MaterialApp(
@@ -548,6 +765,93 @@ Widget _wrapWithCategories(Widget child) {
       authApi: authApi,
       needsApi: needsApi,
       boostApi: boostApi,
+      offersApi: offersApi,
+      authState: authState,
+      child: child,
+    ),
+  );
+}
+
+/// Wrap with a mock that serves /my/needs paginated (S009).
+Widget _wrapWithMyNeeds(Widget child, List<Map<String, dynamic>> needs) {
+  final body = jsonEncode({
+    'success': true,
+    'data': needs,
+    'meta': {
+      'page': 1,
+      'per_page': 20,
+      'total': needs.length,
+      'has_more': false,
+    },
+  });
+  final mockClient = MockClient((request) async {
+    if (request.url.path.endsWith('/my/needs')) {
+      return http.Response(body, 200,
+          headers: {'content-type': 'application/json'});
+    }
+    return http.Response(
+      '{"success":false,"error":{"code":"NOT_FOUND","message":"stub"}}',
+      404,
+    );
+  });
+  final apiClient = ApiClient(
+    httpClient: mockClient,
+    tokenStore: _FakeTokenStore(),
+  );
+  final authApi = AuthApi(apiClient);
+  final needsApi = NeedsApi(apiClient);
+  final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
+  final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
+  return MaterialApp(
+    theme: FgTheme.light(),
+    home: AppScope(
+      client: apiClient,
+      authApi: authApi,
+      needsApi: needsApi,
+      boostApi: boostApi,
+      offersApi: offersApi,
+      authState: authState,
+      child: child,
+    ),
+  );
+}
+
+/// Wrap with a mock that serves /needs/{id}/offers (S010).
+Widget _wrapWithOffers(Widget child, List<Map<String, dynamic>> offers) {
+  final body = jsonEncode({
+    'success': true,
+    'data': offers,
+    'message': 'Offers retrieved.',
+  });
+  final mockClient = MockClient((request) async {
+    final path = request.url.path;
+    if (path.contains('/offers')) {
+      return http.Response(body, 200,
+          headers: {'content-type': 'application/json'});
+    }
+    return http.Response(
+      '{"success":false,"error":{"code":"NOT_FOUND","message":"stub"}}',
+      404,
+    );
+  });
+  final apiClient = ApiClient(
+    httpClient: mockClient,
+    tokenStore: _FakeTokenStore(),
+  );
+  final authApi = AuthApi(apiClient);
+  final needsApi = NeedsApi(apiClient);
+  final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
+  final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
+  return MaterialApp(
+    theme: FgTheme.light(),
+    home: AppScope(
+      client: apiClient,
+      authApi: authApi,
+      needsApi: needsApi,
+      boostApi: boostApi,
+      offersApi: offersApi,
       authState: authState,
       child: child,
     ),
