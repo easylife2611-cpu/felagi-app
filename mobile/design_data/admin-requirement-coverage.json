@@ -1,0 +1,497 @@
+[
+  {
+    "requirement": "A",
+    "title": "CANONICAL MAIN ADMIN PURPOSE",
+    "canonical_owner": "Product_Design/Final_Master_Product_Design_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-A"
+  },
+  {
+    "requirement": "B",
+    "title": "INSERT THIS INTO THE PRODUCT FOUNDATION",
+    "canonical_owner": "Product_Design/Final_Master_Product_Design_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-B"
+  },
+  {
+    "requirement": "C",
+    "title": "ADD A CANONICAL ADMIN CONTROL LOOP",
+    "canonical_owner": "Product_Design/Final_Master_Product_Design_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-C"
+  },
+  {
+    "requirement": "D",
+    "title": "CREATE THE COMPLETE ADMIN INFORMATION ARCHITECTURE",
+    "canonical_owner": "Design_Data/screen-manifest.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-D"
+  },
+  {
+    "requirement": "E",
+    "title": "ADMIN HOME MUST BE OPERABLE AT A GLANCE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-E"
+  },
+  {
+    "requirement": "F",
+    "title": "PHONE-SETTINGS STYLE FEATURE CONTROLS",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-F"
+  },
+  {
+    "requirement": "G",
+    "title": "SIMPLE MODE + ADVANCED MODE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-G"
+  },
+  {
+    "requirement": "H",
+    "title": "SEPARATE SETTINGS BY RESPONSIBILITY",
+    "canonical_owner": "Design_Data/control-registry.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-H"
+  },
+  {
+    "requirement": "I",
+    "title": "ADD THE CONTROL REGISTRY TO THE FOUNDATION",
+    "canonical_owner": "Design_Data/control-registry.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-I"
+  },
+  {
+    "requirement": "J",
+    "title": "DEPENDENCY-AWARE CONTROLS",
+    "canonical_owner": "Design_Data/control-registry.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-J"
+  },
+  {
+    "requirement": "K",
+    "title": "IMPACT PREVIEW BEFORE HIGH-RISK CHANGES",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-K"
+  },
+  {
+    "requirement": "L",
+    "title": "RISK CLASSIFICATION",
+    "canonical_owner": "Design_Data/control-registry.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-L"
+  },
+  {
+    "requirement": "M",
+    "title": "ADD CHANGE SIMULATION",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-M"
+  },
+  {
+    "requirement": "N",
+    "title": "MONETIZATION CENTER",
+    "canonical_owner": "System_Specification/Monetization_Payment_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-N"
+  },
+  {
+    "requirement": "O",
+    "title": "SAFE MONETIZATION CHANGE HANDLING",
+    "canonical_owner": "System_Specification/Monetization_Payment_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-O"
+  },
+  {
+    "requirement": "P",
+    "title": "PAYMENT CENTER MUST GUIDE, NOT DIRECTLY ALTER TRUTH",
+    "canonical_owner": "System_Specification/Monetization_Payment_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-P"
+  },
+  {
+    "requirement": "Q",
+    "title": "HEALTH CENTER",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-Q"
+  },
+  {
+    "requirement": "R",
+    "title": "USER-IMPACT VIEW",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-R"
+  },
+  {
+    "requirement": "S",
+    "title": "SAFE MODE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-S"
+  },
+  {
+    "requirement": "T",
+    "title": "MAINTENANCE CENTER",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-T"
+  },
+  {
+    "requirement": "U",
+    "title": "RECOVERY WIZARD",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-U"
+  },
+  {
+    "requirement": "V",
+    "title": "“I WANT TO…” ADMIN SHORTCUTS",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-V"
+  },
+  {
+    "requirement": "W",
+    "title": "ADMIN SEARCH",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-W"
+  },
+  {
+    "requirement": "X",
+    "title": "CONTENT MANAGEMENT WITHOUT CODE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-X"
+  },
+  {
+    "requirement": "Y",
+    "title": "LOCALIZATION OF ADMIN ITSELF",
+    "canonical_owner": "Localization/app_am.arb",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-Y"
+  },
+  {
+    "requirement": "Z",
+    "title": "SECURITY + SECRETS",
+    "canonical_owner": "System_Specification/Admin_Authorization_Contract.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-Z"
+  },
+  {
+    "requirement": "AA",
+    "title": "PUBLISHED / APPLIED / VERIFIED STATE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AA"
+  },
+  {
+    "requirement": "AB",
+    "title": "AUTOMATIC POST-CHANGE VERIFICATION",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AB"
+  },
+  {
+    "requirement": "AC",
+    "title": "CONFIGURATION DRIFT DETECTION",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AC"
+  },
+  {
+    "requirement": "AD",
+    "title": "VERSION HISTORY + ROLLBACK",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AD"
+  },
+  {
+    "requirement": "AE",
+    "title": "CHANGE DIFF",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AE"
+  },
+  {
+    "requirement": "AF",
+    "title": "CHANGE FREEZE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AF"
+  },
+  {
+    "requirement": "AG",
+    "title": "SCHEDULED ADMIN CHANGES",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AG"
+  },
+  {
+    "requirement": "AH",
+    "title": "SAFE PRESETS / OPERATION MODES",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AH"
+  },
+  {
+    "requirement": "AI",
+    "title": "BACKUPS + RECOVERY EVIDENCE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AI"
+  },
+  {
+    "requirement": "AJ",
+    "title": "OPERATIONAL TIMELINE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AJ"
+  },
+  {
+    "requirement": "AK",
+    "title": "“WHAT CHANGED?” VIEW",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AK"
+  },
+  {
+    "requirement": "AL",
+    "title": "ROLE-SAFE DELEGATION",
+    "canonical_owner": "System_Specification/Admin_Authorization_Contract.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AL"
+  },
+  {
+    "requirement": "AM",
+    "title": "BULK ACTION SAFETY",
+    "canonical_owner": "System_Specification/Admin_Authorization_Contract.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AM"
+  },
+  {
+    "requirement": "AN",
+    "title": "ACCESSIBILITY OF ADMIN",
+    "canonical_owner": "Product_Design/Final_Accessibility_Matrix.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AN"
+  },
+  {
+    "requirement": "AO",
+    "title": "RESPONSIVE ADMIN DESIGN",
+    "canonical_owner": "Product_Design/Final_Responsive_Matrix.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AO"
+  },
+  {
+    "requirement": "AP",
+    "title": "CONTROL STATE MODEL",
+    "canonical_owner": "Design_Data/control-registry.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AP"
+  },
+  {
+    "requirement": "AQ",
+    "title": "ADMIN COMPONENT LIBRARY",
+    "canonical_owner": "Design_System/Final_Component_Library_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AQ"
+  },
+  {
+    "requirement": "AR",
+    "title": "DESIGN TOKENS",
+    "canonical_owner": "Design_System/tokens/token_registry.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AR"
+  },
+  {
+    "requirement": "AS",
+    "title": "ADMIN ROUTE REGISTRY",
+    "canonical_owner": "Design_Data/screen-manifest.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AS"
+  },
+  {
+    "requirement": "AT",
+    "title": "ADMIN SCREEN MANIFEST",
+    "canonical_owner": "Design_Data/screen-manifest.json",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AT"
+  },
+  {
+    "requirement": "AU",
+    "title": "ADMIN INTERACTIVE REFERENCE",
+    "canonical_owner": "UI_Handoff/ui-preview/app.js",
+    "design_status": "DESIGNED",
+    "implementation_status": "PARTIAL_REFERENCE",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AU"
+  },
+  {
+    "requirement": "AV",
+    "title": "ADMIN TRANSITION MAP",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AV"
+  },
+  {
+    "requirement": "AW",
+    "title": "DEVELOPER TRACEABILITY",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AW"
+  },
+  {
+    "requirement": "AX",
+    "title": "FINAL ADMIN ACCEPTANCE GATE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AX"
+  },
+  {
+    "requirement": "AY",
+    "title": "REQUIRED PACKAGE PLACEMENT",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AY"
+  },
+  {
+    "requirement": "AZ",
+    "title": "NO DUPLICATE OWNERSHIP",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-AZ"
+  },
+  {
+    "requirement": "BA",
+    "title": "DO NOT OVER-BUILD",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-BA"
+  },
+  {
+    "requirement": "BB",
+    "title": "FINAL HANDOFF OUTPUT",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-BB"
+  },
+  {
+    "requirement": "BC",
+    "title": "FINAL LOCK STATEMENT",
+    "canonical_owner": "Product_Design/Final_Master_Product_Design_Specification.md",
+    "design_status": "DESIGNED",
+    "implementation_status": "SPECIFIED",
+    "evidence_status": "REQUIRES EVIDENCE",
+    "test": "ADM-BC"
+  }
+]

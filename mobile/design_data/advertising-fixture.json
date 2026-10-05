@@ -1,0 +1,28 @@
+{
+  "campaign_id": "AD-DEMO",
+  "advertiser_id": "SPONSOR-DEMO",
+  "campaign_name": "Fictional campaign",
+  "status": "ACTIVE",
+  "approved": true,
+  "advertiser_status": "ACTIVE",
+  "start_at": "2026-01-01T00:00:00Z",
+  "end_at": "2027-01-01T00:00:00Z",
+  "timezone": "Africa/Addis_Ababa",
+  "version": 1,
+  "creative_valid": true,
+  "destination_valid": true,
+  "creative_type": "BANNER",
+  "placement_ids": [
+    "AD_BROWSE_INLINE_01",
+    "AD_SEARCH_RESULTS_INLINE_01",
+    "AD_NEED_DETAIL_BOTTOM_01"
+  ],
+  "targeting": {},
+  "priority": 0,
+  "destination_type": "INTERNAL",
+  "destination_value": "/browse",
+  "sponsor_key": "sampleSponsor",
+  "title_key": "sampleAdTitle",
+  "body_key": "sampleAdBody",
+  "cta_key": "learnMore"
+}

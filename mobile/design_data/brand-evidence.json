@@ -1,0 +1,41 @@
+{
+  "authority": "Product-owner supplied official master logo",
+  "canonical_master": "Brand/official-master-logo.png",
+  "canonical_master_sha256": "b4be517dbae4c63dcbcfc0df716b919c488ec05fafc26db2a32f7adac9c7e13f",
+  "supplied_dark_glow_variant": "Brand/official-master-logo-glow.png",
+  "supplied_dark_glow_sha256": "111e3a5290b1d2d14816c547e7f793ffb9c453bcfd940dbbd9d02d54c43fbd9b",
+  "packaged_assets": [
+    {
+      "path": "Design_System/assets/brand/felagi-app-icon.png",
+      "sha256": "b4be517dbae4c63dcbcfc0df716b919c488ec05fafc26db2a32f7adac9c7e13f"
+    },
+    {
+      "path": "Design_System/assets/brand/felagi-app-icon.svg",
+      "sha256": "435c81ba45a414c1e0ea7ae3fe0a64786d4fece848d70d484e079a8c4329b267"
+    },
+    {
+      "path": "Design_System/assets/brand/felagi-lockup-on-dark.svg",
+      "sha256": "d74431ccbf2729026c2e34a4a72e422e4e00eeee0832d570336e7648a8dbd2a8"
+    },
+    {
+      "path": "Design_System/assets/brand/felagi-lockup.svg",
+      "sha256": "435c81ba45a414c1e0ea7ae3fe0a64786d4fece848d70d484e079a8c4329b267"
+    },
+    {
+      "path": "Design_System/assets/brand/felagi-mark-mono.svg",
+      "sha256": "435c81ba45a414c1e0ea7ae3fe0a64786d4fece848d70d484e079a8c4329b267"
+    },
+    {
+      "path": "Design_System/assets/brand/felagi-mark.png",
+      "sha256": "b4be517dbae4c63dcbcfc0df716b919c488ec05fafc26db2a32f7adac9c7e13f"
+    },
+    {
+      "path": "Design_System/assets/brand/felagi-mark.svg",
+      "sha256": "435c81ba45a414c1e0ea7ae3fe0a64786d4fece848d70d484e079a8c4329b267"
+    }
+  ],
+  "master_source_attestation": "VERIFIED: product-owner supplied master is included in this package.",
+  "fidelity_rule": "Raster master is authoritative; SVG compatibility assets embed the exact supplied raster artwork rather than redrawing it.",
+  "geometry_changed": false,
+  "status": "SOURCE_CORRECTED; runtime visual/device proof remains REQUIRES_EVIDENCE"
+}

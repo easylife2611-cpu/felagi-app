@@ -1,0 +1,1652 @@
+[
+  {
+    "requirement": "COMPLETE-1",
+    "title": "FIRST RULE — PRESERVE, AUDIT, THEN MODIFY",
+    "canonical_owner": "Audit/Final_Gap_Audit.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-1",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-2",
+    "title": "PRODUCT PURPOSE MUST BE CANONICAL AND UNAMBIGUOUS",
+    "canonical_owner": "Product_Design/Final_Master_Product_Design_Specification.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-2",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-3",
+    "title": "COMPLETE INFORMATION ARCHITECTURE",
+    "canonical_owner": "Product_Design/Final_Information_Architecture.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-3",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-4",
+    "title": "COMPLETE SCREEN INVENTORY",
+    "canonical_owner": "Product_Design/Final_Complete_Screen_Inventory.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-4",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-5",
+    "title": "COMPLETE USER JOURNEYS",
+    "canonical_owner": "Product_Design/Final_User_Journey_Matrix.md",
+    "journey": "J-need-form",
+    "screen": "S005",
+    "route": "/needs/new",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S005.draft",
+      "S005.validation",
+      "S005.uploading",
+      "S005.saving",
+      "S005.success",
+      "S005.conflict",
+      "S005.error",
+      "S005.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "requester",
+    "api": "api.S005",
+    "data_object": "Create/Edit Need",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS005",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s005",
+    "test": "COMPLETE-5",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-6",
+    "title": "DESIGN SYSTEM MUST BE ONE CANONICAL SYSTEM",
+    "canonical_owner": "Design_System/Final_Design_System_Foundation.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-6",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-7",
+    "title": "TOKEN REGISTRY MUST GENERATE RUNTIME MAPPINGS",
+    "canonical_owner": "Design_System/tokens/token_registry.json",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-7",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-8",
+    "title": "LIGHT + DARK MODE MUST BOTH BE COMPLETE",
+    "canonical_owner": "Design_System/Final_Design_System_Foundation.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-8",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-9",
+    "title": "COMPLETE COMPONENT LIBRARY",
+    "canonical_owner": "Design_System/Final_Component_Library_Specification.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-9",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-10",
+    "title": "NO COMPONENT WITHOUT STATES",
+    "canonical_owner": "Design_System/Final_Component_State_Matrix.md",
+    "journey": "J-offer-form",
+    "screen": "S011",
+    "route": "/needs/:id/offers/new",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S011.draft",
+      "S011.validation",
+      "S011.uploading",
+      "S011.saving",
+      "S011.success",
+      "S011.duplicate",
+      "S011.deadline-passed",
+      "S011.conflict",
+      "S011.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "provider",
+    "api": "api.S011",
+    "data_object": "Submit/Edit Offer",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS011",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s011",
+    "test": "COMPLETE-10",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-11",
+    "title": "RESPONSIVE DESIGN MUST BE REAL, NOT TEXT ONLY",
+    "canonical_owner": "Product_Design/Final_Responsive_Matrix.md",
+    "journey": "J-comparison-result",
+    "screen": "S015",
+    "route": "/comparisons/:id",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "FgProfessionalComparisonReport",
+      "FgComparisonCriterion"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S015.queued",
+      "S015.processing",
+      "S015.completed-owner",
+      "S015.completed-provider-own",
+      "S015.failed-retry",
+      "S015.denied",
+      "S015.offline-cached",
+      "S015.close-result",
+      "S015.provider-own-result"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "comparison requester or included provider, own projection only",
+    "api": "api.S015",
+    "data_object": "AI comparison result",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS015",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s015",
+    "test": "COMPLETE-11",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-12",
+    "title": "ACCESSIBILITY IS MANDATORY",
+    "canonical_owner": "Product_Design/Final_Accessibility_Matrix.md",
+    "journey": "J-need-form",
+    "screen": "S005",
+    "route": "/needs/new",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S005.draft",
+      "S005.validation",
+      "S005.uploading",
+      "S005.saving",
+      "S005.success",
+      "S005.conflict",
+      "S005.error",
+      "S005.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "requester",
+    "api": "api.S005",
+    "data_object": "Create/Edit Need",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS005",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s005",
+    "test": "COMPLETE-12",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-13",
+    "title": "CONTRAST MUST BE VERIFIED",
+    "canonical_owner": "Audit/Contrast_Evidence.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-13",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-14",
+    "title": "LOCALIZATION MUST BE COMPLETE",
+    "canonical_owner": "Localization/README.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-14",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-15",
+    "title": "UX MUST FEEL FAST, CALM AND PREMIUM",
+    "canonical_owner": "Product_Design/Final_Interaction_Contract.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-15",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-16",
+    "title": "EVERY SCREEN MUST ANSWER THREE QUESTIONS QUICKLY",
+    "canonical_owner": "Design_Data/ux-quality.json",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-16",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-17",
+    "title": "NAVIGATION CONTINUITY",
+    "canonical_owner": "Product_Design/Final_Navigation_Route_Map.md",
+    "journey": "J-offer-form",
+    "screen": "S011",
+    "route": "/needs/:id/offers/new",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S011.draft",
+      "S011.validation",
+      "S011.uploading",
+      "S011.saving",
+      "S011.success",
+      "S011.duplicate",
+      "S011.deadline-passed",
+      "S011.conflict",
+      "S011.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "provider",
+    "api": "api.S011",
+    "data_object": "Submit/Edit Offer",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS011",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s011",
+    "test": "COMPLETE-17",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-18",
+    "title": "FAILURE AND RECOVERY ARE PART OF DESIGN",
+    "canonical_owner": "Product_Design/Final_Error_Recovery_Matrix.md",
+    "journey": "J-offer-unlock",
+    "screen": "S023",
+    "route": "/needs/:id/offers/unlock",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S023.free",
+      "S023.payment-required",
+      "S023.pending",
+      "S023.payment-verified",
+      "S023.submission-recovery",
+      "S023.submitted",
+      "S023.refund-pending",
+      "S023.failed",
+      "S023.unknown"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "provider",
+    "api": "api.S023",
+    "data_object": "Offer Submission Unlock",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s023",
+    "test": "COMPLETE-18",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-19",
+    "title": "OFFLINE AND DEGRADED STATES",
+    "canonical_owner": "Product_Design/Final_Runtime_State_Matrix.md",
+    "journey": "J-offer-form",
+    "screen": "S011",
+    "route": "/needs/:id/offers/new",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S011.draft",
+      "S011.validation",
+      "S011.uploading",
+      "S011.saving",
+      "S011.success",
+      "S011.duplicate",
+      "S011.deadline-passed",
+      "S011.conflict",
+      "S011.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "provider",
+    "api": "api.S011",
+    "data_object": "Submit/Edit Offer",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS011",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s011",
+    "test": "COMPLETE-19",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-20",
+    "title": "DATA/TRUTH SEMANTICS MUST BE PRESERVED",
+    "canonical_owner": "System_Specification/Design_Integration_Contract.md",
+    "journey": "J-telegram-status",
+    "screen": "S022",
+    "route": "/needs/:id/publications",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S022.queued",
+      "S022.sending",
+      "S022.posted",
+      "S022.retry",
+      "S022.uncertain",
+      "S022.failed",
+      "S022.skipped",
+      "S022.removal-pending",
+      "S022.removed",
+      "S022.paused"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "requester",
+    "api": "api.S022",
+    "data_object": "Telegram status/stop",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS022",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s022",
+    "test": "COMPLETE-20",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-21",
+    "title": "AI OFFER EVALUATION MUST BE FULLY INTEGRATED",
+    "canonical_owner": "System_Specification/AI_Evaluation_Contract.md",
+    "journey": "J-comparison-result",
+    "screen": "S015",
+    "route": "/comparisons/:id",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "FgProfessionalComparisonReport",
+      "FgComparisonCriterion"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S015.queued",
+      "S015.processing",
+      "S015.completed-owner",
+      "S015.completed-provider-own",
+      "S015.failed-retry",
+      "S015.denied",
+      "S015.offline-cached",
+      "S015.close-result",
+      "S015.provider-own-result"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "comparison requester or included provider, own projection only",
+    "api": "api.S015",
+    "data_object": "AI comparison result",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS015",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s015",
+    "test": "COMPLETE-21",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-22",
+    "title": "AI MUST REMAIN DECISION SUPPORT",
+    "canonical_owner": "System_Specification/AI_Evaluation_Contract.md",
+    "journey": "J-comparison-result",
+    "screen": "S015",
+    "route": "/comparisons/:id",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "FgProfessionalComparisonReport",
+      "FgComparisonCriterion"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S015.queued",
+      "S015.processing",
+      "S015.completed-owner",
+      "S015.completed-provider-own",
+      "S015.failed-retry",
+      "S015.denied",
+      "S015.offline-cached",
+      "S015.close-result",
+      "S015.provider-own-result"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "comparison requester or included provider, own projection only",
+    "api": "api.S015",
+    "data_object": "AI comparison result",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS015",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s015",
+    "test": "COMPLETE-22",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-23",
+    "title": "AI COMPARISON MUST HANDLE EVIDENCE QUALITY",
+    "canonical_owner": "System_Specification/AI_Evaluation_Contract.md",
+    "journey": "J-comparison-result",
+    "screen": "S015",
+    "route": "/comparisons/:id",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "FgProfessionalComparisonReport",
+      "FgComparisonCriterion"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S015.queued",
+      "S015.processing",
+      "S015.completed-owner",
+      "S015.completed-provider-own",
+      "S015.failed-retry",
+      "S015.denied",
+      "S015.offline-cached",
+      "S015.close-result",
+      "S015.provider-own-result"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "comparison requester or included provider, own projection only",
+    "api": "api.S015",
+    "data_object": "AI comparison result",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS015",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s015",
+    "test": "COMPLETE-23",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-24",
+    "title": "AI OUTPUT VALIDATION",
+    "canonical_owner": "System_Specification/AI_Evaluation_Contract.md",
+    "journey": "J-comparison-result",
+    "screen": "S015",
+    "route": "/comparisons/:id",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "FgProfessionalComparisonReport",
+      "FgComparisonCriterion"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S015.queued",
+      "S015.processing",
+      "S015.completed-owner",
+      "S015.completed-provider-own",
+      "S015.failed-retry",
+      "S015.denied",
+      "S015.offline-cached",
+      "S015.close-result",
+      "S015.provider-own-result"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "comparison requester or included provider, own projection only",
+    "api": "api.S015",
+    "data_object": "AI comparison result",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS015",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s015",
+    "test": "COMPLETE-24",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-25",
+    "title": "PAYMENT UX MUST BE AUTHORITATIVE",
+    "canonical_owner": "System_Specification/Monetization_Payment_Specification.md",
+    "journey": "J-offer-unlock",
+    "screen": "S023",
+    "route": "/needs/:id/offers/unlock",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S023.free",
+      "S023.payment-required",
+      "S023.pending",
+      "S023.payment-verified",
+      "S023.submission-recovery",
+      "S023.submitted",
+      "S023.refund-pending",
+      "S023.failed",
+      "S023.unknown"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "provider",
+    "api": "api.S023",
+    "data_object": "Offer Submission Unlock",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s023",
+    "test": "COMPLETE-25",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-26",
+    "title": "OFFER SUBMISSION UNLOCK MUST BE FULLY DESIGNED",
+    "canonical_owner": "System_Specification/Monetization_Payment_Specification.md",
+    "journey": "J-offer-unlock",
+    "screen": "S023",
+    "route": "/needs/:id/offers/unlock",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S023.free",
+      "S023.payment-required",
+      "S023.pending",
+      "S023.payment-verified",
+      "S023.submission-recovery",
+      "S023.submitted",
+      "S023.refund-pending",
+      "S023.failed",
+      "S023.unknown"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "provider",
+    "api": "api.S023",
+    "data_object": "Offer Submission Unlock",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s023",
+    "test": "COMPLETE-26",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-27",
+    "title": "MAIN ADMIN MUST BE COMPLETE NO-CODE CONTROL PLANE",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "journey": "J-admin-dashboard",
+    "screen": "A001",
+    "route": "/admin/dashboard",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A001.overview",
+      "A001.detail",
+      "A001.empty",
+      "A001.loading",
+      "A001.denied",
+      "A001.stale",
+      "A001.error",
+      "A001.offline",
+      "A001.requires-verification",
+      "A001.drift",
+      "A001.application-failed",
+      "A001.verification-failed",
+      "A001.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A001",
+    "data_object": "Dashboard",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA001",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a001",
+    "test": "COMPLETE-27",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-28",
+    "title": "ADMIN MUST BE SIMPLE ON SURFACE, STRICT UNDERNEATH",
+    "canonical_owner": "Admin/Final_Admin_Control_Center_Design.md",
+    "journey": "J-admin-settings",
+    "screen": "A017",
+    "route": "/admin/settings",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A017.overview",
+      "A017.detail",
+      "A017.empty",
+      "A017.loading",
+      "A017.denied",
+      "A017.stale",
+      "A017.error",
+      "A017.offline",
+      "A017.draft",
+      "A017.validating",
+      "A017.validated",
+      "A017.impact-preview",
+      "A017.reauth-required",
+      "A017.publishing",
+      "A017.published",
+      "A017.version-conflict",
+      "A017.rollback",
+      "A017.requires-verification",
+      "A017.drift",
+      "A017.application-failed",
+      "A017.verification-failed",
+      "A017.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A017",
+    "data_object": "Settings",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA017",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a017",
+    "test": "COMPLETE-28",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-29",
+    "title": "ADMIN CHANGE LIFECYCLE",
+    "canonical_owner": "System_Specification/Admin_Authorization_Contract.md",
+    "journey": "J-admin-settings",
+    "screen": "A017",
+    "route": "/admin/settings",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A017.overview",
+      "A017.detail",
+      "A017.empty",
+      "A017.loading",
+      "A017.denied",
+      "A017.stale",
+      "A017.error",
+      "A017.offline",
+      "A017.draft",
+      "A017.validating",
+      "A017.validated",
+      "A017.impact-preview",
+      "A017.reauth-required",
+      "A017.publishing",
+      "A017.published",
+      "A017.version-conflict",
+      "A017.rollback",
+      "A017.requires-verification",
+      "A017.drift",
+      "A017.application-failed",
+      "A017.verification-failed",
+      "A017.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A017",
+    "data_object": "Settings",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA017",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a017",
+    "test": "COMPLETE-29",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-30",
+    "title": "SECURITY DESIGN MUST BE COMPLETE",
+    "canonical_owner": "System_Specification/Admin_Authorization_Contract.md",
+    "journey": "J-admin-integrity",
+    "screen": "A014",
+    "route": "/admin/integrity",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A014.overview",
+      "A014.detail",
+      "A014.empty",
+      "A014.loading",
+      "A014.denied",
+      "A014.stale",
+      "A014.error",
+      "A014.offline",
+      "A014.confirmation",
+      "A014.processing",
+      "A014.completed",
+      "A014.conflict",
+      "A014.requires-verification",
+      "A014.drift",
+      "A014.application-failed",
+      "A014.verification-failed",
+      "A014.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A014",
+    "data_object": "Integrity",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA014",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a014",
+    "test": "COMPLETE-30",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-31",
+    "title": "PRIVACY MUST BE EXPLICIT",
+    "canonical_owner": "Developer_Handoff/Release_Gates_and_Evidence.md",
+    "journey": "J-profile",
+    "screen": "S003",
+    "route": "/profile",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S003.loading",
+      "S003.content",
+      "S003.validation",
+      "S003.success",
+      "S003.conflict",
+      "S003.error",
+      "S003.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "self",
+    "api": "api.S003",
+    "data_object": "Profile",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS003",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s003",
+    "test": "COMPLETE-31",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-32",
+    "title": "OBSERVABILITY MUST HAVE A DESIGN CONTRACT",
+    "canonical_owner": "Developer_Handoff/Release_Gates_and_Evidence.md",
+    "journey": "J-admin-health",
+    "screen": "A003",
+    "route": "/admin/health",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A003.overview",
+      "A003.detail",
+      "A003.empty",
+      "A003.loading",
+      "A003.denied",
+      "A003.stale",
+      "A003.error",
+      "A003.offline",
+      "A003.requires-verification",
+      "A003.drift",
+      "A003.application-failed",
+      "A003.verification-failed",
+      "A003.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A003",
+    "data_object": "Health",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA003",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a003",
+    "test": "COMPLETE-32",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-33",
+    "title": "MAINTAINABILITY MUST BE DESIGNED",
+    "canonical_owner": "Developer_Handoff/Final_Developer_Handoff_Specification.md",
+    "journey": "J-admin-settings",
+    "screen": "A017",
+    "route": "/admin/settings",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A017.overview",
+      "A017.detail",
+      "A017.empty",
+      "A017.loading",
+      "A017.denied",
+      "A017.stale",
+      "A017.error",
+      "A017.offline",
+      "A017.draft",
+      "A017.validating",
+      "A017.validated",
+      "A017.impact-preview",
+      "A017.reauth-required",
+      "A017.publishing",
+      "A017.published",
+      "A017.version-conflict",
+      "A017.rollback",
+      "A017.requires-verification",
+      "A017.drift",
+      "A017.application-failed",
+      "A017.verification-failed",
+      "A017.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A017",
+    "data_object": "Settings",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA017",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a017",
+    "test": "COMPLETE-33",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-34",
+    "title": "IMPLEMENTATION TRACEABILITY IS MANDATORY",
+    "canonical_owner": "Design_Data/traceability.json",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-34",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-35",
+    "title": "PERFORMANCE ACCEPTANCE CONTRACT",
+    "canonical_owner": "Developer_Handoff/Release_Gates_and_Evidence.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-35",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-36",
+    "title": "TESTING CONTRACT",
+    "canonical_owner": "Developer_Handoff/Acceptance_Cases.md",
+    "journey": "J-offer-unlock",
+    "screen": "S023",
+    "route": "/needs/:id/offers/unlock",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S023.free",
+      "S023.payment-required",
+      "S023.pending",
+      "S023.payment-verified",
+      "S023.submission-recovery",
+      "S023.submitted",
+      "S023.refund-pending",
+      "S023.failed",
+      "S023.unknown"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "provider",
+    "api": "api.S023",
+    "data_object": "Offer Submission Unlock",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s023",
+    "test": "COMPLETE-36",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-37",
+    "title": "RELEASE GATES",
+    "canonical_owner": "Developer_Handoff/Release_Gates_and_Evidence.md",
+    "journey": "J-admin-recovery",
+    "screen": "A018",
+    "route": "/admin/recovery",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A018.overview",
+      "A018.detail",
+      "A018.empty",
+      "A018.loading",
+      "A018.denied",
+      "A018.stale",
+      "A018.error",
+      "A018.offline",
+      "A018.confirmation",
+      "A018.processing",
+      "A018.completed",
+      "A018.conflict",
+      "A018.requires-verification",
+      "A018.drift",
+      "A018.application-failed",
+      "A018.verification-failed",
+      "A018.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A018",
+    "data_object": "Recovery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA018",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a018",
+    "test": "COMPLETE-37",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-38",
+    "title": "REAL EVIDENCE VS DESIGN REQUIREMENT",
+    "canonical_owner": "Audit/design-evidence-manifest.json",
+    "journey": "J-admin-recovery",
+    "screen": "A018",
+    "route": "/admin/recovery",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel",
+      "AdminSettingRow",
+      "AdminHealthCard",
+      "AdminVerificationStatus"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A018.overview",
+      "A018.detail",
+      "A018.empty",
+      "A018.loading",
+      "A018.denied",
+      "A018.stale",
+      "A018.error",
+      "A018.offline",
+      "A018.confirmation",
+      "A018.processing",
+      "A018.completed",
+      "A018.conflict",
+      "A018.requires-verification",
+      "A018.drift",
+      "A018.application-failed",
+      "A018.verification-failed",
+      "A018.dependency-blocked"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "api": "api.A018",
+    "data_object": "Recovery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA018",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a018",
+    "test": "COMPLETE-38",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-39",
+    "title": "SECOND-PASS CROSS-ARTIFACT AUDIT",
+    "canonical_owner": "Audit/Final_Gap_Audit.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-39",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-40",
+    "title": "PRIOR AUDIT FINDINGS MUST BE CLOSED, NOT ERASED",
+    "canonical_owner": "Audit/Final_Gap_Audit.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-40",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-41",
+    "title": "REQUIRED FINAL DELIVERABLES",
+    "canonical_owner": "DELIVERABLE_INDEX.json",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-41",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-42",
+    "title": "FINAL STATUS RULE",
+    "canonical_owner": "Audit/Final_Acceptance_Report.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-42",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-43",
+    "title": "FINAL CONSTITUTION",
+    "canonical_owner": "Product_Design/Final_Master_Product_Design_Specification.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-43",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "COMPLETE-44",
+    "title": "FINAL EXECUTION INSTRUCTION",
+    "canonical_owner": "Audit/Final_Acceptance_Report.md",
+    "journey": "J-browse",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgButton",
+      "FgTextField",
+      "FgStatePanel"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Browse Needs",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "COMPLETE-44",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  }
+]

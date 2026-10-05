@@ -1,0 +1,674 @@
+{
+  "accepted": {
+    "label_key": "stateAccepted",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "acknowledgement-required": {
+    "label_key": "stateAcknowledgementRequired",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "already-rated": {
+    "label_key": "stateAlreadyRated",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "checkout": {
+    "label_key": "stateCheckout",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "completed": {
+    "label_key": "stateCompleted",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "completed-owner": {
+    "label_key": "stateCompletedOwner",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "completed-provider-own": {
+    "label_key": "stateCompletedProviderOwn",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "confirmation": {
+    "label_key": "stateConfirmation",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "confirmed": {
+    "label_key": "stateConfirmed",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "confirmed-active": {
+    "label_key": "stateConfirmedActive",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "conflict": {
+    "label_key": "stateConflict",
+    "description_key": "freshnessHelp",
+    "blocks_mutation": true,
+    "recovery": "edit-and-revalidate"
+  },
+  "conflicting": {
+    "label_key": "stateConflicting",
+    "description_key": "freshnessHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "content": {
+    "label_key": "stateContent",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "deadline-passed": {
+    "label_key": "stateDeadlinePassed",
+    "description_key": "validationHelp",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "default": {
+    "label_key": "stateDefault",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "degraded": {
+    "label_key": "stateDegraded",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "denied": {
+    "label_key": "stateDenied",
+    "description_key": "permissionHelp",
+    "blocks_mutation": true,
+    "recovery": "reauthorize"
+  },
+  "detail": {
+    "label_key": "stateDetail",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "disabled": {
+    "label_key": "stateDisabled",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "draft": {
+    "label_key": "stateDraft",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "duplicate": {
+    "label_key": "stateDuplicate",
+    "description_key": "validationHelp",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "eligible": {
+    "label_key": "stateEligible",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "empty": {
+    "label_key": "stateEmpty",
+    "description_key": "emptyHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "empty-offers": {
+    "label_key": "stateEmptyOffers",
+    "description_key": "emptyHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "error": {
+    "label_key": "stateError",
+    "description_key": "validationHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "expired": {
+    "label_key": "stateExpired",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "export-failed": {
+    "label_key": "stateExportFailed",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "export-processing": {
+    "label_key": "stateExportProcessing",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "export-ready": {
+    "label_key": "stateExportReady",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "failed": {
+    "label_key": "stateFailed",
+    "description_key": "validationHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "failed-retry": {
+    "label_key": "stateFailedRetry",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "form": {
+    "label_key": "stateForm",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "impact-preview": {
+    "label_key": "stateImpactPreview",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "list": {
+    "label_key": "stateList",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "loading": {
+    "label_key": "stateLoading",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "maintenance": {
+    "label_key": "stateMaintenance",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "marking-read": {
+    "label_key": "stateMarkingRead",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "no-eligible-offers": {
+    "label_key": "stateNoEligibleOffers",
+    "description_key": "emptyHelp",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "not-completed": {
+    "label_key": "stateNotCompleted",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "offline": {
+    "label_key": "stateOffline",
+    "description_key": "offlineHelp",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "offline-cached": {
+    "label_key": "stateOfflineCached",
+    "description_key": "offlineHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "offline-draft": {
+    "label_key": "stateOfflineDraft",
+    "description_key": "offlineHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "over-cap": {
+    "label_key": "stateOverCap",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "over-cap-selection": {
+    "label_key": "stateOverCapSelection",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "overview": {
+    "label_key": "stateOverview",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "owner": {
+    "label_key": "stateOwner",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "packages": {
+    "label_key": "statePackages",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "partial": {
+    "label_key": "statePartial",
+    "description_key": "freshnessHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "partial-failure": {
+    "label_key": "statePartialFailure",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "paused": {
+    "label_key": "statePaused",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "pending": {
+    "label_key": "statePending",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "posted": {
+    "label_key": "statePosted",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "preview": {
+    "label_key": "statePreview",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "processing": {
+    "label_key": "stateProcessing",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "public": {
+    "label_key": "statePublic",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "publication-queued": {
+    "label_key": "statePublicationQueued",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "published": {
+    "label_key": "statePublished",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "publishing": {
+    "label_key": "statePublishing",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "queued": {
+    "label_key": "stateQueued",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "quota": {
+    "label_key": "stateQuota",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "rate-limited": {
+    "label_key": "stateRateLimited",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "read-only": {
+    "label_key": "stateReadOnly",
+    "description_key": "permissionHelp",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "ready": {
+    "label_key": "stateReady",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "reauth-required": {
+    "label_key": "stateReauthRequired",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "rejected": {
+    "label_key": "stateRejected",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "removal-pending": {
+    "label_key": "stateRemovalPending",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "removed": {
+    "label_key": "stateRemoved",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "retry": {
+    "label_key": "stateRetry",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "review-required": {
+    "label_key": "stateReviewRequired",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "rollback": {
+    "label_key": "stateRollback",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "saving": {
+    "label_key": "stateSaving",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "sending": {
+    "label_key": "stateSending",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "sent": {
+    "label_key": "stateSent",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "skipped": {
+    "label_key": "stateSkipped",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "stale": {
+    "label_key": "stateStale",
+    "description_key": "freshnessHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "stale-preview": {
+    "label_key": "stateStalePreview",
+    "description_key": "freshnessHelp",
+    "blocks_mutation": true,
+    "recovery": "edit-and-revalidate"
+  },
+  "submitted": {
+    "label_key": "stateSubmitted",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "submitting": {
+    "label_key": "stateSubmitting",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "success": {
+    "label_key": "stateSuccess",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "terminal": {
+    "label_key": "stateTerminal",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "timeout": {
+    "label_key": "stateTimeout",
+    "description_key": "unknownHelp",
+    "blocks_mutation": true,
+    "recovery": "reconcile"
+  },
+  "unauthorized": {
+    "label_key": "stateUnauthorized",
+    "description_key": "permissionHelp",
+    "blocks_mutation": true,
+    "recovery": "reauthorize"
+  },
+  "uncertain": {
+    "label_key": "stateUncertain",
+    "description_key": "unknownHelp",
+    "blocks_mutation": true,
+    "recovery": "reconcile"
+  },
+  "unknown": {
+    "label_key": "stateUnknown",
+    "description_key": "unknownHelp",
+    "blocks_mutation": true,
+    "recovery": "refresh-or-safe-return"
+  },
+  "uploading": {
+    "label_key": "stateUploading",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "validated": {
+    "label_key": "stateValidated",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "validating": {
+    "label_key": "stateValidating",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "validation": {
+    "label_key": "stateValidation",
+    "description_key": "validationHelp",
+    "blocks_mutation": false,
+    "recovery": "edit-and-revalidate"
+  },
+  "version-conflict": {
+    "label_key": "stateVersionConflict",
+    "description_key": "freshnessHelp",
+    "blocks_mutation": true,
+    "recovery": "edit-and-revalidate"
+  },
+  "versions": {
+    "label_key": "stateVersions",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "withdrawn": {
+    "label_key": "stateWithdrawn",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "zero-result": {
+    "label_key": "stateZeroResult",
+    "description_key": "emptyHelp",
+    "blocks_mutation": false,
+    "recovery": "refresh-or-safe-return"
+  },
+  "privileged-target": {
+    "label_key": "statePrivilegedTarget",
+    "description_key": "permissionHelp",
+    "blocks_mutation": false,
+    "recovery": "Main Admin only"
+  },
+  "applying": {
+    "label_key": "stateApplying",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "applied": {
+    "label_key": "stateApplied",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "verified": {
+    "label_key": "stateVerified",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "application-failed": {
+    "label_key": "stateApplicationFailed",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "verification-failed": {
+    "label_key": "stateVerificationFailed",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "requires-verification": {
+    "label_key": "stateRequiresVerification",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "drift": {
+    "label_key": "stateDrift",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "dependency-blocked": {
+    "label_key": "stateDependencyBlocked",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "scheduled": {
+    "label_key": "stateScheduled",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "frozen": {
+    "label_key": "stateFrozen",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": true,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "payment-required": {
+    "label_key": "statePaymentRequired",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "payment-verified": {
+    "label_key": "statePaymentVerified",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "submission-recovery": {
+    "label_key": "stateSubmissionRecovery",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "refund-pending": {
+    "label_key": "stateRefundPending",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "free": {
+    "label_key": "stateFree",
+    "description_key": "noFakeSuccess",
+    "blocks_mutation": false,
+    "recovery": "refresh-authoritative-status; preserve draft; investigate evidence; never replay payment"
+  },
+  "insufficient-information": {
+    "label_key": "insufficientInformation",
+    "description_key": "advisory",
+    "blocks_mutation": true,
+    "recovery": "review source Need/Offer; new evidence requires new comparison version"
+  },
+  "requirement-confirmation": {
+    "label_key": "interpretationConfirmation",
+    "description_key": "advisory",
+    "blocks_mutation": false,
+    "recovery": "review source Need/Offer; new evidence requires new comparison version"
+  },
+  "close-result": {
+    "label_key": "closeResult",
+    "description_key": "advisory",
+    "blocks_mutation": false,
+    "recovery": "review source Need/Offer; new evidence requires new comparison version"
+  },
+  "provider-own-result": {
+    "label_key": "viewMyResult",
+    "description_key": "advisory",
+    "blocks_mutation": false,
+    "recovery": "review source Need/Offer; new evidence requires new comparison version"
+  }
+}

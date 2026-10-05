@@ -1,0 +1,422 @@
+{
+  "A001": {
+    "columns": [
+      "count",
+      "incident",
+      "checkedAt"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": []
+  },
+  "A002": {
+    "columns": [
+      "destination",
+      "permissionProof",
+      "rights",
+      "caps",
+      "quietHours",
+      "queue"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "telegram",
+      "telegramDestination"
+    ]
+  },
+  "A003": {
+    "columns": [
+      "component",
+      "status",
+      "latency",
+      "checkedAt"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": []
+  },
+  "A004": {
+    "columns": [
+      "fieldSettingKey",
+      "effective",
+      "dependencies",
+      "version"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "allowNeeds",
+      "allowOffers",
+      "messaging",
+      "aiCompare"
+    ]
+  },
+  "A005": {
+    "columns": [
+      "record",
+      "reportType",
+      "assigned",
+      "resolution"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "maxOffers"
+    ]
+  },
+  "A006": {
+    "columns": [
+      "criteriaVersion",
+      "promptVersion",
+      "model",
+      "caps",
+      "cost"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "aiModel",
+      "aiTimeout",
+      "aiCriteriaVersion",
+      "aiPromptVersion",
+      "aiMaxOffers",
+      "aiRetryLimit",
+      "aiDailyLimit"
+    ]
+  },
+  "A007": {
+    "columns": [
+      "record",
+      "amount",
+      "fieldCurrency",
+      "providerReference",
+      "status"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "payments",
+      "reconcilePayment"
+    ]
+  },
+  "A008": {
+    "columns": [
+      "maskedIdentity",
+      "status",
+      "privileged",
+      "reviewDate"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "suspendUser"
+    ]
+  },
+  "A009": {
+    "columns": [
+      "contentKey",
+      "language",
+      "version",
+      "updated"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "welcomeText",
+      "supportText",
+      "helpText",
+      "policyText",
+      "noticeText"
+    ]
+  },
+  "A010": {
+    "columns": [
+      "jobClass",
+      "status",
+      "attempt",
+      "retryAfter"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "notificationRetry"
+    ]
+  },
+  "A011": {
+    "columns": [
+      "record",
+      "purposeField",
+      "quarantine",
+      "retention"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "fileQuarantine"
+    ]
+  },
+  "A012": {
+    "columns": [
+      "jobClass",
+      "status",
+      "attempt",
+      "retryAfter"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "retryLimit",
+      "queueConcurrency",
+      "retryJob"
+    ]
+  },
+  "A013": {
+    "columns": [
+      "updated",
+      "scope",
+      "checksum",
+      "encrypted",
+      "restoreEvidence"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "verifyBackup"
+    ]
+  },
+  "A014": {
+    "columns": [
+      "scope",
+      "status",
+      "findings",
+      "checkedAt"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "checkIntegrity"
+    ]
+  },
+  "A015": {
+    "columns": [
+      "session",
+      "secretRef",
+      "checkedAt"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "rateLimit",
+      "paymentSecret",
+      "aiSecret",
+      "telegramSecret"
+    ]
+  },
+  "A016": {
+    "columns": [
+      "actor",
+      "purposeField",
+      "requestId",
+      "beforeAfter",
+      "version"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": []
+  },
+  "A017": {
+    "columns": [
+      "fieldSettingKey",
+      "effective",
+      "risk",
+      "version"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "freeze"
+    ]
+  },
+  "A018": {
+    "columns": [
+      "safeMode",
+      "dependencies",
+      "callbacks",
+      "paidPending"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "restoreBackup",
+      "diagnose"
+    ]
+  },
+  "A019": {
+    "columns": [
+      "status",
+      "version",
+      "updated"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "safeMode"
+    ]
+  },
+  "A020": {
+    "columns": [
+      "status",
+      "version",
+      "updated"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "boost",
+      "offerUnlock",
+      "offerFee",
+      "offerCurrency",
+      "boostPackages"
+    ]
+  },
+  "A021": {
+    "columns": [
+      "status",
+      "version",
+      "updated"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "maintenance",
+      "maintenanceText",
+      "refreshCache"
+    ]
+  },
+  "A022": {
+    "columns": [
+      "status",
+      "version",
+      "updated"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "reviewReport"
+    ]
+  },
+  "A023": {
+    "columns": [
+      "campaignName",
+      "status",
+      "impressions",
+      "clicks"
+    ],
+    "detail": "Side panel >=1200px, inline expanded record below; close returns focus to row trigger.",
+    "filtering": "Search and allowlisted status/date filters, paginated 25 rows, maximum 100; backend authorization applied before pagination.",
+    "audit": "Record actor, purpose, resource, reason, request ID, timestamp and safe version delta; never secrets.",
+    "empty": "No authorized matching records; clear filters; never infer zero incidents from unavailable health data.",
+    "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+    "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+    "control_ids": [
+      "adsEnabled",
+      "adsBrowse",
+      "adsSearch",
+      "adsNeedDetail",
+      "adsSeparation",
+      "adsSessionCap",
+      "adsCampaignPublish",
+      "adsCampaignPause",
+      "adsDestination"
+    ]
+  }
+}

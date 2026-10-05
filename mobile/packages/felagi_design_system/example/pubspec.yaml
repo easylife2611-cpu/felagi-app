@@ -1,0 +1,13 @@
+name: felagi_design_example
+publish_to: none
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  felagi_design_system:
+    path: ../
+flutter:
+  uses-material-design: true

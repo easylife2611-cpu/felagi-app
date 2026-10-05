@@ -1,0 +1,656 @@
+[
+  {
+    "id": "S001",
+    "route_id": "welcome",
+    "path": "/welcome",
+    "aliases": [],
+    "guard": "public",
+    "permissions": [],
+    "api_mapping_id": "api.S001",
+    "primary_state": "default",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S002",
+    "route_id": "telegram-login",
+    "path": "/auth/telegram",
+    "aliases": [],
+    "guard": "public",
+    "permissions": [],
+    "api_mapping_id": "api.S002",
+    "primary_state": "default",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S003",
+    "route_id": "profile",
+    "path": "/profile",
+    "aliases": [
+      "/profile/setup"
+    ],
+    "guard": "self",
+    "permissions": [],
+    "api_mapping_id": "api.S003",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S004",
+    "route_id": "browse",
+    "path": "/browse",
+    "aliases": [],
+    "guard": "public",
+    "permissions": [],
+    "api_mapping_id": "api.S004",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S005",
+    "route_id": "need-form",
+    "path": "/needs/new",
+    "aliases": [
+      "/needs/:id/edit"
+    ],
+    "guard": "requester",
+    "permissions": [],
+    "api_mapping_id": "api.S005",
+    "primary_state": "draft",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S006",
+    "route_id": "telegram-preview",
+    "path": "/needs/new/public-preview",
+    "aliases": [
+      "/needs/:id/public-preview"
+    ],
+    "guard": "requester",
+    "permissions": [],
+    "api_mapping_id": "api.S006",
+    "primary_state": "preview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S007",
+    "route_id": "need-success",
+    "path": "/needs/:id/created",
+    "aliases": [],
+    "guard": "requester",
+    "permissions": [],
+    "api_mapping_id": "api.S007",
+    "primary_state": "confirmed",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S008",
+    "route_id": "need-details",
+    "path": "/needs/:id",
+    "aliases": [],
+    "guard": "public-or-owner",
+    "permissions": [],
+    "api_mapping_id": "api.S008",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S009",
+    "route_id": "my-needs",
+    "path": "/my/needs",
+    "aliases": [],
+    "guard": "self",
+    "permissions": [],
+    "api_mapping_id": "api.S009",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S010",
+    "route_id": "received-offers",
+    "path": "/needs/:id/offers",
+    "aliases": [],
+    "guard": "requester",
+    "permissions": [],
+    "api_mapping_id": "api.S010",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S011",
+    "route_id": "offer-form",
+    "path": "/needs/:id/offers/new",
+    "aliases": [
+      "/offers/:id/edit"
+    ],
+    "guard": "provider",
+    "permissions": [],
+    "api_mapping_id": "api.S011",
+    "primary_state": "draft",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S012",
+    "route_id": "offer-details",
+    "path": "/offers/:id",
+    "aliases": [],
+    "guard": "participant",
+    "permissions": [],
+    "api_mapping_id": "api.S012",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S013",
+    "route_id": "my-offers",
+    "path": "/my/offers",
+    "aliases": [],
+    "guard": "self",
+    "permissions": [],
+    "api_mapping_id": "api.S013",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S014",
+    "route_id": "compare-confirm",
+    "path": "/needs/:id/compare",
+    "aliases": [],
+    "guard": "requester",
+    "permissions": [],
+    "api_mapping_id": "api.S014",
+    "primary_state": "ready",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S015",
+    "route_id": "comparison-result",
+    "path": "/comparisons/:id",
+    "aliases": [],
+    "guard": "comparison requester or included provider, own projection only",
+    "permissions": [],
+    "api_mapping_id": "api.S015",
+    "primary_state": "queued",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S016",
+    "route_id": "comparison-history",
+    "path": "/needs/:id/comparisons",
+    "aliases": [
+      "/my/comparisons"
+    ],
+    "guard": "participant",
+    "permissions": [],
+    "api_mapping_id": "api.S016",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S017",
+    "route_id": "messages",
+    "path": "/offers/:id/messages",
+    "aliases": [],
+    "guard": "participant",
+    "permissions": [],
+    "api_mapping_id": "api.S017",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S018",
+    "route_id": "notifications",
+    "path": "/notifications",
+    "aliases": [],
+    "guard": "self",
+    "permissions": [],
+    "api_mapping_id": "api.S018",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S019",
+    "route_id": "boost-payment",
+    "path": "/needs/:id/boost",
+    "aliases": [],
+    "guard": "requester",
+    "permissions": [],
+    "api_mapping_id": "api.S019",
+    "primary_state": "loading",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S020",
+    "route_id": "rating",
+    "path": "/needs/:id/rating",
+    "aliases": [],
+    "guard": "completed-participant",
+    "permissions": [],
+    "api_mapping_id": "api.S020",
+    "primary_state": "eligible",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S021",
+    "route_id": "report-support",
+    "path": "/support/report",
+    "aliases": [],
+    "guard": "authenticated",
+    "permissions": [],
+    "api_mapping_id": "api.S021",
+    "primary_state": "form",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S022",
+    "route_id": "telegram-status",
+    "path": "/needs/:id/publications",
+    "aliases": [],
+    "guard": "requester",
+    "permissions": [],
+    "api_mapping_id": "api.S022",
+    "primary_state": "queued",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "S023",
+    "route_id": "offer-unlock",
+    "path": "/needs/:id/offers/unlock",
+    "aliases": [],
+    "guard": "provider",
+    "permissions": [],
+    "api_mapping_id": "api.S023",
+    "primary_state": "free",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A001",
+    "route_id": "admin-dashboard",
+    "path": "/admin/dashboard",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.dashboard"
+    ],
+    "api_mapping_id": "api.A001",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A002",
+    "route_id": "admin-telegram",
+    "path": "/admin/telegram",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.telegram"
+    ],
+    "api_mapping_id": "api.A002",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A003",
+    "route_id": "admin-health",
+    "path": "/admin/health",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.health"
+    ],
+    "api_mapping_id": "api.A003",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A004",
+    "route_id": "admin-features",
+    "path": "/admin/features",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.features"
+    ],
+    "api_mapping_id": "api.A004",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A005",
+    "route_id": "admin-marketplace",
+    "path": "/admin/marketplace",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.marketplace"
+    ],
+    "api_mapping_id": "api.A005",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A006",
+    "route_id": "admin-ai",
+    "path": "/admin/ai",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.ai"
+    ],
+    "api_mapping_id": "api.A006",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A007",
+    "route_id": "admin-payments",
+    "path": "/admin/payments",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.payments"
+    ],
+    "api_mapping_id": "api.A007",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A008",
+    "route_id": "admin-users",
+    "path": "/admin/users",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.users"
+    ],
+    "api_mapping_id": "api.A008",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A009",
+    "route_id": "admin-content",
+    "path": "/admin/content",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.content"
+    ],
+    "api_mapping_id": "api.A009",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A010",
+    "route_id": "admin-notifications",
+    "path": "/admin/notifications",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.notifications"
+    ],
+    "api_mapping_id": "api.A010",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A011",
+    "route_id": "admin-files",
+    "path": "/admin/files",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.files"
+    ],
+    "api_mapping_id": "api.A011",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A012",
+    "route_id": "admin-jobs",
+    "path": "/admin/jobs",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.jobs"
+    ],
+    "api_mapping_id": "api.A012",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A013",
+    "route_id": "admin-backups",
+    "path": "/admin/backups",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.backups"
+    ],
+    "api_mapping_id": "api.A013",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A014",
+    "route_id": "admin-integrity",
+    "path": "/admin/integrity",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.integrity"
+    ],
+    "api_mapping_id": "api.A014",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A015",
+    "route_id": "admin-security",
+    "path": "/admin/security",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.security"
+    ],
+    "api_mapping_id": "api.A015",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A016",
+    "route_id": "admin-audit",
+    "path": "/admin/audit",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.audit"
+    ],
+    "api_mapping_id": "api.A016",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A017",
+    "route_id": "admin-settings",
+    "path": "/admin/settings",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.settings"
+    ],
+    "api_mapping_id": "api.A017",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A018",
+    "route_id": "admin-recovery",
+    "path": "/admin/recovery",
+    "aliases": [],
+    "guard": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+    "permissions": [
+      "admin.view.recovery"
+    ],
+    "api_mapping_id": "api.A018",
+    "primary_state": "overview",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A019",
+    "route_id": "admin-safe-mode",
+    "path": "/admin/safe-mode",
+    "aliases": [],
+    "guard": "Main Admin",
+    "permissions": [
+      "admin.view.safe-mode"
+    ],
+    "api_mapping_id": "api.A019",
+    "primary_state": "content",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A020",
+    "route_id": "admin-monetization",
+    "path": "/admin/monetization",
+    "aliases": [],
+    "guard": "Main Admin",
+    "permissions": [
+      "admin.view.monetization"
+    ],
+    "api_mapping_id": "api.A020",
+    "primary_state": "content",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A021",
+    "route_id": "admin-maintenance",
+    "path": "/admin/maintenance",
+    "aliases": [],
+    "guard": "Main Admin",
+    "permissions": [
+      "admin.view.maintenance"
+    ],
+    "api_mapping_id": "api.A021",
+    "primary_state": "content",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A022",
+    "route_id": "admin-reports",
+    "path": "/admin/reports",
+    "aliases": [],
+    "guard": "Main Admin",
+    "permissions": [
+      "admin.view.reports"
+    ],
+    "api_mapping_id": "api.A022",
+    "primary_state": "content",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  },
+  {
+    "id": "A023",
+    "route_id": "admin-sponsored-ads",
+    "path": "/admin/monetization/sponsored-ads",
+    "aliases": [],
+    "guard": "Main Admin",
+    "permissions": [
+      "admin.view.sponsored-ads"
+    ],
+    "api_mapping_id": "api.A023",
+    "primary_state": "content",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "back": "restore origin/filter/scroll; O11 dirty form",
+    "deep_link": "authorize; no mutation replay"
+  }
+]

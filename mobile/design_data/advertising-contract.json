@@ -1,0 +1,164 @@
+{
+  "version": "1.4.0",
+  "master_enabled": false,
+  "campaign_states": [
+    "DRAFT",
+    "VALIDATED",
+    "SCHEDULED",
+    "ACTIVE",
+    "PAUSED",
+    "ENDED",
+    "ARCHIVED",
+    "REJECTED",
+    "EXPIRED",
+    "BLOCKED"
+  ],
+  "slot_states": [
+    "DISABLED",
+    "EMPTY",
+    "LOADING",
+    "READY",
+    "FAILED",
+    "EXPIRED",
+    "NOT_ELIGIBLE",
+    "FREQUENCY_CAPPED"
+  ],
+  "frequency": {
+    "organic_separation_default": 5,
+    "organic_separation_min": 4,
+    "organic_separation_max": 20,
+    "max_per_session": 3,
+    "max_per_day": 6,
+    "max_campaign_per_session": 2,
+    "max_placement_per_session": 2,
+    "page_max": 1
+  },
+  "formats": [
+    "CARD",
+    "BANNER",
+    "COMPACT"
+  ],
+  "creative_limits": {
+    "mime": [
+      "image/png",
+      "image/jpeg",
+      "image/webp"
+    ],
+    "max_bytes": 1048576,
+    "min_dimension": 320,
+    "max_dimension": 2048,
+    "title_max": 80,
+    "body_max": 240,
+    "cta_max": 30,
+    "alt_max": 200,
+    "locales": [
+      "am",
+      "en"
+    ],
+    "media_optional": true,
+    "animation_allowed": false,
+    "executable_content_allowed": false
+  },
+  "allowed_targeting": [
+    "placement",
+    "category",
+    "broad_region",
+    "language",
+    "schedule"
+  ],
+  "forbidden_targeting": [
+    "messages",
+    "attachments",
+    "phone",
+    "private_address",
+    "payment",
+    "comparison_result",
+    "provider_private",
+    "support",
+    "secret"
+  ],
+  "destination": {
+    "external_scheme": "https",
+    "approved_host_required": true,
+    "credentials_in_url": false,
+    "internal_routes": [
+      "/browse",
+      "/needs/:id"
+    ],
+    "safe_redirect_policy": "validate canonical final host; no arbitrary redirect URLs"
+  },
+  "objects": {
+    "advertiser": [
+      "advertiser_id",
+      "name",
+      "display_name",
+      "contact_reference",
+      "status",
+      "notes",
+      "created_at",
+      "updated_at"
+    ],
+    "campaign": [
+      "campaign_id",
+      "advertiser_id",
+      "campaign_name",
+      "status",
+      "start_at",
+      "end_at",
+      "timezone",
+      "creative_id",
+      "placement_ids",
+      "targeting_policy",
+      "frequency_policy",
+      "priority",
+      "commercial_reference",
+      "destination_type",
+      "destination_value",
+      "created_by",
+      "approved_by",
+      "published_at",
+      "paused_at",
+      "ended_at",
+      "version"
+    ],
+    "creative": [
+      "creative_id",
+      "version",
+      "format",
+      "media_asset_id",
+      "copy_am",
+      "copy_en",
+      "alt_am",
+      "alt_en",
+      "validation_receipt"
+    ],
+    "delivery": [
+      "delivery_id",
+      "campaign_id",
+      "campaign_version",
+      "placement_id",
+      "slot_id",
+      "creative_version",
+      "policy_version",
+      "eligible_at",
+      "expires_at"
+    ],
+    "event": [
+      "event_id",
+      "delivery_id",
+      "type",
+      "timestamp",
+      "coverage",
+      "dedupe_key"
+    ]
+  },
+  "analytics": {
+    "rendered": "DOM/native view mounted; not human attention",
+    "impression": "at least50% area visible for continuous1 second while foreground; unsupported observer => unavailable, not zero",
+    "click": "explicit pointer/keyboard activation after valid delivery",
+    "ctr": "unique accepted clicks / accepted impressions for same cohort; undefined if denominator0",
+    "dedupe": "event_id + delivery_id + type; repeated user actions have new event IDs, transport retries reuse ID",
+    "retention": "raw event records30 days; non-identifying aggregate reports180 days; Admin audit uses existing audit retention"
+  },
+  "payment_boundary": "MVP commercial_reference is an audited campaign agreement/invoice reference only; no new wallet, auction, checkout or percentage fee added."
+}

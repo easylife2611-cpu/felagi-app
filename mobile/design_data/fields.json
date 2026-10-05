@@ -1,0 +1,443 @@
+{
+  "full_name": {
+    "name": "full_name",
+    "label_key": "fieldFullName",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 150,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "phone_number": {
+    "name": "phone_number",
+    "label_key": "fieldPhoneNumber",
+    "type": "tel",
+    "required": false,
+    "min": 0,
+    "max": 30,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "profile_photo": {
+    "name": "profile_photo",
+    "label_key": "fieldProfilePhoto",
+    "type": "file",
+    "required": false,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "keyword": {
+    "name": "keyword",
+    "label_key": "fieldKeyword",
+    "type": "search",
+    "required": false,
+    "min": 0,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "title": {
+    "name": "title",
+    "label_key": "fieldTitle",
+    "type": "text",
+    "required": true,
+    "min": 5,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "category_id": {
+    "name": "category_id",
+    "label_key": "fieldCategoryId",
+    "type": "select",
+    "required": true,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "description": {
+    "name": "description",
+    "label_key": "fieldDescription",
+    "type": "textarea",
+    "required": true,
+    "min": 20,
+    "max": 10000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "budget_min": {
+    "name": "budget_min",
+    "label_key": "fieldBudgetMin",
+    "type": "number",
+    "required": false,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "budget_max": {
+    "name": "budget_max",
+    "label_key": "fieldBudgetMax",
+    "type": "number",
+    "required": false,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "currency": {
+    "name": "currency",
+    "label_key": "fieldCurrency",
+    "type": "select",
+    "required": true,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "quantity": {
+    "name": "quantity",
+    "label_key": "fieldQuantity",
+    "type": "number",
+    "required": false,
+    "min": 0.01,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "location_text": {
+    "name": "location_text",
+    "label_key": "fieldLocationText",
+    "type": "text",
+    "required": false,
+    "min": 0,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "deadline_at": {
+    "name": "deadline_at",
+    "label_key": "fieldDeadlineAt",
+    "type": "datetime-local",
+    "required": false,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "offer_deadline_at": {
+    "name": "offer_deadline_at",
+    "label_key": "fieldOfferDeadlineAt",
+    "type": "datetime-local",
+    "required": false,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "attachments": {
+    "name": "attachments",
+    "label_key": "fieldAttachments",
+    "type": "file",
+    "required": false,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "offered_price": {
+    "name": "offered_price",
+    "label_key": "fieldOfferedPrice",
+    "type": "number",
+    "required": true,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "proposal_message": {
+    "name": "proposal_message",
+    "label_key": "fieldProposalMessage",
+    "type": "textarea",
+    "required": true,
+    "min": 20,
+    "max": 10000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "delivery_time_text": {
+    "name": "delivery_time_text",
+    "label_key": "fieldDeliveryTimeText",
+    "type": "text",
+    "required": false,
+    "min": 0,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "availability": {
+    "name": "availability",
+    "label_key": "fieldAvailability",
+    "type": "text",
+    "required": false,
+    "min": 0,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "notes": {
+    "name": "notes",
+    "label_key": "fieldNotes",
+    "type": "textarea",
+    "required": false,
+    "min": 0,
+    "max": 10000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "content": {
+    "name": "content",
+    "label_key": "fieldContent",
+    "type": "textarea",
+    "required": true,
+    "min": 1,
+    "max": 5000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "score": {
+    "name": "score",
+    "label_key": "fieldScore",
+    "type": "rating",
+    "required": true,
+    "min": 1,
+    "max": 5,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "review": {
+    "name": "review",
+    "label_key": "fieldReview",
+    "type": "textarea",
+    "required": false,
+    "min": 0,
+    "max": 10000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "reason": {
+    "name": "reason",
+    "label_key": "fieldReason",
+    "type": "textarea",
+    "required": true,
+    "min": 1,
+    "max": 1000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "target": {
+    "name": "target",
+    "label_key": "fieldTarget",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "details": {
+    "name": "details",
+    "label_key": "fieldDetails",
+    "type": "textarea",
+    "required": false,
+    "min": 0,
+    "max": 10000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "setting_key": {
+    "name": "setting_key",
+    "label_key": "fieldSettingKey",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "proposed_value": {
+    "name": "proposed_value",
+    "label_key": "fieldProposedValue",
+    "type": "textarea",
+    "required": true,
+    "min": 1,
+    "max": 10000,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "base_version": {
+    "name": "base_version",
+    "label_key": "fieldBaseVersion",
+    "type": "number",
+    "required": true,
+    "min": 1,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "record_id": {
+    "name": "record_id",
+    "label_key": "fieldRecordId",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "evidence_ref": {
+    "name": "evidence_ref",
+    "label_key": "fieldEvidenceRef",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "review_at": {
+    "name": "review_at",
+    "label_key": "fieldReviewAt",
+    "type": "date",
+    "required": true,
+    "min": 0,
+    "max": 0,
+    "server_validation": "DFM §5; reject unlisted fields"
+  },
+  "telegram_chat_id": {
+    "name": "telegram_chat_id",
+    "label_key": "fieldTelegramChatId",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "destination_name": {
+    "name": "destination_name",
+    "label_key": "fieldDestinationName",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "destination_type": {
+    "name": "destination_type",
+    "label_key": "fieldDestinationType",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "allowed_categories": {
+    "name": "allowed_categories",
+    "label_key": "fieldAllowedCategories",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "daily_cap": {
+    "name": "daily_cap",
+    "label_key": "fieldDailyCap",
+    "type": "number",
+    "required": true,
+    "min": 0,
+    "max": 0,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "quiet_hours": {
+    "name": "quiet_hours",
+    "label_key": "fieldQuietHours",
+    "type": "text",
+    "required": false,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "permission_expires": {
+    "name": "permission_expires",
+    "label_key": "fieldPermissionExpires",
+    "type": "date",
+    "required": false,
+    "min": 1,
+    "max": 0,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "resolution": {
+    "name": "resolution",
+    "label_key": "fieldResolution",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "scope": {
+    "name": "scope",
+    "label_key": "fieldScope",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "desired_mode": {
+    "name": "desired_mode",
+    "label_key": "fieldDesiredMode",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "Design Integration Contract; server enum/range/permission validation"
+  },
+  "entity_type": {
+    "name": "entity_type",
+    "label_key": "fieldEntityType",
+    "type": "select",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "DFM reports projection; allowlisted enum and authorized source context",
+    "options": [
+      {
+        "value": "NEED",
+        "label_key": "demoNeeds"
+      },
+      {
+        "value": "OFFER",
+        "label_key": "offer"
+      },
+      {
+        "value": "MESSAGE",
+        "label_key": "fieldContent"
+      },
+      {
+        "value": "USER",
+        "label_key": "screenA008"
+      }
+    ]
+  },
+  "entity_id": {
+    "name": "entity_id",
+    "label_key": "fieldEntityId",
+    "type": "text",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "DFM reports projection; allowlisted enum and authorized source context"
+  },
+  "reason_code": {
+    "name": "reason_code",
+    "label_key": "fieldReasonCode",
+    "type": "select",
+    "required": true,
+    "min": 1,
+    "max": 255,
+    "server_validation": "DFM reports projection; allowlisted enum and authorized source context",
+    "options": [
+      {
+        "value": "SAFETY",
+        "label_key": "reasonSafety"
+      },
+      {
+        "value": "FRAUD",
+        "label_key": "reasonFraud"
+      },
+      {
+        "value": "SPAM",
+        "label_key": "reasonSpam"
+      },
+      {
+        "value": "OTHER",
+        "label_key": "reasonOther"
+      }
+    ]
+  }
+}

@@ -1,0 +1,497 @@
+[
+  {
+    "test_id": "ADM-A",
+    "requirement": "CANONICAL MAIN ADMIN PURPOSE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "The Felagi Main Admin Control Center must be designed as a **complete no-code operational control plane for the entire Felagi application**.\n\nThe authorized Main Admin must be able to operate, configure, maintain, monitor, recover, and safely evolve ordinary product behavior without needing:\n\n```text\nSource-code editing\nSQL knowledge\nDatabase console access\nTerminal / shell commands\nRaw JSON editing\nRaw environment-file editing\nManual deployment-file editing\nDeveloper intervention for ordinary configuration\n```\n\nThe interaction experience should be as understandable as a modern smartphone **Settings** application.\n\nThe surface must remain simple.\n\nThe underlying governance must remain strict.\n\nCanonical principle:\n\n```text\nSIMPLE ON THE SURFACE\nSTRICT UNDERNEATH\n```\n\nAnd:\n\n```text\nNO CODE FOR ORDINARY ADMINISTRATION\nNO SQL FOR ORDINARY ADMINISTRATION\nNO TERMINAL FOR ORDINARY ADMINISTRATION\nNO RAW CONFIG FOR ORDINARY ADMINISTRATION\n```\n\nThis must not weaken backend authorization, security, payment verification, audit, dependency validation, re-authentication, rollback, or recovery.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Product_Design/Final_Master_Product_Design_Specification.md"
+  },
+  {
+    "test_id": "ADM-B",
+    "requirement": "INSERT THIS INTO THE PRODUCT FOUNDATION",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Do not place this only under “Admin screens.”\n\nAdd a canonical foundation section defining:\n\n```text\nFELAGI PRODUCT CONTROL MODEL\n\nProduct Users\n├── Requester\n├── Provider\n└── Main Admin\n\nMain Admin\n└── Owns authorized operational control\n    of product configuration and runtime policy\n    through safe no-code controls.\n```\n\nThe Main Admin does **not** own unrestricted database manipulation.\n\nThe Main Admin controls:\n\n```text\nProduct behavior\nFeature availability\nBusiness configuration\nMarketplace configuration\nMonetization\nContent\nOperational policy\nAI configuration\nPayment configuration\nTelegram/publication configuration\nMaintenance\nHealth\nRecovery\nUsers and moderation\nNotifications\nOperational jobs\nBackups\nData integrity\nSecurity administration\nAudit\n```\n\nThe foundational boundary must explicitly state:\n\n> **Main Admin controls product policy and operational behavior through governed application controls, not through direct production source-code or database editing.**\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Product_Design/Final_Master_Product_Design_Specification.md"
+  },
+  {
+    "test_id": "ADM-C",
+    "requirement": "ADD A CANONICAL ADMIN CONTROL LOOP",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Place this in the Product Design Specification and Admin Architecture:\n\n```text\nSEE\n↓\nUNDERSTAND\n↓\nSEARCH / CHOOSE INTENT\n↓\nCHANGE\n↓\nSAVE DRAFT\n↓\nVALIDATE\n↓\nSIMULATE IMPACT\n↓\nPREVIEW\n↓\nCONFIRM / APPROVE\n↓\nPUBLISH\n↓\nAPPLY\n↓\nVERIFY\n↓\nMONITOR\n↓\nROLLBACK / RECOVER IF NEEDED\n↓\nAUDIT\n```\n\nDo not reduce this to:\n\n```text\nEdit → Save\n```\n\nfor high-impact operational controls.\n\nCanonical truth:\n\n```text\nDRAFT ≠ PUBLISHED\nPUBLISHED ≠ APPLIED\nAPPLIED ≠ VERIFIED\n```\n\nA successful UI save must never automatically mean that the runtime state is verified.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Product_Design/Final_Master_Product_Design_Specification.md"
+  },
+  {
+    "test_id": "ADM-D",
+    "requirement": "CREATE THE COMPLETE ADMIN INFORMATION ARCHITECTURE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "The final package must include a complete canonical Main Admin IA.\n\nUse this baseline:\n\n```text\nMAIN ADMIN CONTROL CENTER\n│\n├── Home / System Overview\n├── Health\n├── Safe Mode\n├── Feature Controls\n├── Marketplace\n├── Monetization\n├── AI\n├── Payments\n├── Telegram / Distribution\n├── Users\n├── Content\n├── Notifications\n├── Files\n├── Maintenance\n├── Backups\n├── Data Integrity\n├── Jobs\n├── Reports\n├── Audit\n├── Settings\n├── Security\n└── Recovery\n```\n\nDo not leave these only as text requirements.\n\nEach must receive:\n\n```text\nCanonical ID\nRoute\nPurpose\nAuthorized role\nLayout\nPrimary actions\nSecondary actions\nComponents\nData shown\nEmpty state\nLoading state\nError state\nPermission state\nOffline/connection state where relevant\nConfirmation behavior\nRecovery behavior\nResponsive behavior\nAccessibility contract\nLocalization keys\nAPI/service mapping\nAudit behavior\nAcceptance criteria\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/screen-manifest.json"
+  },
+  {
+    "test_id": "ADM-E",
+    "requirement": "ADMIN HOME MUST BE OPERABLE AT A GLANCE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Design the Main Admin landing page so a non-technical owner can understand system condition immediately.\n\nCanonical structure:\n\n```text\nSYSTEM STATUS\n─────────────\nMarketplace     Healthy / Attention / Problem\nPayments        Healthy / Attention / Problem\nAI Compare      Healthy / Attention / Problem\nTelegram        Healthy / Attention / Problem\nMessaging       Healthy / Attention / Problem\nStorage         Healthy / Attention / Problem\n\nTODAY\nNeeds\nOffers\nPayments\nOpen Reports\n\nQUICK CONTROLS\nMarketplace\nOffer Submission Fee\nBoost\nAI Compare\nTelegram\nMaintenance\n```\n\nDo not present a wall of technical logs as the first view.\n\nTechnical details must exist behind progressive disclosure.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-F",
+    "requirement": "PHONE-SETTINGS STYLE FEATURE CONTROLS",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Feature Controls must use simple human-readable switches.\n\nExample:\n\n```text\nMarketplace\n\nAllow new Needs               ON\nAllow new Offers              ON\nMessaging                     ON\nAI Comparison                 ON\nPayments                      ON\nNeed Boosting                 ON\nOffer Submission Unlock       OFF\nTelegram Publication          ON\n```\n\nNever expose internal keys such as:\n\n```text\nfeature.offers=false\n```\n\nas the primary Main Admin experience.\n\nInstead show:\n\n```text\nAllow providers to submit Offers\n\n[ ON ]\n\nWhen OFF:\nProviders may still see allowed existing content,\nbut new Offer submission is stopped.\n\nExisting Offers are not deleted.\n```\n\nEvery setting must answer:\n\n```text\nWhat is this?\nWhat is its current state?\nWhat happens if I change it?\nWhat else depends on it?\nWhat risk does it carry?\nCan I undo it?\nWho changed it last?\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-G",
+    "requirement": "SIMPLE MODE + ADVANCED MODE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Add a canonical two-level administration model.\n\nDefault:\n\n```text\nSIMPLE MODE\n```\n\nfor ordinary ownership and daily operation.\n\nSimple Mode contains things such as:\n\n```text\nON/OFF\nPrice\nLimit\nDate/time\nVisible text\nMaintenance\nSafe actions\nRestore previous value\n```\n\nAdvanced Mode exposes only necessary technical configuration such as:\n\n```text\nAI model\nTimeout\nRetry count\nProvider configuration\nRate limits\nQueue configuration\nIntegration-level settings\n```\n\nAdvanced Mode must not become a raw code/config editor.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-H",
+    "requirement": "SEPARATE SETTINGS BY RESPONSIBILITY",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Do not put everything into one generic “Settings” table or screen.\n\nDesign separate canonical classes:\n\n```text\nFEATURE CONTROL\nExample:\nAI Comparison ON/OFF\n\nCONFIGURATION\nExample:\nMax Offers = 20\n\nBUSINESS / MONETIZATION\nExample:\nOffer Submission Fee = 25 ETB\n\nCONTENT\nExample:\nMaintenance Message\n\nOPERATIONAL ACTION\nExample:\nRetry failed job\n\nSECRET\nExample:\nPayment API secret reference\n```\n\nThese are semantically different and must have different validation, permissions, risk, audit, and presentation.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/control-registry.json"
+  },
+  {
+    "test_id": "ADM-I",
+    "requirement": "ADD THE CONTROL REGISTRY TO THE FOUNDATION",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Define one canonical Control Registry.\n\nEvery Admin-controlled capability must be registered with fields equivalent to:\n\n```text\ncontrol_id\ncanonical_name\ncategory\ndescription\ncontrol_type\ndefault_value\ncurrent_value\nallowed_values/range\nunit/currency\ndependency\nconflict_rule\nrisk_level\npermission_required\nreauth_required\nconfirmation_required\nrollback_supported\nsafe_default\nruntime_effect\nverification_method\naudit_required\nlocalization_key\n```\n\nNo random one-off Admin toggle should exist outside this registry.\n\nThis registry becomes the canonical contract between:\n\n```text\nProduct Design\nAdmin UI\nBackend Configuration\nRuntime Behavior\nAudit\nTests\nDeveloper Implementation\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/control-registry.json"
+  },
+  {
+    "test_id": "ADM-J",
+    "requirement": "DEPENDENCY-AWARE CONTROLS",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Admin must never create logically invalid product combinations.\n\nExamples:\n\n```text\nPayments OFF\n+\nBoost ON\n=\nINVALID\n```\n\nor:\n\n```text\nPayments OFF\n+\nPaid Offer Submission Unlock ON\n=\nINVALID\n```\n\nor:\n\n```text\nAI Compare ON\n+\nNo valid AI provider\n=\nINVALID / BLOCKED\n```\n\nThe Admin UI must explain why.\n\nExample:\n\n```text\nBoosting requires Payments to be enabled.\n\n[Go to Payments]\n```\n\nDo not silently change dependent settings without showing the Admin what will happen.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/control-registry.json"
+  },
+  {
+    "test_id": "ADM-K",
+    "requirement": "IMPACT PREVIEW BEFORE HIGH-RISK CHANGES",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Before important configuration changes, show an impact summary.\n\nExample:\n\n```text\nYou are turning Payments OFF.\n\nThis will affect:\n\n• New Boost purchases\n• New paid Offer submissions\n• New payment checkout\n\nThis will NOT remove:\n\n• Existing payment history\n• Previously verified transactions\n\nPending transactions:\n4\n\n[Cancel]\n[Continue]\n```\n\nAdd impact preview patterns to the Pattern Library.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-L",
+    "requirement": "RISK CLASSIFICATION",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Every Admin control/action must have a risk category.\n\nCanonical baseline:\n\n```text\nLOW\nExample:\nEdit welcome text\n\nMEDIUM\nExample:\nChange marketplace limit\n\nHIGH\nExample:\nChange Offer Submission fee\n\nCRITICAL\nExample:\nDisable Payments\nEnable Safe Mode\nChange security-sensitive integration\n```\n\nHigher risk must progressively require stronger controls:\n\n```text\nImpact Preview\nConfirmation\nReason\nRecent Re-authentication\nSecond factor where applicable\nAudit evidence\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/control-registry.json"
+  },
+  {
+    "test_id": "ADM-M",
+    "requirement": "ADD CHANGE SIMULATION",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "For meaningful changes, Admin should be able to see expected consequences before publishing.\n\nExample:\n\n```text\nPROPOSED CHANGE\n\nOffer Submission Unlock\nOFF → ON\n\nFee\n0 ETB → 25 ETB\n\nExpected effect:\nNew Offer submissions will require\na verified 25 ETB payment.\n\nUnaffected:\nExisting Offers\nAlready-created payment intents\nRequester Need posting\n```\n\nCall this **Impact Simulation / Change Preview**.\n\nDo not call a simulation an actual runtime outcome.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-N",
+    "requirement": "MONETIZATION CENTER",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Create a dedicated, very simple Monetization section.\n\nCanonical layout:\n\n```text\nMONETIZATION\n\nNeed Boosting\nStatus                ON\n1 Day                 50 ETB\n3 Days                120 ETB\n7 Days                250 ETB\n\nOffer Submission Unlock\nStatus                OFF\nFee                   0 ETB\nCurrency              ETB\n\n[Save Draft]\n[Preview Impact]\n[Publish]\n```\n\nPreserve the locked Felagi no-percentage-commission rule.\n\nOffer Submission Unlock canonical rule remains:\n\n```text\npayment_required =\nfeature_enabled == true\nAND\nconfigured_amount > 0\n```\n\nTherefore:\n\n```text\nOFF = FREE\nON + 0 ETB = FREE\nON + amount > 0 = PAYMENT REQUIRED\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "System_Specification/Monetization_Payment_Specification.md"
+  },
+  {
+    "test_id": "ADM-O",
+    "requirement": "SAFE MONETIZATION CHANGE HANDLING",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "The design must explicitly cover:\n\n```text\nFee changes while payment is in progress\nPayment intent amount snapshot\nDuplicate-click protection\nDuplicate-charge prevention\nPayment verified but Offer submission interrupted\nRecovery without second payment\nAdmin turns fee OFF during pending payment\nAdmin changes fee after payment intent creation\n```\n\nExisting in-progress payment intent uses the captured price snapshot.\n\nA new Admin price must apply only according to the defined effective policy.\n\nDo not leave this to developer interpretation.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "System_Specification/Monetization_Payment_Specification.md"
+  },
+  {
+    "test_id": "ADM-P",
+    "requirement": "PAYMENT CENTER MUST GUIDE, NOT DIRECTLY ALTER TRUTH",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Admin must not directly mark arbitrary payments as SUCCESS.\n\nDesign:\n\n```text\nPayment status: Pending\n\nPayment provider result:\nPending\n\nClient report:\nSuccess\n\nAuthoritative server status:\nPending\n\nRecommended action:\n[Run Reconciliation]\n```\n\nCanonical rule:\n\n```text\nCLIENT SAYS SUCCESS\n≠\nVERIFIED PAYMENT\n```\n\nAdmin reconciliation initiates authoritative verification.\n\nIt does not bypass it.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "System_Specification/Monetization_Payment_Specification.md"
+  },
+  {
+    "test_id": "ADM-Q",
+    "requirement": "HEALTH CENTER",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Health must translate technical issues into operational meaning.\n\nBad UX:\n\n```text\nworker_3 exit 1\n```\n\nPreferred UX:\n\n```text\nPayments\n⚠ Attention Required\n\nLast successful verification:\n12 minutes ago\n\nPossible user impact:\nSome paid actions may remain pending.\n\nRecommended action:\n[Run Reconciliation]\n\n[View Technical Details]\n```\n\nHealth domains should include at least:\n\n```text\nDatabase\nStorage\nBackground jobs\nPayments\nAI\nTelegram\nNotifications\nBackups\nFile processing\nDisk/resource status\n```\n\nwhere applicable.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-R",
+    "requirement": "USER-IMPACT VIEW",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Health must include what users are experiencing, not only infrastructure health.\n\nExample:\n\n```text\nUSER IMPACT\n\nOffer submissions blocked       0\nPayments pending                4\nTelegram uncertain              2\nAI comparison delayed           1\nFailed outgoing messages        3\n```\n\nDo not infer unsupported user impact.\n\nShow only measured/known states.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-S",
+    "requirement": "SAFE MODE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Design a prominent emergency Safe Mode.\n\nExample:\n\n```text\nSAFE MODE\n\nKeep available:\n✓ Main Admin access\n✓ Read existing data\n\nTemporarily stop:\n✗ New Needs\n✗ New Offers\n✗ Paid actions\n✗ AI comparison\n✗ Boost purchases\n✗ Telegram publication\n```\n\nBefore activation:\n\n```text\nShow impact\nRequire reason\nRequire confirmation\nRequire re-authentication\n```\n\nAfter activation:\n\n```text\nShow exactly what is overridden\nShow who activated it\nShow when\nShow recovery path\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-T",
+    "requirement": "MAINTENANCE CENTER",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Allow ordinary maintenance without code.\n\nInclude controlled actions such as:\n\n```text\nMaintenance Mode\nMaintenance message\nStart now\nSchedule start\nSchedule end\nStatus\n\nSafe cache refresh where supported\nRetry safe failed jobs\nRun integrity checks\nReview storage usage\nCheck background processes\n```\n\nNever expose unrestricted shell execution.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-U",
+    "requirement": "RECOVERY WIZARD",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Design a guided recovery experience.\n\nExample:\n\n```text\nSomething is wrong.\n\nChoose area:\n\nPayments\nAI\nTelegram\nLogin\nFiles\nNotifications\nMarketplace\n\n↓\nRun safe diagnostics\n↓\nShow evidence\n↓\nRecommend approved recovery\n↓\nExecute with confirmation\n↓\nVerify\n```\n\nAdmin should not have to know the technical subsystem name first.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-V",
+    "requirement": "“I WANT TO…” ADMIN SHORTCUTS",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Add an intent-based entry surface.\n\nExample:\n\n```text\nWhat do you want to do?\n\nChange a price\nTurn a feature on/off\nPut Felagi in maintenance\nCheck a payment issue\nCheck system health\nSuspend a user\nRestore a previous setting\nEdit app text\n```\n\nThis does not replace the normal IA.\n\nIt is an additional usability layer over the same canonical controls.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-W",
+    "requirement": "ADMIN SEARCH",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Create universal Admin search for authorized operational objects and settings.\n\nExamples:\n\n```text\n\"offer fee\"\n→ Marketplace > Monetization > Offer Submission Unlock\n\n\"maintenance\"\n→ Maintenance\n\n\"payment pending\"\n→ Payments > Pending\n```\n\nSearch results must remain permission-filtered.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-X",
+    "requirement": "CONTENT MANAGEMENT WITHOUT CODE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Admin must be able to safely manage approved content such as:\n\n```text\nWelcome text\nSupport text\nMaintenance message\nHelp content\nTerms/policies where permitted\nPublic operational notices\n```\n\nInclude:\n\n```text\nAmharic\nEnglish if launch-supported\nPreview\nDraft\nPublish\nVersion history\nRollback\n```\n\nDo not convert the Admin into an unrestricted HTML/code editor.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-Y",
+    "requirement": "LOCALIZATION OF ADMIN ITSELF",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "The Admin Control Center must follow the same localization architecture as the user application.\n\nDo not leave Admin labels hard-coded.\n\nAll Admin:\n\n```text\nLabels\nDescriptions\nWarnings\nErrors\nConfirmations\nStatus text\nHelp content\n```\n\nmust use canonical localization resources.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Localization/app_am.arb"
+  },
+  {
+    "test_id": "ADM-Z",
+    "requirement": "SECURITY + SECRETS",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Normal configuration and secrets must be clearly separated.\n\nNormal settings may display actual values where safe:\n\n```text\nBoost price\nAI limit\nMax Offers\n```\n\nSecrets must not show plaintext:\n\n```text\nPayment secret\nAI API key\nTelegram bot token\nDatabase credentials\n```\n\nPreferred secret UX:\n\n```text\nPayment Secret\n\nStatus: Configured\nLast rotated: 12 days ago\n\n[Rotate]\n```\n\nThe Admin design must never normalize revealing secrets.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "System_Specification/Admin_Authorization_Contract.md"
+  },
+  {
+    "test_id": "ADM-AA",
+    "requirement": "PUBLISHED / APPLIED / VERIFIED STATE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Every critical change must have observable lifecycle status.\n\nExample:\n\n```text\nDraft\n↓\nValidated\n↓\nPublished\n↓\nApplying\n↓\nApplied\n↓\nVerified\n```\n\nFailures:\n\n```text\nPublished\n↓\nApplication Failed\n↓\nRecovery Available\n```\n\nor:\n\n```text\nApplied\n↓\nVerification Failed\n↓\nRollback Recommended\n```\n\nDo not present ambiguous “Saved successfully” as final proof.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AB",
+    "requirement": "AUTOMATIC POST-CHANGE VERIFICATION",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "For supported configuration changes, design an automatic verification step.\n\nExample:\n\n```text\nOffer Fee enabled\n\nVerification:\n✓ Configuration persisted\n✓ Runtime policy loaded\n✓ Payment gate active\n✓ Existing Offers unaffected\n\nSTATUS: VERIFIED\n```\n\nIf evidence cannot be obtained:\n\n```text\nREQUIRES VERIFICATION\n```\n\nDo not fake PASS.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AC",
+    "requirement": "CONFIGURATION DRIFT DETECTION",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Design a mechanism/state for mismatch between intended configuration and runtime behavior.\n\nExample:\n\n```text\n⚠ CONFIGURATION DRIFT\n\nConfigured:\nPayments ON\n\nObserved runtime:\nPayments OFF\n\n[Investigate]\n```\n\nCanonical distinction:\n\n```text\nCONFIGURED ≠ OBSERVED RUNTIME\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AD",
+    "requirement": "VERSION HISTORY + ROLLBACK",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Every controlled setting that can safely support versioning must show history.\n\nExample:\n\n```text\nOffer Submission Fee\n\nVersion 18   Current   25 ETB\nVersion 17             0 ETB\nVersion 16             15 ETB\n\n[Restore Version 17]\n```\n\nRollback creates a new published version.\n\nDo not mutate historical audit records.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AE",
+    "requirement": "CHANGE DIFF",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Before publishing and in history show:\n\n```text\nBEFORE\nOffer Fee: OFF\nAmount: 0 ETB\n\nAFTER\nOffer Fee: ON\nAmount: 25 ETB\n```\n\nThe Admin should not need to remember the previous value.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AF",
+    "requirement": "CHANGE FREEZE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Design a controlled emergency ability to freeze ordinary configuration changes.\n\nExample:\n\n```text\nCONFIGURATION FREEZE\n\nStatus: ON\n\nOnly approved emergency actions remain available.\n```\n\nShow:\n\n```text\nWho enabled it\nWhen\nWhy\nWhat is blocked\nHow to release it\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AG",
+    "requirement": "SCHEDULED ADMIN CHANGES",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Where safe, allow scheduled changes.\n\nExamples:\n\n```text\nMaintenance\nStart: 23:00\nEnd: 01:00\n```\n\nor:\n\n```text\nOffer Fee\nEffective: Monday 08:00\n```\n\nor:\n\n```text\nTemporary notice\nStart / End\n```\n\nScheduled operations require:\n\n```text\nTimezone clarity\nPreview\nConflict detection\nAudit\nCancellation\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AH",
+    "requirement": "SAFE PRESETS / OPERATION MODES",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Add governed presets only as compositions of existing controls, not new parallel truth.\n\nExamples could include:\n\n```text\nNormal Operation\nSafe Mode\nMaintenance Mode\nFree-Launch Monetization State\n```\n\nA preset must show exactly which underlying controls it changes.\n\nNo hidden behavior.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AI",
+    "requirement": "BACKUPS + RECOVERY EVIDENCE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Do not show only:\n\n```text\nBackup exists\n```\n\nDesign:\n\n```text\nLast successful backup\nBackup age\nBackup status\nLast restore verification\nRetention status\n```\n\nA backup must not be presented as recoverable merely because a file exists.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AJ",
+    "requirement": "OPERATIONAL TIMELINE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Create an Admin timeline:\n\n```text\n02:14  Offer Fee changed 0 → 25 ETB\n02:16  Runtime verified\n02:40  Payment provider warning\n03:05  Maintenance enabled\n03:19  Maintenance disabled\n```\n\nAllow filtering by:\n\n```text\nSettings\nSecurity\nPayments\nUsers\nAI\nMarketplace\nMaintenance\nRecovery\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AK",
+    "requirement": "“WHAT CHANGED?” VIEW",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Add an understandable change-summary view.\n\nExample:\n\n```text\nSince yesterday:\n\n• Offer fee changed from 0 to 25 ETB\n• AI configuration unchanged\n• 1 Telegram destination updated\n• 2 users suspended\n• Maintenance active for 14 minutes\n```\n\nOnly display evidence-supported changes.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AL",
+    "requirement": "ROLE-SAFE DELEGATION",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Main Admin remains highest operational authority.\n\nDesign delegated permissions for lower-risk work where appropriate.\n\nUse capability/scoped permissions rather than giving everyone Main Admin rights.\n\nExample:\n\n```text\nSupport Admin\nCan:\nView users\nHandle reports\nView payment state\nRun approved support actions\n\nCannot:\nChange monetization\nChange security policy\nChange AI provider\nActivate Safe Mode\n```\n\nExact roles must follow the product security contract.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "System_Specification/Admin_Authorization_Contract.md"
+  },
+  {
+    "test_id": "ADM-AM",
+    "requirement": "BULK ACTION SAFETY",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Any bulk operation must have:\n\n```text\nSelection count\nScope\nImpact preview\nPermission check\nConfirmation\nProgress\nPartial-failure reporting\nAudit\nRecovery where possible\n```\n\nExample:\n\n```text\nSelected: 48 users\n\nAction: Suspend\n\n[Preview affected accounts]\n```\n\nNever make one accidental click execute a silent mass action.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "System_Specification/Admin_Authorization_Contract.md"
+  },
+  {
+    "test_id": "ADM-AN",
+    "requirement": "ACCESSIBILITY OF ADMIN",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "The Admin experience must receive the same seriousness as the mobile application.\n\nInclude:\n\n```text\nKeyboard navigation\nVisible focus\nAccessible labels\nScreen-reader structure\nNon-color-only status\nTouch-target sizing\nZoom/reflow\nError association\nDialog focus behavior\nReduced motion\nLong-text support\n```\n\nNo “Admin is internal, therefore accessibility does not matter” exception.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Product_Design/Final_Accessibility_Matrix.md"
+  },
+  {
+    "test_id": "ADM-AO",
+    "requirement": "RESPONSIVE ADMIN DESIGN",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Main Admin must work across:\n\n```text\nMobile\nTablet\nLaptop\nDesktop\nWide desktop\n```\n\nPhone use should support emergency/simple operational tasks.\n\nComplex tables may transform to cards on narrow screens.\n\nNo action must become impossible on mobile merely because desktop is the primary operational surface.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Product_Design/Final_Responsive_Matrix.md"
+  },
+  {
+    "test_id": "ADM-AP",
+    "requirement": "CONTROL STATE MODEL",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Each Admin control must support applicable states such as:\n\n```text\nDefault\nLoading\nEditing\nDraft\nValidation Error\nValidated\nPublishing\nPublished\nApplying\nApplied\nVerified\nVerification Failed\nDependency Blocked\nPermission Denied\nStale Version\nConflict\nDisabled\nUnavailable\nRollback Available\n```\n\nDo not force every control to have every state; mark non-applicable states N/A.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/control-registry.json"
+  },
+  {
+    "test_id": "ADM-AQ",
+    "requirement": "ADMIN COMPONENT LIBRARY",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Add Admin-specific components to the canonical Component Library where required, but reuse shared primitives wherever possible.\n\nExamples:\n\n```text\nAdminSettingRow\nAdminToggleControl\nAdminNumericControl\nAdminRiskBadge\nAdminImpactSummary\nAdminDependencyNotice\nAdminChangeDiff\nAdminVersionHistory\nAdminHealthCard\nAdminIncidentCard\nAdminVerificationStatus\nAdminAuditEntry\nAdminRecoveryAction\nAdminScheduledChange\nAdminBulkActionBar\nAdminPermissionNotice\n```\n\nDo not create duplicate components when existing canonical components are equivalent.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_System/Final_Component_Library_Specification.md"
+  },
+  {
+    "test_id": "ADM-AR",
+    "requirement": "DESIGN TOKENS",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Admin UI must consume the same canonical design-token architecture:\n\n```text\nraw\n→ primitive\n→ semantic\n→ component\n→ rendered\n```\n\nDo not introduce arbitrary Admin-only color systems.\n\nAdmin status colors must use semantic meanings.\n\nRisk/status must never depend on color alone.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_System/tokens/token_registry.json"
+  },
+  {
+    "test_id": "ADM-AS",
+    "requirement": "ADMIN ROUTE REGISTRY",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Create canonical route IDs and paths.\n\nDo not leave them to implementation guesswork.\n\nEvery route must map:\n\n```text\nRoute\nScreen ID\nPermission\nAPI/service\nPrimary state\nRecovery path\n```\n\nNo route naming drift between:\n\n```text\nPDS\nManifest\nPreview\nFlutter starter\nDeveloper handoff\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/screen-manifest.json"
+  },
+  {
+    "test_id": "ADM-AT",
+    "requirement": "ADMIN SCREEN MANIFEST",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "The final package must include a machine-readable Admin screen manifest analogous to the user/mobile screen manifest.\n\nIt must define at least:\n\n```text\nscreen_id\nroute_id\ntitle_key\nrole\npermissions\ndata dependencies\nactions\nstates\ncomponents\nresponsive mode\nAPI references\nrisk actions\nrecovery\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Design_Data/screen-manifest.json"
+  },
+  {
+    "test_id": "ADM-AU",
+    "requirement": "ADMIN INTERACTIVE REFERENCE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Do not deliver Admin only as prose.\n\nThe final package must include a code-based interactive design reference showing representative:\n\n```text\nDashboard\nFeature Controls\nMonetization\nPayments\nHealth\nMaintenance\nSafe Mode\nSettings\nAudit\nRecovery\n```\n\nwith meaningful states.\n\nThis is a design reference, not production proof.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "UI_Handoff/ui-preview/app.js"
+  },
+  {
+    "test_id": "ADM-AV",
+    "requirement": "ADMIN TRANSITION MAP",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Create a complete transition map such as:\n\n```text\nDashboard\n→ Health\n→ Incident\n→ Recovery Action\n→ Verification\n→ Audit\n\nFeature Controls\n→ Edit\n→ Validate\n→ Impact Preview\n→ Publish\n→ Apply\n→ Verify\n→ History\n\nMonetization\n→ Change Fee\n→ Validate\n→ Preview\n→ Publish\n→ Verify\n\nSettings\n→ Version History\n→ Restore\n→ Validate\n→ Publish\n→ Verify\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AW",
+    "requirement": "DEVELOPER TRACEABILITY",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Every Admin requirement must be traceable:\n\n```text\nREQUIREMENT\n↓\nADMIN SCREEN\n↓\nCONTROL\n↓\nPERMISSION\n↓\nSTATE\n↓\nAPI/SERVICE\n↓\nVALIDATION\n↓\nIMPACT\n↓\nRECOVERY\n↓\nAUDIT\n↓\nTEST\n```\n\nNo requirement should end at “documented.”\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AX",
+    "requirement": "FINAL ADMIN ACCEPTANCE GATE",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Do not call the Felagi package developer-ready until all applicable Admin areas are reconciled.\n\nRequired statuses:\n\n```text\nMET\nPARTIAL\nGAP\nUNKNOWN\nN/A\nREQUIRES EVIDENCE\n```\n\nPreserve:\n\n```text\nUNKNOWN ≠ MISSING\nDESIGNED ≠ IMPLEMENTED\nIMPLEMENTED ≠ VERIFIED\nPUBLISHED ≠ APPLIED\nAPPLIED ≠ VERIFIED\n```\n\nThe Admin foundation is acceptable only when:\n\n```text\nNo critical design decision is left to developer guesswork.\n\nNo ordinary control requires source-code editing.\n\nNo ordinary configuration requires SQL.\n\nNo dangerous control bypasses impact preview/validation.\n\nNo payment truth can be manually fabricated.\n\nNo secret is exposed as ordinary configuration.\n\nNo high-risk change lacks audit evidence.\n\nNo rollback claim exists without a defined recovery mechanism.\n\nNo screen exists without states.\n\nNo control exists without permission.\n\nNo action exists without expected behavior.\n\nNo error exists without recovery guidance where technically possible.\n```\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AY",
+    "requirement": "REQUIRED PACKAGE PLACEMENT",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Do **not** create one isolated file and consider the work finished.\n\nThe Main Admin architecture must be reconciled into all affected canonical deliverables:\n\n```text\nMaster Product Design Specification\nProduct / Business Rules\nDesign-System Foundation\nToken Registry\nComponent Library\nComponent-State Matrix\nPattern Library\nInformation Architecture\nAdmin IA\nNavigation / Route Registry\nAdmin Screen Inventory\nScreen-by-Screen Specifications\nAdmin Screen Manifest\nUser/Admin Journey Matrix\nTransition Map\nInteraction Contract\nResponsive Matrix\nAccessibility Matrix\nLocalization Resources\nRuntime-State Matrix\nPermission Matrix\nRisk Matrix\nDependency Matrix\nError / Recovery Matrix\nControl Registry\nMonetization Specification\nPayment Specification\nHealth / Maintenance Specification\nAudit / Versioning Specification\nInteractive HTML Reference\nFlutter / runtime design mapping where applicable\nDeveloper Implementation Contract\nTraceability Matrix\nFinal Gap Audit\nFinal Acceptance Report\nPackage Manifest\n```\n\nWhere an existing canonical artifact already owns the responsibility, **update that artifact**.\n\nDo not create duplicate parallel truth.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-AZ",
+    "requirement": "NO DUPLICATE OWNERSHIP",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Use this law:\n\n```text\nONE SEMANTIC RESPONSIBILITY\n→ ONE CANONICAL OWNER\n→ ZERO PARALLEL TRUTH\n→ MANY AUTHORIZED CONSUMERS\n```\n\nFor example:\n\n```text\nToken Registry owns canonical visual tokens.\nControl Registry owns Admin control definitions.\nProduct Spec owns business behavior.\nAdmin PDS owns Admin interaction design.\nSecurity contract owns authorization requirements.\nPayment contract owns authoritative payment truth.\n```\n\nDo not redefine the same rule differently in five documents.\n\nReference canonical ownership instead.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-BA",
+    "requirement": "DO NOT OVER-BUILD",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "This directive is not permission to add unrelated Admin features.\n\nBefore adding anything new, classify it as:\n\n```text\nRequired for existing product operation\nRequired for safe administration\nRequired for maintenance/recovery\nRequired for security/audit\nOR\nUnrelated feature\n```\n\nIf unrelated, do not add it.\n\nThe purpose is:\n\n> **Make the existing Felagi product safely operable without coding—not turn the Admin Console into a separate unrelated product.**\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-BB",
+    "requirement": "FINAL HANDOFF OUTPUT",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "At completion, provide:\n\n```text\n1. COMPLETED\n2. INTEGRATED INTO CANONICAL FOUNDATION\n3. EXISTING ARTIFACTS UPDATED\n4. NEW CANONICAL ARTIFACTS CREATED\n5. DUPLICATES REMOVED / RECONCILED\n6. BLOCKED / REQUIRES EVIDENCE\n7. REMAINING\n8. FINAL ADMIN DESIGN STATUS\n9. FINAL PACKAGE STATUS\n```\n\nAlso provide a **coverage matrix** showing exactly where each Main Admin requirement was inserted.\n\nExample:\n\n```text\nRequirement:\nOffer Submission Fee ON/OFF\n\nCanonical owner:\nProduct Business Rules\n\nAdmin UI:\nMonetization\n\nControl registry:\nadmin.monetization.offer_submission_fee\n\nRisk:\nHIGH\n\nDependency:\nPayments\n\nRuntime verification:\nRequired\n\nRollback:\nSupported\n\nTest:\nDefined\n```\n\nDo this for every major Admin control family.\n\n---",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Admin/Final_Admin_Control_Center_Design.md"
+  },
+  {
+    "test_id": "ADM-BC",
+    "requirement": "FINAL LOCK STATEMENT",
+    "method": "manual design + authenticated implementation acceptance",
+    "oracle": "Add this statement to the final design package:\n\n> **FELAGI MAIN ADMIN CONTROL ARCHITECTURE — LOCKED FOUNDATION**\n>\n> The Main Admin Control Center is a core Felagi product foundation, not a secondary developer utility. It provides a governed no-code operational layer through which an authorized non-technical owner can safely control ordinary product configuration, monetization, feature availability, content, maintenance, health, recovery and operational policy. Its simple user experience must never bypass backend authorization, dependency validation, payment verification, security, audit, versioning, recovery or runtime verification. Future refinements may extend and harden this foundation but must not replace, weaken or silently bypass it without explicit product approval.\n\n---\n\n## ከዚህ ጋር ለእሱ የምትጨምረው አንድ አስፈላጊ መመሪያ\n\n**“Do not finish by telling me what should be added. Actually update the canonical package artifacts themselves, reconcile all affected files, regenerate the relevant manifests/previews/contracts, then run a second-pass consistency audit. I need the corrected full package, not an Admin addendum.”**\n\nይህ በጣም አስፈላጊ ነው። ካልከው ሌላው ChatGPT/developer አንድ `Admin_Addendum.md` ብቻ ሠርቶ “done” ሊል ይችላል።\n\nእኛ የምንፈልገው:\n\n```text\nNOT:\nAdmin_Addendum.md\n\nBUT:\n\nExisting Canonical Foundation\n        +\nMain Admin Architecture\n        ↓\nRECONCILED\n        ↓\nONE FINAL FELAGI PACKAGE\n```\n\nነው።\n\nከዚህ ትዕዛዝ በኋላ ዋና ዲዛይን ሰሪው **Main Adminን እንደ ተጨማሪ screen ሳይሆን እንደ Felagi ዋና operational foundation** ማስገባት አለበት። ይህ አሁን የተቆለፈውን No-Code Main Admin baseline ሙሉ በሙሉ ይጠብቃል።",
+    "status": "NOT_EXECUTED",
+    "evidence_required": "version/hash + authorized/denied/stale/failure/recovery observations; real render where visual",
+    "owner": "Product_Design/Final_Master_Product_Design_Specification.md"
+  }
+]

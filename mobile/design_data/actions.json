@@ -1,0 +1,123 @@
+[
+  {
+    "key": "accept",
+    "screen": "S012",
+    "overlay": "O01",
+    "api": "POST /api/v1/offers/{id}/accept",
+    "role": "requester",
+    "precondition": "PENDING Offer on OPEN Need",
+    "result": "IN_PROGRESS Need and ACCEPTED Offer; other pending Offers rejected",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "reject",
+    "screen": "S012",
+    "overlay": "O02",
+    "api": "POST /api/v1/offers/{id}/reject",
+    "role": "requester",
+    "precondition": "PENDING Offer on OPEN Need",
+    "result": "REJECTED Offer",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "cancelNeed",
+    "screen": "S008",
+    "overlay": "O03",
+    "api": "POST /api/v1/needs/{id}/cancel",
+    "role": "requester",
+    "precondition": "OPEN Need, no award",
+    "result": "CANCELLED Need",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "completeNeed",
+    "screen": "S008",
+    "overlay": "O04",
+    "api": "POST /api/v1/needs/{id}/complete",
+    "role": "requester",
+    "precondition": "IN_PROGRESS Need with accepted Offer",
+    "result": "COMPLETED Need; rating eligible",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "stop",
+    "screen": "S022",
+    "overlay": "O05",
+    "api": "POST /api/v1/needs/{id}/telegram-publication/stop",
+    "role": "requester",
+    "precondition": "Owner, current version",
+    "result": "Queued sends stopped; removal queued; no guaranteed deletion",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "selectOffers",
+    "screen": "S014",
+    "overlay": "O06",
+    "api": "POST /api/v1/needs/{id}/comparisons",
+    "role": "requester",
+    "precondition": "OPEN Need, eligible PENDING Offers, cap and quota",
+    "result": "Immutable snapshot, included IDs and excluded count",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "withdraw",
+    "screen": "S012",
+    "overlay": "O07",
+    "api": "POST /api/v1/offers/{id}/withdraw",
+    "role": "provider",
+    "precondition": "Own PENDING Offer on OPEN Need",
+    "result": "WITHDRAWN",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "checkout",
+    "screen": "S019",
+    "overlay": "O08",
+    "api": "POST /api/v1/needs/{id}/boosts",
+    "role": "requester",
+    "precondition": "Active package, eligible own Need",
+    "result": "PENDING payment and checkout instruction",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "publish",
+    "screen": "A017",
+    "overlay": "O09",
+    "api": "POST /api/v1/admin/changes/{id}/publish",
+    "role": "admin-risk",
+    "precondition": "Validated fresh draft, reviewed impact, reason, If-Match, risk-specific reauth/2FA",
+    "result": "Published new immutable version and audit ID",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "rollback",
+    "screen": "A017",
+    "overlay": "O10",
+    "api": "POST /api/v1/admin/changes/{id}/rollback",
+    "role": "admin-risk",
+    "precondition": "Target approved version, reason, impact, risk-specific reauth/2FA",
+    "result": "New version referencing prior value",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  },
+  {
+    "key": "draft",
+    "screen": "S005",
+    "overlay": "O11",
+    "api": "LOCAL",
+    "role": "authenticated",
+    "precondition": "Dirty form",
+    "result": "Encrypted production draft; session-memory preview",
+    "confirmation": true,
+    "recovery": "401 reauth without replay; 409 refresh/reconfirm; 422 field errors; timeout reconcile by idempotency key"
+  }
+]

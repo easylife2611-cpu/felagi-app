@@ -1,0 +1,12 @@
+{
+  "version": "1.4.1",
+  "canonical_rule": "ONE REQUIREMENT -> ONE CANONICAL OWNER -> MANY AUTHORIZED CONSUMERS",
+  "domains": {
+    "core_product": "Design_Data/traceability.json",
+    "admin_controls": "Design_Data/admin-requirement-coverage.json",
+    "ai_comparison": "Design_Data/ai-requirement-coverage.json",
+    "offer_submission_unlock": "System_Specification/Monetization_Payment_Specification.md",
+    "sponsored_advertising": "Design_Data/ads-requirement-coverage.json"
+  },
+  "note": "Sponsored Advertising rows are also linked into Design_Data/traceability.json for one cross-domain acceptance graph."
+}

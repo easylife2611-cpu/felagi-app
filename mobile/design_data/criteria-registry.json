@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "active_version": "v2",
+  "legacy_version": "v1",
+  "criteria": [
+    {
+      "id": "price",
+      "label_key": "price",
+      "weight": 0.25
+    },
+    {
+      "id": "reliability",
+      "label_key": "reliability",
+      "weight": 0.25
+    },
+    {
+      "id": "quality",
+      "label_key": "quality",
+      "weight": 0.25
+    },
+    {
+      "id": "delivery",
+      "label_key": "delivery",
+      "weight": 0.25
+    }
+  ],
+  "score_range": [
+    1,
+    10
+  ],
+  "unknown_criterion_score": null,
+  "overall": "round_half_up(sum(known score * canonical weight) / sum(known canonical weight),2); no known criteria => insufficient data, no score",
+  "coverage": "assessable criteria count / 4; display fraction, not model confidence",
+  "near_tie_delta": 0.2,
+  "hard_requirement_failure": "prominent does-not-meet; never best-value/winner badge",
+  "legacy_rendering": "v1 neutral policy5 remains immutable and explicitly labelled synthetic/UNKNOWN; never relabel as observed evidence",
+  "change_reason": "New locked directive prohibits treating absent evidence as a measured score. v2 keeps four equal canonical weights but excludes unknown contributions; compares coverage visibly, no hidden penalty."
+}

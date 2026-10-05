@@ -1,0 +1,6398 @@
+{
+  "spec_id": "FGM-PDS-1.4",
+  "authority": "Final_Master_Product_Design_Specification.md",
+  "screen_count": 46,
+  "navigation": [
+    "Browse",
+    "My Needs",
+    "My Offers",
+    "Notifications",
+    "Profile"
+  ],
+  "screens": [
+    {
+      "id": "S001",
+      "route_id": "welcome",
+      "name_am": "መግቢያ",
+      "name_en": "Welcome",
+      "states": [
+        "default",
+        "error",
+        "offline"
+      ],
+      "api": [],
+      "canonical_id": "S001",
+      "legacy_id": "UI-01",
+      "path": "/welcome",
+      "roles": "public",
+      "layout": "auth",
+      "fields": [],
+      "links": [
+        "S002"
+      ],
+      "title_key": "screenS001",
+      "runtime_states": [
+        "ready",
+        "loading",
+        "error",
+        "offline",
+        "timeout"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S001",
+      "business_states": [
+        "default"
+      ],
+      "state_ids": [
+        "S001.default",
+        "S001.error",
+        "S001.offline"
+      ],
+      "api_mapping_id": "api.S001",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "signIn",
+      "purpose": "Welcome in the Need-first journey",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S001"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s001",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s001",
+      "acceptance_test_id": "SCREEN-S001",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S002",
+      "route_id": "telegram-login",
+      "name_am": "በቴሌግራም መግባት",
+      "name_en": "Telegram sign-in",
+      "states": [
+        "default",
+        "loading",
+        "denied",
+        "expired",
+        "error",
+        "offline"
+      ],
+      "api": [
+        "POST /api/v1/auth/telegram/start",
+        "GET /api/v1/auth/telegram/callback",
+        "POST /api/v1/auth/telegram/exchange"
+      ],
+      "canonical_id": "S002",
+      "legacy_id": "UI-02",
+      "path": "/auth/telegram",
+      "roles": "public",
+      "layout": "auth",
+      "fields": [],
+      "links": [
+        "S003"
+      ],
+      "title_key": "screenS002",
+      "runtime_states": [
+        "ready",
+        "loading",
+        "error",
+        "offline",
+        "timeout"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S002",
+      "business_states": [
+        "default",
+        "denied",
+        "expired"
+      ],
+      "state_ids": [
+        "S002.default",
+        "S002.loading",
+        "S002.denied",
+        "S002.expired",
+        "S002.error",
+        "S002.offline"
+      ],
+      "api_mapping_id": "api.S002",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "signIn",
+      "purpose": "Telegram sign-in in the Need-first journey",
+      "entry_points": [
+        "S001",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S002"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s002",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s002",
+      "acceptance_test_id": "SCREEN-S002",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S003",
+      "route_id": "profile",
+      "name_am": "መገለጫ ማዘጋጀት",
+      "name_en": "Profile",
+      "states": [
+        "loading",
+        "content",
+        "validation",
+        "success",
+        "conflict",
+        "error",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/auth/me",
+        "PATCH /api/v1/profile"
+      ],
+      "canonical_id": "S003",
+      "legacy_id": "UI-03",
+      "path": "/profile",
+      "roles": "self",
+      "layout": "form",
+      "fields": [
+        "full_name",
+        "phone_number",
+        "profile_photo"
+      ],
+      "links": [
+        "S004"
+      ],
+      "title_key": "screenS003",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited"
+      ],
+      "aliases": [
+        "/profile/setup"
+      ],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S003",
+      "business_states": [
+        "content",
+        "success",
+        "conflict"
+      ],
+      "state_ids": [
+        "S003.loading",
+        "S003.content",
+        "S003.validation",
+        "S003.success",
+        "S003.conflict",
+        "S003.error",
+        "S003.offline"
+      ],
+      "api_mapping_id": "api.S003",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "save",
+      "purpose": "Profile in the Need-first journey",
+      "entry_points": [
+        "S002",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "full_name",
+          "phone_number",
+          "profile_photo"
+        ],
+        "api_mapping_id": "api.S003"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s003",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s003",
+      "acceptance_test_id": "SCREEN-S003",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S004",
+      "route_id": "browse",
+      "name_am": "ፍላጎት ፍለጋ",
+      "name_en": "Browse Needs",
+      "states": [
+        "loading",
+        "content",
+        "empty",
+        "error",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/categories",
+        "GET /api/v1/needs"
+      ],
+      "canonical_id": "S004",
+      "legacy_id": "UI-04",
+      "path": "/browse",
+      "roles": "public",
+      "layout": "cards",
+      "fields": [
+        "keyword"
+      ],
+      "links": [
+        "S005",
+        "S008",
+        "S009",
+        "S013",
+        "S018"
+      ],
+      "title_key": "screenS004",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S004",
+      "business_states": [
+        "content"
+      ],
+      "state_ids": [
+        "S004.loading",
+        "S004.content",
+        "S004.empty",
+        "S004.error",
+        "S004.offline"
+      ],
+      "api_mapping_id": "api.S004",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [
+        "AD_BROWSE_INLINE_01",
+        "AD_SEARCH_RESULTS_INLINE_01"
+      ],
+      "placement_ids": [
+        "AD_BROWSE_INLINE_01",
+        "AD_SEARCH_RESULTS_INLINE_01"
+      ],
+      "slot_states": [
+        "DISABLED",
+        "EMPTY",
+        "LOADING",
+        "READY",
+        "FAILED",
+        "EXPIRED",
+        "NOT_ELIGIBLE",
+        "FREQUENCY_CAPPED"
+      ],
+      "ad_fallback": "omit without blocking core flow",
+      "primary_action_key": "createNeed",
+      "purpose": "Browse Needs in the Need-first journey",
+      "entry_points": [
+        "S003",
+        "S021",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "keyword"
+        ],
+        "api_mapping_id": "api.S004"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s004",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s004",
+      "acceptance_test_id": "SCREEN-S004",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S005",
+      "route_id": "need-form",
+      "name_am": "ፍላጎት መፍጠር/ማስተካከል",
+      "name_en": "Create/Edit Need",
+      "states": [
+        "draft",
+        "validation",
+        "uploading",
+        "saving",
+        "success",
+        "conflict",
+        "error",
+        "offline"
+      ],
+      "api": [
+        "POST /api/v1/needs",
+        "PUT /api/v1/needs/{id}",
+        "POST /api/v1/attachments"
+      ],
+      "canonical_id": "S005",
+      "legacy_id": "UI-05",
+      "path": "/needs/new",
+      "roles": "requester",
+      "layout": "form",
+      "fields": [
+        "title",
+        "category_id",
+        "description",
+        "budget_min",
+        "budget_max",
+        "currency",
+        "quantity",
+        "location_text",
+        "deadline_at",
+        "offer_deadline_at",
+        "attachments"
+      ],
+      "links": [
+        "S006"
+      ],
+      "title_key": "screenS005",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited"
+      ],
+      "aliases": [
+        "/needs/:id/edit"
+      ],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S005",
+      "business_states": [
+        "draft",
+        "uploading",
+        "saving",
+        "success",
+        "conflict"
+      ],
+      "state_ids": [
+        "S005.draft",
+        "S005.validation",
+        "S005.uploading",
+        "S005.saving",
+        "S005.success",
+        "S005.conflict",
+        "S005.error",
+        "S005.offline"
+      ],
+      "api_mapping_id": "api.S005",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "continue",
+      "purpose": "Create/Edit Need in the Need-first journey",
+      "entry_points": [
+        "S004",
+        "S006",
+        "S008",
+        "S009",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "title",
+          "category_id",
+          "description",
+          "budget_min",
+          "budget_max",
+          "currency",
+          "quantity",
+          "location_text",
+          "deadline_at",
+          "offer_deadline_at",
+          "attachments"
+        ],
+        "api_mapping_id": "api.S005"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s005",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s005",
+      "acceptance_test_id": "SCREEN-S005",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S006",
+      "route_id": "telegram-preview",
+      "name_am": "ይፋዊ ማስታወቂያ ቅድመ እይታ",
+      "name_en": "Public-post preview",
+      "states": [
+        "preview",
+        "acknowledgement-required",
+        "ready",
+        "stale-preview"
+      ],
+      "api": [],
+      "canonical_id": "S006",
+      "legacy_id": "UI-06",
+      "path": "/needs/new/public-preview",
+      "roles": "requester",
+      "layout": "preview",
+      "fields": [],
+      "links": [
+        "S005",
+        "S007"
+      ],
+      "title_key": "screenS006",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [
+        "/needs/:id/public-preview"
+      ],
+      "status_owner": "server except local drafts/view states",
+      "projection": "Local draft projection; new route has no id. Existing edit route retains id. Server validates public projection and consent at create/update.",
+      "preview_id": "S006",
+      "business_states": [
+        "preview",
+        "acknowledgement-required",
+        "stale-preview"
+      ],
+      "state_ids": [
+        "S006.preview",
+        "S006.acknowledgement-required",
+        "S006.ready",
+        "S006.stale-preview"
+      ],
+      "api_mapping_id": "api.S006",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "continue",
+      "purpose": "Public-post preview in the Need-first journey",
+      "entry_points": [
+        "S005",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S006"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s006",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s006",
+      "acceptance_test_id": "SCREEN-S006",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S007",
+      "route_id": "need-success",
+      "name_am": "ፍላጎት ተመዝግቧል",
+      "name_en": "Need-created confirmation",
+      "states": [
+        "confirmed",
+        "publication-queued",
+        "partial-failure",
+        "error"
+      ],
+      "api": [
+        "POST /api/v1/needs"
+      ],
+      "canonical_id": "S007",
+      "legacy_id": "UI-07",
+      "path": "/needs/:id/created",
+      "roles": "requester",
+      "layout": "confirmation",
+      "fields": [],
+      "links": [
+        "S008",
+        "S022"
+      ],
+      "title_key": "screenS007",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S007",
+      "business_states": [
+        "confirmed",
+        "publication-queued",
+        "partial-failure"
+      ],
+      "state_ids": [
+        "S007.confirmed",
+        "S007.publication-queued",
+        "S007.partial-failure",
+        "S007.error"
+      ],
+      "api_mapping_id": "api.S007",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "viewNeed",
+      "purpose": "Need-created confirmation in the Need-first journey",
+      "entry_points": [
+        "S006",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S007"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s007",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s007",
+      "acceptance_test_id": "SCREEN-S007",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "primary_action": "viewNeed",
+      "primary_action_semantic_id": "viewNeed"
+    },
+    {
+      "id": "S008",
+      "route_id": "need-details",
+      "name_am": "የፍላጎት ዝርዝር",
+      "name_en": "Need details",
+      "states": [
+        "loading",
+        "public",
+        "owner",
+        "empty-offers",
+        "terminal",
+        "denied",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/needs/{id}",
+        "POST /api/v1/needs/{id}/cancel",
+        "POST /api/v1/needs/{id}/complete"
+      ],
+      "canonical_id": "S008",
+      "legacy_id": "UI-08",
+      "path": "/needs/:id",
+      "roles": "public-or-owner",
+      "layout": "detail",
+      "fields": [],
+      "links": [
+        "S010",
+        "S011",
+        "S005",
+        "S014",
+        "S016",
+        "S019",
+        "S022",
+        "S020",
+        "S021"
+      ],
+      "title_key": "screenS008",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S008",
+      "business_states": [
+        "public",
+        "owner",
+        "empty-offers",
+        "terminal"
+      ],
+      "state_ids": [
+        "S008.loading",
+        "S008.public",
+        "S008.owner",
+        "S008.empty-offers",
+        "S008.terminal",
+        "S008.denied",
+        "S008.offline"
+      ],
+      "api_mapping_id": "api.S008",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [
+        "AD_NEED_DETAIL_BOTTOM_01"
+      ],
+      "placement_ids": [
+        "AD_NEED_DETAIL_BOTTOM_01"
+      ],
+      "slot_states": [
+        "DISABLED",
+        "EMPTY",
+        "LOADING",
+        "READY",
+        "FAILED",
+        "EXPIRED",
+        "NOT_ELIGIBLE",
+        "FREQUENCY_CAPPED"
+      ],
+      "ad_fallback": "omit without blocking core flow",
+      "primary_action_key": "completeNeed",
+      "purpose": "Need details in the Need-first journey",
+      "entry_points": [
+        "S004",
+        "S007",
+        "S009",
+        "S018",
+        "S019",
+        "S020",
+        "S022",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S008"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s008",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s008",
+      "acceptance_test_id": "SCREEN-S008",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S009",
+      "route_id": "my-needs",
+      "name_am": "የእኔ ፍላጎቶች",
+      "name_en": "My Needs",
+      "states": [
+        "loading",
+        "list",
+        "empty",
+        "error",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/my/needs"
+      ],
+      "canonical_id": "S009",
+      "legacy_id": "UI-09",
+      "path": "/my/needs",
+      "roles": "self",
+      "layout": "cards",
+      "fields": [],
+      "links": [
+        "S005",
+        "S008"
+      ],
+      "title_key": "screenS009",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S009",
+      "business_states": [
+        "list"
+      ],
+      "state_ids": [
+        "S009.loading",
+        "S009.list",
+        "S009.empty",
+        "S009.error",
+        "S009.offline"
+      ],
+      "api_mapping_id": "api.S009",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "view",
+      "purpose": "My Needs in the Need-first journey",
+      "entry_points": [
+        "S004",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S009"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s009",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s009",
+      "acceptance_test_id": "SCREEN-S009",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S010",
+      "route_id": "received-offers",
+      "name_am": "የተቀበሉ አቅርቦቶች",
+      "name_en": "Received Offers",
+      "states": [
+        "loading",
+        "list",
+        "empty",
+        "over-cap",
+        "terminal",
+        "denied",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/needs/{id}/offers"
+      ],
+      "canonical_id": "S010",
+      "legacy_id": "UI-10",
+      "path": "/needs/:id/offers",
+      "roles": "requester",
+      "layout": "offers",
+      "fields": [],
+      "links": [
+        "S012",
+        "S014"
+      ],
+      "title_key": "screenS010",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S010",
+      "business_states": [
+        "list",
+        "over-cap",
+        "terminal"
+      ],
+      "state_ids": [
+        "S010.loading",
+        "S010.list",
+        "S010.empty",
+        "S010.over-cap",
+        "S010.terminal",
+        "S010.denied",
+        "S010.offline"
+      ],
+      "api_mapping_id": "api.S010",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "compare",
+      "purpose": "Received Offers in the Need-first journey",
+      "entry_points": [
+        "S008",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S010"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s010",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s010",
+      "acceptance_test_id": "SCREEN-S010",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S011",
+      "route_id": "offer-form",
+      "name_am": "አቅርቦት ማቅረብ/ማስተካከል",
+      "name_en": "Submit/Edit Offer",
+      "states": [
+        "draft",
+        "validation",
+        "uploading",
+        "saving",
+        "success",
+        "duplicate",
+        "deadline-passed",
+        "conflict",
+        "offline"
+      ],
+      "api": [
+        "POST /api/v1/offer-submissions",
+        "PUT /api/v1/offers/{id}"
+      ],
+      "canonical_id": "S011",
+      "legacy_id": "UI-11",
+      "path": "/needs/:id/offers/new",
+      "roles": "provider",
+      "layout": "form",
+      "fields": [
+        "offered_price",
+        "currency",
+        "proposal_message",
+        "delivery_time_text",
+        "availability",
+        "notes",
+        "attachments"
+      ],
+      "links": [
+        "S023"
+      ],
+      "title_key": "screenS011",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited"
+      ],
+      "aliases": [
+        "/offers/:id/edit"
+      ],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S011",
+      "business_states": [
+        "draft",
+        "uploading",
+        "saving",
+        "success",
+        "duplicate",
+        "deadline-passed",
+        "conflict"
+      ],
+      "state_ids": [
+        "S011.draft",
+        "S011.validation",
+        "S011.uploading",
+        "S011.saving",
+        "S011.success",
+        "S011.duplicate",
+        "S011.deadline-passed",
+        "S011.conflict",
+        "S011.offline"
+      ],
+      "api_mapping_id": "api.S011",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "submit",
+      "purpose": "Submit/Edit Offer in the Need-first journey",
+      "entry_points": [
+        "S008",
+        "S023",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "offered_price",
+          "currency",
+          "proposal_message",
+          "delivery_time_text",
+          "availability",
+          "notes",
+          "attachments"
+        ],
+        "api_mapping_id": "api.S011"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s011",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s011",
+      "acceptance_test_id": "SCREEN-S011",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S012",
+      "route_id": "offer-details",
+      "name_am": "የአቅርቦት ዝርዝር",
+      "name_en": "Offer details",
+      "states": [
+        "loading",
+        "pending",
+        "accepted",
+        "rejected",
+        "withdrawn",
+        "confirmation",
+        "denied",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/offers/{id}",
+        "POST /api/v1/offers/{id}/accept",
+        "POST /api/v1/offers/{id}/reject",
+        "POST /api/v1/offers/{id}/withdraw"
+      ],
+      "canonical_id": "S012",
+      "legacy_id": "UI-12",
+      "path": "/offers/:id",
+      "roles": "participant",
+      "layout": "detail",
+      "fields": [],
+      "links": [
+        "S017",
+        "S020",
+        "S021"
+      ],
+      "title_key": "screenS012",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S012",
+      "business_states": [
+        "pending",
+        "accepted",
+        "rejected",
+        "withdrawn",
+        "confirmation"
+      ],
+      "state_ids": [
+        "S012.loading",
+        "S012.pending",
+        "S012.accepted",
+        "S012.rejected",
+        "S012.withdrawn",
+        "S012.confirmation",
+        "S012.denied",
+        "S012.offline"
+      ],
+      "api_mapping_id": "api.S012",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "accept",
+      "purpose": "Offer details in the Need-first journey",
+      "entry_points": [
+        "S010",
+        "S013",
+        "S015",
+        "S017",
+        "S018",
+        "S023",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S012"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s012",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s012",
+      "acceptance_test_id": "SCREEN-S012",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S013",
+      "route_id": "my-offers",
+      "name_am": "የእኔ አቅርቦቶች",
+      "name_en": "My Offers",
+      "states": [
+        "loading",
+        "list",
+        "empty",
+        "terminal",
+        "error",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/my/offers"
+      ],
+      "canonical_id": "S013",
+      "legacy_id": "UI-13",
+      "path": "/my/offers",
+      "roles": "self",
+      "layout": "cards",
+      "fields": [],
+      "links": [
+        "S012"
+      ],
+      "title_key": "screenS013",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S013",
+      "business_states": [
+        "list",
+        "terminal"
+      ],
+      "state_ids": [
+        "S013.loading",
+        "S013.list",
+        "S013.empty",
+        "S013.terminal",
+        "S013.error",
+        "S013.offline"
+      ],
+      "api_mapping_id": "api.S013",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "view",
+      "purpose": "My Offers in the Need-first journey",
+      "entry_points": [
+        "S004",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S013"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s013",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s013",
+      "acceptance_test_id": "SCREEN-S013",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S014",
+      "route_id": "compare-confirm",
+      "name_am": "ንጽጽር ማስጀመር",
+      "name_en": "Compare confirmation",
+      "states": [
+        "ready",
+        "no-eligible-offers",
+        "over-cap-selection",
+        "quota",
+        "processing",
+        "conflict",
+        "insufficient-information",
+        "requirement-confirmation"
+      ],
+      "api": [
+        "GET /api/v1/needs/{id}/offers",
+        "POST /api/v1/needs/{id}/comparisons"
+      ],
+      "canonical_id": "S014",
+      "legacy_id": "UI-14",
+      "path": "/needs/:id/compare",
+      "roles": "requester",
+      "layout": "selection",
+      "fields": [],
+      "links": [
+        "S015",
+        "S016"
+      ],
+      "title_key": "screenS014",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S014",
+      "business_states": [
+        "no-eligible-offers",
+        "over-cap-selection",
+        "quota",
+        "processing",
+        "conflict",
+        "insufficient-information",
+        "requirement-confirmation"
+      ],
+      "state_ids": [
+        "S014.ready",
+        "S014.no-eligible-offers",
+        "S014.over-cap-selection",
+        "S014.quota",
+        "S014.processing",
+        "S014.conflict",
+        "S014.insufficient-information",
+        "S014.requirement-confirmation"
+      ],
+      "api_mapping_id": "api.S014",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "FgRequirementSummary",
+        "FgEligibilityList"
+      ],
+      "primary_action": "evaluateOffers",
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "evaluateOffers",
+      "purpose": "Compare confirmation in the Need-first journey",
+      "entry_points": [
+        "S008",
+        "S010",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S014"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s014",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s014",
+      "acceptance_test_id": "SCREEN-S014",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S015",
+      "route_id": "comparison-result",
+      "name_am": "በሰው ሠራሽ ብልህነት የተዘጋጀ ንጽጽር",
+      "name_en": "AI comparison result",
+      "states": [
+        "queued",
+        "processing",
+        "completed-owner",
+        "completed-provider-own",
+        "failed-retry",
+        "denied",
+        "offline-cached",
+        "close-result",
+        "provider-own-result"
+      ],
+      "api": [
+        "GET /api/v1/comparisons/{id}",
+        "GET /api/v1/comparisons/{id}/results",
+        "POST /api/v1/comparisons/{id}/retry"
+      ],
+      "canonical_id": "S015",
+      "legacy_id": "UI-15",
+      "path": "/comparisons/:id",
+      "roles": "comparison requester or included provider, own projection only",
+      "layout": "comparison",
+      "fields": [],
+      "links": [
+        "S012",
+        "S016"
+      ],
+      "title_key": "screenS015",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S015",
+      "business_states": [
+        "queued",
+        "processing",
+        "completed-owner",
+        "completed-provider-own",
+        "failed-retry",
+        "offline-cached",
+        "close-result",
+        "provider-own-result"
+      ],
+      "state_ids": [
+        "S015.queued",
+        "S015.processing",
+        "S015.completed-owner",
+        "S015.completed-provider-own",
+        "S015.failed-retry",
+        "S015.denied",
+        "S015.offline-cached",
+        "S015.close-result",
+        "S015.provider-own-result"
+      ],
+      "api_mapping_id": "api.S015",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "FgProfessionalComparisonReport",
+        "FgComparisonCriterion"
+      ],
+      "projections": [
+        "REQUESTER_COMPARISON_VIEW",
+        "PROVIDER_OWN_RESULT_VIEW"
+      ],
+      "primary_action": "reviewOffer",
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "reviewOffer",
+      "purpose": "AI comparison result in the Need-first journey",
+      "entry_points": [
+        "S014",
+        "S016",
+        "S018",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S015"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s015",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s015",
+      "acceptance_test_id": "SCREEN-S015",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S016",
+      "route_id": "comparison-history",
+      "name_am": "የንጽጽር ታሪክ/ውጤት ማውጣት",
+      "name_en": "Comparison history/export",
+      "states": [
+        "loading",
+        "empty",
+        "versions",
+        "export-processing",
+        "export-ready",
+        "export-failed",
+        "expired",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/needs/{id}/comparisons",
+        "POST /api/v1/comparisons/{id}/exports",
+        "GET /api/v1/exports/{id}",
+        "GET /api/v1/exports/{id}/download",
+        "GET /api/v1/my/comparisons"
+      ],
+      "canonical_id": "S016",
+      "legacy_id": "UI-16",
+      "path": "/needs/:id/comparisons",
+      "roles": "participant",
+      "layout": "history",
+      "fields": [],
+      "links": [
+        "S015"
+      ],
+      "title_key": "screenS016",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "aliases": [
+        "/my/comparisons"
+      ],
+      "status_owner": "server except local drafts/view states",
+      "projection": "Requester uses Need history; provider uses /my/comparisons participation history, no owner export action.",
+      "preview_id": "S016",
+      "business_states": [
+        "versions",
+        "export-processing",
+        "export-ready",
+        "export-failed",
+        "expired"
+      ],
+      "state_ids": [
+        "S016.loading",
+        "S016.empty",
+        "S016.versions",
+        "S016.export-processing",
+        "S016.export-ready",
+        "S016.export-failed",
+        "S016.expired",
+        "S016.offline"
+      ],
+      "api_mapping_id": "api.S016",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "primary_action": "viewComparison",
+      "export": "stored role-authorized immutable projection only",
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "viewComparison",
+      "purpose": "Comparison history/export in the Need-first journey",
+      "entry_points": [
+        "S008",
+        "S014",
+        "S015",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S016"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s016",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s016",
+      "acceptance_test_id": "SCREEN-S016",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "primary_action_semantic_id": "viewComparison",
+      "secondary_actions": [
+        "compareAgain",
+        "export"
+      ],
+      "role_action_overrides": {
+        "provider": "viewMyResult",
+        "requester": "viewComparison"
+      }
+    },
+    {
+      "id": "S017",
+      "route_id": "messages",
+      "name_am": "መልዕክቶች",
+      "name_en": "Messages",
+      "states": [
+        "loading",
+        "empty",
+        "sending",
+        "sent",
+        "validation",
+        "rate-limited",
+        "error",
+        "offline-draft",
+        "denied"
+      ],
+      "api": [
+        "GET /api/v1/offers/{id}/messages",
+        "POST /api/v1/offers/{id}/messages"
+      ],
+      "canonical_id": "S017",
+      "legacy_id": "UI-17",
+      "path": "/offers/:id/messages",
+      "roles": "participant",
+      "layout": "conversation",
+      "fields": [
+        "content",
+        "attachments"
+      ],
+      "links": [
+        "S012",
+        "S021"
+      ],
+      "title_key": "screenS017",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S017",
+      "business_states": [
+        "empty",
+        "sending",
+        "sent",
+        "offline-draft"
+      ],
+      "state_ids": [
+        "S017.loading",
+        "S017.empty",
+        "S017.sending",
+        "S017.sent",
+        "S017.validation",
+        "S017.rate-limited",
+        "S017.error",
+        "S017.offline-draft",
+        "S017.denied"
+      ],
+      "api_mapping_id": "api.S017",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "send",
+      "purpose": "Messages in the Need-first journey",
+      "entry_points": [
+        "S012",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "content",
+          "attachments"
+        ],
+        "api_mapping_id": "api.S017"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s017",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s017",
+      "acceptance_test_id": "SCREEN-S017",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S018",
+      "route_id": "notifications",
+      "name_am": "ማሳወቂያዎች",
+      "name_en": "Notifications",
+      "states": [
+        "loading",
+        "list",
+        "empty",
+        "marking-read",
+        "error",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/notifications",
+        "POST /api/v1/notifications/{id}/read"
+      ],
+      "canonical_id": "S018",
+      "legacy_id": "UI-18",
+      "path": "/notifications",
+      "roles": "self",
+      "layout": "notifications",
+      "fields": [],
+      "links": [
+        "S008",
+        "S012",
+        "S015",
+        "S019",
+        "S022"
+      ],
+      "title_key": "screenS018",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S018",
+      "business_states": [
+        "list",
+        "marking-read"
+      ],
+      "state_ids": [
+        "S018.loading",
+        "S018.list",
+        "S018.empty",
+        "S018.marking-read",
+        "S018.error",
+        "S018.offline"
+      ],
+      "api_mapping_id": "api.S018",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "view",
+      "purpose": "Notifications in the Need-first journey",
+      "entry_points": [
+        "S004",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S018"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s018",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s018",
+      "acceptance_test_id": "SCREEN-S018",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S019",
+      "route_id": "boost-payment",
+      "name_am": "ማስታወቂያን ማጉላት/ክፍያ",
+      "name_en": "Boost/Payments",
+      "states": [
+        "loading",
+        "packages",
+        "disabled",
+        "checkout",
+        "pending",
+        "confirmed-active",
+        "failed",
+        "review-required",
+        "offline"
+      ],
+      "api": [
+        "GET /api/v1/boost-packages",
+        "POST /api/v1/needs/{id}/boosts",
+        "GET /api/v1/payments/{id}"
+      ],
+      "canonical_id": "S019",
+      "legacy_id": "UI-19",
+      "path": "/needs/:id/boost",
+      "roles": "requester",
+      "layout": "payment",
+      "fields": [],
+      "links": [
+        "S008"
+      ],
+      "title_key": "screenS019",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S019",
+      "business_states": [
+        "packages",
+        "disabled",
+        "checkout",
+        "pending",
+        "confirmed-active",
+        "failed",
+        "review-required"
+      ],
+      "state_ids": [
+        "S019.loading",
+        "S019.packages",
+        "S019.disabled",
+        "S019.checkout",
+        "S019.pending",
+        "S019.confirmed-active",
+        "S019.failed",
+        "S019.review-required",
+        "S019.offline"
+      ],
+      "api_mapping_id": "api.S019",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "checkout",
+      "purpose": "Boost/Payments in the Need-first journey",
+      "entry_points": [
+        "S008",
+        "S018",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S019"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s019",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s019",
+      "acceptance_test_id": "SCREEN-S019",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S020",
+      "route_id": "rating",
+      "name_am": "ደረጃ መስጠት",
+      "name_en": "Rating",
+      "states": [
+        "eligible",
+        "validation",
+        "submitted",
+        "already-rated",
+        "not-completed",
+        "denied",
+        "offline"
+      ],
+      "api": [
+        "POST /api/v1/needs/{id}/ratings"
+      ],
+      "canonical_id": "S020",
+      "legacy_id": "UI-20",
+      "path": "/needs/:id/rating",
+      "roles": "completed-participant",
+      "layout": "form",
+      "fields": [
+        "score",
+        "review"
+      ],
+      "links": [
+        "S008"
+      ],
+      "title_key": "screenS020",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S020",
+      "business_states": [
+        "eligible",
+        "submitted",
+        "already-rated",
+        "not-completed"
+      ],
+      "state_ids": [
+        "S020.eligible",
+        "S020.validation",
+        "S020.submitted",
+        "S020.already-rated",
+        "S020.not-completed",
+        "S020.denied",
+        "S020.offline"
+      ],
+      "api_mapping_id": "api.S020",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "save",
+      "purpose": "Rating in the Need-first journey",
+      "entry_points": [
+        "S008",
+        "S012",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "score",
+          "review"
+        ],
+        "api_mapping_id": "api.S020"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s020",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s020",
+      "acceptance_test_id": "SCREEN-S020",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S021",
+      "route_id": "report-support",
+      "name_am": "ችግር ማሳወቅ/ድጋፍ",
+      "name_en": "Report/Support",
+      "states": [
+        "form",
+        "validation",
+        "submitting",
+        "submitted",
+        "rate-limited",
+        "error",
+        "offline-draft"
+      ],
+      "api": [
+        "POST /api/v1/reports"
+      ],
+      "canonical_id": "S021",
+      "legacy_id": "UI-21",
+      "path": "/support/report",
+      "roles": "authenticated",
+      "layout": "form",
+      "fields": [
+        "entity_type",
+        "entity_id",
+        "reason_code",
+        "details"
+      ],
+      "links": [
+        "S004"
+      ],
+      "title_key": "screenS021",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S021",
+      "business_states": [
+        "form",
+        "submitting",
+        "submitted",
+        "offline-draft"
+      ],
+      "state_ids": [
+        "S021.form",
+        "S021.validation",
+        "S021.submitting",
+        "S021.submitted",
+        "S021.rate-limited",
+        "S021.error",
+        "S021.offline-draft"
+      ],
+      "api_mapping_id": "api.S021",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "save",
+      "purpose": "Report/Support in the Need-first journey",
+      "entry_points": [
+        "S008",
+        "S012",
+        "S017",
+        "S023",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "entity_type",
+          "entity_id",
+          "reason_code",
+          "details"
+        ],
+        "api_mapping_id": "api.S021"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s021",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s021",
+      "acceptance_test_id": "SCREEN-S021",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S022",
+      "route_id": "telegram-status",
+      "name_am": "ይፋዊ ስርጭት ሁኔታ/ማቆም",
+      "name_en": "Telegram status/stop",
+      "states": [
+        "queued",
+        "sending",
+        "posted",
+        "retry",
+        "uncertain",
+        "failed",
+        "skipped",
+        "removal-pending",
+        "removed",
+        "paused"
+      ],
+      "api": [
+        "GET /api/v1/needs/{id}/telegram-publications",
+        "POST /api/v1/needs/{id}/telegram-publication/stop"
+      ],
+      "canonical_id": "S022",
+      "legacy_id": "UI-22",
+      "path": "/needs/:id/publications",
+      "roles": "requester",
+      "layout": "publications",
+      "fields": [],
+      "links": [
+        "S008"
+      ],
+      "title_key": "screenS022",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "preview_id": "S022",
+      "business_states": [
+        "queued",
+        "sending",
+        "posted",
+        "retry",
+        "uncertain",
+        "failed",
+        "skipped",
+        "removal-pending",
+        "removed",
+        "paused"
+      ],
+      "state_ids": [
+        "S022.queued",
+        "S022.sending",
+        "S022.posted",
+        "S022.retry",
+        "S022.uncertain",
+        "S022.failed",
+        "S022.skipped",
+        "S022.removal-pending",
+        "S022.removed",
+        "S022.paused"
+      ],
+      "api_mapping_id": "api.S022",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "stop",
+      "purpose": "Telegram status/stop in the Need-first journey",
+      "entry_points": [
+        "S007",
+        "S008",
+        "S018",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S022"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s022",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s022",
+      "acceptance_test_id": "SCREEN-S022",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support"
+    },
+    {
+      "id": "S023",
+      "route_id": "offer-unlock",
+      "name_am": "አቅርቦት ማስገቢያ ክፍያ",
+      "name_en": "Offer Submission Unlock",
+      "states": [
+        "free",
+        "payment-required",
+        "pending",
+        "payment-verified",
+        "submission-recovery",
+        "submitted",
+        "refund-pending",
+        "failed",
+        "unknown"
+      ],
+      "api": [
+        "POST /api/v1/offer-submissions",
+        "GET /api/v1/offer-submissions/{id}",
+        "POST /api/v1/offer-submissions/{id}/resume"
+      ],
+      "canonical_id": "S023",
+      "legacy_id": null,
+      "path": "/needs/:id/offers/unlock",
+      "roles": "provider",
+      "layout": "payment",
+      "fields": [],
+      "links": [
+        "S011",
+        "S012",
+        "S021"
+      ],
+      "title_key": "screenS023",
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only"
+      ],
+      "aliases": [],
+      "status_owner": "server except local drafts/view states",
+      "admin_kind": "payment",
+      "preview_id": "S023",
+      "business_states": [
+        "free",
+        "payment-required",
+        "pending",
+        "payment-verified",
+        "submission-recovery",
+        "submitted",
+        "refund-pending",
+        "failed"
+      ],
+      "state_ids": [
+        "S023.free",
+        "S023.payment-required",
+        "S023.pending",
+        "S023.payment-verified",
+        "S023.submission-recovery",
+        "S023.submitted",
+        "S023.refund-pending",
+        "S023.failed",
+        "S023.unknown"
+      ],
+      "api_mapping_id": "api.S023",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "submitOffer",
+      "purpose": "Offer Submission Unlock in the Need-first journey",
+      "entry_points": [
+        "S011",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.S023"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#s023",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#s023",
+      "acceptance_test_id": "SCREEN-S023",
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "primary_action": "submitOffer",
+      "primary_action_semantic_id": "submitOffer",
+      "state_primary_actions": {
+        "free": "submitOffer",
+        "payment-required": "payAndContinue",
+        "pending": "checkPaymentStatus",
+        "payment-verified": "resumeOfferSubmission",
+        "submission-recovery": "resumeOfferSubmission",
+        "submitted": "viewOffer",
+        "refund-pending": "viewRefundStatus",
+        "failed": "retryOrSupport",
+        "unknown": "refresh"
+      }
+    },
+    {
+      "id": "A001",
+      "canonical_id": "A001",
+      "route_id": "admin-dashboard",
+      "path": "/admin/dashboard",
+      "aliases": [],
+      "name_en": "Dashboard",
+      "name_am": "ዋና ማጠቃለያ",
+      "title_key": "screenA001",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "read",
+      "anatomy": "Counts, incident list, freshness, bounded search",
+      "primary_action_en": "View incident",
+      "primary_action_am": "ክስተት ይመልከቱ",
+      "api": [
+        "GET /api/v1/admin/dashboard"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A001",
+      "business_states": [
+        "overview",
+        "detail",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A001.overview",
+        "A001.detail",
+        "A001.empty",
+        "A001.loading",
+        "A001.denied",
+        "A001.stale",
+        "A001.error",
+        "A001.offline",
+        "A001.requires-verification",
+        "A001.drift",
+        "A001.application-failed",
+        "A001.verification-failed",
+        "A001.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A001",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [],
+      "permissions": [
+        "admin.view.dashboard"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "viewIncident",
+      "purpose": "Manage Dashboard",
+      "entry_points": [
+        "A001",
+        "A002",
+        "A003",
+        "A004",
+        "A005",
+        "A006",
+        "A007",
+        "A008",
+        "A009",
+        "A010",
+        "A011",
+        "A012",
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018",
+        "A019",
+        "A020",
+        "A021",
+        "A022",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A001"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a001",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a001",
+      "acceptance_test_id": "SCREEN-A001",
+      "primary_action_semantic_id": "viewIncident",
+      "primary_action": "viewIncident"
+    },
+    {
+      "id": "A002",
+      "canonical_id": "A002",
+      "route_id": "admin-telegram",
+      "path": "/admin/telegram",
+      "aliases": [],
+      "name_en": "Telegram Distribution",
+      "name_am": "የTelegram ስርጭት",
+      "title_key": "screenA002",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "telegram",
+      "anatomy": "Destinations, permission proof, rights check, category allowlist, caps, quiet hours, publication queue, uncertain sends, removal evidence",
+      "primary_action_en": "Validate destination",
+      "primary_action_am": "መዳረሻ ያረጋግጡ",
+      "api": [
+        "GET /api/v1/admin/telegram",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A002",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A002.overview",
+        "A002.detail",
+        "A002.empty",
+        "A002.loading",
+        "A002.denied",
+        "A002.stale",
+        "A002.error",
+        "A002.offline",
+        "A002.confirmation",
+        "A002.processing",
+        "A002.completed",
+        "A002.conflict",
+        "A002.requires-verification",
+        "A002.drift",
+        "A002.application-failed",
+        "A002.verification-failed",
+        "A002.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A002",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "telegram",
+        "telegramDestination"
+      ],
+      "permissions": [
+        "admin.view.telegram"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "validateDestination",
+      "purpose": "Manage Telegram Distribution",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A002"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a002",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a002",
+      "acceptance_test_id": "SCREEN-A002",
+      "primary_action_semantic_id": "validateDestination",
+      "primary_action": "validateDestination"
+    },
+    {
+      "id": "A003",
+      "canonical_id": "A003",
+      "route_id": "admin-health",
+      "path": "/admin/health",
+      "aliases": [],
+      "name_en": "Health",
+      "name_am": "የስርዓት ጤና",
+      "title_key": "screenA003",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "read",
+      "anatomy": "DB, storage, queue, cron, AI, Telegram, payment and disk health with checked_at and incident link",
+      "primary_action_en": "Refresh checks",
+      "primary_action_am": "ፍተሻዎችን ያድሱ",
+      "api": [
+        "GET /api/v1/admin/health"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A003",
+      "business_states": [
+        "overview",
+        "detail",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A003.overview",
+        "A003.detail",
+        "A003.empty",
+        "A003.loading",
+        "A003.denied",
+        "A003.stale",
+        "A003.error",
+        "A003.offline",
+        "A003.requires-verification",
+        "A003.drift",
+        "A003.application-failed",
+        "A003.verification-failed",
+        "A003.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A003",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [],
+      "permissions": [
+        "admin.view.health"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "refreshChecks",
+      "purpose": "Manage Health",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A003"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a003",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a003",
+      "acceptance_test_id": "SCREEN-A003",
+      "primary_action_semantic_id": "refreshChecks",
+      "primary_action": "refreshChecks"
+    },
+    {
+      "id": "A004",
+      "canonical_id": "A004",
+      "route_id": "admin-features",
+      "path": "/admin/features",
+      "aliases": [],
+      "name_en": "Features",
+      "name_am": "ባህሪያት",
+      "title_key": "screenA004",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Feature flags, dependencies, effective safe-mode override, active version",
+      "primary_action_en": "Propose change",
+      "primary_action_am": "ለውጥ ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/features",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A004",
+      "business_states": [
+        "overview",
+        "detail",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A004.overview",
+        "A004.detail",
+        "A004.empty",
+        "A004.loading",
+        "A004.denied",
+        "A004.stale",
+        "A004.error",
+        "A004.offline",
+        "A004.draft",
+        "A004.validating",
+        "A004.validated",
+        "A004.impact-preview",
+        "A004.reauth-required",
+        "A004.publishing",
+        "A004.published",
+        "A004.version-conflict",
+        "A004.rollback",
+        "A004.requires-verification",
+        "A004.drift",
+        "A004.application-failed",
+        "A004.verification-failed",
+        "A004.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A004",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "allowNeeds",
+        "allowOffers",
+        "messaging",
+        "aiCompare"
+      ],
+      "permissions": [
+        "admin.view.features"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeChange",
+      "purpose": "Manage Features",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A004"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a004",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a004",
+      "acceptance_test_id": "SCREEN-A004",
+      "primary_action_semantic_id": "proposeChange",
+      "primary_action": "proposeChange"
+    },
+    {
+      "id": "A005",
+      "canonical_id": "A005",
+      "route_id": "admin-marketplace",
+      "path": "/admin/marketplace",
+      "aliases": [],
+      "name_en": "Marketplace",
+      "name_am": "የገበያ አስተዳደር",
+      "title_key": "screenA005",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "report",
+      "anatomy": "Needs, Offers, categories, reports; masked support projection; assigned report queue",
+      "primary_action_en": "Resolve report",
+      "primary_action_am": "ሪፖርቱን ይመርምሩና ውሳኔ ይስጡ",
+      "api": [
+        "GET /api/v1/admin/marketplace",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A005",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A005.overview",
+        "A005.detail",
+        "A005.empty",
+        "A005.loading",
+        "A005.denied",
+        "A005.stale",
+        "A005.error",
+        "A005.offline",
+        "A005.confirmation",
+        "A005.processing",
+        "A005.completed",
+        "A005.conflict",
+        "A005.requires-verification",
+        "A005.drift",
+        "A005.application-failed",
+        "A005.verification-failed",
+        "A005.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A005",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "maxOffers"
+      ],
+      "permissions": [
+        "admin.view.marketplace"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "resolveReport",
+      "purpose": "Manage Marketplace",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A005"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a005",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a005",
+      "acceptance_test_id": "SCREEN-A005",
+      "primary_action_semantic_id": "resolveReport",
+      "primary_action": "resolveReport"
+    },
+    {
+      "id": "A006",
+      "canonical_id": "A006",
+      "route_id": "admin-ai",
+      "path": "/admin/ai",
+      "aliases": [],
+      "name_en": "AI",
+      "name_am": "ሰው ሠራሽ ብልህነት",
+      "title_key": "screenA006",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Criteria and prompt versions, model ID, caps, token cost, failed comparison jobs",
+      "primary_action_en": "Propose AI setting",
+      "primary_action_am": "የAI ቅንብር ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/ai",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A006",
+      "business_states": [
+        "overview",
+        "detail",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A006.overview",
+        "A006.detail",
+        "A006.empty",
+        "A006.loading",
+        "A006.denied",
+        "A006.stale",
+        "A006.error",
+        "A006.offline",
+        "A006.draft",
+        "A006.validating",
+        "A006.validated",
+        "A006.impact-preview",
+        "A006.reauth-required",
+        "A006.publishing",
+        "A006.published",
+        "A006.version-conflict",
+        "A006.rollback",
+        "A006.requires-verification",
+        "A006.drift",
+        "A006.application-failed",
+        "A006.verification-failed",
+        "A006.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A006",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "aiModel",
+        "aiTimeout",
+        "aiCriteriaVersion",
+        "aiPromptVersion",
+        "aiMaxOffers",
+        "aiRetryLimit",
+        "aiDailyLimit"
+      ],
+      "permissions": [
+        "admin.view.ai"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeAiSetting",
+      "purpose": "Manage AI",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A006"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a006",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a006",
+      "acceptance_test_id": "SCREEN-A006",
+      "primary_action_semantic_id": "proposeAiSetting",
+      "primary_action": "proposeAiSetting"
+    },
+    {
+      "id": "A007",
+      "canonical_id": "A007",
+      "route_id": "admin-payments",
+      "path": "/admin/payments",
+      "aliases": [],
+      "name_en": "Payments",
+      "name_am": "ክፍያዎች",
+      "title_key": "screenA007",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "payment",
+      "anatomy": "Payment reference, amount/currency, provider evidence, mismatch, review status, reconciliation job",
+      "primary_action_en": "Reconcile payment",
+      "primary_action_am": "የክፍያ መረጃውን ያመሳክሩ",
+      "api": [
+        "GET /api/v1/admin/payments",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A007",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A007.overview",
+        "A007.detail",
+        "A007.empty",
+        "A007.loading",
+        "A007.denied",
+        "A007.stale",
+        "A007.error",
+        "A007.offline",
+        "A007.confirmation",
+        "A007.processing",
+        "A007.completed",
+        "A007.conflict",
+        "A007.requires-verification",
+        "A007.drift",
+        "A007.application-failed",
+        "A007.verification-failed",
+        "A007.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A007",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "payments",
+        "reconcilePayment"
+      ],
+      "permissions": [
+        "admin.view.payments"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "reconcilePayment",
+      "purpose": "Manage Payments",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A007"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a007",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a007",
+      "acceptance_test_id": "SCREEN-A007",
+      "primary_action_semantic_id": "reconcilePayment",
+      "primary_action": "reconcilePayment"
+    },
+    {
+      "id": "A008",
+      "canonical_id": "A008",
+      "route_id": "admin-users",
+      "path": "/admin/users",
+      "aliases": [],
+      "name_en": "Users",
+      "name_am": "ተጠቃሚዎች",
+      "title_key": "screenA008",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "user",
+      "anatomy": "Redacted identity, account state, privileged-role indicator, suspend reason/review date",
+      "primary_action_en": "Suspend user",
+      "primary_action_am": "የተመረጠውን ተጠቃሚ ያግዱ",
+      "api": [
+        "GET /api/v1/admin/users",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "privileged-target",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A008",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "privileged-target",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A008.overview",
+        "A008.detail",
+        "A008.empty",
+        "A008.loading",
+        "A008.denied",
+        "A008.stale",
+        "A008.error",
+        "A008.offline",
+        "A008.confirmation",
+        "A008.processing",
+        "A008.completed",
+        "A008.conflict",
+        "A008.privileged-target",
+        "A008.requires-verification",
+        "A008.drift",
+        "A008.application-failed",
+        "A008.verification-failed",
+        "A008.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A008",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "suspendUser"
+      ],
+      "permissions": [
+        "admin.view.users"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "suspendUser",
+      "purpose": "Manage Users",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A008"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a008",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a008",
+      "acceptance_test_id": "SCREEN-A008",
+      "primary_action_semantic_id": "suspendUser",
+      "primary_action": "suspendUser"
+    },
+    {
+      "id": "A009",
+      "canonical_id": "A009",
+      "route_id": "admin-content",
+      "path": "/admin/content",
+      "aliases": [],
+      "name_en": "Content",
+      "name_am": "ይዘት",
+      "title_key": "screenA009",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Reviewed Amharic/English content, typed draft, diff and version history",
+      "primary_action_en": "Propose content",
+      "primary_action_am": "ይዘት ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/content",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A009",
+      "business_states": [
+        "overview",
+        "detail",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A009.overview",
+        "A009.detail",
+        "A009.empty",
+        "A009.loading",
+        "A009.denied",
+        "A009.stale",
+        "A009.error",
+        "A009.offline",
+        "A009.draft",
+        "A009.validating",
+        "A009.validated",
+        "A009.impact-preview",
+        "A009.reauth-required",
+        "A009.publishing",
+        "A009.published",
+        "A009.version-conflict",
+        "A009.rollback",
+        "A009.requires-verification",
+        "A009.drift",
+        "A009.application-failed",
+        "A009.verification-failed",
+        "A009.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A009",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "welcomeText",
+        "supportText",
+        "helpText",
+        "policyText",
+        "noticeText"
+      ],
+      "permissions": [
+        "admin.view.content"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeContent",
+      "purpose": "Manage Content",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A009"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a009",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a009",
+      "acceptance_test_id": "SCREEN-A009",
+      "primary_action_semantic_id": "proposeContent",
+      "primary_action": "proposeContent"
+    },
+    {
+      "id": "A010",
+      "canonical_id": "A010",
+      "route_id": "admin-notifications",
+      "path": "/admin/notifications",
+      "aliases": [],
+      "name_en": "Notifications",
+      "name_am": "ማሳወቂያዎች",
+      "title_key": "screenA010",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "job",
+      "anatomy": "Delivery job class, state, attempt, next retry and safe error; no fabricated read evidence",
+      "primary_action_en": "Retry safe job",
+      "primary_action_am": "ደህንነቱ የተረጋገጠ ሥራ ይድገሙ",
+      "api": [
+        "GET /api/v1/admin/notifications",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A010",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A010.overview",
+        "A010.detail",
+        "A010.empty",
+        "A010.loading",
+        "A010.denied",
+        "A010.stale",
+        "A010.error",
+        "A010.offline",
+        "A010.confirmation",
+        "A010.processing",
+        "A010.completed",
+        "A010.conflict",
+        "A010.requires-verification",
+        "A010.drift",
+        "A010.application-failed",
+        "A010.verification-failed",
+        "A010.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A010",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "notificationRetry"
+      ],
+      "permissions": [
+        "admin.view.notifications"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "retrySafeJob",
+      "purpose": "Manage Notifications",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A010"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a010",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a010",
+      "acceptance_test_id": "SCREEN-A010",
+      "primary_action_semantic_id": "retrySafeJob",
+      "primary_action": "retrySafeJob"
+    },
+    {
+      "id": "A011",
+      "canonical_id": "A011",
+      "route_id": "admin-files",
+      "path": "/admin/files",
+      "aliases": [],
+      "name_en": "Files",
+      "name_am": "ፋይሎች",
+      "title_key": "screenA011",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "read",
+      "anatomy": "Private file metadata, owner/purpose, quarantine status, retention deadline, audit access",
+      "primary_action_en": "Inspect metadata",
+      "primary_action_am": "የፋይል መረጃ ይመልከቱ",
+      "api": [
+        "GET /api/v1/admin/files",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A011",
+      "business_states": [
+        "overview",
+        "detail",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A011.overview",
+        "A011.detail",
+        "A011.empty",
+        "A011.loading",
+        "A011.denied",
+        "A011.stale",
+        "A011.error",
+        "A011.offline",
+        "A011.requires-verification",
+        "A011.drift",
+        "A011.application-failed",
+        "A011.verification-failed",
+        "A011.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A011",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "fileQuarantine"
+      ],
+      "permissions": [
+        "admin.view.files"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "inspectMetadata",
+      "purpose": "Manage Files",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A011"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a011",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a011",
+      "acceptance_test_id": "SCREEN-A011",
+      "primary_action_semantic_id": "inspectMetadata",
+      "primary_action": "inspectMetadata"
+    },
+    {
+      "id": "A012",
+      "canonical_id": "A012",
+      "route_id": "admin-jobs",
+      "path": "/admin/jobs",
+      "aliases": [],
+      "name_en": "Jobs",
+      "name_am": "የስርዓት ሥራዎች",
+      "title_key": "screenA012",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "job",
+      "anatomy": "Job class, request reference, attempt, eligibility, status, retry-after, last safe error",
+      "primary_action_en": "Retry eligible job",
+      "primary_action_am": "ብቁ ሥራ ይድገሙ",
+      "api": [
+        "GET /api/v1/admin/jobs",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A012",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A012.overview",
+        "A012.detail",
+        "A012.empty",
+        "A012.loading",
+        "A012.denied",
+        "A012.stale",
+        "A012.error",
+        "A012.offline",
+        "A012.confirmation",
+        "A012.processing",
+        "A012.completed",
+        "A012.conflict",
+        "A012.requires-verification",
+        "A012.drift",
+        "A012.application-failed",
+        "A012.verification-failed",
+        "A012.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A012",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "retryLimit",
+        "queueConcurrency",
+        "retryJob"
+      ],
+      "permissions": [
+        "admin.view.jobs"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "retryEligibleJob",
+      "purpose": "Manage Jobs",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A012"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a012",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a012",
+      "acceptance_test_id": "SCREEN-A012",
+      "primary_action_semantic_id": "retryEligibleJob",
+      "primary_action": "retryEligibleJob"
+    },
+    {
+      "id": "A013",
+      "canonical_id": "A013",
+      "route_id": "admin-backups",
+      "path": "/admin/backups",
+      "aliases": [],
+      "name_en": "Backups",
+      "name_am": "ምትኬዎች",
+      "title_key": "screenA013",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "read",
+      "anatomy": "Backup timestamp, scope, checksum, encryption status, restore drill evidence; no direct restore button",
+      "primary_action_en": "View backup evidence",
+      "primary_action_am": "የምትኬ ማስረጃ ይመልከቱ",
+      "api": [
+        "GET /api/v1/admin/backups",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A013",
+      "business_states": [
+        "overview",
+        "detail",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A013.overview",
+        "A013.detail",
+        "A013.empty",
+        "A013.loading",
+        "A013.denied",
+        "A013.stale",
+        "A013.error",
+        "A013.offline",
+        "A013.requires-verification",
+        "A013.drift",
+        "A013.application-failed",
+        "A013.verification-failed",
+        "A013.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A013",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "verifyBackup"
+      ],
+      "permissions": [
+        "admin.view.backups"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "viewBackupEvidence",
+      "purpose": "Manage Backups",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A013"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a013",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a013",
+      "acceptance_test_id": "SCREEN-A013",
+      "primary_action_semantic_id": "viewBackupEvidence",
+      "primary_action": "viewBackupEvidence"
+    },
+    {
+      "id": "A014",
+      "canonical_id": "A014",
+      "route_id": "admin-integrity",
+      "path": "/admin/integrity",
+      "aliases": [],
+      "name_en": "Integrity",
+      "name_am": "የመረጃ ትክክለኛነት",
+      "title_key": "screenA014",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "integrity",
+      "anatomy": "Integrity report scope, run status, counts, safe references and last completed check",
+      "primary_action_en": "Run integrity check",
+      "primary_action_am": "የትክክለኛነት ፍተሻ ያስኪዱ",
+      "api": [
+        "GET /api/v1/admin/integrity",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A014",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A014.overview",
+        "A014.detail",
+        "A014.empty",
+        "A014.loading",
+        "A014.denied",
+        "A014.stale",
+        "A014.error",
+        "A014.offline",
+        "A014.confirmation",
+        "A014.processing",
+        "A014.completed",
+        "A014.conflict",
+        "A014.requires-verification",
+        "A014.drift",
+        "A014.application-failed",
+        "A014.verification-failed",
+        "A014.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A014",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "checkIntegrity"
+      ],
+      "permissions": [
+        "admin.view.integrity"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "runIntegrityCheck",
+      "purpose": "Manage Integrity",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A014"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a014",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a014",
+      "acceptance_test_id": "SCREEN-A014",
+      "primary_action_semantic_id": "runIntegrityCheck",
+      "primary_action": "runIntegrityCheck"
+    },
+    {
+      "id": "A015",
+      "canonical_id": "A015",
+      "route_id": "admin-security",
+      "path": "/admin/security",
+      "aliases": [],
+      "name_en": "Security",
+      "name_am": "ደህንነት",
+      "title_key": "screenA015",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "read",
+      "anatomy": "Role-scoped sessions/events, masked secret references, second-factor and rotation evidence",
+      "primary_action_en": "Review security evidence",
+      "primary_action_am": "የደህንነት ማስረጃ ይገምግሙ",
+      "api": [
+        "GET /api/v1/admin/security",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A015",
+      "business_states": [
+        "overview",
+        "detail",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A015.overview",
+        "A015.detail",
+        "A015.empty",
+        "A015.loading",
+        "A015.denied",
+        "A015.stale",
+        "A015.error",
+        "A015.offline",
+        "A015.requires-verification",
+        "A015.drift",
+        "A015.application-failed",
+        "A015.verification-failed",
+        "A015.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A015",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "rateLimit",
+        "paymentSecret",
+        "aiSecret",
+        "telegramSecret"
+      ],
+      "permissions": [
+        "admin.view.security"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "reviewSecurityEvidence",
+      "purpose": "Manage Security",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A015"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a015",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a015",
+      "acceptance_test_id": "SCREEN-A015",
+      "primary_action_semantic_id": "reviewSecurityEvidence",
+      "primary_action": "reviewSecurityEvidence"
+    },
+    {
+      "id": "A016",
+      "canonical_id": "A016",
+      "route_id": "admin-audit",
+      "path": "/admin/audit",
+      "aliases": [],
+      "name_en": "Audit",
+      "name_am": "የኦዲት መዝገብ",
+      "title_key": "screenA016",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "read",
+      "anatomy": "Actor, purpose, timestamp, action, resource, request ID, before/after masked values and version",
+      "primary_action_en": "Inspect audit event",
+      "primary_action_am": "የኦዲት ክስተት ይመልከቱ",
+      "api": [
+        "GET /api/v1/admin/audit"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A016",
+      "business_states": [
+        "overview",
+        "detail",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A016.overview",
+        "A016.detail",
+        "A016.empty",
+        "A016.loading",
+        "A016.denied",
+        "A016.stale",
+        "A016.error",
+        "A016.offline",
+        "A016.requires-verification",
+        "A016.drift",
+        "A016.application-failed",
+        "A016.verification-failed",
+        "A016.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A016",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [],
+      "permissions": [
+        "admin.view.audit"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "inspectAuditEvent",
+      "purpose": "Manage Audit",
+      "entry_points": [
+        "A001",
+        "A002",
+        "A003",
+        "A004",
+        "A005",
+        "A006",
+        "A007",
+        "A008",
+        "A009",
+        "A010",
+        "A011",
+        "A012",
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018",
+        "A019",
+        "A020",
+        "A021",
+        "A022",
+        "A023",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A016"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a016",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a016",
+      "acceptance_test_id": "SCREEN-A016",
+      "primary_action_semantic_id": "inspectAuditEvent",
+      "primary_action": "inspectAuditEvent"
+    },
+    {
+      "id": "A017",
+      "canonical_id": "A017",
+      "route_id": "admin-settings",
+      "path": "/admin/settings",
+      "aliases": [],
+      "name_en": "Settings",
+      "name_am": "ቅንብሮች",
+      "title_key": "screenA017",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Typed key/value, risk, effective value, draft/validate/preview/publish, immutable versions and rollback",
+      "primary_action_en": "Propose setting",
+      "primary_action_am": "ቅንብር ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/settings",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A017",
+      "business_states": [
+        "overview",
+        "detail",
+        "draft",
+        "validating",
+        "validated",
+        "impact-preview",
+        "reauth-required",
+        "publishing",
+        "published",
+        "version-conflict",
+        "rollback",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A017.overview",
+        "A017.detail",
+        "A017.empty",
+        "A017.loading",
+        "A017.denied",
+        "A017.stale",
+        "A017.error",
+        "A017.offline",
+        "A017.draft",
+        "A017.validating",
+        "A017.validated",
+        "A017.impact-preview",
+        "A017.reauth-required",
+        "A017.publishing",
+        "A017.published",
+        "A017.version-conflict",
+        "A017.rollback",
+        "A017.requires-verification",
+        "A017.drift",
+        "A017.application-failed",
+        "A017.verification-failed",
+        "A017.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A017",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "freeze"
+      ],
+      "permissions": [
+        "admin.view.settings"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeSetting",
+      "purpose": "Manage Settings",
+      "entry_points": [
+        "A001",
+        "A002",
+        "A003",
+        "A004",
+        "A005",
+        "A006",
+        "A007",
+        "A008",
+        "A009",
+        "A010",
+        "A011",
+        "A012",
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A017"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a017",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a017",
+      "acceptance_test_id": "SCREEN-A017",
+      "primary_action_semantic_id": "proposeSetting",
+      "primary_action": "proposeSetting"
+    },
+    {
+      "id": "A018",
+      "canonical_id": "A018",
+      "route_id": "admin-recovery",
+      "path": "/admin/recovery",
+      "aliases": [],
+      "name_en": "Recovery",
+      "name_am": "መልሶ ማቋቋም",
+      "title_key": "screenA018",
+      "roles": "Main Admin / Admin per permission; Moderator only assigned marketplace reports and urgent Telegram pause",
+      "layout": "admin",
+      "admin_kind": "recovery",
+      "anatomy": "Safe mode, dependent features, callbacks retained, paid pending boosts, integrity and rollback evidence",
+      "primary_action_en": "Review safe mode",
+      "primary_action_am": "Safe Mode ሁኔታን ይገምግሙ",
+      "api": [
+        "GET /api/v1/admin/recovery",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A017"
+      ],
+      "states": [
+        "overview",
+        "detail",
+        "empty",
+        "loading",
+        "denied",
+        "stale",
+        "error",
+        "offline",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "preview_id": "A018",
+      "business_states": [
+        "overview",
+        "detail",
+        "confirmation",
+        "processing",
+        "completed",
+        "conflict",
+        "requires-verification",
+        "drift",
+        "application-failed",
+        "verification-failed",
+        "dependency-blocked"
+      ],
+      "state_ids": [
+        "A018.overview",
+        "A018.detail",
+        "A018.empty",
+        "A018.loading",
+        "A018.denied",
+        "A018.stale",
+        "A018.error",
+        "A018.offline",
+        "A018.confirmation",
+        "A018.processing",
+        "A018.completed",
+        "A018.conflict",
+        "A018.requires-verification",
+        "A018.drift",
+        "A018.application-failed",
+        "A018.verification-failed",
+        "A018.dependency-blocked"
+      ],
+      "api_mapping_id": "api.A018",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "restoreBackup",
+        "diagnose"
+      ],
+      "permissions": [
+        "admin.view.recovery"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "reviewSafeMode",
+      "purpose": "Manage Recovery",
+      "entry_points": [
+        "A019",
+        "A020",
+        "A021",
+        "A022",
+        "A023",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A018"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a018",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a018",
+      "acceptance_test_id": "SCREEN-A018",
+      "primary_action_semantic_id": "reviewSafeMode",
+      "primary_action": "reviewSafeMode"
+    },
+    {
+      "id": "A019",
+      "canonical_id": "A019",
+      "route_id": "admin-safe-mode",
+      "path": "/admin/safe-mode",
+      "aliases": [],
+      "name_en": "Safe Mode",
+      "name_am": "የደህንነት ሁኔታ",
+      "title_key": "screenA019",
+      "roles": "Main Admin",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Feature flags, dependencies, effective safe-mode override, active version",
+      "primary_action_en": "Propose change",
+      "primary_action_am": "ለውጥ ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/safe-mode",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A018"
+      ],
+      "states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "legacy_id": null,
+      "preview_id": "A019",
+      "business_states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "state_ids": [
+        "A019.content",
+        "A019.draft",
+        "A019.validated",
+        "A019.impact-preview",
+        "A019.published",
+        "A019.applying",
+        "A019.applied",
+        "A019.verified",
+        "A019.application-failed",
+        "A019.verification-failed",
+        "A019.requires-verification",
+        "A019.drift",
+        "A019.dependency-blocked",
+        "A019.scheduled",
+        "A019.frozen",
+        "A019.version-conflict"
+      ],
+      "api_mapping_id": "api.A019",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "safeMode"
+      ],
+      "permissions": [
+        "admin.view.safe-mode"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeChange",
+      "purpose": "Manage Safe Mode",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A019"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a019",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a019",
+      "acceptance_test_id": "SCREEN-A019",
+      "primary_action_semantic_id": "proposeChange",
+      "primary_action": "proposeChange"
+    },
+    {
+      "id": "A020",
+      "canonical_id": "A020",
+      "route_id": "admin-monetization",
+      "path": "/admin/monetization",
+      "aliases": [],
+      "name_en": "Monetization",
+      "name_am": "ገቢ ማመንጫ",
+      "title_key": "screenA020",
+      "roles": "Main Admin",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Feature flags, dependencies, effective safe-mode override, active version",
+      "primary_action_en": "Propose change",
+      "primary_action_am": "ለውጥ ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/monetization",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A018",
+        "A023"
+      ],
+      "states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "legacy_id": null,
+      "preview_id": "A020",
+      "business_states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "state_ids": [
+        "A020.content",
+        "A020.draft",
+        "A020.validated",
+        "A020.impact-preview",
+        "A020.published",
+        "A020.applying",
+        "A020.applied",
+        "A020.verified",
+        "A020.application-failed",
+        "A020.verification-failed",
+        "A020.requires-verification",
+        "A020.drift",
+        "A020.dependency-blocked",
+        "A020.scheduled",
+        "A020.frozen",
+        "A020.version-conflict"
+      ],
+      "api_mapping_id": "api.A020",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "boost",
+        "offerUnlock",
+        "offerFee",
+        "offerCurrency",
+        "boostPackages"
+      ],
+      "permissions": [
+        "admin.view.monetization"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeChange",
+      "purpose": "Manage Monetization",
+      "entry_points": [
+        "A023",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A020"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a020",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a020",
+      "acceptance_test_id": "SCREEN-A020",
+      "primary_action_semantic_id": "proposeChange",
+      "primary_action": "proposeChange"
+    },
+    {
+      "id": "A021",
+      "canonical_id": "A021",
+      "route_id": "admin-maintenance",
+      "path": "/admin/maintenance",
+      "aliases": [],
+      "name_en": "Maintenance",
+      "name_am": "ጥገና",
+      "title_key": "screenA021",
+      "roles": "Main Admin",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Feature flags, dependencies, effective safe-mode override, active version",
+      "primary_action_en": "Propose change",
+      "primary_action_am": "ለውጥ ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/maintenance",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A018"
+      ],
+      "states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "legacy_id": null,
+      "preview_id": "A021",
+      "business_states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "state_ids": [
+        "A021.content",
+        "A021.draft",
+        "A021.validated",
+        "A021.impact-preview",
+        "A021.published",
+        "A021.applying",
+        "A021.applied",
+        "A021.verified",
+        "A021.application-failed",
+        "A021.verification-failed",
+        "A021.requires-verification",
+        "A021.drift",
+        "A021.dependency-blocked",
+        "A021.scheduled",
+        "A021.frozen",
+        "A021.version-conflict"
+      ],
+      "api_mapping_id": "api.A021",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "maintenance",
+        "maintenanceText",
+        "refreshCache"
+      ],
+      "permissions": [
+        "admin.view.maintenance"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeChange",
+      "purpose": "Manage Maintenance",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A021"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a021",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a021",
+      "acceptance_test_id": "SCREEN-A021",
+      "primary_action_semantic_id": "proposeChange",
+      "primary_action": "proposeChange"
+    },
+    {
+      "id": "A022",
+      "canonical_id": "A022",
+      "route_id": "admin-reports",
+      "path": "/admin/reports",
+      "aliases": [],
+      "name_en": "Reports",
+      "name_am": "ሪፖርቶች",
+      "title_key": "screenA022",
+      "roles": "Main Admin",
+      "layout": "admin",
+      "admin_kind": "report",
+      "anatomy": "Feature flags, dependencies, effective safe-mode override, active version",
+      "primary_action_en": "Propose change",
+      "primary_action_am": "ለውጥ ያቅርቡ",
+      "api": [
+        "GET /api/v1/admin/reports",
+        "GET /api/v1/admin/control-registry",
+        "POST /api/v1/admin/changes",
+        "POST /api/v1/admin/changes/{id}/validate",
+        "POST /api/v1/admin/changes/{id}/simulate",
+        "POST /api/v1/admin/changes/{id}/publish",
+        "GET /api/v1/admin/changes/{id}",
+        "POST /api/v1/admin/operations"
+      ],
+      "fields": [],
+      "links": [
+        "A001",
+        "A016",
+        "A018"
+      ],
+      "states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "legacy_id": null,
+      "preview_id": "A022",
+      "business_states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "state_ids": [
+        "A022.content",
+        "A022.draft",
+        "A022.validated",
+        "A022.impact-preview",
+        "A022.published",
+        "A022.applying",
+        "A022.applied",
+        "A022.verified",
+        "A022.application-failed",
+        "A022.verification-failed",
+        "A022.requires-verification",
+        "A022.drift",
+        "A022.dependency-blocked",
+        "A022.scheduled",
+        "A022.frozen",
+        "A022.version-conflict"
+      ],
+      "api_mapping_id": "api.A022",
+      "components": [
+        "FgButton",
+        "FgTextField",
+        "FgStatePanel",
+        "AdminSettingRow",
+        "AdminHealthCard",
+        "AdminVerificationStatus"
+      ],
+      "control_ids": [
+        "reviewReport"
+      ],
+      "permissions": [
+        "admin.view.reports"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "proposeChange",
+      "purpose": "Manage Reports",
+      "entry_points": [
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [],
+        "api_mapping_id": "api.A022"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a022",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a022",
+      "acceptance_test_id": "SCREEN-A022",
+      "primary_action_semantic_id": "proposeChange",
+      "primary_action": "proposeChange"
+    },
+    {
+      "id": "A023",
+      "canonical_id": "A023",
+      "route_id": "admin-sponsored-ads",
+      "path": "/admin/monetization/sponsored-ads",
+      "aliases": [],
+      "name_en": "Sponsored Ads",
+      "name_am": "የተከፈሉ ማስታወቂያዎች",
+      "title_key": "screenA023",
+      "roles": "Main Admin",
+      "layout": "admin",
+      "admin_kind": "settings",
+      "anatomy": "Sponsored Ads overview; master ON/OFF; campaign summary; campaign list; create campaign; advertisers; placements; frequency; schedule; creative preview; responsive/theme preview; reports; audit; version history",
+      "primary_action_en": "Create campaign",
+      "primary_action_am": "የማስታወቂያ ዘመቻ ይፍጠሩ",
+      "api": [
+        "GET /api/v1/admin/ads",
+        "POST /api/v1/admin/ads/advertisers",
+        "POST /api/v1/admin/ads/campaigns",
+        "GET /api/v1/admin/ads/campaigns/{id}",
+        "PATCH /api/v1/admin/ads/campaigns/{id}",
+        "POST /api/v1/admin/ads/campaigns/{id}/validate",
+        "POST /api/v1/admin/ads/campaigns/{id}/preview",
+        "POST /api/v1/admin/ads/campaigns/{id}/publish",
+        "POST /api/v1/admin/ads/campaigns/{id}/pause",
+        "POST /api/v1/admin/ads/campaigns/{id}/resume",
+        "POST /api/v1/admin/ads/campaigns/{id}/cancel-schedule",
+        "POST /api/v1/admin/ads/campaigns/{id}/archive",
+        "POST /api/v1/admin/ads/campaigns/{id}/rollback",
+        "GET /api/v1/admin/ads/campaigns/{id}/reports",
+        "GET /api/v1/admin/ads/campaigns/{id}/audit",
+        "POST /api/v1/admin/ads/destinations/validate"
+      ],
+      "fields": [],
+      "links": [
+        "A020",
+        "A016",
+        "A018"
+      ],
+      "states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "runtime_states": [
+        "ready",
+        "error",
+        "offline",
+        "timeout",
+        "unauthorized",
+        "denied",
+        "degraded",
+        "maintenance",
+        "loading",
+        "stale",
+        "partial",
+        "unknown",
+        "read-only",
+        "validation",
+        "conflicting",
+        "rate-limited",
+        "empty",
+        "zero-result"
+      ],
+      "status_owner": "server",
+      "write_permission": "Per-control capability; Main Admin reauthorized for HIGH/CRITICAL",
+      "write_guard": "Server-enforced capability, dependency, version, impact, reason, confirmation, apply and verify",
+      "legacy_id": null,
+      "preview_id": "A023",
+      "business_states": [
+        "content",
+        "draft",
+        "validated",
+        "impact-preview",
+        "published",
+        "applying",
+        "applied",
+        "verified",
+        "application-failed",
+        "verification-failed",
+        "requires-verification",
+        "drift",
+        "dependency-blocked",
+        "scheduled",
+        "frozen",
+        "version-conflict"
+      ],
+      "state_ids": [
+        "A023.content",
+        "A023.draft",
+        "A023.validated",
+        "A023.impact-preview",
+        "A023.published",
+        "A023.applying",
+        "A023.applied",
+        "A023.verified",
+        "A023.application-failed",
+        "A023.verification-failed",
+        "A023.requires-verification",
+        "A023.drift",
+        "A023.dependency-blocked",
+        "A023.scheduled",
+        "A023.frozen",
+        "A023.version-conflict"
+      ],
+      "api_mapping_id": "api.A023",
+      "components": [
+        "AdminSettingRow",
+        "FgSponsoredCard"
+      ],
+      "control_ids": [
+        "adsEnabled",
+        "adsBrowse",
+        "adsSearch",
+        "adsNeedDetail",
+        "adsSeparation",
+        "adsSessionCap",
+        "adsCampaignPublish",
+        "adsCampaignPause",
+        "adsDestination"
+      ],
+      "permissions": [
+        "admin.view.sponsored-ads"
+      ],
+      "data_dependencies": [
+        "authorized control values + versions",
+        "capabilities",
+        "measured health + timestamp",
+        "audit receipts"
+      ],
+      "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+      "responsive_mode": "in-flow cards below 840; tables at 840; rail 600; sidebar 1200; same actions at all widths",
+      "acceptance_criteria": [
+        "unauthorized controls not returned",
+        "unknown is not zero",
+        "publish is not verified",
+        "all actions keyboard reachable",
+        "long Amharic text wraps"
+      ],
+      "purpose": "Manage Sponsored Ads",
+      "primary_action": "createCampaign",
+      "supported_ad_slots": [],
+      "placement_ids": [],
+      "slot_states": [],
+      "ad_fallback": "N/A — no advertising allowed",
+      "primary_action_key": "createCampaign",
+      "entry_points": [
+        "A020",
+        "authorized deep link"
+      ],
+      "data_contract": {
+        "read_envelope": [
+          "data",
+          "observed_at",
+          "source",
+          "version",
+          "request_id"
+        ],
+        "unknown_policy": "explicit UNKNOWN; no invented values",
+        "fields": [
+          "ads_overview",
+          "campaign_summary",
+          "campaign_row",
+          "advertiser_option",
+          "placement_option",
+          "creative_summary",
+          "schedule_summary",
+          "frequency_summary",
+          "report_summary",
+          "audit_summary",
+          "verification_status"
+        ],
+        "api_mapping_id": "api.A023"
+      },
+      "interaction_contract": "Product_Design/Final_Interaction_Contract.md",
+      "responsive_contract": "Product_Design/Final_Responsive_Matrix.md#a023",
+      "accessibility_contract": "Product_Design/Final_Accessibility_Matrix.md#a023",
+      "acceptance_test_id": "SCREEN-A023",
+      "primary_action_semantic_id": "createCampaign"
+    }
+  ],
+  "overlays": [
+    {
+      "id": "O01",
+      "action_key": "accept",
+      "origin": "S012"
+    },
+    {
+      "id": "O02",
+      "action_key": "reject",
+      "origin": "S012"
+    },
+    {
+      "id": "O03",
+      "action_key": "cancelNeed",
+      "origin": "S008"
+    },
+    {
+      "id": "O04",
+      "action_key": "completeNeed",
+      "origin": "S008"
+    },
+    {
+      "id": "O05",
+      "action_key": "stop",
+      "origin": "S022"
+    },
+    {
+      "id": "O06",
+      "action_key": "selectOffers",
+      "origin": "S014"
+    },
+    {
+      "id": "O07",
+      "action_key": "withdraw",
+      "origin": "S012"
+    },
+    {
+      "id": "O08",
+      "action_key": "checkout",
+      "origin": "S019"
+    },
+    {
+      "id": "O09",
+      "action_key": "publish",
+      "origin": "A017"
+    },
+    {
+      "id": "O10",
+      "action_key": "rollback",
+      "origin": "A017"
+    },
+    {
+      "id": "O11",
+      "action_key": "draft",
+      "origin": "S005"
+    }
+  ],
+  "excluded_from_mvp": [
+    "three-step onboarding unless separately approved",
+    "splash as route (bootstrap only)"
+  ],
+  "default_locale": "am",
+  "logo_variant": "Official product-owner master; exact raster fidelity",
+  "logo_asset": "../../Brand/official-master-logo.png",
+  "status": "locked_visual_foundation",
+  "visual_authority": "FGM-DS-1.0",
+  "amharic_first": true,
+  "design_claim_status": "specified_not_implemented",
+  "audit_evidence_status": "implementation_requires_evidence",
+  "breakpoints_dp": {
+    "compact_max": 359,
+    "mobile": [
+      360,
+      599
+    ],
+    "tablet": [
+      600,
+      839
+    ],
+    "laptop": [
+      840,
+      1199
+    ],
+    "desktop": [
+      1200,
+      1599
+    ],
+    "wide_min": 1600
+  },
+  "mobile_screen_count": 23,
+  "admin_screen_count": 23,
+  "version": "1.4.1",
+  "supported_locales": [
+    "am",
+    "en"
+  ],
+  "source_of_truth": "Design_Data/screen-manifest.json",
+  "overlay_ids": [
+    "O01",
+    "O02",
+    "O03",
+    "O04",
+    "O05",
+    "O06",
+    "O07",
+    "O08",
+    "O09",
+    "O10",
+    "O11"
+  ]
+}

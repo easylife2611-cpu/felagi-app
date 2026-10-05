@@ -1,0 +1,494 @@
+{
+  "api.S001": {
+    "screen_id": "S001",
+    "references": [],
+    "local_only": true
+  },
+  "api.S002": {
+    "screen_id": "S002",
+    "references": [
+      "POST /api/v1/auth/telegram/start",
+      "GET /api/v1/auth/telegram/callback",
+      "POST /api/v1/auth/telegram/exchange"
+    ],
+    "local_only": false
+  },
+  "api.S003": {
+    "screen_id": "S003",
+    "references": [
+      "GET /api/v1/auth/me",
+      "PATCH /api/v1/profile"
+    ],
+    "local_only": false
+  },
+  "api.S004": {
+    "screen_id": "S004",
+    "references": [
+      "GET /api/v1/categories",
+      "GET /api/v1/needs"
+    ],
+    "local_only": false
+  },
+  "api.S005": {
+    "screen_id": "S005",
+    "references": [
+      "POST /api/v1/needs",
+      "PUT /api/v1/needs/{id}",
+      "POST /api/v1/attachments"
+    ],
+    "local_only": false
+  },
+  "api.S006": {
+    "screen_id": "S006",
+    "references": [],
+    "local_only": true
+  },
+  "api.S007": {
+    "screen_id": "S007",
+    "references": [
+      "POST /api/v1/needs"
+    ],
+    "local_only": false
+  },
+  "api.S008": {
+    "screen_id": "S008",
+    "references": [
+      "GET /api/v1/needs/{id}",
+      "POST /api/v1/needs/{id}/cancel",
+      "POST /api/v1/needs/{id}/complete"
+    ],
+    "local_only": false
+  },
+  "api.S009": {
+    "screen_id": "S009",
+    "references": [
+      "GET /api/v1/my/needs"
+    ],
+    "local_only": false
+  },
+  "api.S010": {
+    "screen_id": "S010",
+    "references": [
+      "GET /api/v1/needs/{id}/offers"
+    ],
+    "local_only": false
+  },
+  "api.S011": {
+    "screen_id": "S011",
+    "references": [
+      "POST /api/v1/offer-submissions",
+      "PUT /api/v1/offers/{id}"
+    ],
+    "local_only": false
+  },
+  "api.S012": {
+    "screen_id": "S012",
+    "references": [
+      "GET /api/v1/offers/{id}",
+      "POST /api/v1/offers/{id}/accept",
+      "POST /api/v1/offers/{id}/reject",
+      "POST /api/v1/offers/{id}/withdraw"
+    ],
+    "local_only": false
+  },
+  "api.S013": {
+    "screen_id": "S013",
+    "references": [
+      "GET /api/v1/my/offers"
+    ],
+    "local_only": false
+  },
+  "api.S014": {
+    "screen_id": "S014",
+    "references": [
+      "GET /api/v1/needs/{id}/offers",
+      "POST /api/v1/needs/{id}/comparisons"
+    ],
+    "local_only": false
+  },
+  "api.S015": {
+    "screen_id": "S015",
+    "references": [
+      "GET /api/v1/comparisons/{id}",
+      "GET /api/v1/comparisons/{id}/results",
+      "POST /api/v1/comparisons/{id}/retry"
+    ],
+    "local_only": false
+  },
+  "api.S016": {
+    "screen_id": "S016",
+    "references": [
+      "GET /api/v1/needs/{id}/comparisons",
+      "POST /api/v1/comparisons/{id}/exports",
+      "GET /api/v1/exports/{id}",
+      "GET /api/v1/exports/{id}/download",
+      "GET /api/v1/my/comparisons"
+    ],
+    "local_only": false
+  },
+  "api.S017": {
+    "screen_id": "S017",
+    "references": [
+      "GET /api/v1/offers/{id}/messages",
+      "POST /api/v1/offers/{id}/messages"
+    ],
+    "local_only": false
+  },
+  "api.S018": {
+    "screen_id": "S018",
+    "references": [
+      "GET /api/v1/notifications",
+      "POST /api/v1/notifications/{id}/read"
+    ],
+    "local_only": false
+  },
+  "api.S019": {
+    "screen_id": "S019",
+    "references": [
+      "GET /api/v1/boost-packages",
+      "POST /api/v1/needs/{id}/boosts",
+      "GET /api/v1/payments/{id}"
+    ],
+    "local_only": false
+  },
+  "api.S020": {
+    "screen_id": "S020",
+    "references": [
+      "POST /api/v1/needs/{id}/ratings"
+    ],
+    "local_only": false
+  },
+  "api.S021": {
+    "screen_id": "S021",
+    "references": [
+      "POST /api/v1/reports"
+    ],
+    "local_only": false
+  },
+  "api.S022": {
+    "screen_id": "S022",
+    "references": [
+      "GET /api/v1/needs/{id}/telegram-publications",
+      "POST /api/v1/needs/{id}/telegram-publication/stop"
+    ],
+    "local_only": false
+  },
+  "api.S023": {
+    "screen_id": "S023",
+    "references": [
+      "POST /api/v1/offer-submissions",
+      "GET /api/v1/offer-submissions/{id}",
+      "POST /api/v1/offer-submissions/{id}/resume"
+    ],
+    "local_only": false
+  },
+  "api.A001": {
+    "screen_id": "A001",
+    "references": [
+      "GET /api/v1/admin/dashboard"
+    ],
+    "local_only": false
+  },
+  "api.A002": {
+    "screen_id": "A002",
+    "references": [
+      "GET /api/v1/admin/telegram",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A003": {
+    "screen_id": "A003",
+    "references": [
+      "GET /api/v1/admin/health"
+    ],
+    "local_only": false
+  },
+  "api.A004": {
+    "screen_id": "A004",
+    "references": [
+      "GET /api/v1/admin/features",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A005": {
+    "screen_id": "A005",
+    "references": [
+      "GET /api/v1/admin/marketplace",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A006": {
+    "screen_id": "A006",
+    "references": [
+      "GET /api/v1/admin/ai",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A007": {
+    "screen_id": "A007",
+    "references": [
+      "GET /api/v1/admin/payments",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A008": {
+    "screen_id": "A008",
+    "references": [
+      "GET /api/v1/admin/users",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A009": {
+    "screen_id": "A009",
+    "references": [
+      "GET /api/v1/admin/content",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A010": {
+    "screen_id": "A010",
+    "references": [
+      "GET /api/v1/admin/notifications",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A011": {
+    "screen_id": "A011",
+    "references": [
+      "GET /api/v1/admin/files",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A012": {
+    "screen_id": "A012",
+    "references": [
+      "GET /api/v1/admin/jobs",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A013": {
+    "screen_id": "A013",
+    "references": [
+      "GET /api/v1/admin/backups",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A014": {
+    "screen_id": "A014",
+    "references": [
+      "GET /api/v1/admin/integrity",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A015": {
+    "screen_id": "A015",
+    "references": [
+      "GET /api/v1/admin/security",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A016": {
+    "screen_id": "A016",
+    "references": [
+      "GET /api/v1/admin/audit"
+    ],
+    "local_only": false
+  },
+  "api.A017": {
+    "screen_id": "A017",
+    "references": [
+      "GET /api/v1/admin/settings",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A018": {
+    "screen_id": "A018",
+    "references": [
+      "GET /api/v1/admin/recovery",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A019": {
+    "screen_id": "A019",
+    "references": [
+      "GET /api/v1/admin/safe-mode",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A020": {
+    "screen_id": "A020",
+    "references": [
+      "GET /api/v1/admin/monetization",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A021": {
+    "screen_id": "A021",
+    "references": [
+      "GET /api/v1/admin/maintenance",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A022": {
+    "screen_id": "A022",
+    "references": [
+      "GET /api/v1/admin/reports",
+      "GET /api/v1/admin/control-registry",
+      "POST /api/v1/admin/changes",
+      "POST /api/v1/admin/changes/{id}/validate",
+      "POST /api/v1/admin/changes/{id}/simulate",
+      "POST /api/v1/admin/changes/{id}/publish",
+      "GET /api/v1/admin/changes/{id}",
+      "POST /api/v1/admin/operations"
+    ],
+    "local_only": false
+  },
+  "api.A023": {
+    "screen_id": "A023",
+    "references": [
+      "GET /api/v1/admin/ads",
+      "POST /api/v1/admin/ads/advertisers",
+      "POST /api/v1/admin/ads/campaigns",
+      "GET /api/v1/admin/ads/campaigns/{id}",
+      "PATCH /api/v1/admin/ads/campaigns/{id}",
+      "POST /api/v1/admin/ads/campaigns/{id}/validate",
+      "POST /api/v1/admin/ads/campaigns/{id}/preview",
+      "POST /api/v1/admin/ads/campaigns/{id}/publish",
+      "POST /api/v1/admin/ads/campaigns/{id}/pause",
+      "POST /api/v1/admin/ads/campaigns/{id}/resume",
+      "POST /api/v1/admin/ads/campaigns/{id}/cancel-schedule",
+      "POST /api/v1/admin/ads/campaigns/{id}/archive",
+      "POST /api/v1/admin/ads/campaigns/{id}/rollback",
+      "GET /api/v1/admin/ads/campaigns/{id}/reports",
+      "GET /api/v1/admin/ads/campaigns/{id}/audit",
+      "POST /api/v1/admin/ads/destinations/validate"
+    ],
+    "local_only": false
+  }
+}

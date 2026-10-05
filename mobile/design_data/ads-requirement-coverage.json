@@ -1,0 +1,2385 @@
+[
+  {
+    "requirement": "ADS-1",
+    "title": "PRODUCT DEFINITION UPDATE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-1",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-2",
+    "title": "INITIAL PRODUCTION DEFAULT",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-2",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-3",
+    "title": "DEFINE A CANONICAL ADVERTISING DOMAIN",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-3",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-4",
+    "title": "CANONICAL ADVERTISER / SPONSOR OBJECT",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-4",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-5",
+    "title": "CANONICAL CAMPAIGN OBJECT",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-5",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-6",
+    "title": "CAMPAIGN STATE MACHINE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-6",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-7",
+    "title": "CREATE A CANONICAL PLACEMENT REGISTRY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-7",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-8",
+    "title": "PROHIBITED AD PLACEMENTS",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-8",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-9",
+    "title": "PLACEMENT OBJECT",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-9",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-10",
+    "title": "HOME SCREEN / BROWSE AD EXPERIENCE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-10",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-11",
+    "title": "AD DENSITY GUARDRAIL",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-11",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-12",
+    "title": "CREATE CANONICAL SPONSORED COMPONENTS",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-12",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-13",
+    "title": "SPONSORED CARD ANATOMY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-13",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-14",
+    "title": "MANDATORY SPONSOR DISCLOSURE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-14",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-15",
+    "title": "VISUAL DISTINCTION WITHOUT VISUAL POLLUTION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-15",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-16",
+    "title": "CREATIVE TYPES",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-16",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-17",
+    "title": "CREATIVE VALIDATION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-17",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-18",
+    "title": "DESTINATION TYPES",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-18",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-19",
+    "title": "EXTERNAL LINK SECURITY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-19",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-20",
+    "title": "TARGETING MODEL — KEEP MVP SIMPLE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-20",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-21",
+    "title": "PRIVACY BOUNDARY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-21",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-22",
+    "title": "ADVERTISING MUST NOT TOUCH AI COMPARISON",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-22",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-23",
+    "title": "ADVERTISING MUST NOT ALTER ORGANIC MARKETPLACE RANKING",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-23",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-24",
+    "title": "MAIN ADMIN — SPONSORED ADS CENTER",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-24",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-25",
+    "title": "ADMIN HOME FOR SPONSORED ADS",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-25",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-26",
+    "title": "MASTER SWITCH",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-26",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-27",
+    "title": "PLACEMENT-LEVEL SWITCHES",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-27",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-28",
+    "title": "CAMPAIGN-LEVEL SWITCH",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-28",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-29",
+    "title": "CREATE CAMPAIGN WIZARD",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-29",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-30",
+    "title": "ADMIN PREVIEW",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-30",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-31",
+    "title": "ADMIN IMPACT PREVIEW",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-31",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-32",
+    "title": "SCHEDULING",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-32",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-33",
+    "title": "FREQUENCY CAP",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-33",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-34",
+    "title": "GRACEFUL FAILURE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-34",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-35",
+    "title": "PERFORMANCE ISOLATION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-35",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-36",
+    "title": "ACCESSIBILITY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-36",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-37",
+    "title": "LOCALIZATION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-37",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-38",
+    "title": "LIGHT/DARK MODE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-38",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-39",
+    "title": "ANALYTICS — EVIDENCE SAFE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S004",
+    "route": "/browse",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S004.loading",
+      "S004.content",
+      "S004.empty",
+      "S004.error",
+      "S004.offline"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public",
+    "api": "api.S004",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenS004",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#s004",
+    "test": "ADS-39",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-40",
+    "title": "CAMPAIGN REPORT",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-40",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-41",
+    "title": "ADMIN AUDIT",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-41",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-42",
+    "title": "VERSIONING",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-42",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-43",
+    "title": "ROLLBACK",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-43",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-44",
+    "title": "ADMIN CONTROL REGISTRY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-44",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-45",
+    "title": "RISK MODEL",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-45",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-46",
+    "title": "PUBLISH LIFECYCLE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-46",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-47",
+    "title": "RUNTIME VERIFICATION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-47",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-48",
+    "title": "USER EXPERIENCE RULES",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-48",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-49",
+    "title": "NO DECEPTIVE DESIGN",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-49",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-50",
+    "title": "DESIGN SYSTEM INTEGRATION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-50",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-51",
+    "title": "RESPONSIVE RULES",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-51",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-52",
+    "title": "SCREEN MANIFEST INTEGRATION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-52",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-53",
+    "title": "RUNTIME AD SLOT STATES",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-53",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-54",
+    "title": "SECURITY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-54",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-55",
+    "title": "PRIVACY / CONSENT DOCUMENTATION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-55",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-56",
+    "title": "TEST MATRIX",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-56",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-57",
+    "title": "TRACEABILITY",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-57",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-58",
+    "title": "UPDATE ALL AFFECTED CANONICAL PACKAGE ARTIFACTS",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-58",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-59",
+    "title": "DO NOT DUPLICATE EXISTING RESPONSIBILITIES",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-59",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-60",
+    "title": "FINAL LOCKED ADVERTISING STATEMENT",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-60",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-61",
+    "title": "FINAL EXECUTION INSTRUCTION",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "A023",
+    "route": "/admin/monetization/sponsored-ads",
+    "component": [
+      "AdminSettingRow",
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "A023.content",
+      "A023.draft",
+      "A023.validated",
+      "A023.impact-preview",
+      "A023.published",
+      "A023.applying",
+      "A023.applied",
+      "A023.verified",
+      "A023.application-failed",
+      "A023.verification-failed",
+      "A023.requires-verification",
+      "A023.drift",
+      "A023.dependency-blocked",
+      "A023.scheduled",
+      "A023.frozen",
+      "A023.version-conflict"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "Main Admin",
+    "api": "api.A023",
+    "data_object": "Campaign/Placement/Delivery",
+    "recovery": "retain protected actor-scoped draft/context; reconcile unknown writes by request ID; 401 reauth without replay;403 safe parent;409 reload/reconfirm;422 inline+summary; timeout Retry read or check mutation status; S021 support",
+    "localization": "screenA023",
+    "accessibility": "Product_Design/Final_Accessibility_Matrix.md#a023",
+    "test": "ADS-61",
+    "evidence_status": "MAPPED_NOT_EXECUTED; reference tests separately reported"
+  },
+  {
+    "requirement": "ADS-S008-PLACEMENT",
+    "title": "NEED DETAIL SPONSORED PLACEMENT END-TO-END TRACE",
+    "canonical_owner": "System_Specification/Sponsored_Advertising_Contract.md",
+    "journey": "J-sponsored-ads",
+    "screen": "S008",
+    "route": "/needs/:id",
+    "component": [
+      "FgSponsoredCard"
+    ],
+    "token": [
+      "color.text.primary",
+      "size.minimumTouchTarget"
+    ],
+    "state": [
+      "S008.public",
+      "S008.owner",
+      "adStateDisabled",
+      "adStateEmpty",
+      "adStateLoading",
+      "adStateReady",
+      "adStateFailed",
+      "adStateNotEligible",
+      "adStateFrequencyCapped"
+    ],
+    "interaction": "Product_Design/Final_Interaction_Contract.md",
+    "permission": "public-or-owner; ad delivery independently policy-gated",
+    "api": "api.S008",
+    "data_object": "Placement AD_NEED_DETAIL_BOTTOM_01 / Campaign / Delivery / Impression / Click",
+    "recovery": "Ad failure collapses safely and never blocks Need detail, primary actions, Offers or AI flows.",
+    "localization": "placementNeedDetail/sponsored/adDisclosure",
+    "accessibility": "Sponsored disclosure + sponsor/title accessible name; focusable CTA; alt text; non-color-only distinction.",
+    "test": "ADS-S008-PLACEMENT",
+    "evidence_status": "SOURCE_MAPPED_NOT_EXECUTED; runtime/browser evidence required",
+    "delivery_api": "GET /api/v1/ads/placements/AD_NEED_DETAIL_BOTTOM_01/delivery; POST /api/v1/ads/events"
+  }
+]

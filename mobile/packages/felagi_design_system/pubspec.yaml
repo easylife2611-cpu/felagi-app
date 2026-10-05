@@ -1,0 +1,17 @@
+name: felagi_design_system
+description: Felagi canonical design-system starter, not a complete production app.
+version: 1.4.0
+publish_to: none
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.22.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true

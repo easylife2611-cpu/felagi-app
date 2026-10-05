@@ -1,0 +1,46 @@
+{
+  "need": {
+    "id": "DEMO-NEED",
+    "title_key": "sampleNeed",
+    "description_key": "sampleDescription",
+    "location_key": "sampleLocation",
+    "category_key": "electronics",
+    "budget_min": "35000.00",
+    "budget_max": "50000.00",
+    "currency": "ETB",
+    "source_key": "sampleSource",
+    "observed_at": null
+  },
+  "comparison": {
+    "version": 1,
+    "criteria": [
+      "price",
+      "reliability",
+      "quality",
+      "delivery"
+    ],
+    "weights": [
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    ],
+    "scores": [
+      8,
+      8,
+      9,
+      8
+    ],
+    "overall": 8.25,
+    "is_real_evidence": false
+  },
+  "offer_count": 3,
+  "selection_cap": 2,
+  "payment": {
+    "reference": "DEMO-PAYMENT",
+    "amount": "100.00",
+    "currency": "ETB",
+    "status": "PENDING",
+    "is_live": false
+  }
+}

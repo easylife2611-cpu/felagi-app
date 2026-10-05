@@ -1,0 +1,199 @@
+{
+  "comparison_id": "CMP-DEMO",
+  "version": 2,
+  "need_id": "NEED-DEMO",
+  "need_hash": "fixture-need-hash",
+  "criteria_version": "v2",
+  "prompt_version": "prompt-demo-2",
+  "model_id": "fixture-no-model-call",
+  "evaluation_policy_version": "v2",
+  "status": "COMPLETED",
+  "generated_at": "2026-09-28T12:00:00Z",
+  "requirements": [
+    {
+      "id": "R1",
+      "priority": "MUST_HAVE",
+      "label_key": "fixtureRam",
+      "origin": "requester-stated",
+      "ambiguous": false
+    },
+    {
+      "id": "R2",
+      "priority": "PREFERRED",
+      "label_key": "fixtureDelivery",
+      "origin": "derived",
+      "ambiguous": true
+    }
+  ],
+  "offers": [
+    {
+      "offer_id": "O1",
+      "provider_id": "P1",
+      "requirement_match": "MEETS",
+      "criteria": [
+        {
+          "id": "price",
+          "score": 8.8,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O1.price"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "reliability",
+          "score": 8.4,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O1.reliability"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "quality",
+          "score": 8.7,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O1.quality"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "delivery",
+          "score": 8.5,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O1.delivery"
+          ],
+          "explanation_key": "fixtureEvidence"
+        }
+      ],
+      "strengths": [
+        "fixtureEvidence"
+      ],
+      "weaknesses": [
+        "fixtureTradeoff"
+      ],
+      "missing": [
+        "unknown"
+      ],
+      "risks": [
+        "fixtureTradeoff"
+      ]
+    },
+    {
+      "offer_id": "O2",
+      "provider_id": "P2",
+      "requirement_match": "MEETS",
+      "criteria": [
+        {
+          "id": "price",
+          "score": 8.9,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O2.price"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "reliability",
+          "score": 8.2,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O2.reliability"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "quality",
+          "score": 8.6,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O2.quality"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "delivery",
+          "score": 8.3,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O2.delivery"
+          ],
+          "explanation_key": "fixtureEvidence"
+        }
+      ],
+      "strengths": [
+        "fixtureEvidence"
+      ],
+      "weaknesses": [
+        "fixtureTradeoff"
+      ],
+      "missing": [
+        "unknown"
+      ],
+      "risks": [
+        "fixtureTradeoff"
+      ]
+    },
+    {
+      "offer_id": "O3",
+      "provider_id": "P3",
+      "requirement_match": "UNKNOWN",
+      "criteria": [
+        {
+          "id": "price",
+          "score": 9,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O3.price"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "reliability",
+          "score": null,
+          "status": "UNKNOWN",
+          "evidence_refs": [],
+          "explanation_key": "noHistory"
+        },
+        {
+          "id": "quality",
+          "score": 7,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O3.quality"
+          ],
+          "explanation_key": "fixtureEvidence"
+        },
+        {
+          "id": "delivery",
+          "score": 9,
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "offers.O3.delivery"
+          ],
+          "explanation_key": "fixtureEvidence"
+        }
+      ],
+      "strengths": [
+        "fixtureEvidence"
+      ],
+      "weaknesses": [
+        "fixtureTradeoff"
+      ],
+      "missing": [
+        "noHistory"
+      ],
+      "risks": [
+        "fixtureTradeoff"
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "offer_id": "O4",
+      "reason": "WITHDRAWN"
+    }
+  ]
+}

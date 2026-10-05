@@ -1,0 +1,133 @@
+{
+  "version": "1.4.0",
+  "requirement_model": {
+    "fields": [
+      "id",
+      "priority",
+      "original_text",
+      "source_span",
+      "value",
+      "unit",
+      "interpretation_origin",
+      "confirmation_state",
+      "version"
+    ],
+    "priorities": [
+      "MUST_HAVE",
+      "PREFERRED",
+      "OPTIONAL",
+      "UNKNOWN"
+    ],
+    "derived_rule": "source_span required; no invented requirement; material ambiguity requires requester confirmation"
+  },
+  "comparison_fields": [
+    "id",
+    "version",
+    "need_snapshot_id",
+    "need_snapshot_hash",
+    "offer_snapshot_ids",
+    "offer_snapshot_hashes",
+    "criteria_version",
+    "prompt_version",
+    "model_id",
+    "evaluation_policy_version",
+    "actor_id",
+    "created_at",
+    "started_at",
+    "completed_at",
+    "failed_at",
+    "attempts",
+    "excluded_reasons",
+    "result_hash",
+    "completion_event_id"
+  ],
+  "projection_fields": {
+    "REQUESTER_COMPARISON_VIEW": [
+      "comparison_id",
+      "version",
+      "need_summary",
+      "included_results",
+      "exclusion_reasons",
+      "executive_summary",
+      "tradeoffs",
+      "criteria_version",
+      "created_at"
+    ],
+    "PROVIDER_OWN_RESULT_VIEW": [
+      "comparison_id",
+      "version",
+      "own_offer_id",
+      "own_result",
+      "included_offer_count",
+      "criteria_version",
+      "created_at"
+    ],
+    "ADMIN_SUPPORT_VIEW": [
+      "comparison_id",
+      "version",
+      "status",
+      "failure_code",
+      "latency",
+      "usage",
+      "schema_failure_count",
+      "event_id",
+      "delivery_statuses"
+    ],
+    "TELEGRAM_NOTIFICATION_VIEW": [
+      "comparison_id",
+      "version",
+      "own_score",
+      "safe_authenticated_link",
+      "event_id"
+    ],
+    "EXPORT_VIEW": [
+      "authorized_role_projection",
+      "stored_result_hash",
+      "generated_at",
+      "advisory_notice"
+    ]
+  },
+  "provider_forbidden": [
+    "competitor_id",
+    "competitor_name",
+    "competitor_price",
+    "competitor_score",
+    "private_phone",
+    "private_address",
+    "attachments",
+    "messages",
+    "raw_proposal"
+  ],
+  "event": "COMPARISON_COMPLETED",
+  "notification": "COMPARISON_READY",
+  "delivery_unique_key": [
+    "comparison_id",
+    "comparison_version",
+    "recipient_user_id",
+    "channel"
+  ],
+  "telegram_states": [
+    "QUEUED",
+    "SENDING",
+    "SENT",
+    "UNCERTAIN",
+    "FAILED",
+    "RETRY",
+    "SKIPPED"
+  ],
+  "truth_boundary": "SENT is transport evidence, not READ/SEEN/REVIEWED",
+  "export_rule": "serialize stored authorized result, never rerun AI",
+  "state_machine": {
+    "PENDING": [
+      "PROCESSING"
+    ],
+    "PROCESSING": [
+      "COMPLETED",
+      "FAILED"
+    ],
+    "FAILED": [
+      "PENDING"
+    ],
+    "COMPLETED": []
+  }
+}

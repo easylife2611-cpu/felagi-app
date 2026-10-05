@@ -1,0 +1,111 @@
+{
+  "version": "1.4.1",
+  "master_default": false,
+  "placements": [
+    {
+      "placement_id": "AD_BROWSE_INLINE_01",
+      "screen_id": "S004",
+      "view_mode": "browse",
+      "title_key": "placementBrowse",
+      "enabled_default": false,
+      "canonical_position": "after organic item5; minimum4",
+      "allowed_creative_types": [
+        "CARD",
+        "BANNER",
+        "COMPACT"
+      ],
+      "aspect_ratio": {
+        "CARD": "16:9 optional media",
+        "BANNER": "3:1 optional media",
+        "COMPACT": "1:1 optional thumbnail"
+      },
+      "mobile_behavior": "one-column labelled card; wrap copy; CTA below body; compact thumbnail may stack",
+      "tablet_behavior": "within organic column width; never overlay or replace organic record",
+      "desktop_behavior": "separate full-row region after approved organic row; cap width from canonical layout",
+      "dark_mode_behavior": "same semantic raised surface/text/border tokens; media unchanged",
+      "light_mode_behavior": "same hierarchy and sponsorship disclosure",
+      "frequency_floor": 4,
+      "maximum_density": 0.2,
+      "maximum_per_page": 1,
+      "fallback_behavior": "omit/collapse before insertion; if already visible preserve focused node until safe removal",
+      "accessibility_rule": "article named Sponsored + sponsor/title; native CTA, media alt, minimum48dp target, visible focus",
+      "content_separation_rule": "persistent Sponsored label, sponsor identity, distinct raised container; no Need status/rating/AI score"
+    },
+    {
+      "placement_id": "AD_SEARCH_RESULTS_INLINE_01",
+      "screen_id": "S004",
+      "view_mode": "search",
+      "title_key": "placementSearch",
+      "enabled_default": false,
+      "canonical_position": "after organic item5; minimum4",
+      "allowed_creative_types": [
+        "CARD",
+        "BANNER",
+        "COMPACT"
+      ],
+      "aspect_ratio": {
+        "CARD": "16:9 optional media",
+        "BANNER": "3:1 optional media",
+        "COMPACT": "1:1 optional thumbnail"
+      },
+      "mobile_behavior": "one-column labelled card; wrap copy; CTA below body; compact thumbnail may stack",
+      "tablet_behavior": "within organic column width; never overlay or replace organic record",
+      "desktop_behavior": "separate full-row region after approved organic row; cap width from canonical layout",
+      "dark_mode_behavior": "same semantic raised surface/text/border tokens; media unchanged",
+      "light_mode_behavior": "same hierarchy and sponsorship disclosure",
+      "frequency_floor": 4,
+      "maximum_density": 0.2,
+      "maximum_per_page": 1,
+      "fallback_behavior": "omit/collapse before insertion; if already visible preserve focused node until safe removal",
+      "accessibility_rule": "article named Sponsored + sponsor/title; native CTA, media alt, minimum48dp target, visible focus",
+      "content_separation_rule": "persistent Sponsored label, sponsor identity, distinct raised container; no Need status/rating/AI score"
+    },
+    {
+      "placement_id": "AD_NEED_DETAIL_BOTTOM_01",
+      "screen_id": "S008",
+      "view_mode": "detail",
+      "title_key": "placementNeedDetail",
+      "enabled_default": false,
+      "canonical_position": "after complete Need content and primary action; never sticky",
+      "allowed_creative_types": [
+        "CARD",
+        "BANNER",
+        "COMPACT"
+      ],
+      "aspect_ratio": {
+        "CARD": "16:9 optional media",
+        "BANNER": "3:1 optional media",
+        "COMPACT": "1:1 optional thumbnail"
+      },
+      "mobile_behavior": "one-column labelled card; wrap copy; CTA below body; compact thumbnail may stack",
+      "tablet_behavior": "within organic column width; never overlay or replace organic record",
+      "desktop_behavior": "separate full-row region after approved organic row; cap width from canonical layout",
+      "dark_mode_behavior": "same semantic raised surface/text/border tokens; media unchanged",
+      "light_mode_behavior": "same hierarchy and sponsorship disclosure",
+      "frequency_floor": 4,
+      "maximum_density": 0.2,
+      "maximum_per_page": 1,
+      "fallback_behavior": "omit/collapse before insertion; if already visible preserve focused node until safe removal",
+      "accessibility_rule": "article named Sponsored + sponsor/title; native CTA, media alt, minimum48dp target, visible focus",
+      "content_separation_rule": "persistent Sponsored label, sponsor identity, distinct raised container; no Need status/rating/AI score"
+    }
+  ],
+  "unregistered_screen_policy": "NO_ADS",
+  "prohibited_screens": [
+    "S001",
+    "S002",
+    "S003",
+    "S005",
+    "S006",
+    "S011",
+    "S014",
+    "S015",
+    "S016",
+    "S017",
+    "S019",
+    "S020",
+    "S021",
+    "S023"
+  ],
+  "scope": "Only registered Browse/Search and Need detail modes. No separate Home feed because S004 already owns discovery."
+}
