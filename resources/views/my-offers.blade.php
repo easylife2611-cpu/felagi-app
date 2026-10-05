@@ -77,10 +77,15 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
 </style>
 </head>
 <body>
+@include('partials.felagi-polish')
 <header>
 <a href="/browse" title="{{ __('back') }}">&#8592;</a>
 <span class="title">{{ __('myOffersTitle') }}</span>
 <span class="count" id="offer-count" hidden>0</span>
+{{-- L350: Notifications top bar --}}
+<a href="/notifications" class="felagi-topbar-alerts" aria-label="ማሳወቂያዎች">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+</a>
 </header>
 
 <main role="main" aria-labelledby="page-title">
@@ -120,15 +125,9 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
 </div>
 </main>
 
-<a href="/browse" class="fab" title="{{ __('browseNeeds') }}">&#128269;</a>
+{{-- Bottom Nav — L349 shared partial --}}
+@include('partials.bottom-nav')
 
-<nav class="bn" role="navigation">
-<a href="/browse"><span class="ic">&#128269;</span><span>{{ __('navBrowse') }}</span></a>
-<a href="/my/needs"><span class="ic">&#128203;</span><span>{{ __('navMyNeeds') }}</span></a>
-<a href="/my/offers" class="active" aria-current="page"><span class="ic">&#127991;</span><span>{{ __('navMyOffers') }}</span></a>
-<a href="/notifications"><span class="ic">&#128276;</span><span>{{ __('navNotifications') }}</span></a>
-<a href="/profile"><span class="ic">&#128100;</span><span>{{ __('navProfile') }}</span></a>
-</nav>
 
 <script>
 (function(){

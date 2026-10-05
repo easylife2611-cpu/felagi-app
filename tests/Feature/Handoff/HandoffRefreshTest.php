@@ -70,10 +70,28 @@ class HandoffRefreshTest extends TestCase
     public function test_index_lists_recent_ledgers(): void
     {
         $body = file_get_contents(
-            base_path('public/handoff/ledgers/INDEX.md')
+            $this->resolveLedgerPath('INDEX.md')
         );
         foreach (['L271', 'L272', 'L273', 'L274', 'L275', 'L276', 'L277'] as $l) {
             $this->assertStringContainsString($l, $body, "INDEX missing: {$l}");
         }
+    }
+
+    /**
+     * L350: Ledgers moved to storage/app/private in L348.
+     * Resolve path in either location (backward compatible).
+     */
+    private function resolveLedgerPath(string $filename): string
+    {
+        $candidates = [
+            base_path('public/handoff/ledgers/' . $filename),
+            base_path('storage/app/private/handoff_ledgers/' . $filename),
+        ];
+        foreach ($candidates as $path) {
+            if (file_exists($path)) {
+                return $path;
+            }
+        }
+        return $candidates[0];
     }
 }

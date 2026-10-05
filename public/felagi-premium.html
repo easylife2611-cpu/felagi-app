@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ፈላጊ Premium — Locked Branding</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy-950:#001a33;--navy-900:#002b52;--navy-800:#003366;--navy-700:#0b4d83;--navy-600:#1a6bb0;
+--orange-700:#b35c00;--orange-600:#e8851d;--orange-500:#FF9933;--orange-400:#ffb366;--orange-100:#fff2e0;
+--ink-900:#0d1a2b;--ink-700:#132238;--ink-500:#3c4d61;--ink-300:#5f7185;--ink-200:#8fa0b3;
+--line-100:#eef2f6;--line-200:#e3e9ef;--line-300:#d5dde6;
+--surface:#fff;--canvas:#f4f7fa;--canvas-2:#eef3f8;
+--success-600:#0e6b34;--success-500:#147a3d;--success-100:#e8f5ee;
+--warn-600:#a86500;--warn-500:#c47a00;--warn-100:#fff7e6;
+--danger-600:#a32e21;--danger-500:#c0392b;--danger-100:#fdecea;
+--info-600:#0056d6;--info-500:#0d6efd;--info-100:#e7f1ff;
+--r-xs:8px;--r-sm:12px;--r-md:16px;--r-lg:22px;--r-xl:28px;--r-pill:999px;
+--sh-xs:0 1px 2px rgba(0,26,51,.04),0 1px 3px rgba(0,26,51,.06);
+--sh-sm:0 2px 6px rgba(0,26,51,.05),0 4px 12px rgba(0,26,51,.06);
+--sh-md:0 4px 12px rgba(0,26,51,.06),0 12px 28px rgba(0,26,51,.08);
+--sh-lg:0 8px 24px rgba(0,26,51,.08),0 24px 56px rgba(0,26,51,.12);
+--sh-navy:0 12px 32px rgba(0,51,102,.28);
+--sh-orange:0 8px 20px rgba(255,153,51,.32),0 2px 6px rgba(255,153,51,.20);
+--f-am:'Noto Sans Ethiopic','Inter',system-ui,sans-serif;
+--f-en:'Inter','Noto Sans Ethiopic',system-ui,sans-serif;
+--ease:cubic-bezier(.16,.84,.44,1);
+--ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#dfe6ee;color:var(--ink-900);font-family:var(--f-am);line-height:1.55;font-weight:500;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+input,select,textarea{font-family:inherit;font-size:inherit}
+::selection{background:var(--orange-100);color:var(--navy-900)}
+
+.gh{position:sticky;top:0;z-index:200;background:linear-gradient(135deg,var(--navy-950),var(--navy-800));color:#fff;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 8px 32px rgba(0,26,51,.24)}
+.gh h1{font-size:20px;font-weight:900;letter-spacing:-.025em;display:flex;align-items:center;gap:12px}
+.gh h1 .d{width:12px;height:12px;background:var(--orange-500);border-radius:50%;box-shadow:0 0 0 5px rgba(255,153,51,.22);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 5px rgba(255,153,51,.22)}50%{box-shadow:0 0 0 9px rgba(255,153,51,.08)}}
+.gh .m{font-size:12px;opacity:.72;font-family:var(--f-en);letter-spacing:.02em}
+.gh .b{background:linear-gradient(135deg,rgba(255,153,51,.24),rgba(255,153,51,.12));color:var(--orange-400);padding:7px 14px;border-radius:var(--r-pill);font-size:11px;font-weight:800;letter-spacing:.06em;border:1px solid rgba(255,153,51,.25);font-family:var(--f-en)}
+
+.wrap{padding:40px 32px;max-width:1900px;margin:0 auto}
+.sec{margin-bottom:64px}
+.sec>h2{font-size:13px;font-weight:900;color:var(--navy-800);text-transform:uppercase;letter-spacing:.14em;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid var(--line-200);display:flex;align-items:center;gap:10px;font-family:var(--f-en)}
+.sec>h2 .c{font-size:10px;color:var(--ink-300);font-weight:800;background:var(--canvas-2);padding:4px 10px;border-radius:var(--r-pill);letter-spacing:.08em;font-family:var(--f-en)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:36px}
+
+.ph{background:linear-gradient(180deg,#1e1e1e,#0a0a0a);border-radius:44px;padding:14px 10px 26px;box-shadow:0 30px 80px rgba(0,0,0,.24),0 10px 30px rgba(0,0,0,.16),inset 0 0 0 2px #2a2a2a,inset 0 1px 0 rgba(255,255,255,.08);position:relative;transition:transform .4s var(--ease-out),box-shadow .4s var(--ease-out)}
+.ph:hover{transform:translateY(-4px)}
+.ph::before{content:'';position:absolute;top:20px;left:50%;transform:translateX(-50%);width:100px;height:24px;background:#000;border-radius:var(--r-pill);z-index:5}
+.ph::after{content:'';position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:120px;height:4px;background:rgba(255,255,255,.32);border-radius:var(--r-pill)}
+.ps{background:var(--canvas);border-radius:36px;overflow:hidden;height:760px;position:relative;display:flex;flex-direction:column}
+.pl{text-align:center;color:rgba(255,255,255,.85);font-size:11px;font-weight:800;letter-spacing:.08em;margin-top:12px;font-family:var(--f-en)}
+.pl .n{color:var(--orange-500)}
+
+.sc{display:flex;flex-direction:column;height:100%;overflow:hidden;background:var(--canvas);position:relative}
+.sh{flex:0 0 auto;color:#fff;padding:52px 22px 22px;position:relative;overflow:hidden;z-index:1}
+.sh::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(255,153,51,.12),transparent 55%);pointer-events:none}
+.sh .tr{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:1}
+.sh .br{font-size:18px;font-weight:900;letter-spacing:-.035em;display:flex;align-items:center;gap:9px}
+.sh .br .d{width:9px;height:9px;background:var(--orange-500);border-radius:50%;box-shadow:0 0 0 4px rgba(255,153,51,.24)}
+.sh .ha{display:flex;gap:6px;align-items:center}
+.ib{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.08);transition:all .2s var(--ease)}
+.ib:hover{background:rgba(255,255,255,.18);transform:scale(1.05)}
+.ib svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ib .dot{position:absolute;top:8px;right:8px;width:8px;height:8px;background:var(--orange-500);border-radius:50%;border:2px solid var(--navy-800)}
+.sh .t{margin-top:18px;font-size:24px;font-weight:900;letter-spacing:-.03em;line-height:1.2;position:relative;z-index:1}
+.sh .st{margin-top:6px;font-size:13px;opacity:.72;font-weight:500;position:relative;z-index:1}
+.wm{position:absolute;right:-24px;bottom:-36px;font-size:140px;font-weight:900;color:rgba(255,255,255,.035);pointer-events:none;user-select:none;font-family:var(--f-en);letter-spacing:-.06em;line-height:1;z-index:0}
+.mesh{background:radial-gradient(ellipse at top right,rgba(255,153,51,.18),transparent 55%),radial-gradient(ellipse at bottom left,rgba(26,107,176,.35),transparent 60%),linear-gradient(140deg,var(--navy-950),var(--navy-800))}
+
+.sb{flex:1 1 auto;overflow-y:auto;padding:24px 20px;position:relative;z-index:1}
+.sb::-webkit-scrollbar{width:0}
+.sb>*{animation:fadeUp .5s var(--ease-out) backwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.sn{flex:0 0 auto;background:rgba(255,255,255,.94);backdrop-filter:blur(24px);border-top:1px solid var(--line-200);display:flex;padding:10px 6px 14px;position:relative;z-index:2}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;color:var(--ink-200);font-size:10px;font-weight:700;position:relative;transition:color .2s var(--ease);letter-spacing:.01em}
+.ni.active{color:var(--navy-800)}
+.ni.active::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:32px;height:3px;background:linear-gradient(90deg,var(--navy-800),var(--navy-600));border-radius:0 0 3px 3px}
+.ni svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ni.active svg{stroke-width:2.3}
+.fab{position:absolute;right:20px;bottom:72px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--orange-500),var(--orange-600));color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-orange),0 0 0 6px rgba(255,153,51,.10);z-index:6;transition:all .3s var(--ease)}
+.fab:hover{transform:scale(1.08) rotate(90deg)}
+.fab svg{width:26px;height:26px;stroke-width:2.8;stroke:currentColor;fill:none}
+
+.cd{background:var(--surface);border:1px solid var(--line-100);border-radius:var(--r-md);padding:20px;margin-bottom:14px;box-shadow:var(--sh-xs);transition:all .3s var(--ease-out)}
+.cd.tt{padding:14px}
+.hero-cd{background:linear-gradient(140deg,var(--navy-950) 0%,var(--navy-800) 50%,var(--navy-700) 100%);color:#fff;border:0;border-radius:var(--r-xl);padding:32px 26px;box-shadow:var(--sh-navy);position:relative;overflow:hidden}
+.hero-cd::before{content:'';position:absolute;top:-50%;right:-30%;width:280px;height:280px;background:radial-gradient(circle,rgba(255,153,51,.28),transparent 65%)}
+.hero-cd>*{position:relative;z-index:1}
+.hero-cd .ey{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.68;margin-bottom:10px;font-family:var(--f-en)}
+.hero-cd h3{font-size:26px;font-weight:900;letter-spacing:-.04em;line-height:1.2;margin-bottom:10px;font-family:var(--f-am)}
+.hero-cd p{font-size:13.5px;opacity:.78;line-height:1.55;margin-bottom:22px}
+.stat-glass{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+.stat-glass .g{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-sm);padding:12px 10px;text-align:center}
+.stat-glass .g .v{font-size:20px;font-weight:900;line-height:1;margin-bottom:4px;font-family:var(--f-en)}
+.stat-glass .g .l{font-size:10px;opacity:.72;font-weight:700;letter-spacing:.04em}
+
+.sect{font-size:16px;font-weight:900;color:var(--navy-800);margin:8px 0 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;letter-spacing:-.025em;font-family:var(--f-am)}
+.sect .more{font-size:12px;font-weight:800;color:var(--navy-800);opacity:.72;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.sect .more::after{content:'→'}
+
+.bt{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:52px;padding:0 24px;border-radius:var(--r-sm);font-weight:900;font-size:15.5px;line-height:1;letter-spacing:-.015em;transition:all .2s var(--ease);position:relative;overflow:hidden;font-family:var(--f-am)}
+.bt:active{transform:scale(.975)}
+.bt-p{background:linear-gradient(135deg,var(--orange-500),var(--orange-600));color:#fff;box-shadow:var(--sh-orange)}
+.bt-p:hover{box-shadow:0 12px 28px rgba(255,153,51,.42);transform:translateY(-1px)}
+.bt-n{background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;box-shadow:0 6px 16px rgba(0,51,102,.22)}
+.bt-g{background:var(--surface);color:var(--navy-800);border:1.5px solid var(--line-300);box-shadow:var(--sh-xs)}
+.bt-g:hover{background:var(--canvas-2);border-color:var(--navy-700)}
+.bt-b{width:100%}
+.bt-s{height:40px;padding:0 16px;font-size:13px;border-radius:var(--r-xs)}
+.bt svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.inp{width:100%;height:54px;padding:0 18px;border:1.5px solid var(--line-300);border-radius:var(--r-sm);background:var(--surface);font-size:15px;color:var(--ink-900);outline:none;transition:all .2s var(--ease);font-weight:500}
+.inp:focus{border-color:var(--navy-800);box-shadow:0 0 0 4px rgba(0,51,102,.08)}
+.inp::placeholder{color:var(--ink-200)}
+.fl{position:relative;margin-bottom:14px}
+.fl .fi{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--ink-300);pointer-events:none}
+.fl .fi svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fl .inp.wi{padding-left:48px}
+.fl .lbl{font-size:12px;font-weight:800;color:var(--ink-500);margin-bottom:8px}
+
+.sp{position:relative;margin-bottom:18px}
+.sp-box{display:flex;align-items:center;background:var(--surface);border:2px solid var(--line-200);border-radius:var(--r-md);padding:0 6px 0 18px;box-shadow:var(--sh-sm);transition:all .25s var(--ease)}
+.sp-box:focus-within{border-color:var(--navy-800);box-shadow:0 0 0 5px rgba(0,51,102,.06)}
+.sp-box svg.si{width:22px;height:22px;stroke:var(--ink-300);fill:none;stroke-width:2.2;flex-shrink:0}
+.sp-box input{flex:1;height:58px;padding:0 14px;border:0;background:transparent;font:inherit;font-size:16px;color:var(--ink-900);outline:none;font-weight:500}
+.sp-box input::placeholder{color:var(--ink-200)}
+.sp-box .go{width:46px;height:46px;border-radius:var(--r-sm);background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;display:inline-flex;align-items:center;justify-content:center;box-shadow:var(--sh-navy)}
+.sp-box .go svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.4}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:10px 16px;border-radius:var(--r-pill);border:1.5px solid var(--line-300);background:var(--surface);font-size:12.5px;font-weight:800;color:var(--ink-500);transition:all .2s var(--ease);white-space:nowrap;letter-spacing:-.005em}
+.chip:hover{border-color:var(--navy-700);color:var(--navy-800)}
+.chip.active{background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;border-color:var(--navy-800);box-shadow:0 4px 10px rgba(0,51,102,.24)}
+.chip.cat{padding:11px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:700}
+.chip.cat.active::before{content:'● ';color:var(--orange-500);font-size:8px}
+
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat{background:var(--surface);border:1px solid var(--line-100);border-radius:var(--r-md);padding:16px;position:relative;overflow:hidden}
+.stat .lbl{font-size:10.5px;font-weight:900;color:var(--ink-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:var(--f-en)}
+.stat .val{font-size:26px;font-weight:900;color:var(--navy-800);line-height:1;letter-spacing:-.02em;font-family:var(--f-en)}
+.stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.stat.ok::before{background:linear-gradient(180deg,var(--success-500),var(--success-600))}
+.stat.warn::before{background:linear-gradient(180deg,var(--orange-500),var(--orange-600))}
+.stat.info::before{background:linear-gradient(180deg,var(--info-500),var(--info-600))}
+.stat.err::before{background:linear-gradient(180deg,var(--danger-500),var(--danger-600))}
+
+.bg{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:var(--r-pill);font-size:10px;font-weight:800;letter-spacing:.05em;font-family:var(--f-en)}
+.bg::before{content:'●';font-size:6px}
+.bg.ok{background:var(--success-100);color:var(--success-600)}
+.bg.warn{background:var(--warn-100);color:var(--warn-600)}
+.bg.info{background:var(--info-100);color:var(--info-600)}
+.bg.danger{background:var(--danger-100);color:var(--danger-600)}
+.bg.premium{background:linear-gradient(135deg,var(--navy-950),var(--navy-800));color:var(--orange-400);border:1px solid rgba(255,153,51,.3)}
+.bg.premium::before{content:'✦';color:var(--orange-500)}
+
+.lst{background:var(--surface);border:1px solid var(--line-100);border-radius:var(--r-lg);padding:20px;margin-bottom:14px;box-shadow:var(--sh-xs);position:relative;overflow:hidden;transition:all .3s var(--ease-out);cursor:pointer}
+.lst::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange-500),var(--navy-700));opacity:0;transition:opacity .3s var(--ease)}
+.lst:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+.lst:hover::before{opacity:1}
+.lst .cat-strip{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.lst h4{font-size:16px;font-weight:900;color:var(--ink-900);line-height:1.4;margin-bottom:10px;letter-spacing:-.025em;font-family:var(--f-am)}
+.lst .budget{font-size:20px;font-weight:900;color:var(--success-600);margin-bottom:10px;letter-spacing:-.03em;font-family:var(--f-en);display:flex;align-items:baseline;gap:6px}
+.lst .budget::before{content:'ETB';font-size:11px;color:var(--ink-300);font-weight:800;letter-spacing:.06em}
+.lst .meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--ink-300);margin-bottom:12px;font-weight:600}
+.lst .desc{font-size:13px;color:var(--ink-500);line-height:1.6;margin-bottom:14px}
+.lst .foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--line-100)}
+.lst .match{font-size:11px;color:var(--orange-700);font-weight:900;background:var(--orange-100);padding:5px 10px;border-radius:var(--r-pill);font-family:var(--f-en);letter-spacing:.01em}
+.lst .match::before{content:'✦ '}
+.lst .cta{font-size:12px;font-weight:800;color:var(--navy-800);display:inline-flex;align-items:center;gap:4px}
+
+.dh{background:linear-gradient(155deg,var(--navy-950) 0%,var(--navy-800) 40%,var(--navy-700) 100%);color:#fff;border-radius:0 0 var(--r-xl) var(--r-xl);padding:32px 24px 28px;margin:-24px -20px 20px;position:relative;overflow:hidden}
+.dh::before{content:'';position:absolute;top:-30%;right:-20%;width:320px;height:320px;background:radial-gradient(circle,rgba(255,153,51,.24),transparent 60%)}
+.dh>*{position:relative;z-index:1}
+.dh .cat-pill{background:rgba(255,153,51,.18);color:var(--orange-400);padding:7px 14px;border-radius:var(--r-pill);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,153,51,.28);font-family:var(--f-en);display:inline-block;margin-bottom:16px}
+.dh h2{font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1.2;margin-bottom:16px;font-family:var(--f-am)}
+.dh .pr{font-size:34px;font-weight:900;color:var(--orange-500);letter-spacing:-.04em;line-height:1;font-family:var(--f-en)}
+.dh .fact-row{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.72);font-weight:500;margin-top:16px}
+
+.av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--navy-800),var(--navy-600));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;box-shadow:0 2px 8px rgba(0,51,102,.16);flex-shrink:0}
+.av.sm{width:38px;height:38px;font-size:13px}
+.av.lg{width:64px;height:64px;font-size:22px}
+.av.orange{background:linear-gradient(135deg,var(--orange-500),var(--orange-600))}
+.av.green{background:linear-gradient(135deg,var(--success-500),var(--success-600))}
+
+.emp{padding:48px 24px;text-align:center;color:var(--ink-300)}
+.emp .ic{font-size:44px;margin-bottom:16px;opacity:.5}
+.emp h4{font-size:16px;font-weight:900;color:var(--navy-800);margin-bottom:8px}
+.emp p{font-size:13px;line-height:1.55;max-width:240px;margin:0 auto}
+
+.rw{display:flex;align-items:center;gap:14px;padding:16px 4px;border-bottom:1px solid var(--line-100)}
+.rw:last-child{border-bottom:0}
+.rw .rb{flex:1;min-width:0}
+.rw .rt{font-size:14px;font-weight:900;color:var(--ink-900);margin-bottom:3px;letter-spacing:-.01em}
+.rw .rs{font-size:12px;color:var(--ink-300)}
+.rw .chev{color:var(--ink-200);font-size:16px}
+
+.cc{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--success-500),var(--success-600));color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:38px;font-weight:900;box-shadow:0 12px 32px rgba(20,122,61,.32);animation:pop .5s var(--ease-out)}
+@keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.ct{text-align:center;font-size:22px;font-weight:900;color:var(--navy-800);margin-bottom:8px;letter-spacing:-.03em}
+.cs{text-align:center;font-size:13.5px;color:var(--ink-300);margin-bottom:24px;line-height:1.55;max-width:280px;margin-left:auto;margin-right:auto}
+
+.ribbon{position:absolute;top:14px;right:-30px;transform:rotate(35deg);background:linear-gradient(135deg,var(--orange-500),var(--orange-600));color:#fff;padding:4px 36px;font-size:9px;font-weight:900;letter-spacing:.14em;box-shadow:0 4px 10px rgba(255,153,51,.35);font-family:var(--f-en);z-index:3}
+
+.vr-4{height:16px}
+.vr-6{height:24px}
+.vr-8{height:32px}
+
+@media(max-width:600px){.wrap{padding:16px}.gh{padding:14px 16px}.gh h1{font-size:15px}.grid{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════════
+   FELAGI LOGO — SVG Brand Mark
+   ═══════════════════════════════════════════ */
+.br svg{
+    width:26px;
+    height:26px;
+    flex-shrink:0;
+    filter:drop-shadow(0 2px 6px rgba(0,26,51,.35));
+}
+.gh h1 svg{
+    width:28px;
+    height:28px;
+    flex-shrink:0;
+    filter:drop-shadow(0 2px 8px rgba(255,255,255,.20));
+}
+.br span{
+    font-weight:900;
+    letter-spacing:-.04em;
+    line-height:1;
+}
+.gh h1 span{
+    font-weight:900;
+    letter-spacing:-.03em;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   MENU ICON WRAP (S003 fix)
+   ═══════════════════════════════════════════════════════════ */
+.rw .ic-wrap{
+    width:38px;
+    height:38px;
+    border-radius:var(--r-sm);
+    background:linear-gradient(135deg,var(--canvas-2),var(--surface));
+    border:1px solid var(--line-200);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--navy-800);
+    flex-shrink:0;
+    transition:all .2s var(--ease);
+}
+.rw:hover .ic-wrap{
+    background:linear-gradient(135deg,var(--navy-800),var(--navy-700));
+    color:#fff;
+    border-color:transparent;
+    transform:scale(1.05);
+}
+.rw .ic-wrap svg{
+    width:18px;
+    height:18px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:2.2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+.rw .ic-wrap.orange{
+    background:linear-gradient(135deg,var(--orange-100),#fffaf0);
+    color:var(--orange-700);
+    border-color:rgba(255,153,51,.2);
+}
+.rw:hover .ic-wrap.orange{
+    background:linear-gradient(135deg,var(--orange-500),var(--orange-600));
+    color:#fff;
+}
+.rw .ic-wrap.green{
+    background:linear-gradient(135deg,var(--success-100),#f0faf4);
+    color:var(--success-600);
+    border-color:rgba(20,122,61,.2);
+}
+.rw:hover .ic-wrap.green{
+    background:linear-gradient(135deg,var(--success-500),var(--success-600));
+    color:#fff;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   FOCUS-VISIBLE (A11y WCAG 2.1 AA)
+   ═══════════════════════════════════════════════════════════ */
+*:focus{
+    outline:none;
+}
+*:focus-visible{
+    outline:3px solid var(--orange-500);
+    outline-offset:3px;
+    border-radius:8px;
+    transition:outline-offset .15s var(--ease);
+}
+button:focus-visible,
+a:focus-visible,
+.bt:focus-visible,
+.chip:focus-visible,
+.ib:focus-visible,
+.lst:focus-visible,
+.rw:focus-visible{
+    outline:3px solid var(--orange-500);
+    outline-offset:3px;
+    box-shadow:0 0 0 6px rgba(255,153,51,.15);
+}
+.bt-p:focus-visible{
+    outline:3px solid var(--navy-800);
+    outline-offset:3px;
+    box-shadow:0 0 0 6px rgba(0,51,102,.12);
+}
+.inp:focus-visible{
+    outline:0;
+    border-color:var(--navy-800);
+    box-shadow:0 0 0 4px rgba(0,51,102,.12);
+}
+.felagi-nav__item:focus-visible,
+.ni:focus-visible{
+    outline:3px solid var(--orange-500);
+    outline-offset:2px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   FORM VALIDATION (S005, S011, S021)
+   ═══════════════════════════════════════════════════════════ */
+.inp.is-error,
+.inp.has-error{
+    border-color:var(--danger-500);
+    background:#fff8f7;
+    box-shadow:0 0 0 4px rgba(192,57,43,.08);
+}
+.inp.is-error:focus{
+    border-color:var(--danger-600);
+    box-shadow:0 0 0 4px rgba(192,57,43,.15);
+}
+.field-error{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:6px;
+    font-size:11.5px;
+    color:var(--danger-600);
+    font-weight:800;
+    letter-spacing:-.005em;
+}
+.field-error::before{
+    content:'⚠';
+    font-size:13px;
+}
+.inp.is-success{
+    border-color:var(--success-500);
+    background:#f6fbf8;
+}
+.field-success{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:6px;
+    font-size:11.5px;
+    color:var(--success-600);
+    font-weight:800;
+}
+.field-success::before{
+    content:'✓';
+    font-size:13px;
+    font-weight:900;
+}
+.fl .lbl .req{
+    color:var(--danger-500);
+    font-weight:900;
+    margin-left:2px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   COMPARE CHECKBOX (S014)
+   ═══════════════════════════════════════════════════════════ */
+.cmp-check{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    border-radius:8px;
+    border:2px solid var(--line-300);
+    background:var(--surface);
+    flex-shrink:0;
+    transition:all .2s var(--ease);
+    cursor:pointer;
+}
+.cmp-check.checked{
+    background:linear-gradient(135deg,var(--navy-800),var(--navy-700));
+    border-color:var(--navy-800);
+    box-shadow:0 2px 6px rgba(0,51,102,.24);
+}
+.cmp-check.checked::after{
+    content:'✓';
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    line-height:1;
+}
+.cmp-check:hover:not(.checked){
+    border-color:var(--navy-700);
+    background:var(--canvas-2);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   TIMELINE (S012 Offer Detail)
+   ═══════════════════════════════════════════════════════════ */
+.timeline{
+    position:relative;
+    padding:6px 0;
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:14px;
+    top:14px;
+    bottom:14px;
+    width:2px;
+    background:linear-gradient(180deg,var(--navy-800),var(--line-200));
+    border-radius:2px;
+}
+.tl-item{
+    position:relative;
+    padding:10px 0 10px 42px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+}
+.tl-dot{
+    position:absolute;
+    left:8px;
+    top:14px;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--surface);
+    border:3px solid var(--line-300);
+    box-shadow:0 0 0 3px var(--surface);
+    z-index:1;
+}
+.tl-dot.done{
+    background:var(--success-500);
+    border-color:var(--success-500);
+    box-shadow:0 0 0 3px var(--surface),0 0 0 6px rgba(20,122,61,.15);
+}
+.tl-dot.active{
+    background:linear-gradient(135deg,var(--orange-500),var(--orange-600));
+    border-color:var(--orange-500);
+    box-shadow:0 0 0 3px var(--surface),0 0 0 6px rgba(255,153,51,.25);
+    animation:tlPulse 2s ease-in-out infinite;
+}
+@keyframes tlPulse{
+    0%,100%{box-shadow:0 0 0 3px var(--surface),0 0 0 6px rgba(255,153,51,.25)}
+    50%{box-shadow:0 0 0 3px var(--surface),0 0 0 10px rgba(255,153,51,.08)}
+}
+.tl-content{
+    flex:1;
+    min-width:0;
+}
+.tl-title{
+    font-size:13px;
+    font-weight:900;
+    color:var(--ink-900);
+    letter-spacing:-.01em;
+    margin-bottom:2px;
+}
+.tl-time{
+    font-size:11px;
+    color:var(--ink-300);
+    font-weight:700;
+    font-family:var(--f-en);
+}
+.tl-note{
+    font-size:12px;
+    color:var(--ink-500);
+    margin-top:4px;
+    line-height:1.5;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   CHANNEL LOGOS (S022 Telegram Publications)
+   ═══════════════════════════════════════════════════════════ */
+.ch-logo{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    color:#fff;
+    font-size:16px;
+    font-weight:900;
+    box-shadow:0 3px 8px rgba(0,51,102,.18);
+}
+.ch-logo.blue{
+    background:linear-gradient(135deg,#2AABEE,#229ED9);
+}
+.ch-logo.orange{
+    background:linear-gradient(135deg,var(--orange-500),var(--orange-600));
+}
+.ch-logo.green{
+    background:linear-gradient(135deg,var(--success-500),var(--success-600));
+}
+.ch-logo svg{
+    width:20px;
+    height:20px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:2.2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   STAR RATING ANIMATION (S020)
+   ═══════════════════════════════════════════════════════════ */
+.rate-stars{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+.rate-stars .star{
+    font-size:40px;
+    cursor:pointer;
+    transition:transform .2s var(--ease-out),filter .2s var(--ease);
+    animation:starIn .4s var(--ease-out) backwards;
+    filter:drop-shadow(0 4px 8px rgba(255,153,51,.3));
+}
+.rate-stars .star:nth-child(1){animation-delay:.05s}
+.rate-stars .star:nth-child(2){animation-delay:.10s}
+.rate-stars .star:nth-child(3){animation-delay:.15s}
+.rate-stars .star:nth-child(4){animation-delay:.20s}
+.rate-stars .star:nth-child(5){animation-delay:.25s}
+.rate-stars .star.off{
+    opacity:.25;
+    filter:none;
+}
+.rate-stars .star:hover{
+    transform:scale(1.15) rotate(-5deg);
+}
+.rate-stars .star.off:hover{
+    opacity:.5;
+}
+@keyframes starIn{
+    0%{opacity:0;transform:scale(.3) rotate(-30deg)}
+    60%{opacity:1;transform:scale(1.2) rotate(5deg)}
+    100%{opacity:1;transform:scale(1) rotate(0)}
+}
+
+</style>
+</head>
+<body>
+<header class="gh">
+<h1><svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad0)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><defs><linearGradient id="felagiGrad0" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ Premium</span></h1>
+<div style="display:flex;gap:12px;align-items:center">
+<span class="m">23 Screens · Amharic-First</span>
+<span class="b">✦ PREMIUM v2</span>
+</div>
+</header>
+<div class="wrap">
+
+<!-- GROUP 1: AUTH -->
+<section class="sec">
+<h2>🔐 መግቢያ <span class="c">S001 · S002 · S003</span></h2>
+<div class="grid">
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh" style="padding-bottom:100px">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S001</span></div>
+<div class="wm">FELAGI</div>
+</div>
+<div class="sb" style="margin-top:-80px;padding-top:0">
+<div class="hero-cd" style="text-align:center;padding:32px 22px">
+<div class="ey">እንኳን ደህና መጡ</div>
+<h3 style="font-size:30px">ፍላጎትዎን<br>ይንገሩን</h3>
+<p>ፈላጊ ተገቢ ቅናሾችን በAI አማካኝነት በፍጥነት ያገኝልዎታል።</p>
+<div class="stat-glass">
+<div class="g"><div class="v">2.4K+</div><div class="l">ፍላጎቶች</div></div>
+<div class="g"><div class="v">890+</div><div class="l">አቅራቢዎች</div></div>
+<div class="g"><div class="v">4.8★</div><div class="l">ደረጃ</div></div>
+</div>
+<button class="bt bt-p bt-b" style="margin-bottom:12px">＋ ፍላጎት ፍጠር</button>
+<button class="bt bt-g bt-b" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)">ፍላጎቶችን ይፈልጉ →</button>
+</div>
+<div class="vr-6"></div>
+<div class="sect">የመግቢያ መንገዶች</div>
+<button class="bt bt-n bt-b" style="margin-bottom:10px">✈️ በቴሌግራም ይግቡ</button>
+<button class="bt bt-g bt-b" style="margin-bottom:10px">በኢሜይል ይግቡ</button>
+<button class="bt bt-g bt-b">እንደ እንግዳ ይቀጥሉ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S001</span> · መግቢያ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S002</span></div>
+<div class="t">በቴሌግራም ይግቡ</div>
+<div class="st">በስልክ ቁጥርዎ በፍጥነት ይግቡ</div>
+</div>
+<div class="sb">
+<div style="text-align:center;padding:24px 0 32px">
+<div style="width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 16px 40px rgba(42,171,238,.32)"><svg width="56" height="56" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs><circle cx="120" cy="120" r="120" fill="url(#tgGrad)"/><path d="M54.3 118.8l137.9-53.2c6.4-2.3 12 1.5 9.9 10.8l.1.4-23.5 110.6c-1.7 8-6.7 10-13.5 6.2l-37.3-27.5-18 17.3c-2 2-3.6 3.6-7.4 3.6-4.8 0-3.9-1.8-5.5-6.3l-12.9-41.9-30.4-9.5c-6.6-2.1-6.7-6.6 1.3-10.1l.2-.4z" fill="#fff"/></svg></div>
+<h3 style="font-size:20px;font-weight:900;color:var(--navy-800);margin-bottom:8px">የቴሌግራም ማረጋገጫ</h3>
+<p style="font-size:13.5px;color:var(--ink-300);line-height:1.55;max-width:260px;margin:0 auto">ስልክ ቁጥርዎን ያረጋግጡ። ኮድ በቴሌግራም ይደርስዎታል።</p>
+</div>
+<div class="fl"><span class="fi"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/></svg></span><input class="inp wi" placeholder="+251 9XX XXX XXX"></div>
+<button class="bt bt-p bt-b">ኮድ ላክ</button>
+<div style="text-align:center;padding:20px 0;font-size:12px;color:var(--ink-300)">ኮድ ካልደረሰዎ <a style="color:var(--navy-800);font-weight:800;text-decoration:underline">እንደገና ይሞክሩ</a></div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S002</span> · ቴሌግራም መግቢያ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><div class="ha"><button class="ib"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button></div></div>
+<div class="t">የእኔ መገለጫ</div>
+</div>
+<div class="sb">
+<div class="cd" style="display:flex;gap:16px;align-items:center;padding:22px">
+<div class="av lg">አበ</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:17px;font-weight:900;color:var(--ink-900);letter-spacing:-.02em">አበበ ከበደ</div>
+<div style="font-size:12.5px;color:var(--ink-300);margin-top:4px">+251 911 234 567</div>
+<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><span class="bg ok">✓ የተረጋገጠ</span><span class="bg premium">✦ ፕሪሚየም</span></div>
+</div>
+</div>
+<div class="sg">
+<div class="stat info"><div class="lbl">ፍላጎቶች</div><div class="val">3</div></div>
+<div class="stat ok"><div class="lbl">ቅናሾች</div><div class="val">2</div></div>
+</div>
+<div class="cd tt">
+<div class="rw"><div class="ic-wrap"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div><div class="rb"><div class="rt">የእኔ ፍላጎቶች</div><div class="rs">3 ንቁ</div></div><div class="chev">›</div></div>
+<div class="rw"><div class="ic-wrap orange"><svg viewBox="0 0 24 24"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L3 13V5a2 2 0 0 1 2-2h8l7.59 7.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1"/></svg></div><div class="rb"><div class="rt">የእኔ ቅናሾች</div><div class="rs">2 በመጠባበቅ</div></div><div class="chev">›</div></div>
+<div class="rw"><div class="ic-wrap green"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><div class="rb"><div class="rt">ማሳወቂያዎች</div><div class="rs">3 አዲስ</div></div><div class="chev">›</div></div>
+<div class="rw"><div class="ic-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><div class="rb"><div class="rt">የ2FA ደህንነት</div><div class="rs">ንቁ</div></div><div class="chev">›</div></div>
+<div class="rw"><div class="ic-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/></svg></div><div class="rb"><div class="rt">ቋንቋ</div><div class="rs">አማርኛ</div></div><div class="chev">›</div></div>
+</div>
+<button class="bt bt-g bt-b" style="margin-top:8px;color:var(--danger-600);border-color:var(--danger-100)">ውጣ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S003</span> · መገለጫ</div>
+</div>
+
+</div>
+</section>
+
+<!-- GROUP 2: BROWSE & CREATE -->
+<section class="sec">
+<h2>🔍 ማሰስ <span class="c">S004 · S005 · S006 · S007</span></h2>
+<div class="grid">
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh" style="padding-bottom:24px">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div>
+<div class="ha">
+<button class="ib"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+<button class="ib" style="position:relative"><span class="dot"></span><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></button>
+</div></div>
+<div class="wm" style="font-size:110px;bottom:-20px">FELAGI</div>
+</div>
+<div class="sb" style="padding-top:20px">
+<div class="sp">
+<div class="sp-box">
+<svg class="si" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input placeholder="ምን ይፈልጋሉ?">
+<button class="go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+</div>
+</div>
+<div class="sect">ተወዳጅ ምድቦች <span class="more">ሁሉንም ምድቦች</span></div>
+<div class="chips" style="margin-bottom:20px">
+<button class="chip cat active">ሁሉም</button>
+<button class="chip cat">ትራንስፖርት</button>
+<button class="chip cat">ግንባታ</button>
+<button class="chip cat">አይቲ</button>
+</div>
+<div class="sect">ፈጣን ማጣሪያዎች</div>
+<div class="chips" style="margin-bottom:20px">
+<button class="chip active">✓ ሁሉም</button>
+<button class="chip">የተረጋገጡ</button>
+<button class="chip">አስቸኳይ</button>
+</div>
+<div class="sect">የገበያ ፍላጎቶች <span class="more">ሁሉንም ይመልከቱ</span></div>
+<div class="lst" tabindex="0" role="article">
+<div class="ribbon">✦ ምርጥ</div>
+<div class="cat-strip"><span class="bg info">ትራንስፖርት</span><span class="bg ok">ንቁ</span></div>
+<h4>የጭነት መኪና አገልግሎት እፈልጋለሁ</h4>
+<div class="budget">15,000</div>
+<div class="meta"><span>📍 አዲስ አበባ</span><span>🕐 2 ቀናት</span><span>📩 5 አቅርቦቶች</span></div>
+<p class="desc">ከአዲስ አበባ ወደ አዳማ ቀዝቃዛ ጭነት ማጓጓዝ ያስፈልገኛል።</p>
+<div class="foot"><span class="match">92% ተመሳሳይነት</span><span class="cta">ዝርዝር →</span></div>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg warn">ግንባታ</span><span class="bg ok">ንቁ</span></div>
+<h4>የሲሚንቶ አቅርቦት ያስፈልገኛል</h4>
+<div class="budget">45,000</div>
+<div class="meta"><span>📍 ባህር ዳር</span><span>🕐 5 ቀናት</span><span>📩 12 አቅርቦቶች</span></div>
+<p class="desc">500 ኩንታል OPC ሲሚንቶ ለግንባታ ፕሮጀክት።</p>
+<div class="foot"><span class="match">85% ተመሳሳይነት</span><span class="cta">ዝርዝር →</span></div>
+</div>
+</div>
+<div class="fab"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+<div class="sn">
+<a class="ni active"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>አስስ</a>
+<a class="ni"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>ፍላጎቶቼ</a>
+<a class="ni"><svg viewBox="0 0 24 24"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L3 13V5a2 2 0 0 1 2-2h8l7.59 7.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1"/></svg>ቅናሾቼ</a>
+<a class="ni"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>መገለጫ</a>
+</div>
+</div></div>
+<div class="pl"><span class="n">S004</span> · ማሰስ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><button class="ib">×</button></div>
+<div class="t">አዲስ ፍላጎት</div>
+<div class="st">ደረጃ 1 ከ 3</div>
+<div style="display:flex;gap:6px;margin-top:14px;position:relative;z-index:1">
+<div style="flex:1;height:4px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden"><div style="height:100%;width:33%;background:linear-gradient(90deg,var(--orange-500),var(--orange-400));border-radius:99px"></div></div>
+<div style="flex:1;height:4px;background:rgba(255,255,255,.18);border-radius:99px"></div>
+<div style="flex:1;height:4px;background:rgba(255,255,255,.18);border-radius:99px"></div>
+</div>
+</div>
+<div class="sb">
+<div class="fl">
+<div class="lbl">ርዕስ <span class="req">*</span></div>
+<input class="inp has-error" value="" placeholder="ለምሳሌ፦ የጭነት መኪና አገልግሎት">
+<div class="field-error">ርዕስ ማስገባት ግዴታ ነው</div>
+</div>
+<div class="fl"><div class="lbl">ምድብ</div><select class="inp"><option>ትራንስፖርት</option><option>ግንባታ</option><option>አይቲ</option></select></div>
+<div class="fl">
+<div class="lbl">መግለጫ <span class="req">*</span></div>
+<textarea class="inp is-success" style="height:120px;padding:16px;resize:none;line-height:1.6">ከአዲስ አበባ ወደ አዳማ ቀዝቃዛ ጭነት ማጓጓዝ ያስፈልገኛል።</textarea>
+<div class="field-success">ግልጽ መግለጫ — ተገቢ ቅናሽ ያመጣል</div>
+</div>
+<div class="cd tt" style="background:linear-gradient(135deg,var(--info-100),#f0f7ff);border-color:rgba(13,110,253,.15);margin-bottom:16px">
+<div style="display:flex;gap:12px;align-items:flex-start">
+<div style="font-size:22px">✦</div>
+<div><div style="font-size:13.5px;font-weight:800;color:var(--navy-800);margin-bottom:4px">AI ድጋፍ</div>
+<div style="font-size:12.5px;color:var(--ink-500);line-height:1.55">ማጠቃለያውን እርስዎ አረጋግጠው ይለጥፉ።</div></div>
+</div>
+</div>
+<button class="bt bt-p bt-b">ቀጥል →</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S005</span> · ፍላጎት ፍጠር</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh" style="padding-bottom:12px">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">ቅድመ እይታ</span></div>
+</div>
+<div class="sb" style="padding-top:0">
+<div class="dh" style="margin-top:0;border-radius:0 0 var(--r-xl) var(--r-xl);padding-top:24px">
+<span class="cat-pill">ትራንስፖርት</span>
+<h2>የጭነት መኪና አገልግሎት</h2>
+<div class="pr">ETB 15,000</div>
+<div class="fact-row"><span>📍 አዲስ አበባ</span><span>🕐 ዛሬ</span></div>
+</div>
+<div class="vr-4"></div>
+<div class="cd">
+<div style="font-size:14px;font-weight:800;color:var(--navy-800);margin-bottom:10px">መግለጫ</div>
+<p style="font-size:13.5px;color:var(--ink-500);line-height:1.7">ከአዲስ አበባ ወደ አዳማ ቀዝቃዛ ጭነት ማጓጓዝ ያስፈልገኛል።</p>
+</div>
+<button class="bt bt-p bt-b">ቅናሽ አቅርብ</button>
+<button class="bt bt-g bt-b" style="margin-top:10px">አጋራ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S006</span> · ቅድመ እይታ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh" style="padding-bottom:8px"><div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div></div></div>
+<div class="sb" style="display:flex;flex-direction:column;justify-content:center;padding:40px 24px">
+<div class="cc">✓</div>
+<div class="ct">ፍላጎትዎ ተፈጥሯል!</div>
+<div class="cs">አቅራቢዎች አሁን ማየት ይችላሉ።</div>
+<div class="cd">
+<div class="rw"><div class="rb"><div class="rt">መታወቂያ</div><div class="rs">#N-2A3F</div></div></div>
+<div class="rw"><div class="rb"><div class="rt">ሁኔታ</div></div><span class="bg ok">ንቁ</span></div>
+<div class="rw"><div class="rb"><div class="rt">የሚያልቅበት</div><div class="rs">7 ቀናት</div></div></div>
+</div>
+<div class="vr-4"></div>
+<button class="bt bt-n bt-b">የእኔ ፍላጎቶች →</button>
+<button class="bt bt-g bt-b" style="margin-top:10px">ወደ ማሰስ ተመለስ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S007</span> · ተፈጥሯል</div>
+</div>
+
+</div>
+</section>
+
+<!-- GROUP 3: DETAILS & OFFERS -->
+<section class="sec">
+<h2>📋 ዝርዝር <span class="c">S008–S013</span></h2>
+<div class="grid">
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh" style="padding-bottom:8px">
+<div class="tr">
+<button class="ib"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+<div class="ha">
+<button class="ib"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg></button>
+<button class="ib"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/></svg></button>
+</div></div>
+</div>
+<div class="sb" style="padding-top:0">
+<div class="dh">
+<span class="cat-pill">ትራንስፖርት</span>
+<h2>የጭነት መኪና አገልግሎት እፈልጋለሁ</h2>
+<div class="pr">ETB 15,000</div>
+<div class="fact-row"><span>📍 አዲስ አበባ</span><span>🕐 2 ቀናት</span><span>📩 5 አቅርቦቶች</span></div>
+</div>
+<div class="cd">
+<div style="font-size:14px;font-weight:800;color:var(--navy-800);margin-bottom:12px">መግለጫ</div>
+<p style="font-size:13.5px;color:var(--ink-500);line-height:1.75">ከአዲስ አበባ ወደ አዳማ ቀዝቃዛ ጭነት ማጓጓዝ ያስፈልገኛል። 5 ቶን የሚይዝ መኪና ያስፈልጋል።</p>
+</div>
+<div class="cd">
+<div style="font-size:14px;font-weight:800;color:var(--navy-800);margin-bottom:14px">የጠያቂ መረጃ</div>
+<div style="display:flex;gap:14px;align-items:center">
+<div class="av lg">አበ</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:15px;font-weight:800;color:var(--ink-900)">አበበ ከበደ</div>
+<div style="font-size:12px;color:var(--ink-300);margin-top:3px">+251 91X XXX XXX</div>
+<div style="margin-top:8px;display:flex;gap:6px"><span class="bg ok">✓ የተረጋገጠ</span><span class="bg info">⭐ 4.8</span></div>
+</div>
+</div>
+</div>
+<button class="bt bt-p bt-b">📩 ቅናሽ አቅርብ</button>
+<button class="bt bt-g bt-b" style="margin-top:10px">💬 ጠያቂውን ያነጋግሩ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S008</span> · ዝርዝር</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><div class="ha"><button class="ib" style="position:relative"><span class="dot"></span><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></button></div></div>
+<div class="t">የእኔ ፍላጎቶች</div>
+</div>
+<div class="sb">
+<div class="chips" style="margin-bottom:18px">
+<button class="chip active">ሁሉም</button><button class="chip">ንቁ</button><button class="chip">ተጠናቅቋል</button>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg ok">ንቁ</span><span style="font-size:11px;color:var(--ink-200);margin-left:auto;font-family:var(--f-en)">#N-2A3F</span></div>
+<h4>የጭነት መኪና አገልግሎት</h4>
+<div class="budget">15,000</div>
+<div class="meta"><span>🕐 2 ቀናት</span><span>📩 5 አቅርቦቶች</span></div>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg warn">ያለቀ</span><span style="font-size:11px;color:var(--ink-200);margin-left:auto;font-family:var(--f-en)">#N-1B8C</span></div>
+<h4>የሲሚንቶ አቅርቦት</h4>
+<div class="budget">45,000</div>
+<div class="meta"><span>🕐 8 ቀናት</span><span>📩 12 አቅርቦቶች</span></div>
+</div>
+</div>
+<div class="fab"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+<div class="sn">
+<a class="ni"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>አስስ</a>
+<a class="ni active"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>ፍላጎቶቼ</a>
+<a class="ni"><svg viewBox="0 0 24 24"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L3 13V5a2 2 0 0 1 2-2h8l7.59 7.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1"/></svg>ቅናሾቼ</a>
+<a class="ni"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>መገለጫ</a>
+</div>
+</div></div>
+<div class="pl"><span class="n">S009</span> · ፍላጎቶቼ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S010</span></div>
+<div class="t">የተቀበሉ ቅናሾች</div>
+<div class="st">5 ቅናሾች</div>
+</div>
+<div class="sb">
+<div class="lst" tabindex="0" role="article">
+<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px">
+<div class="av">ተስ</div>
+<div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:800;color:var(--ink-900)">ተስፋለም አለሙ</div><div style="font-size:11.5px;color:var(--ink-300);margin-top:2px">⭐ 4.8 · 24 ሥራዎች</div></div>
+<span class="bg ok">✓</span>
+</div>
+<div class="budget">14,500</div>
+<p class="desc">5 ቶን መኪና አለኝ። ነገ ጠዋት ማድረስ እችላለሁ።</p>
+<div style="display:flex;gap:10px"><button class="bt bt-n bt-s" style="flex:1">ተቀበል</button><button class="bt bt-g bt-s" style="flex:1">💬 ውይይት</button></div>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px">
+<div class="av orange">ሰላ</div>
+<div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:800;color:var(--ink-900)">ሰላም ተስፋዬ</div><div style="font-size:11.5px;color:var(--ink-300);margin-top:2px">⭐ 4.6 · 18 ሥራዎች</div></div>
+</div>
+<div class="budget">15,000</div>
+<p class="desc">ቀዝቃዛ ጭነት ማጓጓዣ ዘመናዊ መኪና አለኝ።</p>
+<div style="display:flex;gap:10px"><button class="bt bt-n bt-s" style="flex:1">ተቀበል</button><button class="bt bt-g bt-s" style="flex:1">💬 ውይይት</button></div>
+</div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S010</span> · ቅናሾች</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><button class="ib">×</button></div>
+<div class="t">ቅናሽ አቅርብ</div>
+</div>
+<div class="sb">
+<div class="cd tt" style="background:linear-gradient(135deg,var(--canvas-2),var(--surface));border-color:var(--line-200);margin-bottom:18px">
+<div style="font-size:11px;color:var(--ink-300);font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:var(--f-en)">የፍላጎት ርዕስ</div>
+<div style="font-size:14px;font-weight:800;color:var(--ink-900)">የጭነት መኪና አገልግሎት</div>
+</div>
+<div class="fl"><div class="lbl">የእርስዎ ዋጋ (ETB)</div><input class="inp" value="14500" style="font-size:18px;font-weight:800;font-family:var(--f-en)"></div>
+<div class="fl"><div class="lbl">መልእክት</div><textarea class="inp" style="height:130px;padding:16px;resize:none;line-height:1.6">5 ቶን መኪና አለኝ። ነገ ጠዋት ማድረስ እችላለሁ።</textarea></div>
+<div class="fl"><div class="lbl">የመላኪያ ጊዜ</div><select class="inp"><option>2 ቀናት</option><option>3 ቀናት</option></select></div>
+<button class="bt bt-p bt-b">📩 ቅናሽ ላክ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S011</span> · ቅናሽ አቅርብ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh" style="padding-bottom:8px">
+<div class="tr"><button class="ib"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S012</span></div>
+</div>
+<div class="sb" style="padding-top:0">
+<div class="dh">
+<span class="cat-pill">የእርስዎ ቅናሽ</span>
+<h2 style="font-size:22px;margin-bottom:12px">ለ "የጭነት መኪና አገልግሎት"</h2>
+<div class="pr">ETB 14,500</div>
+<div style="margin-top:12px"><span class="bg warn">⏳ በመጠባበቅ ላይ</span></div>
+</div>
+<div class="vr-4"></div>
+<div class="cd">
+<div style="font-size:14px;font-weight:800;color:var(--navy-800);margin-bottom:10px">የመልእክትዎ ማጠቃለያ</div>
+<p style="font-size:13.5px;color:var(--ink-500);line-height:1.7">5 ቶን መኪና አለኝ። ነገ ጠዋት ማድረስ እችላለሁ።</p>
+</div>
+<div class="cd">
+<div style="font-size:14px;font-weight:900;color:var(--navy-800);margin-bottom:14px;letter-spacing:-.01em">የቅናሽ ሂደት</div>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-dot done"></div>
+<div class="tl-content">
+<div class="tl-title">ቅናሽ ቀረበ</div>
+<div class="tl-time">ዛሬ 10:24</div>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot done"></div>
+<div class="tl-content">
+<div class="tl-title">ጠያቂ አየ</div>
+<div class="tl-time">ዛሬ 10:28</div>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot active"></div>
+<div class="tl-content">
+<div class="tl-title">በመጠባበቅ ላይ</div>
+<div class="tl-time">የቀረ ~ 1 ቀን</div>
+<div class="tl-note">ጠያቂው ቅናሽዎን እያጠና ነው።</div>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<div class="tl-content">
+<div class="tl-title">መልስ</div>
+<div class="tl-time">በመጠባበቅ</div>
+</div>
+</div>
+</div>
+</div>
+<button class="bt bt-g bt-b">ቅናሽ አርትዕ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S012</span> · የቅናሽ ዝርዝር</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><div class="ha"><button class="ib" style="position:relative"><span class="dot"></span><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></button></div></div>
+<div class="t">የእኔ ቅናሾች</div>
+</div>
+<div class="sb">
+<div class="chips" style="margin-bottom:18px">
+<button class="chip active">ሁሉም</button><button class="chip">በመጠባበቅ</button><button class="chip">ተቀብሏል</button>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg warn">በመጠባበቅ</span><span style="font-size:11px;color:var(--ink-200);margin-left:auto;font-family:var(--f-en)">2 ቀናት</span></div>
+<h4>የጭነት መኪና አገልግሎት</h4>
+<div class="budget">14,500</div>
+<div class="meta"><span>📍 አዲስ አበባ</span></div>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg ok">ተቀብሏል</span><span style="font-size:11px;color:var(--ink-200);margin-left:auto;font-family:var(--f-en)">5 ቀናት</span></div>
+<h4>የሲሚንቶ አቅርቦት</h4>
+<div class="budget">42,000</div>
+<div class="meta"><span>📍 ባህር ዳር</span></div>
+</div>
+</div>
+<div class="fab"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+<div class="sn">
+<a class="ni"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>አስስ</a>
+<a class="ni"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>ፍላጎቶቼ</a>
+<a class="ni active"><svg viewBox="0 0 24 24"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L3 13V5a2 2 0 0 1 2-2h8l7.59 7.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1"/></svg>ቅናሾቼ</a>
+<a class="ni"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>መገለጫ</a>
+</div>
+</div></div>
+<div class="pl"><span class="n">S013</span> · ቅናሾቼ</div>
+</div>
+
+</div>
+</section>
+
+<!-- GROUP 4: COMPARISON -->
+<section class="sec">
+<h2>⚖ ንፅፅር <span class="c">S014 · S015</span></h2>
+<div class="grid">
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S014</span></div>
+<div class="t">ንፅፅር ያረጋግጡ</div>
+</div>
+<div class="sb">
+<div class="cd" style="text-align:center;padding:32px 24px;background:linear-gradient(135deg,var(--info-100),#f0f7ff);border-color:rgba(13,110,253,.15)">
+<div style="font-size:48px;margin-bottom:14px">⚖</div>
+<h3 style="font-size:20px;font-weight:900;color:var(--navy-800);margin-bottom:8px">5 ቅናሾችን ያነፃፅሩ</h3>
+<p style="font-size:13.5px;color:var(--ink-500);line-height:1.6;max-width:280px;margin:0 auto">AI በዋጋ፣ በጊዜ፣ በጥራት እና በታሪክ ያነፃፅራል።</p>
+</div>
+<div class="sect">የሚነፃፀሩ (5)</div>
+<div class="cd tt">
+<div class="rw"><span class="cmp-check checked"></span><div class="av sm">ተስ</div><div class="rb"><div class="rt">ተስፋለም · ETB 14,500</div><div class="rs">⭐ 4.8</div></div></div>
+<div class="rw"><span class="cmp-check checked"></span><div class="av sm orange">ሰላ</div><div class="rb"><div class="rt">ሰላም · ETB 15,000</div><div class="rs">⭐ 4.6</div></div></div>
+<div class="rw"><span class="cmp-check checked"></span><div class="av sm green">ዳዊ</div><div class="rb"><div class="rt">ዳዊት · ETB 13,800</div><div class="rs">⭐ 4.9</div></div></div>
+<div class="rw"><span class="cmp-check checked"></span><div class="av sm">ማር</div><div class="rb"><div class="rt">ማርቆስ · ETB 16,200</div><div class="rs">⭐ 4.5</div></div></div>
+<div class="rw"><span class="cmp-check"></span><div class="av sm orange">ሀና</div><div class="rb"><div class="rt">ሀና · ETB 15,500</div><div class="rs">⭐ 4.7</div></div></div>
+</div>
+<div style="padding:0 6px 14px;font-size:11.5px;color:var(--ink-300);font-weight:700">
+<span class="bg info" style="margin-right:6px">4 ተመርጠዋል</span>ከ 5 ቅናሾች
+</div>
+<button class="bt bt-p bt-b">✦ ንፅፅር ጀምር</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S014</span> · ንፅፅር</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span class="bg premium" style="background:rgba(255,153,51,.18);color:var(--orange-400);border-color:rgba(255,153,51,.3)">✦ AI</span></div>
+<div class="t">የንፅፅር ውጤት</div>
+</div>
+<div class="sb">
+<div class="cd" style="background:linear-gradient(135deg,#fffaf0,var(--surface));border:1.5px solid var(--orange-500)">
+<div style="display:flex;gap:12px">
+<div style="font-size:26px">✦</div>
+<div><div style="font-size:14px;font-weight:900;color:var(--navy-800);margin-bottom:5px">የ AI ምክር</div>
+<div style="font-size:12.5px;color:var(--ink-500);line-height:1.55"><strong style="color:var(--success-600)">ዳዊት</strong> ምርጥ ነው — ዝቅተኛ ዋጋ (ETB 13,800) እና ከፍተኛ ደረጃ (4.9)።</div></div>
+</div>
+</div>
+<div class="cd" style="border:2px solid var(--success-500);position:relative">
+<div class="ribbon">🏆 ምርጥ</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+<span class="bg ok">✦ ምርጥ ምርጫ</span>
+<span style="font-size:11px;color:var(--ink-300);font-family:var(--f-en);font-weight:800">92%</span>
+</div>
+<div style="display:flex;gap:14px;align-items:center;margin-bottom:14px">
+<div class="av lg green">ዳዊ</div>
+<div style="flex:1"><div style="font-size:16px;font-weight:900">ዳዊት ተስፋ</div><div style="font-size:12px;color:var(--ink-300);margin-top:3px">⭐ 4.9 · 31 ሥራዎች</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+<div style="text-align:center;padding:10px;background:var(--success-100);border-radius:var(--r-sm)"><div style="font-size:9.5px;color:var(--success-600);font-weight:800;text-transform:uppercase;font-family:var(--f-en)">ዋጋ</div><div style="font-size:15px;font-weight:900;color:var(--success-600);margin-top:2px;font-family:var(--f-en)">13,800</div></div>
+<div style="text-align:center;padding:10px;background:var(--info-100);border-radius:var(--r-sm)"><div style="font-size:9.5px;color:var(--info-600);font-weight:800;text-transform:uppercase;font-family:var(--f-en)">ጊዜ</div><div style="font-size:15px;font-weight:900;color:var(--info-600);margin-top:2px">2 ቀናት</div></div>
+<div style="text-align:center;padding:10px;background:var(--warn-100);border-radius:var(--r-sm)"><div style="font-size:9.5px;color:var(--warn-600);font-weight:800;text-transform:uppercase;font-family:var(--f-en)">ደረጃ</div><div style="font-size:15px;font-weight:900;color:var(--warn-600);margin-top:2px;font-family:var(--f-en)">4.9</div></div>
+</div>
+<button class="bt bt-p bt-b">ተቀበል</button>
+</div>
+<div class="sect">ሌሎች ቅናሾች</div>
+<div class="cd tt" style="padding:14px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;gap:10px;align-items:center"><div class="av sm">ተስ</div><div><div style="font-size:13.5px;font-weight:800">ተስፋለም</div><div style="font-size:11px;color:var(--ink-300)">⭐ 4.8</div></div></div><div style="font-weight:900;color:var(--success-600);font-size:15px;font-family:var(--f-en)">14,500</div></div></div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S015</span> · ውጤት</div>
+</div>
+
+</div>
+</section>
+
+<!-- GROUP 5: COMMUNICATION -->
+<section class="sec">
+<h2>💬 ግንኙነት <span class="c">S016 · S017 · S018</span></h2>
+<div class="grid">
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S016</span></div>
+<div class="t">የንፅፅር ታሪክ</div>
+</div>
+<div class="sb">
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg info">5 ቅናሾች</span><span style="font-size:11px;color:var(--ink-200);margin-left:auto">ዛሬ</span></div>
+<h4>የጭነት መኪና አገልግሎት</h4>
+<div class="meta"><span>✦ ምርጥ: ዳዊት (13,800)</span></div>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg info">3 ቅናሾች</span><span style="font-size:11px;color:var(--ink-200);margin-left:auto">3 ቀናት በፊት</span></div>
+<h4>የሲሚንቶ አቅርቦት</h4>
+<div class="meta"><span>✦ ምርጥ: ማርቆስ (41,000)</span></div>
+</div>
+<div class="lst" tabindex="0" role="article">
+<div class="cat-strip"><span class="bg info">7 ቅናሾች</span><span style="font-size:11px;color:var(--ink-200);margin-left:auto">1 ሳምንት በፊት</span></div>
+<h4>የሶፍትዌር ገንቢ አገልግሎት</h4>
+<div class="meta"><span>✦ ምርጥ: ሀና (85,000)</span></div>
+</div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S016</span> · ታሪክ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh" style="padding-bottom:14px">
+<div class="tr">
+<button class="ib"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+<div class="av sm" style="background:rgba(255,255,255,.15)">ተስ</div>
+<div style="font-size:12px;font-weight:800;margin-top:4px">ተስፋለም</div>
+<div style="font-size:10px;opacity:.7;display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;background:#4ade80;border-radius:50%"></span>በመስመር ላይ</div>
+</div>
+<button class="ib"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
+</div>
+</div>
+<div class="sb" style="padding:16px 20px">
+<div style="display:flex;justify-content:flex-start;margin-bottom:10px"><div style="background:var(--surface);padding:12px 16px;border-radius:16px 16px 16px 4px;max-width:78%;font-size:13px;box-shadow:var(--sh-sm);line-height:1.5">ሰላም። የጭነት መኪና አለኝ።</div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:10px"><div style="background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;padding:12px 16px;border-radius:16px 16px 4px 16px;max-width:78%;font-size:13px;line-height:1.5">ሰላም! ዋጋዎ ስንት ነው?</div></div>
+<div style="display:flex;justify-content:flex-start"><div style="background:var(--surface);padding:12px 16px;border-radius:16px 16px 16px 4px;max-width:78%;font-size:13px;box-shadow:var(--sh-sm);line-height:1.5">ETB 14,500። ነገ ጠዋት ማድረስ እችላለሁ።</div></div>
+</div>
+<div style="padding:12px 16px;background:rgba(255,255,255,.96);border-top:1px solid var(--line-100);display:flex;gap:10px;align-items:center">
+<input class="inp" style="height:46px;flex:1;border-radius:23px;padding:0 20px;font-size:14px" placeholder="መልእክት ይጻፉ...">
+<button class="bt bt-p" style="width:46px;height:46px;padding:0;border-radius:50%"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2"><path d="m22 2-7 20-4-9-9-4Z"/></svg></button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S017</span> · መልእክቶች</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><button class="ib" style="font-size:11px;width:auto;padding:0 14px;font-weight:800">ሁሉንም አንብብ</button></div>
+<div class="t">ማሳወቂያዎች</div>
+</div>
+<div class="sb">
+<div class="cd tt" style="border-left:3px solid var(--orange-500);background:linear-gradient(135deg,var(--warn-100),var(--surface))">
+<div style="display:flex;gap:12px">
+<div style="font-size:22px">📩</div>
+<div style="flex:1">
+<div style="font-size:14px;font-weight:800">አዲስ ቅናሽ ደርሷል</div>
+<div style="font-size:12.5px;color:var(--ink-500);margin-top:4px;line-height:1.5">ተስፋለም ለ "የጭነት መኪና" ETB 14,500 አቅርቧል</div>
+<div style="font-size:11px;color:var(--ink-200);margin-top:8px;font-family:var(--f-en);font-weight:600">5 ደቂቃ በፊት</div>
+</div>
+</div>
+</div>
+<div class="cd tt">
+<div style="display:flex;gap:12px">
+<div style="font-size:22px">⭐</div>
+<div style="flex:1">
+<div style="font-size:14px;font-weight:800">አዲስ ደረጃ ተቀብለዋል</div>
+<div style="font-size:12.5px;color:var(--ink-500);margin-top:4px;line-height:1.5">ሰላም ለእርስዎ 5 ኮከብ ሰጥቷል</div>
+<div style="font-size:11px;color:var(--ink-200);margin-top:8px;font-family:var(--f-en);font-weight:600">2 ሰዓት በፊት</div>
+</div>
+</div>
+</div>
+<div class="cd tt">
+<div style="display:flex;gap:12px">
+<div style="font-size:22px">✓</div>
+<div style="flex:1">
+<div style="font-size:14px;font-weight:800">ቅናሽዎ ተቀብሏል</div>
+<div style="font-size:12.5px;color:var(--ink-500);margin-top:4px;line-height:1.5">"የሲሚንቶ አቅርቦት" ቅናሽዎ ተቀብሏል</div>
+<div style="font-size:11px;color:var(--ink-200);margin-top:8px;font-family:var(--f-en);font-weight:600">1 ቀን በፊት</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S018</span> · ማሳወቂያዎች</div>
+</div>
+
+</div>
+</section>
+
+<!-- GROUP 6: BOOST & RATING -->
+<section class="sec">
+<h2>⚡ ማሳደግ <span class="c">S019 · S020</span></h2>
+<div class="grid">
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S019</span></div>
+<div class="t">ፍላጎትዎን ያሳድጉ</div>
+<div class="st">ተጨማሪ አቅራቢዎች እንዲያዩት</div>
+</div>
+<div class="sb">
+<div class="cd" style="background:linear-gradient(135deg,var(--orange-500),var(--orange-600));color:#fff;border:0;box-shadow:0 16px 40px rgba(255,153,51,.35);position:relative;overflow:hidden">
+<div style="position:relative">
+<div style="font-size:11px;font-weight:900;letter-spacing:.14em;margin-bottom:8px;font-family:var(--f-en);opacity:.9">⚡ አስቸኳይ ማሳደግ</div>
+<div style="font-size:22px;font-weight:900;margin-bottom:6px;line-height:1.2">3 እጥፍ ተጨማሪ እይታዎች</div>
+<div style="font-size:12.5px;opacity:.9">24 ሰዓት ውስጥ</div>
+</div>
+</div>
+<div class="cd">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-100)">
+<div><div style="font-size:15px;font-weight:800">7 ቀናት ማሳደግ</div><div style="font-size:12px;color:var(--ink-300);margin-top:3px">ከፍተኛ ቦታ</div></div>
+<div style="font-size:18px;font-weight:900;color:var(--success-600);font-family:var(--f-en)">ETB 250</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0">
+<div><div style="font-size:15px;font-weight:800">14 ቀናት ማሳደግ</div><div style="font-size:12px;color:var(--ink-300);margin-top:3px">ተጨማሪ ቅናሾች</div></div>
+<div style="text-align:right"><div style="font-size:18px;font-weight:900;color:var(--success-600);font-family:var(--f-en)">ETB 450</div><span class="bg warn" style="margin-top:4px">10% ቅናሽ</span></div>
+</div>
+</div>
+<div class="cd tt" style="background:var(--info-100);border-color:transparent">
+<div style="font-size:12.5px;color:var(--ink-500);line-height:1.6">💰 <strong style="color:var(--navy-800)">ክፍያ</strong> በቴሌብር፣ በCBE ወይም በካርድ ይቻላል።</div>
+</div>
+<button class="bt bt-p bt-b">ግዢ ጀምር</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S019</span> · ማሳደግ</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S020</span></div>
+<div class="t">ደረጃ ይስጡ</div>
+</div>
+<div class="sb">
+<div class="cd" style="text-align:center;padding:28px">
+<div class="av lg" style="margin:0 auto 14px">ተስ</div>
+<div style="font-size:17px;font-weight:900">ተስፋለም አለሙ</div>
+<div style="font-size:12px;color:var(--ink-300);margin-top:5px">"የጭነት መኪና አገልግሎት"</div>
+</div>
+<div class="cd" style="text-align:center;padding:28px">
+<div style="font-size:13.5px;font-weight:800;color:var(--ink-500);margin-bottom:20px">አጠቃላይ ደረጃ</div>
+<div class="rate-stars">
+<span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star off">⭐</span>
+</div>
+<div style="font-size:16px;font-weight:900;color:var(--navy-800)">4 ኮከብ</div>
+</div>
+
+<div class="cd">
+<div style="font-size:13.5px;font-weight:900;color:var(--navy-800);margin-bottom:14px;letter-spacing:-.01em">ልዩ ደረጃዎች</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-100)">
+<div style="font-size:12.5px;font-weight:800;color:var(--ink-700)">ጥራት</div>
+<div style="display:flex;gap:3px">
+<span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px;opacity:.25">⭐</span>
+</div>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-100)">
+<div style="font-size:12.5px;font-weight:800;color:var(--ink-700)">የጊዜ ትክክለኛነት</div>
+<div style="display:flex;gap:3px">
+<span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span>
+</div>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-100)">
+<div style="font-size:12.5px;font-weight:800;color:var(--ink-700)">ዋጋ</div>
+<div style="display:flex;gap:3px">
+<span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px;opacity:.25">⭐</span>
+</div>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0">
+<div style="font-size:12.5px;font-weight:800;color:var(--ink-700)">ስነ-ምግባር</div>
+<div style="display:flex;gap:3px">
+<span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span><span style="font-size:14px">⭐</span>
+</div>
+</div>
+</div>
+<div class="fl"><textarea class="inp" style="height:110px;padding:16px;resize:none;line-height:1.6" placeholder="አስተያየትዎን ይጻፉ (አማራጭ)..."></textarea></div>
+<button class="bt bt-p bt-b">ደረጃ አስገባ</button>
+<button class="bt bt-g bt-b" style="margin-top:10px">ሰርዝ</button>
+</div>
+</div></div>
+<div class="pl"><span class="n">S020</span> · ደረጃ</div>
+</div>
+
+</div>
+</section>
+
+<!-- GROUP 7: SUPPORT & MISC -->
+<section class="sec">
+<h2>🛟 ድጋፍ <span class="c">S021 · S022 · S023</span></h2>
+<div class="grid">
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><button class="ib">×</button></div>
+<div class="t">ሪፖርት ያድርጉ</div>
+</div>
+<div class="sb">
+<div class="fl"><div class="lbl">የችግሩ ዓይነት</div><select class="inp"><option>ማጭበርበር</option><option>አግባብ ያልሆነ ይዘት</option><option>ስፓም</option><option>ሌላ</option></select></div>
+<div class="fl"><div class="lbl">መግለጫ</div><textarea class="inp" style="height:130px;padding:16px;resize:none;line-height:1.6" placeholder="ዝርዝሩን ይግለጹ..."></textarea></div>
+<button class="bt bt-p bt-b">ሪፖርት ላክ</button>
+<div class="vr-4"></div>
+<div class="cd tt" style="background:var(--canvas-2);border-color:transparent;text-align:center">
+<div style="font-size:12px;color:var(--ink-500);line-height:1.6">🛡️ ሪፖርትዎ በሚስጥር ይያዛል።</div>
+</div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S021</span> · ሪፖርት</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S022</span></div>
+<div class="t">የቴሌግራም ህትመቶች</div>
+</div>
+<div class="sb">
+<div class="sg">
+<div class="stat info"><div class="lbl">መድረሻዎች</div><div class="val">3</div></div>
+<div class="stat ok"><div class="lbl">የታተሙ</div><div class="val">12</div></div>
+</div>
+<div class="sect">የቅርብ ጊዜ</div>
+<div class="cd tt" style="padding:14px">
+<div style="display:flex;gap:12px;align-items:center">
+<div class="ch-logo blue">✈️</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:13.5px;font-weight:900;color:var(--ink-900)">የጭነት መኪና ፍላጎት</div>
+<div style="font-size:11px;color:var(--ink-300);margin-top:3px;font-weight:600">ቻናል: አዲስ ፍላጎቶች · @felagi_needs</div>
+</div>
+<span class="bg ok">✓</span>
+</div>
+</div>
+<div class="cd tt" style="padding:14px">
+<div style="display:flex;gap:12px;align-items:center">
+<div class="ch-logo orange">🏗️</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:13.5px;font-weight:900;color:var(--ink-900)">የሲሚንቶ ፍላጎት</div>
+<div style="font-size:11px;color:var(--ink-300);margin-top:3px;font-weight:600">ቻናል: ግንባታ · @felagi_build</div>
+</div>
+<span class="bg ok">✓</span>
+</div>
+</div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S022</span> · ቴሌግራም</div>
+</div>
+
+<div class="ph"><div class="ps"><div class="sc">
+<div class="sh mesh">
+<div class="tr"><div class="br"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGrad)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg><span>ፈላጊ</span></div><span style="font-size:11px;opacity:.6;font-family:var(--f-en);letter-spacing:.1em">S023</span></div>
+<div class="t">ቅናሽ ክፈት</div>
+</div>
+<div class="sb">
+<div class="cd" style="text-align:center;padding:36px 24px;background:linear-gradient(135deg,#fffaf0,var(--surface));border:1.5px solid var(--orange-500)">
+<div style="font-size:52px;margin-bottom:16px">🔓</div>
+<h3 style="font-size:20px;font-weight:900;color:var(--navy-800);margin-bottom:8px">የቅናሽ ዝርዝር ይክፈቱ</h3>
+<p style="font-size:13.5px;color:var(--ink-500);line-height:1.6;margin-bottom:20px">አቅራቢውን ለማየት ቅናሹን ይክፈቱ።</p>
+<div style="font-size:34px;font-weight:900;color:var(--success-600);margin-bottom:20px;font-family:var(--f-en)">ETB 50</div>
+<button class="bt bt-p bt-b">🔓 አሁን ክፈት</button>
+</div>
+<div class="cd tt" style="background:var(--canvas-2);border-color:transparent">
+<div style="font-size:12.5px;color:var(--ink-500);line-height:1.6;text-align:center">💡 የቅናሽ ክፍያ በአንድ ጊዜ ብቻ ነው። አይመለስም።</div>
+</div>
+</div>
+</div></div>
+<div class="pl"><span class="n">S023</span> · ቅናሽ ክፈት</div>
+</div>
+
+</div>
+</section>
+
+<div style="text-align:center;padding:40px 0;color:var(--ink-300);font-size:12px">
+<div style="font-size:15px;font-weight:900;color:var(--navy-800);margin-bottom:8px">ፈላጊ — Premium v2</div>
+<div style="font-family:var(--f-en);font-weight:600;letter-spacing:.04em">23 Public Screens · Locked Branding · Amharic-First</div>
+<div style="margin-top:12px;font-family:var(--f-en);font-weight:600;letter-spacing:.04em">© 2026 Felagi · zagcreativity.com</div>
+</div>
+
+</div>
+</body>
+</html>

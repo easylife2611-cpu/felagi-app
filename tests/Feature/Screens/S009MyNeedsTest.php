@@ -69,9 +69,9 @@ class S009MyNeedsTest extends TestCase
     public function test_my_needs_page_has_create_fab_and_nav(): void
     {
         $res = $this->get('/my/needs');
-        $res->assertSee('class="fab"', false);
+        $res->assertSee('felagi-fab', false);
         $res->assertSee('href="/needs/new"', false);
-        foreach (['/browse','/my/offers','/notifications','/profile'] as $href) {
+        foreach (['/browse','/my/offers','/profile'] as $href) {
             $res->assertSee('href="' . $href . '"', false);
         }
     }

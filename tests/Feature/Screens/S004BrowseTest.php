@@ -62,8 +62,8 @@ class S004BrowseTest extends TestCase
     public function test_browse_page_has_create_fab_and_nav(): void
     {
         $res = $this->get('/browse');
-        $res->assertSee('class="fab"', false);
-        foreach (['/browse','/my/needs','/my/offers','/notifications','/profile'] as $href) {
+        $res->assertSee('felagi-fab', false);
+        foreach (['/browse','/my/needs','/my/offers','/profile'] as $href) {
             $res->assertSee('href="' . $href . '"', false);
         }
     }

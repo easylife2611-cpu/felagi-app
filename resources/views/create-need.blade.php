@@ -43,6 +43,7 @@ select{cursor:pointer}
 .status.error{background:#ffebee;color:#b71c1c}
 .status.success{background:#e8f5e9;color:#1b5e20}
 .status.info{background:#e3f2fd;color:#0d47a1}
+.ai-loading{display:inline-flex;align-items:center;gap:8px}.ai-loading-dots{display:inline-flex;gap:3px}.ai-loading-dots i{width:6px;height:6px;background:#0d47a1;border-radius:50%;animation:aiDot 1.2s infinite ease-in-out}.ai-loading-dots i:nth-child(2){animation-delay:.15s}.ai-loading-dots i:nth-child(3){animation-delay:.3s}@keyframes aiDot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-2px;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .offline-banner{background:#fff8e1;border:1px solid #ffe082;color:#8a6d00;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
@@ -51,6 +52,17 @@ select{cursor:pointer}
 :focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
 #page-title:focus{outline:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.ai-composer{background:#fff;border:1px solid #e3e9ef;border-radius:16px;padding:22px;box-shadow:0 10px 28px rgba(0,35,70,.08);margin-bottom:18px}
+.ai-composer h3{color:#003366;font-size:22px;margin-bottom:6px}.ai-composer p{color:#586675;font-size:14px;margin-bottom:16px}
+.ai-composer textarea{min-height:150px;border-radius:12px;border-color:#cbd8e5;font-size:16px;padding:14px}
+.ai-steps{display:flex;gap:6px;list-style:none;margin:0 0 18px;color:#687787;font-size:11px}.ai-steps li{flex:1;text-align:center;padding:7px 4px;background:#f1f4f7;border-radius:999px}.ai-steps li.active{background:#e8f1fb;color:#003366;font-weight:700}.ai-steps li.done{background:#e8f5e9;color:#176b36}
+.ai-tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 8px}.ai-tool{border:1px solid #cbd8e5;background:#f8fafc;color:#003366;border-radius:10px;padding:10px 13px;font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px}.ai-tool:hover{border-color:#003366;background:#eef5fb}.ai-file-list{min-height:18px;color:#586675;font-size:12px;margin:0 0 14px}.ai-file-list strong{color:#003366}
+.ai-understanding{display:none;background:#f8fafc;border:1px solid #e3e9ef;border-radius:12px;padding:16px;margin-top:16px}.ai-understanding.on{display:block}
+.ai-understanding h4{color:#003366;margin-bottom:12px}.ai-summary{background:#fff;border:1px solid #e3e9ef;border-radius:10px;padding:12px;margin-bottom:12px}.ai-summary strong{display:block;color:#003366;font-size:17px;margin-bottom:4px}.ai-summary p{margin:0;color:#334455}.ai-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.ai-group{background:#fff;border:1px solid #e3e9ef;border-radius:10px;padding:10px}.ai-group h5{font-size:12px;margin-bottom:6px;color:#003366}.ai-group ul{padding-left:16px;font-size:12px;color:#334455}.ai-group.unknown{border-color:#ffe082;background:#fffdf2}.ai-pill{display:inline-block;background:#eaf2fb;color:#003366;border-radius:999px;padding:5px 9px;margin:3px;font-size:12px}
+.ai-error-help{display:none;color:#8a5200;background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:9px 11px;margin-top:10px;font-size:12px}.ai-error-help.on{display:block}
+.deadline-presets{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}.deadline-preset{border:1px solid #cbd8e5;background:#fff;color:#003366;border-radius:9px;padding:8px 10px;font:inherit;font-size:12px;cursor:pointer}.deadline-preset:hover,.deadline-preset.active{border-color:#003366;background:#eaf2fb}.selected-deadline{font-size:12px;color:#176b36;margin-top:6px;min-height:18px}
+.legacy-fields{display:none}.legacy-fields.review{display:block}
+@media(max-width:560px){.ai-composer{padding:16px;border-radius:13px}.ai-steps{font-size:10px}.ai-groups{grid-template-columns:1fr}.form-actions{padding-bottom:calc(12px + env(safe-area-inset-bottom))}main{padding-bottom:calc(126px + env(safe-area-inset-bottom))}}
 </style>
 </head>
 <body>
@@ -67,7 +79,22 @@ select{cursor:pointer}
 <div class="offline-banner" id="offline-banner">{{ __('offlineBody') }}</div>
 <div class="status" id="status"></div>
 
-<form id="need-form" novalidate>
+<section class="ai-composer" aria-labelledby="ai-composer-title">
+<ol class="ai-steps" aria-label="Need creation progress"><li class="active">1 {{ app()->getLocale()==='am' ? 'ይጻፉ' : 'Write' }}</li><li>2 {{ app()->getLocale()==='am' ? 'AI ይረዳ' : 'Understand' }}</li><li>3 {{ app()->getLocale()==='am' ? 'ያረጋግጡ' : 'Review' }}</li><li>4 {{ app()->getLocale()==='am' ? 'ያትሙ' : 'Post' }}</li></ol>
+<h3 id="ai-composer-title">{{ app()->getLocale()==='am' ? 'ምን ይፈልጋሉ?' : 'What do you need?' }}</h3>
+<p>{{ app()->getLocale()==='am' ? 'በተፈጥሯዊ ቋንቋ ይጻፉ። Felagi የፍላጎትዎን ሙያዊ መግለጫ ለማዘጋጀት ይረዳዎታል።' : 'Describe what you need in your own words. Felagi will help turn it into a professional Need.' }}</p>
+<textarea id="ai-need-text" maxlength="10000" placeholder="ለምሳሌ፦ ወደ አዳማ 5 ቶን የሚችል ቀዝቃዛ መኪና እፈልጋለሁ..."></textarea>
+<div class="ai-tools" aria-label="Attachments">
+<label class="ai-tool">📷 ፎቶ<input id="ai-photo" type="file" accept="image/*" hidden></label>
+<label class="ai-tool">📎 ሰነድ<input id="ai-document" type="file" accept=".pdf,.doc,.docx,.txt" hidden></label>
+</div>
+<div class="ai-file-list" id="ai-file-list" aria-live="polite"></div>
+<button type="button" class="btn primary" id="ai-understand-btn">{{ app()->getLocale()==='am' ? 'AI እንዲያዘጋጅልዎት' : 'Prepare with AI' }}</button>
+<div class="ai-understanding" id="ai-understanding" aria-live="polite"></div>
+<div class="ai-error-help" id="ai-error-help">AI ካልተሳካ፣ መረጃውን በታች በእጅ መሙላት ይችላሉ።</div>
+</section>
+
+<div class="legacy-fields" id="legacy-fields"><form id="need-form" novalidate>
 
 <div class="form-group">
 <label for="title">{{ __('needTitle') }} <span class="req">*</span></label>
@@ -124,7 +151,9 @@ select{cursor:pointer}
 
 <div class="form-group">
 <label for="deadline_at">{{ __('deadline') }} <span class="opt">{{ __('optional') }}</span></label>
+<div class="deadline-presets" role="group" aria-label="Deadline shortcuts"><button type="button" class="deadline-preset" data-days="1">ነገ</button><button type="button" class="deadline-preset" data-days="3">በ3 ቀን</button><button type="button" class="deadline-preset" data-days="7">በዚህ ሳምንት</button></div>
 <input type="datetime-local" id="deadline_at" name="deadline_at" min="{{ now()->addMinutes(5)->format('Y-m-d\TH:i') }}">
+<div class="selected-deadline" id="selected-deadline" aria-live="polite"></div>
 <div class="err" id="err-deadline_at"></div>
 </div>
 
@@ -141,7 +170,7 @@ select{cursor:pointer}
 </div>
 <div class="err" id="err-telegram_publication_acknowledged"></div>
 
-</form>
+</form></div>
 </main>
 
 <div class="form-actions">
@@ -149,6 +178,42 @@ select{cursor:pointer}
 <button type="submit" form="need-form" class="btn primary" id="submit-btn">{{ __('continue') }}</button>
 </div>
 <script>
+function aiEscape(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+var aiAm=document.documentElement.lang==='am';
+document.getElementById('ai-understand-btn').addEventListener('click', function(){
+  var text=document.getElementById('ai-need-text').value.trim();
+  var status=document.getElementById('status');
+  var panel=document.getElementById('ai-understanding');
+  var help=document.getElementById('ai-error-help');
+  var button=this;
+  if(text.length<5){status.className='status on error';status.textContent='እባክዎ የሚፈልጉትን በጥቂት ቃላት ይጻፉ።';return;}
+  button.disabled=true;help.className='ai-error-help';status.className='status on info';status.innerHTML='<span class="ai-loading"><span>AI እያዘጋጀ ነው</span><span class="ai-loading-dots" aria-hidden="true"><i></i><i></i><i></i></span></span>';
+  var files=[];
+  ['ai-photo','ai-document'].forEach(function(id){var input=document.getElementById(id);if(input&&input.files&&input.files[0])files.push(input.files[0]);});
+  var headers={'Accept':'application/json','X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').content};
+  var uploads=files.map(function(file){var body=new FormData();body.append('file',file);body.append('purpose','NEED');return fetch('/api/v1/attachments',{method:'POST',credentials:'same-origin',headers:headers,body:body}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error((j.error||{}).message||'Attachment upload failed');return j.data&&j.data.id;});});});
+  Promise.all(uploads).then(function(attachmentIds){return fetch('/api/v1/needs/understand',{method:'POST',credentials:'same-origin',headers:Object.assign({},headers,{'Content-Type':'application/json'}),body:JSON.stringify({text:text,locale:(document.documentElement.lang||'en').slice(0,2),attachment_ids:attachmentIds})});})
+    .then(function(r){return r.json().then(function(j){return {ok:r.ok,json:j};});})
+    .then(function(result){
+      if(!result.ok)throw new Error((result.json.error||{}).message||'AI failed');
+      var d=result.json.data||{};
+      var list=function(items){return (items||[]).map(function(x){return '<li>'+aiEscape(x)+'</li>';}).join('')||'<li>—</li>';};
+      panel.innerHTML='<h4>'+(aiAm?'AI የተረዳው':'What AI understood')+'</h4><div class="ai-summary"><strong>'+aiEscape(d.title||(aiAm?'ያልታወቀ ርዕስ':'Untitled Need'))+'</strong><p>'+aiEscape(d.description||text)+'</p></div><div class="ai-groups"><div class="ai-group"><h5>'+(aiAm?'የግድ የሚያስፈልግ':'Required')+'</h5><ul>'+list(d.required)+'</ul></div><div class="ai-group"><h5>'+(aiAm?'የሚመረጥ':'Preferred')+'</h5><ul>'+list(d.preferred)+'</ul></div><div class="ai-group unknown"><h5>'+(aiAm?'ገና ያልታወቀ':'Unknown')+'</h5><ul>'+list(d.unknown)+'</ul></div></div>';
+      panel.className='ai-understanding on';status.className='status on success';status.textContent='ይህን ማጠቃለያ ይመልከቱ፣ የቀረውን ዝርዝር ያረጋግጡና ይቀጥሉ።';
+      document.querySelectorAll('.ai-steps li').forEach(function(el,i){el.className=i<2?'done':(i===2?'active':'');});
+      document.getElementById('legacy-fields').className='legacy-fields review';
+      if(d.title)document.getElementById('title').value=d.title;
+      if(d.description)document.getElementById('description').value=d.description;
+      if(d.location_text)document.getElementById('location_text').value=d.location_text;
+      if(d.budget_min!=null)document.getElementById('budget_min').value=d.budget_min;
+      if(d.budget_max!=null)document.getElementById('budget_max').value=d.budget_max;
+      if(d.currency)document.getElementById('currency').value=d.currency;
+      document.getElementById('ai-composer-title').focus();
+    })
+    .catch(function(e){status.className='status on error';status.textContent=e.message||'AI ማዘጋጀት አልተቻለም።';help.className='ai-error-help on';document.getElementById('legacy-fields').className='legacy-fields review';})
+    .then(function(){button.disabled=false;});
+});
+['ai-photo','ai-document'].forEach(function(id){var input=document.getElementById(id);if(input)input.addEventListener('change',function(){var names=[];['ai-photo','ai-document'].forEach(function(other){var el=document.getElementById(other);if(el&&el.files&&el.files[0])names.push(el.files[0].name);});document.getElementById('ai-file-list').innerHTML=names.length?'<strong>የተመረጡ ፋይሎች፦</strong> '+names.map(aiEscape).join(', '):'';});});
 // L342: locale-aware category name (respects app locale)
 function felagiLocalizedName(obj) {
   if (!obj) return '';
@@ -264,6 +329,15 @@ function updateDraftIndicator(show){
 function updateDescCount(){
   var c=$('description').value.length;
   $('desc-count').textContent=c;
+}
+
+function setDeadlinePreset(days){
+  var d=new Date();d.setDate(d.getDate()+days);d.setHours(18,0,0,0);
+  var pad=function(n){return String(n).padStart(2,'0');};
+  $('deadline_at').value=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes());
+  $('selected-deadline').textContent='የተመረጠው ቀን፦ '+d.toLocaleDateString(document.documentElement.lang==='am'?'am-ET':'en-US',{year:'numeric',month:'long',day:'numeric'})+' 18:00';
+  Array.prototype.forEach.call(document.querySelectorAll('.deadline-preset'),function(b){b.className='deadline-preset'+(Number(b.getAttribute('data-days'))===days?' active':'');});
+  saveDraft();
 }
 
 function clientValidate(){
@@ -387,6 +461,8 @@ function bindDeadlineConstraint(){
 bindDeadlineConstraint();
 $('telegram_ack').addEventListener('change',saveDraft);
 $('description').addEventListener('input',updateDescCount);
+Array.prototype.forEach.call(document.querySelectorAll('.deadline-preset'),function(b){b.addEventListener('click',function(){setDeadlinePreset(Number(b.getAttribute('data-days')));});});
+$('deadline_at').addEventListener('change',function(){$('selected-deadline').textContent=this.value?'የተመረጠው ቀን፦ '+this.value:'';});
 
 window.addEventListener('offline',function(){$('offline-banner').className='offline-banner on';});
 window.addEventListener('online',function(){$('offline-banner').className='offline-banner';});

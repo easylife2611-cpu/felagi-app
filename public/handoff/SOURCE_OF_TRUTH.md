@@ -142,6 +142,29 @@ Legend: ✅ = view + route + test · ⚠️ = partial · ❌ = missing
 **End of base Source of Truth.**
 
 ---
+
+## L348 — Final UI Polish Closure (2026-10-04)
+
+### S004 Browse
+
+- Canonical view: `resources/views/browse.blade.php`
+- Verified production markers: premium hero, AI panel, search history, category chips, card metadata/actions, inline ad slots.
+- Targeted verification: `S004BrowseTest` — **15 passed / 41 assertions**.
+
+### S008 Need Detail
+
+- Canonical view: `resources/views/show-need.blade.php`
+- Final UI SHA-256: `b49cbbf2e089476ef049e6e6d2b0dfa5c43365cb8bb8f0c0dc94c3677bfa830a`.
+- UI-only changes: label/value detail presentation, prominent description, compact trust presentation, requester proof metadata when supplied, clear action hierarchy, mobile spacing.
+- Backend/API/routes/models/auth/authorization unchanged.
+- Production cache verification: `optimize:clear` and `view:cache` passed.
+- Targeted verification: `S008NeedDetailTest` — **16 passed / 28 assertions**.
+
+### Evidence boundary
+
+The UI SHA and targeted test results prove the deployed view and its existing contracts. Full-suite status remains whatever is recorded by the latest complete test run; no claim of additional browser/device evidence is made without a recorded run.
+
+---
 ---
 
 ## L343 — External Gate Closure (2026-10-03)

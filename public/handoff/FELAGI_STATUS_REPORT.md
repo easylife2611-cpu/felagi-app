@@ -1,4 +1,13 @@
 # FELAGI v1.4.2 — STATUS REPORT
+
+## Current continuation — 2026-10-04
+
+- S004 Browse targeted verification: **15 passed / 41 assertions**.
+- S008 Need Detail targeted verification: **16 passed / 28 assertions**.
+- Production view cache: passed.
+- Canonical S008 view SHA-256: `b49cbbf2e089476ef049e6e6d2b0dfa5c43365cb8bb8f0c0dc94c3677bfa830a`.
+- Scope: UI polish only; no backend contract or authorization changes.
+- Current verification state: targeted UI acceptance **PASS**; full-suite/browser/device evidence must remain tied to an actually recorded run.
 **Generated:** 2026-09-29
 **HEAD:** 1a17a7c (B22)
 
@@ -554,4 +563,3 @@ No duplicate ownership | DONE = verified + documented + evidenced
 | https://zagcreativity.com/handoff/FELAGI_STATUS_REPORT.md | Reading |
 | https://zagcreativity.com/downloads/SOURCE_OF_TRUTH.md | Download |
 | https://zagcreativity.com/downloads/FELAGI_STATUS_REPORT.md | Download |
-

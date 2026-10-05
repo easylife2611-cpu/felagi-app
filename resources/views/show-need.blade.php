@@ -18,10 +18,11 @@ main{max-width:720px;margin:0 auto;padding:16px}
 .need-cat{display:inline-block;padding:3px 10px;border-radius:999px;background:#e8eef4;color:#003366;font-size:12px;font-weight:600;margin-bottom:10px}
 .need-title{font-size:22px;font-weight:700;line-height:1.3;margin-bottom:12px;color:#192431}
 .need-desc{font-size:15px;color:#3a4a5a;line-height:1.6;margin-bottom:16px;white-space:pre-wrap}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.meta-item{background:#f6f8fa;padding:10px 12px;border-radius:8px}
-.meta-item .lbl{font-size:11px;color:#586675;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
-.meta-item .val{font-size:15px;font-weight:600;color:#192431;margin-top:2px;word-break:break-word}
+.meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:26px;margin-top:4px}
+.meta-item{background:transparent;padding:14px 0 13px;border-radius:0;border-bottom:1px solid #e4edf3}
+.meta-item .lbl{font-size:11px;color:#718292;text-transform:uppercase;letter-spacing:.06em;font-weight:800;line-height:1.35}
+.meta-item .val{font-size:16px;font-weight:800;color:#122a40;margin-top:5px;line-height:1.45;word-break:break-word}
+.meta-item .val.budget{color:#176b36;font-size:18px}
 .meta-item.full{grid-column:1/-1}
 .budget{color:#1b5e20}
 .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
@@ -65,7 +66,25 @@ main{max-width:720px;margin:0 auto;padding:16px}
 .toast.on{opacity:1}
 .adslot{margin:16px 0;padding:12px;background:#fafbfc;border:1px dashed #d0d7de;border-radius:8px;text-align:center;font-size:12px;color:#586675;min-height:60px;display:flex;align-items:center;justify-content:center}
 .dl{color:#586675;font-weight:400;font-size:13px}
+.detail-hero{position:relative;background:linear-gradient(135deg,#003366 0%,#0b568c 68%,#176b8a 100%);color:#fff;border-radius:24px;padding:26px 22px 24px;margin-bottom:16px;overflow:hidden;box-shadow:0 12px 30px rgba(0,51,102,.18)}
+.detail-hero:after{content:'✦';position:absolute;right:22px;top:10px;color:rgba(255,153,51,.3);font-size:96px;line-height:1;transform:rotate(18deg);pointer-events:none}.detail-hero>*{position:relative;z-index:1}
+.detail-hero .need-cat{background:rgba(255,255,255,.15);color:#fff;margin-bottom:14px}.detail-hero .need-title{color:#fff;font-size:clamp(26px,5vw,38px);line-height:1.22;margin-bottom:18px;max-width:680px}.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap}.hero-budget{font-size:28px;font-weight:900;line-height:1.1;color:#fff}.hero-budget small{display:block;color:#d6e5ef;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}.hero-facts{display:flex;gap:8px;flex-wrap:wrap;color:#e7f1f7;font-size:13px}.hero-facts span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 10px}.detail-section{background:#fff;border:1px solid #e4edf4;border-radius:20px;padding:22px;margin-bottom:16px;box-shadow:0 6px 20px rgba(0,51,102,.07)}.detail-section h2{font-size:20px;line-height:1.3;color:#003366;margin-bottom:13px;font-weight:850}.detail-description{font-size:17px;line-height:1.8;color:#31485c;white-space:pre-wrap}.trust-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.trust-item{background:#f5f9fc;border:1px solid #e4edf4;border-radius:12px;padding:12px}.trust-item strong{display:block;color:#003366;font-size:14px}.trust-item span{display:block;color:#647687;font-size:12px;margin-top:3px}.detail-actions{position:sticky;bottom:12px;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border:1px solid #dce8f0;border-radius:18px;padding:10px;box-shadow:0 12px 30px rgba(0,51,102,.16)}.detail-actions .actions{flex-direction:row;align-items:center}.detail-actions .btn.primary{flex:1;min-height:48px}.detail-actions .btn.ghost,.detail-actions .btn.danger,.detail-actions .btn.success{min-height:48px}.details-divider{height:1px;background:#e8eef3;margin:20px 0}.requirements-empty{color:#647687;font-size:14px;background:#f7fafc;border-radius:12px;padding:14px}
+/* Final locked detail polish: label/value presentation, readable description, compact trust. */
+.meta-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:26px;margin-top:4px}
+.meta-item{background:transparent;padding:14px 0 13px;border-radius:0;border-bottom:1px solid #e4edf3}
+.meta-item .lbl{font-size:11px;color:#718292;text-transform:uppercase;letter-spacing:.06em;font-weight:800;line-height:1.35}
+.meta-item .val{font-size:16px;font-weight:800;color:#122a40;margin-top:5px;line-height:1.45;word-break:break-word}
+.meta-item .val.budget{color:#176b36;font-size:18px}
+.detail-section{padding:24px}
+.detail-description{font-size:18px;line-height:1.9;color:#263f54}
+.trust-grid{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid #e4edf3}
+.trust-item{flex:1 1 46%;min-width:145px;background:transparent;border:0;border-bottom:1px solid #e4edf3;border-radius:0;padding:12px 14px 12px 0}
+.trust-item strong{line-height:1.4}.trust-item span{line-height:1.4}
+.requester-proof{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}.requester-proof .proof{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:#f2f7fa;color:#526879;font-size:12px;font-weight:700}.requester-proof .proof.verified{background:#edf8f0;color:#176b36}
+.detail-section.description-section{border-color:#d7e6ef;box-shadow:0 10px 28px rgba(0,51,102,.09)}.detail-section.description-section h2{font-size:22px;margin-bottom:18px}.requester-section{box-shadow:0 3px 12px rgba(0,51,102,.05);padding:20px}.requester-section .requester{background:transparent;padding:0;margin-top:8px}.requester-section .name{font-size:16px;font-weight:850;color:#122a40}.requester-section .meta{font-size:13px;color:#586f80;margin-top:3px}.requester-section .avatar{width:48px;height:48px}.requester-section .avatar img{width:48px;height:48px}.owner-section{box-shadow:none;background:#f8fafc}.owner-section .btn.danger{margin-left:auto}.owner-section .actions{gap:10px;flex-wrap:wrap}.owner-section .btn.primary{order:0}.owner-section .btn.ghost{order:1}.owner-section .btn.success{order:2}.owner-section .btn.danger{order:3}
 @media(min-width:600px){main{padding:20px}}
+@media(max-width:480px){.trust-grid{grid-template-columns:1fr}.detail-hero{padding:22px 18px}.detail-actions .actions{flex-wrap:wrap}.detail-actions .btn.primary{flex-basis:100%}}
+@media(max-width:480px){.meta-grid{grid-template-columns:1fr;column-gap:0}.meta-item.full{grid-column:auto}}
 
 :focus-visible{outline:3px solid #1b5e20;outline-offset:2px;border-radius:6px}
 #page-title:focus{outline:none}
@@ -101,28 +120,47 @@ main{max-width:720px;margin:0 auto;padding:16px}
 
 <div id="content" hidden>
 
-<div class="card">
+<section class="detail-hero" aria-labelledby="need-title">
 <span class="need-cat" id="need-cat"></span>
 <span class="badge" id="need-status"></span>
 <h1 class="need-title" id="need-title"></h1>
-<div class="need-desc" id="need-desc"></div>
+<div class="hero-row"><div class="hero-budget"><small>{{ __('budgetLabel') }}</small><span id="need-budget-hero"></span></div><div class="hero-facts" id="need-hero-facts"></div></div>
+</section>
 
+<section class="detail-section" aria-labelledby="summary-heading">
+<h2 id="summary-heading">{{ __('needDetails') }}</h2>
 <div class="meta-grid" id="need-meta"></div>
-</div>
+</section>
 
-<div class="card" id="requester-card" hidden>
+<section class="detail-section description-section" aria-labelledby="description-heading">
+<h2 id="description-heading">{{ app()->getLocale()==='am' ? 'መግለጫ' : 'Description' }}</h2>
+<div class="detail-description" id="need-desc"></div>
+</section>
+
+<section class="detail-section" id="requirements-section" aria-labelledby="requirements-heading" hidden>
+<h2 id="requirements-heading">{{ app()->getLocale()==='am' ? 'መስፈርቶች' : 'Requirements' }}</h2>
+<div id="need-requirements"></div>
+</section>
+
+<section class="detail-section" aria-labelledby="trust-heading">
+<h2 id="trust-heading">{{ app()->getLocale()==='am' ? 'እምነት እና ደህንነት' : 'Trust & safety' }}</h2>
+<div class="trust-grid" id="need-trust"></div>
+</section>
+
+<div class="card requester-section" id="requester-card" hidden>
 <h3>{{ __('postedBy') }}</h3>
 <div class="requester">
 <div class="avatar" id="req-avatar"></div>
 <div>
 <div class="name" id="req-name"></div>
 <div class="meta" id="req-meta"></div>
+<div class="requester-proof" id="req-proof"></div>
 </div>
 </div>
 </div>
 
 <div id="owner-actions" hidden>
-<div class="card">
+<div class="detail-section owner-section">
 <h3>{{ __('manage') }}</h3>
 <div class="actions">
 <a href="#" id="btn-view-offers" class="btn primary" hidden></a>
@@ -134,7 +172,7 @@ main{max-width:720px;margin:0 auto;padding:16px}
 </div>
 
 <div id="provider-actions" hidden>
-<div class="card">
+<div class="detail-section detail-actions">
 <div class="actions">
 <a href="#" id="btn-submit-offer" class="btn primary">{{ __('submitOffer') }}</a>
 </div>
@@ -202,6 +240,18 @@ function renderMeta(need){
   if(need.offer_deadline_at){html+='<div class="meta-item full"><div class="lbl">{{ __('offerDeadline') }}</div><div class="val">'+esc(fmtDate(need.offer_deadline_at))+'</div></div>';}
   if(need.created_at){html+='<div class="meta-item full"><div class="lbl">{{ __('postedLabel') }}</div><div class="val dl">'+esc(fmtDate(need.created_at))+'</div></div>';}
   $('need-meta').innerHTML=html;
+  $('need-budget-hero').textContent=fmtBudget(need);
+  var facts=[];
+  if(need.location_text)facts.push('⌖ '+need.location_text);
+  if(need.created_at)facts.push('◷ '+fmtDate(need.created_at));
+  if(need.deadline_at)facts.push('⌛ '+fmtDate(need.deadline_at));
+  $('need-hero-facts').innerHTML=facts.map(function(x){return '<span>'+esc(x)+'</span>';}).join('');
+  var req=[];
+  if(need.quantity!=null)req.push('<div class="trust-item"><strong>'+esc(need.quantity)+'</strong><span>{{ __('quantity') }}</span></div>');
+  if(need.offer_count!=null)req.push('<div class="trust-item"><strong>'+esc(need.offer_count)+'</strong><span>'+(document.documentElement.lang==='am'?'የተቀበሉ አቅርቦቶች':'Offers received')+'</span></div>');
+  $('requirements-section').hidden=req.length===0;
+  $('need-requirements').innerHTML=req.join('');
+  $('need-trust').innerHTML='<div class="trust-item"><strong>✓ '+(document.documentElement.lang==='am'?'ንቁ ፍላጎት':'Active need')+'</strong><span>'+(document.documentElement.lang==='am'?'ሁኔታ':'Status')+'</span></div>'+(need.offer_count!=null?'<div class="trust-item"><strong>👥 '+esc(need.offer_count)+'</strong><span>'+(document.documentElement.lang==='am'?'አቅርቦቶች':'Offers')+'</span></div>':'')+(need.location_text?'<div class="trust-item"><strong>⌖ '+esc(need.location_text)+'</strong><span>'+(document.documentElement.lang==='am'?'ቦታ':'Location')+'</span></div>':'')+'<div class="trust-item"><strong>🤖 '+(document.documentElement.lang==='am'?'ውሳኔ የተጠቃሚው ነው':'AI supports your decision')+'</strong><span>'+(document.documentElement.lang==='am'?'AI እንደ ድጋፍ ብቻ ይሰራል':'AI is decision support only')+'</span></div>';
 }
 
 function renderRequester(need){
@@ -215,6 +265,12 @@ function renderRequester(need){
   if(r.rating_score)meta.push('<span class="rating">&#9733; '+Number(r.rating_score).toFixed(1)+'</span>');
   if(r.rating_count)meta.push('('+r.rating_count+')');
   $('req-meta').innerHTML=meta.join(' ');
+  var proof=[];
+  if(r.verified===true||r.is_verified===true||r.verified_at)proof.push('<span class="proof verified">✓ '+(document.documentElement.lang==='am'?'የተረጋገጠ':'Verified')+'</span>');
+  var memberSince=r.member_since||r.created_at;
+  if(memberSince)proof.push('<span class="proof">'+(document.documentElement.lang==='am'?'አባል ከ':'Member since')+' '+esc(fmtDate(memberSince))+'</span>');
+  if(r.response_rate||r.response_time)proof.push('<span class="proof">'+(document.documentElement.lang==='am'?'ምላሽ':'Response')+' '+esc(String(r.response_rate||r.response_time))+'</span>');
+  $('req-proof').innerHTML=proof.join('');
 }
 
 function renderActions(need){
