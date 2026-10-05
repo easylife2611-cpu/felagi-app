@@ -282,10 +282,38 @@ class AuthController extends BaseApiController
 
     /**
      * POST /api/v1/auth/logout
+     *
+     * Handles both token-based (Sanctum) and session-based auth:
+     * - Token auth: revoke the PersonalAccessToken
+     * - Session auth: logout via web guard + invalidate session + regenerate CSRF
+     *
+     * Fixes L350: TransientToken has no delete() method (session auth).
      */
     public function logout(Request $request): JsonResponse
     {
-        $request->user()?->currentAccessToken()?->delete();
+        $user = $request->user();
+
+        if ($user) {
+            $token = $user->currentAccessToken();
+
+            // Only revoke real Sanctum tokens. TransientToken (session auth)
+            // has no delete() method and is handled below.
+            if ($token instanceof \Laravel\Sanctum\PersonalAccessToken) {
+                $token->delete();
+            }
+        }
+
+        // Logout the web guard (clears auth state for session-based auth)
+        if (\Illuminate\Support\Facades\Auth::guard('web')->check()) {
+            \Illuminate\Support\Facades\Auth::guard('web')->logout();
+        }
+
+        // Invalidate session + regenerate CSRF for cookie-based auth
+        if ($request->hasSession()) {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
         return response()->json(null, 204);
     }
 
