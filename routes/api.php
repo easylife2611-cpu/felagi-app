@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\AttachmentController;
 use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\NeedController;
+use App\Http\Controllers\Api\V1\NeedAiController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\RatingController;
@@ -40,6 +41,11 @@ Route::prefix("ads")->group(function () {
 });
 
 Route::prefix('v1')->group(function () {
+    // ─────────────────────────────────────────
+    // PAYMENTS — Chapa webhook (public, HMAC verified in controller)
+    // ─────────────────────────────────────────
+    Route::post('payments/webhooks/{provider}', [\App\Http\Controllers\Api\V1\ChapaWebhookController::class, 'handle'])
+        ->where('provider', '[a-z]+');
 
     // =========================================
     // AUTH
@@ -100,6 +106,12 @@ Route::prefix('v1')->group(function () {
         Route::post('attachments', [AttachmentController::class, 'store']);
 
         // Needs
+        Route::post('needs/understand', [NeedAiController::class, 'understand'])
+            ->middleware('throttle:30,1');
+        Route::post('needs/clarify', [NeedAiController::class, 'clarify'])
+            ->middleware('throttle:30,1');
+        Route::post('needs/prepare', [NeedAiController::class, 'prepare'])
+            ->middleware('throttle:30,1');
         Route::post('needs', [NeedController::class, 'store'])
             ->middleware('throttle:60,1');
         Route::put('needs/{id}', [NeedController::class, 'update']);

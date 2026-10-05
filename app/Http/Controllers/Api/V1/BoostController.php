@@ -6,6 +6,7 @@ use App\Models\Boost;
 use App\Models\BoostPackage;
 use App\Models\Need;
 use App\Models\Payment;
+use App\Services\Payments\BoostPurchaseService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,40 @@ class BoostController extends BaseApiController
             return $this->error('STATE_CONFLICT', 'Only OPEN needs can be boosted.', 409);
         }
 
+        // ── Idempotency pre-check (DFM §262) ──
+        $idempotencyKey = $request->header('Idempotency-Key');
+        if ($idempotencyKey) {
+            $existing = Payment::where('payer_id', $user->id)
+                ->where('idempotency_key', $idempotencyKey)
+                ->where('purpose', Payment::PURPOSE_BOOST)
+                ->with('boost.package')
+                ->first();
+            if ($existing && $existing->boost) {
+                return $this->success([
+                    'boost'   => $existing->boost,
+                    'payment' => [
+                        'id'           => $existing->id,
+                        'status'       => $existing->status,
+                        'provider'     => $existing->provider,
+                        'amount'       => $existing->amount,
+                        'currency'     => $existing->currency,
+                        'checkout_url' => null,
+                    ],
+                ], 'Boost already created (idempotent).', 201);
+            }
+        }
+
+        // ── 409: Active boost on same Need (DFM §127) ──
+        $activeExists = Boost::where('need_id', $need->id)
+            ->where('status', Boost::STATUS_ACTIVE)
+            ->where(function ($q) {
+                $q->whereNull('expires_at')->orWhere('expires_at', '>', now());
+            })
+            ->exists();
+        if ($activeExists) {
+            return $this->error('BOOST_ACTIVE', 'Need already has an active boost.', 409);
+        }
+
         $validated = $request->validate([
             'package_id' => ['required', 'uuid', 'exists:boost_packages,id'],
         ]);
@@ -54,6 +89,16 @@ class BoostController extends BaseApiController
         $package = BoostPackage::find($validated['package_id']);
         if (!$package || !$package->active) {
             return $this->error('PACKAGE_UNAVAILABLE', 'Package unavailable.', 422);
+        }
+
+        // ── 503: Payments disabled (config missing/unsupported driver) ──
+        //    Note: phpunit.xml `value="null"` → Laravel env() returns PHP null,
+        //    while .env `PAYMENT_DRIVER=null` → string 'null'.
+        //    Both are valid "null" gateway markers.
+        $driver = config('payments.driver');
+        $driverNorm = $driver === null ? 'null' : (string) $driver;
+        if (!in_array($driverNorm, ['null', 'chapa'], true)) {
+            return $this->error('PAYMENTS_DISABLED', 'Payments are not enabled.', 503);
         }
 
         $boost = DB::transaction(function () use ($need, $user, $package) {
@@ -73,7 +118,28 @@ class BoostController extends BaseApiController
             return $boost;
         });
 
-        return $this->success($boost->fresh(['package']), 'Boost created. Complete payment to activate.', 201);
+        // ── Wire BoostPurchaseService (DFM §265-268) ──
+        $service = app(BoostPurchaseService::class);
+        $result  = $service->initiate($boost, $idempotencyKey);
+
+        $boost->refresh();
+        $payment = $boost->payment;
+
+        $paymentPayload = $payment ? [
+            'id'           => $payment->id,
+            'status'       => $payment->status,
+            'provider'     => $payment->provider,
+            'amount'       => $payment->amount,
+            'currency'     => $payment->currency,
+            'checkout_url' => $result->isOk()
+                ? ($result->raw['checkout_url'] ?? null)
+                : null,
+        ] : null;
+
+        return $this->success([
+            'boost'   => $boost->fresh(['package']),
+            'payment' => $paymentPayload,
+        ], 'Boost created. Complete payment to activate.', 201);
     }
 
     /**

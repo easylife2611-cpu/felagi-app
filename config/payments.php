@@ -8,7 +8,7 @@ return [
     | null   — deterministic in-process mock (no network, no creds)
     | stripe — live Stripe (requires STRIPE_SECRET)
     */
-    'driver' => env('PAYMENTS_DRIVER', 'null'),
+    'driver' => env('PAYMENTS_DRIVER', env('PAYMENT_DRIVER', 'null')),
 
     'currency' => env('PAYMENTS_CURRENCY', 'ETB'),
 

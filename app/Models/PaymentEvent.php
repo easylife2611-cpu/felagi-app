@@ -12,6 +12,18 @@ class PaymentEvent extends Model
 
     public $timestamps = false;
 
+    /**
+     * Canonical "created" column.
+     *
+     * DB schema uses `received_at` (TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
+     * instead of `created_at` — see migration 2026_09_29_000016.
+     *
+     * Eloquent's `latest()` / `oldest()` use this constant to determine
+     * the ordering column. `$timestamps = false` prevents auto-management
+     * on insert/update (DB `useCurrent()` fills the value).
+     */
+    public const CREATED_AT = 'received_at';
+
     protected $fillable = [
         'payment_id',
         'provider',

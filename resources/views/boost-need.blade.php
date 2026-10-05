@@ -205,7 +205,64 @@ function loadPackages(){
 function submitBoost(){
   var ids=Object.keys(selected);
   if(!ids.length){toast('{{ __('selectPackage') }}');return;}
-  toast('{{ __('featurePendingBody') }}', 3500);
+  if(!needId){toast('{{ __('boostFailed') }}');return;}
+
+  var btn=$('boost-btn');
+  if(btn.disabled)return;
+  var origText=btn.textContent;
+  btn.disabled=true;
+  btn.textContent='{{ __('processing') }}';
+
+  var headers={
+    'Accept':'application/json',
+    'Content-Type':'application/json',
+    'X-CSRF-TOKEN':csrf
+  };
+
+  fetch('/api/v1/needs/'+encodeURIComponent(needId)+'/boosts',{
+    method:'POST',
+    credentials:'same-origin',
+    headers:headers,
+    body:JSON.stringify({package_id:ids[0]})
+  })
+  .then(function(r){
+    return r.json().then(function(j){return {ok:r.ok,status:r.status,json:j};});
+  })
+  .then(function(res){
+    if(!res.ok){
+      var err=(res.json&&res.json.error)||{};
+      var code=err.code||'';
+      var msg=err.message||'';
+      if(res.status===409&&code==='BOOST_ACTIVE'){
+        toast('{{ __('boostActive') }}');
+      }else if(res.status===503){
+        toast('{{ __('featurePendingBody') }}');
+      }else if(res.status===401){
+        localStorage.removeItem(LS_TOKEN);window.location.href='/';return;
+      }else{
+        toast(msg||'{{ __('boostFailed') }}');
+      }
+      btn.disabled=false;
+      btn.textContent=origText;
+      return;
+    }
+
+    var data=(res.json&&res.json.data)||{};
+    var pay=data.payment||{};
+    var url=pay.checkout_url;
+    toast('{{ __('boostPending') }}');
+    if(url){
+      setTimeout(function(){window.location.href=url;},600);
+    }else{
+      // NullPaymentGateway (dev/test) — no checkout URL
+      setTimeout(function(){window.location.href='/needs/'+encodeURIComponent(needId);},1000);
+    }
+  })
+  .catch(function(){
+    toast('{{ __('boostFailed') }}');
+    btn.disabled=false;
+    btn.textContent=origText;
+  });
 }
 
 $('boost-btn').addEventListener('click',submitBoost);
