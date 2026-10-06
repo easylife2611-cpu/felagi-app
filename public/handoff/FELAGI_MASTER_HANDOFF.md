@@ -2167,3 +2167,27 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - S016 Comparison History
 - S017 Messages
 - S018 Notifications
+
+
+---
+
+## SESSION 2026-10-06 (continued) - Telegram Auth COMPLETE
+
+### 10 Bugs Fixed
+HTTP 422 x2, 419, 429, same-tab, bot_id, GoException, double-exchange, SW cache, Timer.
+
+### BotFather Complete
+- Web App: t.me/FelagiMarketBot/felagi
+- Web Login: Widget mode, zagcreativity.com
+
+### Flutter Web Test
+https://zagcreativity.com/test/ - rebuild ~80s, no APK.
+
+### Progress
+User 14/23 - Total 14/46 - Gates 6/9
+
+### Next - L356
+S015-S018
+
+### Pending Commits
+Backend + mobile uncommitted.

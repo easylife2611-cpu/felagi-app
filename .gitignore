@@ -82,3 +82,4 @@ key.properties
 keystore-base64.txt
 keystore-credentials.txt
 upload-keystore.jks
+public/test/

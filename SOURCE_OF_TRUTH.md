@@ -2175,3 +2175,47 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - User Screens: 14/23 (60.9%)
 - Total Screens: 14/46 (30.4%)
 - Next: L356 — S015-S018
+
+
+---
+
+## SESSION 2026-10-06 (continued) - Telegram Auth Hardening + Web Test
+
+### 10 Fixes Applied
+
+| # | Bug | Fix |
+|---|-----|-----|
+| 1 | HTTP 422 (return_uri) | Remote Config fallback |
+| 2 | HTTP 422 (attempt_id) | .toString() cast |
+| 3 | HTTP 419 (CSRF) | validateCsrfTokens(except: api/*) |
+| 4 | HTTP 429 (rate limit) | throttle:60,1 |
+| 5 | Same-tab redirect | webOnlyWindowName: '_self' |
+| 6 | bot_id required | Remove bot_id, keep origin |
+| 7 | GoException | GoRouter redirect + errorBuilder |
+| 8 | Double-exchange | static set + authState guard |
+| 9 | Service Worker | --pwa-strategy=none |
+| 10 | Test Timer | Timer + dispose + kIsWeb |
+
+### BotFather
+
+- Web App: t.me/FelagiMarketBot/felagi
+- URL: https://zagcreativity.com/test/
+- Photo + GIF + Mini App enabled
+- Web Login: Login Widget mode, domain zagcreativity.com
+
+### Flutter Web Test
+
+    flutter build web --release --base-href /test/ --pwa-strategy=none
+    rm -rf ~/felagi_app/public/test/* && cp -r build/web/* ~/felagi_app/public/test/
+    rm -f ~/felagi_app/public/test/flutter_service_worker.js
+
+Rebuild ~80s. NO APK needed for test.
+
+### Progress
+
+- User: 14/23 - Total: 14/46 - Gates: 6/9
+- Next: L356 (S015-S018)
+
+### Uncommitted
+
+Backend + mobile changes pending commit.
