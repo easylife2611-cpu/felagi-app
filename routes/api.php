@@ -109,7 +109,7 @@ Route::prefix('v1')->group(function () {
 
         // Needs
         Route::post('needs/understand', [NeedAiController::class, 'understand'])
-            ->middleware('throttle:30,1');
+            ->middleware(['throttle:30,1', 'idempotent']);
         Route::post('needs/clarify', [NeedAiController::class, 'clarify'])
             ->middleware('throttle:30,1');
         Route::post('needs/prepare', [NeedAiController::class, 'prepare'])

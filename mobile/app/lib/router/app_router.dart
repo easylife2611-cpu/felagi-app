@@ -16,6 +16,10 @@ import '../screens/submit_offer_screen.dart';
 import '../screens/offer_detail_screen.dart';
 import '../screens/my_offers_screen.dart';
 import '../screens/compare_confirm_screen.dart';
+import '../screens/ai_comparison_screen.dart';
+import '../screens/comparison_history_screen.dart';
+import '../screens/messages_screen.dart';
+import '../screens/notifications_screen.dart';
 import '../screens/placeholder_screen.dart';
 
 /// Central route map for all 46 canonical Felagi screens.
@@ -234,6 +238,37 @@ class AppRouter {
             needId: state.pathParameters['id'] ?? '',
           ),
         ),
+        // ── L356: S015 AI Comparison ──
+        GoRoute(
+          path: '/comparisons/:id',
+          builder: (context, state) => AiComparisonScreen(
+            localeCode: localeCode,
+            comparisonId: state.pathParameters['id'] ?? '',
+          ),
+        ),
+        // ── L356: S016 Comparison History ──
+        GoRoute(
+          path: '/needs/:id/comparisons',
+          builder: (context, state) => ComparisonHistoryScreen(
+            localeCode: localeCode,
+            needId: state.pathParameters['id'] ?? '',
+          ),
+        ),
+        // ── L356: S017 Messages ──
+        GoRoute(
+          path: '/offers/:id/messages',
+          builder: (context, state) => MessagesScreen(
+            localeCode: localeCode,
+            offerId: state.pathParameters['id'] ?? '',
+          ),
+        ),
+        // ── L356: S018 Notifications ──
+        GoRoute(
+          path: '/notifications',
+          builder: (context, state) => NotificationsScreen(
+            localeCode: localeCode,
+          ),
+        ),
         for (final s in screens.where(
             (s) =>
                 s.id != 'S001' &&
@@ -250,6 +285,10 @@ class AppRouter {
                 s.id != 'S012' &&
                 s.id != 'S013' &&
                 s.id != 'S014' &&
+                s.id != 'S015' &&
+                s.id != 'S016' &&
+                s.id != 'S017' &&
+                s.id != 'S018' &&
                 s.id != 'S019'))
           GoRoute(
             path: s.path,

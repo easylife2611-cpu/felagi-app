@@ -1,0 +1,56 @@
+name: Login and L356 verification
+on:
+  push:
+    branches: ['codex/telegram-login-l356']
+  pull_request:
+    branches: ['feature/ai-guided-need-creation']
+permissions:
+  contents: read
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.6'
+          channel: stable
+          cache: true
+      - run: flutter pub get
+        working-directory: mobile/app
+      - run: flutter analyze
+        working-directory: mobile/app
+      - run: flutter test --reporter expanded
+        working-directory: mobile/app
+      - run: flutter build web --release --base-href /test/ --pwa-strategy=none
+        working-directory: mobile/app
+      - uses: actions/upload-artifact@v4
+        with:
+          name: felagi-test-web-${{ github.sha }}
+          path: mobile/app/build/web
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci-only
+          MYSQL_DATABASE: zagcreht_felagi_test
+        ports: ['3306:3306']
+        options: --health-cmd="mysqladmin ping -pci-only" --health-interval=10s --health-timeout=5s --health-retries=10
+    env:
+      DB_USERNAME: root
+      DB_PASSWORD: ci-only
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_mysql, bcmath
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: php artisan test tests/Feature/Screens/S015ComparisonResultTest.php tests/Feature/Message/MessageFlowTest.php tests/Feature/Auth/TelegramWidgetTest.php

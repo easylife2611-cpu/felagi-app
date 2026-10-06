@@ -105,6 +105,20 @@ class ComparisonController extends BaseApiController
             return $this->error('NOT_FOUND', 'Comparison not found.', 404);
         }
 
+        if (!$isOwner) {
+            // Provider projection must be enforced before serialization, not in UI.
+            $ownOffers = $comparison->comparisonOffers->where('provider_id', $user->id)->values();
+            return $this->success([
+                'id' => $comparison->id,
+                'status' => $comparison->status,
+                'version_number' => $comparison->version_number,
+                'completed_at' => $comparison->completed_at,
+                'projection' => 'PROVIDER_OWN_RESULT_VIEW',
+                'comparison_offers' => $ownOffers,
+                'results' => $comparison->results->whereIn('comparison_offer_id', $ownOffers->pluck('id'))->values(),
+            ], 'Comparison retrieved.');
+        }
+
         return $this->success($comparison, 'Comparison retrieved.');
     }
 
@@ -232,10 +246,12 @@ class ComparisonController extends BaseApiController
         $results = ComparisonResult::where('comparison_id', $comparison->id)->get();
 
         if (! $isOwner) {
-            $ownOfferIds = $need
-                ? $need->offers()->where('provider_id', $user->id)->pluck('id')
-                : collect();
-            $results = $results->whereIn('comparison_offer_id', $ownOfferIds)->values();
+            $ownSnapshotIds = $comparison->comparisonOffers()
+                ->where('provider_id', $user->id)->pluck('id');
+            if ($ownSnapshotIds->isEmpty()) {
+                return $this->error('NOT_FOUND', 'Comparison not found.', 404);
+            }
+            $results = $results->whereIn('comparison_offer_id', $ownSnapshotIds)->values();
         }
 
         return $this->success([

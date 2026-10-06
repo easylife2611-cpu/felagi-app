@@ -62,6 +62,11 @@ class ApiConfig {
   // ── Comparisons (auth) — L355 ──
   static String needComparisons(String needId) => '/needs/$needId/comparisons';
 
+  static String comparisonShow(String id) => '/comparisons/$id';
+  static String offerMessages(String id) => '/offers/$id/messages';
+  static const String notifications = '/notifications';
+  static String notificationRead(String id) => '/notifications/$id/read';
+
   // ── Profile ──
   static const String profileUpdate = '/profile';
 

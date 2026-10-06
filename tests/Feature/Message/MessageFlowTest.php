@@ -122,4 +122,13 @@ class MessageFlowTest extends TestCase
         $res->assertStatus(200)
             ->assertJsonPath('success', true);
     }
+    public function test_replayed_send_creates_only_one_message(): void
+    {
+        [, $provider, $offer] = $this->offerFixture();
+        $path = "/api/v1/offers/{$offer->id}/messages";
+        $headers = ['Idempotency-Key' => 'message-retry-1'];
+        $this->actingAs($provider)->postJson($path, ['content' => 'One message'], $headers)->assertCreated();
+        $this->postJson($path, ['content' => 'One message'], $headers)->assertCreated();
+        $this->assertSame(1, Message::where('offer_id', $offer->id)->count());
+    }
 }
