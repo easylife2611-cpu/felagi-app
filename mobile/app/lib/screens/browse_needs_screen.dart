@@ -97,6 +97,8 @@ class _BrowseNeedsScreenState extends State<BrowseNeedsScreen> {
       appBar: AppBar(
         title: Text(_t('screenS004')),
         actions: [
+          IconButton(tooltip: _t('screenS018'), icon: const Icon(Icons.notifications_outlined),
+            onPressed: () => context.push('/notifications')),
           IconButton(
             tooltip: _t('language'),
             icon: const Icon(Icons.language),

@@ -3,6 +3,7 @@ import 'package:felagi_design_system/felagi_design_system.dart';
 import 'package:go_router/go_router.dart';
 
 import '../api/api_exception.dart';
+import '../api/api_config.dart';
 import '../api/models/offer.dart';
 import '../app_scope.dart';
 
@@ -29,7 +30,6 @@ class _CompareConfirmScreenState extends State<CompareConfirmScreen> {
   _Phase _phase = _Phase.loading;
   List<Offer> _offers = const [];
   String? _error;
-  final Set<String> _selected = {};
   bool _confirming = false;
 
   String _t(String key) => fgText(widget.localeCode, key);
@@ -69,25 +69,18 @@ class _CompareConfirmScreenState extends State<CompareConfirmScreen> {
     }
   }
 
-  void _toggle(String id) {
-    setState(() {
-      if (_selected.contains(id)) {
-        _selected.remove(id);
-      } else {
-        _selected.add(id);
-      }
-    });
-  }
-
   Future<void> _confirm() async {
+    if (_confirming) return;
     setState(() => _confirming = true);
-    await Future<void>.delayed(const Duration(milliseconds: 50));
-    if (!mounted) return;
-    setState(() => _confirming = false);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(_t('save'))),
-    );
-    context.pop();
+    try {
+      final result = await AppScope.of(context).client.post(ApiConfig.needComparisons(widget.needId));
+      if (!mounted) return;
+      final id = result['comparison_id'];
+      if (id == null) throw const FormatException('Missing comparison id');
+      context.push('/comparisons/${Uri.encodeComponent(id.toString())}');
+    } catch (_) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_t('loadRecovery'))));
+    } finally { if (mounted) setState(() => _confirming = false); }
   }
 
   @override
@@ -129,7 +122,7 @@ class _CompareConfirmScreenState extends State<CompareConfirmScreen> {
         Padding(
           padding: const EdgeInsets.all(FgTokens.space4),
           child: FgStatusBadge(
-            label: '${_selected.length} / ${_offers.length}',
+            label: _t('compareAllEligible'),
             kind: FgStatusKind.info,
           ),
         ),
@@ -148,7 +141,7 @@ class _CompareConfirmScreenState extends State<CompareConfirmScreen> {
               FgButton(
                 label: _t('confirm'),
                 isLoading: _confirming,
-                onPressed: _selected.isEmpty || _confirming ? null : _confirm,
+                onPressed: _offers.where((o) => o.status == 'PENDING').isEmpty || _confirming ? null : _confirm,
               ),
               const SizedBox(height: FgTokens.space3),
               FgButton(
@@ -164,10 +157,7 @@ class _CompareConfirmScreenState extends State<CompareConfirmScreen> {
   }
 
   Widget _offerRow(Offer o) {
-    final checked = _selected.contains(o.id);
-    return CheckboxListTile(
-      value: checked,
-      onChanged: (_) => _toggle(o.id),
+    return ListTile(
       title: Text(o.providerName ?? _t('provider')),
       subtitle: Text('${o.priceLabel()} • ${o.status}'),
     );

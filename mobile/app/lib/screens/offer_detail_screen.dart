@@ -117,7 +117,10 @@ class _OfferDetailScreenState extends State<OfferDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_t('screenS012'))),
+      appBar: AppBar(title: Text(_t('screenS012')), actions: [
+        IconButton(tooltip: _t('screenS017'), icon: const Icon(Icons.chat_outlined),
+          onPressed: () => context.push('/offers/${widget.offerId}/messages')),
+      ]),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(

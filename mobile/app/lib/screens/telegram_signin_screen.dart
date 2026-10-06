@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -7,13 +6,15 @@ import 'package:felagi_design_system/felagi_design_system.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../api/api_exception.dart';
+import '../api/api_config.dart';
+import '../state/auth_state.dart';
 import '../api/models/auth_result.dart';
 import '../app_scope.dart';
 
-/// S002 — Telegram sign-in (OIDC authorization-code + PKCE).
+/// S002 — Telegram Login Widget with server-verified single-use handoff.
 ///
 /// Flow:
-///   1. POST /auth/telegram/start → {auth_url, attempt_id, expires_at}
+///   1. POST /auth/telegram/widget/start creates the server auth attempt.
 ///   2. url_launcher → system browser opens auth_url
 ///   3. User authorizes → backend captures callback → redirects with handoff_code
 ///   4. App captures handoff_code (web: Uri.base, mobile: manual paste for now)
@@ -24,8 +25,10 @@ class TelegramSignInScreen extends StatefulWidget {
     super.key,
     required this.localeCode,
     required this.onLocaleChange,
+    this.callbackUri,
   });
 
+  final Uri? callbackUri;
   final String localeCode;
   final ValueChanged<String> onLocaleChange;
 
@@ -36,14 +39,14 @@ class TelegramSignInScreen extends StatefulWidget {
 enum _AuthState { ready, opening, awaiting, exchanging, denied, expired }
 
 class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
-  /// Static set survives screen rebuilds (router is rebuilt on auth state change).
-  /// Prevents double-exchange of the same handoff_code → 'already used' error.
-  static final Set<String> _globallyExchangedCodes = {};
+  bool _exchangeInFlight = false;
+  AuthState? _observedAuth;
+  VoidCallback? _readyListener;
   _AuthState _state = _AuthState.ready;
   String? _error;
   final _handoffCtrl = TextEditingController();
   String? _widgetState;
-  Timer? _readyTimer;
+  Uri get _returnUri => widget.callbackUri ?? Uri.base;
 
   String _t(String key) => fgText(widget.localeCode, key);
 
@@ -63,7 +66,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
     if (!mounted) return;
 
     // Mobile/tests: no URL capture — skip the timer entirely.
-    if (!kIsWeb) {
+    if (!kIsWeb && widget.callbackUri == null) {
       return;
     }
 
@@ -76,18 +79,13 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
       void onReady() {
         if (authState.isReady && mounted) {
           authState.removeListener(onReady);
-          _readyTimer?.cancel();
+          _readyListener = null;
           _captureFromUri();
         }
       }
+      _observedAuth = authState;
+      _readyListener = onReady;
       authState.addListener(onReady);
-      // Safety fallback — Timer (cancellable in dispose)
-      _readyTimer = Timer(const Duration(seconds: 2), () {
-        authState.removeListener(onReady);
-        if (mounted && !authState.isReady) {
-          _captureFromUri();
-        }
-      });
     } catch (_) {
       // AppScope unavailable — try immediately
       _captureFromUri();
@@ -96,12 +94,15 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
 
   @override
   void dispose() {
+    if (_readyListener != null) {
+      _observedAuth?.removeListener(_readyListener!);
+    }
     _handoffCtrl.dispose();
     super.dispose();
   }
 
   void _captureFromUri() {
-    final uri = Uri.base;
+    final uri = _returnUri;
     final fullUrl = uri.toString();
 
     // 1. Telegram Widget result — fragment OR full URL contains tgAuthResult
@@ -123,11 +124,6 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
           return;
         }
       } catch (_) {}
-      // Skip if already exchanged in this VM
-      if (_globallyExchangedCodes.contains(code)) {
-        return;
-      }
-      _globallyExchangedCodes.add(code);
       _handoffCtrl.text = code;
       _exchange(code);
       return;
@@ -153,7 +149,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
       final decoded = utf8.decode(base64Url.decode(normalized));
       final payload = jsonDecode(decoded) as Map<String, dynamic>;
 
-      final state = _widgetState ?? Uri.base.queryParameters['widget_state'];
+      final state = _widgetState ?? _returnUri.queryParameters['widget_state'];
       if (state == null || state.isEmpty) {
         setState(() {
           _error = 'Missing widget state';
@@ -163,7 +159,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
       }
 
       final callbackUrl = Uri.parse(
-        'https://zagcreativity.com/api/v1/auth/telegram/widget/callback',
+        '${ApiConfig.apiBase}/auth/telegram/widget/callback',
       ).replace(queryParameters: {
         'state': state,
         'id': payload['id'].toString(),
@@ -261,7 +257,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
   }
 
   Future<void> _exchange(String code) async {
-    if (code.isEmpty) return;
+    if (!mounted || code.isEmpty || _exchangeInFlight) return;
 
     // If already authenticated (e.g. from a prior exchange in a previous VM),
     // skip the network call — the token is already stored.
@@ -270,6 +266,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
       return;
     }
 
+    _exchangeInFlight = true;
     setState(() {
       _state = _AuthState.exchanging;
       _error = null;
@@ -298,6 +295,8 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
         _state = _AuthState.awaiting;
         _error = '$e';
       });
+    } finally {
+      _exchangeInFlight = false;
     }
   }
 
@@ -397,8 +396,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
                       variant: FgButtonVariant.secondary,
                       onPressed: () {
                         final c = _handoffCtrl.text.trim();
-                        if (c.isNotEmpty && !_globallyExchangedCodes.contains(c)) {
-                          _globallyExchangedCodes.add(c);
+                        if (c.isNotEmpty) {
                           _exchange(c);
                         }
                       },

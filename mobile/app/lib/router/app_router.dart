@@ -1,6 +1,11 @@
+import '../screens/ai_comparison_screen.dart';
+import '../screens/comparison_history_screen.dart';
+import '../screens/messages_screen.dart';
+import '../screens/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../state/auth_state.dart';
 import '../screens/welcome_screen.dart';
 import '../screens/telegram_signin_screen.dart';
 import '../screens/profile_screen.dart';
@@ -26,9 +31,14 @@ class AppRouter {
   AppRouter({
     required this.localeCode,
     required this.onLocaleChange,
-  });
+    this.authState,
+    Uri? launchUri,
+  }) : launchUri = launchUri ?? Uri.base;
 
-  final String localeCode;
+  String localeCode;
+  final AuthState? authState;
+  final Uri launchUri;
+  bool _callbackConsumed = false;
   final ValueChanged<String> onLocaleChange;
 
   static const List<({String path, String id, String titleKey})> screens = [
@@ -86,21 +96,24 @@ class AppRouter {
   GoRouter build() {
     return GoRouter(
       initialLocation: '/welcome',
-      // Telegram Widget callback lands with malformed URL like:
-      //   https://zagcreativity.com/test/tgAuthResult=...
-      // Redirect it to /auth/telegram so the screen can handle the widget data.
+      refreshListenable: authState,
       redirect: (context, state) {
-        final loc = state.uri.toString();
-        if (loc.contains('tgAuthResult=')) {
+        final signedIn = authState?.isAuthenticated == true;
+        final hasCallback = launchUri.queryParameters.containsKey('handoff_code') ||
+            launchUri.toString().contains('tgAuthResult=');
+        if (signedIn) {
+          _callbackConsumed = true;
+          if (state.uri.path == '/auth/telegram' || hasCallback && state.uri.path == '/') {
+            return '/browse';
+          }
+        }
+        if (!_callbackConsumed && hasCallback && !signedIn &&
+            state.uri.path != '/auth/telegram') {
           return '/auth/telegram';
         }
+        if (state.uri.path == '/') return '/welcome';
         return null;
       },
-      // Any unmatched route → show Telegram sign-in (which will decode the widget).
-      errorBuilder: (context, state) => TelegramSignInScreen(
-        localeCode: localeCode,
-        onLocaleChange: onLocaleChange,
-      ),
       routes: [
         GoRoute(
           path: '/welcome',
@@ -112,6 +125,7 @@ class AppRouter {
         GoRoute(
           path: '/auth/telegram',
           builder: (context, state) => TelegramSignInScreen(
+            callbackUri: _callbackConsumed ? null : launchUri,
             localeCode: localeCode,
             onLocaleChange: onLocaleChange,
           ),
@@ -218,6 +232,10 @@ class AppRouter {
             needId: state.pathParameters['id'] ?? '',
           ),
         ),
+        GoRoute(path: '/comparisons/:id', builder: (context, state) => AiComparisonScreen(localeCode: localeCode, comparisonId: state.pathParameters['id']!)),
+        GoRoute(path: '/needs/:id/comparisons', builder: (context, state) => ComparisonHistoryScreen(localeCode: localeCode, needId: state.pathParameters['id']!)),
+        GoRoute(path: '/offers/:id/messages', builder: (context, state) => MessagesScreen(localeCode: localeCode, offerId: state.pathParameters['id']!)),
+        GoRoute(path: '/notifications', builder: (context, state) => NotificationsScreen(localeCode: localeCode)),
         for (final s in screens.where(
             (s) =>
                 s.id != 'S001' &&
@@ -234,6 +252,10 @@ class AppRouter {
                 s.id != 'S012' &&
                 s.id != 'S013' &&
                 s.id != 'S014' &&
+                s.id != 'S015' &&
+                s.id != 'S016' &&
+                s.id != 'S017' &&
+                s.id != 'S018' &&
                 s.id != 'S019'))
           GoRoute(
             path: s.path,

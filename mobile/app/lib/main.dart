@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:felagi_design_system/felagi_design_system.dart';
 
@@ -33,6 +34,8 @@ class _FelagiAppState extends State<FelagiApp> {
   late final ConfigApi _configApi;
   late final AppConfigState _appConfig;
   late final AuthState _authState;
+  late final AppRouter _routes;
+  late final GoRouter _router;
 
   String _localeCode = 'am';
   final ThemeMode _themeMode = ThemeMode.light;
@@ -49,6 +52,17 @@ class _FelagiAppState extends State<FelagiApp> {
     _appConfig = AppConfigState(api: _configApi);
     _authState = AuthState(api: _authApi, tokenStore: _client.tokenStore);
 
+    _routes = AppRouter(
+      localeCode: _localeCode,
+      authState: _authState,
+      onLocaleChange: (c) => setState(() {
+        _localeCode = c;
+        _routes.localeCode = c;
+        _router.refresh();
+      }),
+    );
+    _router = _routes.build();
+
     // Bootstrap: read token + /auth/me (async — UI shows loading)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _authState.bootstrap();
@@ -58,6 +72,7 @@ class _FelagiAppState extends State<FelagiApp> {
 
   @override
   void dispose() {
+    _router.dispose();
     _authState.dispose();
     _appConfig.dispose();
     _client.dispose();
@@ -78,11 +93,6 @@ class _FelagiAppState extends State<FelagiApp> {
       child: AnimatedBuilder(
         animation: _authState,
         builder: (context, _) {
-          final router = AppRouter(
-            localeCode: _localeCode,
-            onLocaleChange: (c) => setState(() => _localeCode = c),
-          ).build();
-
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             title: fgText(_localeCode, 'brand'),
@@ -92,7 +102,7 @@ class _FelagiAppState extends State<FelagiApp> {
             locale: Locale(_localeCode),
             supportedLocales: const [Locale('am'), Locale('en')],
             localizationsDelegates: GlobalMaterialLocalizations.delegates,
-            routerConfig: router,
+            routerConfig: _router,
           );
         },
       ),

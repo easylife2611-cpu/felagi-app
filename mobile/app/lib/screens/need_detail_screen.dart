@@ -132,6 +132,8 @@ class _NeedDetailScreenState extends State<NeedDetailScreen> {
               )
             : null,
         actions: [
+          IconButton(tooltip: _t('screenS016'), icon: const Icon(Icons.history),
+            onPressed: () => context.push('/needs/${widget.needId}/comparisons')),
           IconButton(
             tooltip: _t('language'),
             icon: const Icon(Icons.language),

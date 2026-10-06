@@ -670,7 +670,7 @@ void main() {
   });
 
   group('S014 Compare Confirm', () {
-    testWidgets('renders offers with checkboxes', (tester) async {
+    testWidgets('renders eligible offers for comparison', (tester) async {
       await tester.pumpWidget(_wrapWithOffers(
         const CompareConfirmScreen(
           localeCode: 'am',
@@ -704,10 +704,10 @@ void main() {
       expect(find.text(fgText('am', 'screenS014')), findsOneWidget);
       expect(find.text('Abebe Provider'), findsOneWidget);
       expect(find.text('Sara Provider'), findsOneWidget);
-      expect(find.byType(CheckboxListTile), findsNWidgets(2));
+      expect(find.byType(ListTile), findsNWidgets(2));
     });
 
-    testWidgets('confirm disabled until selection', (tester) async {
+    testWidgets('confirm enabled when an eligible offer exists', (tester) async {
       await tester.pumpWidget(_wrapWithOffers(
         const CompareConfirmScreen(
           localeCode: 'am',
@@ -732,7 +732,7 @@ void main() {
       final confirmBtn =
           find.widgetWithText(OutlinedButton, fgText('am', 'confirm'));
       expect(confirmBtn, findsOneWidget);
-      expect(tester.widget<OutlinedButton>(confirmBtn).onPressed, isNull);
+      expect(tester.widget<OutlinedButton>(confirmBtn).onPressed, isNotNull);
     });
   });
 }
