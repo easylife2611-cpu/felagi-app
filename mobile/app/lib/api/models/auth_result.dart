@@ -35,7 +35,7 @@ class AuthStart {
 
   factory AuthStart.fromJson(Map<String, dynamic> json) => AuthStart(
         authUrl: json['auth_url'] as String,
-        attemptId: json['attempt_id'] as String,
+        attemptId: json['attempt_id'].toString(),
         expiresAt: DateTime.parse(json['expires_at'] as String),
       );
 }
