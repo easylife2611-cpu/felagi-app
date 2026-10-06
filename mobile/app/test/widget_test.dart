@@ -25,6 +25,10 @@ import 'package:felagi_app/screens/public_preview_screen.dart';
 import 'package:felagi_app/screens/need_created_screen.dart';
 import 'package:felagi_app/screens/my_needs_screen.dart';
 import 'package:felagi_app/screens/received_offers_screen.dart';
+import 'package:felagi_app/screens/submit_offer_screen.dart';
+import 'package:felagi_app/screens/offer_detail_screen.dart';
+import 'package:felagi_app/screens/my_offers_screen.dart';
+import 'package:felagi_app/screens/compare_confirm_screen.dart';
 import 'package:felagi_app/router/app_router.dart';
 
 
@@ -542,6 +546,193 @@ void main() {
       );
     });
   });
+
+  // ═══════════════════════════════════════════════════════════
+  //  L355 — S011, S012, S013, S014
+  // ═══════════════════════════════════════════════════════════
+
+  group('S011 Submit Offer', () {
+    testWidgets('renders form fields', (tester) async {
+      await tester.pumpWidget(_wrapWithScope(
+        const SubmitOfferScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: 'n-001',
+        ),
+      ));
+      await tester.pumpAndSettle();
+      expect(find.text(fgText('am', 'screenS011')), findsOneWidget);
+      expect(find.text('Offered price *'), findsOneWidget);
+      expect(find.text('Proposal message'), findsOneWidget);
+      expect(find.text(fgText('am', 'save')), findsOneWidget);
+      expect(find.text(fgText('am', 'cancel')), findsOneWidget);
+    });
+
+    testWidgets('renders 5 text fields', (tester) async {
+      await tester.pumpWidget(_wrapWithScope(
+        const SubmitOfferScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: 'n-001',
+        ),
+      ));
+      await tester.pumpAndSettle();
+      expect(find.byType(TextField), findsNWidgets(5));
+    });
+  });
+
+  group('S012 Offer Detail', () {
+    testWidgets('renders offer from API', (tester) async {
+      await tester.pumpWidget(_wrapWithSingleOffer(
+        const OfferDetailScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          offerId: 'o-001',
+        ),
+        {
+          'id': 'o-001',
+          'need_id': 'n-001',
+          'provider_id': 'u-001',
+          'offered_price': '1500.00',
+          'currency': 'ETB',
+          'status': 'PENDING',
+          'proposal_message': 'I can deliver fast',
+          'provider': {'id': 'u-001', 'full_name': 'Abebe Provider'},
+        },
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+      expect(find.text(fgText('am', 'screenS012')), findsOneWidget);
+      expect(find.text('Abebe Provider'), findsOneWidget);
+      expect(find.text('1500.00 ETB'), findsOneWidget);
+    });
+
+    testWidgets('shows error when offerId empty', (tester) async {
+      await tester.pumpWidget(_wrapWithScope(
+        const OfferDetailScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          offerId: '',
+        ),
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+      expect(find.text(fgText('am', 'stateError')), findsOneWidget);
+    });
+  });
+
+  group('S013 My Offers', () {
+    testWidgets('renders list from /my/offers', (tester) async {
+      await tester.pumpWidget(_wrapWithMyOffers(
+        const MyOffersScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+        ),
+        [
+          {
+            'id': 'o-001',
+            'need_id': 'n-001',
+            'provider_id': 'u-001',
+            'offered_price': '1500.00',
+            'currency': 'ETB',
+            'status': 'PENDING',
+            'need': {'id': 'n-001', 'title': 'Need Alpha', 'status': 'OPEN'},
+          },
+        ],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+      expect(find.text(fgText('am', 'screenS013')), findsOneWidget);
+      expect(find.text('Need Alpha'), findsOneWidget);
+    });
+
+    testWidgets('shows empty state when no offers', (tester) async {
+      await tester.pumpWidget(_wrapWithMyOffers(
+        const MyOffersScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+        ),
+        const [],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+      expect(
+        find.text(fgText('am', 'stateEmptyOffers')),
+        findsAtLeastNWidgets(1),
+      );
+    });
+  });
+
+  group('S014 Compare Confirm', () {
+    testWidgets('renders offers with checkboxes', (tester) async {
+      await tester.pumpWidget(_wrapWithOffers(
+        const CompareConfirmScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: 'n-001',
+        ),
+        [
+          {
+            'id': 'o-001',
+            'need_id': 'n-001',
+            'provider_id': 'u-001',
+            'offered_price': '1500.00',
+            'currency': 'ETB',
+            'status': 'PENDING',
+            'provider': {'id': 'u-001', 'full_name': 'Abebe Provider'},
+          },
+          {
+            'id': 'o-002',
+            'need_id': 'n-001',
+            'provider_id': 'u-002',
+            'offered_price': '2000.00',
+            'currency': 'ETB',
+            'status': 'PENDING',
+            'provider': {'id': 'u-002', 'full_name': 'Sara Provider'},
+          },
+        ],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+      expect(find.text(fgText('am', 'screenS014')), findsOneWidget);
+      expect(find.text('Abebe Provider'), findsOneWidget);
+      expect(find.text('Sara Provider'), findsOneWidget);
+      expect(find.byType(CheckboxListTile), findsNWidgets(2));
+    });
+
+    testWidgets('confirm disabled until selection', (tester) async {
+      await tester.pumpWidget(_wrapWithOffers(
+        const CompareConfirmScreen(
+          localeCode: 'am',
+          onLocaleChange: _noop,
+          needId: 'n-001',
+        ),
+        [
+          {
+            'id': 'o-001',
+            'need_id': 'n-001',
+            'provider_id': 'u-001',
+            'offered_price': '1500.00',
+            'currency': 'ETB',
+            'status': 'PENDING',
+            'provider': {'id': 'u-001', 'full_name': 'Abebe Provider'},
+          },
+        ],
+      ));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pumpAndSettle();
+      final confirmBtn =
+          find.widgetWithText(OutlinedButton, fgText('am', 'confirm'));
+      expect(confirmBtn, findsOneWidget);
+      expect(tester.widget<OutlinedButton>(confirmBtn).onPressed, isNull);
+    });
+  });
 }
 
 void _noop(String _) {}
@@ -827,6 +1018,91 @@ Widget _wrapWithOffers(Widget child, List<Map<String, dynamic>> offers) {
   final mockClient = MockClient((request) async {
     final path = request.url.path;
     if (path.contains('/offers')) {
+      return http.Response(body, 200,
+          headers: {'content-type': 'application/json'});
+    }
+    return http.Response(
+      '{"success":false,"error":{"code":"NOT_FOUND","message":"stub"}}',
+      404,
+    );
+  });
+  final apiClient = ApiClient(
+    httpClient: mockClient,
+    tokenStore: _FakeTokenStore(),
+  );
+  final authApi = AuthApi(apiClient);
+  final needsApi = NeedsApi(apiClient);
+  final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
+  final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
+  return MaterialApp(
+    theme: FgTheme.light(),
+    home: AppScope(
+      client: apiClient,
+      authApi: authApi,
+      needsApi: needsApi,
+      boostApi: boostApi,
+      offersApi: offersApi,
+      authState: authState,
+      child: child,
+    ),
+  );
+}
+
+/// Wrap with a mock that serves a single offer at /offers/{id} (S012).
+Widget _wrapWithSingleOffer(Widget child, Map<String, dynamic> offer) {
+  final body = jsonEncode({
+    'success': true,
+    'data': offer,
+    'message': 'Offer retrieved.',
+  });
+  final mockClient = MockClient((request) async {
+    if (request.url.path.contains('/offers/')) {
+      return http.Response(body, 200,
+          headers: {'content-type': 'application/json'});
+    }
+    return http.Response(
+      '{"success":false,"error":{"code":"NOT_FOUND","message":"stub"}}',
+      404,
+    );
+  });
+  final apiClient = ApiClient(
+    httpClient: mockClient,
+    tokenStore: _FakeTokenStore(),
+  );
+  final authApi = AuthApi(apiClient);
+  final needsApi = NeedsApi(apiClient);
+  final boostApi = BoostApi(apiClient);
+  final offersApi = OffersApi(apiClient);
+  final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
+  return MaterialApp(
+    theme: FgTheme.light(),
+    home: AppScope(
+      client: apiClient,
+      authApi: authApi,
+      needsApi: needsApi,
+      boostApi: boostApi,
+      offersApi: offersApi,
+      authState: authState,
+      child: child,
+    ),
+  );
+}
+
+/// Wrap with a mock that serves /my/offers paginated (S013).
+Widget _wrapWithMyOffers(Widget child, List<Map<String, dynamic>> offers) {
+  final body = jsonEncode({
+    'success': true,
+    'data': offers,
+    'meta': {
+      'page': 1,
+      'per_page': 20,
+      'total': offers.length,
+      'has_more': false,
+    },
+  });
+  final mockClient = MockClient((request) async {
+    if (request.url.path.endsWith('/my/offers')) {
       return http.Response(body, 200,
           headers: {'content-type': 'application/json'});
     }

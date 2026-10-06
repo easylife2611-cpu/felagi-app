@@ -57,6 +57,9 @@ class ApiConfig {
   static String offerReject(String id) => '/offers/$id/reject';
   static String offerWithdraw(String id) => '/offers/$id/withdraw';
 
+  // ── Comparisons (auth) — L355 ──
+  static String needComparisons(String needId) => '/needs/$needId/comparisons';
+
   // ── Profile ──
   static const String profileUpdate = '/profile';
 
