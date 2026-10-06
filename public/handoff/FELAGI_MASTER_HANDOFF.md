@@ -1,4 +1,4 @@
-# FELAGI — MASTER SOURCE OF TRUTH v1.7
+# FELAGI — MASTER SOURCE OF TRUTH v1.8
 
 **Generated:** 2026-10-05 (post-L354 + G05-CI)
 **HEAD:** 4e58ef7
@@ -18,7 +18,7 @@
 | Canonical screens | 46 (23+23) |
 | Real screens | 10 user |
 | Placeholder screens | 36 |
-| Production PASS | G05 IN-PROGRESS (G07, G09 blocked) |
+| Production PASS | G05 Flutter | ✅ MET | —
 
 ---
 
@@ -2139,3 +2139,17 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - Result: 162 passed (320 assertions)
 - Failures: 0
 - Duration: 8.52s
+
+---
+
+## 🎉 APK RELEASE v1.4.3-L354 (2026-10-06)
+
+**G05 FLUTTER GATE: ✅ MET**
+
+- APK: https://zagcreativity.com/downloads/apk/Felagi_L354_c433295-debug.apk
+- SHA256: `a469bfaf6a698b444d1d59c96bfb390399909d7ebc77a2168fe9766896fb1fa2`
+- Size: 160510615 bytes (153.07 MB)
+- Verified: HTTP/2 200 OK
+- Build: Codemagic #1 · Commit `c433295`
+
+**NEXT:** L355 — 4 user screens (S011, S012, S013, S014)

@@ -1,4 +1,4 @@
-# FELAGI — MASTER SOURCE OF TRUTH v1.7
+# FELAGI — MASTER SOURCE OF TRUTH v1.8
 
 **Generated:** 2026-10-05 (post-L354 + G05-CI)
 **HEAD:** 4e58ef7
@@ -18,7 +18,7 @@
 | Canonical screens | 46 (23+23) |
 | Real screens | 10 user |
 | Placeholder screens | 36 |
-| Production PASS | G05 IN-PROGRESS (G07, G09 blocked) |
+| Production PASS | G05 Flutter | ✅ MET | —
 
 ---
 
@@ -134,7 +134,7 @@ _✅ Done in L354: S006 · S007 · S009 · S010_
 | G02 Design completeness | ✅ MET | — |
 | G03 Brand source | ✅ MET | — |
 | G04 Browser/responsive | ✅ MET | — |
-| G05 Flutter | 🔴 BLOCKED | Android SDK |
+| G05 Flutter | ✅ MET | Codemagic APK published |
 | G06 Service/security | 🟡 PARTIAL+ | — |
 | G07 Monetization | 🟡 REQUIRES_EVIDENCE | Chapa live |
 | G08 Localization | ✅ MET | — |
@@ -535,7 +535,7 @@ GAP-04, GAP-06, GAP-12, GAP-13, GAP-14, GAP-20, GAP-21, GAP-32
 | G02 Design completeness | MET | — | — |
 | G03 Brand source | MET | — | — |
 | G04 Browser/responsive/AT | BLOCKED | No Chromium | Install browser + device |
-| G05 Flutter | BLOCKED | No Flutter SDK | Install Flutter SDK |
+| G05 Flutter | ✅ MET | APK published |
 | G06 Service/security | PARTIAL+ | Payment/AI/Telegram live | Provider credentials |
 | G07 Monetization health | REQUIRES_EVIDENCE | No data | Measure baseline |
 | G08 Localization/usability | SOURCE MET / RUNTIME PENDING | No device | Amharic QA |
@@ -737,7 +737,7 @@ No duplicate ownership | DONE = verified + documented + evidenced
 ### Missing (Production PASS)
 
 - [ ] G04: Browser/AT
-- [ ] G05: Flutter compilation
+- [x] G05: Flutter compilation (✅ MET 2026-10-06)
 - [ ] G06: Payment/AI/Telegram live
 - [ ] G07: Marketplace baseline
 - [ ] G08: Amharic runtime
@@ -2139,3 +2139,18 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 - Result: 162 passed (320 assertions)
 - Failures: 0
 - Duration: 8.52s
+
+---
+
+## 📦 APK RELEASE — v1.4.3-L354 (2026-10-06)
+
+| Item | Value |
+|------|-------|
+| **APK URL** | https://zagcreativity.com/downloads/apk/Felagi_L354_c433295-debug.apk |
+| **SHA256 URL** | https://zagcreativity.com/downloads/apk/Felagi_L354_c433295-debug.apk.sha256 |
+| **SHA256** | `a469bfaf6a698b444d1d59c96bfb390399909d7ebc77a2168fe9766896fb1fa2` |
+| **Size** | 160510615 bytes (153.07 MB) |
+| **Build** | Codemagic #1 · `6ac416947394575b200b7ea4` |
+| **Commit** | `c433295` |
+| **Status** | ✅ PUBLISHED (HTTP/2 200 OK) |
+| **G05 Gate** | ✅ MET |
