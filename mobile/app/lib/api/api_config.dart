@@ -29,6 +29,7 @@ class ApiConfig {
 
   // ── Auth endpoints ──
   static const String authTelegramStart = '/auth/telegram/start';
+  static const String authTelegramWidgetStart = '/auth/telegram/widget/start';
   static const String authTelegramExchange = '/auth/telegram/exchange';
   static const String authLogout = '/auth/logout';
   static const String authMe = '/auth/me';

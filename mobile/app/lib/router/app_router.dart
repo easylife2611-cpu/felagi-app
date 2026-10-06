@@ -86,6 +86,21 @@ class AppRouter {
   GoRouter build() {
     return GoRouter(
       initialLocation: '/welcome',
+      // Telegram Widget callback lands with malformed URL like:
+      //   https://zagcreativity.com/test/tgAuthResult=...
+      // Redirect it to /auth/telegram so the screen can handle the widget data.
+      redirect: (context, state) {
+        final loc = state.uri.toString();
+        if (loc.contains('tgAuthResult=')) {
+          return '/auth/telegram';
+        }
+        return null;
+      },
+      // Any unmatched route → show Telegram sign-in (which will decode the widget).
+      errorBuilder: (context, state) => TelegramSignInScreen(
+        localeCode: localeCode,
+        onLocaleChange: onLocaleChange,
+      ),
       routes: [
         GoRoute(
           path: '/welcome',

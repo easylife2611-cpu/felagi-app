@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:felagi_design_system/felagi_design_system.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -34,17 +36,62 @@ class TelegramSignInScreen extends StatefulWidget {
 enum _AuthState { ready, opening, awaiting, exchanging, denied, expired }
 
 class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
+  /// Static set survives screen rebuilds (router is rebuilt on auth state change).
+  /// Prevents double-exchange of the same handoff_code → 'already used' error.
+  static final Set<String> _globallyExchangedCodes = {};
   _AuthState _state = _AuthState.ready;
   String? _error;
   final _handoffCtrl = TextEditingController();
+  String? _widgetState;
+  Timer? _readyTimer;
 
   String _t(String key) => fgText(widget.localeCode, key);
 
   @override
   void initState() {
     super.initState();
-    // Web: capture handoff_code from current URL if present
-    WidgetsBinding.instance.addPostFrameCallback((_) => _captureFromUri());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _captureWhenReady();
+    });
+  }
+
+  /// Wait for authState bootstrap via listener (non-blocking).
+  ///
+  /// Web-only: URL-based capture (handoff_code/tgAuthResult in URI).
+  /// Mobile: manual paste fallback — no URI capture needed.
+  void _captureWhenReady() {
+    if (!mounted) return;
+
+    // Mobile/tests: no URL capture — skip the timer entirely.
+    if (!kIsWeb) {
+      return;
+    }
+
+    try {
+      final authState = AppScope.of(context).authState;
+      if (authState.isReady) {
+        _captureFromUri();
+        return;
+      }
+      void onReady() {
+        if (authState.isReady && mounted) {
+          authState.removeListener(onReady);
+          _readyTimer?.cancel();
+          _captureFromUri();
+        }
+      }
+      authState.addListener(onReady);
+      // Safety fallback — Timer (cancellable in dispose)
+      _readyTimer = Timer(const Duration(seconds: 2), () {
+        authState.removeListener(onReady);
+        if (mounted && !authState.isReady) {
+          _captureFromUri();
+        }
+      });
+    } catch (_) {
+      // AppScope unavailable — try immediately
+      _captureFromUri();
+    }
   }
 
   @override
@@ -55,10 +102,91 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
 
   void _captureFromUri() {
     final uri = Uri.base;
+    final fullUrl = uri.toString();
+
+    // 1. Telegram Widget result — fragment OR full URL contains tgAuthResult
+    if (fullUrl.contains('tgAuthResult=')) {
+      final idx = fullUrl.indexOf('tgAuthResult=');
+      final fragment = fullUrl.substring(idx);
+      _handleWidgetResult(fragment);
+      return;
+    }
+
+    // 2. Back from widget callback: query contains handoff_code=X
     final code = uri.queryParameters['handoff_code'];
     if (code != null && code.isNotEmpty) {
+      // authState is now bootstrapped (waited in initState) — safe to check.
+      try {
+        final authState = AppScope.of(context).authState;
+        if (authState.isAuthenticated) {
+          // Already logged in — nothing to do; URL will be cleaned on next nav.
+          return;
+        }
+      } catch (_) {}
+      // Skip if already exchanged in this VM
+      if (_globallyExchangedCodes.contains(code)) {
+        return;
+      }
+      _globallyExchangedCodes.add(code);
       _handoffCtrl.text = code;
       _exchange(code);
+      return;
+    }
+
+    // 3. Widget state carried through the flow
+    final ws = uri.queryParameters['widget_state'];
+    if (ws != null && ws.isNotEmpty) {
+      _widgetState = ws;
+    }
+  }
+
+  /// Decode Telegram Widget fragment (#tgAuthResult=`<base64url-json>`)
+  /// and navigate to backend widget callback with query params.
+  Future<void> _handleWidgetResult(String fragment) async {
+    try {
+      final idx = fragment.indexOf('tgAuthResult=');
+      final b64 = fragment
+          .substring(idx + 'tgAuthResult='.length)
+          .split('&')
+          .first;
+      final normalized = base64Url.normalize(b64);
+      final decoded = utf8.decode(base64Url.decode(normalized));
+      final payload = jsonDecode(decoded) as Map<String, dynamic>;
+
+      final state = _widgetState ?? Uri.base.queryParameters['widget_state'];
+      if (state == null || state.isEmpty) {
+        setState(() {
+          _error = 'Missing widget state';
+          _state = _AuthState.ready;
+        });
+        return;
+      }
+
+      final callbackUrl = Uri.parse(
+        'https://zagcreativity.com/api/v1/auth/telegram/widget/callback',
+      ).replace(queryParameters: {
+        'state': state,
+        'id': payload['id'].toString(),
+        'first_name': (payload['first_name'] ?? '').toString(),
+        'last_name': (payload['last_name'] ?? '').toString(),
+        'username': (payload['username'] ?? '').toString(),
+        'photo_url': (payload['photo_url'] ?? '').toString(),
+        'auth_date': (payload['auth_date'] ?? '').toString(),
+        'hash': (payload['hash'] ?? '').toString(),
+      });
+
+      // Same-tab navigation so backend 302 returns to /test/?handoff_code=X
+      await launchUrl(
+        callbackUrl,
+        mode: LaunchMode.platformDefault,
+        webOnlyWindowName: '_self',
+      );
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _error = 'Widget parse error: $e';
+        _state = _AuthState.ready;
+      });
     }
   }
 
@@ -70,13 +198,42 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
 
     try {
       final scope = AppScope.of(context);
-      final start = await scope.authApi.startTelegram(
-        returnUri: scope.appConfig.telegramReturnUri,
-        scope: 'openid profile',
+      // Login Widget flow (BotFather "Web Login" currently Widget mode).
+      // 1. Get callback_url + state from backend
+      // 2. Navigate to oauth.telegram.org/auth with return_to=<frontend?widget_state=X>
+      // 3. Telegram redirects back with #tgAuthResult=<base64>
+      // 4. _captureFromUri decodes it, navigates to backend callback
+      // 5. Backend redirects to /test/?handoff_code=X
+      // 6. _captureFromUri exchanges handoff_code for token
+      final baseReturnUri = kIsWeb
+          ? Uri.base.toString().split('#').first.split('?').first
+          : scope.appConfig.telegramReturnUri;
+
+      final start = await scope.authApi.startTelegramWidget(
+        returnUri: baseReturnUri,
       );
 
-      final uri = Uri.parse(start.authUrl);
-      final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      final callbackUrl = start['callback_url'] as String;
+      final cbUri = Uri.parse(callbackUrl);
+      final state = cbUri.queryParameters['state'];
+      _widgetState = state;
+
+      // Build frontend return URL with widget_state carried forward
+      final frontendReturn = '$baseReturnUri?widget_state=$state';
+
+      // Build Telegram Widget redirect URL
+      // bot_id = numeric bot id from .env TELEGRAM_CLIENT_ID
+      final telegramUrl = Uri.https('oauth.telegram.org', '/auth', {
+        'bot_id': '8629327448',
+        'origin': 'zagcreativity.com',
+        'return_to': frontendReturn,
+      });
+
+      final ok = await launchUrl(
+        telegramUrl,
+        mode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
+        webOnlyWindowName: '_self',
+      );
       if (!mounted) return;
 
       if (!ok) {
@@ -105,6 +262,14 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
 
   Future<void> _exchange(String code) async {
     if (code.isEmpty) return;
+
+    // If already authenticated (e.g. from a prior exchange in a previous VM),
+    // skip the network call — the token is already stored.
+    final authState = AppScope.of(context).authState;
+    if (authState.isAuthenticated) {
+      return;
+    }
+
     setState(() {
       _state = _AuthState.exchanging;
       _error = null;
@@ -230,7 +395,13 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
                     FgButton(
                       label: _t('confirm'),
                       variant: FgButtonVariant.secondary,
-                      onPressed: () => _exchange(_handoffCtrl.text.trim()),
+                      onPressed: () {
+                        final c = _handoffCtrl.text.trim();
+                        if (c.isNotEmpty && !_globallyExchangedCodes.contains(c)) {
+                          _globallyExchangedCodes.add(c);
+                          _exchange(c);
+                        }
+                      },
                     ),
                   ],
                 ],

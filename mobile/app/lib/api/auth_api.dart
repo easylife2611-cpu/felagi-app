@@ -30,6 +30,22 @@ class AuthApi {
     );
   }
 
+
+  /// POST /auth/telegram/widget/start — Login Widget flow.
+  ///
+  /// Body: `return_uri` (required URL).
+  /// Response: `{bot_username, callback_url, attempt_id, expires_at}`.
+  Future<Map<String, dynamic>> startTelegramWidget({
+    required String returnUri,
+  }) async {
+    final data = await _client.post(
+      ApiConfig.authTelegramWidgetStart,
+      authenticated: false,
+      body: {'return_uri': returnUri},
+    );
+    return (data as Map).cast<String, dynamic>();
+  }
+
   /// POST /auth/telegram/exchange
   ///
   /// Body: `handoff_code` (required) + optional `device_name`.
