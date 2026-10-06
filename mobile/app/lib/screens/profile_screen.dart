@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:felagi_design_system/felagi_design_system.dart';
+import 'package:go_router/go_router.dart';
+
+import '../app_scope.dart';
 
 /// S003 — Profile setup / edit.
 ///
@@ -49,6 +52,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
+  Future<void> _logout() async {
+    try {
+      await AppScope.of(context).authState.signOut();
+    } catch (_) {}
+    if (!mounted) return;
+    context.go('/welcome');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +103,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     label: _t('save'),
                     isLoading: _saving,
                     onPressed: _saving ? null : _save,
+                  ),
+                  const SizedBox(height: FgTokens.space6),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.list_alt),
+                    title: Text(_t('screenS009')),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => context.push('/my/needs'),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.local_offer_outlined),
+                    title: Text(_t('screenS013')),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => context.push('/my/offers'),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.notifications_outlined),
+                    title: Text(_t('screenS018')),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => context.push('/notifications'),
+                  ),
+                  const SizedBox(height: FgTokens.space4),
+                  FgButton(
+                    label: _t('logout'),
+                    variant: FgButtonVariant.secondary,
+                    onPressed: _logout,
                   ),
                 ],
               ),

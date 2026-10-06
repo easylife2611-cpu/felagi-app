@@ -20,6 +20,9 @@ import '../screens/ai_comparison_screen.dart';
 import '../screens/comparison_history_screen.dart';
 import '../screens/messages_screen.dart';
 import '../screens/notifications_screen.dart';
+import '../screens/rating_screen.dart';
+import '../screens/report_screen.dart';
+import '../screens/telegram_status_screen.dart';
 import '../screens/placeholder_screen.dart';
 
 /// Central route map for all 46 canonical Felagi screens.
@@ -269,6 +272,35 @@ class AppRouter {
             localeCode: localeCode,
           ),
         ),
+        // ── L357: S020 Rating ──
+        GoRoute(
+          path: '/needs/:id/rating',
+          builder: (context, state) => RatingScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+            needId: state.pathParameters['id'] ?? '',
+            toUserId: state.uri.queryParameters['to_user_id'],
+          ),
+        ),
+        // ── L357: S021 Report ──
+        GoRoute(
+          path: '/support/report',
+          builder: (context, state) => ReportScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+            entityType: state.uri.queryParameters['entity_type'],
+            entityId: state.uri.queryParameters['entity_id'],
+          ),
+        ),
+        // ── L357: S022 Telegram Status ──
+        GoRoute(
+          path: '/needs/:id/publications',
+          builder: (context, state) => TelegramStatusScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+            needId: state.pathParameters['id'] ?? '',
+          ),
+        ),
         for (final s in screens.where(
             (s) =>
                 s.id != 'S001' &&
@@ -289,7 +321,11 @@ class AppRouter {
                 s.id != 'S016' &&
                 s.id != 'S017' &&
                 s.id != 'S018' &&
-                s.id != 'S019'))
+                s.id != 'S019' &&
+                s.id != 'S020' &&
+                s.id != 'S021' &&
+                s.id != 'S022' &&
+                s.id != 'S023'))
           GoRoute(
             path: s.path,
             builder: (context, state) => PlaceholderScreen(

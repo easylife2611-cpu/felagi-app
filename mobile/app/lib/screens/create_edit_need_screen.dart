@@ -331,6 +331,13 @@ class _CreateEditNeedScreenState extends State<CreateEditNeedScreen> {
           const SizedBox(height: FgTokens.space3),
 
           FgButton(
+            label: _t('screenS006'),
+            variant: FgButtonVariant.secondary,
+            onPressed: () => context.push('/needs/new/public-preview'),
+          ),
+          const SizedBox(height: FgTokens.space3),
+
+          FgButton(
             label: _t('cancel'),
             variant: FgButtonVariant.secondary,
             onPressed: () => Navigator.of(context).maybePop(),

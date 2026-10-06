@@ -682,5 +682,6 @@
   "sendMessage": "Send message",
   "messageUncertain": "Delivery is unconfirmed. Your draft is retained. Refresh messages before trying again.",
   "draftSaveFailed": "Draft could not be saved on this device. Copy it before leaving.",
-  "compareAllEligible": "All eligible Offers will be compared. The final choice remains yours."
+  "compareAllEligible": "All eligible Offers will be compared. The final choice remains yours.",
+  "logout": "Logout"
 }

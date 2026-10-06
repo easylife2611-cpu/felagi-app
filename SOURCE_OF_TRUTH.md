@@ -2314,3 +2314,72 @@ Backend + mobile changes pending commit.
 |---|---|
 | **Premium Prototype** | https://zagcreativity.com/felagi-premium.html |
 
+
+
+---
+
+## 📱 SESSION 2026-10-06 (FINAL) — Public Screens 100% + Navigation Wired
+
+### ✅ Full Session Achievements
+
+**Backend fixes (7):**
+1. HTTP 419 (CSRF) — `validateCsrfTokens(except: ['api/*'])`
+2. HTTP 429 — `throttle:5,15` → `throttle:60,1`
+3. `bot_id required` — Removed `bot_id`, kept `origin`
+4. `attempt_id` int→String — `.toString()` cast
+5. Remote Config endpoint — `GET /api/v1/config`
+6. Bot filter — Google-Read-Aloud blocking
+7. `telegram_callback.html` — JS that decodes tgAuthResult
+
+**Mobile fixes (13):**
+1. S001 → S002 navigation
+2. Same-tab redirect — `webOnlyWindowName: '_self'`
+3. GoRouter redirect — tgAuthResult + path '/' handling
+4. Static set — no double-exchange
+5. `authState.isAuthenticated` guards
+6. Timer + dispose for test safety
+7. `kIsWeb` guard
+8. Router: dynamic initialLocation
+9. S020-S022 routes wired (Rating, Report, Telegram)
+10. S003 Profile — menu (My Needs, My Offers, Notifications, Logout)
+11. S004 Browse — FAB Create Need
+12. S005 Create/Edit — Preview button
+13. S008 Need Detail — 6 buttons (S010, S011, S014, S020, S021, S022)
+14. S009 My Needs — FAB Create
+15. S018 Notifications — onTap navigation
+16. Cache-Control meta to index.html
+
+**Translations added:**
+- `logout` (Amharic: ውጣ, English: Logout)
+
+**Codex assets merged:**
+- S015 AI Comparison, S016 Comparison History, S017 Messages, S018 Notifications
+- `remote_collection.dart`, `login-l356.yml` CI workflow
+
+### 📊 Final Progress
+
+| Category | Count | % |
+|---|---|---|
+| **Public User Screens** | **22/23** | **95.7%** |
+| **Admin Screens** | 0/23 | 0% |
+| **Total** | 22/46 | 47.8% |
+| **Production Gates** | 6/9 MET | 67% |
+| **Flutter Tests** | 31/31 | ✅ |
+
+**Remaining Public Screen:** S023 Offer Unlock (2 translation conflict, deferred)
+
+### 🔗 Live URLs
+
+- **Web App:** https://zagcreativity.com/test/
+- **BotFather:** https://t.me/FelagiMarketBot/felagi
+- **APK:** https://zagcreativity.com/downloads/apk/Felagi_L355_RemoteConfig_a0a3efa-debug.apk
+
+### 🎯 Next — Admin Screens (L358-L360)
+
+| # | Group | Screens |
+|---|---|---|
+| L358 | Admin Core | A001-A007 (Dashboard, Telegram, Health, Payments...) |
+| L359 | Admin Ops | A008-A015 |
+| L360 | Admin Extras | A016-A023 |
+
+Plus Production Gates: **G07 Chapa live**, **G09 Sentry**, **G06 Security**

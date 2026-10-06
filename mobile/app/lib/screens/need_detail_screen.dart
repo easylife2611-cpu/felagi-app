@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:felagi_design_system/felagi_design_system.dart';
+import 'package:go_router/go_router.dart';
 
 import '../api/api_exception.dart';
 import '../api/models/need.dart';
@@ -244,6 +245,79 @@ class _NeedDetailScreenState extends State<NeedDetailScreen> {
             FgStatusBadge(
               label: n.status,
               kind: FgStatusKind.neutral,
+            ),
+          ],
+
+          // ── S020 Rating (only when COMPLETED) ──
+          if (n.status == 'COMPLETED') ...[
+            const SizedBox(height: FgTokens.space6),
+            FgButton(
+              label: _t('screenS020'),
+              variant: FgButtonVariant.secondary,
+              onPressed: () {
+                final toUser = n.isOwner ? '' : (n.requesterId ?? '');
+                context.push(
+                  '/needs/${widget.needId}/rating'
+                  '${toUser.isNotEmpty ? '?to_user_id=$toUser' : ''}',
+                );
+              },
+            ),
+          ],
+
+          // ── S010 View Offers (owner only) ──
+          if (n.isOwner) ...[
+            const SizedBox(height: FgTokens.space3),
+            FgButton(
+              label: _t('cardOfferCount'),
+              variant: FgButtonVariant.secondary,
+              onPressed: () => context.push(
+                '/needs/${widget.needId}/offers',
+              ),
+            ),
+          ],
+
+          // ── S011 Submit Offer (non-owner, open need) ──
+          if (!n.isOwner && n.isOpen) ...[
+            const SizedBox(height: FgTokens.space3),
+            FgButton(
+              label: _t('screenS011'),
+              onPressed: () => context.push(
+                '/needs/${widget.needId}/offers/new',
+              ),
+            ),
+          ],
+
+          // ── S014 Compare (owner with offers) ──
+          if (n.isOwner && n.offerCount > 0) ...[
+            const SizedBox(height: FgTokens.space3),
+            FgButton(
+              label: _t('screenS014'),
+              variant: FgButtonVariant.secondary,
+              onPressed: () => context.push(
+                '/needs/${widget.needId}/compare',
+              ),
+            ),
+          ],
+
+          // ── S021 Report ──
+          const SizedBox(height: FgTokens.space3),
+          FgButton(
+            label: _t('screenS021'),
+            variant: FgButtonVariant.secondary,
+            onPressed: () => context.push(
+              '/support/report?entity_type=NEED&entity_id=${widget.needId}',
+            ),
+          ),
+
+          // ── S022 Telegram Status (owner only) ──
+          if (n.isOwner) ...[
+            const SizedBox(height: FgTokens.space3),
+            FgButton(
+              label: _t('screenS022'),
+              variant: FgButtonVariant.secondary,
+              onPressed: () => context.push(
+                '/needs/${widget.needId}/publications',
+              ),
             ),
           ],
         ],

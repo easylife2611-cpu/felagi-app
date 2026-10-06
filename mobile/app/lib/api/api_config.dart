@@ -67,6 +67,21 @@ class ApiConfig {
   static const String notifications = '/notifications';
   static String notificationRead(String id) => '/notifications/$id/read';
 
+  // ── L357: S020 Rating ──
+  static String ratingStore(String needId) => '/needs/$needId/ratings';
+
+  // ── L357: S021 Report ──
+  static const String reportStore = '/reports';
+
+  // ── L357: S022 Telegram Status ──
+  static String telegramPublications(String needId) => '/needs/$needId/telegram-publications';
+  static String telegramPublicationStop(String needId) => '/needs/$needId/telegram-publication/stop';
+
+  // ── L357: S023 Offer Unlock (submit free/paid path) ──
+  static const String offerSubmissionStore = '/offer-submissions';
+  static String offerSubmissionShow(String id) => '/offer-submissions/$id';
+  static String offerSubmissionResume(String id) => '/offer-submissions/$id/resume';
+
   // ── Profile ──
   static const String profileUpdate = '/profile';
 

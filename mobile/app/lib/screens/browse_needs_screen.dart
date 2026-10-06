@@ -106,6 +106,11 @@ class _BrowseNeedsScreenState extends State<BrowseNeedsScreen> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.push('/needs/new'),
+        tooltip: _t('createNeed'),
+        child: const Icon(Icons.add),
+      ),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
