@@ -179,7 +179,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
       await launchUrl(
         callbackUrl,
         mode: LaunchMode.platformDefault,
-        webOnlyWindowName: '_self',
+        webOnlyWindowName: '_blank',
       );
     } catch (e) {
       if (!mounted) return;
@@ -219,7 +219,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
       _widgetState = state;
 
       // Build frontend return URL with widget_state carried forward
-      final frontendReturn = '$baseReturnUri?widget_state=$state';
+      final frontendReturn = 'https://zagcreativity.com/test/telegram_callback.html?widget_state=$state';
 
       // Build Telegram Widget redirect URL
       // bot_id = numeric bot id from .env TELEGRAM_CLIENT_ID

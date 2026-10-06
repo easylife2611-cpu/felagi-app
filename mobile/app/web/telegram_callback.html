@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Felagi - Debug</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: monospace; background: #0a1628; color: #fff; padding: 20px; font-size: 13px; word-break: break-all; }
+        .ok { color: #4ade80; }
+        .err { color: #f87171; }
+        .info { color: #fbbf24; }
+        .box { background: #1a2942; padding: 12px; border-radius: 8px; margin: 10px 0; }
+        h2 { color: #F7941D; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+<h2>FELAGI — Login Debug</h2>
+
+<div class="box">
+    <div class="info">Full URL:</div>
+    <pre id="fullUrl"></pre>
+</div>
+
+<div class="box">
+    <div class="info">Query params (search):</div>
+    <pre id="searchParams"></pre>
+</div>
+
+<div class="box">
+    <div class="info">Hash fragment:</div>
+    <pre id="hashContent"></pre>
+</div>
+
+<div class="box">
+    <div class="info">tgAuthResult found:</div>
+    <pre id="tgFound"></pre>
+</div>
+
+<div class="box">
+    <div class="info">Redirect target:</div>
+    <pre id="redirectTarget"></pre>
+</div>
+
+<div class="box">
+    <div class="info">Status:</div>
+    <div id="status" class="info">Initializing...</div>
+</div>
+
+<script>
+(function() {
+    try {
+        var fullUrl = window.location.href;
+        var search = window.location.search;
+        var hash = window.location.hash;
+
+        document.getElementById('fullUrl').textContent = fullUrl;
+        document.getElementById('searchParams').textContent = search || '(empty)';
+        document.getElementById('hashContent').textContent = hash || '(empty)';
+
+        var params = new URLSearchParams(search);
+        var widgetState = params.get('widget_state');
+
+        var tgAuthResult = null;
+        if (hash && hash.indexOf('tgAuthResult=') !== -1) {
+            tgAuthResult = hash.split('tgAuthResult=')[1].split('&')[0];
+        }
+
+        document.getElementById('tgFound').textContent =
+            'widgetState: ' + (widgetState || '(MISSING)') + '\n' +
+            'tgAuthResult: ' + (tgAuthResult ? tgAuthResult.substring(0, 40) + '...' : '(MISSING)');
+
+        if (!widgetState || !tgAuthResult) {
+            document.getElementById('status').className = 'err';
+            document.getElementById('status').textContent =
+                'ERROR: ' + (!widgetState ? 'no widget_state ' : '') + (!tgAuthResult ? 'no tgAuthResult' : '');
+            return;
+        }
+
+        // Decode base64url JSON
+        var b64 = tgAuthResult.replace(/-/g, '+').replace(/_/g, '/');
+        while (b64.length % 4) b64 += '=';
+        var json = decodeURIComponent(escape(atob(b64)));
+        var payload = JSON.parse(json);
+
+        var url = new URL('https://zagcreativity.com/api/v1/auth/telegram/widget/callback');
+        url.searchParams.set('state', widgetState);
+        url.searchParams.set('id', payload.id);
+        url.searchParams.set('first_name', payload.first_name || '');
+        url.searchParams.set('last_name', payload.last_name || '');
+        url.searchParams.set('username', payload.username || '');
+        url.searchParams.set('photo_url', payload.photo_url || '');
+        url.searchParams.set('auth_date', payload.auth_date);
+        url.searchParams.set('hash', payload.hash);
+
+        document.getElementById('redirectTarget').textContent = url.toString();
+        document.getElementById('status').className = 'ok';
+        document.getElementById('status').textContent = 'Redirecting to backend...';
+
+        setTimeout(function() {
+            window.location.replace(url.toString());
+        }, 2000);
+    } catch (e) {
+        document.getElementById('status').className = 'err';
+        document.getElementById('status').textContent = 'Error: ' + e.message;
+    }
+})();
+</script>
+</body>
+</html>

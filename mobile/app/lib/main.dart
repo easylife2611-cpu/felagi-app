@@ -81,6 +81,7 @@ class _FelagiAppState extends State<FelagiApp> {
           final router = AppRouter(
             localeCode: _localeCode,
             onLocaleChange: (c) => setState(() => _localeCode = c),
+            isAuthenticated: _authState.isAuthenticated,
           ).build();
 
           return MaterialApp.router(

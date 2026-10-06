@@ -229,6 +229,24 @@ class AuthController extends BaseApiController
      */
     public function telegramWidgetCallback(Request $request): JsonResponse|RedirectResponse
     {
+        // ── Bot filter — prevent crawlers from consuming one-time attempts ──
+        $ua = strtolower((string) $request->userAgent());
+        $botPatterns = [
+            'bot', 'crawler', 'spider', 'read-aloud', 'googlebot',
+            'bingbot', 'yandexbot', 'duckduckbot', 'baiduspider',
+            'facebookexternalhit', 'twitterbot', 'slackbot',
+            'whatsapp', 'telegrambot', 'preview', 'scraper',
+        ];
+        foreach ($botPatterns as $pattern) {
+            if ($ua !== '' && str_contains($ua, $pattern)) {
+                \Illuminate\Support\Facades\Log::warning('Widget callback: bot filtered', [
+                    'ua' => $ua,
+                    'ip' => $request->ip(),
+                ]);
+                return $this->error('BOT_BLOCKED', 'Bot access denied.', 403);
+            }
+        }
+
         $state = $request->query('state');
         if (!$state) {
             return $this->error('INVALID_CALLBACK', 'Missing state.', 400);

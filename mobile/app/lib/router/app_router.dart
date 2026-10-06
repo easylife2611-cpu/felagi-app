@@ -26,10 +26,12 @@ class AppRouter {
   AppRouter({
     required this.localeCode,
     required this.onLocaleChange,
+    this.isAuthenticated = false,
   });
 
   final String localeCode;
   final ValueChanged<String> onLocaleChange;
+  final bool isAuthenticated;
 
   static const List<({String path, String id, String titleKey})> screens = [
     // ── User screens (S001–S023) ──
@@ -85,15 +87,29 @@ class AppRouter {
 
   GoRouter build() {
     return GoRouter(
-      initialLocation: '/welcome',
+      initialLocation: isAuthenticated ? '/browse' : '/welcome',
       // Telegram Widget callback lands with malformed URL like:
       //   https://zagcreativity.com/test/tgAuthResult=...
       // Redirect it to /auth/telegram so the screen can handle the widget data.
       redirect: (context, state) {
         final loc = state.uri.toString();
+        final path = state.uri.path;
+
+        // Telegram widget auth result → route to sign-in screen
         if (loc.contains('tgAuthResult=')) {
           return '/auth/telegram';
         }
+
+        // Root path (from /test/?handoff_code=X) — resolve by auth state
+        if (path == '/' || path.isEmpty) {
+          return isAuthenticated ? '/browse' : '/welcome';
+        }
+
+        // Authenticated users must not stay on welcome/sign-in
+        if (isAuthenticated && (path == '/welcome' || path == '/auth/telegram')) {
+          return '/browse';
+        }
+
         return null;
       },
       // Any unmatched route → show Telegram sign-in (which will decode the widget).
