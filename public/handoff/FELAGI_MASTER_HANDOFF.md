@@ -2191,3 +2191,98 @@ S015-S018
 
 ### Pending Commits
 Backend + mobile uncommitted.
+
+
+---
+
+## 🌐 URLS & LINKS REGISTRY (2026-10-06)
+
+### 📦 Published Assets
+
+| Asset | URL | Size | Status |
+|---|---|---|---|
+| **APK (L354)** | https://zagcreativity.com/downloads/apk/Felagi_L354_c433295-debug.apk | 153.07 MB | ✅ |
+| **APK SHA256 (L354)** | https://zagcreativity.com/downloads/apk/Felagi_L354_c433295-debug.apk.sha256 | 116 B | ✅ |
+| **APK (L355)** | https://zagcreativity.com/downloads/apk/Felagi_L355_f0ee208-debug.apk | 153.09 MB | ✅ |
+| **APK (Remote Config)** | https://zagcreativity.com/downloads/apk/Felagi_L355_RemoteConfig_a0a3efa-debug.apk | 153.09 MB | ✅ |
+
+### 🌐 Flutter Web Test
+
+| Purpose | URL |
+|---|---|
+| **Web App (test)** | https://zagcreativity.com/test/ |
+| **Live preview** | https://zagcreativity.com/test/index.html |
+
+### 🤖 Telegram Bot
+
+| Item | URL / Value |
+|---|---|
+| **Bot Username** | @FelagiMarketBot |
+| **Bot ID** | 8629327448 |
+| **Web App Link** | https://t.me/FelagiMarketBot/felagi |
+| **Short Name** | felagi |
+| **Web Login Domain** | zagcreativity.com |
+| **Mode** | Login Widget |
+
+### 🎨 BotFather Assets
+
+| Asset | URL | Size |
+|---|---|---|
+| **Logo (1024×1024)** | https://zagcreativity.com/felagi_logo_1024.png | 257 KB |
+| **Web App Photo (640×360)** | https://zagcreativity.com/felagi_webapp.png | 75 KB |
+| **Demo GIF (640×360)** | https://zagcreativity.com/felagi_demo.gif | 276 KB |
+
+### 🔧 Backend API
+
+| Endpoint | URL | Auth |
+|---|---|---|
+| **Health** | https://zagcreativity.com/api/v1/health | Public |
+| **Config** | https://zagcreativity.com/api/v1/config | Public |
+| **Categories** | https://zagcreativity.com/api/v1/categories | Public |
+| **Needs** | https://zagcreativity.com/api/v1/needs | Public |
+| **Telegram Start (OIDC)** | https://zagcreativity.com/api/v1/auth/telegram/start | Public |
+| **Telegram Start (Widget)** | https://zagcreativity.com/api/v1/auth/telegram/widget/start | Public |
+| **Telegram Widget Callback** | https://zagcreativity.com/api/v1/auth/telegram/widget/callback | Public |
+| **Telegram Exchange** | https://zagcreativity.com/api/v1/auth/telegram/exchange | Public |
+| **Auth Me** | https://zagcreativity.com/api/v1/auth/me | Bearer |
+| **Auth Logout** | https://zagcreativity.com/api/v1/auth/logout | Bearer |
+| **My Needs** | https://zagcreativity.com/api/v1/my/needs | Bearer |
+| **My Offers** | https://zagcreativity.com/api/v1/my/offers | Bearer |
+| **Need Offers** | https://zagcreativity.com/api/v1/needs/{id}/offers | Bearer |
+
+### 💻 Source Repositories
+
+| Item | URL |
+|---|---|
+| **GitHub Main** | https://github.com/easylife2611-cpu/felagi-app |
+| **Actions** | https://github.com/easylife2611-cpu/felagi-app/actions |
+| **Branch** | https://github.com/easylife2611-cpu/felagi-app/tree/feature/ai-guided-need-creation |
+| **HEAD** | https://github.com/easylife2611-cpu/felagi-app/tree/8635ad6 |
+| **Codemagic** | https://codemagic.io/apps |
+
+### 🖥️ Server Infrastructure
+
+| Item | Value |
+|---|---|
+| **Public IP** | 192.250.229.80 |
+| **Hostname** | s3145.fra1.stableserver.net |
+| **SSH User** | zagcreht |
+| **APK Folder** | /home/zagcreht/felagi_app/public/downloads/apk/ |
+| **Test Folder** | /home/zagcreht/felagi_app/public/test/ |
+
+### 🔑 Credentials (.env — private)
+
+| Key | Purpose |
+|---|---|
+| TELEGRAM_CLIENT_ID | Bot ID = OIDC client_id |
+| TELEGRAM_CLIENT_SECRET | OIDC secret |
+| TELEGRAM_BOT_TOKEN | Bot API token |
+| CHAPA_SECRET_KEY | Chapa payment |
+| GEMINI_API_KEY | AI comparison |
+
+### 📸 Brand Preview
+
+| Item | URL |
+|---|---|
+| **Premium Prototype** | https://zagcreativity.com/felagi-premium.html |
+
