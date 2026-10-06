@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:felagi_design_system/felagi_design_system.dart';
+import 'package:go_router/go_router.dart';
 
 /// S001 — Welcome (canonical Felagi entry screen).
 ///
@@ -57,11 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                   FgButton(
                     label: _t('signIn'),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(_t('simulation'))),
-                      );
-                    },
+                    onPressed: () => context.push('/auth/telegram'),
                   ),
                   const SizedBox(height: 12),
                   Text(
