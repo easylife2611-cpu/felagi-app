@@ -33,6 +33,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\EnsureAdminRole::class,
         ]);
 
+        // API endpoints are token-authenticated (Bearer), not session-based.
+        // Exclude them from CSRF verification — Sanctum's EnsureFrontendRequestsAreStateful
+        // would otherwise require CSRF tokens from browser origins (e.g. Flutter Web).
+        $middleware->validateCsrfTokens(except: [
+            'api/*',
+        ]);
+
         // Redirect unauthenticated users to /admin/login (for /admin/* routes)
         // Otherwise fall back to the named 'login' route if it exists.
         $middleware->redirectGuestsTo(function ($request) {

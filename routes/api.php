@@ -53,7 +53,7 @@ Route::prefix('v1')->group(function () {
     // =========================================
     Route::prefix('auth')->group(function () {
         Route::post('telegram/start', [AuthController::class, 'telegramStart'])
-            ->middleware('throttle:5,15');
+            ->middleware('throttle:60,1');
 
         // Widget flow (BotFather "Web Login" unavailable)
         Route::post('telegram/widget/start', [AuthController::class, 'telegramWidgetStart'])
