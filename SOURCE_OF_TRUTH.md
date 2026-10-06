@@ -2154,3 +2154,24 @@ Both were made explicit in tests per constitution rule (IMPLEMENTED != VERIFIED)
 | **Commit** | `c433295` |
 | **Status** | ✅ PUBLISHED (HTTP/2 200 OK) |
 | **G05 Gate** | ✅ MET |
+
+---
+
+## 📱 L355 — 4 User Screens COMPLETED (2026-10-06)
+
+| # | Screen | Route | API |
+|---|--------|-------|-----|
+| S011 | Submit Offer | /needs/:id/offers/new | POST /needs/{id}/offers |
+| S012 | Offer Detail | /offers/:id | GET /offers/{id} |
+| S013 | My Offers | /my/offers | GET /my/offers |
+| S014 | Compare Confirm | /needs/:id/compare | GET /needs/{id}/offers |
+
+**Files created:** 4 screens (submit_offer, offer_detail, my_offers, compare_confirm)
+**Files extended:** offers_api (+4), api_config (+1), app_router (+4 routes), widget_test (+8)
+**Verification:** analyze 0 issues · test 31/31 passed
+**Commit:** f0ee208
+
+**Progress:**
+- User Screens: 14/23 (60.9%)
+- Total Screens: 14/46 (30.4%)
+- Next: L356 — S015-S018
