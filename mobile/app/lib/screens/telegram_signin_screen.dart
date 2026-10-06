@@ -71,7 +71,7 @@ class _TelegramSignInScreenState extends State<TelegramSignInScreen> {
     try {
       final scope = AppScope.of(context);
       final start = await scope.authApi.startTelegram(
-        returnUri: Uri.base.toString(),
+        returnUri: 'https://zagcreativity.com/auth/mobile-handoff',
         scope: 'openid profile',
       );
 
