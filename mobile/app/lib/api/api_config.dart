@@ -36,6 +36,7 @@ class ApiConfig {
 
   // ── Public endpoints ──
   static const String categoriesList = '/categories';
+  static const String configShow = '/config';
   static const String needsList = '/needs';
   static String needShow(String id) => '/needs/$id';
   static String needCancel(String id) => '/needs/$id/cancel';

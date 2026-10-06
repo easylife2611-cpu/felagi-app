@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\ConfigController;
 use App\Http\Controllers\Api\V1\AdsDeliveryController;
 use App\Http\Controllers\Api\V1\AdsEventController;
 use App\Http\Controllers\Api\V1\CategoryController;
@@ -91,6 +92,7 @@ Route::prefix('v1')->group(function () {
     // PUBLIC
     // =========================================
     Route::get('categories', [CategoryController::class, 'index']);
+    Route::get('config', [ConfigController::class, 'show']);
     Route::get('needs', [NeedController::class, 'index'])
         ->middleware('throttle:120,1');
     Route::get('needs/{id}', [NeedController::class, 'show']);

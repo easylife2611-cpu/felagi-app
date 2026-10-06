@@ -11,10 +11,8 @@ import 'package:felagi_app/api/auth_api.dart';
 import 'package:felagi_app/api/needs_api.dart';
 import 'package:felagi_app/api/boost_api.dart';
 import 'package:felagi_app/api/offers_api.dart';
-import 'package:felagi_app/api/config_api.dart';
 import 'package:felagi_app/app_scope.dart';
 import 'package:felagi_app/state/auth_state.dart';
-import 'package:felagi_app/state/app_config_state.dart';
 import 'package:felagi_app/main.dart';
 import 'package:felagi_app/screens/welcome_screen.dart';
 import 'package:felagi_app/screens/telegram_signin_screen.dart';
@@ -756,8 +754,6 @@ Widget _wrapWithScope(Widget child) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -767,8 +763,6 @@ Widget _wrapWithScope(Widget child) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -805,8 +799,6 @@ Widget _wrapWithNeeds(Widget child, List<Map<String, dynamic>> needs) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -816,8 +808,6 @@ Widget _wrapWithNeeds(Widget child, List<Map<String, dynamic>> needs) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -850,8 +840,6 @@ Widget _wrapWithNeed(Widget child, Map<String, dynamic> need) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -861,8 +849,6 @@ Widget _wrapWithNeed(Widget child, Map<String, dynamic> need) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -914,8 +900,6 @@ Widget _wrapWithBoost(
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
 
   return MaterialApp(
@@ -926,8 +910,6 @@ Widget _wrapWithBoost(
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -965,8 +947,6 @@ Widget _wrapWithCategories(Widget child) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
 
   return MaterialApp(
@@ -977,8 +957,6 @@ Widget _wrapWithCategories(Widget child) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -1015,8 +993,6 @@ Widget _wrapWithMyNeeds(Widget child, List<Map<String, dynamic>> needs) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -1026,8 +1002,6 @@ Widget _wrapWithMyNeeds(Widget child, List<Map<String, dynamic>> needs) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -1060,8 +1034,6 @@ Widget _wrapWithOffers(Widget child, List<Map<String, dynamic>> offers) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -1071,8 +1043,6 @@ Widget _wrapWithOffers(Widget child, List<Map<String, dynamic>> offers) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -1104,8 +1074,6 @@ Widget _wrapWithSingleOffer(Widget child, Map<String, dynamic> offer) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -1115,8 +1083,6 @@ Widget _wrapWithSingleOffer(Widget child, Map<String, dynamic> offer) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
@@ -1153,8 +1119,6 @@ Widget _wrapWithMyOffers(Widget child, List<Map<String, dynamic>> offers) {
   final needsApi = NeedsApi(apiClient);
   final boostApi = BoostApi(apiClient);
   final offersApi = OffersApi(apiClient);
-  final configApi = ConfigApi(apiClient);
-  final appConfig = AppConfigState(api: configApi);
   final authState = AuthState(api: authApi, tokenStore: apiClient.tokenStore);
   return MaterialApp(
     theme: FgTheme.light(),
@@ -1164,8 +1128,6 @@ Widget _wrapWithMyOffers(Widget child, List<Map<String, dynamic>> offers) {
       needsApi: needsApi,
       boostApi: boostApi,
       offersApi: offersApi,
-      configApi: configApi,
-      appConfig: appConfig,
       authState: authState,
       child: child,
     ),
