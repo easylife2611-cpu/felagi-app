@@ -897,5 +897,10 @@
     "profileActiveSuffix": "active",
     "profilePendingSuffix": "pending",
     "profileUploading": "Uploading...",
-    "profilePhotoTooLarge": "Photo too large (max 5MB)"
+    "profilePhotoTooLarge": "Photo too large (max 5MB)",
+    "yourNeed": "Your need",
+    "nextSteps": "Next steps",
+    "nextStep1Body": "Providers will see your need and can submit offers.",
+    "nextStep2Body": "You will receive notifications when offers arrive.",
+    "nextStep3Body": "Compare offers and pick the best one."
 }

@@ -83,7 +83,7 @@ Route::get('/needs/{id}/compare', function ($id) {
 });
 
 Route::get('/needs/{id}/created', function ($id) {
-    return view('need-created');
+    return view('need-created-premium');
 });
 
 Route::get('/needs/new/public-preview', function () {

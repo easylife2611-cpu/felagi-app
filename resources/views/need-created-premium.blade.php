@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<title>{{ __('screenS007') }} — {{ __('brand') }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy-950:#001a33;--navy-900:#002b52;--navy-800:#003366;--navy-700:#0b4d83;--orange-700:#b35c00;--orange-600:#e8851d;--orange-500:#FF9933;--orange-400:#ffb366;--orange-100:#fff2e0;--ink-900:#0d1a2b;--ink-700:#132238;--ink-500:#3c4d61;--ink-300:#5f7185;--ink-200:#8fa0b3;--line-100:#eef2f6;--line-200:#e3e9ef;--line-300:#d5dde6;--surface:#fff;--canvas:#f4f7fa;--canvas-2:#eef3f8;--success-600:#0e6b34;--success-100:#e8f5ee;--danger-600:#a32e21;--danger-100:#fdecea;--info-600:#0056d6;--info-100:#e7f1ff;--warn-600:#a86500;--warn-100:#fff7e6;--r-sm:12px;--r-md:16px;--r-lg:22px;--r-pill:999px;--f-am:'Noto Sans Ethiopic','Inter',system-ui,sans-serif;--f-en:'Inter','Noto Sans Ethiopic',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--canvas);min-height:100vh;font-family:var(--f-am);color:var(--ink-900);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{padding:0 0 40px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+:focus-visible{outline:3px solid var(--orange-500);outline-offset:2px;border-radius:6px}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.topbar{background:radial-gradient(ellipse at top right,rgba(255,153,51,.15),transparent 50%),linear-gradient(140deg,var(--navy-950),var(--navy-800));color:#fff;padding:18px 22px 20px;position:sticky;top:0;z-index:30;box-shadow:0 6px 24px rgba(0,20,40,.24)}
+.topbar .tr{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar .br{font-size:16px;font-weight:900;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
+.topbar .br svg{flex-shrink:0}
+.topbar .ib{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);font-size:18px}
+.topbar .ib:hover{background:rgba(255,255,255,.18)}
+.wrap{max-width:640px;margin:0 auto;padding:22px 18px 40px}
+.state{padding:70px 20px;text-align:center;color:var(--ink-300)}
+.state h3{color:var(--navy-800);font-size:17px;font-weight:900;margin-bottom:8px}
+.state p{margin:0 0 16px;font-size:13.5px}
+.spinner{display:inline-block;width:24px;height:24px;border:3px solid var(--line-200);border-top-color:var(--navy-800);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero{text-align:center;padding:28px 18px 26px;background:radial-gradient(ellipse at top,rgba(14,107,52,.08),transparent 60%),var(--surface);border-radius:var(--r-lg);border:1px solid var(--line-200);margin-bottom:16px;box-shadow:0 6px 18px rgba(0,35,70,.05)}
+.hero .icon{width:80px;height:80px;border-radius:50%;background:var(--success-100);color:var(--success-600);display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 18px;font-weight:300;border:3px solid rgba(14,107,52,.15)}
+.hero h1{font-size:26px;font-weight:900;color:var(--success-600);margin-bottom:10px;letter-spacing:-.03em}
+.hero p{color:var(--ink-500);font-size:14px;max-width:420px;margin:0 auto;line-height:1.6}
+.card{background:var(--surface);border-radius:var(--r-lg);padding:20px;margin-bottom:16px;box-shadow:0 6px 18px rgba(0,35,70,.05);border:1px solid var(--line-200)}
+.card h2{font-size:12px;font-weight:900;color:var(--navy-800);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;font-family:var(--f-en)}
+.need-title{font-size:18px;font-weight:900;color:var(--ink-900);line-height:1.3;margin-bottom:10px;letter-spacing:-.02em}
+.need-meta{font-size:12.5px;color:var(--ink-500);display:flex;flex-wrap:wrap;gap:10px}
+.need-meta span{display:inline-flex;align-items:center;gap:4px;background:var(--canvas);padding:5px 10px;border-radius:var(--r-pill);border:1px solid var(--line-100)}
+.next-list{display:flex;flex-direction:column;gap:10px}
+.next-item{display:flex;gap:12px;padding:13px;background:var(--canvas);border-radius:var(--r-md);border:1px solid var(--line-100);align-items:flex-start}
+.next-item .num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12.5px;flex:0 0 auto;font-family:var(--f-en)}
+.next-item .body{flex:1;min-width:0}
+.next-item .title{font-weight:900;font-size:13.5px;color:var(--ink-900);margin-bottom:2px;letter-spacing:-.01em}
+.next-item .desc{font-size:12px;color:var(--ink-500);line-height:1.45}
+.actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.btn{padding:14px 20px;border-radius:var(--r-sm);font-size:14.5px;font-weight:800;cursor:pointer;border:none;text-decoration:none;text-align:center;display:block;transition:all .15s;font-family:inherit;letter-spacing:-.01em}
+.btn.primary{background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;box-shadow:0 4px 12px rgba(0,51,102,.2)}
+.btn.primary:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,51,102,.28)}
+.btn.sec{background:var(--canvas-2);color:var(--ink-700)}
+.btn.sec:hover{background:var(--line-200)}
+@media (max-width:420px){body{padding:0 0 32px}.topbar{padding:16px 18px 18px}.wrap{padding:18px 14px 32px}.hero h1{font-size:22px}.hero .icon{width:70px;height:70px;font-size:38px}}
+</style>
+<body>
+<header class="topbar" role="banner">
+<div class="tr">
+<div class="br">
+<svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGradNc)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><defs><linearGradient id="felagiGradNc" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg>
+<span>{{ __("brand") }}</span>
+</div>
+<a href="/my/needs" class="ib" aria-label="{{ __("backToMyNeeds") }}">&#8592;</a>
+</div>
+</header>
+
+<main class="wrap" role="main" aria-labelledby="page-title">
+
+<div id="state-loading" class="state">
+<div class="spinner"></div>
+<p style="margin-top:12px">{{ __("loading") }}...</p>
+</div>
+
+<div id="state-error" class="state" hidden>
+<h3>{{ __("loadErrorTitle") }}</h3>
+<p>{{ __("loadErrorBody") }}</p>
+<a href="/my/needs" class="btn sec" style="display:inline-block;max-width:200px;margin-top:16px">{{ __("backToMyNeeds") }}</a>
+</div>
+
+<div id="content" hidden>
+<div class="hero">
+<div class="icon">✓</div>
+<h1 id="page-title" tabindex="-1">{{ __("needCreatedTitle") }}</h1>
+<p>{{ __("needCreatedBody") }}</p>
+</div>
+
+<div class="card" id="need-card">
+<h2>{{ __("yourNeed") }}</h2>
+<div class="need-title" id="need-title"></div>
+<div class="need-meta" id="need-meta"></div>
+</div>
+
+<div class="card">
+<h2>{{ __("nextSteps") }}</h2>
+<div class="next-list">
+<div class="next-item"><div class="num">1</div><div class="body"><div class="title">{{ __("nextStep1Title") }}</div><div class="desc">{{ __("nextStep1Body") }}</div></div></div>
+<div class="next-item"><div class="num">2</div><div class="body"><div class="title">{{ __("nextStep2Title") }}</div><div class="desc">{{ __("nextStep2Body") }}</div></div></div>
+<div class="next-item"><div class="num">3</div><div class="body"><div class="title">{{ __("nextStep3Title") }}</div><div class="desc">{{ __("nextStep3Body") }}</div></div></div>
+</div>
+</div>
+
+<div class="actions">
+<a href="#" id="btn-view" class="btn primary">{{ __("viewNeed") }} →</a>
+<a href="#" id="btn-offers" class="btn sec">{{ __("viewOffers") }}</a>
+<a href="/browse" class="btn sec">{{ __("backToBrowse") }}</a>
+</div>
+</div>
+</main>
+
+<script>
+(function(){
+'use strict';
+var LS_TOKEN='felagi_token';
+function $(id){return document.getElementById(id);}
+function getToken(){return 'session'; /* L305d */}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+function getNeedId(){
+  var parts=window.location.pathname.split('/').filter(Boolean);
+  return parts.length>=2?parts[1]:'';
+}
+
+function showOnly(name){
+  ['state-loading','state-error','content'].forEach(function(id){
+    var el=$(id); if(el)el.hidden=(id!==((name==='content')?'content':'state-'+name));
+  });
+}
+
+function fmtDate(iso){
+  if(!iso)return '';
+  var d=new Date(iso);
+  if(isNaN(d))return '';
+  return d.toLocaleDateString();
+}
+
+function fmtBudget(n){
+  var cur=n.currency||'ETB';
+  var mn=n.budget_min!=null?Number(n.budget_min):null;
+  var mx=n.budget_max!=null?Number(n.budget_max):null;
+  if(mn==null&&mx==null)return '{{ __('negotiable') }}';
+  if(mn!=null&&mx!=null&&mn!==mx)return cur+' '+mn+' - '+mx;
+  return cur+' '+(mn!=null?mn:mx);
+}
+
+function loadNeed(){
+  var nid=getNeedId();
+  if(!nid){showOnly('error');return;}
+  var token=getToken();
+  /* L305d */
+
+  fetch('/api/v1/needs/'+encodeURIComponent(nid),{
+    credentials:'same-origin',headers:{'Accept':'application/json'}
+  })
+  .then(function(r){
+    if(r.status===404)throw new Error('notfound');
+    if(r.status===401)throw new Error('auth');
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  })
+  .then(function(j){
+    var need=(j&&j.data)?j.data:j;
+    if(!need||!need.id){showOnly('error');return;}
+
+    $('need-card').hidden=false;
+    $('need-title').textContent=need.title||'';
+    var meta=[];
+    if(need.status)meta.push('<span>&#128203; '+esc(need.status)+'</span>');
+    if(need.location_text)meta.push('<span>&#128205; '+esc(need.location_text)+'</span>');
+    meta.push('<span>&#128176; '+esc(fmtBudget(need))+'</span>');
+    if(need.created_at)meta.push('<span>&#128197; '+esc(fmtDate(need.created_at))+'</span>');
+    $('need-meta').innerHTML=meta.join('');
+
+    $('btn-view').href='/needs/'+encodeURIComponent(need.id);
+    $('btn-offers').href='/needs/'+encodeURIComponent(need.id)+'/offers';
+
+    showOnly('content');
+  })
+  .catch(function(e){
+    var m=String(e.message||e);
+    if(m==='auth'){localStorage.removeItem(LS_TOKEN);window.location.href='/';return;}
+    showOnly('error');
+  });
+}
+
+loadNeed();
+})();
+</script>
+</body>
+</html>

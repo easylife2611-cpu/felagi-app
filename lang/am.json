@@ -897,5 +897,10 @@
     "profileActiveSuffix": "ንቁ",
     "profilePendingSuffix": "በመጠባበቅ",
     "profileUploading": "በመስቀል ላይ...",
-    "profilePhotoTooLarge": "ፎቶ በጣም ትልቅ ነው (5MB ከፍተኛ)"
+    "profilePhotoTooLarge": "ፎቶ በጣም ትልቅ ነው (5MB ከፍተኛ)",
+    "yourNeed": "የእርስዎ ፍላጎት",
+    "nextSteps": "ቀጣይ እርምጃዎች",
+    "nextStep1Body": "አቅራቢዎች ፍላጎትዎን ያያሉ እና ቅናሽ ማስገባት ይችላሉ።",
+    "nextStep2Body": "ቅናሾች ሲደርሱ ማሳወቂያ ይደርስዎታል።",
+    "nextStep3Body": "ቅናሾችን ያወዳድሩ እና ምርጡን ይምረጡ።"
 }
