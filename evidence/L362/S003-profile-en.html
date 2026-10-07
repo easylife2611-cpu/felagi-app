@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="2nMvZGl7JI8mya7FuhctdsyUFDaUkxWBDuPzVZYU">
+    <title>Profile — ፈላጊ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--navy-950:#001a33;--navy-900:#002b52;--navy-800:#003366;--navy-700:#0b4d83;--orange-700:#b35c00;--orange-600:#e8851d;--orange-500:#FF9933;--orange-400:#ffb366;--ink-900:#0d1a2b;--ink-700:#132238;--ink-500:#3c4d61;--ink-300:#5f7185;--ink-200:#8fa0b3;--line-100:#eef2f6;--line-200:#e3e9ef;--line-300:#d5dde6;--surface:#fff;--canvas:#f4f7fa;--canvas-2:#eef3f8;--success-600:#0e6b34;--success-100:#e8f5ee;--danger-600:#a32e21;--danger-100:#fdecea;--info-600:#0056d6;--info-100:#e7f1ff;--r-sm:12px;--r-md:16px;--r-lg:22px;--r-pill:999px;--f-am:'Noto Sans Ethiopic','Inter',system-ui,sans-serif;--f-en:'Inter','Noto Sans Ethiopic',system-ui,sans-serif;--ease:cubic-bezier(.16,.84,.44,1);--ease-out:cubic-bezier(.22,1,.36,1)}
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{background:linear-gradient(160deg,#0a1626 0%,#001a33 50%,#00101f 100%);min-height:100vh;font-family:var(--f-am);color:var(--ink-900);line-height:1.55;-webkit-font-smoothing:antialiased}
+        body{display:flex;align-items:flex-start;justify-content:center;padding:20px}
+        a{color:inherit;text-decoration:none}
+        button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+        input{font-family:inherit;font-size:inherit}
+        :focus-visible{outline:3px solid var(--orange-500);outline-offset:2px;border-radius:6px}
+        .hidden{display:none!important}
+        .wrap{width:100%;max-width:480px;animation:fadeUp .6s var(--ease-out)}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .card{background:var(--surface);border-radius:28px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.2)}
+        .hero{background:radial-gradient(ellipse at top right,rgba(255,153,51,.18),transparent 55%),radial-gradient(ellipse at bottom left,rgba(26,107,176,.35),transparent 60%),linear-gradient(140deg,var(--navy-950),var(--navy-800));color:#fff;padding:28px 24px 24px;position:relative;overflow:hidden}
+        .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(255,153,51,.1),transparent 55%);pointer-events:none}
+        .hero>*{position:relative;z-index:1}
+        .tr{display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .br{font-size:17px;font-weight:900;letter-spacing:-.03em;display:flex;align-items:center;gap:9px}
+        .br svg{flex-shrink:0}
+        .ib{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);transition:all .2s var(--ease)}
+        .ib:hover{background:rgba(255,255,255,.18);transform:scale(1.05)}
+        .ib svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .t{margin-top:16px;font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1.2}
+        .sb{padding:20px 18px 24px;display:flex;flex-direction:column;gap:14px}
+        .profile-card{background:var(--canvas);border-radius:var(--r-lg);padding:20px;display:flex;gap:16px;align-items:center}
+        .avatar-wrap{position:relative;flex-shrink:0}
+        .avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;letter-spacing:-.02em;overflow:hidden;background-size:cover;background-position:center}
+        .avatar-edit{position:absolute;bottom:0;right:-2px;width:28px;height:28px;border-radius:50%;background:var(--orange-500);color:#fff;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--surface);box-shadow:0 4px 10px rgba(255,153,51,.35)}
+        .avatar-edit:hover{background:var(--orange-600)}
+        .profile-info{flex:1;min-width:0}
+        .p-name{font-size:17px;font-weight:900;color:var(--ink-900);letter-spacing:-.02em;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .p-phone{font-size:12.5px;color:var(--ink-300);margin-top:4px;font-family:var(--f-en);letter-spacing:.02em}
+        .badges{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+        .bg{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:var(--r-pill);letter-spacing:.02em}
+        .bg.ok{background:var(--success-100);color:var(--success-600)}
+        .bg.premium{background:rgba(255,153,51,.15);color:var(--orange-700)}
+        .bg.info{background:var(--info-100);color:var(--info-600)}
+        .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+        .stat{border-radius:var(--r-md);padding:14px 16px;text-align:center;border:1px solid var(--line-200)}
+        .stat.info{border-color:var(--info-100);background:linear-gradient(180deg,#fff,var(--info-100))}
+        .stat.ok{border-color:var(--success-100);background:linear-gradient(180deg,#fff,var(--success-100))}
+        .stat .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-500);font-family:var(--f-en)}
+        .stat .val{font-size:24px;font-weight:900;color:var(--navy-800);letter-spacing:-.03em;margin-top:4px;font-family:var(--f-en)}
+        .menu-list{background:var(--surface);border:1px solid var(--line-200);border-radius:var(--r-md);overflow:hidden;display:flex;flex-direction:column}
+        .row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line-100);text-align:left;width:100%;font-family:inherit;color:inherit;transition:background .15s}
+        .row:last-child{border-bottom:0}
+        .row:hover{background:var(--canvas-2)}
+        .ic-wrap{width:36px;height:36px;border-radius:10px;background:var(--canvas-2);color:var(--navy-800);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .ic-wrap.orange{background:rgba(255,153,51,.15);color:var(--orange-700)}
+        .ic-wrap.green{background:var(--success-100);color:var(--success-600)}
+        .ic-wrap svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .rb{flex:1;min-width:0}
+        .rt{font-size:14.5px;font-weight:800;color:var(--ink-900);letter-spacing:-.01em}
+        .rs{font-size:12px;color:var(--ink-300);margin-top:2px}
+        .chev{color:var(--ink-200);font-size:20px;font-weight:300;line-height:1}
+        .btn-logout{width:100%;padding:14px 18px;border-radius:var(--r-md);background:var(--surface);border:1.5px solid var(--danger-100);color:var(--danger-600);font-size:15px;font-weight:800;letter-spacing:-.01em;transition:all .18s var(--ease)}
+        .btn-logout:hover{background:var(--danger-100);border-color:var(--danger-600)}
+        .btn-logout:disabled{opacity:.55;cursor:not-allowed}
+        .edit-form{background:var(--canvas);border-radius:var(--r-md);padding:16px;display:flex;flex-direction:column;gap:10px}
+        .field{width:100%;padding:12px 14px;border:1.5px solid var(--line-300);border-radius:var(--r-sm);font-size:14.5px;background:#fff;transition:border-color .15s,box-shadow .15s}
+        .field:focus{outline:none;border-color:var(--navy-800);box-shadow:0 0 0 3px rgba(0,51,102,.1)}
+        .edit-actions{display:flex;gap:8px}
+        .btn{flex:1;padding:11px 14px;border-radius:var(--r-sm);font-size:14px;font-weight:800;letter-spacing:-.01em;transition:all .18s var(--ease);border:1.5px solid transparent}
+        .btn-primary{background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;box-shadow:0 4px 12px rgba(0,51,102,.2)}
+        .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,51,102,.28)}
+        .btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none}
+        .btn-secondary{background:var(--surface);border-color:var(--line-300);color:var(--ink-700)}
+        .btn-secondary:hover{background:var(--canvas-2)}
+        .status{margin-top:4px;font-size:13px;min-height:20px;text-align:center;color:var(--ink-500)}
+        .status.error{color:var(--danger-600)}
+        .status.success{color:var(--success-600)}
+        .loading{padding:60px 20px;text-align:center;color:var(--ink-300)}
+        .spinner{display:inline-block;width:24px;height:24px;border:3px solid var(--line-200);border-top-color:var(--navy-800);border-radius:50%;animation:spin .8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        @media (max-width:420px){body{padding:12px}.hero{padding:24px 18px 20px}.sb{padding:16px 14px 20px}.profile-card{padding:16px;gap:12px}.avatar{width:64px;height:64px;font-size:22px}}
+    </style>
+</head>
+<body>
+<main class="wrap" role="main" aria-labelledby="page-title">
+<div class="card">
+    <div class="hero">
+        <div class="tr">
+            <div class="br">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGradP)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGradP" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg>
+                <span>ፈላጊ</span>
+            </div>
+            <button type="button" class="ib" id="edit-toggle" aria-label="Edit">
+                <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            </button>
+        </div>
+        <div class="t" id="page-title" tabindex="-1">My Profile</div>
+    </div>
+    <div class="sb" id="content">
+        <div class="loading" id="loading"><div class="spinner"></div></div>
+        <div class="profile-card hidden" id="profile-card">
+            <div class="avatar-wrap">
+                <div class="avatar" id="avatar" aria-hidden="true">?</div>
+                <button type="button" class="avatar-edit" id="photo-trigger" aria-label="Change photo">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </button>
+                <input type="file" id="photo-input" accept="image/jpeg,image/png,image/webp" hidden>
+            </div>
+            <div class="profile-info">
+                <div class="p-name" id="p-name">—</div>
+                <div class="p-phone" id="p-phone"></div>
+                <div class="badges" id="badges"></div>
+            </div>
+        </div>
+        <div class="stats-grid hidden" id="stats-grid">
+            <div class="stat info"><div class="lbl">My Needs</div><div class="val" id="s-needs">0</div></div>
+            <div class="stat ok"><div class="lbl">My Offers</div><div class="val" id="s-offers">0</div></div>
+        </div>
+        <div class="menu-list hidden" id="menu-list">
+            <a href="/my/needs" class="row">
+                <div class="ic-wrap"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
+                <div class="rb"><div class="rt">My Needs</div><div class="rs" id="m-needs-sub">—</div></div>
+                <div class="chev">›</div>
+            </a>
+            <a href="/my/offers" class="row">
+                <div class="ic-wrap orange"><svg viewBox="0 0 24 24"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L3 13V5a2 2 0 0 1 2-2h8l7.59 7.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1"/></svg></div>
+                <div class="rb"><div class="rt">My Offers</div><div class="rs" id="m-offers-sub">—</div></div>
+                <div class="chev">›</div>
+            </a>
+            <a href="/notifications" class="row">
+                <div class="ic-wrap green"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+                <div class="rb"><div class="rt">Notifications</div><div class="rs" id="m-notif-sub"></div></div>
+                <div class="chev">›</div>
+            </a>
+            <a href="/profile/2fa" class="row">
+                <div class="ic-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div>
+                <div class="rb"><div class="rt">2FA Security</div><div class="rs" id="m-2fa-sub"></div></div>
+                <div class="chev">›</div>
+            </a>
+            <button type="button" class="row" id="lang-toggle">
+                <div class="ic-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/></svg></div>
+                <div class="rb"><div class="rt">Language</div><div class="rs" id="lang-label">English</div></div>
+                <div class="chev">›</div>
+            </button>
+        </div>
+        <div class="edit-form hidden" id="edit-form">
+            <input type="text" class="field" id="edit-name" maxlength="150" placeholder="Full name">
+            <input type="tel" class="field" id="edit-phone" maxlength="30" placeholder="Phone number">
+            <div class="edit-actions">
+                <button type="button" class="btn btn-primary" id="edit-save">Save</button>
+                <button type="button" class="btn btn-secondary" id="edit-cancel">Cancel</button>
+            </div>
+        </div>
+        <button type="button" class="btn-logout hidden" id="logout-btn">Logout</button>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+    </div>
+</div>
+</main>
+<script>
+(function(){
+    const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+    const $ = id => document.getElementById(id);
+    const status = $('status');
+    const MSG = {
+        saved: "Saved",
+        saveError: "Save failed",
+        uploadError: "Upload failed",
+        loadError: "Failed to load profile",
+        uploading: "Uploading...",
+        tooLarge: "Photo too large (max 5MB)"    };
+    let currentUser = null;
+    const locale = 'en';
+    function setStatus(msg, type){ status.textContent = msg || ''; status.className = 'status' + (type ? ' ' + type : ''); }
+    function initials(name){ if(!name) return '?'; const p = name.trim().split(/\s+/).slice(0,2); return p.map(x => (x[0]||'').toUpperCase()).join('') || '?'; }
+    function applyPhoto(url){
+        const a = $('avatar');
+        if (url) { a.style.backgroundImage = 'url("' + url + '")'; a.textContent = ''; }
+        else { a.style.backgroundImage = ''; a.textContent = initials(currentUser?.full_name || ''); }
+    }
+    function renderBadges(u){
+        const b = $('badges'); b.innerHTML = '';
+        if (u.status === 'active' || u.status === 'verified') b.insertAdjacentHTML('beforeend','<span class="bg ok">✓ ' + "Verified" + '</span>');
+        if (Array.isArray(u.roles) && u.roles.includes('provider')) b.insertAdjacentHTML('beforeend','<span class="bg premium">✦ ' + "Premium" + '</span>');
+        if (u.rating_count > 0) b.insertAdjacentHTML('beforeend','<span class="bg info">★ ' + Number(u.rating_score).toFixed(1) + '</span>');
+    }
+    async function loadProfile(){
+        try {
+            const res = await fetch('/api/v1/auth/me', { headers:{'Accept':'application/json'}, credentials:'same-origin' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const data = await res.json();
+            const u = data.data || data;
+            currentUser = u;
+            $('p-name').textContent = u.full_name || '—';
+            $('p-phone').textContent = u.telegram_subject ? '@' + u.telegram_subject : '';
+            renderBadges(u); applyPhoto(u.profile_photo_url);
+            $('loading').classList.add('hidden');
+            ['profile-card','stats-grid','menu-list','logout-btn'].forEach(id => $(id).classList.remove('hidden'));
+            loadStats();
+        } catch(e) {
+            $('loading').innerHTML = '<div class="status error" style="display:block">' + MSG.loadError + '</div>';
+        }
+    }
+    async function loadStats(){
+        try {
+            const [nr, or] = await Promise.all([
+                fetch('/api/v1/my/needs?per_page=1', {headers:{'Accept':'application/json'},credentials:'same-origin'}),
+                fetch('/api/v1/my/offers?per_page=1', {headers:{'Accept':'application/json'},credentials:'same-origin'})
+            ]);
+            const nd = nr.ok ? await nr.json() : {meta:{total:0}};
+            const od = or.ok ? await or.json() : {meta:{total:0}};
+            const n = nd.meta?.total ?? (nd.data?.length ?? 0);
+            const o = od.meta?.total ?? (od.data?.length ?? 0);
+            $('s-needs').textContent = n;
+            $('s-offers').textContent = o;
+            $('m-needs-sub').textContent = n + ' ' + "active";
+            $('m-offers-sub').textContent = o + ' ' + "pending";
+        } catch(e) {}
+    }
+    $('photo-trigger').addEventListener('click', () => $('photo-input').click());
+    $('photo-input').addEventListener('change', async (e) => {
+        const file = e.target.files[0]; if (!file) return;
+        if (file.size > 5*1024*1024) { setStatus(MSG.tooLarge, 'error'); return; }
+        const fd = new FormData(); fd.append('photo', file);
+        setStatus(MSG.uploading, '');
+        try {
+            const res = await fetch('/api/v1/profile/photo', { method:'POST', headers:{'Accept':'application/json','X-CSRF-TOKEN': csrf}, credentials:'same-origin', body: fd });
+            const data = await res.json();
+            if (!res.ok || !data.success) throw new Error(data.error?.message || MSG.uploadError);
+            const url = data.data?.profile_photo_url;
+            if (url) { applyPhoto(url); currentUser.profile_photo_url = url; }
+            setStatus(MSG.saved, 'success');
+        } catch(err) { setStatus(err.message || MSG.uploadError, 'error'); }
+        finally { e.target.value = ''; }
+    });
+    $('edit-toggle').addEventListener('click', () => {
+        if (!currentUser) return;
+        $('edit-form').classList.remove('hidden');
+        $('edit-name').value = currentUser.full_name || '';
+        $('edit-phone').value = currentUser.phone_number || '';
+        $('edit-name').focus();
+    });
+    $('edit-cancel').addEventListener('click', () => { $('edit-form').classList.add('hidden'); setStatus(''); });
+    $('edit-save').addEventListener('click', async () => {
+        const btn = $('edit-save'); btn.disabled = true; setStatus('');
+        try {
+            const body = { full_name: $('edit-name').value.trim(), phone_number: $('edit-phone').value.trim() || null };
+            const res = await fetch('/api/v1/profile', { method:'PATCH', headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN': csrf}, credentials:'same-origin', body: JSON.stringify(body) });
+            const data = await res.json();
+            if (!res.ok || !data.success) throw new Error(data.error?.message || MSG.saveError);
+            currentUser = Object.assign(currentUser, data.data || {});
+            $('p-name').textContent = currentUser.full_name || '—';
+            $('edit-form').classList.add('hidden');
+            setStatus(MSG.saved, 'success');
+        } catch(err) { setStatus(err.message || MSG.saveError, 'error'); }
+        finally { btn.disabled = false; }
+    });
+    $('lang-toggle').addEventListener('click', () => { window.location.href = '/lang/' + (locale === 'am' ? 'en' : 'am'); });
+    $('logout-btn').addEventListener('click', async () => {
+        const btn = $('logout-btn'); btn.disabled = true;
+        try {
+            await fetch('/api/v1/auth/logout', { method:'POST', headers:{'Accept':'application/json','X-CSRF-TOKEN': csrf}, credentials:'same-origin' });
+            window.location.href = '/auth/telegram';
+        } catch(e) { setStatus("Logout failed", 'error'); btn.disabled = false; }
+    });
+    loadProfile();
+})();
+</script>
+</body>
+</html>

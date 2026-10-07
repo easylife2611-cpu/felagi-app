@@ -35,7 +35,7 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/profile', function () {
-    return view('profile');
+    return view('profile-premium');
 });
 
 Route::get('/browse', function () {
