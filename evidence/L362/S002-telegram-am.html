@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="bdzJXNysRdWPc8wwn3rk4cHyU0Q9Q9ibqK0w7ABR">
+    <title>የቴሌግራም መግቢያ — የኢትዮጵያ ፍላጎት-ቀዳሚ የገበያ ቦታ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --navy-950:#001a33;--navy-900:#002b52;--navy-800:#003366;--navy-700:#0b4d83;
+            --orange-700:#b35c00;--orange-600:#e8851d;--orange-500:#FF9933;--orange-400:#ffb366;--orange-100:#fff2e0;
+            --ink-900:#0d1a2b;--ink-700:#132238;--ink-500:#3c4d61;--ink-300:#5f7185;--ink-200:#8fa0b3;
+            --line-100:#eef2f6;--line-200:#e3e9ef;--line-300:#d5dde6;
+            --surface:#fff;--canvas:#f4f7fa;--canvas-2:#eef3f8;
+            --success-600:#0e6b34;--danger-600:#a32e21;
+            --tg-blue:#2AABEE;--tg-blue-dark:#229ED9;
+            --r-sm:12px;--r-md:16px;--r-lg:22px;--r-pill:999px;
+            --f-am:'Noto Sans Ethiopic','Inter',system-ui,sans-serif;
+            --f-en:'Inter','Noto Sans Ethiopic',system-ui,sans-serif;
+            --ease:cubic-bezier(.16,.84,.44,1);
+            --ease-out:cubic-bezier(.22,1,.36,1);
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{background:linear-gradient(160deg,#0a1626 0%,#001a33 50%,#00101f 100%);min-height:100vh;font-family:var(--f-am);color:var(--ink-900);line-height:1.55;-webkit-font-smoothing:antialiased}
+        body{display:flex;align-items:center;justify-content:center;padding:20px}
+        a{color:inherit;text-decoration:none}
+        button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+        :focus-visible{outline:3px solid var(--orange-500);outline-offset:2px;border-radius:6px}
+        .hidden{display:none!important}
+
+        .wrap{width:100%;max-width:480px;animation:fadeUp .6s var(--ease-out)}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+        .card{background:var(--surface);border-radius:28px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.2);animation:fadeUp .5s var(--ease-out)}
+
+        .hero{background:radial-gradient(ellipse at top right,rgba(255,153,51,.18),transparent 55%),radial-gradient(ellipse at bottom left,rgba(26,107,176,.35),transparent 60%),linear-gradient(140deg,var(--navy-950),var(--navy-800));color:#fff;padding:32px 26px 28px;position:relative;overflow:hidden;text-align:center}
+        .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(255,153,51,.1),transparent 55%);pointer-events:none}
+        .hero>*{position:relative;z-index:1}
+
+        .brand{display:flex;align-items:center;justify-content:center;gap:10px;font-size:19px;font-weight:900;letter-spacing:-.02em;margin-bottom:16px}
+        .brand svg{flex-shrink:0}
+
+        .eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-400);margin-bottom:8px;font-family:var(--f-en)}
+
+        .hero h1{font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1.2;margin-bottom:8px}
+        .hero p{font-size:13px;opacity:.82;line-height:1.6;font-weight:500}
+
+        .actions{padding:28px 22px 26px;display:flex;flex-direction:column;gap:14px}
+
+        .tg-icon-wrap{display:flex;justify-content:center;padding:4px 0 8px}
+        .tg-icon{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 16px 40px rgba(42,171,238,.32);background:linear-gradient(135deg,var(--tg-blue),var(--tg-blue-dark))}
+        .tg-icon svg{width:56px;height:56px}
+
+        .tg-info{text-align:center;padding:0 8px}
+        .tg-info h3{font-size:20px;font-weight:900;color:var(--navy-800);margin-bottom:8px;letter-spacing:-.02em}
+        .tg-info p{font-size:13.5px;color:var(--ink-300);line-height:1.55;max-width:280px;margin:0 auto}
+
+        .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 18px;border-radius:var(--r-md);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .18s var(--ease);text-align:center;text-decoration:none;border:1.5px solid transparent}
+        .btn-navy{background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;box-shadow:0 8px 20px rgba(0,51,102,.24)}
+        .btn-navy:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(0,51,102,.32)}
+        .btn:disabled{opacity:.55;cursor:not-allowed;transform:none!important}
+        .btn-lg{padding:16px 20px;font-size:16px}
+
+        .status{margin-top:4px;font-size:13.5px;min-height:20px;text-align:center;color:var(--ink-500)}
+        .status.error{color:var(--danger-600)}
+        .status.success{color:var(--success-600)}
+
+        .resend-row{margin-top:6px;font-size:13px;color:var(--ink-500);text-align:center}
+        .resend-row a{color:var(--navy-800);font-weight:700;text-decoration:underline}
+
+        .legal{margin-top:16px;font-size:11.5px;color:var(--ink-300);line-height:1.5;text-align:center}
+        .legal a{color:var(--ink-500);text-decoration:underline}
+
+        #tg-widget-container{display:flex;justify-content:center;min-height:0}
+        #tg-widget-container:empty{display:none}
+
+        @media (max-width:420px){
+            body{padding:12px}
+            .hero{padding:28px 20px 24px}
+            .actions{padding:22px 18px 22px}
+            .tg-icon{width:80px;height:80px}
+            .tg-icon svg{width:48px;height:48px}
+        }
+    </style>
+</head>
+<body>
+<main class="wrap" role="main" aria-labelledby="page-title">
+
+<div class="card">
+    <div class="hero">
+        <div class="brand">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGradT)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><path d="M20 20 L25 25" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/><defs><linearGradient id="felagiGradT" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg>
+            <span>ፈላጊ</span>
+        </div>
+        <div class="eyebrow">በቴሌግራም ይግቡ</div>
+        <h1 id="page-title" tabindex="-1">በቴሌግራም ይግቡ</h1>
+        <p>በስልክ ቁጥርዎ በፍጥነት ይግቡ</p>
+    </div>
+
+    <div class="actions">
+        <div class="tg-icon-wrap">
+            <div class="tg-icon" aria-hidden="true">
+                <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M54.3 118.8l137.9-53.2c6.4-2.3 12 1.5 9.9 10.8l.1.4-23.5 110.6c-1.7 8-6.7 10-13.5 6.2l-37.3-27.5-18 17.3c-2 2-3.6 3.6-7.4 3.6-4.8 0-3.9-1.8-5.5-6.3l-12.9-41.9-30.4-9.5c-6.6-2.1-6.7-6.6 1.3-10.1l.2-.4z" fill="#fff"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="tg-info">
+            <h3>የቴሌግራም ማረጋገጫ</h3>
+            <p>ስልክ ቁጥርዎን ያረጋግጡ። ኮድ በቴሌግራም ይደርስዎታል።</p>
+        </div>
+
+        <button type="button" id="tg-continue" class="btn btn-navy btn-lg">
+            <span aria-hidden="true">✈️</span> በቴሌግራም ይግቡ
+        </button>
+
+        <div id="tg-widget-container" aria-live="polite"></div>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+
+        <div class="resend-row">
+            <a href="/">ወደ መግቢያ ተመለስ</a>
+        </div>
+
+        <p class="legal">
+            <a href="/docs/privacy/TERMS_OF_SERVICE.md">ውሎች</a> ·
+            <a href="/docs/privacy/PRIVACY_POLICY.md">privacy</a>
+        </p>
+    </div>
+</div>
+
+</main>
+<script>
+(function() {
+    const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+    const $ = id => document.getElementById(id);
+    const status = $('status');
+    const btn = $('tg-continue');
+    const MSG_CONNECTING = "\u12a8\u1274\u120c\u130d\u122b\u121d \u1260\u1218\u1308\u1293\u1298\u1275 \u120b\u12ed...";
+    const MSG_SIGNING    = "\u1260\u1218\u130d\u1263\u1275 \u120b\u12ed...";
+    const MSG_FAILED     = "\u1218\u130d\u1263\u1275 \u12a0\u120d\u1270\u1233\u12ab\u121d\u1362 \u12a5\u1263\u12ad\u1205 \u12a5\u1295\u12f0\u1308\u1293 \u121e\u12ad\u122d\u1362";
+
+    async function startWidget() {
+        btn.disabled = true;
+        status.textContent = MSG_CONNECTING;
+        status.className = 'status';
+        try {
+            const res = await fetch('/api/v1/auth/telegram/widget/start', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': csrf
+                },
+                body: JSON.stringify({ return_uri: window.location.origin + '/' }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || MSG_FAILED);
+            const payload = data.data || data;
+            if (!payload.bot_username) throw new Error(MSG_FAILED);
+            btn.style.display = 'none';
+            window.__felagiState = new URL(payload.callback_url, window.location.origin).searchParams.get('state');
+            const container = $('tg-widget-container');
+            container.innerHTML = '';
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://telegram.org/js/telegram-widget.js?22';
+            script.setAttribute('data-telegram-login', payload.bot_username);
+            script.setAttribute('data-size', 'large');
+            script.setAttribute('data-request-access', 'write');
+            script.setAttribute('data-userpic', 'true');
+            script.setAttribute('data-onauth', 'onFelagiTelegramAuth(user)');
+            container.appendChild(script);
+            status.textContent = '';
+        } catch (e) {
+            status.textContent = e.message || MSG_FAILED;
+            status.className = 'status error';
+            btn.disabled = false;
+        }
+    }
+
+    btn.addEventListener('click', startWidget);
+
+    window.onFelagiTelegramAuth = async function(user) {
+        status.textContent = MSG_SIGNING;
+        status.className = 'status';
+        try {
+            const payload = Object.assign({}, user, { state: window.__felagiState });
+            const res = await fetch(
+                '/api/v1/auth/telegram/widget/callback?' + new URLSearchParams(payload).toString(),
+                {
+                    method: 'GET',
+                    credentials: 'same-origin',
+                    headers: { 'Accept': 'application/json' }
+                }
+            );
+            const data = await res.json();
+            if (data.success && data.data?.redirect_url) {
+                window.location.href = data.data.redirect_url;
+            } else if (res.ok && data.data?.handoff_code) {
+                window.location.href = '/?handoff_code=' + encodeURIComponent(data.data.handoff_code);
+            } else {
+                status.textContent = MSG_FAILED;
+                status.className = 'status error';
+                btn.style.display = '';
+                btn.disabled = false;
+            }
+        } catch (e) {
+            status.textContent = MSG_FAILED;
+            status.className = 'status error';
+            btn.style.display = '';
+            btn.disabled = false;
+        }
+    };
+})();
+</script>
+</body>
+</html>

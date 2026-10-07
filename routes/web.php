@@ -26,7 +26,7 @@ Route::get('/', function (\Illuminate\Http\Request $request) {
 
 // S002 Telegram sign-in (alias for welcome — admin login redirects here)
 Route::get('/auth/telegram', function () {
-    return view('welcome-premium');
+    return view('telegram-premium');
 });
 
 // S001 Welcome alias (design path: /welcome; canonical route is /)
