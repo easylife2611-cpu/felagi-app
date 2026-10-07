@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:felagi_design_system/felagi_design_system.dart';
+import 'package:go_router/go_router.dart';
 
 import 'api/api_client.dart';
 import 'api/auth_api.dart';
@@ -10,11 +11,15 @@ import 'api/offers_api.dart';
 import 'api/config_api.dart';
 import 'api/token_store.dart';
 import 'app_scope.dart';
+import 'preview_mode.dart';
 import 'router/app_router.dart';
 import 'state/auth_state.dart';
 import 'state/app_config_state.dart';
 
-void main() => runApp(const FelagiApp());
+void main() {
+  PreviewMode.detectFromUrl();
+  runApp(const FelagiApp());
+}
 
 /// Felagi — demand-first marketplace mobile app.
 class FelagiApp extends StatefulWidget {
@@ -34,6 +39,11 @@ class _FelagiAppState extends State<FelagiApp> {
   late final AppConfigState _appConfig;
   late final AuthState _authState;
 
+  /// Router is created ONCE and kept stable across rebuilds.
+  /// Auth changes are handled via `refreshListenable` inside the router.
+  /// Only a user-initiated locale change recreates it.
+  late GoRouter _router;
+
   String _localeCode = 'am';
   final ThemeMode _themeMode = ThemeMode.light;
 
@@ -49,10 +59,35 @@ class _FelagiAppState extends State<FelagiApp> {
     _appConfig = AppConfigState(api: _configApi);
     _authState = AuthState(api: _authApi, tokenStore: _client.tokenStore);
 
-    // Bootstrap: read token + /auth/me (async — UI shows loading)
+    // ── Create the router ONCE ──
+    // Rationale:
+    //   • GoRouter keeps its own navigation state (history + current loc).
+    //   • Recreating it on every rebuild resets location → screens "flash".
+    //   • Auth changes must NOT recreate the router; instead we wire
+    //     `refreshListenable` so GoRouter re-evaluates redirects in place.
+    _router = _createRouter();
+
+    // Bootstrap: read token + /auth/me (async — UI shows loading).
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _authState.bootstrap();
       _appConfig.load();
+    });
+  }
+
+  GoRouter _createRouter() {
+    return AppRouter(
+      localeCode: _localeCode,
+      onLocaleChange: _onLocaleChange,
+      authState: _authState,
+    ).build();
+  }
+
+  void _onLocaleChange(String code) {
+    setState(() {
+      _localeCode = code;
+      // Locale is baked into every screen builder, so we must rebuild
+      // the router. This is a user-initiated action and is rare.
+      _router = _createRouter();
     });
   }
 
@@ -75,27 +110,18 @@ class _FelagiAppState extends State<FelagiApp> {
       configApi: _configApi,
       appConfig: _appConfig,
       authState: _authState,
-      child: AnimatedBuilder(
-        animation: _authState,
-        builder: (context, _) {
-          final router = AppRouter(
-            localeCode: _localeCode,
-            onLocaleChange: (c) => setState(() => _localeCode = c),
-            isAuthenticated: _authState.isAuthenticated,
-          ).build();
-
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: fgText(_localeCode, 'brand'),
-            theme: FgTheme.light(),
-            darkTheme: FgTheme.dark(),
-            themeMode: _themeMode,
-            locale: Locale(_localeCode),
-            supportedLocales: const [Locale('am'), Locale('en')],
-            localizationsDelegates: GlobalMaterialLocalizations.delegates,
-            routerConfig: router,
-          );
-        },
+      // NOTE: MaterialApp.router is now built directly (no AnimatedBuilder).
+      // The router listens to AuthState itself via refreshListenable.
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: fgText(_localeCode, 'brand'),
+        theme: FgTheme.light(),
+        darkTheme: FgTheme.dark(),
+        themeMode: _themeMode,
+        locale: Locale(_localeCode),
+        supportedLocales: const [Locale('am'), Locale('en')],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        routerConfig: _router,
       ),
     );
   }

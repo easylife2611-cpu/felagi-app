@@ -24,6 +24,10 @@ import '../screens/rating_screen.dart';
 import '../screens/report_screen.dart';
 import '../screens/telegram_status_screen.dart';
 import '../screens/placeholder_screen.dart';
+import '../preview_mode.dart';
+import '../state/auth_state.dart';
+import '../screens/app_shell.dart';
+import '../screens/offer_unlock_screen.dart';
 
 /// Central route map for all 46 canonical Felagi screens.
 ///
@@ -33,12 +37,17 @@ class AppRouter {
   AppRouter({
     required this.localeCode,
     required this.onLocaleChange,
-    this.isAuthenticated = false,
+    required this.authState,
   });
 
   final String localeCode;
   final ValueChanged<String> onLocaleChange;
-  final bool isAuthenticated;
+
+  /// Live auth source. GoRouter listens to this via `refreshListenable`
+  /// and re-evaluates `redirect` without recreating the router.
+  final AuthState authState;
+
+  bool get isAuthenticated => authState.isAuthenticated;
 
   static const List<({String path, String id, String titleKey})> screens = [
     // ── User screens (S001–S023) ──
@@ -92,9 +101,20 @@ class AppRouter {
     (path: '/admin/monetization/sponsored-ads',  id: 'A023', titleKey: 'screenA023'),
   ];
 
+
+  /// Preview mode wins over auth for the *initial* landing screen.
+  /// Once the app is running, `redirect` handles subsequent navigation.
+  String _resolveInitialLocation() {
+    if (PreviewMode.enabled) return '/welcome';
+    return isAuthenticated ? '/browse' : '/welcome';
+  }
+
   GoRouter build() {
     return GoRouter(
-      initialLocation: isAuthenticated ? '/browse' : '/welcome',
+      initialLocation: _resolveInitialLocation(),
+      // Live auth updates — GoRouter re-runs `redirect` in place,
+      // without recreating the whole router tree.
+      refreshListenable: authState,
       // Telegram Widget callback lands with malformed URL like:
       //   https://zagcreativity.com/test/tgAuthResult=...
       // Redirect it to /auth/telegram so the screen can handle the widget data.
@@ -107,13 +127,21 @@ class AppRouter {
           return '/auth/telegram';
         }
 
-        // Root path (from /test/?handoff_code=X) — resolve by auth state
+        // Preview mode: ?preview=1 ካለ ሁሉንም ስክሪኖች ማየት ይቻላል
+        final previewMode = PreviewMode.enabled ||
+            state.uri.queryParameters['preview'] == '1';
+
+        // Root path — resolve by auth + preview.
         if (path == '/' || path.isEmpty) {
+          if (previewMode) return '/welcome';
           return isAuthenticated ? '/browse' : '/welcome';
         }
 
         // Authenticated users must not stay on welcome/sign-in
-        if (isAuthenticated && (path == '/welcome' || path == '/auth/telegram')) {
+        // (preview mode bypasses this guard so QA can open every screen).
+        if (!previewMode &&
+            isAuthenticated &&
+            (path == '/welcome' || path == '/auth/telegram')) {
           return '/browse';
         }
 
@@ -132,6 +160,16 @@ class AppRouter {
             onLocaleChange: onLocaleChange,
           ),
         ),
+
+        // ── S023 Offer Unlock ──
+        GoRoute(
+          path: '/needs/:id/offers/unlock',
+          builder: (context, state) => OfferUnlockScreen(
+            localeCode: localeCode,
+            onLocaleChange: onLocaleChange,
+            needId: state.pathParameters['id'] ?? '',
+          ),
+        ),
         GoRoute(
           path: '/auth/telegram',
           builder: (context, state) => TelegramSignInScreen(
@@ -139,19 +177,52 @@ class AppRouter {
             onLocaleChange: onLocaleChange,
           ),
         ),
-        GoRoute(
-          path: '/profile',
-          builder: (context, state) => ProfileScreen(
+
+        // ── Persistent bottom-nav shell (S003/S004/S009/S013) ──
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) => AppShell(
+            navigationShell: navigationShell,
             localeCode: localeCode,
             onLocaleChange: onLocaleChange,
           ),
-        ),
-        GoRoute(
-          path: '/browse',
-          builder: (context, state) => BrowseNeedsScreen(
-            localeCode: localeCode,
-            onLocaleChange: onLocaleChange,
-          ),
+          branches: [
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: '/browse',
+                builder: (context, state) => BrowseNeedsScreen(
+                  localeCode: localeCode,
+                  onLocaleChange: onLocaleChange,
+                ),
+              ),
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: '/my/needs',
+                builder: (context, state) => MyNeedsScreen(
+                  localeCode: localeCode,
+                  onLocaleChange: onLocaleChange,
+                ),
+              ),
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: '/my/offers',
+                builder: (context, state) => MyOffersScreen(
+                  localeCode: localeCode,
+                  onLocaleChange: onLocaleChange,
+                ),
+              ),
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: '/profile',
+                builder: (context, state) => ProfileScreen(
+                  localeCode: localeCode,
+                  onLocaleChange: onLocaleChange,
+                ),
+              ),
+            ]),
+          ],
         ),
         GoRoute(
           path: '/needs/new',
@@ -199,13 +270,6 @@ class AppRouter {
             needId: state.pathParameters['id'] ?? '',
           ),
         ),
-        GoRoute(
-          path: '/my/needs',
-          builder: (context, state) => MyNeedsScreen(
-            localeCode: localeCode,
-            onLocaleChange: onLocaleChange,
-          ),
-        ),
         // ── L355: S011 Submit Offer ──
         GoRoute(
           path: '/needs/:id/offers/new',
@@ -222,14 +286,6 @@ class AppRouter {
             localeCode: localeCode,
             onLocaleChange: onLocaleChange,
             offerId: state.pathParameters['id'] ?? '',
-          ),
-        ),
-        // ── L355: S013 My Offers ──
-        GoRoute(
-          path: '/my/offers',
-          builder: (context, state) => MyOffersScreen(
-            localeCode: localeCode,
-            onLocaleChange: onLocaleChange,
           ),
         ),
         // ── L355: S014 Compare Confirm ──

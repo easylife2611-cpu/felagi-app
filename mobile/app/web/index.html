@@ -41,6 +41,27 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <script>
+    // Read ?preview=1 BEFORE Flutter rewrites window.location.
+    // Flutter's URL strategy calls history.replaceState() and drops the query,
+    // so we must capture it here and stash it in sessionStorage.
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('preview') === '1') {
+          sessionStorage.setItem('felagi_preview', '1');
+        } else if (params.get('preview') === '0') {
+          sessionStorage.removeItem('felagi_preview');
+        }
+        window.__FELAGI_PREVIEW__ =
+          sessionStorage.getItem('felagi_preview') === '1';
+      } catch (e) {
+        window.__FELAGI_PREVIEW__ = false;
+      }
+      console.log('[Felagi] preview =', window.__FELAGI_PREVIEW__,
+                  '| url =', window.location.href);
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

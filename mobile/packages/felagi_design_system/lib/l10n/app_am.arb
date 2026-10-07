@@ -683,5 +683,9 @@
   "messageUncertain": "መላኩ አልተረጋገጠም። ረቂቁ አልጠፋም። ከመላክዎ በፊት መልዕክቶቹን ያድሱ።",
   "draftSaveFailed": "ረቂቁ በዚህ መሣሪያ አልተቀመጠም። ከመውጣትዎ በፊት ይቅዱት።",
   "compareAllEligible": "ሁሉም ብቁ አቅርቦቶች ይወዳደራሉ። የመጨረሻው ውሳኔ የእርስዎ ነው።",
-  "logout": "ውጣ"
+  "logout": "ውጣ",
+  "navBrowse": "ፍለጋ",
+  "navMyNeeds": "የኔ ፍላጎቶች",
+  "navMyOffers": "የኔ ቅናሾች",
+  "navProfile": "መገለጫ"
 }

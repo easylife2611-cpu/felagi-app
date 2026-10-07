@@ -42,6 +42,9 @@ Route::prefix("ads")->group(function () {
 });
 
 Route::prefix('v1')->group(function () {
+
+    // Chapa webhook (public, HMAC verified)
+    Route::post('chapa/webhook', [\App\Http\Controllers\Api\V1\ChapaWebhookController::class, 'handle']);
     // ─────────────────────────────────────────
     // PAYMENTS — Chapa webhook (public, HMAC verified in controller)
     // ─────────────────────────────────────────
