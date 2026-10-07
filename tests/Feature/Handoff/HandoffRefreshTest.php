@@ -39,7 +39,7 @@ class HandoffRefreshTest extends TestCase
         $current = trim(shell_exec('git rev-parse --short HEAD') ?? '');
         $parent  = trim(shell_exec('git rev-parse --short HEAD~1') ?? '');
 
-        $body = file_get_contents(base_path('public/handoff/SOURCE_OF_TRUTH.md'));
+        $body = file_get_contents(base_path('SOURCE_OF_TRUTH.md'));
 
         $found = ($current !== '' && str_contains($body, "`{$current}`"))
               || ($parent  !== '' && str_contains($body, "`{$parent}`"));

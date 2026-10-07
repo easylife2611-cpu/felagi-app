@@ -114,9 +114,9 @@ Route::prefix('v1')->group(function () {
         Route::post('needs/understand', [NeedAiController::class, 'understand'])
             ->middleware(['throttle:30,1', 'idempotent']);
         Route::post('needs/clarify', [NeedAiController::class, 'clarify'])
-            ->middleware('throttle:30,1');
+            ->middleware(['throttle:30,1', 'idempotent']);
         Route::post('needs/prepare', [NeedAiController::class, 'prepare'])
-            ->middleware('throttle:30,1');
+            ->middleware(['throttle:30,1', 'idempotent']);
         Route::post('needs', [NeedController::class, 'store'])
             ->middleware('throttle:60,1');
         Route::put('needs/{id}', [NeedController::class, 'update']);
@@ -140,7 +140,7 @@ Route::prefix('v1')->group(function () {
         // Messages
         Route::get('offers/{offerId}/messages', [MessageController::class, 'index']);
         Route::post('offers/{offerId}/messages', [MessageController::class, 'store'])
-            ->middleware('throttle:30,1');
+            ->middleware(['throttle:30,1', 'idempotent']);
 
         // Notifications
         Route::get('notifications', [NotificationController::class, 'index']);
