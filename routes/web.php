@@ -87,7 +87,7 @@ Route::get('/needs/{id}/created', function ($id) {
 });
 
 Route::get('/needs/new/public-preview', function () {
-    return view('need-preview');
+    return view('need-preview-premium');
 });
 
 Route::get('/needs/{id}/rating', function ($id) {
