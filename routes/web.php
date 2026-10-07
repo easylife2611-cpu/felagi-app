@@ -43,7 +43,7 @@ Route::get('/browse', function () {
 });
 
 Route::get('/needs/new', function () {
-    return view('create-need');
+    return view('create-need-premium');
 });
 
 Route::get('/needs/{id}', function ($id) {

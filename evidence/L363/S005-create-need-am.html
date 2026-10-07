@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="xrhozz0RAeVQJGQrx2XUUJA2hMbUKdbQPxqBmOFz">
+<title>ፍላጎት ይፍጠሩ/ያርትዑ — ፈላጊ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy-950:#001a33;--navy-900:#002b52;--navy-800:#003366;--navy-700:#0b4d83;--orange-700:#b35c00;--orange-600:#e8851d;--orange-500:#FF9933;--orange-400:#ffb366;--orange-100:#fff2e0;--ink-900:#0d1a2b;--ink-700:#132238;--ink-500:#3c4d61;--ink-300:#5f7185;--ink-200:#8fa0b3;--line-100:#eef2f6;--line-200:#e3e9ef;--line-300:#d5dde6;--surface:#fff;--canvas:#f4f7fa;--canvas-2:#eef3f8;--success-600:#0e6b34;--success-100:#e8f5ee;--danger-600:#a32e21;--danger-100:#fdecea;--info-600:#0056d6;--info-100:#e7f1ff;--warn-600:#a86500;--warn-100:#fff7e6;--r-sm:12px;--r-md:16px;--r-lg:22px;--r-pill:999px;--f-am:'Noto Sans Ethiopic','Inter',system-ui,sans-serif;--f-en:'Inter','Noto Sans Ethiopic',system-ui,sans-serif;--ease:cubic-bezier(.16,.84,.44,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--canvas);min-height:100vh;font-family:var(--f-am);color:var(--ink-900);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{padding:0 0 100px}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+input,select,textarea{font-family:inherit;font-size:inherit}
+:focus-visible{outline:3px solid var(--orange-500);outline-offset:2px;border-radius:6px}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.topbar{background:radial-gradient(ellipse at top right,rgba(255,153,51,.15),transparent 50%),linear-gradient(140deg,var(--navy-950),var(--navy-800));color:#fff;padding:18px 22px 20px;position:sticky;top:0;z-index:30;box-shadow:0 6px 24px rgba(0,20,40,.24)}
+.topbar .tr{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar .br{font-size:16px;font-weight:900;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
+.topbar .br svg{flex-shrink:0}
+.topbar .ib{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);font-size:18px}
+.topbar .ib:hover{background:rgba(255,255,255,.18)}
+.topbar .ib svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.topbar .draft{font-size:11px;opacity:.7;margin-left:8px;font-family:var(--f-en)}
+.topbar .t{margin-top:14px;font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1.2}
+.topbar .st{margin-top:4px;font-size:12.5px;opacity:.75;font-weight:500}
+.steps{display:flex;gap:6px;margin-top:14px;position:relative;z-index:1}
+.steps .step{flex:1;height:4px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden}
+.steps .step.done{background:linear-gradient(90deg,var(--orange-500),var(--orange-400))}
+.steps .step.active{background:linear-gradient(90deg,var(--orange-500),var(--orange-400))}
+.wrap{max-width:640px;margin:0 auto;padding:22px 18px 40px}
+.composer{background:var(--surface);border:1px solid var(--line-200);border-radius:var(--r-lg);box-shadow:0 10px 28px rgba(0,35,70,.06);padding:20px;margin-bottom:18px}
+.composer h3{color:var(--navy-800);font-size:19px;margin-bottom:6px;font-weight:900;letter-spacing:-.02em}
+.composer p{color:var(--ink-500);font-size:13px;margin-bottom:14px;line-height:1.5}
+.composer textarea{min-height:140px;border-radius:var(--r-md);border:1.5px solid var(--line-300);font-size:14.5px;padding:14px;background:#fff;width:100%;resize:vertical;line-height:1.55}
+.composer textarea:focus{outline:none;border-color:var(--navy-800);box-shadow:0 0 0 3px rgba(0,51,102,.1)}
+.ai-steps{display:flex;gap:6px;list-style:none;margin:0 0 16px;color:var(--ink-300);font-size:11px}
+.ai-steps li{flex:1;text-align:center;padding:7px 4px;background:var(--canvas-2);border-radius:var(--r-pill);font-weight:700}
+.ai-steps li.active{background:var(--info-100);color:var(--navy-800)}
+.ai-steps li.done{background:var(--success-100);color:var(--success-600)}
+.ai-tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 8px}
+.ai-tool{border:1.5px solid var(--line-300);background:#fff;color:var(--navy-800);border-radius:var(--r-sm);padding:9px 13px;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.ai-tool:hover{border-color:var(--navy-800);background:var(--canvas-2)}
+.ai-file-list{min-height:18px;color:var(--ink-300);font-size:12px;margin:0 0 12px}
+.ai-file-list strong{color:var(--navy-800)}
+.ai-understanding{display:none;background:var(--canvas);border:1px solid var(--line-200);border-radius:var(--r-md);padding:16px;margin-top:14px}
+.ai-understanding.on{display:block}
+.ai-understanding h4{color:var(--navy-800);font-size:14px;font-weight:900;margin-bottom:10px}
+.ai-summary{background:#fff;border:1px solid var(--line-200);border-radius:var(--r-sm);padding:12px;margin-bottom:10px}
+.ai-summary strong{display:block;color:var(--navy-800);font-size:15px;font-weight:900;margin-bottom:4px}
+.ai-summary p{margin:0;color:var(--ink-500);font-size:13px;line-height:1.5}
+.ai-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ai-group{background:#fff;border:1px solid var(--line-200);border-radius:var(--r-sm);padding:10px}
+.ai-group h5{font-size:11px;font-weight:900;margin-bottom:6px;color:var(--navy-800);text-transform:uppercase;letter-spacing:.05em;font-family:var(--f-en)}
+.ai-group ul{padding-left:16px;font-size:12px;color:var(--ink-500);line-height:1.5}
+.ai-group.unknown{border-color:var(--warn-100);background:#fffdf2}
+.ai-pill{display:inline-block;background:var(--info-100);color:var(--navy-800);border-radius:var(--r-pill);padding:4px 8px;margin:3px;font-size:11px;font-weight:700}
+.ai-error-help{display:none;color:var(--warn-600);background:var(--warn-100);border:1px solid var(--warn-100);border-radius:var(--r-sm);padding:9px 11px;margin-top:10px;font-size:12px;line-height:1.5}
+.ai-error-help.on{display:block}
+.status{margin:14px 0;padding:12px 16px;border-radius:var(--r-sm);font-size:13.5px;display:none;line-height:1.5}
+.status.on{display:block}
+.status.error{background:var(--danger-100);color:var(--danger-600)}
+.status.success{background:var(--success-100);color:var(--success-600)}
+.status.info{background:var(--info-100);color:var(--info-600)}
+.legacy-fields{display:none}
+.legacy-fields.review{display:block}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13.5px;font-weight:800;margin-bottom:6px;color:var(--ink-900)}
+.form-group label .req{color:var(--danger-600)}
+.form-group label .opt{color:var(--ink-300);font-weight:500;font-size:11.5px;margin-left:4px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line-300);border-radius:var(--r-sm);font-size:14.5px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--navy-800);box-shadow:0 0 0 3px rgba(0,51,102,.1)}
+.form-group textarea{min-height:120px;resize:vertical;line-height:1.55}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row .col{flex:1;min-width:130px}
+.hint{font-size:11.5px;color:var(--ink-300);margin-top:4px;line-height:1.45}
+.err{color:var(--danger-600);font-size:12px;margin-top:4px;display:none;font-weight:700}
+.err.on{display:block}
+.checkbox-row{display:flex;gap:10px;align-items:flex-start;padding:14px;background:var(--warn-100);border:1px solid var(--warn-100);border-radius:var(--r-sm);margin-bottom:16px}
+.checkbox-row input[type=checkbox]{margin-top:3px;flex:0 0 auto;width:auto}
+.checkbox-row label{font-weight:500;font-size:12.5px;color:var(--warn-600);margin:0;line-height:1.5}
+.deadline-presets{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.deadline-preset{border:1.5px solid var(--line-300);background:#fff;color:var(--navy-800);border-radius:9px;padding:7px 11px;font-size:12px;font-weight:700;cursor:pointer}
+.deadline-preset:hover,.deadline-preset.active{border-color:var(--navy-800);background:var(--info-100)}
+.selected-deadline{font-size:11.5px;color:var(--success-600);margin-top:6px;min-height:16px;font-weight:700}
+.form-actions{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.98);border-top:1px solid var(--line-200);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0));display:flex;gap:10px;max-width:640px;margin:0 auto;z-index:20;box-shadow:0 -6px 20px rgba(0,35,70,.06)}
+.btn{flex:1;padding:13px 18px;border-radius:var(--r-sm);font-size:14.5px;font-weight:800;cursor:pointer;border:none;text-decoration:none;text-align:center;transition:all .15s;font-family:inherit;letter-spacing:-.01em}
+.btn.primary{background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:#fff;box-shadow:0 4px 12px rgba(0,51,102,.2)}
+.btn.primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,51,102,.28)}
+.btn.primary:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn.ghost{background:var(--canvas-2);color:var(--ink-700);flex:0 0 auto;padding:13px 18px}
+.btn.ghost:hover{background:var(--line-200)}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ai-loading{display:inline-flex;align-items:center;gap:8px}
+.ai-loading-dots{display:inline-flex;gap:3px}
+.ai-loading-dots i{width:6px;height:6px;background:var(--info-600);border-radius:50%;animation:aiDot 1.2s infinite ease-in-out}
+.ai-loading-dots i:nth-child(2){animation-delay:.15s}
+.ai-loading-dots i:nth-child(3){animation-delay:.3s}
+@keyframes aiDot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+@media (max-width:560px){.composer{padding:16px;border-radius:var(--r-md)}.ai-groups{grid-template-columns:1fr}.ai-steps{font-size:10px}}
+@media (max-width:420px){body{padding:0 0 96px}.topbar{padding:16px 18px 18px}.topbar .t{font-size:19px}.wrap{padding:18px 14px 32px}}
+</style>
+<body>
+<header class="topbar" role="banner">
+<div class="tr">
+<div class="br">
+<svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="url(#felagiGradC)"/><path d="M9 10 L9 22 M9 12 L18 12 M9 17 L16 17 M18 12 L18 22" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="10" r="3" fill="#FF9933"/><defs><linearGradient id="felagiGradC" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#00264d"/><stop offset="1" stop-color="#0b4d83"/></linearGradient></defs></svg>
+<span>ፈላጊ</span>
+</div>
+<span class="draft" id="draft-indicator"></span>
+<a href="/browse" class="ib" aria-label="ተመለስ">&#8592;</a>
+</div>
+<div class="t" id="page-title" tabindex="-1">ፍላጎት ይፍጠሩ/ያርትዑ</div>
+<div class="st">የሚፈልጉትን ይግለጹ። አቅራቢዎች ቅናሽ ይልካሉ።</div>
+<div class="steps" aria-hidden="true">
+<div class="step active" id="step-1"></div>
+<div class="step" id="step-2"></div>
+<div class="step" id="step-3"></div>
+<div class="step" id="step-4"></div>
+</div>
+</header>
+
+<main class="wrap" role="main" aria-labelledby="page-title">
+
+<div class="offline-banner" id="offline-banner" style="display:none;background:var(--warn-100);border:1px solid var(--warn-100);color:var(--warn-600);padding:10px 14px;border-radius:var(--r-sm);font-size:12.5px;margin-bottom:14px">ለመቀጠል እንደገና ይገናኙ።</div>
+<div class="status" id="status"></div>
+
+<section class="composer" aria-labelledby="ai-composer-title">
+<ol class="ai-steps" aria-label="Need creation progress">
+<li class="active">1 ይጻፉ</li>
+<li>2 AI ይረዳ</li>
+<li>3 ያረጋግጡ</li>
+<li>4 ያትሙ</li>
+</ol>
+<h3 id="ai-composer-title">ምን ይፈልጋሉ?</h3>
+<p>በተፈጥሯዊ ቋንቋ ይጻፉ። Felagi የፍላጎትዎን ሙያዊ መግለጫ ለማዘጋጀት ይረዳዎታል።</p>
+<textarea id="ai-need-text" maxlength="10000" placeholder="ለምሳሌ፦ ወደ አዳማ 5 ቶን የሚችል ቀዝቃዛ መኪና እፈልጋለሁ..."></textarea>
+<div class="ai-tools" aria-label="Attachments">
+<label class="ai-tool">📷 ፎቶ<input id="ai-photo" type="file" accept="image/*" hidden></label>
+<label class="ai-tool">📎 ሰነድ<input id="ai-document" type="file" accept=".pdf,.doc,.docx,.txt" hidden></label>
+</div>
+<div class="ai-file-list" id="ai-file-list" aria-live="polite"></div>
+<button type="button" class="btn primary" id="ai-understand-btn" style="width:100%">AI እንዲያዘጋጅልዎት</button>
+<div class="ai-understanding" id="ai-understanding" aria-live="polite"></div>
+<div class="ai-error-help" id="ai-error-help">AI ካልተሳካ፣ መረጃውን በታች በእጅ መሙላት ይችላሉ።</div>
+</section>
+
+<div class="legacy-fields" id="legacy-fields"><form id="need-form" novalidate>
+
+<div class="form-group">
+<label for="title">አርዕስት <span class="req">*</span></label>
+<input type="text" id="title" name="title" maxlength="255" required minlength="5" placeholder="ለምሳሌ፦ ወደ አዳማ የሚያጓጉዝ ማቀዝቀዣ መኪና ያስፈልጋል" autocomplete="off">
+<div class="err" id="err-title"></div>
+</div>
+
+<div class="form-group">
+<label for="category_id">ምድብ <span class="req">*</span></label>
+<select id="category_id" name="category_id" required>
+<option value="">ምድብ ይምረጡ</option>
+</select>
+<div class="err" id="err-category_id"></div>
+</div>
+
+<div class="form-group">
+<label for="description">መግለጫ <span class="req">*</span></label>
+<textarea id="description" name="description" maxlength="10000" required minlength="20" placeholder="ብዛት፣ ጥራት፣ ጊዜ እና ልዩ መስፈርቶችን ይግለጹ..."></textarea>
+<div class="hint"><span id="desc-count">0</span> / 10000</div>
+<div class="err" id="err-description"></div>
+</div>
+
+<div class="form-group">
+<label for="location_text">ቦታ <span class="opt">አማራጭ</span></label>
+<input type="text" id="location_text" name="location_text" maxlength="255" placeholder="ለምሳሌ፦ አዲስ አበባ፣ ቦሌ" autocomplete="off">
+<div class="err" id="err-location_text"></div>
+</div>
+
+<div class="form-group">
+<label>በጀት <span class="opt">አማራጭ</span></label>
+<div class="row">
+<div class="col"><input type="number" id="budget_min" name="budget_min" min="0" step="0.01" placeholder="ዝቅተኛ"></div>
+<div class="col"><input type="number" id="budget_max" name="budget_max" min="0" step="0.01" placeholder="ከፍተኛ"></div>
+<div class="col" style="max-width:110px"><select id="currency" name="currency" aria-label="Currency"><option value="ETB">ETB</option><option value="USD">USD</option></select></div>
+</div>
+<div class="err" id="err-budget_min"></div>
+<div class="err" id="err-budget_max"></div>
+</div>
+
+<div class="form-group">
+<label for="quantity">ብዛት <span class="opt">አማራጭ</span></label>
+<input type="number" id="quantity" name="quantity" min="0.01" step="0.01" placeholder="ለምሳሌ፦ 10">
+<div class="err" id="err-quantity"></div>
+</div>
+
+<div class="form-group">
+<label for="deadline_at">የመጨረሻ ቀን <span class="opt">አማራጭ</span></label>
+<div class="deadline-presets" role="group" aria-label="Deadline shortcuts">
+<button type="button" class="deadline-preset" data-days="1">ነገ</button>
+<button type="button" class="deadline-preset" data-days="3">በ3 ቀን</button>
+<button type="button" class="deadline-preset" data-days="7">በዚህ ሳምንት</button>
+</div>
+<input type="datetime-local" id="deadline_at" name="deadline_at" min="2026-10-07T18:41">
+<div class="selected-deadline" id="selected-deadline" aria-live="polite"></div>
+<div class="err" id="err-deadline_at"></div>
+</div>
+
+<div class="form-group">
+<label for="offer_deadline_at">የቅናሽ የመጨረሻ ቀን <span class="opt">አማራጭ</span></label>
+<input type="datetime-local" id="offer_deadline_at" name="offer_deadline_at" min="2026-10-07T18:41">
+<div class="hint">ከመጨረሻ ቀን በፊት መሆን አለበት</div>
+<div class="err" id="err-offer_deadline_at"></div>
+</div>
+
+<div class="checkbox-row">
+<input type="checkbox" id="telegram_ack" name="telegram_publication_acknowledged">
+<label for="telegram_ack">ይህ ፍላጎት ሰፊ ተደራሽነት ለማግኘት በፈላጊ ቴሌግራም ቻናል ሊታተም እንደሚችል ተረድቻለሁ።</label>
+</div>
+<div class="err" id="err-telegram_publication_acknowledged"></div>
+
+</form></div>
+</main>
+
+<div class="form-actions">
+<a href="/browse" class="btn ghost">ሰርዝ</a>
+<button type="submit" form="need-form" class="btn primary" id="submit-btn">ቀጥል</button>
+</div>
+
+<script>
+function aiEscape(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+var aiAm=document.documentElement.lang==='am';
+document.getElementById('ai-understand-btn').addEventListener('click', function(){
+  var text=document.getElementById('ai-need-text').value.trim();
+  var status=document.getElementById('status');
+  var panel=document.getElementById('ai-understanding');
+  var help=document.getElementById('ai-error-help');
+  var button=this;
+  if(text.length<5){status.className='status on error';status.textContent='እባክዎ የሚፈልጉትን በጥቂት ቃላት ይጻፉ።';return;}
+  button.disabled=true;help.className='ai-error-help';status.className='status on info';status.innerHTML='<span class="ai-loading"><span>AI እያዘጋጀ ነው</span><span class="ai-loading-dots" aria-hidden="true"><i></i><i></i><i></i></span></span>';
+  var files=[];
+  ['ai-photo','ai-document'].forEach(function(id){var input=document.getElementById(id);if(input&&input.files&&input.files[0])files.push(input.files[0]);});
+  var headers={'Accept':'application/json','X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').content};
+  var uploads=files.map(function(file){var body=new FormData();body.append('file',file);body.append('purpose','NEED');return fetch('/api/v1/attachments',{method:'POST',credentials:'same-origin',headers:headers,body:body}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error((j.error||{}).message||'Attachment upload failed');return j.data&&j.data.id;});});});
+  Promise.all(uploads).then(function(attachmentIds){return fetch('/api/v1/needs/understand',{method:'POST',credentials:'same-origin',headers:Object.assign({},headers,{'Content-Type':'application/json'}),body:JSON.stringify({text:text,locale:(document.documentElement.lang||'en').slice(0,2),attachment_ids:attachmentIds})});})
+    .then(function(r){return r.json().then(function(j){return {ok:r.ok,json:j};});})
+    .then(function(result){
+      if(!result.ok)throw new Error((result.json.error||{}).message||'AI failed');
+      var d=result.json.data||{};
+      var list=function(items){return (items||[]).map(function(x){return '<li>'+aiEscape(x)+'</li>';}).join('')||'<li>—</li>';};
+      panel.innerHTML='<h4>'+(aiAm?'AI የተረዳው':'What AI understood')+'</h4><div class="ai-summary"><strong>'+aiEscape(d.title||(aiAm?'ያልታወቀ ርዕስ':'Untitled Need'))+'</strong><p>'+aiEscape(d.description||text)+'</p></div><div class="ai-groups"><div class="ai-group"><h5>'+(aiAm?'የግድ የሚያስፈልግ':'Required')+'</h5><ul>'+list(d.required)+'</ul></div><div class="ai-group"><h5>'+(aiAm?'የሚመረጥ':'Preferred')+'</h5><ul>'+list(d.preferred)+'</ul></div><div class="ai-group unknown"><h5>'+(aiAm?'ገና ያልታወቀ':'Unknown')+'</h5><ul>'+list(d.unknown)+'</ul></div></div>';
+      panel.className='ai-understanding on';status.className='status on success';status.textContent='ይህን ማጠቃለያ ይመልከቱ፣ የቀረውን ዝርዝር ያረጋግጡና ይቀጥሉ።';
+      document.querySelectorAll('.ai-steps li').forEach(function(el,i){el.className=i<2?'done':(i===2?'active':'');});
+      document.getElementById('legacy-fields').className='legacy-fields review';
+      if(d.title)document.getElementById('title').value=d.title;
+      if(d.description)document.getElementById('description').value=d.description;
+      if(d.location_text)document.getElementById('location_text').value=d.location_text;
+      if(d.budget_min!=null)document.getElementById('budget_min').value=d.budget_min;
+      if(d.budget_max!=null)document.getElementById('budget_max').value=d.budget_max;
+      if(d.currency)document.getElementById('currency').value=d.currency;
+      document.getElementById('ai-composer-title').focus();
+    })
+    .catch(function(e){status.className='status on error';status.textContent=e.message||'AI ማዘጋጀት አልተቻለም።';help.className='ai-error-help on';document.getElementById('legacy-fields').className='legacy-fields review';})
+    .then(function(){button.disabled=false;});
+});
+['ai-photo','ai-document'].forEach(function(id){var input=document.getElementById(id);if(input)input.addEventListener('change',function(){var names=[];['ai-photo','ai-document'].forEach(function(other){var el=document.getElementById(other);if(el&&el.files&&el.files[0])names.push(el.files[0].name);});document.getElementById('ai-file-list').innerHTML=names.length?'<strong>የተመረጡ ፋይሎች፦</strong> '+names.map(aiEscape).join(', '):'';});});
+// L342: locale-aware category name (respects app locale)
+function felagiLocalizedName(obj) {
+  if (!obj) return '';
+  var am = document.documentElement.lang === 'am';
+  return am
+    ? (obj.name_am || obj.name_en || obj.slug || '')
+    : (obj.name_en || obj.name_am || obj.slug || '');
+}
+
+(function(){
+'use strict';
+var csrf = (document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+var LS_TOKEN='felagi_token';
+var DRAFT_KEY='felagi_draft_s005';
+var FIELDS=['title','category_id','description','location_text','budget_min','budget_max','currency','quantity','deadline_at','offer_deadline_at'];
+
+function $(id){return document.getElementById(id);}
+function getToken(){return 'session'; /* L305d */}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+function showStatus(type,msg){
+  var el=$('status');
+  el.className='status on '+type;
+  el.textContent=msg;
+}
+function hideStatus(){var el=$('status');el.className='status';el.textContent='';}
+
+function clearErrors(){
+  Array.prototype.forEach.call(document.querySelectorAll('.err'),function(e){e.className='err';e.textContent='';});
+}
+
+function showErr(field,msg){
+  var el=$('err-'+field);
+  if(!el)return;
+  el.textContent=msg;
+  el.className='err on';
+}
+
+function showValidationErrors(errors){
+  clearErrors();
+  Object.keys(errors).forEach(function(k){
+    var msgs=errors[k];
+    showErr(k, Array.isArray(msgs)?msgs[0]:msgs);
+  });
+}
+
+function loadCategories(){
+  fetch('/api/v1/categories',{credentials:'same-origin',headers:{'Accept':'application/json'}})
+    .then(function(r){return r.ok?r.json():{data:[]};})
+    .then(function(j){
+      var sel=$('category_id');
+      var cats=(j.data||[]);
+      var html='<option value="">'+sel.options[0].text+'</option>';
+      cats.forEach(function(c){
+        html+='<option value="'+esc(c.id)+'">'+esc(felagiLocalizedName(c))+'</option>';
+      });
+      sel.innerHTML=html;
+    })
+    .catch(function(e){console.warn('[S005] cats',e);});
+}
+
+function collectForm(){
+  var data={};
+  FIELDS.forEach(function(f){
+    var el=$(f);
+    if(!el)return;
+    var v=el.value;
+    if(f==='currency'){data[f]=v||'ETB';return;}
+    if(f==='budget_min'||f==='budget_max'||f==='quantity'){
+      data[f]=v===''?null:parseFloat(v);
+    }else{
+      data[f]=v===''?null:v;
+    }
+  });
+  data.telegram_publication_acknowledged=$('telegram_ack').checked;
+  return data;
+}
+
+function saveDraft(){
+  try{
+    var data=collectForm();
+    localStorage.setItem(DRAFT_KEY,JSON.stringify({data:data,at:Date.now()}));
+    updateDraftIndicator(true);
+  }catch(e){}
+}
+
+function loadDraft(){
+  try{
+    var raw=localStorage.getItem(DRAFT_KEY);
+    if(!raw)return false;
+    var parsed=JSON.parse(raw);
+    if(!parsed||!parsed.data)return false;
+    FIELDS.forEach(function(f){
+      var el=$(f);
+      if(!el)return;
+      var v=parsed.data[f];
+      if(v!=null)el.value=v;
+    });
+    if(parsed.data.telegram_publication_acknowledged){$('telegram_ack').checked=true;}
+    return true;
+  }catch(e){return false;}
+}
+
+function clearDraft(){
+  try{localStorage.removeItem(DRAFT_KEY);updateDraftIndicator(false);}catch(e){}
+}
+
+function updateDraftIndicator(show){
+  var el=$('draft-indicator');
+  if(el)el.textContent=show?'ረቂቅ ተቀምጧል':'';
+}
+
+function updateDescCount(){
+  var c=$('description').value.length;
+  $('desc-count').textContent=c;
+}
+
+function setDeadlinePreset(days){
+  var d=new Date();d.setDate(d.getDate()+days);d.setHours(18,0,0,0);
+  var pad=function(n){return String(n).padStart(2,'0');};
+  $('deadline_at').value=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes());
+  $('selected-deadline').textContent='የተመረጠው ቀን፦ '+d.toLocaleDateString(document.documentElement.lang==='am'?'am-ET':'en-US',{year:'numeric',month:'long',day:'numeric'})+' 18:00';
+  Array.prototype.forEach.call(document.querySelectorAll('.deadline-preset'),function(b){b.className='deadline-preset'+(Number(b.getAttribute('data-days'))===days?' active':'');});
+  saveDraft();
+}
+
+function clientValidate(){
+  clearErrors();
+  var ok=true;
+  var t=$('title').value.trim();
+  if(t.length<5){showErr('title','Min 5 characters');ok=false;}
+  if(!$('category_id').value){showErr('category_id','Please choose a category');ok=false;}
+  var d=$('description').value.trim();
+  if(d.length<20){showErr('description','Min 20 characters');ok=false;}
+  var bmin=$('budget_min').value;
+  var bmax=$('budget_max').value;
+  if(bmin!==''&&bmax!==''&&parseFloat(bmax)<parseFloat(bmin)){
+    showErr('budget_max','Must be >= min');ok=false;
+  }
+  if(!$('telegram_ack').checked){
+    showErr('telegram_publication_acknowledged','Please acknowledge');
+    ok=false;
+  }
+  return ok;
+}
+
+function submitForm(e){
+  e.preventDefault();
+  hideStatus();
+  if(!clientValidate()){
+    showStatus('error','Please fix the errors below');
+    return;
+  }
+  var token=getToken();
+  /* L305d */
+
+  var btn=$('submit-btn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span>በማስቀመጥ ላይ...';
+
+  var payload=collectForm();
+  fetch('/api/v1/needs',{
+    method:'POST',
+    headers:{
+      'Accept':'application/json',
+      'Content-Type':'application/json',
+      'X-CSRF-TOKEN':csrf
+    },
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){
+    return r.json().then(function(j){return {status:r.status,body:j};});
+  })
+  .then(function(res){
+    if(res.status===201||res.status===200){
+      clearDraft();
+      showStatus('success','ፍላጎት በተሳካ ሁኔታ ተፈጥሯል');
+      var needId=(res.body.data&&res.body.data.id)||(res.body.id);
+      setTimeout(function(){
+        window.location.href=needId?('/needs/'+needId):'/browse';
+      },800);
+      return;
+    }
+    if(res.status===422&&res.body.errors){
+      showValidationErrors(res.body.errors);
+      showStatus('error','እባክዎ ስህተቶቹን ያስተካክሉ');
+      return;
+    }
+    if(res.status===401){
+      localStorage.removeItem(LS_TOKEN);
+      localStorage.removeItem('felagi_user');
+      window.location.href='/';
+      return;
+    }
+    if(res.status===429){
+      showStatus('error','ብዙ ጥያቄዎች።');
+      return;
+    }
+    showStatus('error','ማስቀመጥ አልተቻለም።');
+  })
+  .catch(function(err){
+    console.error('[S005] submit',err);
+    showStatus('error','ማስቀመጥ አልተቻለም።');
+  })
+  .then(function(){
+    btn.disabled=false;
+    btn.textContent='ቀጥል';
+  });
+}
+
+// ─── Events ───
+$('need-form').addEventListener('submit',submitForm);
+FIELDS.forEach(function(f){
+  var el=$(f);
+  if(el)el.addEventListener('input',function(){saveDraft();});
+  if(el)el.addEventListener('change',function(){saveDraft();});
+});
+
+// L347-U: keep offer_deadline_at strictly before deadline_at
+function bindDeadlineConstraint(){
+  var dl = $('deadline_at');
+  var od = $('offer_deadline_at');
+  if(!dl || !od) return;
+
+  function sync(){
+    if(dl.value){
+      // offer deadline must be <= (deadline - 1 min)
+      var d = new Date(dl.value);
+      d.setMinutes(d.getMinutes() - 1);
+      var pad = function(n){return String(n).padStart(2,'0');};
+      var max = d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes());
+      od.setAttribute('max', max);
+    } else {
+      od.removeAttribute('max');
+    }
+    // Also update offer_deadline_at min to be after now
+    var now = new Date();
+    var pad2 = function(n){return String(n).padStart(2,'0');};
+    var min = now.getFullYear()+'-'+pad2(now.getMonth()+1)+'-'+pad2(now.getDate())+'T'+pad2(now.getHours())+':'+pad2(now.getMinutes());
+    od.setAttribute('min', min);
+  }
+  dl.addEventListener('change', sync);
+  sync();
+}
+bindDeadlineConstraint();
+$('telegram_ack').addEventListener('change',saveDraft);
+$('description').addEventListener('input',updateDescCount);
+Array.prototype.forEach.call(document.querySelectorAll('.deadline-preset'),function(b){b.addEventListener('click',function(){setDeadlinePreset(Number(b.getAttribute('data-days')));});});
+$('deadline_at').addEventListener('change',function(){$('selected-deadline').textContent=this.value?'የተመረጠው ቀን፦ '+this.value:'';});
+
+window.addEventListener('offline',function(){$('offline-banner').className='offline-banner on';});
+window.addEventListener('online',function(){$('offline-banner').className='offline-banner';});
+
+// ─── Boot ───
+loadCategories();
+loadDraft();
+updateDescCount();
+if(navigator.onLine===false){$('offline-banner').className='offline-banner on';}
+})();
+</script>
+</body>
+</html>
