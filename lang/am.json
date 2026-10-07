@@ -861,5 +861,15 @@
   "withdrawOffer": "ቅናሽ መልስ",
   "withdrawnAt": "የተመለሰበት",
   "yesterday": "ትናንት",
-  "yourRating": "የእርስዎ ደረጃ"
+  "yourRating": "የእርስዎ ደረጃ",
+  "welcomeEyebrow": "እንኳን ደህና መጡ",
+  "welcomeHeroTitle": "ፍላጎትዎን\nይንገሩን",
+  "welcomeHeroBody": "ፈላጊ ተገቢ ቅናሾችን በAI አማካኝነት በፍጥነት ያገኝልዎታል።",
+  "statNeeds": "ፍላጎቶች",
+  "statProviders": "አቅራቢዎች",
+  "statRating": "ደረጃ",
+  "signInMethods": "የመግቢያ መንገዶች",
+  "signInTelegram": "በቴሌግራም ይግቡ",
+  "signInEmail": "በኢሜይል ይግቡ",
+  "continueAsGuest": "እንደ እንግዳ ይቀጥሉ"
 }

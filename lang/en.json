@@ -861,5 +861,15 @@
   "withdrawOffer": "Withdraw offer",
   "withdrawnAt": "Withdrawn",
   "yesterday": "Yesterday",
-  "yourRating": "Your rating"
+  "yourRating": "Your rating",
+  "welcomeEyebrow": "Welcome",
+  "welcomeHeroTitle": "Tell us\nwhat you need",
+  "welcomeHeroBody": "Felagi finds suitable offers quickly using AI.",
+  "statNeeds": "Needs",
+  "statProviders": "Providers",
+  "statRating": "Rating",
+  "signInMethods": "Sign-in methods",
+  "signInTelegram": "Sign in with Telegram",
+  "signInEmail": "Sign in with email",
+  "continueAsGuest": "Continue as guest"
 }

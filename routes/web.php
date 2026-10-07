@@ -21,17 +21,17 @@ Route::get('/', function (\Illuminate\Http\Request $request) {
         }
     }
 
-    return view('welcome');
+    return view('welcome-premium');
 });
 
 // S002 Telegram sign-in (alias for welcome — admin login redirects here)
 Route::get('/auth/telegram', function () {
-    return view('welcome');
+    return view('welcome-premium');
 });
 
 // S001 Welcome alias (design path: /welcome; canonical route is /)
 Route::get('/welcome', function () {
-    return view('welcome');
+    return view('welcome-premium');
 });
 
 Route::get('/profile', function () {
