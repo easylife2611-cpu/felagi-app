@@ -149,9 +149,9 @@ input,select{font-family:inherit;font-size:inherit}
       <button type="button" class="search-clear" id="search-clear" aria-label="{{ app()->getLocale()==='am' ? 'አጽዳ' : 'Clear' }}">×</button>
     </div>
     <div class="search-tools" aria-label="{{ app()->getLocale()==='am' ? 'ፈጣን ፍለጋ' : 'Quick search' }}">
-      <button type="button" class="search-tool" data-quick="{{ app()->getLocale()==='am' ? 'ትራንስፖርት' : 'Transport' }}">\u2315 {{ app()->getLocale()==='am' ? 'ትራንስፖርት' : 'Transport' }}</button>
-      <button type="button" class="search-tool" data-quick="{{ app()->getLocale()==='am' ? 'ግንባታ' : 'Construction' }}">\u2315 {{ app()->getLocale()==='am' ? 'ግንባታ' : 'Construction' }}</button>
-      <button type="button" class="search-tool" data-quick="{{ app()->getLocale()==='am' ? 'አይቲ' : 'IT' }}">\u2315 {{ app()->getLocale()==='am' ? 'አይቲ' : 'IT' }}</button>
+      <button type="button" class="search-tool" data-quick="{{ app()->getLocale()==='am' ? 'ትራንስፖርት' : 'Transport' }}"> {{ app()->getLocale()==='am' ? 'ትራንስፖርት' : 'Transport' }}</button>
+      <button type="button" class="search-tool" data-quick="{{ app()->getLocale()==='am' ? 'ግንባታ' : 'Construction' }}"> {{ app()->getLocale()==='am' ? 'ግንባታ' : 'Construction' }}</button>
+      <button type="button" class="search-tool" data-quick="{{ app()->getLocale()==='am' ? 'አይቲ' : 'IT' }}"> {{ app()->getLocale()==='am' ? 'አይቲ' : 'IT' }}</button>
     </div>
     <div id="search-history" class="search-history" aria-live="polite"></div>
   </section>

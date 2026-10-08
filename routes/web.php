@@ -39,7 +39,7 @@ Route::get('/profile', function () {
 });
 
 Route::get('/browse', function () {
-    return view('browse-premium');
+    return view('browse');
 });
 
 Route::get('/needs/new', function () {
