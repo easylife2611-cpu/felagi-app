@@ -4,54 +4,37 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
-/**
- * Seeds the 8 canonical Ethiopian marketplace categories.
- *
- * Idempotent — uses updateOrCreate on `slug`. Safe to re-run.
- * Never overwrites `created_by` if already set.
- */
 class CategorySeeder extends Seeder
 {
     public function run(): void
     {
         $categories = [
-            ['construction', 'ኮንስትራክሽን እና ህንፃ',    'Construction & Building',  10],
-            ['transport',    'ትራንስፖርት እና ሎጅስቲክስ', 'Transport & Logistics',    20],
-            ['food',         'ምግብ እና ኬተሪንግ',       'Food & Catering',          30],
-            ['it-services',  'አይቲ እና ሶፍትዌር',       'IT & Software',            40],
-            ['home-services','የቤት አገልግሎቶች',        'Home Services',            50],
-            ['events',       'ዝግጅቶች እና መዝናኛ',     'Events & Entertainment',   60],
-            ['agriculture',  'ግብርና እና እርሻ',         'Agriculture',              70],
-            ['retail',       'ችርቻሮ እና ንግድ',         'Retail & Trade',           80],
+            ['name_en' => 'Transport',      'name_am' => 'ትራንስፖርት'],
+            ['name_en' => 'Construction',   'name_am' => 'ግንባታ'],
+            ['name_en' => 'IT & Software',  'name_am' => 'አይቲ እና ሶፍትዌር'],
+            ['name_en' => 'Agriculture',    'name_am' => 'ግብርና'],
+            ['name_en' => 'Manufacturing',  'name_am' => 'ማምረቻ'],
+            ['name_en' => 'Services',       'name_am' => 'አገልግሎቶች'],
+            ['name_en' => 'Education',      'name_am' => 'ትምህርት'],
+            ['name_en' => 'Healthcare',     'name_am' => 'ጤና'],
+            ['name_en' => 'Logistics',      'name_am' => 'ሎጂስቲክስ'],
+            ['name_en' => 'Consulting',     'name_am' => 'ምክር'],
         ];
 
         $created = 0;
-        $updated = 0;
-
-        foreach ($categories as [$slug, $nameAm, $nameEn, $order]) {
-            $existing = Category::where('slug', $slug)->first();
-
-            Category::updateOrCreate(
-                ['slug' => $slug],
+        foreach ($categories as $cat) {
+            $result = Category::updateOrCreate(
+                ['slug' => Str::slug($cat['name_en'])],
                 [
-                    'name_am'    => $nameAm,
-                    'name_en'    => $nameEn,
-                    'active'     => true,
-                    'sort_order' => $order,
-                ],
+                    'name_en' => $cat['name_en'],
+                    'name_am' => $cat['name_am'],
+                ]
             );
-
-            if ($existing) {
-                $updated++;
-            } else {
-                $created++;
-            }
+            if ($result->wasRecentlyCreated) $created++;
         }
 
-        $this->command->info(
-            "Categories seeded: " . count($categories) .
-            " ({$created} created, {$updated} updated)."
-        );
+        $this->command->info("✅ Categories: {$created} new, " . count($categories) . " total processed");
     }
 }
