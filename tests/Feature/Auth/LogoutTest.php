@@ -6,6 +6,16 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * L350 — Logout regression tests.
+ *
+ * Prevents regression of:
+ *   Call to undefined method Laravel\Sanctum\TransientToken::delete()
+ *
+ * Covers both auth types:
+ *   - Sanctum token (API)
+ *   - Session auth (web guard — TransientToken)
+ */
 class LogoutTest extends TestCase
 {
     use RefreshDatabase;
@@ -26,9 +36,11 @@ class LogoutTest extends TestCase
     }
 
     /** @test */
-    public function logout_with_session_auth_returns_204(): void
+    public function logout_with_session_auth_does_not_crash(): void
     {
+        // Regression: TransientToken has no delete() method.
         $user = User::factory()->create();
+
         $this->actingAs($user)
              ->postJson('/api/v1/auth/logout')
              ->assertNoContent();
@@ -39,29 +51,5 @@ class LogoutTest extends TestCase
     {
         $response = $this->postJson('/api/v1/auth/logout');
         $this->assertContains($response->status(), [204, 401]);
-    }
-
-    /**
-     * Regression: TransientToken::delete() crash
-     *
-     * This test previously caused a fatal error when session-based
-     * auth was used (Sanctum returns TransientToken which has no
-     * delete() method). The fix uses instanceof PersonalAccessToken
-     * to only revoke real tokens.
-     *
-     * @test
-     */
-    public function session_auth_does_not_trigger_transient_token_crash(): void
-    {
-        $user = User::factory()->create();
-
-        // Session-based auth — Sanctum returns TransientToken
-        $this->actingAs($user, 'web');
-
-        // Should return 204, NOT 500
-        $response = $this->postJson('/api/v1/auth/logout');
-
-        $this->assertSame(204, $response->status(),
-            'Logout must not crash with session auth (TransientToken bug)');
     }
 }
