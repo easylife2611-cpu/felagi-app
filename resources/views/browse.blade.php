@@ -28,9 +28,6 @@ main{padding:20px 18px 128px;max-width:1200px;margin:0 auto}
 .hero-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .hero .primary-cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:12px;background:#FF9933;color:#003366;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 6px 14px rgba(255,153,51,.28);transition:transform .15s,box-shadow .15s}.hero .primary-cta:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(255,153,51,.36)}
 .hero .secondary-link{color:rgba(255,255,255,.65);font-size:13px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:1px;transition:color .15s,border-color .15s}.hero .secondary-link:hover{color:rgba(255,255,255,.9);border-color:rgba(255,255,255,.5)}
-.section-heading{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:32px 0 12px}
-.section-heading h2{font-size:22px;line-height:1.25;color:#003366;margin:0;font-weight:750}
-.section-heading p{font-size:14px;color:#586675;margin:5px 0 0}
 .ai-panel{display:flex;align-items:center;justify-content:space-between;gap:16px;background:linear-gradient(110deg,#fff,#f4f8fc);border:1px solid #cbdceb;border-radius:var(--radius-md);padding:22px;margin-bottom:30px;box-shadow:var(--shadow-1)}
 .ai-panel .ai-mark{width:42px;height:42px;flex:0 0 42px;border-radius:12px;background:#eaf2fb;color:#003366;display:grid;place-items:center;font-weight:800}
 .ai-panel h3{font-size:18px;margin:0 0 5px;color:#003366;font-weight:750}
@@ -96,6 +93,17 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
    BROWSE PAGE — IA RESTRUCTURE (L350)
    ═══════════════════════════════════════════════════════════ */
 
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:28px 0 12px}
+.section-heading h2{font-size:18px;line-height:1.3;color:#003366;margin:0;font-weight:750;letter-spacing:-.01em}
+.section-heading p{font-size:14px;color:#586675;margin:4px 0 0}
+.section-more{flex:0 0 auto;background:transparent;border:0;color:#003366;font-size:13px;font-weight:700;cursor:pointer;padding:4px 8px;border-radius:8px;transition:background .15s}
+.section-more:hover{background:#eef4f8}
+
+.section-heading h2{font-size:18px;line-height:1.3;color:#003366;margin:0;font-weight:750;letter-spacing:-.01em}
+.section-heading p{font-size:14px;color:#586675;margin:4px 0 0}
+.section-more{flex:0 0 auto;background:transparent;border:0;color:#003366;font-size:13px;font-weight:700;cursor:pointer;padding:4px 8px;border-radius:8px;transition:background .15s}
+.section-more:hover{background:#eef4f8}
+
 /* ─── SEARCH (PRIMARY) ─────────────────────────────────── */
 .search-primary{margin:0 0 24px}
 .search-bar{position:relative;display:flex;align-items:center;background:#fff;border:2px solid #d9e1e8;border-radius:16px;box-shadow:0 8px 24px rgba(0,51,102,.08);transition:border-color .15s,box-shadow .15s}
@@ -108,9 +116,6 @@ header{margin-left:-240px;padding-left:calc(240px + 16px)}
 .search-clear.is-visible{display:inline-flex}
 
 /* ─── SECTION HEADINGS ─────────────────────────────────── */
-.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:28px 0 12px}
-.section-heading h2{font-size:18px;line-height:1.3;color:#003366;margin:0;font-weight:750;letter-spacing:-.01em}
-.section-heading p{font-size:14px;color:#586675;margin:4px 0 0}
 .section-more{flex:0 0 auto;background:transparent;border:0;color:#003366;font-size:13px;font-weight:700;cursor:pointer;padding:4px 8px;border-radius:8px;transition:background .15s}
 .section-more:hover{background:#eef4f8}
 
