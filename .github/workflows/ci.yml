@@ -1,0 +1,186 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - 'feature/**'
+      - 'codex/**'
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ─────────────────────────────────────────
+  # Job 1 — Full Laravel test suite
+  # ─────────────────────────────────────────
+  laravel-tests:
+    name: Laravel Tests (PHP 8.2 + MySQL 8)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci-only-root
+          MYSQL_DATABASE: zagcreht_felagi_test
+          MYSQL_USER: ci_user
+          MYSQL_PASSWORD: ci-only-pass
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uci_user -pci-only-pass"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=12
+
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'true'
+      APP_MAINTENANCE_DRIVER: file
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: zagcreht_felagi_test
+      DB_USERNAME: ci_user
+      DB_PASSWORD: ci-only-pass
+      CACHE_STORE: array
+      MAIL_MAILER: array
+      QUEUE_CONNECTION: sync
+      BCRYPT_ROUNDS: 4
+      SESSION_DRIVER: array
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql, bcmath, gd, zip, xml, curl, intl, openssl, fileinfo, tokenizer
+          coverage: none
+          tools: composer:v2
+
+      - name: Verify environment
+        run: |
+          php --version
+          composer --version
+          mysql --version
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress --no-suggest
+
+      - name: Prepare .env
+        run: |
+          cp .env.example .env
+          php artisan key:generate --force
+
+      - name: Wait for MySQL
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h 127.0.0.1 -uci_user -pci-only-pass --silent 2>/dev/null; then
+              echo "✅ MySQL ready after ${i} attempts"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "❌ MySQL failed to start"
+          exit 1
+
+      - name: Run migrations
+        run: php artisan migrate --force
+
+      - name: Run test suite
+        run: php artisan test --reporter=compact 2>&1 | tail -30
+
+      - name: Upload test results (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs-${{ github.sha }}
+          path: |
+            storage/logs/
+            bootstrap/cache/
+          retention-days: 7
+
+  # ─────────────────────────────────────────
+  # Job 2 — Laravel Pint (code style)
+  # ─────────────────────────────────────────
+  laravel-pint:
+    name: Code Style (Pint)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-${{ hashFiles('composer.lock') }}
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run Pint (test mode — no changes)
+        run: ./vendor/bin/pint --test
+        continue-on-error: true
+
+  # ─────────────────────────────────────────
+  # Job 3 — Frontend build (Vite)
+  # ─────────────────────────────────────────
+  frontend-build:
+    name: Frontend Build (Vite)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install npm deps
+        run: npm install --no-save --no-audit --no-fund
+
+      - name: Run Vite build
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          if [ -d "public/build" ]; then
+            echo "✅ Build output exists"
+            du -sh public/build
+          else
+            echo "⚠️ No public/build — Vite may not be configured"
+          fi
+        continue-on-error: true

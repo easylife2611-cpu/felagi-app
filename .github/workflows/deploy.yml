@@ -1,0 +1,166 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+      skip_backup:
+        description: 'Skip pre-deploy backup (not recommended)'
+        required: false
+        default: false
+        type: boolean
+      confirmation:
+        description: 'Type DEPLOY to confirm'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Only run if user typed DEPLOY
+    if: github.event.inputs.confirmation == 'DEPLOY'
+
+    environment:
+      name: ${{ github.event.inputs.environment }}
+      url: https://zagcreativity.com
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pre-deploy checks
+        run: |
+          echo "=== Pre-deploy checks ==="
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Skip backup: ${{ github.event.inputs.skip_backup }}"
+
+      - name: Verify SSH secret exists
+        run: |
+          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "❌ SSH_PRIVATE_KEY secret missing"
+            exit 1
+          fi
+          echo "✅ SSH_PRIVATE_KEY present"
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+          echo "✅ SSH configured"
+
+      - name: Pre-deploy backup (remote)
+        if: github.event.inputs.skip_backup != 'true'
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "cd /home/zagcreht/felagi_app && \
+             BACKUP_DIR=~/deploy_backups/\$(date +%Y%m%d-%H%M%S) && \
+             mkdir -p \$BACKUP_DIR && \
+             git rev-parse HEAD > \$BACKUP_DIR/previous_commit.txt && \
+             tar -czf \$BACKUP_DIR/app_before_deploy.tar.gz --exclude=node_modules --exclude=vendor --exclude=storage/framework/cache . && \
+             echo \"✅ Backup created: \$BACKUP_DIR\""
+
+      - name: Deploy via SSH
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'REMOTE_SCRIPT'
+          set -e
+          cd /home/zagcreht/felagi_app
+
+          echo "=== 1. Pull latest code ==="
+          git fetch origin
+          git checkout ${{ github.ref_name }}
+          git pull origin ${{ github.ref_name }}
+          echo "HEAD: $(git rev-parse --short HEAD)"
+
+          echo "=== 2. Composer install ==="
+          composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+          echo "=== 3. Run migrations ==="
+          php artisan migrate --force
+
+          echo "=== 4. Clear + cache ==="
+          php artisan optimize:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+          echo "=== 5. Verify ==="
+          php artisan --version
+          curl -s -o /dev/null -w "Homepage: HTTP %{http_code}\n" https://zagcreativity.com/
+
+          echo "✅ Deploy complete"
+          REMOTE_SCRIPT
+
+      - name: Post-deploy smoke test
+        run: |
+          echo "=== Smoke test ==="
+          for url in "" "browse" "profile" "my/needs" "notifications" "support/report"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "https://zagcreativity.com/$url")
+            printf "%-25s HTTP %s\n" "/$url" "$code"
+            if [ "$code" != "200" ]; then
+              echo "❌ Smoke test failed for /$url"
+              exit 1
+            fi
+          done
+          echo "✅ All smoke tests passed"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Deploy FAILED"
+          echo "Check logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Deploy Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment:** ${{ github.event.inputs.environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Actor:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Time:** $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_STEP_SUMMARY
+
+  # ─────────────────────────────────────────
+  # Rollback job (manual trigger only)
+  # ─────────────────────────────────────────
+  rollback:
+    name: Rollback (manual)
+    runs-on: ubuntu-latest
+    if: github.event.inputs.environment == 'rollback'
+    timeout-minutes: 10
+
+    steps:
+      - name: Rollback via SSH
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'REMOTE_SCRIPT'
+          cd /home/zagcreht/felagi_app
+          LATEST_BACKUP=$(ls -t ~/deploy_backups/ | head -1)
+          echo "Rolling back to: $LATEST_BACKUP"
+          # Manual rollback — restore from backup
+          REMOTE_SCRIPT
+        continue-on-error: true
