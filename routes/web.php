@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Web\WelcomeController;
 use App\Http\Controllers\Web\BrowseController;
 use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\Web\NeedController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.home');
 
@@ -18,25 +19,17 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 Route::get('/browse', [BrowseController::class, 'index'])->name('browse');
 
-Route::get('/needs/new', function () {
-    return view('create-need-premium');
-});
+Route::get('/needs/new', [NeedController::class, 'create'])->name('needs.create');
 
-Route::get('/needs/{id}', function ($id) {
-    return view('show-need-premium');
-});
+Route::get('/needs/{id}', [NeedController::class, 'show'])->name('needs.show');
 
 Route::get('/my/needs', function () {
     return view('my-needs-premium');
 });
 
-Route::get('/needs/{id}/offers/new', function ($id) {
-    return view('submit-offer-premium');
-});
+Route::get('/needs/{id}/offers/new', [NeedController::class, 'submitOffer'])->name('needs.offers.new');
 
-Route::get('/needs/{id}/offers', function ($id) {
-    return view('received-offers-premium');
-});
+Route::get('/needs/{id}/offers', [NeedController::class, 'receivedOffers'])->name('needs.offers');
 
 Route::get('/offers/{id}', function ($id) {
     return view('offer-detail-premium');
@@ -54,45 +47,29 @@ Route::get('/offers/{id}/messages', function ($id) {
     return view('offer-messages-premium');
 });
 
-Route::get('/needs/{id}/compare', function ($id) {
-    return view('compare-offers-premium');
-});
+Route::get('/needs/{id}/compare', [NeedController::class, 'compare'])->name('needs.compare');
 
-Route::get('/needs/{id}/created', function ($id) {
-    return view('need-created-premium');
-});
+Route::get('/needs/{id}/created', [NeedController::class, 'created'])->name('needs.created');
 
-Route::get('/needs/new/public-preview', function () {
-    return view('need-preview-premium');
-});
+Route::get('/needs/new/public-preview', [NeedController::class, 'preview'])->name('needs.preview');
 
-Route::get('/needs/{id}/rating', function ($id) {
-    return view('rate-participant-premium');
-});
+Route::get('/needs/{id}/rating', [NeedController::class, 'rating'])->name('needs.rating');
 
 Route::get('/comparisons/{id}', function ($id) {
     return view('comparison-result-premium');
 });
 
-Route::get('/needs/{id}/comparisons', function ($id) {
-    return view('comparison-history-premium');
-});
+Route::get('/needs/{id}/comparisons', [NeedController::class, 'comparisons'])->name('needs.comparisons');
 
-Route::get('/needs/{id}/boost', function ($id) {
-    return view('boost-need-premium');
-});
+Route::get('/needs/{id}/boost', [NeedController::class, 'boost'])->name('needs.boost');
 
 Route::get('/support/report', function () {
     return view('report-support-premium');
 });
 
-Route::get('/needs/{id}/publications', function ($id) {
-    return view('telegram-publications-premium');
-});
+Route::get('/needs/{id}/publications', [NeedController::class, 'publications'])->name('needs.publications');
 
-Route::get('/needs/{id}/offers/unlock', function ($id) {
-    return view('offer-unlock-premium');
-});
+Route::get('/needs/{id}/offers/unlock', [NeedController::class, 'unlock'])->name('needs.offers.unlock');
 
 // ─── Admin Routes (A001-A023) ───
 // Login is public; all other admin routes require auth + admin role.
