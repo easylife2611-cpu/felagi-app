@@ -75,7 +75,7 @@ Route::get('/notifications', function () {
 });
 
 Route::get('/offers/{id}/messages', function ($id) {
-    return view('offer-messages');
+    return view('offer-messages-premium');
 });
 
 Route::get('/needs/{id}/compare', function ($id) {
