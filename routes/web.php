@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Web\WelcomeController;
+use App\Http\Controllers\Web\BrowseController;
+use App\Http\Controllers\Web\ProfileController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.home');
 
@@ -12,13 +14,9 @@ Route::get('/auth/telegram', [WelcomeController::class, 'telegram'])->name('auth
 // S001 Welcome alias (design path: /welcome; canonical route is /)
 Route::get('/welcome', [WelcomeController::class, 'welcome'])->name('welcome');
 
-Route::get('/profile', function () {
-    return view('profile-premium');
-});
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-Route::get('/browse', function () {
-    return view('browse-premium');
-});
+Route::get('/browse', [BrowseController::class, 'index'])->name('browse');
 
 Route::get('/needs/new', function () {
     return view('create-need-premium');
