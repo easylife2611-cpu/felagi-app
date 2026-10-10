@@ -111,7 +111,7 @@ Route::get('/support/report', function () {
 });
 
 Route::get('/needs/{id}/publications', function ($id) {
-    return view('telegram-publications');
+    return view('telegram-publications-premium');
 });
 
 Route::get('/needs/{id}/offers/unlock', function ($id) {
