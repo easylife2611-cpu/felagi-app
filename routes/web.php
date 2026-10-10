@@ -67,7 +67,7 @@ Route::get('/offers/{id}', function ($id) {
 });
 
 Route::get('/my/offers', function () {
-    return view('my-offers');
+    return view('my-offers-premium');
 });
 
 Route::get('/notifications', function () {
