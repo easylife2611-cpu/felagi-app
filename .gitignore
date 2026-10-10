@@ -89,3 +89,6 @@ backups/
 # L366 — Screenshot evidence: sensitive files
 qa_tools/auth-cookie.txt
 qa_tools/auth-cookie*.txt
+
+# L366 — backup archive (not source)
+/archives/
