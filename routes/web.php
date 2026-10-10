@@ -115,7 +115,7 @@ Route::get('/needs/{id}/publications', function ($id) {
 });
 
 Route::get('/needs/{id}/offers/unlock', function ($id) {
-    return view('offer-unlock');
+    return view('offer-unlock-premium');
 });
 
 // ─── Admin Routes (A001-A023) ───
