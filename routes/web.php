@@ -63,7 +63,7 @@ Route::get('/needs/{id}/offers', function ($id) {
 });
 
 Route::get('/offers/{id}', function ($id) {
-    return view('offer-detail');
+    return view('offer-detail-premium');
 });
 
 Route::get('/my/offers', function () {
