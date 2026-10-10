@@ -71,7 +71,7 @@ Route::get('/my/offers', function () {
 });
 
 Route::get('/notifications', function () {
-    return view('notifications');
+    return view('notifications-premium');
 });
 
 Route::get('/offers/{id}/messages', function ($id) {
