@@ -1,0 +1,14 @@
+{
+  "generated": "2026-10-10",
+  "head": "d178587",
+  "collection_method": "playwright-chromium-headless",
+  "viewport_mobile": "360x800",
+  "viewport_desktop": "1440x900",
+  "authentication": "felagi_session cookie (authenticated)",
+  "total_screenshots": 46,
+  "screens": 23,
+  "viewports": 2,
+  "http_200_count": 46,
+  "redirect_count": 0,
+  "notes": "All 23 premium screens captured with authenticated session. No redirects."
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "S010",
+    "name": "received-offers",
+    "vp": "desktop",
+    "status": 200,
+    "size": 102056,
+    "ms": 2673,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/offers"
+  },
+  {
+    "id": "S011",
+    "name": "submit-offer",
+    "vp": "desktop",
+    "status": 200,
+    "size": 122839,
+    "ms": 2320,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/offers/new"
+  },
+  {
+    "id": "S012",
+    "name": "offer-detail",
+    "vp": "desktop",
+    "status": 200,
+    "size": 69751,
+    "ms": 2291,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/offers/1"
+  },
+  {
+    "id": "S013",
+    "name": "my-offers",
+    "vp": "desktop",
+    "status": 200,
+    "size": 235242,
+    "ms": 2608,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/my/offers"
+  },
+  {
+    "id": "S014",
+    "name": "compare-offers",
+    "vp": "desktop",
+    "status": 200,
+    "size": 100161,
+    "ms": 2311,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/compare"
+  },
+  {
+    "id": "S015",
+    "name": "comparison-result",
+    "vp": "desktop",
+    "status": 200,
+    "size": 67685,
+    "ms": 2320,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/comparisons/1"
+  },
+  {
+    "id": "S016",
+    "name": "comparison-history",
+    "vp": "desktop",
+    "status": 200,
+    "size": 89953,
+    "ms": 2362,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/comparisons"
+  },
+  {
+    "id": "S017",
+    "name": "messages",
+    "vp": "desktop",
+    "status": 200,
+    "size": 100729,
+    "ms": 2432,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/offers/1/messages"
+  },
+  {
+    "id": "S018",
+    "name": "notifications",
+    "vp": "desktop",
+    "status": 200,
+    "size": 176155,
+    "ms": 2590,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/notifications"
+  },
+  {
+    "id": "S019",
+    "name": "boost",
+    "vp": "desktop",
+    "status": 200,
+    "size": 87451,
+    "ms": 2326,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/boost"
+  },
+  {
+    "id": "S020",
+    "name": "rating",
+    "vp": "desktop",
+    "status": 200,
+    "size": 60516,
+    "ms": 2315,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/rating"
+  },
+  {
+    "id": "S021",
+    "name": "report-support",
+    "vp": "desktop",
+    "status": 200,
+    "size": 133088,
+    "ms": 2232,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/support/report"
+  },
+  {
+    "id": "S022",
+    "name": "telegram-publications",
+    "vp": "desktop",
+    "status": 200,
+    "size": 103174,
+    "ms": 2336,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/publications"
+  },
+  {
+    "id": "S023",
+    "name": "offer-unlock",
+    "vp": "desktop",
+    "status": 200,
+    "size": 106371,
+    "ms": 2246,
+    "redirected": false,
+    "finalUrl": "https://zagcreativity.com/needs/1/offers/unlock"
+  }
+]
