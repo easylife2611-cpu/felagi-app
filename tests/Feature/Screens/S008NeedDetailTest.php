@@ -57,11 +57,7 @@ class S008NeedDetailTest extends TestCase
         }
     }
 
-    public function test_show_need_page_has_ad_slot(): void
-    {
-        $res = $this->get('/needs/abc-123');
-        $res->assertSee('AD_NEED_DETAIL_BOTTOM_01', false);
-    }
+    // test_show_need_page_has_ad_slot: removed (ads not in premium design)
 
     public function test_api_returns_need_by_id(): void
     {

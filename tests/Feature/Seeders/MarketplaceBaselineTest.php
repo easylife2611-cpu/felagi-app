@@ -32,12 +32,12 @@ final class MarketplaceBaselineTest extends TestCase
         $this->assertSame($first, $second, 'Re-running must not duplicate rows.');
     }
 
-    public function test_eight_canonical_categories_present(): void
+    public function test_ten_canonical_categories_present(): void
     {
         $this->seed(MarketplaceBaselineSeeder::class);
 
-        $this->assertSame(8, Category::count());
-        $this->assertSame(8, Category::active()->count());
+        $this->assertSame(10, Category::count());
+        $this->assertSame(10, Category::active()->count());
     }
 
     public function test_every_category_has_am_and_en_names(): void

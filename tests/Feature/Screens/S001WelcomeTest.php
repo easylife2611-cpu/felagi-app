@@ -25,7 +25,7 @@ class S001WelcomeTest extends TestCase
         // L339 — locale default 'am' (design compliance)
         $this->withHeader('Accept-Language', 'am-ET,am;q=0.9')
             ->get('/')
-            ->assertSee('felagi-lockup', false)
+            ->assertSee('class="brand"', false)
             ->assertSee('የኢትዮጵያ ፍላጎት-ቀዳሚ የገበያ ቦታ', false);
     }
 
@@ -36,7 +36,7 @@ class S001WelcomeTest extends TestCase
         // so assertSee must use default escape=true (or &#039;).
         $this->withHeader('Accept-Language', 'en-US,en;q=0.9')
             ->get('/')
-            ->assertSee('felagi-lockup', false)
+            ->assertSee('class="brand"', false)
             ->assertSee("Ethiopia's need-first marketplace");   // escape=true (default)
     }
 
@@ -52,7 +52,7 @@ class S001WelcomeTest extends TestCase
     {
         $this->get('/')
             ->assertSee('id="email-continue"', false)
-            ->assertSee('Continue with Email', false);
+            ->assertSee('Sign in with email', false);
     }
 
     public function test_welcome_has_otp_view(): void
@@ -77,7 +77,7 @@ class S001WelcomeTest extends TestCase
         $res = $this->get('/');
         $res->assertStatus(200)
             ->assertSee('id="telegram-continue"', false)
-            ->assertSee('Continue with Telegram', false)
+            ->assertSee('Sign in with Telegram', false)
             ->assertSee('id="telegram-widget-container"', false);
     }
 

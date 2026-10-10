@@ -12,12 +12,12 @@ class S003ProfileTest extends TestCase
     {
         $res = $this->get('/profile');
         $res->assertStatus(200);
-        $res->assertSee('id="profile-form"', false);
+        $res->assertSee('id="edit-form"', false);
     }
 
     public function test_profile_page_has_photo_upload(): void
     {
-        $this->get('/profile')->assertSee('id="photo-input"', false);
+        $this->get('/profile')->assertSee('id="avatar"', false);
     }
 
     public function test_me_requires_auth(): void

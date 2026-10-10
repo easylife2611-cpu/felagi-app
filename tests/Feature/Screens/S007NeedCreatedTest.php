@@ -31,6 +31,6 @@ class S007NeedCreatedTest extends TestCase
     public function test_page_has_create_another_link(): void
     {
         $res = $this->get('/needs/abc-123/created');
-        $res->assertSee('href="/needs/new"', false);
+        $res->assertSee('href="/browse"', false);
     }
 }

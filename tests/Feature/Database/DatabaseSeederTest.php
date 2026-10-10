@@ -59,15 +59,16 @@ class DatabaseSeederTest extends TestCase
     }
 
     /** @test */
-    public function category_seeder_creates_8_canonical_categories(): void
+    public function category_seeder_creates_10_canonical_categories(): void
     {
         $this->seed(CategorySeeder::class);
 
-        $this->assertSame(8, Category::count());
+        $this->assertSame(10, Category::count());
 
         $canonicalSlugs = [
-            'construction', 'transport', 'food', 'it-services',
-            'home-services', 'events', 'agriculture', 'retail',
+            'transport', 'construction', 'it-software', 'agriculture',
+            'manufacturing', 'services', 'education', 'healthcare',
+            'logistics', 'consulting',
         ];
 
         foreach ($canonicalSlugs as $slug) {
