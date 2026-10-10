@@ -51,7 +51,7 @@ Route::get('/needs/{id}', function ($id) {
 });
 
 Route::get('/my/needs', function () {
-    return view('my-needs');
+    return view('my-needs-premium');
 });
 
 Route::get('/needs/{id}/offers/new', function ($id) {
