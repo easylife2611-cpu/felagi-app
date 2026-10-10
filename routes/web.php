@@ -107,7 +107,7 @@ Route::get('/needs/{id}/boost', function ($id) {
 });
 
 Route::get('/support/report', function () {
-    return view('report-support');
+    return view('report-support-premium');
 });
 
 Route::get('/needs/{id}/publications', function ($id) {
