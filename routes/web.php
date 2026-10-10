@@ -6,6 +6,11 @@ use App\Http\Controllers\Web\WelcomeController;
 use App\Http\Controllers\Web\BrowseController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\NeedController;
+use App\Http\Controllers\Web\MyController;
+use App\Http\Controllers\Web\OfferController;
+use App\Http\Controllers\Web\SupportController;
+use App\Http\Controllers\Web\ComparisonController;
+use App\Http\Controllers\Web\NotificationController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.home');
 
@@ -23,29 +28,19 @@ Route::get('/needs/new', [NeedController::class, 'create'])->name('needs.create'
 
 Route::get('/needs/{id}', [NeedController::class, 'show'])->name('needs.show');
 
-Route::get('/my/needs', function () {
-    return view('my-needs-premium');
-});
+Route::get('/my/needs', [MyController::class, 'needs'])->name('my.needs');
 
 Route::get('/needs/{id}/offers/new', [NeedController::class, 'submitOffer'])->name('needs.offers.new');
 
 Route::get('/needs/{id}/offers', [NeedController::class, 'receivedOffers'])->name('needs.offers');
 
-Route::get('/offers/{id}', function ($id) {
-    return view('offer-detail-premium');
-});
+Route::get('/offers/{id}', [OfferController::class, 'show'])->name('offers.show');
 
-Route::get('/my/offers', function () {
-    return view('my-offers-premium');
-});
+Route::get('/my/offers', [MyController::class, 'offers'])->name('my.offers');
 
-Route::get('/notifications', function () {
-    return view('notifications-premium');
-});
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
 
-Route::get('/offers/{id}/messages', function ($id) {
-    return view('offer-messages-premium');
-});
+Route::get('/offers/{id}/messages', [OfferController::class, 'messages'])->name('offers.messages');
 
 Route::get('/needs/{id}/compare', [NeedController::class, 'compare'])->name('needs.compare');
 
@@ -55,17 +50,13 @@ Route::get('/needs/new/public-preview', [NeedController::class, 'preview'])->nam
 
 Route::get('/needs/{id}/rating', [NeedController::class, 'rating'])->name('needs.rating');
 
-Route::get('/comparisons/{id}', function ($id) {
-    return view('comparison-result-premium');
-});
+Route::get('/comparisons/{id}', [ComparisonController::class, 'show'])->name('comparisons.show');
 
 Route::get('/needs/{id}/comparisons', [NeedController::class, 'comparisons'])->name('needs.comparisons');
 
 Route::get('/needs/{id}/boost', [NeedController::class, 'boost'])->name('needs.boost');
 
-Route::get('/support/report', function () {
-    return view('report-support-premium');
-});
+Route::get('/support/report', [SupportController::class, 'report'])->name('support.report');
 
 Route::get('/needs/{id}/publications', [NeedController::class, 'publications'])->name('needs.publications');
 
