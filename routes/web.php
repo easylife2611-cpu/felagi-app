@@ -103,7 +103,7 @@ Route::get('/needs/{id}/comparisons', function ($id) {
 });
 
 Route::get('/needs/{id}/boost', function ($id) {
-    return view('boost-need');
+    return view('boost-need-premium');
 });
 
 Route::get('/support/report', function () {
