@@ -95,7 +95,7 @@ Route::get('/needs/{id}/rating', function ($id) {
 });
 
 Route::get('/comparisons/{id}', function ($id) {
-    return view('comparison-result');
+    return view('comparison-result-premium');
 });
 
 Route::get('/needs/{id}/comparisons', function ($id) {
