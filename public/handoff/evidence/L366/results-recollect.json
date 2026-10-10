@@ -1,0 +1,369 @@
+[
+  {
+    "id": "S001",
+    "name": "welcome",
+    "vp": "mobile",
+    "status": 200,
+    "size": 136171,
+    "ms": 2677
+  },
+  {
+    "id": "S002",
+    "name": "telegram",
+    "vp": "mobile",
+    "status": 200,
+    "size": 116973,
+    "ms": 2292
+  },
+  {
+    "id": "S003",
+    "name": "profile",
+    "vp": "mobile",
+    "status": 200,
+    "size": 88008,
+    "ms": 2374
+  },
+  {
+    "id": "S004",
+    "name": "browse",
+    "vp": "mobile",
+    "status": 200,
+    "size": 101355,
+    "ms": 2535
+  },
+  {
+    "id": "S005",
+    "name": "create-need",
+    "vp": "mobile",
+    "status": 200,
+    "size": 78567,
+    "ms": 2299
+  },
+  {
+    "id": "S006",
+    "name": "need-preview",
+    "vp": "mobile",
+    "status": 200,
+    "size": 51709,
+    "ms": 2337
+  },
+  {
+    "id": "S007",
+    "name": "need-created",
+    "vp": "mobile",
+    "status": 200,
+    "size": 27254,
+    "ms": 2296
+  },
+  {
+    "id": "S008",
+    "name": "show-need",
+    "vp": "mobile",
+    "status": 200,
+    "size": 48626,
+    "ms": 2299
+  },
+  {
+    "id": "S009",
+    "name": "my-needs",
+    "vp": "mobile",
+    "status": 200,
+    "size": 100065,
+    "ms": 2333
+  },
+  {
+    "id": "S010",
+    "name": "received-offers",
+    "vp": "mobile",
+    "status": 200,
+    "size": 49545,
+    "ms": 2300
+  },
+  {
+    "id": "S011",
+    "name": "submit-offer",
+    "vp": "mobile",
+    "status": 200,
+    "size": 69023,
+    "ms": 2300
+  },
+  {
+    "id": "S012",
+    "name": "offer-detail",
+    "vp": "mobile",
+    "status": 200,
+    "size": 42234,
+    "ms": 2290
+  },
+  {
+    "id": "S013",
+    "name": "my-offers",
+    "vp": "mobile",
+    "status": 200,
+    "size": 100862,
+    "ms": 2411
+  },
+  {
+    "id": "S014",
+    "name": "compare-offers",
+    "vp": "mobile",
+    "status": 200,
+    "size": 66515,
+    "ms": 2394
+  },
+  {
+    "id": "S015",
+    "name": "comparison-result",
+    "vp": "mobile",
+    "status": 200,
+    "size": 40807,
+    "ms": 2469
+  },
+  {
+    "id": "S016",
+    "name": "comparison-history",
+    "vp": "mobile",
+    "status": 200,
+    "size": 54373,
+    "ms": 2318
+  },
+  {
+    "id": "S017",
+    "name": "messages",
+    "vp": "mobile",
+    "status": 200,
+    "size": 51390,
+    "ms": 2511
+  },
+  {
+    "id": "S018",
+    "name": "notifications",
+    "vp": "mobile",
+    "status": 200,
+    "size": 87499,
+    "ms": 2755
+  },
+  {
+    "id": "S019",
+    "name": "boost",
+    "vp": "mobile",
+    "status": 200,
+    "size": 54239,
+    "ms": 2960
+  },
+  {
+    "id": "S020",
+    "name": "rating",
+    "vp": "mobile",
+    "status": 200,
+    "size": 40567,
+    "ms": 2911
+  },
+  {
+    "id": "S021",
+    "name": "report-support",
+    "vp": "mobile",
+    "status": 200,
+    "size": 90223,
+    "ms": 2498
+  },
+  {
+    "id": "S022",
+    "name": "telegram-publications",
+    "vp": "mobile",
+    "status": 200,
+    "size": 67960,
+    "ms": 2546
+  },
+  {
+    "id": "S023",
+    "name": "offer-unlock",
+    "vp": "mobile",
+    "status": 200,
+    "size": 61914,
+    "ms": 2400
+  },
+  {
+    "id": "S001",
+    "name": "welcome",
+    "vp": "desktop",
+    "status": 200,
+    "size": 369415,
+    "ms": 2495
+  },
+  {
+    "id": "S002",
+    "name": "telegram",
+    "vp": "desktop",
+    "status": 200,
+    "size": 338481,
+    "ms": 2443
+  },
+  {
+    "id": "S003",
+    "name": "profile",
+    "vp": "desktop",
+    "status": 200,
+    "size": 295884,
+    "ms": 2485
+  },
+  {
+    "id": "S004",
+    "name": "browse",
+    "vp": "desktop",
+    "status": 200,
+    "size": 166372,
+    "ms": 2490
+  },
+  {
+    "id": "S005",
+    "name": "create-need",
+    "vp": "desktop",
+    "status": 200,
+    "size": 151393,
+    "ms": 2346
+  },
+  {
+    "id": "S006",
+    "name": "need-preview",
+    "vp": "desktop",
+    "status": 200,
+    "size": 109049,
+    "ms": 2341
+  },
+  {
+    "id": "S007",
+    "name": "need-created",
+    "vp": "desktop",
+    "status": 200,
+    "size": 54951,
+    "ms": 2298
+  },
+  {
+    "id": "S008",
+    "name": "show-need",
+    "vp": "desktop",
+    "status": 200,
+    "size": 83434,
+    "ms": 2360
+  },
+  {
+    "id": "S009",
+    "name": "my-needs",
+    "vp": "desktop",
+    "status": 200,
+    "size": 224005,
+    "ms": 2749
+  },
+  {
+    "id": "S010",
+    "name": "received-offers",
+    "vp": "desktop",
+    "status": 200,
+    "size": 102622,
+    "ms": 2357
+  },
+  {
+    "id": "S011",
+    "name": "submit-offer",
+    "vp": "desktop",
+    "status": 200,
+    "size": 121831,
+    "ms": 2401
+  },
+  {
+    "id": "S012",
+    "name": "offer-detail",
+    "vp": "desktop",
+    "status": 200,
+    "size": 69198,
+    "ms": 2328
+  },
+  {
+    "id": "S013",
+    "name": "my-offers",
+    "vp": "desktop",
+    "status": 200,
+    "size": 234242,
+    "ms": 2647
+  },
+  {
+    "id": "S014",
+    "name": "compare-offers",
+    "vp": "desktop",
+    "status": 200,
+    "size": 98419,
+    "ms": 2402
+  },
+  {
+    "id": "S015",
+    "name": "comparison-result",
+    "vp": "desktop",
+    "status": 200,
+    "size": 67503,
+    "ms": 2357
+  },
+  {
+    "id": "S016",
+    "name": "comparison-history",
+    "vp": "desktop",
+    "status": 200,
+    "size": 88910,
+    "ms": 2347
+  },
+  {
+    "id": "S017",
+    "name": "messages",
+    "vp": "desktop",
+    "status": "ERR",
+    "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://zagcreativity.com/offers/1/messages\", waiting until \"networkidle\"\u001b[22m\n"
+  },
+  {
+    "id": "S018",
+    "name": "notifications",
+    "vp": "desktop",
+    "status": 200,
+    "size": 175859,
+    "ms": 2603
+  },
+  {
+    "id": "S019",
+    "name": "boost",
+    "vp": "desktop",
+    "status": 200,
+    "size": 85220,
+    "ms": 2311
+  },
+  {
+    "id": "S020",
+    "name": "rating",
+    "vp": "desktop",
+    "status": 200,
+    "size": 59928,
+    "ms": 2380
+  },
+  {
+    "id": "S021",
+    "name": "report-support",
+    "vp": "desktop",
+    "status": 200,
+    "size": 128936,
+    "ms": 2413
+  },
+  {
+    "id": "S022",
+    "name": "telegram-publications",
+    "vp": "desktop",
+    "status": 200,
+    "size": 101562,
+    "ms": 2387
+  },
+  {
+    "id": "S023",
+    "name": "offer-unlock",
+    "vp": "desktop",
+    "status": 200,
+    "size": 103493,
+    "ms": 2370
+  }
+]
