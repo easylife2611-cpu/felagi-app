@@ -42,9 +42,9 @@ class SecurityHeaders
                 'Content-Security-Policy',
                 "default-src 'self'; "
                 . "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://telegram.org https://zagcreativity.com https://www.zagcreativity.com; "
-                . "style-src 'self' 'unsafe-inline'; "
+                . "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
                 . "img-src 'self' data: https: https://zagcreativity.com https://www.zagcreativity.com; "
-                . "font-src 'self' data:; "
+                . "font-src 'self' data: https://fonts.gstatic.com; "
                 . "connect-src 'self' https://zagcreativity.com https://www.zagcreativity.com https://api.telegram.org https://oauth.telegram.org https://generativelanguage.googleapis.com; "
                 . "frame-src 'self' https://oauth.telegram.org https://telegram.org https://zagcreativity.com https://www.zagcreativity.com; "
                 . " "
