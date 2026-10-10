@@ -79,7 +79,7 @@ Route::get('/offers/{id}/messages', function ($id) {
 });
 
 Route::get('/needs/{id}/compare', function ($id) {
-    return view('compare-offers');
+    return view('compare-offers-premium');
 });
 
 Route::get('/needs/{id}/created', function ($id) {
