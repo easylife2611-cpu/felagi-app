@@ -99,7 +99,7 @@ Route::get('/comparisons/{id}', function ($id) {
 });
 
 Route::get('/needs/{id}/comparisons', function ($id) {
-    return view('comparison-history');
+    return view('comparison-history-premium');
 });
 
 Route::get('/needs/{id}/boost', function ($id) {
