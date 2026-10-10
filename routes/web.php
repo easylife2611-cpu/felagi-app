@@ -91,7 +91,7 @@ Route::get('/needs/new/public-preview', function () {
 });
 
 Route::get('/needs/{id}/rating', function ($id) {
-    return view('rate-participant');
+    return view('rate-participant-premium');
 });
 
 Route::get('/comparisons/{id}', function ($id) {
