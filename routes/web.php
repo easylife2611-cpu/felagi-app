@@ -59,7 +59,7 @@ Route::get('/needs/{id}/offers/new', function ($id) {
 });
 
 Route::get('/needs/{id}/offers', function ($id) {
-    return view('received-offers');
+    return view('received-offers-premium');
 });
 
 Route::get('/offers/{id}', function ($id) {
