@@ -2,37 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Web\WelcomeController;
 
-Route::get('/', function (\Illuminate\Http\Request $request) {
-    $handoff = $request->query('handoff_code');
-
-    if ($handoff) {
-        try {
-            $service = app(\App\Services\Auth\AuthAttemptService::class);
-            $result  = $service->consumeByHandoff($handoff);
-
-            if ($result && ! empty($result['user'])) {
-                \Auth::guard('web')->login($result['user']);
-                $request->session()->regenerate();
-                return redirect('/browse');
-            }
-        } catch (\Throwable $e) {
-            \Log::warning('Handoff consume failed', ['error' => $e->getMessage()]);
-        }
-    }
-
-    return view('welcome-premium');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome.home');
 
 // S002 Telegram sign-in (alias for welcome — admin login redirects here)
-Route::get('/auth/telegram', function () {
-    return view('telegram-premium');
-});
+Route::get('/auth/telegram', [WelcomeController::class, 'telegram'])->name('auth.telegram');
 
 // S001 Welcome alias (design path: /welcome; canonical route is /)
-Route::get('/welcome', function () {
-    return view('welcome-premium');
-});
+Route::get('/welcome', [WelcomeController::class, 'welcome'])->name('welcome');
 
 Route::get('/profile', function () {
     return view('profile-premium');
