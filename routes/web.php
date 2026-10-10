@@ -55,7 +55,7 @@ Route::get('/my/needs', function () {
 });
 
 Route::get('/needs/{id}/offers/new', function ($id) {
-    return view('submit-offer');
+    return view('submit-offer-premium');
 });
 
 Route::get('/needs/{id}/offers', function ($id) {
